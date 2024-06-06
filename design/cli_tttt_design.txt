@@ -1,0 +1,38 @@
+Implement a Command line interpreter for the TEA language that's capable of being run on the command line using the command style:
+
+echo INPUT | tttt 
+
+For which INPUT could be any valid TEA program already containing its input
+
+Or with
+
+echo INPUT | tttt -c TEAS
+
+Where INPUT is treated as input data and the TEA program is read from the string TEAS
+
+Or with
+
+echo INPUT | tttt -fc TEAS
+
+Where INPUT is treated as input data and the TEA program is read from the file path TEAS
+
+Or with
+
+tttt -i INPUT -c TEAS
+
+Where INPUT is treated as input data and the TEA program is read from the string TEAS
+
+Or with
+
+tttt -i INPUT -fc TEAS
+
+Where INPUT is treated as input data and the TEA program is read from the file path TEAS
+
+Or with
+
+tttt -fi INPUT -fc TEAS
+
+Where INPUT is treated as data input file path and the TEA program is read from the file path TEAS
+
+In all situations, the TTTT interpreter executes the available TEA program on the available input data and outputs the final result via standard output, and does nothing else but quit.
+
