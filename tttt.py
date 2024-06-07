@@ -217,6 +217,9 @@ for instruction in INSTRUCTIONS:
         if OUTPUT is None:
             continue
         tokens = instruction.split(":", maxsplit=2)
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
+            print(f"Instruction Tokens: {tokens}")
         PATTERN = re.compile(tokens[1])
         replacement = tokens[2]
         OUTPUT = re.sub(PATTERN, replacement, OUTPUT)
@@ -224,12 +227,18 @@ for instruction in INSTRUCTIONS:
         if OUTPUT is None:
             continue
         tokens = instruction.split(":", maxsplit=1)
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
+            print(f"Instruction Tokens: {tokens}")
         PATTERN = re.compile(tokens[1])
         OUTPUT = re.sub(PATTERN, "", OUTPUT)
     elif instruction.upper().startswith("K:"): #// keep: k:PATTERN
         if OUTPUT is None:
             continue
         tokens = instruction.split(":", maxsplit=1)
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
+            print(f"Instruction Tokens: {tokens}")
         inputLines = OUTPUT.split(os.linesep)
         keptLines = []
         PATTERN = re.compile(tokens[1])
@@ -240,12 +249,16 @@ for instruction in INSTRUCTIONS:
     elif instruction.upper().startswith("S:"): #// shuffle: s:
         if OUTPUT is None:
             continue
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
         parts = re.split("\\s+", OUTPUT)
         lparts = random.sample(parts, len(parts))
         OUTPUT = GLUE.join(lparts)
     elif instruction.upper().startswith("A:"): #// anagramize words in place: a:
         if OUTPUT is None:
             continue
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
         parts = re.split("\\s+", OUTPUT)
         lparts = []
         for word in parts:
@@ -254,19 +267,27 @@ for instruction in INSTRUCTIONS:
     elif instruction.upper().startswith("AA:"): #// anagramize input: aa:
         if OUTPUT is None:
             continue
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
         parts = list(OUTPUT)
         OUTPUT = "".join(random.sample(list(parts), len(parts)))
     elif instruction.upper().startswith("T:"): #// triangular reduction: t:
         if OUTPUT is None:
             continue
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
         OUTPUT = triangular_reduction(OUTPUT)
     elif instruction.upper().startswith("RT:"): #// rightmost triangular reduction: rt:
         if OUTPUT is None:
             continue
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
         OUTPUT = rightmost_triangular_reduction(OUTPUT)
     elif instruction.upper().startswith("M:"): #// laterally invert words in place (mirror): m:
         if OUTPUT is None:
             continue
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
         parts = re.split("\\s+", OUTPUT)
         lparts = []
         for word in parts:
@@ -275,6 +296,8 @@ for instruction in INSTRUCTIONS:
     elif instruction.upper().startswith("MM:"): #// laterally invert everything (mirror): mm:
         if OUTPUT is None:
             continue
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
         OUTPUT = mirror(OUTPUT)
     elif instruction.upper().startswith("I:"): #// i:STRING --> inject explicit input STRING as active input
         """
@@ -312,6 +335,9 @@ for instruction in INSTRUCTIONS:
 		# some earlier commands have since set OUTPUT to blank/null -- which would have left subsequent
 		# commands with nothing to process...
         tokens = instruction.split(":", maxsplit=1)
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
+            print(f"Instruction Tokens: {tokens}")
 
         if (OUTPUT is None) or (len(OUTPUT) == 0):
             OUTPUT = tokens[1]
