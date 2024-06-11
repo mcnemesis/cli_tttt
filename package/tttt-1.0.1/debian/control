@@ -1,0 +1,14 @@
+Source: tttt
+Section: devel
+Maintainer: Joseph W. Lutalo <jwl@nuchwezi.com>
+
+Build-Depends: debhelper (>= 7),python3 (>= 3.5)
+Priority: optional
+Package: tttt
+Version: 1.0.1
+Standards-Version: 1.0.1
+Homepage: https://github.com/mcnemesis/cli_tttt
+Architecture: any
+Depends: python3 (>=3.5)
+Description: tttt is the reference implementation of the TEA language interpreter
+ meant for use in development or running of TEA programs and scripts.
