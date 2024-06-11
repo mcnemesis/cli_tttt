@@ -9,9 +9,32 @@
  This commandline implementation of the TTTT is meant to extend the
  access of TEA to all major operating systems, by creating a standalone
  TEA interpreter that can be utilized in scripts or on the commandline.
+ 
 ---------------------------------------------------------------------
-## IMPLIMENTOR: Joseph W. Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com)
+### CORE IMPLEMENTOR: Joseph W. Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com)
 ---------------------------------------------------------------------
+
+# QUICK TIPS:
+
+1. To INSTALL TTTT and the TEA language on your system, run the following command in your terminal:
+
+   > curl -Ls https://bit.ly/installtea | bash
+
+2. To See TEA documentation and some example programs:
+
+   > man tttt
+
+==================== CLI TTTT Highlights ============================
+- TEA is well documented
+![TTT Man Page](sample_TEA_programs/highlights/tttt_man_page.png)
+
+- Implementing RNGs in TEA
+![dia_random_number_generator_TEA_code](sample_TEA_programs/highlights/dia_random_number_generator_TEA_code.png)
+![dia_random_number_generator](sample_TEA_programs/highlights/dia_random_number_generator.png)
+
+- Generating ART in TEA
+![rchurchy_skyline_art_generator_TEA_code](sample_TEA_programs/highlights/rchurchy_skyline_art_generator_TEA_code.png)
+![rchurchy_skyline_art_generator](sample_TEA_programs/highlights/rchurchy_skyline_art_generator.png)
 
 ==================== CLI TTTT Design ================================
 
