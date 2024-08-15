@@ -1,14 +1,17 @@
 # TTTT: TEA Text Transformer Terminal
 --------------------------------------------------------------------
- TEA, which is the TExt Alternating language is implemented here
+ TEA, which is the Transforming Executable Alphabet, 
+ a computer programming language, is implemented here
+ as an interpreted language,
  using the Python programming language as the base/host language.
 --------------------------------------------------------------------
- The original TEA implementation is found in the TTTT Android app
+ The original/historically older TEA implementation is found in the TTTT Android app
  accessible via https://bit.ly/grabteas
 
- This commandline implementation of the TTTT is meant to extend the
- access of TEA to all major operating systems, by creating a standalone
- TEA interpreter that can be utilized in scripts or on the commandline.
+ TTTT is meant to be the official reference implementation of a TEA interpreter,
+ with this being the commandline implementation of TTTT, meant to extend the
+ availability of the TEA runtime to all major operating systems, by creating a standalone
+ TEA interpreter that can be utilized in scripts, standalone programs and/or the commandline.
  
 ---------------------------------------------------------------------
 ### CORE IMPLEMENTOR: Joseph W. Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com)
