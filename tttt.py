@@ -65,6 +65,12 @@ def run_tttt():
     HasSTDIN = False
     STDINPUT = None
     STDIN_AS_CODE = False
+    OBSCURE_RC_NL = "=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL="
+    OBSCURE_RC_COM = "=COM=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=COM="
+    OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
+    TID = "|"
+    NL = "\n"
+    COMH = "#"
 
 # in case data was input via STDIN (such as via a pipe)
     if os.isatty(sys.stdin.fileno()):
@@ -108,14 +114,14 @@ def run_tttt():
 
 # Pre-process TEA CODE
     def pre_process_TSRC(tsrc):
-        return tsrc # for now, does nothing special
+# for now, trim all leading and trailing white space
+        return tsrc.strip()
 
 # Validate TEA CODE:
 # Essentially, check if:
 # - Code contains at least one valid TEA Instruction Line:
 # ([a-zA-Z]!?*?:.*(:.*)*|?)+(#.*)*
     def validate_TSRC(tsrc):
-        import re
         reTEAPROGRAM = re.compile("([a-zA-Z]!?\*?:.*(:.*)*\|?)+(#.*)*")
         errors = []
         _tsrc = tsrc.strip()
@@ -130,7 +136,54 @@ def run_tttt():
         else:
             return isValid, errors
 
+# Function to replace newlines with OBSCURE Pattern
+    def maskTEASTRING(mObj):
+        return mObj.group().replace('\n', OBSCURE_RC_NL).replace('#',OBSCURE_RC_COM).replace('|',OBSCURE_RC_TID)
 
+
+# Clean TEA CODE:
+# Essentially, eliminate all TEA Opaque Lines:
+# - TEA Comments
+# - Non-TEA Instruction Lines
+    def clean_TSRC(tsrc):
+        if len(tsrc) == 0:
+            return tsrc
+        # remove trailing whitespace
+        _tsrc = tsrc.strip()
+        # first, fold multi-line TIL strings
+        reTEASTRING1 = r'\{.*?\}'
+        reTEASTRING2 = r'"[^"]*?"'
+        _tsrc = re.sub(reTEASTRING1, maskTEASTRING, _tsrc, flags=re.DOTALL)
+        _tsrc = re.sub(reTEASTRING2, maskTEASTRING, _tsrc, flags=re.DOTALL)
+        # remove all TEA comments
+        reTCOM = re.compile("#[^\n]*")
+        _tsrc = re.sub(reTCOM,"",_tsrc)
+        # first, split by newline
+        _tsrc_lines = _tsrc.split(NL)
+        _tils = []
+        # process multiple tils on same line
+        for l  in _tsrc_lines:
+            # split a line by TID
+            if TID in l:
+                _tis = l.split(TID)
+                _tils.extend(_tis)
+            else:
+                _tils.append(l)
+        _tsrc_lines = _tils
+        if DEBUG:
+            print(f"#{len(_tsrc_lines)} of {(_tsrc_lines)}")
+        reTI = re.compile('[ ]*?[a-zA-Z]!?\*?:.*?')
+        # remove all non-TIL lines
+        _tsrc_til_only = [l for l in _tsrc_lines if reTI.match(l)]
+        # reverse string masking...
+        _tsrc_til_only = [l.
+                replace(OBSCURE_RC_NL,NL)
+                .replace(OBSCURE_RC_COM,COMH)
+                .replace(OBSCURE_RC_TID,TID) for l in _tsrc_til_only]
+        if DEBUG:
+            print(f"##{len(_tsrc_til_only)} of {(_tsrc_til_only)}")
+        _tsrc = NL.join(_tsrc_til_only)
+        return _tsrc
 
 
 
@@ -243,7 +296,11 @@ def run_tttt():
             if DEBUG:
                 print("TEA CODE ERRORS FOUND:\n%s" % "\n".join(errors))
             exit()
-        INSTRUCTIONS = TSRC.split()
+        onlyTILTSRC = clean_TSRC(TSRC)
+        if DEBUG:
+            print(f"CLEAN TEA CODE TO PROCESS:\n{onlyTILTSRC}")
+
+        INSTRUCTIONS = onlyTILTSRC.split()
     else:
         if DEBUG:
             print("NO TEA CODE FOUND")
