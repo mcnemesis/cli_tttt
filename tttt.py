@@ -106,6 +106,34 @@ def run_tttt():
     def mirror(data):
         return "".join(reversed(data))
 
+# Pre-process TEA CODE
+    def pre_process_TSRC(tsrc):
+        return tsrc # for now, does nothing special
+
+# Validate TEA CODE:
+# Essentially, check if:
+# - Code contains at least one valid TEA Instruction Line:
+# ([a-zA-Z]!?*?:.*(:.*)*|?)+(#.*)*
+    def validate_TSRC(tsrc):
+        import re
+        reTEAPROGRAM = re.compile("([a-zA-Z]!?\*?:.*(:.*)*\|?)+(#.*)*")
+        errors = []
+        _tsrc = tsrc.strip()
+        isValid = False if len(_tsrc) == 0 else True
+        if not isValid:
+            errors.append("[ERROR] TEA Source is Empty!")
+            return isValid, errors
+        isValid = re.search(reTEAPROGRAM,_tsrc) is not None
+        if not isValid:
+            errors.append("[ERROR] TEA Source is INVALID!")
+            return isValid, errors
+        else:
+            return isValid, errors
+
+
+
+
+
 #-----------------------------
 # CLI Interface
 #-----------------------------
@@ -209,7 +237,17 @@ def run_tttt():
     INSTRUCTIONS = []
 
     if CODE:
-        INSTRUCTIONS = CODE.split()
+        TSRC = pre_process_TSRC(CODE)
+        isTSRCValid,errors = validate_TSRC(TSRC)
+        if not isTSRCValid:
+            if DEBUG:
+                print("TEA CODE ERRORS FOUND:\n%s" % "\n".join(errors))
+            exit()
+        INSTRUCTIONS = TSRC.split()
+    else:
+        if DEBUG:
+            print("NO TEA CODE FOUND")
+        exit()
 
 # by default, the input is the output if not touched..
     OUTPUT = INPUT
