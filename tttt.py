@@ -71,6 +71,14 @@ def run_tttt():
     TID = "|"
     NL = "\n"
     COMH = "#"
+    TCD = ":"
+    RETEASTRING1 = r'\{.*?\}'
+    RETEASTRING2 = r'"[^"]*?"'
+    VAULTS = {}
+    GLUE = " "
+    SINGLE_SPACE_CHAR = " "
+    RE_WHITE_SPACE = r'\s+'
+    EMPTY_STR = ""
 
 # in case data was input via STDIN (such as via a pipe)
     if os.isatty(sys.stdin.fileno()):
@@ -145,16 +153,15 @@ def run_tttt():
 # Essentially, eliminate all TEA Opaque Lines:
 # - TEA Comments
 # - Non-TEA Instruction Lines
+# and put each TI on its own line, with any leading whitespace removed
     def clean_TSRC(tsrc):
         if len(tsrc) == 0:
             return tsrc
         # remove trailing whitespace
         _tsrc = tsrc.strip()
         # first, fold multi-line TIL strings
-        reTEASTRING1 = r'\{.*?\}'
-        reTEASTRING2 = r'"[^"]*?"'
-        _tsrc = re.sub(reTEASTRING1, maskTEASTRING, _tsrc, flags=re.DOTALL)
-        _tsrc = re.sub(reTEASTRING2, maskTEASTRING, _tsrc, flags=re.DOTALL)
+        _tsrc = re.sub(RETEASTRING1, maskTEASTRING, _tsrc, flags=re.DOTALL)
+        _tsrc = re.sub(RETEASTRING2, maskTEASTRING, _tsrc, flags=re.DOTALL)
         # remove all TEA comments
         reTCOM = re.compile("#[^\n]*")
         _tsrc = re.sub(reTCOM,"",_tsrc)
@@ -174,17 +181,111 @@ def run_tttt():
             print(f"#{len(_tsrc_lines)} of {(_tsrc_lines)}")
         reTI = re.compile('[ ]*?[a-zA-Z]!?\*?:.*?')
         # remove all non-TIL lines
-        _tsrc_til_only = [l for l in _tsrc_lines if reTI.match(l)]
-        # reverse string masking...
-        _tsrc_til_only = [l.
-                replace(OBSCURE_RC_NL,NL)
-                .replace(OBSCURE_RC_COM,COMH)
-                .replace(OBSCURE_RC_TID,TID) for l in _tsrc_til_only]
+        _tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l)]
         if DEBUG:
-            print(f"##{len(_tsrc_til_only)} of {(_tsrc_til_only)}")
+            # reverse string masking...
+            _tsrc_til_only_show = [l.
+                    replace(OBSCURE_RC_NL,NL)
+                    .replace(OBSCURE_RC_COM,COMH)
+                    .replace(OBSCURE_RC_TID,TID) for l in _tsrc_til_only]
+            print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
         _tsrc = NL.join(_tsrc_til_only)
         return _tsrc
 
+    # reverse TEA String Masking
+    def unmask_str(val):
+        return val.replace(OBSCURE_RC_NL,NL).replace(OBSCURE_RC_COM,COMH).replace(OBSCURE_RC_TID,TID)
+
+    # Extract a string from a TEA expression
+    def extract_str(val):
+        if val.startswith("{") and val.endswith("}"):
+            val = val.lstrip("{").rstip("}")
+            return unmask_str(val)
+        if val.startswith("\"") and val.endswith("\""):
+            val = val.lstrip("\"").rstip("\"")
+            return unmask_str(val)
+        return unmask_str(val)
+
+    def util_anagramatize_words(val):
+        parts = re.split(RE_WHITE_SPACE, val)
+        lparts = random.sample(parts, len(parts))
+        return GLUE.join(lparts)
+
+    def util_anagramatize_chars(val):
+        parts = list(val)
+        return EMPTY_STR.join(random.sample(list(parts), len(parts)))
+
+    def util_unique_chars(val):
+        unique_chars = ""
+        for char in val:
+            if char not in unique_chars:
+                unique_chars += char
+        return unique_chars
+
+
+#-----------------------------
+# TAZ Implementation
+#-----------------------------
+    def process_a(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "A":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = util_anagramatize_words(input_str)
+        if tc == "A!":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = util_anagramatize_chars(input_str)
+        if tc == "A*":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{tpe_str}]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = util_anagramatize_words(input_str)
+        if tc == "A*!":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [tpe_str]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = util_anagramatize_chars(input_str)
+        return io
+
+
+    def process_b(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "B":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = util_unique_chars(input_str)
+        if tc == "B!":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = EMPTY_STR.join(sorted(util_unique_chars(input_str)))
+        if tc == "B*":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{tpe_str}]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = util_unique_chars(input_str)
+        if tc == "B*!":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [tpe_str]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = EMPTY_STR.join(sorted(util_unique_chars(input_str)))
+        return io
 
 
 #-----------------------------
@@ -286,7 +387,6 @@ def run_tttt():
     import random
 
     OUTPUT = None
-    GLUE = " "
     INSTRUCTIONS = []
 
     if CODE:
@@ -300,7 +400,12 @@ def run_tttt():
         if DEBUG:
             print(f"CLEAN TEA CODE TO PROCESS:\n{onlyTILTSRC}")
 
-        INSTRUCTIONS = onlyTILTSRC.split()
+        INSTRUCTIONS = onlyTILTSRC.split(NL)
+
+        if len(INSTRUCTIONS) == 0:
+            if DEBUG:
+                print(f"NO TEA Instruction Lines Found!")
+                exit()
     else:
         if DEBUG:
             print("NO TEA CODE FOUND")
@@ -309,17 +414,64 @@ def run_tttt():
 # by default, the input is the output if not touched..
     OUTPUT = INPUT
 
-    for instruction in INSTRUCTIONS:
-        if instruction.upper().startswith("R:"): #// replace: r:PATTERN:replace
+    # we shall store label block pointers as such:
+    #    label_name: label_position + 1
+    #    such that, jumping to label_name allows us to
+    #    proceed execution from instruction at index label_position +1
+    labelBLOCKS = {}
+    TI_index = 0
+    for i in INSTRUCTIONS:
+        if i.upper().startswith("L"):
+            params = i.split(TCD)
+            for p in params[1:]:
+                labelBLOCKS[p] = TI_index + 1
+        TI_index += 1
+
+
+    ATPI = 0 # Active TI POSITION INDEX
+    while(True):
+        # detect end of program and quit
+        if ATPI >= len(INSTRUCTIONS):
+            break
+
+        if DEBUG:
+            print(f"Executing Instruction#{ATPI}")
+
+        instruction = INSTRUCTIONS[ATPI]
+
+        TC = instruction.upper()[0]
+
+        # A: Anagrammatize
+        if TC == "A":
             if OUTPUT is None:
                 continue
-            tokens = instruction.split(":", maxsplit=2)
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
-                print(f"Instruction Tokens: {tokens}")
-            PATTERN = re.compile(tokens[1])
-            replacement = tokens[2]
-            OUTPUT = re.sub(PATTERN, replacement, OUTPUT)
+            OUTPUT = process_a(instruction, OUTPUT)
+            ATPI += 1
+            continue
+
+        # B: Basify
+        if TC == "B":
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = process_b(instruction, OUTPUT)
+            ATPI += 1
+            continue
+
+        # C: Clear
+        if TC == "C":
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = process_c(instruction, OUTPUT)
+            ATPI += 1
+            continue
+
+        # D: Delete
         elif instruction.upper().startswith("D:"): #// delete: d:PATTERN
             if OUTPUT is None:
                 continue
@@ -329,73 +481,16 @@ def run_tttt():
                 print(f"Instruction Tokens: {tokens}")
             PATTERN = re.compile(tokens[1])
             OUTPUT = re.sub(PATTERN, "", OUTPUT)
-        elif instruction.upper().startswith("K:"): #// keep: k:PATTERN
-            if OUTPUT is None:
-                continue
-            tokens = instruction.split(":", maxsplit=1)
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-                print(f"Instruction Tokens: {tokens}")
-            inputLines = OUTPUT.split(os.linesep)
-            keptLines = []
-            PATTERN = re.compile(tokens[1])
-            for line in inputLines:
-                if re.match(PATTERN, line):
-                    keptLines.append(line)
-            OUTPUT = os.linesep.join(keptLines)
-        elif instruction.upper().startswith("S:"): #// shuffle: s:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            parts = re.split("\\s+", OUTPUT)
-            lparts = random.sample(parts, len(parts))
-            OUTPUT = GLUE.join(lparts)
-        elif instruction.upper().startswith("A:"): #// anagramize words in place: a:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            parts = re.split("\\s+", OUTPUT)
-            lparts = []
-            for word in parts:
-                lparts.append("".join(random.sample(list(word), len(word))))
-            OUTPUT = GLUE.join(lparts)
-        elif instruction.upper().startswith("AA:"): #// anagramize input: aa:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            parts = list(OUTPUT)
-            OUTPUT = "".join(random.sample(list(parts), len(parts)))
-        elif instruction.upper().startswith("T:"): #// triangular reduction: t:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = triangular_reduction(OUTPUT)
-        elif instruction.upper().startswith("RT:"): #// rightmost triangular reduction: rt:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = rightmost_triangular_reduction(OUTPUT)
-        elif instruction.upper().startswith("M:"): #// laterally invert words in place (mirror): m:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            parts = re.split("\\s+", OUTPUT)
-            lparts = []
-            for word in parts:
-                lparts.append(mirror(word))
-            OUTPUT = GLUE.join(lparts)
-        elif instruction.upper().startswith("MM:"): #// laterally invert everything (mirror): mm:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = mirror(OUTPUT)
+
+        # E: Evaluate
+
+        # F: Fork
+
+        # G: Glue
+
+        # H: Hew
+
+        # I: Input
         elif instruction.upper().startswith("I:"): #// i:STRING --> inject explicit input STRING as active input
             """
             Given example script:
@@ -438,6 +533,99 @@ def run_tttt():
 
             if (OUTPUT is None) or (len(OUTPUT) == 0):
                 OUTPUT = tokens[1]
+
+
+        # J: Jump
+
+        # K: Keep
+        elif instruction.upper().startswith("K:"): #// keep: k:PATTERN
+            if OUTPUT is None:
+                continue
+            tokens = instruction.split(":", maxsplit=1)
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+                print(f"Instruction Tokens: {tokens}")
+            inputLines = OUTPUT.split(os.linesep)
+            keptLines = []
+            PATTERN = re.compile(tokens[1])
+            for line in inputLines:
+                if re.match(PATTERN, line):
+                    keptLines.append(line)
+            OUTPUT = os.linesep.join(keptLines)
+
+        # L: Label
+
+        # M: Mirror
+        elif instruction.upper().startswith("M:"): #// laterally invert words in place (mirror): m:
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            parts = re.split("\\s+", OUTPUT)
+            lparts = []
+            for word in parts:
+                lparts.append(mirror(word))
+            OUTPUT = GLUE.join(lparts)
+        elif instruction.upper().startswith("MM:"): #// laterally invert everything (mirror): mm:
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = mirror(OUTPUT)
+
+        # N: Number
+
+        # O: Order
+
+        # P: Permutate
+
+        # Q: Quit
+
+        # R: Replace
+        if instruction.upper().startswith("R:"): #// replace: r:PATTERN:replace
+            if OUTPUT is None:
+                continue
+            tokens = instruction.split(":", maxsplit=2)
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+                print(f"Instruction Tokens: {tokens}")
+            PATTERN = re.compile(tokens[1])
+            replacement = tokens[2]
+            OUTPUT = re.sub(PATTERN, replacement, OUTPUT)
+
+        # S: Salt
+        elif instruction.upper().startswith("S:"): #// shuffle: s:
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            parts = re.split("\\s+", OUTPUT)
+            lparts = random.sample(parts, len(parts))
+            OUTPUT = GLUE.join(lparts)
+
+        # T: Transform
+        elif instruction.upper().startswith("T:"): #// triangular reduction: t:
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = triangular_reduction(OUTPUT)
+
+        elif instruction.upper().startswith("RT:"): #// rightmost triangular reduction: rt:
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = rightmost_triangular_reduction(OUTPUT)
+        # U: Uniqueify
+
+        # W: Webify
+
+        # X: Xenograft
+
+        # Y: Yank
+
+        # Z: Zap
 
 
     print(OUTPUT)
