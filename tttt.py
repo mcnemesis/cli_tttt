@@ -288,6 +288,19 @@ def run_tttt():
         return io
 
 
+    def process_c(ti, ai):
+        io = EMPTY_STR
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+
+        if tc == "C":
+            pass
+        if tc == "C!":
+            for vault in VAULTS:
+                VAULTS[vault] = EMPTY_STR
+        return io
+
+
 #-----------------------------
 # CLI Interface
 #-----------------------------
