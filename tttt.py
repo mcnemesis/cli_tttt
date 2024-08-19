@@ -72,6 +72,7 @@ def run_tttt():
     NL = "\n"
     COMH = "#"
     TCD = ":"
+    TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     VAULTS = {}
@@ -79,6 +80,11 @@ def run_tttt():
     SINGLE_SPACE_CHAR = " "
     RE_WHITE_SPACE = r'\s+'
     EMPTY_STR = ""
+    # we shall store label block pointers as such:
+    #    label_name: label_position + 1
+    #    such that, jumping to label_name allows us to
+    #    proceed execution from instruction at index label_position +1
+    LABELBLOCKS = {}
 
 # in case data was input via STDIN (such as via a pipe)
     if os.isatty(sys.stdin.fileno()):
@@ -301,6 +307,130 @@ def run_tttt():
         return io
 
 
+    def process_d(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "D":
+            dpatterns = tpe_str.split(TIPED)
+            for dp in dpatterns:
+                io = re.sub(dp, EMPTY_STR, io)
+        if tc == "D!":
+            if len(tpe_str) == 0:
+                io = re.sub(RE_WHITE_SPACE, EMPTY_STR, io)
+            else:
+                dpatterns = tpe_str.split(TIPED)
+                dfilter = "|".join(dpatterns)
+                matches = re.findall(dfilter,io)
+                io = GLUE.join(matches)
+        return io
+
+
+    def process_e(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        raise ValueError("E: not yet implemented")
+
+        return io
+
+
+    def process_f(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "F":
+            params = tpe_str.split(TIPED)
+            if len(params) == 0:
+                return io
+            if len(params) == 1:
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
+                raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
+            if len(params) == 2:
+                rtest = re.compile(params[0])
+                tblock = params[1]
+                if not (tblock in LABELBLOCKS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                    raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                if rtest.match(io):
+                    ATPI = LABELBLOCKS[tblock]
+                else:
+                    ATPI += 1
+                return io
+            else:
+                rtest = re.compile(params[0])
+                tblock = params[1]
+                fblock = params[2]
+                if not (tblock in LABELBLOCKS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                    raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                if not (fblock in LABELBLOCKS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                    raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                if rtest.match(io):
+                    ATPI = LABELBLOCKS[tblock]
+                else:
+                    ATPI = LABELBLOCKS[fblock]
+                return io
+
+        if tc == "F!":
+            params = tpe_str.split(TIPED)
+            if len(params) == 0:
+                return io
+            if len(params) == 1:
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
+                raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
+            if len(params) == 2:
+                rtest = re.compile(params[0])
+                tblock = params[1]
+                if not (tblock in LABELBLOCKS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                    raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                if not rtest.match(io):
+                    ATPI = LABELBLOCKS[tblock]
+                else:
+                    ATPI += 1
+                return io
+            else:
+                rtest = re.compile(params[0])
+                tblock = params[1]
+                fblock = params[2]
+                if not (tblock in LABELBLOCKS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                    raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                if not (fblock in LABELBLOCKS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                    raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                if not rtest.match(io):
+                    ATPI = LABELBLOCKS[tblock]
+                else:
+                    ATPI = LABELBLOCKS[fblock]
+                return io
+
+        ATPI += 1 #move to next instruction if fork didn't evaluate...
+        return io
+
+
 #-----------------------------
 # CLI Interface
 #-----------------------------
@@ -427,17 +557,12 @@ def run_tttt():
 # by default, the input is the output if not touched..
     OUTPUT = INPUT
 
-    # we shall store label block pointers as such:
-    #    label_name: label_position + 1
-    #    such that, jumping to label_name allows us to
-    #    proceed execution from instruction at index label_position +1
-    labelBLOCKS = {}
     TI_index = 0
     for i in INSTRUCTIONS:
         if i.upper().startswith("L"):
             params = i.split(TCD)
             for p in params[1:]:
-                labelBLOCKS[p] = TI_index + 1
+                LABELBLOCKS[p] = TI_index + 1
         TI_index += 1
 
 
@@ -485,19 +610,34 @@ def run_tttt():
             continue
 
         # D: Delete
-        elif instruction.upper().startswith("D:"): #// delete: d:PATTERN
+        if TC == "D":
             if OUTPUT is None:
                 continue
-            tokens = instruction.split(":", maxsplit=1)
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
-                print(f"Instruction Tokens: {tokens}")
-            PATTERN = re.compile(tokens[1])
-            OUTPUT = re.sub(PATTERN, "", OUTPUT)
+            OUTPUT = process_d(instruction, OUTPUT)
+            ATPI += 1
+            continue
 
         # E: Evaluate
+        if TC == "E":
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = process_e(instruction, OUTPUT)
+            ATPI += 1
+            continue
 
         # F: Fork
+        if TC == "F":
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = process_f(instruction, OUTPUT)
+            #ATPI += 1 # f: updates ATPI directly...
+            continue
 
         # G: Glue
 
