@@ -552,6 +552,36 @@ def run_tttt():
         return io
 
 
+    def process_j(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "J":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                jblock = tpe_str
+                if not (jblock in LABELBLOCKS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{jblock}]")
+                    raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                ATPI = LABELBLOCKS[tblock]
+                return io
+        if tc == "J!":
+            if len(tpe_str) == 0:
+                ATPI = 0 # start of program
+                return io
+            else:
+                pass
+
+        ATPI += 1 #move to next instruction if jump didn't evaluate...
+        return io
+
+
 
 #-----------------------------
 # CLI Interface
@@ -773,8 +803,13 @@ def run_tttt():
             ATPI += 1
             continue
 
-
         # J: Jump
+        if TC == "J":
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = process_j(instruction, OUTPUT)
+            #ATPI += 1 # j: updates ATPI directly...
+            continue
 
         # K: Keep
         elif instruction.upper().startswith("K:"): #// keep: k:PATTERN
