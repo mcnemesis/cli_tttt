@@ -530,6 +530,27 @@ def run_tttt():
         return io
 
 
+    def process_i(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "I":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                if (len(io) == 0) or (io is None):
+                    io = tpe_str
+        if tc == "I!":
+            if len(tpe_str) == 0:
+                io = EMPTY_STR
+            else:
+                io = tpe_str
+        return io
+
 
 
 #-----------------------------
@@ -674,7 +695,7 @@ def run_tttt():
             break
 
         if DEBUG:
-            print(f"Executing Instruction#{ATPI}")
+            print(f"Executing Instruction#{ATPI} (out of {len(INSTRUCTIONS)})")
 
         instruction = INSTRUCTIONS[ATPI]
 
@@ -682,8 +703,6 @@ def run_tttt():
 
         # A: Anagrammatize
         if TC == "A":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_a(instruction, OUTPUT)
@@ -692,8 +711,6 @@ def run_tttt():
 
         # B: Basify
         if TC == "B":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_b(instruction, OUTPUT)
@@ -702,8 +719,6 @@ def run_tttt():
 
         # C: Clear
         if TC == "C":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_c(instruction, OUTPUT)
@@ -712,8 +727,6 @@ def run_tttt():
 
         # D: Delete
         if TC == "D":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_d(instruction, OUTPUT)
@@ -722,8 +735,6 @@ def run_tttt():
 
         # E: Evaluate
         if TC == "E":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_e(instruction, OUTPUT)
@@ -732,8 +743,6 @@ def run_tttt():
 
         # F: Fork
         if TC == "F":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_f(instruction, OUTPUT)
@@ -742,8 +751,6 @@ def run_tttt():
 
         # G: Glue
         if TC == "G":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_g(instruction, OUTPUT)
@@ -752,8 +759,6 @@ def run_tttt():
 
         # H: Hew
         if TC == "H":
-            if OUTPUT is None:
-                continue
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
             OUTPUT = process_h(instruction, OUTPUT)
@@ -761,48 +766,12 @@ def run_tttt():
             continue
 
         # I: Input
-        elif instruction.upper().startswith("I:"): #// i:STRING --> inject explicit input STRING as active input
-            """
-            Given example script:
-            i:start
-            r:st:p
-
-            And no input, i: shall take whatever is written after the ":" on the line with the command, and set it
-            as the active input to any subsequent commands. Thus, the above example script would always output "part" where
-            no input was given.
-
-            When multiple instances of the i: command exist in a script, only the first occurrence has effect, and all the
-            others are ignored, unless the current output (which is the active input to the next command) at the time the i: is executed
-            is blank or null.
-
-            So,
-
-            i:start
-            i:west
-            r:st:p
-
-            Shall always output "part" where no explicit input was given, but
-
-            i:start
-            r:st:p
-            d:part
-            i:west
-            r:w:b
-
-            shall always output "best" where no explicit input was given.
-             """
-
-            # set both INPUT and OUTPUT to given input
-            # makes sense either if the i: command was the first in the script, or
-            # some earlier commands have since set OUTPUT to blank/null -- which would have left subsequent
-            # commands with nothing to process...
-            tokens = instruction.split(":", maxsplit=1)
+        if TC == "I":
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
-                print(f"Instruction Tokens: {tokens}")
-
-            if (OUTPUT is None) or (len(OUTPUT) == 0):
-                OUTPUT = tokens[1]
+            OUTPUT = process_i(instruction, OUTPUT)
+            ATPI += 1
+            continue
 
 
         # J: Jump
