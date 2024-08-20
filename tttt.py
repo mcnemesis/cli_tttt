@@ -13,7 +13,8 @@
 # TEA interpreter that can be utilized in scripts, standalone programs
 # and/or on the commandline.
 #---------------------------------------------------------------------
-# IMPLIMENTOR: Joseph W. Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com)
+# IDEATOR IMPLIMENTING ARCHITECT: Joseph Willrich Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com) C.M.R.W the nu ancient psychonaut ufora
+--- Please don't bother me with so much mail or calls, am usually busy thinking
 #---------------------------------------------------------------------
 
 #==================== CLI TTTT Design ================================
