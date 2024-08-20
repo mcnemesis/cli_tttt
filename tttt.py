@@ -14,7 +14,7 @@
 # and/or on the commandline.
 #---------------------------------------------------------------------
 # IDEATOR IMPLIMENTING ARCHITECT: Joseph Willrich Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com) C.M.R.W the nu ancient psychonaut ufora
---- Please don't bother me with so much mail or calls, am usually busy thinking
+# --- Please don't bother me with so much mail or calls, am usually busy thinking
 #---------------------------------------------------------------------
 
 #==================== CLI TTTT Design ================================
@@ -70,7 +70,8 @@ def run_tttt():
     OBSCURE_RC_COM = "=COM=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=COM="
     OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
     TID = "|"
-    NL = "\n"
+    #NL = "\n"
+    NL = os.linesep
     COMH = "#"
     TCD = ":"
     TIPED = ":"
@@ -583,6 +584,84 @@ def run_tttt():
         return io
 
 
+    def process_k(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if io is None or len(io) == 0:
+            return io
+
+        if tc == "K":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                regex = tpe_str
+                inputLines = io.split(NL)
+                keptLines = []
+                PATTERN = re.compile(regex)
+                for line in inputLines:
+                    if re.match(PATTERN, line):
+                        keptLines.append(line)
+                io = NL.join(keptLines)
+        if tc == "K!":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                regex = tpe_str
+                inputLines = io.split(NL)
+                keptLines = []
+                PATTERN = re.compile(regex)
+                for line in inputLines:
+                    if not re.match(PATTERN, line):
+                        keptLines.append(line)
+                io = NL.join(keptLines)
+
+        if tc == "K*":
+            params = tpe_str.split(TIPED, maxsplit=2)
+            if len(params) < 2:
+                pass
+            else:
+                vault = params[0]
+                regex = params[1]
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault)
+
+                inputLines = input_str.split(NL)
+                keptLines = []
+                PATTERN = re.compile(regex)
+                for line in inputLines:
+                    if not re.match(PATTERN, line):
+                        keptLines.append(line)
+                io = NL.join(keptLines)
+        if tc == "K*!":
+            params = tpe_str.split(TIPED, maxsplit=2)
+            if len(params) < 2:
+                pass
+            else:
+                vault = params[0]
+                regex = params[1]
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault)
+
+                inputLines = input_str.split(NL)
+                keptLines = []
+                PATTERN = re.compile(regex)
+                for line in inputLines:
+                    if not re.match(PATTERN, line):
+                        keptLines.append(line)
+                io = NL.join(keptLines)
+        return io
+
 
 #-----------------------------
 # CLI Interface
@@ -813,20 +892,12 @@ def run_tttt():
             continue
 
         # K: Keep
-        elif instruction.upper().startswith("K:"): #// keep: k:PATTERN
-            if OUTPUT is None:
-                continue
-            tokens = instruction.split(":", maxsplit=1)
+        if TC == "K":
             if DEBUG:
                 print(f"Processing Instruction: {instruction}")
-                print(f"Instruction Tokens: {tokens}")
-            inputLines = OUTPUT.split(os.linesep)
-            keptLines = []
-            PATTERN = re.compile(tokens[1])
-            for line in inputLines:
-                if re.match(PATTERN, line):
-                    keptLines.append(line)
-            OUTPUT = os.linesep.join(keptLines)
+            OUTPUT = process_k(instruction, OUTPUT)
+            ATPI += 1
+            continue
 
         # L: Label
 
