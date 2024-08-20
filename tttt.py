@@ -239,6 +239,16 @@ def run_tttt():
     def util_gen_rand(limit, ll=0):
         return random.randint(int(ll), int(limit))
 
+    def util_sort_words(val):
+        parts = re.split(RE_WHITE_SPACE, val)
+        lparts = sorted(parts)
+        return GLUE.join(lparts)
+
+    def util_sort_chars(val):
+        lparts = sorted(val)
+        return EMPTY_STR.join(lparts)
+
+
 
 #-----------------------------
 # TAZ Implementation
@@ -865,6 +875,40 @@ def run_tttt():
 
         return io
 
+
+    def process_o(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "O":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = util_sort_words(input_str)
+        if tc == "O!":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = util_sort_chars(input_str)
+        if tc == "O*":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{tpe_str}]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = util_sort_words(input_str)
+        if tc == "O*!":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [tpe_str]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = util_sort_chars(input_str)
+        return io
+
+
+
+
 #-----------------------------
 # CLI Interface
 #-----------------------------
@@ -1135,6 +1179,12 @@ def run_tttt():
             continue
 
         # O: Order
+        if TC == "O":
+            OUTPUT = process_o(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # P: Permutate
 
