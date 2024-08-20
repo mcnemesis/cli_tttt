@@ -88,6 +88,7 @@ def run_tttt():
     #    such that, jumping to label_name allows us to
     #    proceed execution from instruction at index label_position +1
     LABELBLOCKS = {}
+    ATPI = 0 # Active TI POSITION INDEX
 
 # in case data was input via STDIN (such as via a pipe)
     if os.isatty(sys.stdin.fileno()):
@@ -124,10 +125,6 @@ def run_tttt():
         for i in range(len(data)):
             lines.append(data[:(len(data)-i)])
         return os.linesep.join(lines)
-
-# TEA mirror transform
-    def mirror(data):
-        return "".join(reversed(data))
 
 # Pre-process TEA CODE
     def pre_process_TSRC(tsrc):
@@ -230,6 +227,17 @@ def run_tttt():
             if char not in unique_chars:
                 unique_chars += char
         return unique_chars
+
+    def util_mirror_words(val):
+        parts = re.split(RE_WHITE_SPACE, val)
+        lparts = parts[::-1]
+        return GLUE.join(lparts)
+
+    def util_mirror_chars(val):
+        return EMPTY_STR.join(list(reversed(val)))
+
+    def util_gen_rand(limit, ll=0):
+        return random.randint(int(ll), int(limit))
 
 
 #-----------------------------
@@ -346,7 +354,7 @@ def run_tttt():
         return io
 
 
-    def process_f(ti, ai):
+    def process_f(ti, ai, _ATPI):
         io = ai
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
@@ -357,25 +365,25 @@ def run_tttt():
         if tc == "F":
             params = tpe_str.split(TIPED)
             if len(params) == 0:
-                return io
+                return io,_ATPI
             if len(params) == 1:
                 if DEBUG:
                     print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
                 raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
             if len(params) == 2:
-                rtest = re.compile(params[0])
+                rtest = params[0]
                 tblock = params[1]
                 if not (tblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if rtest.match(io):
-                    ATPI = LABELBLOCKS[tblock]
+                if (re.match(rtest, io)) or (rtest == io) or (rtest in io):
+                    _ATPI = LABELBLOCKS[tblock]
                 else:
-                    ATPI += 1
-                return io
+                    _ATPI += 1
+                return io,_ATPI
             else:
-                rtest = re.compile(params[0])
+                rtest = params[0]
                 tblock = params[1]
                 fblock = params[2]
                 if not (tblock in LABELBLOCKS):
@@ -386,34 +394,34 @@ def run_tttt():
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if rtest.match(io):
-                    ATPI = LABELBLOCKS[tblock]
+                if ((re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                    _ATPI = LABELBLOCKS[tblock]
                 else:
-                    ATPI = LABELBLOCKS[fblock]
-                return io
+                    _ATPI = LABELBLOCKS[fblock]
+                return io,_ATPI
 
         if tc == "F!":
             params = tpe_str.split(TIPED)
             if len(params) == 0:
-                return io
+                return io,_ATPI
             if len(params) == 1:
                 if DEBUG:
                     print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
                 raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
             if len(params) == 2:
-                rtest = re.compile(params[0])
+                rtest = params[0]
                 tblock = params[1]
                 if not (tblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if not rtest.match(io):
-                    ATPI = LABELBLOCKS[tblock]
+                if not ((re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                    _ATPI = LABELBLOCKS[tblock]
                 else:
-                    ATPI += 1
-                return io
+                    _ATPI += 1
+                return io,_ATPI
             else:
-                rtest = re.compile(params[0])
+                rtest = params[0]
                 tblock = params[1]
                 fblock = params[2]
                 if not (tblock in LABELBLOCKS):
@@ -424,14 +432,14 @@ def run_tttt():
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if not rtest.match(io):
-                    ATPI = LABELBLOCKS[tblock]
+                if not ((re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                    _ATPI = LABELBLOCKS[tblock]
                 else:
-                    ATPI = LABELBLOCKS[fblock]
-                return io
+                    _ATPI = LABELBLOCKS[fblock]
+                return io,_ATPI
 
-        ATPI += 1 #move to next instruction if fork didn't evaluate...
-        return io
+        _ATPI += 1 #move to next instruction if fork didn't evaluate...
+        return io,_ATPI
 
 
     def process_g(ti, ai):
@@ -450,7 +458,7 @@ def run_tttt():
                 glue = params[0]
                 io = re.sub(RE_WHITE_SPACE, glue, io)
             if len(params) == 2:
-                regex = re.compile(params[1])
+                regex = params[1]
                 glue = params[0]
                 io = re.sub(regex, glue, io)
         if tc == "G!":
@@ -544,7 +552,8 @@ def run_tttt():
             if len(tpe_str) == 0:
                 pass
             else:
-                if (len(io) == 0) or (io is None):
+
+                if (io is None) or (len(io) == 0):
                     io = tpe_str
         if tc == "I!":
             if len(tpe_str) == 0:
@@ -554,7 +563,7 @@ def run_tttt():
         return io
 
 
-    def process_j(ti, ai):
+    def process_j(ti, ai, _ATPI):
         io = ai
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
@@ -571,17 +580,17 @@ def run_tttt():
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{jblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                ATPI = LABELBLOCKS[tblock]
-                return io
+                _ATPI = LABELBLOCKS[jblock]
+                return io,_ATPI
         if tc == "J!":
             if len(tpe_str) == 0:
-                ATPI = 0 # start of program
-                return io
+                _ATPI = 0 # start of program
+                return io,_ATPI
             else:
                 pass
 
-        ATPI += 1 #move to next instruction if jump didn't evaluate...
-        return io
+        _ATPI += 1 #move to next instruction if jump didn't evaluate...
+        return io,_ATPI
 
 
     def process_k(ti, ai):
@@ -662,6 +671,199 @@ def run_tttt():
                 io = NL.join(keptLines)
         return io
 
+
+    def process_l(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "L":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                lBlockName = tpe_str
+                # prevent duplication of block names
+                if not (lBlockName in LABELBLOCKS):
+# store current code position under given label block name
+# but most likely, has already been done during TSRC pre-processing/validation
+                    LABELBLOCKS[lBlockName] = ATPI
+        if tc == "L!":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                labels = tpe_str.split(TIPED)
+                for lBlockName in labels:
+                    # prevent duplication of block names
+                    if not (lBlockName in LABELBLOCKS):
+                        LABELBLOCKS[lBlockName] = ATPI
+
+        return io
+
+
+    def process_m(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "M":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = util_mirror_words(input_str)
+        if tc == "M!":
+            input_str = tpe_str if len(tpe_str) > 0 else ai
+            io = util_mirror_chars(input_str)
+        if tc == "M*":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{tpe_str}]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = util_mirror_words(input_str)
+        if tc == "M*!":
+            if not (tpe_str in VAULTS):
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [tpe_str]")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+            input_str = VAULTS.get(tpe_str,"") if len(tpe_str) > 0 else ai
+            io = util_mirror_chars(input_str)
+        return io
+
+
+    def process_n(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if (tc == "N") or (tc == "N!"):
+            if len(tpe_str) == 0:
+                limit = 9
+                io = str(util_gen_rand(limit))
+            else:
+               params  = tpe_str.split(TIPED)
+               if len(params) == 1:
+                   limit = params[0]
+                   io = str(util_gen_rand(int(limit)))
+               if len(params) == 2:
+                   limit,llimit = params
+                   io = str(util_gen_rand(int(limit), ll=llimit))
+               if len(params) == 3:
+                   limit,llimit,size = params
+                   nums = []
+                   for i in range(int(size)):
+                       nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                   io = GLUE.join(nums)
+               if len(params) == 4:
+                   limit,llimit,size,glue = params
+                   nums = []
+                   for i in range(int(size)):
+                       nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                   io = glue.join(nums)
+        if (tc == "N*") or (tc == "N*!"):
+            if len(tpe_str) == 0:
+                return io
+            else:
+               params  = tpe_str.split(TIPED)
+               if len(params) == 1:
+                   vlimit = params[0]
+                   if not (vlimit in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vlimit}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   limit = VAULTS.get(vlimit,"") if len(vlimit) > 0 else 9
+                   io = str(util_gen_rand(int(limit)))
+               if len(params) == 2:
+                   limit,llimit = params
+
+                   vlimit = limit
+                   if not (vlimit in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vlimit}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   limit = VAULTS.get(vlimit,"") if len(vlimit) > 0 else 9
+
+                   vllimit = llimit
+                   if not (vllimit in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vllimit}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   llimit = VAULTS.get(vllimit,"") if len(vllimit) > 0 else 0
+
+                   io = str(util_gen_rand(int(limit), ll=llimit))
+               if len(params) == 3:
+                   limit,llimit,size = params
+
+                   vlimit = limit
+                   if not (vlimit in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vlimit}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   limit = VAULTS.get(vlimit,"") if len(vlimit) > 0 else 9
+
+                   vllimit = llimit
+                   if not (vllimit in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vllimit}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   llimit = VAULTS.get(vllimit,"") if len(vllimit) > 0 else 0
+
+
+                   vsize = size
+                   if not (vsize in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vsize}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   size = VAULTS.get(vsize,"") if len(vsize) > 0 else 1
+
+                   nums = []
+                   for i in range(int(size)):
+                       nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                   io = GLUE.join(nums)
+               if len(params) == 4:
+                   limit,llimit,size,glue = params
+
+                   vlimit = limit
+                   if not (vlimit in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vlimit}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   limit = VAULTS.get(vlimit,"") if len(vlimit) > 0 else 9
+
+                   vllimit = llimit
+                   if not (vllimit in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vllimit}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   llimit = VAULTS.get(vllimit,"") if len(vllimit) > 0 else 0
+
+
+                   vsize = size
+                   if not (vsize in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vsize}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   size = VAULTS.get(vsize,"") if len(vsize) > 0 else 1
+
+                   vglue = size
+                   if not (vglue in VAULTS):
+                       if DEBUG:
+                           print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vglue}]")
+                       raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                   glue = VAULTS.get(vglue,"") if len(vglue) > 0 else GLUE
+
+                   nums = []
+                   for i in range(int(size)):
+                       nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                   io = glue.join(nums)
+
+        return io
 
 #-----------------------------
 # CLI Interface
@@ -793,12 +995,16 @@ def run_tttt():
     for i in INSTRUCTIONS:
         if i.upper().startswith("L"):
             params = i.split(TCD)
-            for p in params[1:]:
-                LABELBLOCKS[p] = TI_index + 1
+            for lBlockName in params[1:]:
+                if lBlockName in LABELBLOCKS:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{lBlockName}]")
+                        print(f"[INFO] Current L-BLOCKS: \n{LABELBLOCKS}")
+                    raise ValueError("[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL")
+                LABELBLOCKS[lBlockName] = TI_index + 1 # so we ref next instruction in program, after the label
         TI_index += 1
 
 
-    ATPI = 0 # Active TI POSITION INDEX
     while(True):
         # detect end of program and quit
         if ATPI >= len(INSTRUCTIONS):
@@ -809,117 +1015,124 @@ def run_tttt():
 
         instruction = INSTRUCTIONS[ATPI]
 
+
+        if DEBUG:
+            print(f"Processing Instruction: {instruction}")
+            print(f"PRIOR MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+
         TC = instruction.upper()[0]
 
         # A: Anagrammatize
         if TC == "A":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_a(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # B: Basify
         if TC == "B":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_b(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # C: Clear
         if TC == "C":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_c(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # D: Delete
         if TC == "D":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_d(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # E: Evaluate
         if TC == "E":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_e(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # F: Fork
         if TC == "F":
+            OUTPUT,ATPI = process_f(instruction, OUTPUT,ATPI)
             if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = process_f(instruction, OUTPUT)
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             #ATPI += 1 # f: updates ATPI directly...
             continue
 
         # G: Glue
         if TC == "G":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_g(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # H: Hew
         if TC == "H":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_h(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # I: Input
         if TC == "I":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_i(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # J: Jump
         if TC == "J":
+            OUTPUT,ATPI = process_j(instruction, OUTPUT, ATPI)
             if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = process_j(instruction, OUTPUT)
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             #ATPI += 1 # j: updates ATPI directly...
             continue
 
         # K: Keep
         if TC == "K":
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
             OUTPUT = process_k(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
             ATPI += 1
             continue
 
         # L: Label
+        if TC == "L":
+            OUTPUT = process_l(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # M: Mirror
-        elif instruction.upper().startswith("M:"): #// laterally invert words in place (mirror): m:
-            if OUTPUT is None:
-                continue
+        if TC == "M":
+            OUTPUT = process_m(instruction, OUTPUT)
             if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            parts = re.split("\\s+", OUTPUT)
-            lparts = []
-            for word in parts:
-                lparts.append(mirror(word))
-            OUTPUT = GLUE.join(lparts)
-        elif instruction.upper().startswith("MM:"): #// laterally invert everything (mirror): mm:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = mirror(OUTPUT)
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # N: Number
+        if TC == "N":
+            OUTPUT = process_n(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # O: Order
 

@@ -1,0 +1,16 @@
+#!/usr/env tttt
+#----- Example from the TAZ Manuscript: https://www.academia.edu/resource/work/122871672
+# TEA data processing prog with some kind of error handling
+v:vLOG:{--No Processing Yet--} 
+l:FETCH
+w!: https://pastebin.org/KYC.csv
+f!:^$:PROCESS:ERROR | # process iff data is not empty
+l:PROCESS
+v:vDATA 
+z!: date –now | v:vDATE
+# now combine current date & logs with the data
+g*:{---}:vDATE:vLOG | q!: | # end by returning data report
+l:ERROR 
+| v:vERROR:{--Data Access Error--}
+g*:{***}:vLOG:vERROR | v:vLOG | # update the log
+j:FETCH | # then re-try the data processing
