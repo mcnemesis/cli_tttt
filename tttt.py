@@ -79,6 +79,7 @@ def run_tttt():
     GLUE = " "
     SINGLE_SPACE_CHAR = " "
     RE_WHITE_SPACE = r'\s+'
+    RE_WHITE_SPACE_N_PUNCTUATION = r'[\s\W]+'
     EMPTY_STR = ""
     # we shall store label block pointers as such:
     #    label_name: label_position + 1
@@ -205,10 +206,10 @@ def run_tttt():
     # Extract a string from a TEA expression
     def extract_str(val):
         if val.startswith("{") and val.endswith("}"):
-            val = val.lstrip("{").rstip("}")
+            val = val.lstrip("{").rstrip("}")
             return unmask_str(val)
         if val.startswith("\"") and val.endswith("\""):
-            val = val.lstrip("\"").rstip("\"")
+            val = val.lstrip("\"").rstrip("\"")
             return unmask_str(val)
         return unmask_str(val)
 
@@ -431,6 +432,52 @@ def run_tttt():
         return io
 
 
+    def process_g(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "G":
+            params = tpe_str.split(TIPED)
+            if len(params) == 0:
+                io = re.sub(RE_WHITE_SPACE, EMPTY_STR, io)
+            if len(params) == 1:
+                glue = params[0]
+                io = re.sub(RE_WHITE_SPACE, glue, io)
+            if len(params) == 2:
+                regex = re.compile(params[1])
+                glue = params[0]
+                io = re.sub(regex, glue, io)
+        if tc == "G!":
+            params = tpe_str.split(TIPED)
+            if len(params) == 0:
+                pass
+            if len(params) == 1:
+                glue = params[0]
+                io = re.sub(RE_WHITE_SPACE_N_PUNCTUATION, glue, io)
+        if tc == "G*":
+            params = tpe_str.split(TIPED)
+            if len(params) < 3:
+                pass
+            else:
+                glue = params[0]
+                vaults = params[1:]
+                vals = []
+                for v in vaults:
+                    if not (v in VAULTS):
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{v}]")
+                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                    else:
+                        vals.append(VAULTS[v])
+                io = glue.join(vals)
+        return io
+
+
+
 #-----------------------------
 # CLI Interface
 #-----------------------------
@@ -640,6 +687,14 @@ def run_tttt():
             continue
 
         # G: Glue
+        if TC == "G":
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = process_g(instruction, OUTPUT)
+            ATPI += 1
+            continue
 
         # H: Hew
 
