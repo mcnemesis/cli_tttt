@@ -477,6 +477,60 @@ def run_tttt():
         return io
 
 
+    def process_h(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "H":
+            if len(tpe_str) == 0:
+                io = SINGLE_SPACE_CHAR.join(list(io))
+            else:
+                regex = r'(?=' + tpe_str + ')'
+                parts = re.split(regex, io)
+                io = SINGLE_SPACE_CHAR.join(parts)
+        if tc == "H!":
+            if len(tpe_str) == 0:
+                io = NL.join(list(io))
+            else:
+                regex = r'(?=' + tpe_str + ')'
+                parts = re.split(regex, io)
+                io = NL.join(parts)
+        if tc == "H*":
+            params = tpe_str.split(TIPED, maxsplit=2)
+            if len(params) < 2:
+                pass
+            else:
+                vault = params[0]
+                regex = params[1]
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault)
+                io = SINGLE_SPACE_CHAR.join(list(input_str))
+        if tc == "H*!":
+            params = tpe_str.split(TIPED, maxsplit=2)
+            if len(params) < 2:
+                pass
+            else:
+                vault = params[0]
+                regex = params[1]
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault)
+                regex = r'(?=' + regex + ')'
+                parts = re.split(regex, input_str)
+                io = NL.join(parts)
+        return io
+
+
+
 
 #-----------------------------
 # CLI Interface
@@ -697,6 +751,14 @@ def run_tttt():
             continue
 
         # H: Hew
+        if TC == "H":
+            if OUTPUT is None:
+                continue
+            if DEBUG:
+                print(f"Processing Instruction: {instruction}")
+            OUTPUT = process_h(instruction, OUTPUT)
+            ATPI += 1
+            continue
 
         # I: Input
         elif instruction.upper().startswith("I:"): #// i:STRING --> inject explicit input STRING as active input
