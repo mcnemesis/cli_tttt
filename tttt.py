@@ -78,10 +78,12 @@ def run_tttt():
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     VAULTS = {}
-    GLUE = " "
     SINGLE_SPACE_CHAR = " "
+    ALPHABET = "abcdefghijklmnopqrstuvwxyz"
+    EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
     RE_WHITE_SPACE = r'\s+'
     RE_WHITE_SPACE_N_PUNCTUATION = r'[\s\W]+'
+    GLUE = SINGLE_SPACE_CHAR
     EMPTY_STR = ""
     # we shall store label block pointers as such:
     #    label_name: label_position + 1
@@ -248,6 +250,28 @@ def run_tttt():
         lparts = sorted(val)
         return EMPTY_STR.join(lparts)
 
+    def util_gen_permutations(val, glue=GLUE, limit=100):
+        iteration, iteration_limit = 0, limit * 2
+        instance_limit = util_gen_rand(limit,ll=1)
+        permutations = []
+        while len(permutations) < instance_limit:
+            if iteration > iteration_limit:
+                break
+            else:
+                iteration += 1
+            vAnagram = util_anagramatize_chars(val)
+            if vAnagram in permutations:
+                continue
+            else:
+                permutations.append(vAnagram)
+        return glue.join(permutations)
+
+
+    def util_gen_rand_string(size=None, alphabet=EXTENDED_ALPHABET, glue=GLUE):
+        instance_limit = util_gen_rand(int(size) if size is not None else 100,ll=1)
+        if size is not None:
+            instance_limit = size
+        return EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
 
 
 #-----------------------------
@@ -387,7 +411,7 @@ def run_tttt():
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if (re.match(rtest, io)) or (rtest == io) or (rtest in io):
+                if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
                 else:
                     _ATPI += 1
@@ -404,7 +428,7 @@ def run_tttt():
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if ((re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
                 else:
                     _ATPI = LABELBLOCKS[fblock]
@@ -425,7 +449,7 @@ def run_tttt():
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if not ((re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
                 else:
                     _ATPI += 1
@@ -442,7 +466,7 @@ def run_tttt():
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
-                if not ((re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
                 else:
                     _ATPI = LABELBLOCKS[fblock]
@@ -623,7 +647,7 @@ def run_tttt():
                 keptLines = []
                 PATTERN = re.compile(regex)
                 for line in inputLines:
-                    if re.match(PATTERN, line):
+                    if (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
                         keptLines.append(line)
                 io = NL.join(keptLines)
         if tc == "K!":
@@ -635,7 +659,7 @@ def run_tttt():
                 keptLines = []
                 PATTERN = re.compile(regex)
                 for line in inputLines:
-                    if not re.match(PATTERN, line):
+                    if not (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
                         keptLines.append(line)
                 io = NL.join(keptLines)
 
@@ -656,7 +680,7 @@ def run_tttt():
                 keptLines = []
                 PATTERN = re.compile(regex)
                 for line in inputLines:
-                    if not re.match(PATTERN, line):
+                    if (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
                         keptLines.append(line)
                 io = NL.join(keptLines)
         if tc == "K*!":
@@ -676,7 +700,7 @@ def run_tttt():
                 keptLines = []
                 PATTERN = re.compile(regex)
                 for line in inputLines:
-                    if not re.match(PATTERN, line):
+                    if not (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
                         keptLines.append(line)
                 io = NL.join(keptLines)
         return io
@@ -906,6 +930,97 @@ def run_tttt():
             io = util_sort_chars(input_str)
         return io
 
+
+    def process_p(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "P":
+            if len(tpe_str) == 0:
+                io = util_gen_permutations(ai)
+            else:
+                params = tpe_str.split(TIPED)
+                if len(params) == 1:
+                    io = util_gen_permutations(params[0])
+                elif len(params) == 2:
+                    io = util_gen_permutations(params[0], glue=params[1])
+                elif len(params) == 3:
+                    io = util_gen_permutations(params[0], glue=params[1], limit = int(params[2]))
+                else:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+        if tc == "P!":
+            if len(tpe_str) == 0:
+                io = util_gen_rand_string()
+            else:
+                params = tpe_str.split(TIPED)
+                if len(params) == 1:
+                    io = util_gen_rand_string(size=int(params[0]))
+                elif len(params) == 2:
+                    io = util_gen_rand_string(size=int(params[0]), alphabet=params[1])
+                elif len(params) == 3:
+                    io = util_gen_rand_string(size=int(params[0]), alphabet=params[1], glue = params[2])
+                else:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+        if tc == "P*":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                params = tpe_str.split(TIPED)
+                vName = params[0]
+                if not (vName in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vName}]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vName,"")
+                if len(params) == 1:
+                    io = util_gen_permutations(input_str)
+                elif len(params) == 2:
+                    io = util_gen_permutations(input_str, glue=params[1])
+                elif len(params) == 3:
+                    io = util_gen_permutations(input_str, glue=params[1], limit = int(params[2]))
+
+        return io
+
+
+    def process_q(ti, ai, _ATPI):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "Q":
+            if len(tpe_str) == 0:
+                if (io is None) or (io == EMPTY_STR):
+                    _ATPI = len(INSTRUCTIONS) + 1 # points to end of program
+            else:
+                qtest = tpe_str
+                if (bool(re.search(qtest, io)) or (re.match(qtest, io)) or (qtest == io) or (qtest in io)):
+                    if DEBUG:
+                        print(f"Quiting Program because AI[{ai}] matches quit pattern[{qtest}]")
+                    _ATPI = len(INSTRUCTIONS) + 1
+        if tc == "Q!":
+            if len(tpe_str) == 0:
+                _ATPI = len(INSTRUCTIONS) + 1
+                return io,_ATPI
+            else:
+                qtest = tpe_str
+                if not (bool(re.search(qtest, io)) or (re.match(qtest, io)) or (qtest == io) or (qtest in io)):
+                    if DEBUG:
+                        print(f"Quiting Program because AI[{ai}] does NOT match non-quit pattern[{qtest}]")
+                    _ATPI = len(INSTRUCTIONS) + 1
+
+        _ATPI += 1 #move to next instruction if we didn't quit
+        return io,_ATPI
 
 
 
@@ -1187,8 +1302,20 @@ def run_tttt():
             continue
 
         # P: Permutate
+        if TC == "P":
+            OUTPUT = process_p(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # Q: Quit
+        if TC == "Q":
+            OUTPUT,ATPI = process_q(instruction, OUTPUT, ATPI)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            #ATPI += 1 # q: updates ATPI directly...
+            continue
 
         # R: Replace
         if instruction.upper().startswith("R:"): #// replace: r:PATTERN:replace
