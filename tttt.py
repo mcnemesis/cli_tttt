@@ -273,6 +273,29 @@ def run_tttt():
             instance_limit = size
         return EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
 
+    def util_braille_projection1(val):
+        # Define the pattern for non-whitespace characters
+        rNonWhiteSpace = r'\S'
+        # remove all non-whitespace characters
+        val = re.sub(rNonWhiteSpace, EMPTY_STR, val)
+        # pattern [ \t\r\f\v] matches spaces, tabs, carriage returns, form feeds, and vertical tabs, but not newlines.
+        rWhiteSpace = r'[ \t\r\f\v]'
+        # replace all white space except newline with full-stop
+        val = re.sub(rWhiteSpace, '.', val)
+        return val
+
+    def util_braille_projection2(val):
+        # Define the pattern for non-whitespace characters
+        rNonWhiteSpace = r'\S'
+        # Replace all non-whitespace characters
+        val = re.sub(rNonWhiteSpace, '#', val)
+        # replace all white space except newline with full-stop
+        rWhiteSpace = r'[ \t\r\f\v]'
+        val = re.sub(rWhiteSpace, '.', val)
+        val = val.replace('#', SINGLE_SPACE_CHAR)
+        return val
+
+
 
 #-----------------------------
 # TAZ Implementation
@@ -1023,6 +1046,104 @@ def run_tttt():
         return io,_ATPI
 
 
+    def process_r(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if io is None or len(io) == 0:
+            return io
+        if tc == "R":
+            if len(tpe_str) == 0:
+                io = util_braille_projection1(io)
+            else:
+                params = tpe_str.split(TIPED, maxsplit=1)
+                if len(params) != 2:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    regex = params[0]
+                    replacement = params[1]
+                    io = re.sub(regex, replacement, io, count=1)
+        if tc == "R!":
+            if len(tpe_str) == 0:
+                io = util_braille_projection2(io)
+            else:
+                params = tpe_str.split(TIPED, maxsplit=1)
+                if len(params) != 2:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    regex = params[0]
+                    replacement = params[1]
+                    io = re.sub(regex, replacement, io)
+
+        if tc == "R*":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                params = tpe_str.split(TIPED, maxsplit=2)
+                if (len(params) == 2) or (len(params) > 3):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    if len(params) == 1:
+                        vault = params[0]
+                        if not (vault in VAULTS):
+                            if DEBUG:
+                                print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                            raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                        input_str = VAULTS.get(vault)
+                        io = util_braille_projection1(input_str)
+                    else:
+                        vault = params[0]
+                        regex = params[1]
+                        replacement = params[2]
+                        if not (vault in VAULTS):
+                            if DEBUG:
+                                print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                            raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                        input_str = VAULTS.get(vault)
+                        io = re.sub(regex, replacement, input_str, count=1)
+
+        if tc == "R*!":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                params = tpe_str.split(TIPED, maxsplit=2)
+                if (len(params) == 2) or (len(params) > 3):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    if len(params) == 1:
+                        vault = params[0]
+                        if not (vault in VAULTS):
+                            if DEBUG:
+                                print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                            raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                        input_str = VAULTS.get(vault)
+                        io = util_braille_projection2(input_str)
+                    else:
+                        vault = params[0]
+                        regex = params[1]
+                        replacement = params[2]
+                        if not (vault in VAULTS):
+                            if DEBUG:
+                                print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
+                            raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                        input_str = VAULTS.get(vault)
+                        io = re.sub(regex, replacement, input_str)
+
+        return io
+
+
 
 #-----------------------------
 # CLI Interface
@@ -1318,16 +1439,12 @@ def run_tttt():
             continue
 
         # R: Replace
-        if instruction.upper().startswith("R:"): #// replace: r:PATTERN:replace
-            if OUTPUT is None:
-                continue
-            tokens = instruction.split(":", maxsplit=2)
+        if TC == "R":
+            OUTPUT = process_r(instruction, OUTPUT)
             if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-                print(f"Instruction Tokens: {tokens}")
-            PATTERN = re.compile(tokens[1])
-            replacement = tokens[2]
-            OUTPUT = re.sub(PATTERN, replacement, OUTPUT)
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # S: Salt
         elif instruction.upper().startswith("S:"): #// shuffle: s:
