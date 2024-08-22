@@ -239,7 +239,7 @@ def run_tttt():
         return EMPTY_STR.join(list(reversed(val)))
 
     def util_gen_rand(limit, ll=0):
-        return random.randint(int(ll), int(limit))
+        return limit if limit == ll else random.randint(int(ll), int(limit))
 
     def util_sort_words(val):
         parts = re.split(RE_WHITE_SPACE, val)
@@ -294,6 +294,41 @@ def run_tttt():
         val = re.sub(rWhiteSpace, '.', val)
         val = val.replace('#', SINGLE_SPACE_CHAR)
         return val
+
+    def util_salt_string(val, salt, injection_limit = None, llimit=None):
+        l_val = len(val)
+        if l_val == 0:
+            return val # nothing to salt
+        l_val = len(val) + 1 # so the salt can also become a suffix
+        u_limit = injection_limit if (injection_limit is not None) and (injection_limit < l_val) else l_val
+        injection_index = util_gen_rand(u_limit, ll=llimit or 0)
+        if DEBUG:
+            print(f"Salting {val} of len[{len(val)}] at index[{injection_index}]--> {val[:injection_index]} + {salt} + {val[injection_index:]}")
+        salted_val = str(val[:injection_index] + salt + val[injection_index:])
+        return salted_val
+
+    def util_unsalt_string(val, llimit=None, deletion_limit = None, salt_pattern=None):
+        l_val = len(val)
+        if l_val == 0:
+            return val # nothing to unsalt
+        if salt_pattern is None:
+            deletion_index = util_gen_rand(l_val)
+            unsalted_val = str(val[:deletion_index] + val[deletion_index + 1:])
+            return unsalted_val
+        else:
+            # get all sections matching pattern in val
+            matches = list(re.finditer(salt_pattern, val))
+            l_matches = len(matches)
+            if l_matches == 0:
+                return val # nothing to unsalt
+            d_limit = deletion_limit if (deletion_limit is not None) and (deletion_limit < l_matches) else l_matches
+            deletion_index = util_gen_rand(d_limit, ll=llimit or 0)
+            # Get the start and end positions of the chosen match
+            start, end = matches[deletion_index].span()
+            if DEBUG:
+                print(f"UnSalting {val} of len[{len(val)}] between index[{start} and {end}]--> {val[:start]} + {val[end:]}")
+            unsalted_val = val[:start] + val[end:]
+            return unsalted_val
 
 
 
@@ -1145,6 +1180,131 @@ def run_tttt():
 
 
 
+    def process_s(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+        salt = SINGLE_SPACE_CHAR
+
+        if tc == "S":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    # can't salt without input
+                    return io
+                else:
+                    io = util_salt_string(io,salt)
+            else:
+                if (io is None) or (len(io) == 0):
+                    # can't salt without input
+                    return io
+                else:
+                    params = tpe_str.split(TIPED, maxsplit=3)
+                    if len(params) == 1:
+                        salt = params[0]
+                        io = util_salt_string(io,salt)
+                    elif len(params) == 2:
+                        salt = params[0]
+                        i_limit = int(params[1])
+                        io = util_salt_string(io,salt,injection_limit=i_limit)
+                    elif len(params) == 3:
+                        salt = params[0]
+                        i_limit = int(params[1])
+                        l_limit = int(params[2])
+                        io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
+        if tc == "S!":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    # can't unsalt without input
+                    return io
+                else:
+                    io = util_unsalt_string(io)
+            else:
+                if (io is None) or (len(io) == 0):
+                    # can't unsalt without input
+                    return io
+                else:
+                    params = tpe_str.split(TIPED, maxsplit=3)
+                    if len(params) == 1:
+                        salt_regex = params[0]
+                        io = util_unsalt_string(io,salt_pattern=salt_regex)
+                    elif len(params) == 2:
+                        salt_regex = params[0]
+                        d_limit = int(params[1])
+                        io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
+                    elif len(params) == 3:
+                        salt_regex = params[0]
+                        d_limit = int(params[1])
+                        l_limit = int(params[2])
+                        io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
+
+        if tc == "S*":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                params = tpe_str.split(TIPED, maxsplit=3)
+                vault = params[0]
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault,"")
+                io = input_str
+
+                if (io is None) or (len(io) == 0):
+                    # can't salt without input
+                    return io
+                else:
+                    if len(params) == 2:
+                        salt = params[1]
+                        io = util_salt_string(io,salt)
+                    elif len(params) == 3:
+                        salt = params[1]
+                        i_limit = int(params[2])
+                        io = util_salt_string(io,salt,injection_limit=i_limit)
+                    elif len(params) == 4:
+                        salt = params[1]
+                        i_limit = int(params[2])
+                        l_limit = int(params[3])
+                        io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
+
+        if tc == "S*!":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                params = tpe_str.split(TIPED, maxsplit=3)
+                vault = params[0]
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault,"")
+                io = input_str
+
+                if (io is None) or (len(io) == 0):
+                    # can't unsalt without input
+                    return io
+                else:
+                    params = tpe_str.split(TIPED, maxsplit=3)
+                    if len(params) == 2:
+                        salt_regex = params[1]
+                        io = util_unsalt_string(io,salt_pattern=salt_regex)
+                    elif len(params) == 3:
+                        salt_regex = params[1]
+                        d_limit = int(params[2])
+                        io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
+                    elif len(params) == 4:
+                        salt_regex = params[1]
+                        d_limit = int(params[2])
+                        l_limit = int(params[3])
+                        io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
+
+
+        return io
+
+
 #-----------------------------
 # CLI Interface
 #-----------------------------
@@ -1447,14 +1607,12 @@ def run_tttt():
             continue
 
         # S: Salt
-        elif instruction.upper().startswith("S:"): #// shuffle: s:
-            if OUTPUT is None:
-                continue
+        if TC == "S":
+            OUTPUT = process_s(instruction, OUTPUT)
             if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            parts = re.split("\\s+", OUTPUT)
-            lparts = random.sample(parts, len(parts))
-            OUTPUT = GLUE.join(lparts)
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # T: Transform
         elif instruction.upper().startswith("T:"): #// triangular reduction: t:
@@ -1481,7 +1639,7 @@ def run_tttt():
         # Z: Zap
 
 
-    print(OUTPUT)
+    print(OUTPUT or EMPTY_STR) # in TEA, None is the EMPTY_STR
 
 
 if __name__ == "__main__":

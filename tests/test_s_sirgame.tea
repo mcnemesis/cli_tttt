@@ -1,0 +1,6 @@
+# randomly pick a word from the given list
+I!:{HONEY TRICK WINDS GAMES} | a: | d:[ ].*$ 
+# (=”TRICK”) for example
+S:-:4 | # randomly inject “-“ b4 4th pstn 
+#(=”TR-ICK”) for example
+R:.[-]:? | R:[-].:? | q!: | # returns “TR?CK”
