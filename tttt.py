@@ -113,24 +113,6 @@ def run_tttt():
         except BaseException:
             return None
 
-# TEA triangular reduction
-    def util_triangular_reduction(val):
-        if DEBUG:
-            print(f"--[util]-| Applying Transform: LM-TR to [{val}]")
-        lines = []
-        for i in range(len(val)):
-            lines.append(val[i:])
-        return NL.join(lines)
-
-
-# TEA right-most triangular reduction
-    def util_rightmost_triangular_reduction(val):
-        if DEBUG:
-            print(f"--[util]-| Applying Transform: RM-TR to [{val}]")
-        lines = []
-        for i in range(len(val)):
-            lines.append(val[:(len(val)-i)])
-        return NL.join(lines)
 
 # Pre-process TEA CODE
     def pre_process_TSRC(tsrc):
@@ -333,6 +315,54 @@ def run_tttt():
                 print(f"UnSalting {val} of len[{len(val)}] between index[{start} and {end}]--> {val[:start]} + {val[end:]}")
             unsalted_val = val[:start] + val[end:]
             return unsalted_val
+
+# TEA triangular reduction
+    def util_triangular_reduction(val):
+        if DEBUG:
+            print(f"--[util]-| Applying Transform: LM-TR to [{val}]")
+        lines = []
+        for i in range(len(val)):
+            lines.append(val[i:])
+        return NL.join(lines)
+
+
+# TEA right-most triangular reduction
+    def util_rightmost_triangular_reduction(val):
+        if DEBUG:
+            print(f"--[util]-| Applying Transform: RM-TR to [{val}]")
+        lines = []
+        for i in range(len(val)):
+            lines.append(val[:(len(val)-i)])
+        return NL.join(lines)
+
+    def util_unique_projection_words(val):
+        if DEBUG:
+            print(f"--[util]-| Computing Unique Word Projection for [{val}]")
+        words = val.split(SINGLE_SPACE_CHAR)
+        l_words = len(words)
+        if l_words <= 1:
+            return val
+        unique_words = list(set(words))
+        tally = [(w,words.count(w)) for w in unique_words]
+        tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
+        if DEBUG:
+            print(f"--[util]-| Unique Word Tally [{tally}]")
+        return GLUE.join([w[0] for w in tally])
+
+
+    def util_unique_projection_chars(val):
+        if DEBUG:
+            print(f"--[util]-| Computing Unique Character Projection for [{val}]")
+        chars = list(val)
+        l_chars = len(chars)
+        if l_chars <= 1:
+            return val
+        unique_chars = list(set(chars))
+        tally = [(w,chars.count(w)) for w in unique_chars]
+        tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
+        if DEBUG:
+            print(f"--[util]-| Unique Char Tally [{tally}]")
+        return EMPTY_STR.join([w[0] for w in tally])
 
 
 
@@ -1367,6 +1397,65 @@ def run_tttt():
         return io
 
 
+    def process_u(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "U":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    if DEBUG:
+                        print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                    return io
+                else:
+                    if DEBUG:
+                        print(f"Processing {tc} on AI=[{io}]")
+                    return util_unique_projection_words(io)
+            else:
+                    input_str = tpe_str
+                    return util_unique_projection_words(input_str)
+        if tc == "U!":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    return io
+                else:
+                    return util_unique_projection_chars(io)
+            else:
+                    input_str = tpe_str
+                    return util_unique_projection_chars(input_str)
+        if tc == "U*":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                vault = tpe_str
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault,"")
+                return util_unique_projection_words(input_str)
+
+        if tc == "U*!":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                vault = tpe_str
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault,"")
+                return util_unique_projection_chars(input_str)
+
+        return io
+
+
+
+
 
 #-----------------------------
 # CLI Interface
@@ -1686,6 +1775,20 @@ def run_tttt():
             continue
 
         # U: Uniqueify
+        if TC == "U":
+            OUTPUT = process_u(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
+
+        # V: Vault
+        if TC == "V":
+            OUTPUT = process_v(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # W: Webify
 
