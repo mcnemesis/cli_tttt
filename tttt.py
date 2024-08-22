@@ -109,24 +109,28 @@ def run_tttt():
     def read_file(file_path):
         try:
             with open(file_path, 'r') as file:
-                return os.linesep.join(file.readlines())
+                return NL.join(file.readlines())
         except BaseException:
             return None
 
 # TEA triangular reduction
-    def triangular_reduction(data):
+    def util_triangular_reduction(val):
+        if DEBUG:
+            print(f"--[util]-| Applying Transform: LM-TR to [{val}]")
         lines = []
-        for i in range(len(data)):
-            lines.append(data[i:])
-        return os.linesep.join(lines)
+        for i in range(len(val)):
+            lines.append(val[i:])
+        return NL.join(lines)
 
 
 # TEA right-most triangular reduction
-    def rightmost_triangular_reduction(data):
+    def util_rightmost_triangular_reduction(val):
+        if DEBUG:
+            print(f"--[util]-| Applying Transform: RM-TR to [{val}]")
         lines = []
-        for i in range(len(data)):
-            lines.append(data[:(len(data)-i)])
-        return os.linesep.join(lines)
+        for i in range(len(val)):
+            lines.append(val[:(len(val)-i)])
+        return NL.join(lines)
 
 # Pre-process TEA CODE
     def pre_process_TSRC(tsrc):
@@ -1301,8 +1305,67 @@ def run_tttt():
                         l_limit = int(params[3])
                         io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
+        return io
+
+
+    def process_t(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "T":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    if DEBUG:
+                        print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                    return io
+                else:
+                    if DEBUG:
+                        print(f"Processing {tc} on AI=[{io}]")
+                    return util_triangular_reduction(io)
+            else:
+                    input_str = tpe_str
+                    if DEBUG:
+                        print(f"Processing {tc} on TPE[{io}]")
+                    return util_triangular_reduction(input_str)
+        if tc == "T!":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    return io
+                else:
+                    return util_rightmost_triangular_reduction(io)
+            else:
+                    input_str = tpe_str
+                    return util_rightmost_triangular_reduction(input_str)
+        if tc == "T*":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                vault = tpe_str
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault,"")
+                return util_triangular_reduction(input_str)
+
+        if tc == "T*!":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                vault = tpe_str
+                if not (vault in VAULTS):
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                input_str = VAULTS.get(vault,"")
+                return util_rightmost_triangular_reduction(input_str)
 
         return io
+
 
 
 #-----------------------------
@@ -1615,19 +1678,13 @@ def run_tttt():
             continue
 
         # T: Transform
-        elif instruction.upper().startswith("T:"): #// triangular reduction: t:
-            if OUTPUT is None:
-                continue
+        if TC == "T":
+            OUTPUT = process_t(instruction, OUTPUT)
             if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = triangular_reduction(OUTPUT)
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
-        elif instruction.upper().startswith("RT:"): #// rightmost triangular reduction: rt:
-            if OUTPUT is None:
-                continue
-            if DEBUG:
-                print(f"Processing Instruction: {instruction}")
-            OUTPUT = rightmost_triangular_reduction(OUTPUT)
         # U: Uniqueify
 
         # W: Webify
