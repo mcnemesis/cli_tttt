@@ -77,7 +77,8 @@ def run_tttt():
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    VAULTS = {}
+    RETEAPROGRAM = r'([a-zA-Z]\*?\!:.*(:.*)*\|?)+(#.*)*'
+    RETI = r'[ ]*?[a-zA-Z]\*?!?:.*?'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -85,6 +86,8 @@ def run_tttt():
     RE_WHITE_SPACE_N_PUNCTUATION = r'[\s\W]+'
     GLUE = SINGLE_SPACE_CHAR
     EMPTY_STR = ""
+    VAULTS = {}
+    vDEFAULT_VAULT = EMPTY_STR
     # we shall store label block pointers as such:
     #    label_name: label_position + 1
     #    such that, jumping to label_name allows us to
@@ -99,6 +102,27 @@ def run_tttt():
     else:
         STDINPUT = os.linesep.join(sys.stdin.readlines())
         HasSTDIN = True
+
+
+
+#-----------------------------
+# VAULT/MEMORY utils
+#-----------------------------
+
+    def vault_store(vNAME, vVAL):
+        VAULTS[vNAME] = vVAL
+        if DEBUG:
+            print(f"-- [INFO] Wrote VAULT[{vNAME} = [{vVAL}]]")
+
+    def vault_get(vNAME):
+        if not (vNAME in VAULTS):
+            if DEBUG:
+                print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
+            raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+        else:
+            if DEBUG:
+                print(f"-- [INFO] Reading VAULT[{vNAME}]")
+        return VAULTS[vNAME]
 
 
 #-----------------------------
@@ -124,7 +148,7 @@ def run_tttt():
 # - Code contains at least one valid TEA Instruction Line:
 # ([a-zA-Z]!?*?:.*(:.*)*|?)+(#.*)*
     def validate_TSRC(tsrc):
-        reTEAPROGRAM = re.compile("([a-zA-Z]!?\*?:.*(:.*)*\|?)+(#.*)*")
+        reTEAPROGRAM = re.compile(RETEAPROGRAM)
         errors = []
         _tsrc = tsrc.strip()
         isValid = False if len(_tsrc) == 0 else True
@@ -173,7 +197,7 @@ def run_tttt():
         _tsrc_lines = _tils
         if DEBUG:
             print(f"#{len(_tsrc_lines)} of {(_tsrc_lines)}")
-        reTI = re.compile('[ ]*?[a-zA-Z]!?\*?:.*?')
+        reTI = re.compile(RETI)
         # remove all non-TIL lines
         _tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l)]
         if DEBUG:
@@ -481,7 +505,7 @@ def run_tttt():
 
 
     def process_f(ti, ai, _ATPI):
-        io = ai
+        io = str(ai)
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -495,6 +519,7 @@ def run_tttt():
             if len(params) == 1:
                 if DEBUG:
                     print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
+                    print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                 raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
             if len(params) == 2:
                 rtest = params[0]
@@ -502,6 +527,7 @@ def run_tttt():
                 if not (tblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
@@ -515,10 +541,12 @@ def run_tttt():
                 if not (tblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 if not (fblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
@@ -540,6 +568,7 @@ def run_tttt():
                 if not (tblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
@@ -553,10 +582,12 @@ def run_tttt():
                 if not (tblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 if not (fblock in LABELBLOCKS):
                     if DEBUG:
                         print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                     raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                     _ATPI = LABELBLOCKS[tblock]
@@ -581,25 +612,25 @@ def run_tttt():
             if len(params) == 0:
                 io = re.sub(RE_WHITE_SPACE, EMPTY_STR, io)
             if len(params) == 1:
-                glue = params[0]
+                glue = extract_str(params[0])
                 io = re.sub(RE_WHITE_SPACE, glue, io)
             if len(params) == 2:
                 regex = params[1]
-                glue = params[0]
+                glue = extract_str(params[0])
                 io = re.sub(regex, glue, io)
         if tc == "G!":
             params = tpe_str.split(TIPED)
             if len(params) == 0:
                 pass
             if len(params) == 1:
-                glue = params[0]
+                glue = extract_str(params[0])
                 io = re.sub(RE_WHITE_SPACE_N_PUNCTUATION, glue, io)
         if tc == "G*":
             params = tpe_str.split(TIPED)
             if len(params) < 3:
                 pass
             else:
-                glue = params[0]
+                glue = extract_str(params[0])
                 vaults = params[1:]
                 vals = []
                 for v in vaults:
@@ -1066,12 +1097,12 @@ def run_tttt():
                 pass
             else:
                 params = tpe_str.split(TIPED)
-                vName = params[0]
-                if not (vName in VAULTS):
+                vNAME = params[0]
+                if not (vNAME in VAULTS):
                     if DEBUG:
-                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vName}]")
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vNAME}]")
                     raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
-                input_str = VAULTS.get(vName,"")
+                input_str = VAULTS.get(vNAME,"")
                 if len(params) == 1:
                     io = util_gen_permutations(input_str)
                 elif len(params) == 2:
@@ -1083,7 +1114,7 @@ def run_tttt():
 
 
     def process_q(ti, ai, _ATPI):
-        io = ai
+        io = str(ai)
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1093,6 +1124,8 @@ def run_tttt():
         if tc == "Q":
             if len(tpe_str) == 0:
                 if (io is None) or (io == EMPTY_STR):
+                    if DEBUG:
+                        print(f"-- Quiting Program because AI is EMPTY")
                     _ATPI = len(INSTRUCTIONS) + 1 # points to end of program
             else:
                 qtest = tpe_str
@@ -1102,6 +1135,8 @@ def run_tttt():
                     _ATPI = len(INSTRUCTIONS) + 1
         if tc == "Q!":
             if len(tpe_str) == 0:
+                if DEBUG:
+                    print(f"-- UNCONDITIONALLY Quiting Program")
                 _ATPI = len(INSTRUCTIONS) + 1
                 return io,_ATPI
             else:
@@ -1454,6 +1489,163 @@ def run_tttt():
         return io
 
 
+    def process_v(ti, ai):
+        io = ai
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "V":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    vault_store(vDEFAULT_VAULT,EMPTY_STR)
+                else:
+                    if DEBUG:
+                        print(f"Processing {tc} on AI=[{io}]")
+                    vault_store(vDEFAULT_VAULT,io)
+            else:
+                input_str = tpe_str
+                params = input_str.split(TIPED, maxsplit=1)
+                if len(params) > 2:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    if len(params) == 2:
+                        vNAME,vVALUE = params[0], extract_str(params[1])
+                        vault_store(vNAME,vVALUE)
+                    elif len(params) == 1:
+                        vNAME,vVALUE = params[0], io
+                        vault_store(vNAME,vVALUE)
+
+        if tc == "V!":
+            if len(tpe_str) == 0:
+                if vDEFAULT_VAULT not in VAULTS:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                vVALUE = vault_get(vDEFAULT_VAULT)
+                if DEBUG:
+                    print(f"[INFO] Returning Length of string  in DEFAULT VAULT [{vVALUE}]")
+                return len(vVALUE)
+            else:
+                    input_str = tpe_str
+                    if DEBUG:
+                        print(f"[INFO] Returning Length of string [{input_str}]")
+                    return len(input_str)
+        if tc == "V*":
+            if len(tpe_str) == 0:
+                if DEBUG:
+                    print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+            else:
+                    input_str = tpe_str
+                    params = input_str.split(TIPED, maxsplit=1)
+                    if len(params) > 2:
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                    else:
+                        if len(params) == 2:
+                            vNAME,vVALUE = params
+                            vault_store(vNAME,vVALUE)
+                        elif len(params) == 1:
+                            vNAME,vVALUE = params[0], io
+                            vault_store(vNAME,vVALUE)
+
+        if tc == "V*!":
+            if len(tpe_str) == 0:
+                if vDEFAULT_VAULT not in VAULTS:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                vVALUE = vault_get(vDEFAULT_VAULT)
+                if DEBUG:
+                    print(f"[INFO] Returning Length of string  in DEFAULT VAULT [{vVALUE}]")
+                return len(vVALUE)
+            else:
+                vNAME = tpe_str
+                vVALUE = vault_get(vNAME)
+                if DEBUG:
+                    print(f"[INFO] Returning Length of string  in VAULT[{vNAME} = [{vNAME}]]")
+                return len(vVALUE)
+
+        return io
+
+
+    def process_y(ti, ai):
+        io = str(ai)
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "Y":
+            if len(tpe_str) == 0:
+                if vDEFAULT_VAULT not in VAULTS:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                vVALUE = vault_get(vDEFAULT_VAULT)
+                if DEBUG:
+                    print(f"[INFO] Returning string in DEFAULT VAULT [{vVALUE}]")
+                return vVALUE
+            else:
+                vNAME = tpe_str
+                vVALUE = vault_get(vNAME)
+                if DEBUG:
+                    print(f"[INFO] Returning string in VAULT [{vNAME}]")
+                return vVALUE
+        if tc == "Y!":
+            if len(tpe_str) == 0:
+                if vDEFAULT_VAULT not in VAULTS:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                vVALUE = vault_get(vDEFAULT_VAULT)
+                if DEBUG:
+                    print(f"[INFO] Returning Length of string  in DEFAULT VAULT [{vVALUE}]")
+                return len(vVALUE)
+            else:
+                vNAME = tpe_str
+                vVALUE = vault_get(vNAME)
+                if DEBUG:
+                    print(f"[INFO] Returning Length of string  in VAULT[{vNAME}]")
+                return len(vVALUE)
+
+        if tc == "Y*":
+            if len(tpe_str) == 0:
+                if DEBUG:
+                    print(f"[INFO] Returning ORIGINAL INPUT to the TEA PROGRAM")
+                return ORIGINAL_INPUT
+            else:
+                vNAME = tpe_str
+                vVALUE = vault_get(vNAME)
+                if DEBUG:
+                    print(f"[INFO] Returning string in VAULT [{vNAME}]")
+                return vVALUE
+        if tc == "Y*!":
+            if len(tpe_str) == 0:
+                if vDEFAULT_VAULT not in VAULTS:
+                    if DEBUG:
+                        print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
+                    raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                vVALUE = vault_get(vDEFAULT_VAULT)
+                if DEBUG:
+                    print(f"[INFO] Returning Length of string  in DEFAULT VAULT [{vVALUE}]")
+                return len(vVALUE)
+            else:
+                vNAME = tpe_str
+                vVALUE = vault_get(vNAME)
+                if DEBUG:
+                    print(f"[INFO] Returning Length of string  in VAULT[{vNAME}]")
+                return len(vVALUE)
+
+        return io
+
 
 
 
@@ -1580,20 +1772,26 @@ def run_tttt():
             print("NO TEA CODE FOUND")
         exit()
 
-# by default, the input is the output if not touched..
+    # By default, we set AI to the EMPTY STRING is if it was None or not set
+    INPUT = INPUT or EMPTY_STR
+# we store original input just in case we might need it later in the TEA program : see Y*:
+    ORIGINAL_INPUT = INPUT
+    # by default, the input is the output if not touched..
     OUTPUT = INPUT
+
 
     TI_index = 0
     for i in INSTRUCTIONS:
         if i.upper().startswith("L"):
             params = i.split(TCD)
             for lBlockName in params[1:]:
-                if lBlockName in LABELBLOCKS:
+                cleanlBlockName = lBlockName.strip()
+                if cleanlBlockName in LABELBLOCKS:
                     if DEBUG:
-                        print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{lBlockName}]")
+                        print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{cleanlBlockName}]")
                         print(f"[INFO] Current L-BLOCKS: \n{LABELBLOCKS}")
                     raise ValueError("[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL")
-                LABELBLOCKS[lBlockName] = TI_index + 1 # so we ref next instruction in program, after the label
+                LABELBLOCKS[cleanlBlockName] = TI_index + 1 # so we ref next instruction in program, after the label
         TI_index += 1
 
 
@@ -1795,11 +1993,17 @@ def run_tttt():
         # X: Xenograft
 
         # Y: Yank
+        if TC == "Y":
+            OUTPUT = process_y(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # Z: Zap
 
 
-    print(OUTPUT or EMPTY_STR) # in TEA, None is the EMPTY_STR
+    print(OUTPUT if OUTPUT is not None else EMPTY_STR) # in TEA, None is the EMPTY_STR
 
 
 if __name__ == "__main__":
