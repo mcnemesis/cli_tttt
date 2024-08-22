@@ -77,7 +77,7 @@ def run_tttt():
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    RETEAPROGRAM = r'([a-zA-Z]\*?\!:.*(:.*)*\|?)+(#.*)*'
+    RETEAPROGRAM = r'([a-zA-Z]\*?!?:.*(:.*)*\|?)+(#.*)*'
     RETI = r'[ ]*?[a-zA-Z]\*?!?:.*?'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -394,7 +394,7 @@ def run_tttt():
 # TAZ Implementation
 #-----------------------------
     def process_a(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -425,7 +425,7 @@ def run_tttt():
 
 
     def process_b(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -469,7 +469,7 @@ def run_tttt():
 
 
     def process_d(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -492,7 +492,7 @@ def run_tttt():
 
 
     def process_e(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -600,7 +600,7 @@ def run_tttt():
 
 
     def process_g(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -645,7 +645,7 @@ def run_tttt():
 
 
     def process_h(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -698,7 +698,7 @@ def run_tttt():
 
 
     def process_i(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -721,7 +721,7 @@ def run_tttt():
 
 
     def process_j(ti, ai, _ATPI):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -751,7 +751,7 @@ def run_tttt():
 
 
     def process_k(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -830,7 +830,7 @@ def run_tttt():
 
 
     def process_l(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -861,7 +861,7 @@ def run_tttt():
 
 
     def process_m(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -892,7 +892,7 @@ def run_tttt():
 
 
     def process_n(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1024,7 +1024,7 @@ def run_tttt():
 
 
     def process_o(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1055,7 +1055,7 @@ def run_tttt():
 
 
     def process_p(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1151,7 +1151,7 @@ def run_tttt():
 
 
     def process_r(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1250,7 +1250,7 @@ def run_tttt():
 
 
     def process_s(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1317,7 +1317,7 @@ def run_tttt():
                 vault = params[0]
                 if not (vault in VAULTS):
                     if DEBUG:
-                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
                     raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
                 input_str = VAULTS.get(vault,"")
                 io = input_str
@@ -1347,7 +1347,7 @@ def run_tttt():
                 vault = params[0]
                 if not (vault in VAULTS):
                     if DEBUG:
-                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
                     raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
                 input_str = VAULTS.get(vault,"")
                 io = input_str
@@ -1374,7 +1374,7 @@ def run_tttt():
 
 
     def process_t(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1412,7 +1412,7 @@ def run_tttt():
                 vault = tpe_str
                 if not (vault in VAULTS):
                     if DEBUG:
-                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
                     raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
                 input_str = VAULTS.get(vault,"")
                 return util_triangular_reduction(input_str)
@@ -1424,7 +1424,7 @@ def run_tttt():
                 vault = tpe_str
                 if not (vault in VAULTS):
                     if DEBUG:
-                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
                     raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
                 input_str = VAULTS.get(vault,"")
                 return util_rightmost_triangular_reduction(input_str)
@@ -1433,7 +1433,7 @@ def run_tttt():
 
 
     def process_u(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1469,7 +1469,7 @@ def run_tttt():
                 vault = tpe_str
                 if not (vault in VAULTS):
                     if DEBUG:
-                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
                     raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
                 input_str = VAULTS.get(vault,"")
                 return util_unique_projection_words(input_str)
@@ -1481,7 +1481,7 @@ def run_tttt():
                 vault = tpe_str
                 if not (vault in VAULTS):
                     if DEBUG:
-                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [vault]")
+                        print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vault}]")
                     raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
                 input_str = VAULTS.get(vault,"")
                 return util_unique_projection_chars(input_str)
@@ -1490,7 +1490,7 @@ def run_tttt():
 
 
     def process_v(ti, ai):
-        io = ai
+        io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
         tc = tc.upper()
         tpe = tpe.strip()
@@ -1571,6 +1571,103 @@ def run_tttt():
                 if DEBUG:
                     print(f"[INFO] Returning Length of string  in VAULT[{vNAME} = [{vNAME}]]")
                 return len(vVALUE)
+
+        return io
+
+
+
+    def process_x(ti, ai):
+        io = ai if ai is not None else EMPTY_STR
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "X":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    if DEBUG:
+                        print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                    return io
+                else:
+                    if DEBUG:
+                        print(f"Processing {tc} on AI=[{io}]")
+                    return io + io
+            else:
+                    prefix = tpe_str
+                    return prefix + io
+        if tc == "X!":
+            if len(tpe_str) == 0:
+                if (io is None) or (len(io) == 0):
+                    if DEBUG:
+                        print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                    return io
+                else:
+                    if DEBUG:
+                        print(f"Processing {tc} on AI=[{io}]")
+                    return io[:(len(io)//2)]
+            else:
+                    suffix = tpe_str
+                    return io + suffix
+
+        if tc == "X*":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                params = tpe_str.split(TIPED, maxsplit=1)
+                val = io
+                if len(params) == 1:
+                    vPREFIX = params[0]
+                    if not (vPREFIX in VAULTS):
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vPREFIX}]")
+                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                    prefix = VAULTS.get(vPREFIX,"")
+                    return prefix + val
+                if len(params) == 2:
+                    vPREFIX = params[0]
+                    vSTR = params[1]
+                    if not (vPREFIX in VAULTS):
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vPREFIX}]")
+                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                    if not (vSTR in VAULTS):
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vSTR}]")
+                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                    prefix = VAULTS.get(vPREFIX,"")
+                    val = VAULTS.get(vSTR,"")
+                    return prefix + val
+
+        if tc == "X*!":
+            if len(tpe_str) == 0:
+                pass
+            else:
+                params = tpe_str.split(TIPED, maxsplit=1)
+                val = io
+                if len(params) == 1:
+                    vSUFFIX = params[0]
+                    if not (vSUFFIX in VAULTS):
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vSUFFIX}]")
+                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                    suffix = VAULTS.get(vSUFFIX,"")
+                    return val + suffix
+                if len(params) == 2:
+                    vSUFFIX = params[0]
+                    vSTR = params[1]
+                    if not (vSUFFIX in VAULTS):
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vSUFFIX}]")
+                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                    if not (vSTR in VAULTS):
+                        if DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Vault [{vSTR}]")
+                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS NON-EXISTENT VAULT")
+                    suffix = VAULTS.get(vSUFFIX,"")
+                    val = VAULTS.get(vSTR,"")
+                    return val + suffix
 
         return io
 
@@ -1991,6 +2088,12 @@ def run_tttt():
         # W: Webify
 
         # X: Xenograft
+        if TC == "X":
+            OUTPUT = process_x(instruction, OUTPUT)
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # Y: Yank
         if TC == "Y":
