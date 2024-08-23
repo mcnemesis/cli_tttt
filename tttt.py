@@ -58,7 +58,7 @@ In all situations, the TTTT interpreter executes the available TEA program on th
 """
 
 def run_tttt():
-    import sys, os, subprocess
+    import sys, os, subprocess, urllib.request,urllib.parse
 
     DEBUG = True
     INPUT = None #shall either be read from stdin or from the val to -i or -fi
@@ -445,6 +445,63 @@ def run_tttt():
                 result = f"[ERROR]: {error}"
         return result.strip() if result is not None else result
 
+
+    def util_fix_url(url):
+        if not (url.startswith("http")):
+            return f"http://{url}"
+        return url
+
+    def util_web_get(url, data=None):
+        result = None
+        try:
+
+            full_url = url
+            if data is not None:
+                if isinstance(data, dict):
+                    # Encode the data as query parameters
+                    query_string = urllib.parse.urlencode(data)
+                    full_url = f"{url}?{query_string}"
+
+            with urllib.request.urlopen(full_url) as response:
+                # Read the content and decode it to a string
+                result = response.read().decode('utf-8')
+        except Exception as error:
+            _result = util_web_get(util_fix_url(url), data=data)
+            if _result is not None:
+                result = _result
+            else:
+                result = f"[ERROR]: {error}"
+        return result.strip() if result is not None else result
+
+
+    def util_web_post(url, data=None):
+        result = None
+        try:
+            request = None
+            encoded_data = None
+
+            if isinstance(data, dict):
+                if data is not None:
+                    encoded_data = urllib.parse.urlencode(data).encode('utf-8')
+            else:
+                encoded_data = data.encode('utf-8')
+                request = urllib.request.Request(url, data=encoded_data, method='POST')
+                # Set the appropriate header for form data
+                request.add_header('Content-Type', 'application/x-www-form-urlencoded')
+
+            request = urllib.request.Request(url, data=encoded_data)
+
+            with urllib.request.urlopen(request) as response:
+                # Read the content and decode it to a string
+                result = response.read().decode('utf-8')
+
+        except Exception as error:
+            _result = util_web_post(util_fix_url(url), data=data)
+            if _result is not None:
+                result = _result
+            else:
+                result = f"[ERROR]: {error}"
+        return result.strip() if result is not None else result
 
 #-----------------------------
 # TAZ Implementation
@@ -1493,6 +1550,82 @@ def run_tttt():
 
 
 
+    def process_w(ti, ai):
+        io = ai if ai is not None else EMPTY_STR
+        tc, tpe = ti.split(TCD, maxsplit=1)
+        tc = tc.upper()
+        tpe = tpe.strip()
+        # extract the string parameter
+        tpe_str = extract_str(tpe)
+
+        if tc == "W":
+            if len(tpe_str) == 0:
+                URL = io
+                webRESULT = util_web_get(URL)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+            else:
+                URL = tpe_str
+                webRESULT = util_web_get(URL)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+
+        if tc == "W!":
+            if len(tpe_str) == 0:
+                URL = io
+                webRESULT = util_web_post(URL, data=None)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+            else:
+                URL = tpe_str
+                webRESULT = util_web_post(URL, data=io)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+
+        if tc == "W*":
+            if len(tpe_str) == 0:
+                URL = io
+                data = VAULTS
+                webRESULT = util_web_get(URL, data=data)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+            else:
+                URL = io
+                data = VAULTS
+
+                params = tpe_str.split(TIPED)
+                if len(params) == 1:
+                    URL = params[0]
+                else:
+                    _vaultData = {}
+                    for vNAME in params[:1]:
+                        _vaultData[vNAME] = vault_get(vNAME)
+                    data = _vaultData
+
+                webRESULT = util_web_get(URL, data=data)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+
+        if tc == "W*!":
+            if len(tpe_str) == 0:
+                URL = io
+                data = VAULTS
+                webRESULT = util_web_post(URL, data=data)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+            else:
+                URL = io
+                data = VAULTS
+
+                params = tpe_str.split(TIPED)
+                if len(params) == 1:
+                    URL = params[0]
+                else:
+                    _vaultData = {}
+                    for vNAME in params[:1]:
+                        _vaultData[vNAME] = vault_get(vNAME)
+                    data = _vaultData
+
+                webRESULT = util_web_post(URL, data=io)
+                return webRESULT if webRESULT is not None else EMPTY_STR
+
+        return io
+
+
+
     def process_x(ti, ai):
         io = ai if ai is not None else EMPTY_STR
         tc, tpe = ti.split(TCD, maxsplit=1)
@@ -2024,6 +2157,12 @@ def run_tttt():
             continue
 
         # W: Webify
+        if TC == "W":
+            OUTPUT = str(process_w(instruction, OUTPUT))
+            if DEBUG:
+                print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+            ATPI += 1
+            continue
 
         # X: Xenograft
         if TC == "X":
