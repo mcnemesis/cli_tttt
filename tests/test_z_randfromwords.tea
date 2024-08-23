@@ -1,0 +1,16 @@
+# this sample program forms random words
+# converts them to base 2, then uses
+# external power via "bc" to read them back as 
+# numbers in base 10. Essentially, helps with
+# a way to turn any word into a number
+i:abcdefghijklmnopqrstuvwxy z
+a!:
+d:[ ].*$
+r!:[aeiou]:0
+r!:[bcdfghjklmnpqrstvwxyz]:1
+x:{ibase=2; }
+x:{echo '}
+x!:{' | bc}
+v:vCMD
+c:
+z*:vCMD

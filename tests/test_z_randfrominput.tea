@@ -1,0 +1,15 @@
+# this sample program converts a word you provide to a number
+i:test
+g!: # first eliminate all whitespace
+z: # then turn everything to lowercase
+r!:[aeiou]:0
+r!:[bcdfghjklmnpqrstvwxyz]:1
+x:{ibase=2; }
+x:{echo '}
+x!:{' | bc}
+v:vCMD
+c:
+z*:vCMD
+# Magic!
+# this program will for example show that
+# the name "Jesus Christ" is equivalent to the number 1403
