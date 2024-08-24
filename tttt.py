@@ -511,6 +511,9 @@ class TEA_RunTime:
             if (tsrc is None) or (len(tsrc) == 0):
                 return ai
 
+            if DEBUG:
+                print(f"[INFO] TEA EXEC:\n\tTSRC: [{tsrc}]\n\tAI: [{ai}]\n")
+
             e_runtime = TEA_RunTime()
             e_output = e_runtime.run_tttt(_process_cli=False, _tsrc=tsrc, _ai=ai, _debug=DEBUG)
             return e_output
@@ -619,6 +622,10 @@ class TEA_RunTime:
                 if len(tpe_str) == 0:
                     e_Tsrc = io
                     e_ai = EMPTY_STR
+                    io = util_execute_tea(e_Tsrc, e_ai)
+                else:
+                    e_Tsrc = tpe_str
+                    e_ai = io
                     io = util_execute_tea(e_Tsrc, e_ai)
 
             if DEBUG:
@@ -1848,7 +1855,9 @@ class TEA_RunTime:
 #-----------------------------
 
 # let us setup cli processing...
-        if _process_cli:
+        if not _process_cli:
+            INPUT = _ai # use input sent to the runtime...
+        else:
             import argparse
             parser = argparse.ArgumentParser(
                                 prog='tttt',
