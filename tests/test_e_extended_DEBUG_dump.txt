@@ -1,0 +1,477 @@
+Reading CODE from: tests/test_e_extended.tea
+No explicit INPUT found, using STDIN!
+INPUT:
+ None
+CODE:
+ i!:ABC
+
+
+
+l:lHEW
+
+h:
+
+
+
+e!:{
+
+    v:
+
+    v:vE:XYZ
+
+    |v!:
+
+    |v:vOL
+
+    |g*:-< >-:vE:vOL
+
+    |v:vMIX
+
+    |l:lGEN
+
+    |p!:5
+
+    |x*:vMIX
+
+    |f:ai:lMASK
+
+    |l:lSALT
+
+    |s:1_0_1
+
+    |f!:a1:lGEN
+
+    |v:vFIN
+
+    |y: |g!:++|x*!:vFIN
+
+    |q!:
+
+    }
+
+
+
+l:lMASK
+
+g!:**
+
+---------[ IN TEA RUNTIME ]
+
+#17 of ['i!:ABC', '', '', '', 'l:lHEW', '', 'h:', '', '', '', 'e!:{=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    v:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    v:vE:XYZ=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v!:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vOL=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=g*:-< >-:vE:vOL=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vMIX=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=l:lGEN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=p!:5=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=x*:vMIX=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=f:ai:lMASK=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=l:lSALT=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=s:1_0_1=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=f!:a1:lGEN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vFIN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=y: =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=g!:++=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=x*!:vFIN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=q!:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    }', '', '', '', 'l:lMASK', '', 'g!:**']
+##6 of ['i!:ABC', 'l:lHEW', 'h:', 'e!:{\n\n    v:\n\n    v:vE:XYZ\n\n    |v!:\n\n    |v:vOL\n\n    |g*:-< >-:vE:vOL\n\n    |v:vMIX\n\n    |l:lGEN\n\n    |p!:5\n\n    |x*:vMIX\n\n    |f:ai:lMASK\n\n    |l:lSALT\n\n    |s:1_0_1\n\n    |f!:a1:lGEN\n\n    |v:vFIN\n\n    |y: |g!:++|x*!:vFIN\n\n    |q!:\n\n    }', 'l:lMASK', 'g!:**']
+CLEAN TEA CODE TO PROCESS:
+i!:ABC
+l:lHEW
+h:
+e!:{=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    v:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    v:vE:XYZ=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v!:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vOL=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=g*:-< >-:vE:vOL=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vMIX=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=l:lGEN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=p!:5=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=x*:vMIX=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=f:ai:lMASK=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=l:lSALT=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=s:1_0_1=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=f!:a1:lGEN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vFIN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=y: =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=g!:++=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=x*!:vFIN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=q!:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    }
+l:lMASK
+g!:**
+
+---<< EXTRACTED TEA LABEL BLOCKS:
+{'lHEW': 2, 'lMASK': 5}
+
+Executing Instruction#0 (out of 6)
+Processing Instruction: i!:ABC
+PRIOR MEMORY STATE: (=, VAULTS:{})
+RESULTANT MEMORY STATE: (=ABC, VAULTS:{})
+Executing Instruction#1 (out of 6)
+Processing Instruction: l:lHEW
+PRIOR MEMORY STATE: (=ABC, VAULTS:{})
+RESULTANT MEMORY STATE: (=ABC, VAULTS:{})
+Executing Instruction#2 (out of 6)
+Processing Instruction: h:
+PRIOR MEMORY STATE: (=ABC, VAULTS:{})
+RESULTANT MEMORY STATE: (=A B C, VAULTS:{})
+Executing Instruction#3 (out of 6)
+Processing Instruction: e!:{=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    v:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    v:vE:XYZ=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v!:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vOL=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=g*:-< >-:vE:vOL=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vMIX=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=l:lGEN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=p!:5=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=x*:vMIX=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=f:ai:lMASK=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=l:lSALT=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=s:1_0_1=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=f!:a1:lGEN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=v:vFIN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=y: =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=g!:++=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=x*!:vFIN=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    =TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID=q!:=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL==NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL=    }
+PRIOR MEMORY STATE: (=A B C, VAULTS:{})
+
+*******[ EXECUTING E-COMMAND ]
+
+[INFO] TEA INJECTION:
+	TSRC: [
+
+    v:
+
+    v:vE:XYZ
+
+    |v!:
+
+    |v:vOL
+
+    |g*:-< >-:vE:vOL
+
+    |v:vMIX
+
+    |l:lGEN
+
+    |p!:5
+
+    |x*:vMIX
+
+    |f:ai:lMASK
+
+    |l:lSALT
+
+    |s:1_0_1
+
+    |f!:a1:lGEN
+
+    |v:vFIN
+
+    |y: |g!:++|x*!:vFIN
+
+    |q!:
+
+    ]
+	@ATPI: [3]
+
+#47 of ['v:', '', '    v:vE:XYZ', '', '    ', 'v!:', '', '    ', 'v:vOL', '', '    ', 'g*:-< >-:vE:vOL', '', '    ', 'v:vMIX', '', '    ', 'l:lGEN', '', '    ', 'p!:5', '', '    ', 'x*:vMIX', '', '    ', 'f:ai:lMASK', '', '    ', 'l:lSALT', '', '    ', 's:1_0_1', '', '    ', 'f!:a1:lGEN', '', '    ', 'v:vFIN', '', '    ', 'y: ', 'g!:++', 'x*!:vFIN', '', '    ', 'q!:']
+##18 of ['v:', 'v:vE:XYZ', 'v!:', 'v:vOL', 'g*:-< >-:vE:vOL', 'v:vMIX', 'l:lGEN', 'p!:5', 'x*:vMIX', 'f:ai:lMASK', 'l:lSALT', 's:1_0_1', 'f!:a1:lGEN', 'v:vFIN', 'y: ', 'g!:++', 'x*!:vFIN', 'q!:']
+CLEAN TEA CODE TO PROCESS:
+v:
+v:vE:XYZ
+v!:
+v:vOL
+g*:-< >-:vE:vOL
+v:vMIX
+l:lGEN
+p!:5
+x*:vMIX
+f:ai:lMASK
+l:lSALT
+s:1_0_1
+f!:a1:lGEN
+v:vFIN
+y: 
+g!:++
+x*!:vFIN
+q!:
+
+---<< EXTRACTED TEA LABEL BLOCKS:
+{'lHEW': 2, 'lMASK': 22, 'lGEN': 10, 'lSALT': 14}
+
+RESULTANT MEMORY STATE: (=A B C, VAULTS:{})
+Executing Instruction#3 (out of 23)
+Processing Instruction: v:
+PRIOR MEMORY STATE: (=A B C, VAULTS:{})
+Processing V on AI=[A B C]
+-- [INFO] Wrote VAULT[ = [A B C]]
+RESULTANT MEMORY STATE: (=A B C, VAULTS:{'': 'A B C'})
+Executing Instruction#4 (out of 23)
+Processing Instruction: v:vE:XYZ
+PRIOR MEMORY STATE: (=A B C, VAULTS:{'': 'A B C'})
+-- [INFO] Wrote VAULT[vE = [XYZ]]
+RESULTANT MEMORY STATE: (=A B C, VAULTS:{'': 'A B C', 'vE': 'XYZ'})
+Executing Instruction#5 (out of 23)
+Processing Instruction: v!:
+PRIOR MEMORY STATE: (=A B C, VAULTS:{'': 'A B C', 'vE': 'XYZ'})
+-- [INFO] Reading VAULT[]
+[INFO] Returning Length of string  in DEFAULT VAULT [A B C]
+RESULTANT MEMORY STATE: (=5, VAULTS:{'': 'A B C', 'vE': 'XYZ'})
+Executing Instruction#6 (out of 23)
+Processing Instruction: v:vOL
+PRIOR MEMORY STATE: (=5, VAULTS:{'': 'A B C', 'vE': 'XYZ'})
+-- [INFO] Wrote VAULT[vOL = [5]]
+RESULTANT MEMORY STATE: (=5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5'})
+Executing Instruction#7 (out of 23)
+Processing Instruction: g*:-< >-:vE:vOL
+PRIOR MEMORY STATE: (=5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5'})
+-- [INFO] Reading VAULT[vE]
+-- [INFO] Reading VAULT[vOL]
+RESULTANT MEMORY STATE: (=XYZ-< >-5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5'})
+Executing Instruction#8 (out of 23)
+Processing Instruction: v:vMIX
+PRIOR MEMORY STATE: (=XYZ-< >-5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5'})
+-- [INFO] Wrote VAULT[vMIX = [XYZ-< >-5]]
+RESULTANT MEMORY STATE: (=XYZ-< >-5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#9 (out of 23)
+Processing Instruction: l:lGEN
+PRIOR MEMORY STATE: (=XYZ-< >-5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XYZ-< >-5, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5xisdy of len[14] at index[2]--> XY + 1_0_1 + Z-< >-5xisdy
+RESULTANT MEMORY STATE: (=XY1_0_1Z-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XY1_0_1Z-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XY1_0_1Z-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XY1_0_1Z-< >-5xisdy, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (= sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (= sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5 sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5 sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5 sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5 sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5 sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5 sxei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5 sxei of len[14] at index[12]--> XYZ-< >-5 sx + 1_0_1 + ei
+RESULTANT MEMORY STATE: (=XYZ-< >-5 sx1_0_1ei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XYZ-< >-5 sx1_0_1ei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5 sx1_0_1ei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XYZ-< >-5 sx1_0_1ei, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5irxye, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5irxye of len[14] at index[14]--> XYZ-< >-5irxye + 1_0_1 + 
+RESULTANT MEMORY STATE: (=XYZ-< >-5irxye1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XYZ-< >-5irxye1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5irxye1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XYZ-< >-5irxye1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5sxtsd, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5sxtsd of len[14] at index[13]--> XYZ-< >-5sxts + 1_0_1 + d
+RESULTANT MEMORY STATE: (=XYZ-< >-5sxts1_0_1d, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XYZ-< >-5sxts1_0_1d, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5sxts1_0_1d, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XYZ-< >-5sxts1_0_1d, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5ljnof of len[14] at index[8]--> XYZ-< >- + 1_0_1 + 5ljnof
+RESULTANT MEMORY STATE: (=XYZ-< >-1_0_15ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XYZ-< >-1_0_15ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-1_0_15ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XYZ-< >-1_0_15ljnof, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5xpqnw of len[14] at index[2]--> XY + 1_0_1 + Z-< >-5xpqnw
+RESULTANT MEMORY STATE: (=XY1_0_1Z-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XY1_0_1Z-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XY1_0_1Z-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XY1_0_1Z-< >-5xpqnw, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5tz dr of len[14] at index[8]--> XYZ-< >- + 1_0_1 + 5tz dr
+RESULTANT MEMORY STATE: (=XYZ-< >-1_0_15tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XYZ-< >-1_0_15tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-1_0_15tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XYZ-< >-1_0_15tz dr, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5bybim of len[14] at index[4]--> XYZ- + 1_0_1 + < >-5bybim
+RESULTANT MEMORY STATE: (=XYZ-1_0_1< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XYZ-1_0_1< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-1_0_1< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=XYZ-1_0_1< >-5bybim, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5innev of len[14] at index[1]--> X + 1_0_1 + YZ-< >-5innev
+RESULTANT MEMORY STATE: (=X1_0_1YZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=X1_0_1YZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=X1_0_1YZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#10 (out of 23)
+Processing Instruction: p!:5
+PRIOR MEMORY STATE: (=X1_0_1YZ-< >-5innev, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#11 (out of 23)
+Processing Instruction: x*:vMIX
+PRIOR MEMORY STATE: (=gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Reading VAULT[vMIX]
+RESULTANT MEMORY STATE: (=XYZ-< >-5gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#12 (out of 23)
+Processing Instruction: f:ai:lMASK
+PRIOR MEMORY STATE: (=XYZ-< >-5gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#13 (out of 23)
+Processing Instruction: l:lSALT
+PRIOR MEMORY STATE: (=XYZ-< >-5gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#14 (out of 23)
+Processing Instruction: s:1_0_1
+PRIOR MEMORY STATE: (=XYZ-< >-5gwkya, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Salting XYZ-< >-5gwkya of len[14] at index[15]--> XYZ-< >-5gwkya + 1_0_1 + 
+RESULTANT MEMORY STATE: (=XYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#15 (out of 23)
+Processing Instruction: f!:a1:lGEN
+PRIOR MEMORY STATE: (=XYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+RESULTANT MEMORY STATE: (=XYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+Executing Instruction#16 (out of 23)
+Processing Instruction: v:vFIN
+PRIOR MEMORY STATE: (=XYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5'})
+-- [INFO] Wrote VAULT[vFIN = [XYZ-< >-5gwkya1_0_1]]
+RESULTANT MEMORY STATE: (=XYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+Executing Instruction#17 (out of 23)
+Processing Instruction: y: 
+PRIOR MEMORY STATE: (=XYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+-- [INFO] Reading VAULT[]
+[INFO] Returning string in DEFAULT VAULT [A B C]
+RESULTANT MEMORY STATE: (=A B C, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+Executing Instruction#18 (out of 23)
+Processing Instruction: g!:++
+PRIOR MEMORY STATE: (=A B C, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+RESULTANT MEMORY STATE: (=A++B++C, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+Executing Instruction#19 (out of 23)
+Processing Instruction: x*!:vFIN
+PRIOR MEMORY STATE: (=A++B++C, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+-- [INFO] Reading VAULT[vFIN]
+RESULTANT MEMORY STATE: (=A++B++CXYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+Executing Instruction#20 (out of 23)
+Processing Instruction: q!:
+PRIOR MEMORY STATE: (=A++B++CXYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+-- UNCONDITIONALLY Quiting Program
+RESULTANT MEMORY STATE: (=A++B++CXYZ-< >-5gwkya1_0_1, VAULTS:{'': 'A B C', 'vE': 'XYZ', 'vOL': '5', 'vMIX': 'XYZ-< >-5', 'vFIN': 'XYZ-< >-5gwkya1_0_1'})
+A++B++CXYZ-< >-5gwkya1_0_1
