@@ -989,11 +989,11 @@ class TEA_RunTime:
                     pass
                 else:
                     regex = tpe_str
-                    inputLines = io.split(NL)
+                    inputLines = io.split(TEA_RunTime.NL)
                     keptLines = []
-                    PATTERN = re.compile(regex)
+                    pattern = regex
                     for line in inputLines:
-                        if (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
+                        if (bool(re.search(pattern, line)) or (re.match(pattern, line)) or (pattern == line) or (pattern in line)):
                             keptLines.append(line)
                     io = TEA_RunTime.NL.join(keptLines)
             if tc == "K!":
@@ -1001,11 +1001,11 @@ class TEA_RunTime:
                     pass
                 else:
                     regex = tpe_str
-                    inputLines = io.split(NL)
+                    inputLines = io.split(TEA_RunTime.NL)
                     keptLines = []
-                    PATTERN = re.compile(regex)
+                    pattern = regex
                     for line in inputLines:
-                        if not (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
+                        if not (bool(re.search(pattern, line)) or (re.match(pattern, line)) or (pattern == line) or (pattern in line)):
                             keptLines.append(line)
                     io = TEA_RunTime.NL.join(keptLines)
 
@@ -1018,11 +1018,11 @@ class TEA_RunTime:
                     regex = params[1]
                     input_str = vault_get(vault)
 
-                    inputLines = input_str.split(NL)
+                    inputLines = input_str.split(TEA_RunTime.NL)
                     keptLines = []
-                    PATTERN = re.compile(regex)
+                    pattern = regex
                     for line in inputLines:
-                        if (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
+                        if (bool(re.search(pattern, line)) or (re.match(pattern, line)) or (pattern == line) or (pattern in line)):
                             keptLines.append(line)
                     io = TEA_RunTime.NL.join(keptLines)
             if tc == "K*!":
@@ -1034,11 +1034,11 @@ class TEA_RunTime:
                     regex = params[1]
                     input_str = vault_get(vault)
 
-                    inputLines = input_str.split(NL)
+                    inputLines = input_str.split(TEA_RunTime.NL)
                     keptLines = []
-                    PATTERN = re.compile(regex)
+                    pattern = regex
                     for line in inputLines:
-                        if not (bool(re.search(PATTERN, line)) or (re.match(PATTERN, line)) or (PATTERN == line) or (PATTERN in line)):
+                        if not (bool(re.search(pattern, line)) or (re.match(pattern, line)) or (pattern == line) or (pattern in line)):
                             keptLines.append(line)
                     io = TEA_RunTime.NL.join(keptLines)
             return io
