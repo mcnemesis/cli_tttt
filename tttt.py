@@ -25,9 +25,14 @@ import random
 import argparse
 
 DEBUG = True
+VERSION = "1.0.3"
+TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
 """
+tttt -v
+
+Returns the current TEA interpreter version and or related information.
 
 echo INPUT | tttt
 
@@ -1968,29 +1973,9 @@ class TEA_RunTime:
                                 prog='tttt',
                                 description='tttt is an interpreter for the TEA language',
                                 epilog="""
-            NOTE: tttt can also accept input from other processes via standard input such
-            piping the output of other programs to tttt:
-            <<
-
-            echo INPUT | tttt
-
-            >>
-            In this case, with no other arguments to tttt, it is assumed INPUT is a TEA program
-            (with or without in-code inputs), otherwise, if either -i or -fi are used in this mode
-            such as with
-            <<
-
-            echo INPUT | tttt -i DATA
-
-            >>
-            <<
-
-            echo INPUT | tttt -fi FDATA
-
-            >>
-            DATA or the text from FDATA take precendence as INPUT to tttt unless they are found to
-            be blank or Null -- such as with a none-existent/inaccessible FDATA. Also, in these two
-            cases, if no -c or -fc option was specified, then tttt assumed INPUT is the TEA program
+            TEA is the Transforming Executable Alphabet computer programming language.
+            TTTT is the TEA Text Transformer Terminal, the official interpreter for TEA programs.
+            Invoke `man tttt` for details.
             """)
 
             group_i = parser.add_mutually_exclusive_group()
@@ -2003,6 +1988,9 @@ class TEA_RunTime:
 
             group_c.add_argument("-c", "--code", type=str, help="use CODE as TEA program")
             group_c.add_argument("-fc", "--code-file", type=str, help="read TEA program from CODE_FILE")
+
+            parser.add_argument("-v", "--version", help="Show current TEA/TTTT version", action="version",
+                    version='%(prog)s '+ f"{VERSION} | TEA HOME: {TEA_HOMEPAGE}")
 
             args = parser.parse_args()
 

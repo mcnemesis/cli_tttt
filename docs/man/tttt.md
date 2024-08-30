@@ -6,14 +6,14 @@
 tttt - The TEA language interpreter
 
 # SYNOPSIS
-**tttt** [-h] [-d] [-i INPUT | -fi INPUT_FILE] [-c CODE | -fc CODE_FILE]
+**tttt** [-h] [-d] [-i INPUT | -fi INPUT_FILE] [-c CODE | -fc CODE_FILE] [-v] 
 
 # DESCRIPTION
 **tttt** accepts any valid TEA program or script, and runs it, leveraging standard input and output based on method of invocation.
 
 # OPTIONS
 
-TTTT is a command line interpreter for the TEA language that's capable of being run on the command line using the command style:
+TTTT is the official interpreter for the TEA language and it offers the following command line interface:
 
 > echo INPUT | tttt 
 
