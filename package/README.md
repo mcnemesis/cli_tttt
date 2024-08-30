@@ -27,11 +27,17 @@ Note to Self: e.g "/home/nemesisfixx/LAB/package" <--- outside WSL FS for work o
         Build-Depends: debhelper (>= 7),python3 (>= 3.5)
         Standards-Version: 1.0.2
 
-2. Then build the necessary TTTT Debian source package as such:
+2. Ensure to have the necessary package documentation---or rather, the man document (see build script) in correct path and up-to-date.
 
+3. Then build the necessary TTTT Debian source package as such:
+
+    DEB_PACKAGE_DIR/build <---  shall also build the necessary man pages and include them in the deb package
+    
+    OR
+    
     dpkg-deb --build tttt-x.x.x
 
-3. Ensure to update the main package install script. Update the PACKAGE_URI line to point to latest *.deb file
+4. Ensure to update the main package install script. Update the PACKAGE_URI line to point to latest *.deb file
 
     PACKAGE_URI=https://github.com/mcnemesis/cli_tttt/releases/download/tttt-1.0.1/tttt_1.0.1_amd64.deb
 

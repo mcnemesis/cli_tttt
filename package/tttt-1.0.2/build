@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-pandoc tttt.1.md -s -t man > tttt.1
-# for building deb package for local use..
-debuild --no-tgz-check -uc -us
-# for building source package for PPA
-#debuild -S 
-debuild -T clean
