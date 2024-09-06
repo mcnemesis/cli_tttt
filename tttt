@@ -937,7 +937,7 @@ class TEA_RunTime:
 
             if tc == "I":
                 if len(tpe_str) == 0:
-                    pass
+                    io = input()
                 else:
 
                     if (io is None) or (len(io) == 0):
