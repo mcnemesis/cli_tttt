@@ -73,7 +73,9 @@ And since TEA CODE can also carry its own data (as with the i:, w: and creative 
 
 # EXAMPLES
 **tttt -c "i:Hello World"**
+
 **tttt -c "i:{What is your name please? }|i:|x:{Hello }"**
+
 : Are two minimal Hello World programs in TEA, the second, also demonstrating how TEA program correctly prompt for user-input at runtime.
 
 **echo -n STAR | tttt -c "a!":**

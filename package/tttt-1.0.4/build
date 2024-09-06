@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# clean up old stuff
+#rm tttt*
 # update man docs...
 #cp ../../docs/man/tttt.md tttt.1.md
 # fetch latest tttt

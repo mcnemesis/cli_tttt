@@ -1,6 +1,6 @@
-% tttt(1) tttt 1.0.3
+% tttt(1) tttt 1.0.4
 % Joseph W. Lutalo
-% Aug 2024
+% SEP 2024
 
 # NAME
 tttt - The TEA language interpreter
@@ -72,6 +72,12 @@ And since TEA CODE can also carry its own data (as with the i:, w: and creative 
 4. **The TAZ**: https://bit.ly/thetaz
 
 # EXAMPLES
+**tttt -c "i:Hello World"**
+
+**tttt -c "i:{What is your name please? }|i:|x:{Hello }"**
+
+: Are two minimal Hello World programs in TEA, the second, also demonstrating how TEA program correctly prompt for user-input at runtime.
+
 **echo -n STAR | tttt -c "a!":**
 : Takes the input word "STAR" and returns its anagrams by character such as "RATS", "ARTS", etc
 
