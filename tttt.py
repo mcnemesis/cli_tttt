@@ -187,6 +187,8 @@ class TEA_RunTime:
     def _parse_labelblocks(self, otil, initial_labelblocks = {}):
         TI_index = 0
         labelblocks = initial_labelblocks
+        if otil is None:
+            return labelblocks
         for i in otil:
             if i.upper().startswith("L"):
                 params = i.split(TEA_RunTime.TCD)
@@ -2048,7 +2050,7 @@ class TEA_RunTime:
         if CODE:
             INSTRUCTIONS = self._parse_tea_code(CODE)
 
-            if len(INSTRUCTIONS) == 0:
+            if INSTRUCTIONS is None or len(INSTRUCTIONS) == 0:
                 if TEA_RunTime.DEBUG:
                     print(f"NO TEA Instruction Lines Found!")
                     exit()
@@ -2068,231 +2070,234 @@ class TEA_RunTime:
 
         LABELBLOCKS = self._parse_labelblocks(INSTRUCTIONS, initial_labelblocks={})
 
+#---------------------------------------
+# MAIN TEA Execution/Processing Loop
+#---------------------------------------
+        if INSTRUCTIONS is not None:
+            while(True):
+                # detect end of program and quit
+                if ATPI >= len(INSTRUCTIONS):
+                    break
 
-        while(True):
-            # detect end of program and quit
-            if ATPI >= len(INSTRUCTIONS):
-                break
-
-            if TEA_RunTime.DEBUG:
-                print(f"Executing Instruction#{ATPI} (out of {len(INSTRUCTIONS)})")
-
-            instruction = INSTRUCTIONS[ATPI]
-
-
-            if TEA_RunTime.DEBUG:
-                print(f"Processing Instruction: {instruction}")
-                print(f"PRIOR MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-
-            TC = instruction.upper()[0]
-
-            # A: Anagrammatize
-            if TC == "A":
-                OUTPUT = str(process_a(instruction, OUTPUT))
                 if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                    print(f"Executing Instruction#{ATPI} (out of {len(INSTRUCTIONS)})")
 
-            # B: Basify
-            if TC == "B":
-                OUTPUT = str(process_b(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                instruction = INSTRUCTIONS[ATPI]
 
-            # C: Clear
-            if TC == "C":
-                OUTPUT = str(process_c(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
 
-            # D: Delete
-            if TC == "D":
-                OUTPUT = str(process_d(instruction, OUTPUT))
                 if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                    print(f"Processing Instruction: {instruction}")
+                    print(f"PRIOR MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
 
-            # E: Evaluate
-            if TC == "E":
-                OUTPUT, ATPI, INSTRUCTIONS, LABELBLOCKS = process_e(instruction, OUTPUT, INSTRUCTIONS, ATPI, LABELBLOCKS )
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                #ATPI += 1 # e: updates ATPI directly...
-                continue
+                TC = instruction.upper()[0]
 
-            # F: Fork
-            if TC == "F":
-                OUTPUT,ATPI = process_f(instruction, OUTPUT,ATPI)
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                #ATPI += 1 # f: updates ATPI directly...
-                continue
+                # A: Anagrammatize
+                if TC == "A":
+                    OUTPUT = str(process_a(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # G: Glue
-            if TC == "G":
-                OUTPUT = str(process_g(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # B: Basify
+                if TC == "B":
+                    OUTPUT = str(process_b(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # H: Hew
-            if TC == "H":
-                OUTPUT = str(process_h(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # C: Clear
+                if TC == "C":
+                    OUTPUT = str(process_c(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # I: Input
-            if TC == "I":
-                OUTPUT = str(process_i(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # D: Delete
+                if TC == "D":
+                    OUTPUT = str(process_d(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # J: Jump
-            if TC == "J":
-                OUTPUT,ATPI = process_j(instruction, OUTPUT, ATPI)
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                #ATPI += 1 # j: updates ATPI directly...
-                continue
+                # E: Evaluate
+                if TC == "E":
+                    OUTPUT, ATPI, INSTRUCTIONS, LABELBLOCKS = process_e(instruction, OUTPUT, INSTRUCTIONS, ATPI, LABELBLOCKS )
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    #ATPI += 1 # e: updates ATPI directly...
+                    continue
 
-            # K: Keep
-            if TC == "K":
-                OUTPUT = str(process_k(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # F: Fork
+                if TC == "F":
+                    OUTPUT,ATPI = process_f(instruction, OUTPUT,ATPI)
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    #ATPI += 1 # f: updates ATPI directly...
+                    continue
 
-            # L: Label
-            if TC == "L":
-                OUTPUT = str(process_l(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # G: Glue
+                if TC == "G":
+                    OUTPUT = str(process_g(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # M: Mirror
-            if TC == "M":
-                OUTPUT = str(process_m(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # H: Hew
+                if TC == "H":
+                    OUTPUT = str(process_h(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # N: Number
-            if TC == "N":
-                OUTPUT = str(process_n(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # I: Input
+                if TC == "I":
+                    OUTPUT = str(process_i(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # O: Order
-            if TC == "O":
-                OUTPUT = str(process_o(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # J: Jump
+                if TC == "J":
+                    OUTPUT,ATPI = process_j(instruction, OUTPUT, ATPI)
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    #ATPI += 1 # j: updates ATPI directly...
+                    continue
 
-            # P: Permutate
-            if TC == "P":
-                OUTPUT = str(process_p(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # K: Keep
+                if TC == "K":
+                    OUTPUT = str(process_k(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # Q: Quit
-            if TC == "Q":
-                OUTPUT,ATPI = process_q(instruction, OUTPUT, ATPI)
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                #ATPI += 1 # q: updates ATPI directly...
-                continue
+                # L: Label
+                if TC == "L":
+                    OUTPUT = str(process_l(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # R: Replace
-            if TC == "R":
-                OUTPUT = str(process_r(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # M: Mirror
+                if TC == "M":
+                    OUTPUT = str(process_m(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # S: Salt
-            if TC == "S":
-                OUTPUT = str(process_s(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # N: Number
+                if TC == "N":
+                    OUTPUT = str(process_n(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # T: Transform
-            if TC == "T":
-                OUTPUT = str(process_t(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # O: Order
+                if TC == "O":
+                    OUTPUT = str(process_o(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # U: Uniqueify
-            if TC == "U":
-                OUTPUT = str(process_u(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # P: Permutate
+                if TC == "P":
+                    OUTPUT = str(process_p(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # V: Vault
-            if TC == "V":
-                OUTPUT = str(process_v(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # Q: Quit
+                if TC == "Q":
+                    OUTPUT,ATPI = process_q(instruction, OUTPUT, ATPI)
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    #ATPI += 1 # q: updates ATPI directly...
+                    continue
 
-            # W: Webify
-            if TC == "W":
-                OUTPUT = str(process_w(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # R: Replace
+                if TC == "R":
+                    OUTPUT = str(process_r(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # X: Xenograft
-            if TC == "X":
-                OUTPUT = str(process_x(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # S: Salt
+                if TC == "S":
+                    OUTPUT = str(process_s(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # Y: Yank
-            if TC == "Y":
-                OUTPUT = str(process_y(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # T: Transform
+                if TC == "T":
+                    OUTPUT = str(process_t(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
-            # Z: Zap
-            if TC == "Z":
-                OUTPUT = str(process_z(instruction, OUTPUT))
-                if TEA_RunTime.DEBUG:
-                    print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
-                ATPI += 1
-                continue
+                # U: Uniqueify
+                if TC == "U":
+                    OUTPUT = str(process_u(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
+
+                # V: Vault
+                if TC == "V":
+                    OUTPUT = str(process_v(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
+
+                # W: Webify
+                if TC == "W":
+                    OUTPUT = str(process_w(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
+
+                # X: Xenograft
+                if TC == "X":
+                    OUTPUT = str(process_x(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
+
+                # Y: Yank
+                if TC == "Y":
+                    OUTPUT = str(process_y(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
+
+                # Z: Zap
+                if TC == "Z":
+                    OUTPUT = str(process_z(instruction, OUTPUT))
+                    if TEA_RunTime.DEBUG:
+                        print(f"RESULTANT MEMORY STATE: (={OUTPUT}, VAULTS:{VAULTS})")
+                    ATPI += 1
+                    continue
 
 
         return OUTPUT if OUTPUT is not None else TEA_RunTime.EMPTY_STR # in TEA, None is the EMPTY_STR
