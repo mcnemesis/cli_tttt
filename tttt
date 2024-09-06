@@ -937,7 +937,8 @@ class TEA_RunTime:
 
             if tc == "I":
                 if len(tpe_str) == 0:
-                    io = input()
+                    # implements interactivity in TEA: displays io as prompt, sets user-input as io
+                    io = input(io) 
                 else:
 
                     if (io is None) or (len(io) == 0):
