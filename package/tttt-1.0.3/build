@@ -3,6 +3,7 @@
 #cp ../../docs/man/tttt.md tttt.1.md
 # fetch latest tttt
 #cp ../../tttt.py tttt
+#cp ../../tttt tttt
 # update package changelog
 #dch -i
 pandoc tttt.1.md -s -t man > tttt.1
