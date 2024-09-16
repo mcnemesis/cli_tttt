@@ -18,7 +18,7 @@
  The original/historically older TEA implementation is found in the TTTT Android app
  accessible via https://bit.ly/grabteas [down atm] or [TTTT App repo](https://bitbucket.org/nuchwezilabs/tttexttransformer/)
 
- Currently, focus is on fully defining, implementing and testing the TEA language starndard, and this is mostly taking place as part of this command-line reference implementation of TTTT. 
+ Currently, focus is on fully defining, implementing and testing the TEA language standard and this is mostly taking place as part of this command-line reference implementation of TTTT. 
 
  TTTT is meant to be the official reference implementation of a TEA interpreter and it is also meant to support the
  availability of TEA on all major operating systems, by creating a standalone
@@ -27,10 +27,10 @@
 
 ## A TEA RI?
 
- Especially for advanced users, language researchers and enthusiasts interested, note that, as part of the TTTT UNIX/Linux package, TEA is here implemented as an interpreted language,
+ Especially for advanced users, language researchers and interested enthusiasts, note that, as part of the TTTT UNIX/Linux package, TEA is here implemented as an interpreted language,
  using the Python programming language as the base/host language.
  
- For this matter, it might also be useful for advanced users, to know that for the current TEA Reference Implementation, TEA RI, there is also the option of embedding TEA into other language source-code, especially python programs as a library or imported module. More about this later...
+ For this matter, it might also be useful for advanced users to know that; for the current TEA Reference Implementation, TEA RI, there is also the option of embedding TEA into other language source-code, especially python programs as a library or imported module. More about this later... The TAZ has an example for how to embed TEA into an Awk program for example.
 
 ### CORE IMPLEMENTOR: Joseph W. Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com)
 
@@ -40,7 +40,7 @@
 
    > curl -Ls https://bit.ly/installtea | bash
 
-2. To See TEA documentation and some example programs:
+2. To See TEA documentation and some example programs after installation:
 
    > man tttt
 
@@ -185,7 +185,7 @@ To make it simple and meaningful to immediately, easily utilize TEA programs in 
 
 > echo INPUT | tttt
 
-INPUT is considered to be a valid TEA program (possibly already containing its input), and is executed as such
+INPUT is considered to be a valid TEA program (possibly already containing its input) and is executed as such
 
 Or with
 
@@ -213,9 +213,21 @@ Where INPUT is treated as input data and the TEA program is read from the file p
 
 Or with
 
-> tttt -fi INPUT -fc FCODE
+> tttt -fi FINPUT -fc FCODE
 
-Where INPUT is treated as data input file path and the TEA program is read from the file path FCODE
+Where FINPUT is treated as data input file path and the TEA program is read from the file path FCODE
+
+A more interesting, albeit simplest invocation case is the following:
+
+
+> cat FILE | tttt 
+
+In which case whatever is passed to TTTT, such as the contents of FILE, is treated BOTH as the CODE and the DATA!
+
+When in doubt about what is going on in any of the above cases, or with any TTTT invocation, just pass the `-d` DEBUG flag to the TEA interpreter, and it shall display detailed, helpful information about what TTTT considers to be the TEA CODE, DATA, and the internal state of the run-time before during and after execution of each instruction in the TEA program. An example debugging session in TEA is shown below...
+
+
+![tea_dump](sample_TEA_programs/highlights/tea_test_dump.png)
 
 Typically, the TEA interpreter executes the available TEA program on the available input data (or none) and outputs the final result via standard output, and does nothing else but quit. Of course, because TEA is also an interactive language, it is possible that a TEA program prompts for user-input at runtime, and thus blocks any further processing until such input is provided. Check the docs and official tests for advanced and or non-trivial TEA program examples.
 
