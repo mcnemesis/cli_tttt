@@ -1,18 +1,19 @@
 
 ![TEA](docs/tea_banner.png)
 
- TEA is the **T**ransforming **E**xecutable **A**lphabet, 
- a generic computer programming language leveraging Text Processing methods.
+ TEA is the **T**ransforming **E**xecutable **A**lphabet; a generic computer programming language leveraging Text Processing methods, via a set of 26 primitives, A: to Z:, based on the standard Latin Alphabet.
 
- For those entirely new to this language, please note that TEA is very well documented, and those getting started can consult the official TEA documentation via:
+ For those entirely new to this language, please note that TEA is very well documented and those just getting started can consult the official TEA documentation via:
 
 1. The [docs/](docs/) path under the RI for TEA: https://github.com/mcnemssis/cli_tttt
 2. **The TAZ**: https://bit.ly/thetaz
+3. Study the sample TEA programs and standard tests included as part of the TTTT project.
+
 --------------------------------------------------------------------
 
 # TTTT? 
 
- To run or try out TEA programs, one needs a suitable operating environment for the TEA programming language. For TEA, the official SOE is TTTT---**TEA Text Transformer Terminal**, also the official Interpreter for TEA programs.
+ To run or try out TEA programs, one needs a suitable operating environment for the TEA programming language. For TEA, the official SOE is TTTT---**TEA Text Transformer Terminal**, also the official Interpreter/runtime for TEA programs.
 
  The original/historically older TEA implementation is found in the TTTT Android app
  accessible via https://bit.ly/grabteas [down atm] or [TTTT App repo](https://bitbucket.org/nuchwezilabs/tttexttransformer/)
