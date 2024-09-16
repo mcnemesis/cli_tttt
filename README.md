@@ -229,7 +229,7 @@ When in doubt about what is going on in any of the above cases, or with any TTTT
 
 ![tea_dump](sample_TEA_programs/highlights/tea_test_dump.png)
 
-Typically, the TEA interpreter executes the available TEA program on the available input data (or none) and outputs the final result via standard output, and does nothing else but quit. Of course, because TEA is also an interactive language, it is possible that a TEA program prompts for user-input at runtime, and thus blocks any further processing until such input is provided. Check the docs and official tests for advanced and or non-trivial TEA program examples.
+Typically, the TEA interpreter executes the available TEA program on the available input data (or none) and outputs the final result via standard output, and does nothing else but quit. Of course, because TEA is also an interactive language, it is possible that a TEA program prompts for user-input at runtime, and thus blocks any further processing until such input is provided. Check the docs and official tests for advanced and/or non-trivial TEA program examples.
 
 # TESTS
 
