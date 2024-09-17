@@ -1,0 +1,15 @@
+# Given some text, shall return a text box drawn around it
+f!:^$:lPROCESS # don't prompt if there's already some input
+i!:Enter some text: |i:
+l:lPROCESS
+v:vIN
+r*!:vIN:.:-
+x:--|x!:--
+v:vBTOP
+v:vSTART:
+v:vBLR:{|}
+g*:{ }:vBLR:vIN:vBLR
+v:vIN
+g*:{_ }:vSTART:vBTOP:vIN:vBTOP
+h!:_
+r!:_:|

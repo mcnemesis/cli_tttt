@@ -156,7 +156,7 @@ This example not only demonstrates all the tricky aspects of a TEA program, howe
 v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:
 ```
 
-This simple example returns the following:
+That simple example returns the following:
 
 ```JSON
 {
@@ -174,6 +174,31 @@ This simple example returns the following:
   "url": "http://httpbin.org/get?A=123&vTest=some+value"
 }
 ```
+
+- **Some Basic Text Processing with Graphics in TEA:** [TEA Draw Textbox Example](sample_TEA_programs/draw_text_box_simple.tea)
+
+```python
+# Given some text, shall return a text box drawn around it
+f!:^$:lPROCESS # don't prompt if there's already some input
+i!:Enter some text: |i:
+l:lPROCESS
+v:vIN
+r*!:vIN:.:-
+x:--|x!:--
+v:vBTOP
+v:vSTART:
+v:vBLR:{|}
+g*:{ }:vBLR:vIN:vBLR
+v:vIN
+g*:{_ }:vSTART:vBTOP:vIN:vBTOP
+h!:_
+r!:_:|
+```
+
+That TEA program provides a basic text presentation utility reminiscent of the UNIX/LINUX tool `cowsay`. Essentially, given some text, it presents it back drawn inside some text box. We see an example of the program in action here below...
+
+![draw_textbox](sample_TEA_programs/highlights/draw_textbox.png)
+
 
 
 # TTTT conforms to the UNIX/Linux CLI Design Philosophy
