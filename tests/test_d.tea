@@ -1,0 +1,16 @@
+i!:{A B C d E F G h 1 j k l M N 0}
+v:vLC:{[a-z]} # for catching lowercase chars
+v:vNUMS:{[0-9]} # for catching digits
+
+# we wish to eliminate from the AI anything matching patterns
+# in vLC or vNUMS
+#d*:vLC:vNUMS
+
+# we could also do this with the following commented code
+v:vCAPS:{[A-Z]}
+d*!:vCAPS
+
+r!:[ ]+:{ } # fix multiple spaces
+
+# should return
+#A B C E F G M N
