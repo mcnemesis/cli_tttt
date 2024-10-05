@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
-#--------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # TTTT: TEA Text Transformer Terminal
-#--------------------------------------------------------------------
-# TEA, which is the Transforming Executable Alphabet language is implemented here
-# using the Python programming language as the base/host language.
-#--------------------------------------------------------------------
-# The original/historically older TEA implementation is found in the TTTT Android app
-# accessible via https://bit.ly/grabteas
+#--------------------------------------------------------------------------
+# TEA, which is the Transforming Executable Alphabet language is implemented
+# here using the Python programming language as the base/host language.
+#--------------------------------------------------------------------------
+# The original/historically older TEA implementation is found in the TTTT 
+# Android app accessible via https://bit.ly/grabteas
 #
 # This commandline implementation of the TTTT is meant to extend the
 # access of TEA to all major operating systems, by creating a standalone
 # TEA interpreter that can be utilized in scripts, standalone programs
 # and/or on the commandline.
-#---------------------------------------------------------------------
-# IDEATING IMPLIMENTING ARCHITECT: Joseph Willrich Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com) C.M.R.W the nu ancient psychonaut ufora
-# --- Please don't bother me with so much mail or calls, am usually busy thinking
-#---------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# IDEATING IMPLIMENTING ARCHITECT: 
+# Joseph Willrich Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com) C.M.R.W.
+#  the nu ancient psychonaut ufora
+# --- Please don't bother me with so much mail or calls, am usually busy 
+# thinking
+#--------------------------------------------------------------------------
 
 
 import sys, os, subprocess
