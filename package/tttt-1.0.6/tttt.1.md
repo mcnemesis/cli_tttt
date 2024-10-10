@@ -1,6 +1,6 @@
-% tttt(1) tttt 1.0.4
+% tttt(1) tttt 1.0.6
 % Joseph W. Lutalo
-% SEP 2024
+% OCT 2024
 
 # NAME
 tttt - The TEA language interpreter
@@ -62,7 +62,10 @@ In which case INPUT (or whatever it is that is piped to TTTT) shall get treated 
 1. DATA in case no other explicit data was specified to TTTT (like via the -i or -fi arguments)
 2. CODE in case no explicit code was specified to TTTT (such as with -c or -fc arguments)
 
-And since TEA CODE can also carry its own data (as with the i:, w: and creative use of v:, x:, z: and other input containers or importing commands), this input could be either or both the DATA and CODE - note that with the e: command, data can become TEA code! Try tttt -h or man tttt for more, or go read the official TEA documentation manual: 
+And since TEA CODE can also carry its own data (as with the i:, w: and creative use of v:, x:, z: and other input containers or importing commands), this input could be either or both the DATA and CODE - note that with the e: command, data can become TEA code! When in doubt about what is going on in any of the above cases, or with any TTTT invocation, just pass the `-d` DEBUG flag to the TEA interpreter, and it shall display detailed, helpful information about what TTTT considers to be the TEA CODE, DATA, and the internal state of the run-time before during and after execution of each instruction in the TEA program. 
+
+
+Try tttt -h or man tttt for more, or go read the official TEA documentation manual: 
 
 # Recommended TEA Documentation:
 

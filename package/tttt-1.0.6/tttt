@@ -1,21 +1,24 @@
 #!/usr/bin/env python3
-#--------------------------------------------------------------------
+#--------------------------------------------------------------------------
 # TTTT: TEA Text Transformer Terminal
-#--------------------------------------------------------------------
-# TEA, which is the Transforming Executable Alphabet language is implemented here
-# using the Python programming language as the base/host language.
-#--------------------------------------------------------------------
-# The original/historically older TEA implementation is found in the TTTT Android app
-# accessible via https://bit.ly/grabteas
+#--------------------------------------------------------------------------
+# TEA, which is the Transforming Executable Alphabet language is implemented
+# here using the Python programming language as the base/host language.
+#--------------------------------------------------------------------------
+# The original/historically older TEA implementation is found in the TTTT 
+# Android app accessible via https://bit.ly/grabteas
 #
 # This commandline implementation of the TTTT is meant to extend the
 # access of TEA to all major operating systems, by creating a standalone
 # TEA interpreter that can be utilized in scripts, standalone programs
 # and/or on the commandline.
-#---------------------------------------------------------------------
-# IDEATING IMPLIMENTING ARCHITECT: Joseph Willrich Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com) C.M.R.W the nu ancient psychonaut ufora
-# --- Please don't bother me with so much mail or calls, am usually busy thinking
-#---------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# IDEATING IMPLIMENTING ARCHITECT: 
+# Joseph Willrich Lutalo (jwl@nuchwezi.com, joewillrich@gmail.com) C.M.R.W.
+#  the nu ancient psychonaut ufora
+# --- Please don't bother me with so much mail or calls, am usually busy 
+# thinking
+#--------------------------------------------------------------------------
 
 
 import sys, os, subprocess
@@ -25,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.0.5"
+VERSION = "1.0.6"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -673,6 +676,33 @@ class TEA_RunTime:
                     dfilter = "|".join(dpatterns)
                     matches = re.findall(dfilter,io)
                     io = TEA_RunTime.GLUE.join(matches)
+            if (tc == "D*") or (tc == "D*!"):
+                if len(tpe_str) == 0:
+                    return io
+                else:
+                    if (tc == "D*"):
+                       params  = tpe_str.split(TEA_RunTime.TIPED)
+                       if len(params) == 1:
+                           vREGEX = params[0]
+                           if len(vREGEX) > 0:
+                               dp = vault_get(vREGEX) 
+                               io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
+                       else:
+                            dpatterns = []
+                            for vRX in params:
+                                if len(vRX) > 0:
+                                   dpatterns.append(vault_get(vRX))
+                            for dp in dpatterns:
+                                io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
+                    if (tc == "D*!"):
+                        params  = tpe_str.split(TEA_RunTime.TIPED)
+                        dpatterns = []
+                        for vRX in params:
+                            if len(vRX) > 0:
+                               dpatterns.append(vault_get(vRX))
+                        dfilter = "|".join(dpatterns)
+                        matches = re.findall(dfilter,io)
+                        io = TEA_RunTime.GLUE.join(matches)
             return io
 
 
@@ -1344,7 +1374,7 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         regex = params[0]
-                        replacement = params[1]
+                        replacement = extract_str(params[1])
                         io = re.sub(regex, replacement, io, count=1)
             if tc == "R!":
                 if len(tpe_str) == 0:
@@ -1357,7 +1387,7 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         regex = params[0]
-                        replacement = params[1]
+                        replacement = extract_str(params[1])
                         io = re.sub(regex, replacement, io)
 
             if tc == "R*":
@@ -1377,7 +1407,7 @@ class TEA_RunTime:
                         else:
                             vault = params[0]
                             regex = params[1]
-                            replacement = params[2]
+                            replacement = extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str, count=1)
 
@@ -1398,7 +1428,7 @@ class TEA_RunTime:
                         else:
                             vault = params[0]
                             regex = params[1]
-                            replacement = params[2]
+                            replacement = extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str)
 

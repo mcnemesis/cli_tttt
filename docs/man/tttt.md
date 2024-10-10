@@ -1,6 +1,6 @@
-% tttt(1) tttt 1.0.4
+% tttt(1) tttt 1.0.6
 % Joseph W. Lutalo
-% SEP 2024
+% OCT 2024
 
 # NAME
 tttt - The TEA language interpreter
