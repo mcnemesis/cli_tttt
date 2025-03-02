@@ -226,7 +226,7 @@ That TEA program provides a basic text presentation utility reminiscent of the U
 ###############################################|
 
 # set entity name
-v:vPANAME:{PA}
+v:vPANAME:{ZHA}
 f:^$:lSET:lNOSET
 l:lSET
 i:{Who do u wish to talk to? }|i: # user's entity name
