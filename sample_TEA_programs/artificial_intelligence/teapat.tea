@@ -1,0 +1,26 @@
+#!/usr/bin/tttt -fc
+#-------------------------------|
+# TEAPAT: TEA Personal AssistanT
+#-------------------------------|
+# This little program is a full
+# though basic, artificial 
+# personal assistant created 
+# using the TEA language
+################################|
+
+# set entity name
+v:vPANAME:{PA}
+f:^$:lSET:lNOSET
+l:lSET
+i:{Who do u wish to talk to? }|i: # user's entity name
+g:|f!:^$:lSETI:lRULES|l:lSETI|v:vPANAME|j:lRULES 
+l:lNOSET | y*: | v:vPANAME # evoke invoker's entity
+l:lRULES # show instructions
+i!:{At any time, reply with 'end' to quit}|i:
+v:vPROMPT:{: Talk to Me: }
+g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
+l:lPROMPT # prompt, get answer, process
+y:vPAPROMPT| i: |z:| q:^end$
+n:10000000|s:|v:N|n:1|f:0:ANM:NM # generate answer
+l:ANM|p!:27|s:_:13:5|d:_.*$|s:|v:R|g*:{}:R:N|j:F|
+l:NM|y:N|l:F|a:|x!:{ | }|i: | j:lPROMPT # and loop
