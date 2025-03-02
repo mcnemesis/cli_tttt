@@ -436,8 +436,8 @@ This Reference Implementation comes with several useful test cases, test program
 
 https://github.com/mcnemesis/cli_tttt/tree/master/tests/
 
-```markdown
-## References
+# REFERENCES
 
+```markdown
 1. Lutalo, J. (2025). Concerning a transformative power in certain symbols, letters and words. Preprints. https://doi.org/10.20944/preprints202502.1849.v1
 2. Joseph, W. Lutalo. (2025). Concerning Debugging in TEA and the TEA Software Operating Environment. Academia. Retrieved from https://www.academia.edu/127733090/Concerning_Debugging_in_TEA_and_the_TEA_Software_Operating_Environ
