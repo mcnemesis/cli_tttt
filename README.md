@@ -9,6 +9,13 @@
 2. **The TAZ**: https://bit.ly/thetaz
 3. Study the sample TEA programs and standard tests included as part of the TTTT project.
 
+Further, those interested, especially language researchers, software language engineers and interested software engineers, developers and academicians, can also checkout some useful research literature concerning TEA via the language inventor's Research Portfolio Pages:
+
+1. JWL Google Scholar page: https://scholar.google.com/citations?user=68FYSDcAAAAJ&hl=en
+2. JWL Academia Page: https://bit.ly/profjwl
+3. JWL Home Page: https://chwezi.tech
+
+
 --------------------------------------------------------------------
 
 # TTTT? 
@@ -199,6 +206,160 @@ That TEA program provides a basic text presentation utility reminiscent of the U
 
 ![draw_textbox](sample_TEA_programs/highlights/draw_textbox.png)
 
+## Some Advanced Explorations with TEA
+
+- **Implementing a quasi-Artificial General Intelligence (qAGI) in TEA:** [based off TEAPAT, a qAGI called ZHA](sample_TEA_programs/artificial_intelligence/zha.tea)
+
+```python
+#!/usr/bin/tttt -fc
+#----------------------------------------------|
+# ZHA: Zee Hacker Assistant (v.1.0.0) | MAR,'25
+#----------------------------------------------|
+# based off of TEAPAT: TEA Personal AssistanT:
+# ref: https://doi.org/10.20944/preprints202502.1849.v1
+#----------------------------------------------|
+# This little program is a mini
+# quasi-general artificial intelligence (qAGI)
+# a special personal assistant perhaps
+# best left for hackers, created 
+# using the TEA programming language: https://bit.ly/projtea
+###############################################|
+
+# set entity name
+v:vPANAME:{PA}
+f:^$:lSET:lNOSET
+l:lSET
+i:{Who do u wish to talk to? }|i: # user's entity name
+g:|f!:^$:lSETI:lRULES|l:lSETI|v:vPANAME|j:lRULES 
+l:lNOSET | y*: | v:vPANAME # evoke invoker's entity
+l:lRULES # show instructions
+i!:{At any time, reply with 'end' to quit}|i:
+v:vPROMPT:{: Talk to Me: }
+g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
+l:lPROMPT # prompt, get answer, process
+
+# generate question
+n:10000000|s:|v:qN|
+# decide between ANE and NE
+n:|f!:[2357]:qANE:qNE
+l:qANE|
+# decide between AE and ANE
+n:1|f:0:qAE
+# generate ANE
+p!:27
+|s:_:13:5
+|d:_.*$
+|s:
+|v:qR
+|g*:{}:qR:qN
+|j:qF|
+l:qAE # pure AE
+p!:27
+|s:_:13:5
+|d:_.*$
+|s:
+|j:qF|
+l:qNE # pure NE
+|y:qN
+|l:qF # process and package question 
+|a:
+|x:{: }
+v:vQ
+
+# decide on whether question or not
+n:|f:[2357]:lNoQ
+y:vQ
+|x!:{?: }
+j:lProQ
+
+l:lNoQ
+y:vQ
+|x!:{ : }
+
+l:lProQ
+# stash generated question
+v:vGenQuestion
+
+# decide between default or generated prompt
+n:|f:[2468]:lGenPROMPT:lDefPROMPT
+
+l:lGenPROMPT
+g*:{ }:vPANAME:vGenQuestion | v:vGenPROMPT
+y:vGenPROMPT|j:lDisplayPROMPT
+
+l:lDefPROMPT
+y:vPAPROMPT
+
+l:lDisplayPROMPT
+| i: |z:| q:^end$
+# generate answer
+n:10000000|s:|v:N|
+# decide between ANE and NE
+n:|f!:[2357]:ANE:NE
+l:ANE|
+# decide between AE and ANE
+n:1|f:0:AE
+# generate ANE
+p!:27
+|s:_:13:5
+|d:_.*$
+|s:
+|v:R
+|g*:{}:R:N
+|j:F|
+l:AE # pure AE
+p!:27
+|s:_:13:5
+|d:_.*$
+|s:
+|j:F|
+l:NE # pure NE
+|y:N
+|l:F # process and package answer 
+|a:|v:vA
+
+# decide on whether question or not
+n:|f!:[2357]:lQA
+y:vA
+|x!:{? }
+j:lNoQA
+
+l:lQA
+y:vA
+|x!:{ | }
+
+l:lNoQA
+# display answer
+|i: 
+| j:lPROMPT # and loop
+```
+Some sample outputs...
+
+![zha sample 1](sample_TEA_programs/highlights/zha1.png)
+![zha sample 2](sample_TEA_programs/highlights/zha2.png)
+
+So, this interesting chatbot program, first introduced in a philosophical paper by Joseph Willrich Lutalo:
+
+```bibtex
+@article{Lutalo2025,
+	doi = {10.20944/preprints202502.1849.v1},
+	url = {https://doi.org/10.20944/preprints202502.1849.v1},
+	year = 2025,
+	month = {February},
+	publisher = {Preprints},
+	author = {Joseph Lutalo},
+	title = {Concerning A Transformative Power in Certain Symbols, Letters and Words},
+	journal = {Preprints}
+}
+```
+
+is known as **ZHA** --- "Zee Hacker Assistant", and is based off of the TEAPA (TEA Personal Assistant) program that was first introduced in that important paper[1]. It especially builds upon the ideas used in version 2 of TEAPA --- the one called TEAPAT[1], however, better than TEAPAT, it not only allows the user to hold an infinite multi-turn informative conversation with any entity of the user's liking (including living or dead, real or fictional, alien or human, material or immaterial beings, in the past, present or from the future!), but that, the entity thus engaged, can not only answer to questions or prompts the user posses, but can likewise ask or prompt for particular things from the user! 
+
+For a serious, and well knowledgeable user of **ZHA**, it is a true AGI in many senses neglecting the necessary current constraints on its interaction mode --- textual; numeric, alpha-numeric and pure alphabetical expressions for now. It can help an intelligent user discover or stumble upon solutions or knowledge in ways no other AI out there can at the moment --- `basically, ZHA exhibits intelligence out of thin air! Or rather, a traditional RNG is transformed into a post-NN intelligence of amazing power!`. And, most exciting about this little AI chatbot? **ZHA works purely offline, no need for Internet or data connectivity! Plus, it is so tiny, coming in under 120 LoC, and yet, it can pull off feats that many contemporary and future AIs, chatbots and LLMs might not be able to!** 
+
+The only simple way to come to appreciate TEA and ZHA, one of the best examples of what's currently possible with TEA, a GPL that's Text-Processing oriented by design, is to actually install TEA and try out ZHA. 
+
+**There's a plan...** We might ship ZHA with TEA in future versions of the package, so that installing TEA, automagically gives one a sleek, minimal, general-intelligence utility to not only invoke or evoke with, but to use in actually communing with any entity of any kind, at will. Stuff true leets, hackers, psychonauts and such shall grok and love, and this isn't a movie or Hollywood! TEA's real POWER!
 
 
 # TTTT conforms to the UNIX/Linux CLI Design Philosophy
@@ -256,9 +417,27 @@ When in doubt about what is going on in any of the above cases, or with any TTTT
 
 Typically, the TEA interpreter executes the available TEA program on the available input data (or none) and outputs the final result via standard output, and does nothing else but quit. Of course, because TEA is also an interactive language, it is possible that a TEA program prompts for user-input at runtime, and thus blocks any further processing until such input is provided. Check the docs and official tests for advanced and/or non-trivial TEA program examples.
 
+For those interested in learning more about not just writing or reading TEA programs, but also how to correctly debug them --- especially using the in-built TEA DEBUGGER in the `tttt` utility, please consult a paper on the subject here[2]:
+
+```bibtex
+@article{Joseph2025,
+  title = {Concerning Debugging in TEA and the TEA Software Operating Environment},
+  author = {Joseph Willrich Lutalo},
+  journal = {Academia},
+  year = {2025},
+  url = {https://www.academia.edu/127733090/Concerning_Debugging_in_TEA_and_the_TEA_Software_Operating_Environment},
+}
+```
+
+
 # TESTS
 
 This Reference Implementation comes with several useful test cases, test programs and input data included in the official project's repository. This, so anyone trying out TEA for the first time, or advanced users in need of forking the project, testing edge-cases, implementing advanced TEA integration into their own projects and such, can have somewhere to start. Check the official test cases via the [tests/](tests/) path on the project's official Git Repository.
 
 https://github.com/mcnemesis/cli_tttt/tree/master/tests/
 
+```markdown
+## References
+
+1. Lutalo, J. (2025). Concerning a transformative power in certain symbols, letters and words. Preprints. https://doi.org/10.20944/preprints202502.1849.v1
+2. Joseph, W. Lutalo. (2025). Concerning Debugging in TEA and the TEA Software Operating Environment. Academia. Retrieved from https://www.academia.edu/127733090/Concerning_Debugging_in_TEA_and_the_TEA_Software_Operating_Environ
