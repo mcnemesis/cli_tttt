@@ -1,6 +1,6 @@
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
-# ZHA: Zee Hacker Assistant (v.1.0.0) | MAR,'25
+# ZHA: Zee Hacker Assistant (v.1.0.1) | MAR,'25
 #----------------------------------------------|
 # based off of TEAPAT: TEA Personal AssistanT:
 # ref: https://doi.org/10.20944/preprints202502.1849.v1
@@ -12,6 +12,14 @@
 # using the TEA programming language: https://bit.ly/projtea
 ###############################################|
 
+#show welcome message
+v:vORIN
+v:vWELCOME:{■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-■■■■■ *:{~} ZHA v1.0.1 ■■■■■■■-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-welcome to the future of chat_-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■--}
+h*!:vWELCOME:-
+d:-|i:
+
+y:vORIN # continue...
+
 # set entity name
 v:vPANAME:{ZHA}
 f:^$:lSET:lNOSET
@@ -20,7 +28,8 @@ i:{Who do u wish to talk to? }|i: # user's entity name
 g:|f!:^$:lSETI:lRULES|l:lSETI|v:vPANAME|j:lRULES 
 l:lNOSET | y*: | v:vPANAME # evoke invoker's entity
 l:lRULES # show instructions
-i!:{At any time, reply with 'end' to quit}|i:
+i!:{At any time, reply with 'end' to quit
+}|i:
 v:vPROMPT:{: Talk to Me: }
 g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
 l:lPROMPT # prompt, get answer, process
@@ -34,17 +43,13 @@ l:qANE|
 n:1|f:0:qAE
 # generate ANE
 p!:27
-|s:_:13:5
-|d:_.*$
-|s:
-|v:qR
+|s:_:13:5 |d:_.*$
+|s: |v:qR
 |g*:{}:qR:qN
 |j:qF|
 l:qAE # pure AE
 p!:27
-|s:_:13:5
-|d:_.*$
-|s:
+|s:_:13:5 |d:_.*$ |s:
 |j:qF|
 l:qNE # pure NE
 |y:qN
@@ -88,17 +93,12 @@ l:ANE|
 n:1|f:0:AE
 # generate ANE
 p!:27
-|s:_:13:5
-|d:_.*$
-|s:
-|v:R
+|s:_:13:5 |d:_.*$ |s: |v:R
 |g*:{}:R:N
 |j:F|
 l:AE # pure AE
 p!:27
-|s:_:13:5
-|d:_.*$
-|s:
+|s:_:13:5 |d:_.*$ |s:
 |j:F|
 l:NE # pure NE
 |y:N

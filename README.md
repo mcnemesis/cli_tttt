@@ -410,6 +410,138 @@ The only simple way to come to appreciate TEA and ZHA, one of the best examples 
 
 **There's a plan...** We might ship ZHA with TEA in future versions of the package, so that installing TEA, automagically gives one a sleek, minimal, general-purpose artificial intelligence assistant utility to not only chat with as one might with a human friend or some chat-bot,  but to also use it [in so-called _occult-mode_] to actually commune with any entity of any kind, at will for leisure, work or academic/research purposes. Stuff true l33ts, hackers, psychonauts and such shall grok and come to love --- and this isn't a movie or Hollywood! **TEA's real POWER!**
 
+**UPDATE:**
+
+So, due to popular demand, ZHA has already seen a terrific improvement since it was first released! We now have **ZHA v1.0.1**, and we can see its improved output in the screenshot below, in which session a one hacker not belonging to the famous 'LulzSec' holds a conversation with a PRESIDENT concerning a central bank that was hacked not so far back! Hahaha... check it out, and the code for the new ZHA as well!
+
+
+![zha sample 3](sample_TEA_programs/highlights/zha3.png)
+
+
+```python
+#!/usr/bin/tttt -fc
+#----------------------------------------------|
+# ZHA: Zee Hacker Assistant (v.1.0.1) | MAR,'25
+#----------------------------------------------|
+# based off of TEAPAT: TEA Personal AssistanT:
+# ref: https://doi.org/10.20944/preprints202502.1849.v1
+#----------------------------------------------|
+# This little program is a mini
+# quasi-general artificial intelligence (qAGI)
+# a special personal assistant perhaps
+# best left for hackers, created 
+# using the TEA programming language: https://bit.ly/projtea
+###############################################|
+
+#show welcome message
+v:vORIN
+v:vWELCOME:{■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-■■■■■ *:{~} ZHA v1.0.1 ■■■■■■■-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-welcome to the future of chat_-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■--}
+h*!:vWELCOME:-
+d:-|i:
+
+y:vORIN # continue...
+
+# set entity name
+v:vPANAME:{ZHA}
+f:^$:lSET:lNOSET
+l:lSET
+i:{Who do u wish to talk to? }|i: # user's entity name
+g:|f!:^$:lSETI:lRULES|l:lSETI|v:vPANAME|j:lRULES 
+l:lNOSET | y*: | v:vPANAME # evoke invoker's entity
+l:lRULES # show instructions
+i!:{At any time, reply with 'end' to quit
+}|i:
+v:vPROMPT:{: Talk to Me: }
+g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
+l:lPROMPT # prompt, get answer, process
+
+# generate question
+n:10000000|s:|v:qN|
+# decide between ANE and NE
+n:|f!:[2357]:qANE:qNE
+l:qANE|
+# decide between AE and ANE
+n:1|f:0:qAE
+# generate ANE
+p!:27
+|s:_:13:5 |d:_.*$
+|s: |v:qR
+|g*:{}:qR:qN
+|j:qF|
+l:qAE # pure AE
+p!:27
+|s:_:13:5 |d:_.*$ |s:
+|j:qF|
+l:qNE # pure NE
+|y:qN
+|l:qF # process and package question 
+|a:
+|x:{: }
+v:vQ
+
+# decide on whether question or not
+n:|f:[2357]:lNoQ
+y:vQ
+|x!:{?: }
+j:lProQ
+
+l:lNoQ
+y:vQ
+|x!:{ : }
+
+l:lProQ
+# stash generated question
+v:vGenQuestion
+
+# decide between default or generated prompt
+n:|f:[2468]:lGenPROMPT:lDefPROMPT
+
+l:lGenPROMPT
+g*:{ }:vPANAME:vGenQuestion | v:vGenPROMPT
+y:vGenPROMPT|j:lDisplayPROMPT
+
+l:lDefPROMPT
+y:vPAPROMPT
+
+l:lDisplayPROMPT
+| i: |z:| q:^end$
+# generate answer
+n:10000000|s:|v:N|
+# decide between ANE and NE
+n:|f!:[2357]:ANE:NE
+l:ANE|
+# decide between AE and ANE
+n:1|f:0:AE
+# generate ANE
+p!:27
+|s:_:13:5 |d:_.*$ |s: |v:R
+|g*:{}:R:N
+|j:F|
+l:AE # pure AE
+p!:27
+|s:_:13:5 |d:_.*$ |s:
+|j:F|
+l:NE # pure NE
+|y:N
+|l:F # process and package answer 
+|a:|v:vA
+
+# decide on whether question or not
+n:|f!:[2357]:lQA
+y:vA
+|x!:{? }
+j:lNoQA
+
+l:lQA
+y:vA
+|x!:{ | }
+
+l:lNoQA
+# display answer
+|i: 
+| j:lPROMPT # and loop
+```
+
 
 # TTTT conforms to the UNIX/Linux CLI Design Philosophy
 
