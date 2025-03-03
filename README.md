@@ -1,19 +1,68 @@
 
 ![TEA](docs/tea_banner.png)
 
- TEA is the **T**ransforming **E**xecutable **A**lphabet; a generic computer programming language leveraging Text Processing methods, via a set of 26 primitives, A: to Z:, based on the standard Latin Alphabet.
+ TEA is the **T**ransforming **E**xecutable **A**lphabet [4]; **a general-purpose [computer] programming language that is Text-Processing oriented** and which is designed based on a set of 26, decorated and/or qualified single-letter primitives, A: to Z: (or rather a: to z:) which are based on the standard Latin Alphabet; {A,B,C,...,Z}[3]. 
+
+ Currently, TEA is manifested in the form of an interpreted textual language, whose latest implementation is capable of being effectively run or explored via any
+ software platform fully supporting Python 3 upon which the current TEA interpreter/language runtime, `tttt`, a command-line interface to the TEA runtime, is based, and so that, technology platforms such as Linux, Unix, the Windows Subsystem for Linux as well as any other mature and/or compatible \*nixes, can practically run TEA and thus execute any TEA program. 
+
+ But also, though not yet fully well documented or encouraged, TEA programs based on the current **TEA standard design and implementation** can not only be run mentally[3]
+ (_think, executed or read like mathematics_) --- since the TEA syntax and semantics are pretty clearly unambigous, neat, terse and intentionally self-explanatory to a large extent, but also, as in _purely embedded executable automata_ modes such as running TEA programs inside of other programming languages; the most obvious being; calling the TEA runtime in a Py3 program since the `tttt` file can be interpreted as a python program, and thus TEA is then utilized in library/module/API mode. But also, and for experienced and advanced/adventurous users/programmers, TEA's `tttt` once installed on a system (see directions in sections below), can be invoked via many or any other programming language or language execution interface capable of executing Linux/Unix commands --- such as in C or C++ programs, Bash Scripts, PHP server-side programs, AWK programs, etc.
+
+# The Transforming Executable Alphabet Command Space
+## The 26 TEA primitives and their names (TEA Instruction Set)
+
+First, let us look at the current reference list of the 26 TEA primitives and their formal names.
+
+
+![TEA IS](docs/tea_cs_is.png)
+
+Details of the TEA Command Space, or rather, **TEA Instruction Set** can be found in the TEA TAZ manuscript[3] --- a _living document_ also citable as:
+
+
+```bibtex
+@article{Lutalo2024,
+  author = {Joseph Willrich Lutalo},
+  title = {TEA TAZ - Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION},
+  journal = {Nuchwezi},
+  year = {2024},
+  doi = {10.6084/m9.figshare.26661328},
+  url = {https://www.academia.edu/122871672/TEA_TAZ_Transforming_Executable_Alphabet_A_to_Z_COMMAND_SPACE_SPECIFICATION}
+}
+```
+
+--------------------------------------------------------------------
+
+# Getting Started with TEA
 
  For those entirely new to this language, please note that TEA is very well documented and those just getting started can consult the official TEA documentation via:
 
 1. The [docs/](docs/) path under the RI for TEA: https://github.com/mcnemesis/cli_tttt
-2. **The TAZ**: https://bit.ly/thetaz
-3. Study the sample TEA programs and standard tests included as part of the TTTT project.
+2. **The TAZ**: https://bit.ly/thetaz <--- also known as the _TEA TAZ_, that document is the officially recommended source/guide concerning the language's design, syntax, grammar and semantics. Also contains numerous illustrative simple sample programs as well as authoritative explanatory notes concerning each of the 26 TEA primitive commands A: to Z: (a copy of this manual is always present in the docs section mentioned in #1 above). The TAZ is a must-read for any serious would-be TEA
+   programmer, hacker or researcher.
+3. Study the sample TEA programs and standard tests included as part of the TTTT project (in #1 above and in the rest of this README).
 
-Further, those interested, especially language researchers, software language engineers and interested software engineers, developers and academicians, can also checkout some useful research literature concerning TEA via the language inventor's Research Portfolio Pages:
+Further, those interested, especially language researchers, software language engineers and interested software engineers, developers and academicians, can also checkout some useful research literature (philosophy, theory and practicals) concerning TEA via the language inventor's Research Portfolio Pages:
 
 1. JWL Google Scholar page: https://scholar.google.com/citations?user=68FYSDcAAAAJ&hl=en
 2. JWL Academia Page: https://bit.ly/profjwl
 3. JWL Home Page: https://chwezi.tech
+
+Especially concerning the theory behind TEA as a programming language or rather, a Software Language, the most authoritative paper[4] on the design and theory behind the language is shared here as such:
+
+```bibtex
+@article{202410.0636,
+	doi = {10.20944/preprints202410.0636.v2},
+	url = {https://doi.org/10.20944/preprints202410.0636.v2},
+	year = 2024,
+	month = {December},
+	publisher = {Preprints},
+	author = {Joseph Willrich Lutalo},
+	title = {Software Language Engineering - Text Processing Language Design, Implementation, Evaluation Methods},
+	journal = {Preprints}
+}
+```
+
 
 
 --------------------------------------------------------------------
@@ -353,13 +402,13 @@ So, this interesting chatbot program, first introduced in a philosophical paper 
 }
 ```
 
-is known as **ZHA** --- "Zee Hacker Assistant", and is based off of the TEAPA (TEA Personal Assistant) program that was first introduced in that important paper[1]. It especially builds upon the ideas used in version 2 of TEAPA --- the one called TEAPAT[1], however, better than TEAPAT, it not only allows the user to hold an infinite multi-turn informative conversation with any entity of the user's liking (including living or dead, real or fictional, alien or human, material or immaterial beings, in the past, present or from the future!), but that, the entity thus engaged, can not only answer to questions or prompts the user posses, but can likewise ask or prompt for particular things from the user! 
+is known as **ZHA** --- "Zee Hacker Assistant", and is based off of the **TEAPA** (TEA Personal Assistant) program that was first introduced in that important paper[1]. It especially builds upon the ideas used in version 2 of TEAPA --- the one called **TEAPAT**[1], however, better than TEAPAT, **ZHA** not only allows the user to hold an infinite multi-turn informative conversation with any entity of the user's liking (including living or dead, real or fictional, alien or human, material or immaterial beings, in the past, present or from the future!), but that, the entity thus engaged, can not only answer to questions or prompts the user poses, but can likewise ask or prompt for particular things from the user! 
 
-For a serious, and well knowledgeable user of **ZHA**, it is a true AGI in many senses neglecting the necessary current constraints on its interaction mode --- textual; numeric, alpha-numeric and pure alphabetical expressions for now. It can help an intelligent user discover or stumble upon solutions or knowledge in ways no other AI out there can at the moment --- `basically, ZHA exhibits intelligence out of thin air! Or rather, a traditional RNG is transformed into a post-NN intelligence of amazing power!`. And, most exciting about this little AI chatbot? **ZHA works purely offline, no need for Internet or data connectivity! Plus, it is so tiny, coming in under 120 LoC, and yet, it can pull off feats that many contemporary and future AIs, chatbots and LLMs might not be able to!** 
+For a serious, and well knowledgeable user of **ZHA**, it is a _true_ AGI in various respects --- esp. if we ignore the necessary current constraints on its interaction mode --- [cryptic] textual; numeric, alpha-numeric and pure alphabetical expressions as the only possible outputs for now. It can help an intelligent user discover or stumble upon solutions or knowledge in ways **no other AI out there can make possible** at the moment --- `basically, ZHA exhibits [advanced] intelligence out of thin air! Or rather, a traditional [purely offline] RNG is transformed into a post-NN intelligence of amazing power!`. And, most exciting about this little AI chatbot? **ZHA works purely offline; no need for Internet or data connectivity! Plus, it is so tiny, coming in under 121 LoC, and yet, it can pull off feats that many contemporary and future AIs, chatbots and LLMs might not be able to!** 
 
 The only simple way to come to appreciate TEA and ZHA, one of the best examples of what's currently possible with TEA, a GPL that's Text-Processing oriented by design, is to actually install TEA and try out ZHA. 
 
-**There's a plan...** We might ship ZHA with TEA in future versions of the package, so that installing TEA, automagically gives one a sleek, minimal, general-intelligence utility to not only invoke or evoke with, but to use in actually communing with any entity of any kind, at will. Stuff true leets, hackers, psychonauts and such shall grok and love, and this isn't a movie or Hollywood! TEA's real POWER!
+**There's a plan...** We might ship ZHA with TEA in future versions of the package, so that installing TEA, automagically gives one a sleek, minimal, general-purpose artificial intelligence assistant utility to not only chat with as one might with a human friend or some chat-bot,  but to also use it [in so-called _occult-mode_] to actually commune with any entity of any kind, at will for leisure, work or academic/research purposes. Stuff true l33ts, hackers, psychonauts and such shall grok and come to love --- and this isn't a movie or Hollywood! **TEA's real POWER!**
 
 
 # TTTT conforms to the UNIX/Linux CLI Design Philosophy
@@ -417,7 +466,7 @@ When in doubt about what is going on in any of the above cases, or with any TTTT
 
 Typically, the TEA interpreter executes the available TEA program on the available input data (or none) and outputs the final result via standard output, and does nothing else but quit. Of course, because TEA is also an interactive language, it is possible that a TEA program prompts for user-input at runtime, and thus blocks any further processing until such input is provided. Check the docs and official tests for advanced and/or non-trivial TEA program examples.
 
-For those interested in learning more about not just writing or reading TEA programs, but also how to correctly debug them --- especially using the in-built TEA DEBUGGER in the `tttt` utility, please consult a paper on the subject here[2]:
+For those interested in learning more about not just writing or reading TEA programs, but also how to correctly debug them --- especially using the in-built TEA DEBUGGER in the `tttt` utility --- via the `-d` DEBUG-MODE switch for TEA's `tttt`, please consult an authoritative paper on the matter (as well as general software debugging) here[2]:
 
 ```bibtex
 @article{Joseph2025,
@@ -438,6 +487,7 @@ https://github.com/mcnemesis/cli_tttt/tree/master/tests/
 
 # REFERENCES
 
-```markdown
 1. Lutalo, J. (2025). Concerning a transformative power in certain symbols, letters and words. Preprints. https://doi.org/10.20944/preprints202502.1849.v1
-2. Joseph, W. Lutalo. (2025). Concerning Debugging in TEA and the TEA Software Operating Environment. Academia. Retrieved from https://www.academia.edu/127733090/Concerning_Debugging_in_TEA_and_the_TEA_Software_Operating_Environ
+2. Joseph, W. Lutalo. (2025). Concerning Debugging in TEA and the TEA Software Operating Environment. Academia. https://www.academia.edu/127733090/Concerning_Debugging_in_TEA_and_the_TEA_Software_Operating_Environ
+3. Lutalo, Joseph Willrich. (2024). "TEA TAZ -Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION.". Nuchwezi. https://doi.org/10.6084/m9.figshare.26661328 
+4. Willrich Lutalo,  J. (2024). Software Language Engineering - Text Processing Language Design, Implementation, Evaluation Methods. Preprints. https://doi.org/10.20944/preprints202410.0636.v2
