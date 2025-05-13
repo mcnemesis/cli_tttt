@@ -92,7 +92,7 @@ Especially concerning the theory behind TEA as a programming language or rather,
 
 # QUICK TIPS:
 
-1. To INSTALL TTTT and the TEA language on your system, run the following command in your terminal:
+1. To INSTALL TTTT and the TEA language [**and ZHA**] on your system, run the following command in your terminal:
 
    > curl -Ls https://bit.ly/installtea | bash
 
