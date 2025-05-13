@@ -543,6 +543,26 @@ l:lNoQA
 ```
 
 
+# ZHA now comes to any compartible system as part of the TTTT package
+
+So, starting with v1.0.7 of the TTTT package, once installation is done, the ZHA utility becomes immediately accessible via the commandline system=wide, via the following two example invocation methods:
+
+> zha
+
+Invokes the ZHA personal assistant without an explicit target entity name --- means, after it starts, the ZHA PA shall prompt you for who you wish to converse with, or shall default to just "ZHA".
+
+
+> zha -i NAME
+
+Invokes the ZHA personal assistant NAME as the explicit target entity name - basically, the session shall involve your conversation with some entity known as "NAME".
+
+As you shall see in case you consult the ZHA help documentation via
+
+> zha -h
+
+You can terminate any active conversation with the keyword "end" as the response during an active ZHA session.
+
+
 # TTTT conforms to the UNIX/Linux CLI Design Philosophy
 
 To make it simple and meaningful to immediately, easily utilize TEA programs in the context of other, existing tools, languages and systems, TEA comes equipped with a useful and clean command-line interface as documented below..
