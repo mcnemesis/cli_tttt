@@ -1,6 +1,6 @@
-% tttt(1) tttt 1.0.6
+% tttt(1) tttt 1.0.7
 % Joseph W. Lutalo
-% OCT 2024
+% MAY 2025
 
 # NAME
 tttt - The TEA language interpreter
@@ -95,4 +95,23 @@ More examples of TEA programs are included in the project's Git Repository: http
 This Reference Implementation comes with several useful test cases, test programs and input data included in the official project's repository. This, so anyone trying out TEA for the first time, or advanced users in need of forking the project, testing edge-cases, implementing advanced TEA integration into their own projects and such, can have somewhere to start. Check the official test cases via the tests/ path on the project's official Git Repository.
 
 https://github.com/mcnemesis/cli_tttt/tree/master/tests/
+
+# APPLICATIONS
+
+Starting with v1.0.7 of the TTTT package, TEA now comes with a special example application of TEA in real-life in the form of a command-line personal assistant known as ZHA (Zee Hacker Assistant). This PA is introduced in a paper linked to on the TEA project's home page:
+
+https://github.com/mcnemesis/cli_tttt/README.md
+
+And illustrations of how to use or invoke it after installing the TTTT package are likewise detailed there. However, in brief, after installing the tttt package, the "zha" command likewise becomes globally available so that, invoking the ZHA personal assistant via any of the following invocation methods launches an interactive session on the CLI via which one can interact with the interesting multi-turn, offline-capable personal assistant. 
+
+
+**zha**
+: Invoke the ZHA personal assistant without an explicit target entity name
+
+
+**zha -i NAME**
+: Invoke the ZHA personal assistant NAME as the explicit target entity name - basically, the session shall involve your conversation with some entity known as NAME
+
+Note that ZHA is still under active
+development, and so, any glitches or bugs encountered need be reported to the current maintainer: Joseph W. Lutalo <joewillrich@gmail.com>
 
