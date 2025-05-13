@@ -558,6 +558,13 @@ Invokes the ZHA personal assistant NAME as the explicit target entity name - bas
 
 As you shall see in case you consult the ZHA help documentation, you can terminate any active conversation with the keyword "end" as the response during an active ZHA session.
 
+Some sample outputs...
+
+### After Installing ZHA with the TEA package: Example Conversation with Albert Einstein!
+
+
+![zha sample 4](sample_TEA_programs/highlights/cli_zha_conversation_w_einstein.png)
+
 
 # TTTT conforms to the UNIX/Linux CLI Design Philosophy
 
