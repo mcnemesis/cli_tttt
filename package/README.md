@@ -1,6 +1,6 @@
 ### For Mantainer
 
-This section is meant to manage a clean and well mantained Linux/Debian package for the TEA Interpreter TTTTT.
+This section is meant to manage a clean and well mantained Linux/Debian package for the TEA Interpreter TTTT.
 
 ### Some Instructions:
 

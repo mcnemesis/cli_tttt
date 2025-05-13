@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-PACKAGE_URI=https://github.com/mcnemesis/cli_tttt/releases/download/tttt-1.0.6/tttt_1.0.6_amd64.deb
+PACKAGE_URI=https://github.com/mcnemesis/cli_tttt/releases/download/tttt-1.0.7/tttt_1.0.7_amd64.deb
 PACKAGE_FILE=package.deb
 wget -O $PACKAGE_FILE $PACKAGE_URI && sudo dpkg -i $PACKAGE_FILE
 if command -v tttt &> /dev/null
 then
-	echo "TTTT installation was successful."
+	echo "TTTT & ZHA installation was successful."
     rm $PACKAGE_FILE
 	echo "=====-------||| WELCOME TO TEA ||-------====="
 	# so we can immediately test if it is working fine
