@@ -6,6 +6,9 @@
 #cp ../../docs/man/tttt.md tttt.1.md
 pandoc tttt.1.md -s -t man > tttt.1
 
+# ensure the tttt -v returns correct/new version!
+# vi +31 ../../tttt
+
 # fetch latest tttt
 #cp ../../tttt.py tttt
 #cp ../../tttt tttt
