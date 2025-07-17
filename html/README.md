@@ -7,7 +7,7 @@ The plan is to approach this as an implementation of the TEA programming languag
 
 ### TEA on the WEB --- the PLANNED ARCHITECTURE
 
-The planned architecture for how this is to proceed is as laid out in the schematic [here](specification/WEB TEA ARCHITECTURE.pdf) or as in the associated paper:
+The planned architecture for how this is to proceed is as laid out in the System Architecture schematic in the [html/](html/specification/) path or as in the associated paper:
 
 
 ```bibtex
