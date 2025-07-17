@@ -9,6 +9,23 @@
  But also, though not yet fully well documented or encouraged, TEA programs based on the current **TEA standard design and implementation** can not only be run mentally[3]
  (_think, executed or read like mathematics_) --- since the TEA syntax and semantics are pretty clearly unambigous, neat, terse and intentionally self-explanatory to a large extent, but also, as in _purely embedded executable automata_ modes such as running TEA programs inside of other programming languages; the most obvious being; calling the TEA runtime in a Py3 program since the `tttt` file can be interpreted as a python program, and thus TEA is then utilized in library/module/API mode. But also, and for experienced and advanced/adventurous users/programmers, TEA's `tttt` once installed on a system (see directions in sections below), can be invoked via many or any other programming language or language execution interface capable of executing Linux/Unix commands --- such as in C or C++ programs, Bash Scripts, PHP server-side programs, AWK programs, etc.
 
+## TEA on the WEB?
+
+A plan is currently underway, to see the TEA language become usable via the web --- as in via any standard web-browser, on any operating system and not just as on the commandline as the current reference implementation is. Details about the plan and the architecture meant to support this are laid out in the paper on TEA for the WEB:
+
+
+```bibtex
+@misc{lutalo2025tea,
+  author       = {Lutalo, Joseph Willrich},
+  title        = {TEA RESEARCH: TEA ON THE WEB A High-Level Web Software Operating Environment Specification For The TEA Programming Language: Web TEA Architecture},
+  year         = {2025},
+  publisher    = {Nuchwezi Research},
+  doi          = {10.6084/M9.FIGSHARE.29591687},
+  url          = {https://doi.org/10.6084/M9.FIGSHARE.29591687},
+  note         = {Accessible via: \url{https://doi.org/10.6084/M9.FIGSHARE.29591687}}
+}
+```
+
 # The Transforming Executable Alphabet Command Space
 ## The 26 TEA primitives and their names (TEA Instruction Set)
 
