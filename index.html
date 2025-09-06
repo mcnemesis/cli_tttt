@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>WEB TEA IDE</title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WEB TEA IDE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='https://bootswatch.com/5/materia/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container main-container">
+    
+      <!-- Row 0 -->
+    <div class="row mb-3">
+      <div class="col-12">
+       <div class="card text-bg-light">
+          <div class="card-body">
+              <h5 class="card-title header">WEB TEA IDE</h5>
+            <p class="card-text">This is the official WEB Integrated Development Environment for the <span class="lang_text"><b>T</b>ransforming <b>E</b>xecutable <b>A</b>lphabet</span> computer programming language. <i>You can use this interface to learn, try-out or apply the <a href="https://github.com/mcnemesis/cli_tttt/" target="_blank" class="btn btn-light" > TEA language</a> to solve actual problems by loading text input, selecting or composing a TEA program, then executing it against the provided input to see the results.</i></p>
+            <p class="card-text"><small>Version <b>1.0.0</b></small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <!-- Row 0 -->
+    <div class="row mb-3">
+      <div class="col-12">
+       <div id="txt_status" class="alert alert-warning" role="alert">
+  Welcome to TEA on the WEB! Wait as everything loads...
+</div>
+      </div>
+    </div>
+
+    
+
+    <!-- Row 1 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_input" class="form-control" rows="3" placeholder="Text Input..."></textarea>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+        <select id="sel_prog_list" class="form-select flex-grow-1" style="flex-basis: 60%;">
+          <option selected disabled>Select Program</option>
+        </select>
+        <button id="btn_use_prog" class="btn btn-success flex-grow-1" style="flex-basis: 15%;">Use</button>
+        <button id="btn_del_prog" class="btn btn-danger flex-grow-1" style="flex-basis: 15%;">Del</button>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_code" class="form-control" rows="6" placeholder="TEA Code..."></textarea>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <input type="text" id="txt_prog_name" class="form-control" placeholder="Program Name">
+      </div>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+        <button id="btn_run_prog" class="btn btn-primary flex-grow-1">RUN</button>
+        <button id="btn_save_prog" class="btn btn-dark flex-grow-1">SAVE</button>
+        <button id="btn_copy_prog" class="btn btn-light flex-grow-1">COPY</button>
+      </div>
+    </div>
+
+    <!-- Row 6 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_output" class="form-control" rows="4" placeholder="Text Output..."></textarea>
+      </div>
+    </div>
+
+    <!-- Row 7 -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+        <button id="btn_share_output" class="btn btn-secondary flex-grow-1">SHARE</button>
+        <button id="btn_back_propagate_output" class="btn btn-light flex-grow-1">BACK PROPAGATE</button>
+        <button id="btn_analyze" class="btn btn-metal">ANALYZE</button>
+      </div>
+    </div>
+
+    <!-- Row 8 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_analytics" class="form-control" rows="3" placeholder="Analytics..." disabled></textarea>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
