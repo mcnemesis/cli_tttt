@@ -13,11 +13,16 @@ import { TEA_RunTime as TEA } from './tea.js';
 console.log(U.test());
 
 var DEBUG = false;
+var IDE_status_message = "IDE almost in usable state. Work still on-going...";
 
 //---[ PAGE READY HOOKS ]
 U.ready(function () {
     U.hide('rw_debug'); // hide debug output by default
+    // display version of WEB TEA in use..
+    var TEART = new TEA();
+    U.updateElement('webTEAVersion', TEART.get_version());
 	U.status("The TEA IDE is ready. You can proceed...");
+    U.status('<b>UPDATES:<b/><br/><ul><li>' + TEART.get_status_message() +'</li><li>' + IDE_status_message +'</li></ul>', null, true);
 });
 
 //---[ Event Handlers ]

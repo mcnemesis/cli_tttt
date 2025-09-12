@@ -36,14 +36,23 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.8"
+        this.VERSION = "1.0.1" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
+        this.status_MESSAGE = "Currently with a:, i: and v: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
         this.DEBUG_FN = (txt) => { console.log(`T: ${txt}`) } // just in case no debug info printer is provided
 
 
+    }
+
+    get_version(){
+        return this.VERSION;
+    }
+
+    get_status_message(){
+        return this.status_MESSAGE;
     }
 
     static is_empty(str){

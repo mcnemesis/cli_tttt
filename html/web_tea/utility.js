@@ -70,12 +70,16 @@ export class Utility {
 	  this.status(message, "alert alert-warning");
 	}
 
-	static status(message, type) {
+	static status(message, type, htmlON) {
 	  if (type) {
 		this.updateElement("txt_status", message, type);
 	  } else {
 		this.updateElement("txt_status", message, "alert alert-info");
 	  }
+
+        if(htmlON){
+            this.get("txt_status").innerHTML = message;
+        }
 	}
 
 	//---[ UTILITY: UPDATE ELEMENT ]
