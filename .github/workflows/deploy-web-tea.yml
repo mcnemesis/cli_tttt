@@ -19,7 +19,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Upload web_tea directory
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: html/web_tea  # This is your deployable folder
 
