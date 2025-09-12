@@ -20,7 +20,7 @@
        <div class="card text-bg-light">
           <div class="card-body">
               <h5 class="card-title header">WEB TEA IDE</h5>
-            <p class="card-text">This is the official WEB Integrated Development Environment for the <span class="lang_text"><b>T</b>ransforming <b>E</b>xecutable <b>A</b>lphabet</span> computer programming language. <i>You can use this interface to learn, try-out or apply the <a href="https://github.com/mcnemesis/cli_tttt/" target="_blank" class="btn btn-light" > TEA language</a> to solve actual problems by loading text input, selecting or composing a TEA program, then executing it against the provided input to see the results.</i></p>
+            <p class="card-text">This is the official WEB Integrated Development Environment for the <span class="lang_text"><b>T</b>ransforming <b>E</b>xecutable <b>A</b>lphabet</span> computer programming language. <i>You can use this interface to learn, try-out or apply the <a href="https://github.com/mcnemesis/cli_tttt/" target="_blank" class="btn btn-light" title="Click to visit the TEA Project on GitHub"> TEA language</a> to solve actual problems by loading text input, selecting or composing a TEA program, then executing it against the provided input to see the results.</i></p>
             <p class="card-text"><small>Version <b>1.0.0</b></small></p>
           </div>
         </div>
@@ -41,7 +41,7 @@
     <!-- Row 1 -->
     <div class="row mb-3">
       <div class="col-12">
-        <textarea id="txt_input" class="form-control" rows="3" placeholder="Text Input..."></textarea>
+        <textarea id="txt_input" class="form-control" rows="3" placeholder="TEA Input..."></textarea>
       </div>
     </div>
 
@@ -51,8 +51,8 @@
         <select id="sel_prog_list" class="form-select flex-grow-1" style="flex-basis: 60%;">
           <option selected disabled>Select Program</option>
         </select>
-        <button id="btn_use_prog" class="btn btn-light flex-grow-1" style="flex-basis: 15%;">Use</button>
-        <button id="btn_del_prog" class="btn btn-danger flex-grow-1" style="flex-basis: 15%;">Del</button>
+        <button id="btn_use_prog" class="btn btn-light flex-grow-1" style="flex-basis: 15%;" title="Load Selected TEA program">USE</button>
+        <button id="btn_del_prog" class="btn btn-danger flex-grow-1" style="flex-basis: 15%;" title="Remove Selected TEA program from Memory">DEL</button>
       </div>
     </div>
 
@@ -70,49 +70,47 @@
       </div>
     </div>
 
-
-    <!-- Row 4b -->
-    <div id="rw_debug" class="row mb-3">
-      <div class="col-12">
-        <textarea id="txt_debug" class="form-control" rows="6" placeholder="DEBUGING Output..."></textarea>
-      </div>
-    </div>
-
     <!-- Row 5a -->
     <div class="row mb-3">
       <div class="col-12 d-flex flex-wrap gap-2">
-		<div class="form-check form-switch">
+		<div class="form-check form-switch" title="Click to turn TEA DEBUG Mode ON/OFF">
 		  <input class="form-check-input" type="checkbox" role="switch" id="switch_debug">
 		  <label class="form-check-label" for="switch_debug">DEBUG MODE</label>
 		</div>
-        <button id="btn_validate_prog" class="btn btn-light flex-grow-1">VALIDATE</button>
-        <button id="btn_sanitize_prog" class="btn btn-light flex-grow-1">SANITIZE</button>
+        <button id="btn_validate_prog" class="btn btn-light flex-grow-1" title="Validate TEA Program Code">VALIDATE</button>
+        <button id="btn_sanitize_prog" class="btn btn-light flex-grow-1" title="Sanitize TEA Program Code">SANITIZE</button>
       </div>
     </div>
 
-
-    <!-- Row 5 -->
+    <!-- Row 5b -->
     <div class="row mb-3">
       <div class="col-12 d-flex flex-wrap gap-2">
-        <button id="btn_run_prog" class="btn btn-primary flex-grow-1">RUN</button>
-        <button id="btn_save_prog" class="btn btn-dark flex-grow-1">SAVE</button>
-        <button id="btn_copy_prog" class="btn btn-light flex-grow-1">COPY</button>
+        <button id="btn_run_prog" class="btn btn-primary flex-grow-1" title="Execute the Current TEA Program Code">RUN</button>
+        <button id="btn_save_prog" class="btn btn-dark flex-grow-1" title="Save Current TEA Program using Specified Name" >SAVE</button>
+        <button id="btn_copy_prog" class="btn btn-light flex-grow-1" title="Copy Current TEA Program Code into System Clipboard">COPY</button>
+      </div>
+    </div>
+
+    <!-- Row 5c -->
+    <div id="rw_debug" class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_debug" class="form-control" rows="6" placeholder="TEA DEBUGGER Output..."></textarea>
       </div>
     </div>
 
     <!-- Row 6 -->
     <div class="row mb-3">
       <div class="col-12">
-        <textarea id="txt_output" class="form-control" rows="4" placeholder="Text Output..."></textarea>
+        <textarea id="txt_output" class="form-control" rows="4" placeholder="TEA Output..."></textarea>
       </div>
     </div>
 
     <!-- Row 7 -->
     <div class="row mb-3">
       <div class="col-12 d-flex flex-wrap gap-2">
-        <button id="btn_share_output" class="btn btn-secondary flex-grow-1">SHARE</button>
-        <button id="btn_back_propagate_output" class="btn btn-light flex-grow-1">BACK PROPAGATE</button>
-        <button id="btn_analyze" class="btn btn-metal">ANALYZE</button>
+        <button id="btn_share_output" class="btn btn-secondary flex-grow-1" title="Copy TEA Program Output into the System Clipboard">SHARE</button>
+        <button id="btn_back_propagate_output" class="btn btn-light flex-grow-1" title="Load Current TEA Program Output as TEA Input">BACK PROPAGATE</button>
+        <button id="btn_analyze" class="btn btn-metal" title="Process Standard Analysis against Current TEA Session">ANALYZE</button>
       </div>
     </div>
 
