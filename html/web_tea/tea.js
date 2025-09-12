@@ -203,12 +203,274 @@ export class TEA_RunTime {
         return otil
     }
 
+    // reverse TEA String Masking
+    unmask_str(val){
+        return val
+          .replace(TEA_RunTime.OBSCURE_RC_NL, TEA_RunTime.NL)
+          .replace(TEA_RunTime.OBSCURE_RC_COM, TEA_RunTime.COMH)
+          .replace(TEA_RunTime.OBSCURE_RC_TID, TEA_RunTime.TID);
+    }
+
+	// Extract a string from a TEA expression
+	extract_str(val){
+        if (val.startsWith("{") && val.endsWith("}")) {
+            val = val.replace(/^\{/, "").replace(/\}$/, "");
+			return this.unmask_str(val)
+        }
+        if (val.startsWith('"') && val.endsWith('"')) {
+            val = val.replace(/^"/, "").replace(/"$/, "");
+			return this.unmask_str(val)
+        }
+		return this.unmask_str(val)
+    }
+
+    /////////////////////
+    // MORE UTILS
+    /////////////////////
+	shuffle_fisher_yates(arr) {
+	  for (let i = arr.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[arr[i], arr[j]] = [arr[j], arr[i]]; // swap
+	  }
+	  return arr;
+	}
+
+    util_anagramatize_words(val){
+        const parts = val.split(TEA_RunTime.RE_WHITE_SPACE)
+        var lparts = this.shuffle_fisher_yates(parts) // we are using Fisher-Yates algorithm for now
+        return lparts.join(TEA_RunTime.GLUE)
+    }
+
+    util_anagramatize_chars(val){
+        const parts = [...val]; // handles Unicode safely
+        var lparts = this.shuffle_fisher_yates(parts) // we are using Fisher-Yates algorithm for now
+        return lparts.join(TEA_RunTime.EMPTY_STR)
+    }
+
+
+    //-----------------------------
+    // VAULT/MEMORY utils
+    //-----------------------------
+
+    vault_store(vNAME, vVAL){
+        this.VAULTS[vNAME] = vVAL
+        this.debug(`--[INFO] Wrote VAULT[${vNAME} = [${vVAL}]]`)
+    }
+
+    vault_get(vNAME){
+        if (!this.VAULTS.hasOwnProperty(vNAME)) {
+            this.debug(`[ERROR] Instruction trying to access VAULT[${vNAME}] before it is set!`)
+            throw new Error(`[MEMORY ERROR] ATTEMPT to ACCESS unset VAULT[${vNAME}]`)
+        }
+        else{
+            this.debug(`--[INFO] Reading VAULT[${vNAME}]`)
+            return this.VAULTS[vNAME]
+        }
+    }
+
+
+//-----------------------------
+// TAZ Implementation
+//-----------------------------
+    // PROCESS: A:
+    process_a(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "A"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = this.util_anagramatize_words(input_str)
+        }
+
+        if(tc == "A!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = this.util_anagramatize_chars(input_str)
+        }
+
+        if(tc == "A*"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            io = this.util_anagramatize_words(input_str)
+        }
+
+        if(tc == "A*!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            io = this.util_anagramatize_chars(input_str)
+        }
+
+        return io
+    }
+
+
+	// PROCESS: I:
+    process_i(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "I"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // implements interactivity in TEA: displays io as prompt, sets user-input as io
+                io = prompt(io) // okay, this makes one smile :)
+            } else {
+                if(TEA_RunTime.is_empty(io)){
+                    io = tpe_str
+                }
+            }
+        }
+
+        if(tc == "I!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = TEA_RunTime.EMPTY_STR
+            } else {
+                io = tpe_str
+            }
+        }
+
+        return io
+    }
+
+    //PROCESS V:
+    process_v(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "V"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    this.vault_store(TEA_RunTime.vDEFAULT_VAULT,TEA_RunTime.EMPTY_STR)
+                }
+                else {
+                    this.debug(`Processing ${tc} on AI=[${io}]`)
+                    this.vault_store(TEA_RunTime.vDEFAULT_VAULT,io)
+                }
+            }
+            else {
+                var input_str = tpe_str
+                var params = input_str.split(TEA_RunTime.TIPED)
+                if(params.length > 2){
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                    throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+                else{
+                    if(params.length == 2){
+                        var vNAME = params[0]
+                        var vVALUE = this.extract_str(params[1])
+                        this.vault_store(vNAME,vVALUE)
+                    }
+                    else if(params.length == 1){
+                        var vNAME = params[0]
+                        var vVALUE = io
+                        this.vault_store(vNAME,vVALUE)
+                    }
+                }
+            }
+        }
+
+        if(tc == "V!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
+                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                }
+                var vVALUE = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
+                this.debug(`[INFO] Returning Length of string  in DEFAULT VAULT [${vVALUE}]`)
+                return vVALUE.length
+            }
+            else{
+                    var input_str = tpe_str
+                    this.debug(`[INFO] Returning Length of string [${input_str}]`)
+                    return input_str.length
+            }
+        }
+
+        if(tc == "V*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+            }
+            else {
+                    var input_str = tpe_str
+                    var params = input_str.split(TEA_RunTime.TIPED)
+                    if(params.length > 2){
+                        this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                        throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                    }
+                    else{
+                        if(params.length == 2){
+                            [vNAME,vVALUE] = params
+                            this.vault_store(vNAME,vVALUE)
+                        }
+                        else if(params.length == 1){
+                            var vNAME = params[0]
+                            var vVALUE = io
+                            this.vault_store(vNAME,vVALUE)
+                        }
+                    }
+            }
+        }
+
+        if(tc == "V*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
+                    this.debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                }
+
+                var vVALUE = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
+                this.debug(`[INFO] Returning Length of string  in DEFAULT VAULT [${vVALUE}]`)
+                return vVALUE.length
+            }
+            else {
+                var vNAME = tpe_str
+                var vVALUE = this.vault_get(vNAME)
+                this.debug(`[INFO] Returning Length of string  in VAULT[${vNAME} = [${vNAME}]]`)
+                return vVALUE.length
+            }
+        }
+
+        return io
+    }
+
+
+
+    //////////////[ END TAZ ]///////////////////
+
+
     /* run the given tea source against the given input */
 	run(tin, tsrc, DEBUG_ON, debug_fn){
 
 
         this.DEBUG = DEBUG_ON;
         this.DEBUG_FN = debug_fn;
+
+        this.INPUT = tin
+        this.CODE = tsrc 
+        this.STDIN_AS_CODE = false
+        this.VAULTS = {}
+
+        // we shall store label block pointers as such:
+        //    label_name: label_position + 1
+        //    such that, jumping to label_name allows us to
+        //    proceed execution from instruction at index label_position +1
+        this.LABELBLOCKS = {}
+        this.ATPI = 0 // Active TI POSITION INDEX
 
         // first, get the code: the TEA source to use
         if(!TEA_RunTime.is_empty(tsrc))
@@ -268,6 +530,50 @@ export class TEA_RunTime {
 
         this.LABELBLOCKS = this._parse_labelblocks(this.INSTRUCTIONS, {})
 
-        return this.OUTPUT;
+        //---------------------------------------
+        // MAIN TEA Execution/Processing Loop
+        //--------------------------------------
+        if(!TEA_RunTime.is_empty(this.INSTRUCTIONS)){
+            while(true){
+                // detect end of program and quit
+                if(this.ATPI >= this.INSTRUCTIONS.length)
+                    break
+
+                this.debug(`Executing Instruction#${this.ATPI} (out of ${this.INSTRUCTIONS.length})`)
+
+                var instruction = this.INSTRUCTIONS[this.ATPI]
+
+                this.debug(`Processing Instruction: ${instruction}`)
+                this.debug(`PRIOR MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+
+                var TC = instruction.toUpperCase()[0]
+
+                switch(TC){
+                    // A: Anagrammatize
+                    case "A": {
+                        this.OUTPUT = String(this.process_a(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // I: Interact
+                    case "I": {
+                        this.OUTPUT = String(this.process_i(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // V: Vault
+                    case "V": {
+                        this.OUTPUT = String(this.process_v(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                }
+            } // end while
+
+            return TEA_RunTime.is_empty(this.OUTPUT) ? TEA_RunTime.EMPTY_STR : this.OUTPUT // in TEA, None is the EMPTY_STR
+        }
 	}
 }

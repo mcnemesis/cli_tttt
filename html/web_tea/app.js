@@ -50,7 +50,6 @@ U.click("btn_run_prog", function() {
     var TEART = new TEA();
     var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
     U.updateElement('txt_output', result);
-    U.console("TODO: actually run code against available input and present the output")
 });
 
 // load selected TEA program from localstorage list of TEA programs
