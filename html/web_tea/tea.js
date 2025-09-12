@@ -454,8 +454,7 @@ export class TEA_RunTime {
 
 
     /* run the given tea source against the given input */
-	run(tin, tsrc, DEBUG_ON, debug_fn){
-
+	run(tin, tsrc, DEBUG_ON, debug_fn, run_validation_only, extract_clean_code){
 
         this.DEBUG = DEBUG_ON;
         this.DEBUG_FN = debug_fn;
@@ -533,6 +532,14 @@ export class TEA_RunTime {
         //---------------------------------------
         // MAIN TEA Execution/Processing Loop
         //--------------------------------------
+        if(extract_clean_code){
+            return this.INSTRUCTIONS.map(line => this.unmask_str(line)).join(TEA_RunTime.NL); 
+        }
+
+        if(run_validation_only){
+            return TEA_RunTime.is_empty(this.OUTPUT) ? TEA_RunTime.EMPTY_STR : this.OUTPUT // in TEA, None is the EMPTY_STR
+        }
+
         if(!TEA_RunTime.is_empty(this.INSTRUCTIONS)){
             while(true){
                 // detect end of program and quit

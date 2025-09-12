@@ -41,6 +41,45 @@ function debug_writer(txt){
     U.scrollToBottom('txt_debug');
 }
 
+// Clear out currently loaded TEA program code
+U.click("btn_clear_prog", function() {
+    U.updateElement('txt_code','');
+    U.updateElement('txt_code','');
+    U.status_success("TEA Code Editor Reset...");
+});
+
+
+// sanitize current TEA program code 
+U.click("btn_sanitize_prog", function() {
+	U.status_info("Running Sanitizer against current TEA program code...");
+    U.updateElement('txt_debug',''); // clear debug info
+    var tinput = U.val('txt_input');
+    var tsrc = U.val('txt_code');
+    var TEART = new TEA();
+    var onlyValidate = true;
+    var extract_clean_code = true;
+    var result = TEART.run(tinput, tsrc, DEBUG, debug_writer, onlyValidate, extract_clean_code);
+    U.updateElement('txt_output',result);
+	U.status_success("TEA Program sanitization complete. Clean TEA Program Code loaded into Editor.");
+});
+
+// validate current TEA program code 
+U.click("btn_validate_prog", function() {
+	U.status_info("Running Lexer against current TEA program code...");
+    var is_debug_ON = U.checked('switch_debug');
+    if(!is_debug_ON){
+        U.trigger(U.get('switch_debug'),'click'); // simulate toggle debug on..
+    }
+    U.updateElement('txt_debug',''); // clear debug info
+    var tinput = U.val('txt_input');
+    var tsrc = U.val('txt_code');
+    var TEART = new TEA();
+    var onlyValidate = true;
+    var result = TEART.run(tinput, tsrc, DEBUG, debug_writer, onlyValidate);
+    U.updateElement('txt_output', "");
+	U.status_success("TEA Program validation complete. Consult DEBUGGING OUTPUT to view validation results...");
+});
+
 // run current TEA program code against available input and present results
 U.click("btn_run_prog", function() {
 	U.status_info("Initializing execution of TEA...");
@@ -50,6 +89,7 @@ U.click("btn_run_prog", function() {
     var TEART = new TEA();
     var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
     U.updateElement('txt_output', result);
+	U.status_success("TEA Program execution complete.");
 });
 
 // load selected TEA program from localstorage list of TEA programs
@@ -103,6 +143,31 @@ U.click("btn_back_propagate_output", function() {
     var prog_output = U.val('txt_output');
     U.updateElement('txt_input',prog_output);
     U.status_success("Last Output Set as New Input");
+});
+
+
+/* read things from clipboard*/
+async function readClipboardText() {
+  try {
+    const text = await navigator.clipboard.readText();
+    console.log("Clipboard contents:", text);
+    return text;
+  } catch (err) {
+    console.error("Failed to read clipboard:", err);
+    return null;
+  }
+}
+
+// Paste program from clipboard into editor
+U.click("btn_paste_prog", function() {
+    readClipboardText().then( str => {
+        if(str){
+            U.updateElement('txt_code',str);
+            U.status_success("Finished loading code from clipboard.");
+        } else {
+            U.status_error("Failed loading code from clipboard.");
+        }
+    });
 });
 
 // Analyze program and present results

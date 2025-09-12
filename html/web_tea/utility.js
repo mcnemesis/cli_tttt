@@ -13,6 +13,19 @@ export class Utility {
 		return document.getElementById(id);
 	}
 
+    static trigger(el, eventType) {
+      if (typeof eventType === 'string' && typeof el[eventType] === 'function') {
+        el[eventType]();
+      } else {
+        const event =
+          typeof eventType === 'string'
+            ? new Event(eventType, {bubbles: true})
+            : eventType;
+        el.dispatchEvent(event);
+      }
+    }
+
+    /* cause element to scroll to content to last item at the bottom*/
 	static scrollToBottom(id) {
 		  const el = this.get(id);
 		  if (el) {
@@ -70,6 +83,7 @@ export class Utility {
 	  const element = this.get(id);
 	  if (element) {
 		element.textContent = newText; // Sets the visible text
+		element.value = newText; // Also Sets the value text
 		if (newClass) {
 		  element.className = newClass; // Replaces all existing classes
 		}
@@ -103,6 +117,7 @@ export class Utility {
           .then(fnOK)
           .catch(err => { fnERROR(err); }); 
     }
+
 
     /* write to the console */
     static console(msg){
