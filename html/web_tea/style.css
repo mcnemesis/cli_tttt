@@ -66,4 +66,5 @@ textarea {
 
 #rw_debug textarea {
     font-weight: bold;
+    color: cyan;
 }

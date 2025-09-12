@@ -13,6 +13,16 @@ export class Utility {
 		return document.getElementById(id);
 	}
 
+	static scrollToBottom(id) {
+		  const el = this.get(id);
+		  if (el) {
+			el.scrollTop = el.scrollHeight;
+		  } else {
+			console.warn(`Element with ID "${id}" not found.`);
+		  }
+	}
+
+
     /* check if element is checked */
 	static checked(id) {
         var el = this.get(id);

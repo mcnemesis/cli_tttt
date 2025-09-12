@@ -8,7 +8,11 @@
 
 // In app.js
 import { Utility as U } from './utility.js';
+import { TEA_RunTime as TEA } from './tea.js';
+
 console.log(U.test());
+
+var DEBUG = false;
 
 //---[ PAGE READY HOOKS ]
 U.ready(function () {
@@ -21,20 +25,31 @@ U.ready(function () {
 U.click("switch_debug", function() {
     var is_debug_ON = U.checked('switch_debug');
     if(is_debug_ON){
+        DEBUG = true;
         U.status_success("DEBUG MODE turned ON");
         U.show('rw_debug');
     }else {
+        DEBUG = false;
         U.status_warning("DEBUG MODE turned OFF");
         U.hide('rw_debug');
     }
 });
 
+function debug_writer(txt){
+    var debug_info = U.val('txt_debug');
+    U.updateElement('txt_debug', debug_info + '\n' + txt);
+    U.scrollToBottom('txt_debug');
+}
+
 // run current TEA program code against available input and present results
 U.click("btn_run_prog", function() {
 	U.status_info("Initializing execution of TEA...");
+    U.updateElement('txt_debug',''); // clear debug info
     var tinput = U.val('txt_input');
     var tsrc = U.val('txt_code');
-    U.updateElement('txt_output', tinput);
+    var TEART = new TEA();
+    var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
+    U.updateElement('txt_output', result);
     U.console("TODO: actually run code against available input and present the output")
 });
 
