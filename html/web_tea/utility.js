@@ -13,6 +13,12 @@ export class Utility {
 		return document.getElementById(id);
 	}
 
+    /* check if element is checked */
+	static checked(id) {
+        var el = this.get(id);
+        return el.checked;
+	}
+
     /* get value from some form element */
 	static val(id) {
         var el = this.get(id);
@@ -60,6 +66,16 @@ export class Utility {
 	  } else {
 		console.warn(`Element with id "${id}" not found.`);
 	  }
+	}
+
+	//---[ UTILITY: SHOW/HIDE ELEMENT ]
+	static show(id) {
+	  const element = this.get(id);
+	  element.style.display = ''; 
+	}
+	static hide(id) {
+	  const element = this.get(id);
+	  element.style.display = 'none'; 
 	}
 
     /* for correct exec of functions after full document load... */

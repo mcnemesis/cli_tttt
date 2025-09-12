@@ -63,3 +63,7 @@ textarea {
 .lang_text {
   color: orangered;
 }
+
+#rw_debug textarea {
+    font-weight: bold;
+}

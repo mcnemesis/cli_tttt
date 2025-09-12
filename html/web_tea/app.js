@@ -6,21 +6,35 @@
  * DEV: Joseph W. Lutalo <joewillrich@gmail.com>
  * ***********************************************************************/
 
-// In script.js
+// In app.js
 import { Utility as U } from './utility.js';
 console.log(U.test());
 
 //---[ PAGE READY HOOKS ]
 U.ready(function () {
+    U.hide('rw_debug'); // hide debug output by default
 	U.status("The TEA IDE is ready. You can proceed...");
 });
 
 //---[ Event Handlers ]
+// Toggle DEBUG MODE 
+U.click("switch_debug", function() {
+    var is_debug_ON = U.checked('switch_debug');
+    if(is_debug_ON){
+        U.status_success("DEBUG MODE turned ON");
+        U.show('rw_debug');
+    }else {
+        U.status_warning("DEBUG MODE turned OFF");
+        U.hide('rw_debug');
+    }
+});
+
 // run current TEA program code against available input and present results
 U.click("btn_run_prog", function() {
 	U.status_info("Initializing execution of TEA...");
-    var result = U.val('txt_input');
-    U.updateElement('txt_output', result);
+    var tinput = U.val('txt_input');
+    var tsrc = U.val('txt_code');
+    U.updateElement('txt_output', tinput);
     U.console("TODO: actually run code against available input and present the output")
 });
 

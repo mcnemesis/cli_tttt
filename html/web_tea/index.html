@@ -51,7 +51,7 @@
         <select id="sel_prog_list" class="form-select flex-grow-1" style="flex-basis: 60%;">
           <option selected disabled>Select Program</option>
         </select>
-        <button id="btn_use_prog" class="btn btn-success flex-grow-1" style="flex-basis: 15%;">Use</button>
+        <button id="btn_use_prog" class="btn btn-light flex-grow-1" style="flex-basis: 15%;">Use</button>
         <button id="btn_del_prog" class="btn btn-danger flex-grow-1" style="flex-basis: 15%;">Del</button>
       </div>
     </div>
@@ -69,6 +69,27 @@
         <input type="text" id="txt_prog_name" class="form-control" placeholder="Program Name">
       </div>
     </div>
+
+
+    <!-- Row 4b -->
+    <div id="rw_debug" class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_debug" class="form-control" rows="6" placeholder="DEBUGING Output..."></textarea>
+      </div>
+    </div>
+
+    <!-- Row 5a -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+		<div class="form-check form-switch">
+		  <input class="form-check-input" type="checkbox" role="switch" id="switch_debug">
+		  <label class="form-check-label" for="switch_debug">DEBUG MODE</label>
+		</div>
+        <button id="btn_validate_prog" class="btn btn-light flex-grow-1">VALIDATE</button>
+        <button id="btn_sanitize_prog" class="btn btn-light flex-grow-1">SANITIZE</button>
+      </div>
+    </div>
+
 
     <!-- Row 5 -->
     <div class="row mb-3">
