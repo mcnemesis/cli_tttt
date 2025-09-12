@@ -254,8 +254,8 @@ class TEA_RunTime:
         def vault_get(vNAME):
             if not (vNAME in VAULTS):
                 if TEA_RunTime.DEBUG:
-                    print(f"[ERROR] Instruction trying to access DEFAULT VAULT before it is set!")
-                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                    print(f"[ERROR] Instruction trying to access VAULT[{vNAME}] before it is set!")
+                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset VAULT[{vNAME}]")
             else:
                 if TEA_RunTime.DEBUG:
                     print(f"-- [INFO] Reading VAULT[{vNAME}]")
