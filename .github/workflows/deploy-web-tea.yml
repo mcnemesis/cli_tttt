@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write  # Needed to push to gh-pages
+      id-token: write
 
     steps:
       - name: Checkout source
