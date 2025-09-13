@@ -19,15 +19,17 @@ var THEME_DARK = "dark";
 var THEME_LIGHT = "light";
 var ACTIVE_THEME = THEME_LIGHT;
 var IDE_status_message = "IDE almost in usable state. Work still on-going...";
+var SETTING_THEME = 'UI_MODE';
 
 //---[ PAGE THEME/MODE SETTINGS ]
-const UIMode = {
-  set: (mode) => {
-    localStorage.setItem('UI_MODE', mode);
+//---[ SYSTEM DATABASE for ANY SETTINGS ]
+const DATABASE = {
+  set: (key, value) => {
+    localStorage.setItem(key, value);
   },
-  get: () => {
-    const mode = localStorage.getItem('UI_MODE');
-    return mode;
+  get: (key) => {
+    const value = localStorage.getItem(key);
+    return value;
   }
 };
 
@@ -77,7 +79,7 @@ U.ready(function () {
     U.updateElement('webTEAVersion', TEART.get_version());
 
     // load last user-configured theme and settings
-	const last_mode = UIMode.get();
+	const last_mode = DATABASE.get(SETTING_THEME);
     ACTIVE_THEME = last_mode;
 
     if(ACTIVE_THEME == THEME_LIGHT){
@@ -102,11 +104,11 @@ U.ready(function () {
 U.click("switch_dark_ui", function() {
     var is_darkmode_ON = U.checked('switch_dark_ui');
     if(is_darkmode_ON){
-        UIMode.set(THEME_DARK);
+        DATABASE.set(SETTING_THEME, THEME_DARK);
         toggle_dark_theme();
         location.reload();
     }else {
-        UIMode.set(THEME_LIGHT);
+        DATABASE.set(SETTING_THEME, THEME_LIGHT);
         toggle_light_theme();
     }
     location.reload();
@@ -204,6 +206,10 @@ U.click("btn_del_prog", function() {
 // Save current TEA program into localstorage list of TEA programs
 U.click("btn_save_prog", function() {
     var prog_name = U.val('txt_prog_name');
+    var prog_code = U.val('txt_code');
+
+    //build and store entry into DB
+
 	U.status_success(`STORED TEA program [${prog_name}]`);
     U.console("TODO: actually store code and program name into local storage")
 });
