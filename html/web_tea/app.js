@@ -87,11 +87,14 @@ U.ready(function () {
         U.trigger(U.get('switch_dark_ui'),'click'); // simulate toggle dark on..
     }
 
-    // load status message from tool developers...
-    U.status('<b>UPDATES:<b/><br/><ul><li>' + TEART.get_status_message() +'</li><li>' + IDE_status_message +'</li></ul>', null, true);
-
     // user ready to start working..
-	U.status("The TEA IDE is ready. You can proceed...");
+    // load status message from tool developers...
+    U.status('<b>UPDATES:<b/><br/><ul><li>' 
+        + 'You are using v'+ TEART.get_version() +' of WEB TEA.</li><li>' 
+        + TEART.get_status_message() +'</li><li>' 
+        + IDE_status_message +'</li></ul>'
+        + 'The TEA IDE is ready. You can proceed...'
+        , null, true);
 });
 
 //---[ Event Handlers ]
