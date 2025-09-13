@@ -13,19 +13,104 @@ import { TEA_RunTime as TEA } from './tea.js';
 console.log(U.test());
 
 var DEBUG = false;
+var DARK_UI = false;
+var DARK_UI_CLASS = "dark";
+var THEME_DARK = "dark";
+var THEME_LIGHT = "light";
+var ACTIVE_THEME = THEME_LIGHT;
 var IDE_status_message = "IDE almost in usable state. Work still on-going...";
+
+//---[ PAGE THEME/MODE SETTINGS ]
+const UIMode = {
+  set: (mode) => {
+    localStorage.setItem('UI_MODE', mode);
+  },
+  get: () => {
+    const mode = localStorage.getItem('UI_MODE');
+    return mode;
+  }
+};
+
+
+function toggle_dark_theme(){
+    var is_darkmode_ON = true
+    var elBody = U.get("elBody");
+    var elAnim = U.get("elDarkAnim");
+    var elControlPanel = U.get("elControlPanel");
+    DARK_UI = true;
+    //U.show('elDarkAnim');
+    elBody.classList.add(DARK_UI_CLASS);
+    elAnim.classList.add(DARK_UI_CLASS);
+    elControlPanel.classList.add(DARK_UI_CLASS);
+    elControlPanel.classList.remove('text-bg-light');
+    elControlPanel.classList.add('text-bg-dark');
+    U.get('elNavMenu').classList.add('bg-dark');
+    document.body.setAttribute('data-bs-theme', ACTIVE_THEME);
+
+    U.status_success("DARK MODE turned ON");
+}
+
+function toggle_light_theme(){
+    var is_darkmode_ON = false;
+    var elBody = U.get("elBody");
+    var elAnim = U.get("elDarkAnim");
+    var elControlPanel = U.get("elControlPanel");
+    U.hide('elDarkAnim');
+    DARK_UI = false;
+    elBody.classList.remove(DARK_UI_CLASS);
+    elAnim.classList.remove(DARK_UI_CLASS);
+    elControlPanel.classList.remove(DARK_UI_CLASS);
+    elControlPanel.classList.remove('text-bg-dark');
+    elControlPanel.classList.add('text-bg-light');
+    U.get('elNavMenu').classList.remove('bg-dark');
+    document.body.setAttribute('data-bs-theme', ACTIVE_THEME);
+
+    U.status_success("DARK MODE turned OFF");
+}
 
 //---[ PAGE READY HOOKS ]
 U.ready(function () {
     U.hide('rw_debug'); // hide debug output by default
+    //U.hide('elDarkAnim');
     // display version of WEB TEA in use..
     var TEART = new TEA();
     U.updateElement('webTEAVersion', TEART.get_version());
-	U.status("The TEA IDE is ready. You can proceed...");
+
+    // load last user-configured theme and settings
+	const last_mode = UIMode.get();
+    ACTIVE_THEME = last_mode;
+
+    if(ACTIVE_THEME == THEME_LIGHT){
+        toggle_light_theme();
+    }else{
+        toggle_dark_theme();
+        U.trigger(U.get('switch_dark_ui'),'click'); // simulate toggle dark on..
+    }
+
+    // load status message from tool developers...
     U.status('<b>UPDATES:<b/><br/><ul><li>' + TEART.get_status_message() +'</li><li>' + IDE_status_message +'</li></ul>', null, true);
+
+    // user ready to start working..
+	U.status("The TEA IDE is ready. You can proceed...");
 });
 
 //---[ Event Handlers ]
+// Toggle DARK MODE 
+U.click("switch_dark_ui", function() {
+    var is_darkmode_ON = U.checked('switch_dark_ui');
+    if(is_darkmode_ON){
+        UIMode.set(THEME_DARK);
+        toggle_dark_theme();
+        location.reload();
+    }else {
+        UIMode.set(THEME_LIGHT);
+        toggle_light_theme();
+    }
+    location.reload();
+});
+
+
+
 // Toggle DEBUG MODE 
 U.click("switch_debug", function() {
     var is_debug_ON = U.checked('switch_debug');

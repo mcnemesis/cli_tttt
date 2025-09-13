@@ -9,15 +9,19 @@
   <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400&display=swap" rel="stylesheet">
 <link rel='stylesheet' href='resources/bootstrap/theme/materia/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+<link rel='stylesheet' href='resources/ui/theme/dark/dark_ui.css'><link rel="stylesheet" href="./style.css">
 </head>
-<body>
+<body id="elBody">
 <!-- partial:index.partial.html -->
 <div class="container main-container">
     
       <!-- Row 0 -->
     <div class="row mb-3">
       <div class="col-12">
-       <div class="card text-bg-light">
+       <div class="card text-bg-light" id="elControlPanel">
+
+
+           <!--
           <div class="card-body">
               <h5 class="card-title header">WEB TEA IDE</h5>
             <p class="card-text">This is the official WEB Integrated Development Environment for the <span class="lang_text"><b>T</b>ransforming <b>E</b>xecutable <b>A</b>lphabet</span> computer programming language. <i>You can use this interface to learn, try-out or apply the <a href="https://github.com/mcnemesis/cli_tttt/" target="_blank" class="btn btn-light" title="Click to visit the TEA Project on GitHub"> TEA language</a> to solve actual problems by loading text input, selecting or composing a TEA program, then executing it against the provided input to see the results.</i></p>
@@ -26,7 +30,82 @@
                 <small>ACTIVE VERSION: <b id="webTEAVersion">1.0.0</b></small>
                 <a href="."  class="btn btn-dark" title="Click to RELOAD IDE"> RELOAD </a>
             </p>
-          </div>
+          </div> --> <!-- end card body: ide control interface -->
+
+		  <div id="elDarkAnim" class="background-animation"></div>
+
+		  <div class="card-body" >
+			<h5 class="card-title header">WEB TEA IDE</h5>
+			<p class="card-text">
+			  This is the official WEB Integrated Development Environment for the
+			  <span class="lang_text"><b>T</b>ransforming <b>E</b>xecutable <b>A</b>lphabet</span>
+			  computer programming language.
+			  <i>
+				You can use this interface to learn, try-out or apply the
+				<a href="https://github.com/mcnemesis/cli_tttt/" target="_blank" class="btn btn-light" title="Click to visit the TEA Project on GitHub">
+				  TEA language
+				</a>
+				to solve actual problems by loading text input, selecting or composing a TEA program, then executing it against the provided input to see the results.
+			  </i>
+			</p>
+			<p class="card-text">
+			  <small>ACTIVE VERSION: <b id="webTEAVersion">1.0.1</b></small>
+			  <a href="." class="btn btn-dark" title="Click to RELOAD IDE">RELOAD</a>
+			</p>
+		  </div>
+
+			<!-- Bottom Navbar with Toggle -->
+            <div id="navbarControl">
+			<nav id="elNavMenu" class="navbar navbar-expand-lg bg-body-tertiary">
+			  <div class="container-fluid">
+				<a class="navbar-brand" href="#">MENU</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarScroll">
+				  <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+					<li class="nav-item">
+					  <a class="nav-link active" target="_blank" aria-current="page" href="https://github.com/mcnemesis/cli_tttt/">TEA Project</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" target="_blank" href="https://figshare.com/articles/book/TEA_TAZ_-Transforming_Executable_Alphabet_A_to_Z_COMMAND_SPACE_SPECIFICATION/26661328">LATEST TAZ</a>
+					</li>
+					<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						More
+					  </a//>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="https://t.me/bclectures" target="_blank">TEA Community</a></li>
+						<li><a class="dropdown-item" href="https://www.youtube.com/playlist?list=PL9nqA7nxEPgulGKWw1L9xEyqgCdEezaKB" target="_blank">TEA Mini-Lectures</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22transforming+executable+alphabet%22&btnG=" target="_blank">TEA Research</a></li>
+					  </ul>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link disabled" aria-disabled="true">&copy; Nuchwezi</a>
+					</li>
+				  </ul>
+
+				  <div class="form-check form-switch" style="margin-right:5%" title="Click to RELOAD IDE in DARK or LIGHT MODE">
+					<input class="form-check-input" type="checkbox" id="switch_dark_ui">
+					<label class="form-check-label" for="switch_dark_ui">Dark Mode</label>
+				  </div>
+
+                  <!--
+				  <form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				  </form>
+                  -->
+				</div>
+			  </div>
+			</nav>
+            </div>
+
+		  <script src="resources/ui/theme/dark/script.js"></script>
+
+
+
         </div>
       </div>
     </div>

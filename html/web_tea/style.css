@@ -66,7 +66,13 @@ textarea {
 
 #rw_debug textarea {
     font-weight: bold;
-    color: cyan;
+    color: cadetblue;
+    text-shadow: 0 0 black;
+}
+
+.dark #rw_debug textarea {
+    font-weight: bold;
+    color: #ad2180;
     text-shadow: 0 0 black;
 }
 
