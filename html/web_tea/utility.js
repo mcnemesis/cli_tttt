@@ -70,6 +70,40 @@ export class Utility {
 	  this.status(message, "alert alert-warning");
 	}
 
+	static humaneTimestamp() {
+	  const now = new Date();
+	  const dd = String(now.getDate()).padStart(2, '0');
+	  const MMM = now.toLocaleString('en-US', { month: 'short' });
+	  const YYYY = now.getFullYear();
+	  const HH = String(now.getHours()).padStart(2, '0');
+	  const mm = String(now.getMinutes()).padStart(2, '0');
+	  const ss = String(now.getSeconds()).padStart(2, '0');
+	  const sss = String(now.getMilliseconds()).padStart(3, '0');
+
+	  return `${dd}${MMM}${YYYY}-${HH}${mm}${ss}${sss}`;
+	}
+
+
+	static timestamp(humane) {
+        if(humane){
+            return this.humaneTimestamp();
+        }
+        const secondsSinceEpoch = Math.floor(Date.now() / 1000);
+        return secondsSinceEpoch;
+	}
+
+    static configureSelectFromDictionary(id,dictionary){
+		const selectElement = this.get(id);
+        selectElement.options.length = 0;
+
+		for (const [key, value] of Object.entries(dictionary)) {
+		  const option = document.createElement("option");
+		  option.value = key;
+		  option.textContent = key;
+		  selectElement.appendChild(option);
+		}
+    }
+
 	static status(message, type, htmlON) {
 	  if (type) {
 		this.updateElement("txt_status", message, type);

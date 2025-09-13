@@ -20,6 +20,8 @@ var THEME_LIGHT = "light";
 var ACTIVE_THEME = THEME_LIGHT;
 var IDE_status_message = "IDE almost in usable state. Work still on-going...";
 var SETTING_THEME = 'UI_MODE';
+var SETTING_PROGRAMS = 'TEA_PROGRAMS';
+var stored_PROGRAMS_DICTIONARY = {};
 
 //---[ PAGE THEME/MODE SETTINGS ]
 //---[ SYSTEM DATABASE for ANY SETTINGS ]
@@ -70,6 +72,13 @@ function toggle_light_theme(){
     U.status_success("DARK MODE turned OFF");
 }
 
+function reloadSTOREDPROGRAMS(){
+    // RELOAD STORED PROGRAMS
+    stored_PROGRAMS_DICTIONARY = JSON.parse(DATABASE.get(SETTING_PROGRAMS) || "{}");
+    U.configureSelectFromDictionary('sel_prog_list',stored_PROGRAMS_DICTIONARY);
+}
+
+//---[ INITIALIZE WEB IDE FUNCTIONALITY and restore SETTINGS ]
 //---[ PAGE READY HOOKS ]
 U.ready(function () {
     U.hide('rw_debug'); // hide debug output by default
@@ -88,6 +97,9 @@ U.ready(function () {
         toggle_dark_theme();
         U.trigger(U.get('switch_dark_ui'),'click'); // simulate toggle dark on..
     }
+
+    // RELOAD STORED PROGRAMS
+    reloadSTOREDPROGRAMS();
 
     // user ready to start working..
     // load status message from tool developers...
@@ -190,17 +202,21 @@ U.click("btn_run_prog", function() {
 // load selected TEA program from localstorage list of TEA programs
 U.click("btn_use_prog", function() {
     var prog_name = U.val('sel_prog_list');
+    U.updateElement('txt_code', stored_PROGRAMS_DICTIONARY[prog_name]);
 	U.status_warning(`Loaded TEA program [${prog_name}]`);
-    U.updateElement('txt_code', prog_name);
-    U.console("TODO: actually load code and program with given name from local storage")
 });
 
 
 // delete selected TEA program from localstorage list of TEA programs
 U.click("btn_del_prog", function() {
     var prog_name = U.val('sel_prog_list');
+
+    delete stored_PROGRAMS_DICTIONARY[prog_name];
+    DATABASE.set(SETTING_PROGRAMS,JSON.stringify(stored_PROGRAMS_DICTIONARY));
+    // RELOAD STORED PROGRAMS
+    reloadSTOREDPROGRAMS();
+
 	U.status_success(`DELETED STORED TEA program [${prog_name}]`);
-    U.console("TODO: actually delete code and program with given name from local storage")
 });
 
 // Save current TEA program into localstorage list of TEA programs
@@ -208,10 +224,28 @@ U.click("btn_save_prog", function() {
     var prog_name = U.val('txt_prog_name');
     var prog_code = U.val('txt_code');
 
+    var auto_prog_name = U.timestamp(true); // better than random
+
+    if(TEA.is_empty(prog_name))
+        prog_name = 'PROG-' + auto_prog_name;
+
     //build and store entry into DB
+    //we shall store programs as a json dictionary with structure:
+    //{ prog_name: progr_code, p1: pc1, p2: pc2,... pn: pcn }
+    var settingPROGRAMS = JSON.parse(DATABASE.get(SETTING_PROGRAMS) || "{}");
+    if(prog_name in settingPROGRAMS){
+        var new_prog_name = prog_name + '-' + auto_prog_name;
+        settingPROGRAMS[new_prog_name] = prog_code;
+        prog_name = new_prog_name;
+    } else {
+        settingPROGRAMS[prog_name] = prog_code;
+    }
+    DATABASE.set(SETTING_PROGRAMS,JSON.stringify(settingPROGRAMS));
+
+    // RELOAD STORED PROGRAMS
+    reloadSTOREDPROGRAMS();
 
 	U.status_success(`STORED TEA program [${prog_name}]`);
-    U.console("TODO: actually store code and program name into local storage")
 });
 
 
