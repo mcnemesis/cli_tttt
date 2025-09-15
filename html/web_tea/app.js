@@ -27,6 +27,69 @@ var use_STANDARD_PROGRAMS = false;
 var stored_PROGRAMS_DICTIONARY = {};
 const DEFAULT_TEA_PROG_EXT = '.tea';
 const DEFAULT_TEA_PROGRAM_SAMPLES_URI = "https://raw.githubusercontent.com/mcnemesis/cli_tttt/refs/heads/master/sample_TEA_programs/tea_tttt_transformer_sets/Reference_TEA_TTTTT_TransformerConfigurationSet.json";
+const DEFAULT_WEB_IDE_FQDN = "tea.nuchwezi.com";
+const DEFAULT_WEB_IDE_FQDN_URL = "https://" + DEFAULT_WEB_IDE_FQDN;
+
+// can support html tags in docs brief
+const WEB_IDE_DOCS_BRIEF = "<h3>TEA WEB IDE DOCS</h3>" +
+    "<ul>"+
+    "<li>"+ "For convenience, the full docs in summary have been loaded into the TEA input space." + "</li>"+
+    "<li>"+ "Note that this IDE supports INITIAL CONFIGURATION via a REST API" + "</li>"+
+    "<li>"+ "This IDE supports working in a harsh environment or on the move: all text input, whether data, code or outputs wont be lost in case the browser crashes, user switches context to other apps or accidentally closes/reloads the page." + "</li>"+
+    "<li>"+ "This tool is still under development. So, in case of any errors, bugs or feature requests, contact the developers via the GitHub Project link on the MENU" + "</li>"+
+    "</ul>";
+
+
+// full docs should only be plain text
+const WEB_IDE_DOCS_COMPLETE = "---[ TEA WEB IDE DOCS ]---\n\n" +
+    "Welcome to the Transforming Executable Alphabet [TEA] WEB Integrated Development Environment." + "\n\n"+
+    "Note that this IDE can be [re-]configured based on parameters you specify via the URL used to invoke the IDE. The WEB IDE REST API is explained below in brief:" + "\n\n"+
+    "--[TEA WEB IDE REST API]:" + "\n\n"+
+    "0. RUN TEA PROGRAM by DEFAULT: ?run" + "\n\n"+
+    "The RUN API parameter is most useful when combined with the other API parameters below. Essentially, when say explicit TEA program code is set like via '?c' or '?fc=', and if some input was specified too, then adding the parameter '?run' shall COMPEL the TEA WEB IDE to automatically go ahead and run/execute the provided TEA program, thus also producing output and/or effects as either TEA Output or debugging output depending on context and other parameters. Please use this with precaution when loading remote TEA code via 'fc'." + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?i=THIS+is+a+TEST&c=a!:&d=1&run" + "\n\n"+
+    "1. SET DEFAULT INPUT EXPLICITLY: ?i=INPUT" + "\n\n"+
+    "That shall initialize the IDE's TEA Input space as whatever you specify in the INPUT parameter value." + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?i=THIS+is+a+TEST" + "\n\n"+
+    "2. SET DEFAULT INPUT via REMOTE URL CONTENT : ?fi=INPUT_URL" + "\n\n"+
+    "The IDE shall fetch the text content at the specified url INPUT_URL and load it as the initial TEA Input" + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?fi=https://lorem-api.com/api/lorem" + "\n\n"+
+    "3. SET DEFAULT TEA CODE EXPLICITLY: ?c=CODE" + "\n\n"+
+    "That shall initialize the IDE's TEA Code space as whatever you specify in the CODE parameter value." + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?c=i:{Hello }|i!:|a!:" + "\n\n"+
+    "4. SET DEFAULT TEA CODE via REMOTE URL CONTENT : ?fc=CODE_URL" + "\n\n"+
+    "The IDE shall fetch the text content at the specified url CODE_URL and load it as the initial TEA Code." + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?fc=https://gist.githubusercontent.com/mcnemesis/97caf6d0573f7447a807cf635fd8128f/raw/zha.tea" + "\n\n"+
+    "5. SET DEFAULT WEB IDE THEME : ?t=LD" + "\n\n"+
+    "Useful if you wish to force IDE to load with a particular theme. Only TWO THEMES are supported; LIGHT (use t=l) or DARK (use t=d)" + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?t=l" + "\n\n"+
+    "6. FORCE WEB IDE to RUN in DEBUG ModE: ?d=01" + "\n\n"+
+    "Useful if you wish to force IDE to run with DEBUGGING ON or OFF by default. Only TWO MODES are supported; ON (use d=1) or OFF (use d=0)" + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?d=0" + "\n\n"+
+    "--[TEA WEB IDE FUNCTIONS]:" + "\n\n"+
+    "The rest of the functionality supported by the IDE is pretty clear; each button or control knob comes with some helpful text that shows what it's meant for --- easy to see if working via a laptop or desktop with mouse. Otherwise, the default functions are as follows:" + "\n\n"+
+    "1. RELOAD: click to reload the web ide interface. Shall also reload with last set configurations after processing both REST API and stored settings." + "\n\n"+
+    "2. MENU: The menu contains several links to either documentation about TEA, or buttons/links that trigger certain functionalities such as showing this documentation or changing the active THEME." + "\n\n"+
+    "3. TEA Input: Use that space to manually enter or preview text content that is meant to be passed on as default input to whatever TEA program you later specify." + "\n\n"+
+    "4. STANDARD PROGRAMS: When you use the MENU to load STANDARD TEA PROGRAMs, then clicking this switch shall allow you to toggle between two lists of SAVED PROGRAMS; one, the list of programs that you the user manually store or create, then the other a list of TEA Program that are loaded by the IDE as part of the standard examples of TEA Programs. You can freely switch between these, but note that all user stored or modified programs (even when originating from the STANDARD LIST) get stored on the user's program list." + "\n\n"+
+    "5. USE: Click 'USE' to load the code of the named program currently selected as the active TEA program." + "\n\n"+
+    "6. DEL: Click 'DEL' to remove the named program currently selected from either the User Program List or the stored STANDARD TEA Programs LIST." + "\n\n"+
+    "7. TEA Code: Use this space to manually compose or preview a TEA Program's source code, and which code is the main program to be executed when the IDE is compelled to RUN, VALIDATE or SANITIZE later on." + "\n\n"+
+    "8. Program Name: Use this space to manually enter or edit the name of a TEA Program to be stored in the User's Programs LIST. Note that, for convenience, when a name is entered without the '.tea' extension, then the IDE automatically adds that to the program name upon saving. Also, in case the stored list of programs already contains a program name as what is specified, then the IDE automatically suffixes the specified name with the CURRENT TIME-STAMP too. For cases where you wish to save a program without explicitly specifying a name, the IDE knows how to generate a useful name automatically, so this field can also be used while it is blank!" + "\n\n"+
+    "9. VALIDATE: Click the button 'VALIDATE' to check whether the currently specified TEA Program Code is VALID and whether it shall run as expected against the provided TEA Input. Note that, VALIDATE can work with either just TEA Input, TEA Code, both or neither! Also, in this mode, much as the inputs are parsed and lexical analysis is done, no actual execution of the TEA program shall occur." + "\n\n"+
+    "9. SANITIZE: Click the button 'SANITIZE' to Reformat the provided TEA Code into the simplest, clean and comment-free program code. No actual execution of the program occurs, and the results of the sanitization are automatically set as the TEA Output so that it becomes easy to copy and past that as either input or code if desired." + "\n\n"+
+    "10. CLEAR: Click the button 'CLEAR' to empty the TEA Code space. A similar, though more impactful option is 'RESET WEB IDE' that is found on the MENU --- it clears all fields and restored the WEB IDE to its defaults." + "\n\n"+
+    "11. RUN: Clicking this to Execute the currently active/specified TEA Input against the specified TEA Code. Shall also display debugging information if DEBUG MODE is ON, and the results of running the TEA program shall be displayed in the TEA Output space." + "\n\n"+
+    "12. SAVE: Clicking SAVE shall store the current text in TEA Code space as a stored program on the users program list, using the name in 'Program Name' or the adjusted/automatic name. These stored programs remain available in the same browser across reloads, and require no user login. Thus, if you work on a mobile phone, and later switch to a laptop, the list of saved programs in the mobile browser and laptop or even for different web browsers on the same physical device won't be the same." + "\n\n"+
+    "13. COPY: Click this to copy into your system clipboard, the text currently loaded in the TEA Code space." + "\n\n"+
+    "14. PASTE: Click this to paste into the TEA Code space, text that is currently in your system clipboard" + "\n\n"+
+    "15. TEA Output: This space contains all the text output returned as the FINAL result of executing your TEA Code and nothing else." + "\n\n"+
+    "16. SHARE: Click this to copy the text in TEA Output to your system clipboard." + "\n\n"+
+    "17. BACK PROPAGATE: Click to copy and load the text currently in TEA Output space as the new text in the TEA Input space. This functionality is great for iteratively building Text/Sequence Transformers that can be chained; where, one program operates on some input, produces output, then (in case you save that program), another program can be written that takes the input of the previous program and further operates on it to produce yet another kind of output, etc." + "\n\n"+
+    "18. ANALYZE: The analyze function is just suplimentary language support. Currently it only performs basic analysis of the TEA Output, but shall later help to compute some useful metrics about the entire active TEA execution session --- inputs, code, outputs, etc." + "\n\n"+
+    "---[FURTHER DOCS | TEA RESEARCH]" + "\n\n"+
+    "In case you still wisht to explore more concerning TEA, this WEB IDE, or any other aspects of the TEA project, definitely start by visiting the TEA GitHub Project [linked to on the MENU], or visit the TEA Research and TEA Community links as provided in the MENU." + "\n\n";
+
 
 //---[ PAGE THEME/MODE SETTINGS ]
 //---[ SYSTEM DATABASE for ANY SETTINGS ]
@@ -215,6 +278,11 @@ U.ready(function () {
         }
     }
 
+    // API:DEFAULT to RUN MODE:run
+    var defaultRUN = U.isSETURLFlag('run');
+    if(defaultRUN){
+        run_TEA_program();
+    }
 
 
     // user ready to start working..
@@ -238,6 +306,13 @@ U.click("switch_dark_ui", function() {
         toggle_light_theme();
     }
     location.reload();
+});
+
+
+// SHOW WEB IDE DOCUMENTATION: esp. WEB IDE REST API
+U.click("trig_web_ide_docs", function() {
+    U.updateElement('txt_input',WEB_IDE_DOCS_COMPLETE);
+    U.status(WEB_IDE_DOCS_BRIEF, 'primary', true);
 });
 
 
@@ -336,6 +411,7 @@ U.click("btn_sanitize_prog", function() {
     var extract_clean_code = true;
     var result = TEART.run(tinput, tsrc, DEBUG, debug_writer, onlyValidate, extract_clean_code);
     U.updateElement('txt_output',result);
+    U.clear('txt_analytics');
 	U.status_success("TEA Program sanitization complete. Clean TEA Program Code loaded into Editor.");
 });
 
@@ -352,12 +428,14 @@ U.click("btn_validate_prog", function() {
     var TEART = new TEA();
     var onlyValidate = true;
     var result = TEART.run(tinput, tsrc, DEBUG, debug_writer, onlyValidate);
-    U.updateElement('txt_output', "");
+    U.clear('txt_output');
+    U.clear('txt_analytics');
+
 	U.status_success("TEA Program validation complete. Consult DEBUGGING OUTPUT to view validation results...");
 });
 
 // run current TEA program code against available input and present results
-U.click("btn_run_prog", function() {
+function run_TEA_program(){
 	U.status_info("Initializing execution of TEA...");
     U.updateElement('txt_debug',''); // clear debug info
     var tinput = U.val('txt_input');
@@ -366,6 +444,10 @@ U.click("btn_run_prog", function() {
     var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
     U.updateElement('txt_output', result);
 	U.status_success("TEA Program execution complete.");
+}
+
+U.click("btn_run_prog", function() {
+    run_TEA_program();
 });
 
 // load selected TEA program from localstorage list of TEA programs

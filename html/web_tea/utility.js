@@ -37,6 +37,11 @@ export class Utility {
       return value && value.trim() !== "" ? value : null;
     }
 
+    // for checking presence of page url parameters
+    static isSETURLFlag(param_name) {
+      const value = new URLSearchParams(window.location.search);
+      return value.has(param_name);
+    }
 
     /* cause element to scroll to content to last item at the bottom*/
 	static scrollToBottom(id) {
