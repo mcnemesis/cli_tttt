@@ -21,8 +21,12 @@ var ACTIVE_THEME = THEME_LIGHT;
 var IDE_status_message = "IDE in a usable state. Also with dark and light mode. One can save and reload TEA programs. Work still on-going...";
 var SETTING_THEME = 'UI_MODE';
 var SETTING_PROGRAMS = 'TEA_PROGRAMS';
+var SETTING_STANDARD_PROGRAMS = 'STANDARD_TEA_PROGRAMS';
+var SETTING_USE_STANDARD_PROGRAMS = "USE_STANDARD_PROGRAMS";
+var use_STANDARD_PROGRAMS = false;
 var stored_PROGRAMS_DICTIONARY = {};
 const DEFAULT_TEA_PROG_EXT = '.tea';
+const DEFAULT_TEA_PROGRAM_SAMPLES_URI = "https://raw.githubusercontent.com/mcnemesis/cli_tttt/refs/heads/master/sample_TEA_programs/tea_tttt_transformer_sets/Reference_TEA_TTTTT_TransformerConfigurationSet.json";
 
 //---[ PAGE THEME/MODE SETTINGS ]
 //---[ SYSTEM DATABASE for ANY SETTINGS ]
@@ -32,7 +36,11 @@ const DATABASE = {
   },
   get: (key) => {
     const value = localStorage.getItem(key);
-    return value;
+      try{
+        return JSON.parse(value);
+      }catch(err){
+          return value;
+      }
   }
 };
 
@@ -76,8 +84,15 @@ function toggle_light_theme(){
 }
 
 function reloadSTOREDPROGRAMS(){
-    // RELOAD STORED PROGRAMS
-    stored_PROGRAMS_DICTIONARY = JSON.parse(DATABASE.get(SETTING_PROGRAMS) || "{}");
+    // RELOAD STORED PROGRAMS: user programs by default
+    use_STANDARD_PROGRAMS = DATABASE.get(SETTING_USE_STANDARD_PROGRAMS) || false;
+
+    if(use_STANDARD_PROGRAMS){
+        stored_PROGRAMS_DICTIONARY = DATABASE.get(SETTING_STANDARD_PROGRAMS) || {};
+    }else{
+        stored_PROGRAMS_DICTIONARY = DATABASE.get(SETTING_PROGRAMS) || {};
+    }
+
     U.configureSelectFromDictionary('sel_prog_list',stored_PROGRAMS_DICTIONARY);
 }
 
@@ -101,8 +116,16 @@ U.ready(function () {
         U.trigger(U.get('switch_dark_ui'),'click'); // simulate toggle dark on..
     }
 
+
+    // load last user-configured program list setting
+	use_STANDARD_PROGRAMS = DATABASE.get(SETTING_USE_STANDARD_PROGRAMS);
+    debugger
+    if(use_STANDARD_PROGRAMS){
+        U.trigger(U.get('switch_programs'),'click'); 
+    }    
     // RELOAD STORED PROGRAMS
     reloadSTOREDPROGRAMS();
+
 
     // make text editors sticky...
     U.makeStickyEditor('txt_input');
@@ -149,6 +172,49 @@ U.click("trig_reset_ide", function() {
     toggle_light_theme();
     location.reload();
 });
+
+// LOAD STANDARD TEA PROGRAMS
+U.click("trig_load_standard_programs", function(){
+    U.status_info("Wait as we load STANDARD TEA programs...");
+    U.httpGET(DEFAULT_TEA_PROGRAM_SAMPLES_URI, (txt)=>{
+        var jsonPROGARRAY = JSON.parse(txt);
+        var jsonSTANDARDTEAPROGS = {}
+        for(let proConf of jsonPROGARRAY){
+            var parts = proConf.split("|",2);
+            jsonSTANDARDTEAPROGS[parts[0]] = parts[1];
+        }
+        // also store these into database
+        DATABASE.set(SETTING_STANDARD_PROGRAMS,JSON.stringify(jsonSTANDARDTEAPROGS));
+        use_STANDARD_PROGRAMS = true;
+        DATABASE.set(SETTING_USE_STANDARD_PROGRAMS,use_STANDARD_PROGRAMS);
+        var is_USE_STANDARD_ON = U.checked('switch_programs');
+        if(!is_USE_STANDARD_ON){
+            U.trigger(U.get('switch_programs'),'click'); 
+        }    
+        // RELOAD STORED PROGRAMS
+        reloadSTOREDPROGRAMS();
+        U.status_success("STANDARD TEA Programs have been fetched and are now loaded.");
+    }, (error)=>{
+        U.status("Failed to load STANDARD TEA programs. ERROR:<br/>" + "<i>" + error + "</i>", 'danger', true);
+    });
+});
+
+// Toggle USE STANDARD PROGRAMS
+U.click("switch_programs", function() {
+    use_STANDARD_PROGRAMS = U.checked('switch_programs');
+    if(use_STANDARD_PROGRAMS){
+        DATABASE.set(SETTING_USE_STANDARD_PROGRAMS, true);
+        U.status_success("Stored Program List switched to STANDARD TEA Programs");
+    }else {
+        DATABASE.set(SETTING_USE_STANDARD_PROGRAMS, false);
+        U.status_success("Stored Program List switched to USER Programs");
+    }
+
+    // RELOAD STORED PROGRAMS
+    reloadSTOREDPROGRAMS();
+});
+
+
 
 // Toggle DEBUG MODE 
 U.click("switch_debug", function() {
@@ -235,14 +301,20 @@ U.click("btn_del_prog", function() {
     var prog_name = U.val('sel_prog_list');
 
     delete stored_PROGRAMS_DICTIONARY[prog_name];
-    DATABASE.set(SETTING_PROGRAMS,JSON.stringify(stored_PROGRAMS_DICTIONARY));
+
+    if(use_STANDARD_PROGRAMS){
+        DATABASE.set(SETTING_STANDARD_PROGRAMS,JSON.stringify(stored_PROGRAMS_DICTIONARY));
+    }else{
+        DATABASE.set(SETTING_PROGRAMS,JSON.stringify(stored_PROGRAMS_DICTIONARY));
+    }
+
     // RELOAD STORED PROGRAMS
     reloadSTOREDPROGRAMS();
 
 	U.status_success(`DELETED STORED TEA program [${prog_name}]`);
 });
 
-// Save current TEA program into localstorage list of TEA programs
+// Save current TEA program into localstorage list of USER TEA programs
 U.click("btn_save_prog", function() {
     var prog_name = U.val('txt_prog_name');
     var prog_code = U.val('txt_code');
@@ -258,7 +330,7 @@ U.click("btn_save_prog", function() {
     //build and store entry into DB
     //we shall store programs as a json dictionary with structure:
     //{ prog_name: progr_code, p1: pc1, p2: pc2,... pn: pcn }
-    var settingPROGRAMS = JSON.parse(DATABASE.get(SETTING_PROGRAMS) || "{}");
+    var settingPROGRAMS = DATABASE.get(SETTING_PROGRAMS) || {};
     if(prog_name in settingPROGRAMS){
         var new_prog_name = U.stripSuffix(prog_name,DEFAULT_TEA_PROG_EXT) + '-' + auto_prog_name + DEFAULT_TEA_PROG_EXT;
         settingPROGRAMS[new_prog_name] = prog_code;

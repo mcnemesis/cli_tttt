@@ -62,7 +62,7 @@ export class Utility {
 
 	//---[ UTILITIES: STATUS ]
 	static status_error(message) {
-	  this.status(message, "alert alert-error");
+	  this.status(message, "alert alert-danger");
 	}
 
 	static status_info(message) {
@@ -139,11 +139,26 @@ export class Utility {
         }
 	}
 
+	//---[UTILITY: HTTP GET]
+	static async httpGET(url, fnSUCCESS, fnERROR) {
+	  try {
+		const response = await fetch(url);
+		if (!response.ok) {
+		  if (fnERROR) fnERROR(response.statusText);
+		} else {
+		  const body = await response.text();
+		  if (fnSUCCESS) fnSUCCESS(body);
+		}
+	  } catch (err) {
+		if (fnERROR) fnERROR(err.message);
+	  }
+	}
+
+
 	//---[ UTILITY: CLEAR ELEMENT CONTENT ]
 	static clear(id) {
         this.updateElement(id,'');
     }
-
 
 	//---[ UTILITY: UPDATE ELEMENT ]
 	static updateElement(id, newText, newClass) {
