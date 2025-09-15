@@ -13,6 +13,7 @@ export class Utility {
 		return document.getElementById(id);
 	}
 
+    // trigger some event on a specific element
     static trigger(el, eventType) {
       if (typeof eventType === 'string' && typeof el[eventType] === 'function') {
         el[eventType]();
@@ -29,6 +30,12 @@ export class Utility {
 	static stripSuffix(str, suffix) {
 	  return str.endsWith(suffix) ? str.slice(0, -suffix.length) : str;
 	}
+
+    // for processing page url parameters
+    static getURLFlag(param_name) {
+      const value = new URLSearchParams(window.location.search).get(param_name);
+      return value && value.trim() !== "" ? value : null;
+    }
 
 
     /* cause element to scroll to content to last item at the bottom*/
@@ -62,7 +69,8 @@ export class Utility {
 
 	//---[ UTILITIES: STATUS ]
 	static status_error(message) {
-	  this.status(message, "alert alert-danger");
+        this.status(message, "alert alert-danger");
+        console.error(message);
 	}
 
 	static status_info(message) {
@@ -76,8 +84,9 @@ export class Utility {
 	  this.status(message, "alert alert-warning");
 	}
 
+    // make some text editor have sticky content
 	static makeStickyEditor(id){
-		document.addEventListener("DOMContentLoaded", () => {
+		this.ready(() => {
 		  const el = this.get(id);
 		  const storageKey = "sticky_editor_key_" + id;
 
@@ -93,6 +102,7 @@ export class Utility {
 		});
 	}
 
+    // return a humane time stamp string
 	static humaneTimestamp() {
 	  const now = new Date();
 	  const dd = String(now.getDate()).padStart(2, '0');
@@ -107,6 +117,7 @@ export class Utility {
 	}
 
 
+    // return a timestamp string
 	static timestamp(humane) {
         if(humane){
             return this.humaneTimestamp();
@@ -115,6 +126,7 @@ export class Utility {
         return secondsSinceEpoch;
 	}
 
+    // set a SELECT widget's items based on a DICT
     static configureSelectFromDictionary(id,dictionary){
 		const selectElement = this.get(id);
         selectElement.options.length = 0;
@@ -127,6 +139,7 @@ export class Utility {
 		}
     }
 
+    // show a status message
 	static status(message, type, htmlON) {
 	  if (type) {
 		this.updateElement("txt_status", message, type);

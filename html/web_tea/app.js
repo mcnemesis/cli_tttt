@@ -45,6 +45,8 @@ const DATABASE = {
 };
 
 
+
+// TOGGLE DARK THEME ON
 function toggle_dark_theme(){
     var is_darkmode_ON = true
     var elBody = U.get("elBody");
@@ -64,6 +66,7 @@ function toggle_dark_theme(){
     U.status_success("DARK MODE turned ON");
 }
 
+// TOGGLE LIGHT THEME ON
 function toggle_light_theme(){
     var is_darkmode_ON = false;
     var elBody = U.get("elBody");
@@ -83,6 +86,7 @@ function toggle_light_theme(){
     U.status_success("DARK MODE turned OFF");
 }
 
+// LOAD STORED TEA PROGRAMS
 function reloadSTOREDPROGRAMS(){
     // RELOAD STORED PROGRAMS: user programs by default
     use_STANDARD_PROGRAMS = DATABASE.get(SETTING_USE_STANDARD_PROGRAMS) || false;
@@ -96,7 +100,18 @@ function reloadSTOREDPROGRAMS(){
     U.configureSelectFromDictionary('sel_prog_list',stored_PROGRAMS_DICTIONARY);
 }
 
+
+
 //---[ INITIALIZE WEB IDE FUNCTIONALITY and restore SETTINGS ]
+
+// make text editors sticky...
+U.makeStickyEditor('txt_input');
+U.makeStickyEditor('txt_code');
+U.makeStickyEditor('txt_debug');
+U.makeStickyEditor('txt_output');
+U.makeStickyEditor('txt_prog_name');
+U.makeStickyEditor('txt_analytics');
+
 //---[ PAGE READY HOOKS ]
 U.ready(function () {
     U.hide('rw_debug'); // hide debug output by default
@@ -116,10 +131,8 @@ U.ready(function () {
         U.trigger(U.get('switch_dark_ui'),'click'); // simulate toggle dark on..
     }
 
-
     // load last user-configured program list setting
 	use_STANDARD_PROGRAMS = DATABASE.get(SETTING_USE_STANDARD_PROGRAMS);
-    debugger
     if(use_STANDARD_PROGRAMS){
         U.trigger(U.get('switch_programs'),'click'); 
     }    
@@ -127,13 +140,81 @@ U.ready(function () {
     reloadSTOREDPROGRAMS();
 
 
-    // make text editors sticky...
-    U.makeStickyEditor('txt_input');
-    U.makeStickyEditor('txt_code');
-    U.makeStickyEditor('txt_debug');
-    U.makeStickyEditor('txt_output');
-    U.makeStickyEditor('txt_prog_name');
-    U.makeStickyEditor('txt_analytics');
+	//---[ PROCESS IDE REST API ]
+    // API:DEFAULT INPUT:i 
+    var defaultINPUT = U.getURLFlag('i');
+    if(defaultINPUT){
+        //i=EXPLICIT_RAW_INPUT_TEXT
+        U.updateElement('txt_input',defaultINPUT);
+    }
+    // API:DEFAULT INPUT URL:fi 
+    var defaultINPUT_URL = U.getURLFlag('fi');
+    if(defaultINPUT_URL){
+        //fi=URL_TO_WEB_RESOURCE_for_INPUT
+        //e.g: ?fi=https://lorem-api.com/api/lorem
+        U.httpGET(defaultINPUT_URL, (text)=> {
+            U.updateElement('txt_input',text);
+        }, (err)=>{
+            U.status_error("ERORR processing REST API PARAMETER [fi]:" + err); 
+        });
+    }
+
+    // API:DEFAULT CODE:c
+    var defaultCODE = U.getURLFlag('c');
+    if(defaultCODE){
+        //c=EXPLICIT_RAW_TEA_CODE_TEXT
+        U.updateElement('txt_code',defaultCODE);
+    }
+    // API:DEFAULT CODE URL:fc
+    var defaultCODE_URL = U.getURLFlag('fc');
+    if(defaultCODE_URL){
+        //fc=URL_TO_WEB_RESOURCE_for_TEA_CODE
+        //e.g: ?fc=https://gist.githubusercontent.com/mcnemesis/97caf6d0573f7447a807cf635fd8128f/raw/b46d4416da8d6fa9fa275ce171783149b6d20627/zha.tea
+        U.httpGET(defaultCODE_URL, (text)=> {
+            U.updateElement('txt_code',text);
+        }, (err)=>{
+            U.status_error("ERORR processing REST API PARAMETER [fc]:" + err); 
+        });
+    }
+
+
+    // API:DEFAULT DEBUG MODE:d
+    var defaultDEBUG_ON = U.getURLFlag('d');
+    if(defaultDEBUG_ON){
+        defaultDEBUG_ON = (defaultDEBUG_ON == "1") || (defaultDEBUG_ON == 1) ? true : false;
+        if(DEBUG){
+            if(!defaultDEBUG_ON){
+                DEBUG = false; //override
+                U.hide('rw_debug'); 
+                U.trigger(U.get('switch_debug'),'click'); 
+            }
+        }else{
+            if(defaultDEBUG_ON){
+                DEBUG = true; //override
+                U.show('rw_debug'); 
+                U.trigger(U.get('switch_debug'),'click'); 
+            }
+
+        }
+    }
+
+
+    // API:DEFAULT THEME MODE:t
+    var defaultTHEME = U.getURLFlag('t');
+    if(defaultTHEME){
+        defaultTHEME = (defaultTHEME == "l")? THEME_LIGHT : THEME_DARK;
+        if(ACTIVE_THEME == THEME_LIGHT){
+            if(defaultTHEME == THEME_DARK) {
+                toggle_dark_theme(); // override
+            }
+        }else if(ACTIVE_THEME == THEME_DARK){
+            if(defaultTHEME == THEME_LIGHT) {
+                toggle_light_theme(); // override
+            }
+            //U.trigger(U.get('switch_dark_ui'),'click'); // simulate toggle dark on..
+        }
+    }
+
 
 
     // user ready to start working..
