@@ -101,6 +101,15 @@ U.ready(function () {
     // RELOAD STORED PROGRAMS
     reloadSTOREDPROGRAMS();
 
+    // make text editors sticky...
+    U.makeStickyEditor('txt_input');
+    U.makeStickyEditor('txt_code');
+    U.makeStickyEditor('txt_debug');
+    U.makeStickyEditor('txt_output');
+    U.makeStickyEditor('txt_prog_name');
+    U.makeStickyEditor('txt_analytics');
+
+
     // user ready to start working..
     // load status message from tool developers...
     U.status('<b>UPDATES:<b/><br/><ul><li>' 

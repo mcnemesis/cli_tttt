@@ -70,6 +70,23 @@ export class Utility {
 	  this.status(message, "alert alert-warning");
 	}
 
+	static makeStickyEditor(id){
+		document.addEventListener("DOMContentLoaded", () => {
+		  const el = this.get(id);
+		  const storageKey = "sticky_editor_key_" + id;
+
+		  // Load saved content
+		  const saved = localStorage.getItem(storageKey);
+		  if (saved !== null) el.value = saved;
+
+		  // Save on input
+		  el.addEventListener("input", () => {
+			localStorage.setItem(storageKey, el.value);
+		  });
+
+		});
+	}
+
 	static humaneTimestamp() {
 	  const now = new Date();
 	  const dd = String(now.getDate()).padStart(2, '0');
@@ -122,6 +139,8 @@ export class Utility {
 	  if (element) {
 		element.textContent = newText; // Sets the visible text
 		element.value = newText; // Also Sets the value text
+        // esp. for text areas and editors, want to trigger change
+        this.trigger(element,'input');
 		if (newClass) {
 		  element.className = newClass; // Replaces all existing classes
 		}
