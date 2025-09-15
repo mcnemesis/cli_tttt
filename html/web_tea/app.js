@@ -56,7 +56,7 @@ const WEB_IDE_DOCS_COMPLETE = "---[ TEA WEB IDE DOCS ]---\n\n" +
     "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?fi=https://lorem-api.com/api/lorem" + "\n\n"+
     "3. SET DEFAULT TEA CODE EXPLICITLY: ?c=CODE" + "\n\n"+
     "That shall initialize the IDE's TEA Code space as whatever you specify in the CODE parameter value." + "\n\n"+
-    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?c=i:{Hello }|i!:|a!:" + "\n\n"+
+    "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?c=i!:{Hello }|i:|a!:" + "\n\n"+
     "4. SET DEFAULT TEA CODE via REMOTE URL CONTENT : ?fc=CODE_URL" + "\n\n"+
     "The IDE shall fetch the text content at the specified url CODE_URL and load it as the initial TEA Code." + "\n\n"+
     "EXAMPLE: "+ DEFAULT_WEB_IDE_FQDN_URL +"/?fc=https://gist.githubusercontent.com/mcnemesis/97caf6d0573f7447a807cf635fd8128f/raw/zha.tea" + "\n\n"+
