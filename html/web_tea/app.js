@@ -52,6 +52,7 @@ function toggle_dark_theme(){
     U.get('elNavMenu').classList.add('bg-dark');
     document.body.setAttribute('data-bs-theme', ACTIVE_THEME);
 
+    DATABASE.set(SETTING_THEME, THEME_DARK);
     U.status_success("DARK MODE turned ON");
 }
 
@@ -70,6 +71,7 @@ function toggle_light_theme(){
     U.get('elNavMenu').classList.remove('bg-dark');
     document.body.setAttribute('data-bs-theme', ACTIVE_THEME);
 
+    DATABASE.set(SETTING_THEME, THEME_LIGHT);
     U.status_success("DARK MODE turned OFF");
 }
 
@@ -126,17 +128,27 @@ U.ready(function () {
 U.click("switch_dark_ui", function() {
     var is_darkmode_ON = U.checked('switch_dark_ui');
     if(is_darkmode_ON){
-        DATABASE.set(SETTING_THEME, THEME_DARK);
         toggle_dark_theme();
         location.reload();
     }else {
-        DATABASE.set(SETTING_THEME, THEME_LIGHT);
         toggle_light_theme();
     }
     location.reload();
 });
 
 
+// RESET WEB IDE
+U.click("trig_reset_ide", function() {
+    // clear all text areas..
+    U.clear('txt_input');
+    U.clear('txt_code');
+    U.clear('txt_debug');
+    U.clear('txt_output');
+    U.clear('txt_prog_name');
+    U.clear('txt_analytics');
+    toggle_light_theme();
+    location.reload();
+});
 
 // Toggle DEBUG MODE 
 U.click("switch_debug", function() {

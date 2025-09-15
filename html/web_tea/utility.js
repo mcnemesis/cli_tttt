@@ -139,6 +139,12 @@ export class Utility {
         }
 	}
 
+	//---[ UTILITY: CLEAR ELEMENT CONTENT ]
+	static clear(id) {
+        this.updateElement(id,'');
+    }
+
+
 	//---[ UTILITY: UPDATE ELEMENT ]
 	static updateElement(id, newText, newClass) {
 	  const element = this.get(id);
