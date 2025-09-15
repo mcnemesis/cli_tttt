@@ -22,6 +22,7 @@ var IDE_status_message = "IDE in a usable state. Also with dark and light mode. 
 var SETTING_THEME = 'UI_MODE';
 var SETTING_PROGRAMS = 'TEA_PROGRAMS';
 var stored_PROGRAMS_DICTIONARY = {};
+const DEFAULT_TEA_PROG_EXT = '.tea';
 
 //---[ PAGE THEME/MODE SETTINGS ]
 //---[ SYSTEM DATABASE for ANY SETTINGS ]
@@ -212,6 +213,7 @@ U.click("btn_run_prog", function() {
 U.click("btn_use_prog", function() {
     var prog_name = U.val('sel_prog_list');
     U.updateElement('txt_code', stored_PROGRAMS_DICTIONARY[prog_name]);
+    U.updateElement('txt_prog_name', prog_name);
 	U.status_warning(`Loaded TEA program [${prog_name}]`);
 });
 
@@ -236,14 +238,17 @@ U.click("btn_save_prog", function() {
     var auto_prog_name = U.timestamp(true); // better than random
 
     if(TEA.is_empty(prog_name))
-        prog_name = 'PROG-' + auto_prog_name;
+        prog_name = 'PROG-' + auto_prog_name + DEFAULT_TEA_PROG_EXT;
+
+    if(!prog_name.endsWith(DEFAULT_TEA_PROG_EXT))
+        prog_name = prog_name + DEFAULT_TEA_PROG_EXT; 
 
     //build and store entry into DB
     //we shall store programs as a json dictionary with structure:
     //{ prog_name: progr_code, p1: pc1, p2: pc2,... pn: pcn }
     var settingPROGRAMS = JSON.parse(DATABASE.get(SETTING_PROGRAMS) || "{}");
     if(prog_name in settingPROGRAMS){
-        var new_prog_name = prog_name + '-' + auto_prog_name;
+        var new_prog_name = U.stripSuffix(prog_name,DEFAULT_TEA_PROG_EXT) + '-' + auto_prog_name + DEFAULT_TEA_PROG_EXT;
         settingPROGRAMS[new_prog_name] = prog_code;
         prog_name = new_prog_name;
     } else {

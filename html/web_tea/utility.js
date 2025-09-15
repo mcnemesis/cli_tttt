@@ -25,6 +25,12 @@ export class Utility {
       }
     }
 
+    // strip suffix from strings
+	static stripSuffix(str, suffix) {
+	  return str.endsWith(suffix) ? str.slice(0, -suffix.length) : str;
+	}
+
+
     /* cause element to scroll to content to last item at the bottom*/
 	static scrollToBottom(id) {
 		  const el = this.get(id);
