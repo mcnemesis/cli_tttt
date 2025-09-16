@@ -4,7 +4,7 @@
  * This is the reference implementation of the TEA runtime for JavaScript
  * This implementation is meant to closely adhere to the Python RI
  *-------------------------------------------------------------------------
- * DEV: Joseph W. Lutalo <joewillrich@gmail.com>
+ * Language ENGINEER: Joseph W. Lutalo <joewillrich@gmail.com>
  * ***********************************************************************/
 
 export class TEA_RunTime {
@@ -36,15 +36,13 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.3" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.4" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a:, b:, c:, d:, f:, i:, l:,  v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: i: l: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
         this.DEBUG_FN = (txt) => { console.log(`T: ${txt}`) } // just in case no debug info printer is provided
-
-
     }
 
     get_version(){
@@ -69,7 +67,6 @@ export class TEA_RunTime {
         if(this.DEBUG)
             this.DEBUG_FN(txt);
     }
-
 
     // Pre-process TEA CODE
     pre_process_TSRC(tsrc){
@@ -160,7 +157,7 @@ export class TEA_RunTime {
             return [isValid, errors]
     }
 
-
+    // Pick LABEL BLOCKs from ordered TIL
     _parse_labelblocks(otil, initial_labelblocks){
         var TI_index = 0
         var labelblocks = initial_labelblocks ? initial_labelblocks : {}
@@ -194,7 +191,6 @@ export class TEA_RunTime {
         return labelblocks
     }
 
-
     // PARSE TEA CODE
     _parse_tea_code(code){
         var otil = []
@@ -215,9 +211,9 @@ export class TEA_RunTime {
     // reverse TEA String Masking
     unmask_str(val){
         return val
-          .replace(TEA_RunTime.OBSCURE_RC_NL, TEA_RunTime.NL)
-          .replace(TEA_RunTime.OBSCURE_RC_COM, TEA_RunTime.COMH)
-          .replace(TEA_RunTime.OBSCURE_RC_TID, TEA_RunTime.TID);
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_NL,'g'), TEA_RunTime.NL)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM,'g'), TEA_RunTime.COMH)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID);
     }
 
 	// Extract a string from a TEA expression
@@ -594,6 +590,78 @@ export class TEA_RunTime {
 
         _ATPI += 1 //move to next instruction if fork didn't evaluate...
         return [io,_ATPI];
+    }
+
+	// PROCESS: G:
+    process_g(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "G"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+            if(params.length == 0){
+                io = io.replace(new RegExp(TEA_RunTime.RE_WHITE_SPACE,'g'), TEA_RunTime.EMPTY_STR);
+            }
+            if(params.length == 1){
+                var glue = this.extract_str(params[0])
+                io = io.replace(new RegExp(TEA_RunTime.RE_WHITE_SPACE, 'g'), glue);
+            }
+            if(params.length == 2){
+                var regex = params[1]
+                var glue = this.extract_str(params[0])
+                io = io.replace(new RegExp(regex, 'g'), glue);
+            }
+        }
+
+        if(tc == "G!"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+            if(params.length == 0){
+                // INERT: do nothing
+            }
+            if(params.length == 1){
+                var glue = this.extract_str(params[0])
+                io = io.replace(new RegExp(TEA_RunTime.RE_WHITE_SPACE_N_PUNCTUATION,'g'), glue);
+            }
+        }
+
+        if(tc == "G*"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+            if(params.length < 3){
+                // INERT: do nothing
+            }
+            else{
+                var glue = this.extract_str(params[0])
+                var vaults = params.slice(1)
+                var vals = []
+                for(let v of vaults){
+                    vals.push(this.vault_get(v))
+                }
+                io = vals.join(glue)
+            }
+        }
+
+        if(tc == "G*!"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+            if(params.length < 3){
+                // INERT: do nothing
+            }
+            else{
+                var glue = this.vault_get(this.extract_str(params[0]))
+                var vaults = params.slice(1)
+                var vals = []
+                for(let v of vaults){
+                    vals.push(this.vault_get(v))
+                }
+                io = vals.join(glue)
+            }
+        }
+        return io
     }
 
 
@@ -1001,6 +1069,13 @@ export class TEA_RunTime {
                         [this.OUTPUT,this.ATPI] = this.process_f(instruction, this.OUTPUT, this.ATPI)
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         //ATPI += 1 # f: updates ATPI directly...
+                        continue
+                    }
+                    // G: Glue
+                    case "G": {
+                        this.OUTPUT = String(this.process_g(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
                         continue
                     }
 
