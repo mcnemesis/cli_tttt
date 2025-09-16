@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.0.8"
+VERSION = "1.0.9"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -904,6 +904,17 @@ class TEA_RunTime:
                     pass
                 else:
                     glue = extract_str(params[0])
+                    vaults = params[1:]
+                    vals = []
+                    for v in vaults:
+                        vals.append(vault_get(v))
+                    io = glue.join(vals)
+            if tc == "G*!":
+                params = tpe_str.split(TEA_RunTime.TIPED)
+                if len(params) < 3:
+                    pass
+                else:
+                    glue = vault_get(extract_str(params[0]))
                     vaults = params[1:]
                     vals = []
                     for v in vaults:
