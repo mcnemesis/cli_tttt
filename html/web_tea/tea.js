@@ -36,9 +36,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.2" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.3" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a:, b:, c:, d: i:, v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a:, b:, c:, d:, f:, i:, l:,  v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -450,6 +450,153 @@ export class TEA_RunTime {
     }
 
 
+    // PROCESS: F:
+    process_f(ti, ai, _ATPI){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "F"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+
+            if(params.length == 0){
+                return [io,_ATPI]
+            }
+
+            if(params.length == 1){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with No Labels!`)
+                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                throw new Error(`[ERROR] Fork Instruction ${ti} Invoked with No Labels!`)
+            }
+
+            if(params.length == 2){
+                var rtest = params[0] // the pattern
+                var tblock = params[1] // where to jump to if matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                ) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI += 1;
+                }
+
+                return [io,_ATPI]
+            }
+            else {
+                var rtest = params[0] // the pattern
+                var tblock = params[1] // where to jump if matched
+                var fblock = params[2] // where to jump if not matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+                if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                ) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI = this.LABELBLOCKS[fblock];
+                }
+
+                return [io,_ATPI]
+            }
+        }
+
+        if(tc == "F!"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+
+            if(params.length == 0){
+                return [io,_ATPI]
+            }
+
+            if(params.length == 1){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with No Labels!`)
+                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                throw new Error(`[ERROR] Fork Instruction ${ti} Invoked with No Labels!`)
+            }
+
+            if(params.length == 2){
+                var rtest = params[0] // the pattern
+                var tblock = params[1] // where to jump to if NOT matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (!(
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                )) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI += 1;
+                }
+
+                return [io,_ATPI]
+            }
+            else {
+                var rtest = params[0] // the pattern
+                var tblock = params[1] // where to jump if matched
+                var fblock = params[2] // where to jump if not matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+                if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (!(
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                )) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI = this.LABELBLOCKS[fblock];
+                }
+
+                return [io,_ATPI]
+            }
+
+        }
+
+        _ATPI += 1 //move to next instruction if fork didn't evaluate...
+        return [io,_ATPI];
+    }
+
+
 	// PROCESS: I:
     process_i(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -482,6 +629,52 @@ export class TEA_RunTime {
 
         return io
     }
+
+
+    //PROCESS L:
+    process_l(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "L"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // do nothing..
+            }
+            else {
+                var lBlockName = tpe_str
+                // prevent duplication of block names
+                if (!this.LABELBLOCKS.hasOwnProperty(lBlockName)) {
+                    // store current code position under given label block name
+                    // but most likely, has already been done during TSRC pre-processing/validation
+                    LABELBLOCKS[lBlockName] = ATPI
+                }
+            }
+        }
+
+        if(tc == "L!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // do nothing..
+            }
+            else{
+                var labels = tpe_str.split(TEA_RunTime.TIPED)
+                for(let lBlockName of labels){
+                    // prevent duplication of block names
+                    if (!this.LABELBLOCKS.hasOwnProperty(lBlockName)) {
+                        LABELBLOCKS[lBlockName] = ATPI
+                    }
+                }
+            }
+        }
+
+        return io
+    }
+
 
     //PROCESS V:
     process_v(ti, ai){
@@ -803,6 +996,13 @@ export class TEA_RunTime {
                         continue
                     }
 
+                    // F: Fork
+                    case "F": {
+                        [this.OUTPUT,this.ATPI] = this.process_f(instruction, this.OUTPUT, this.ATPI)
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        //ATPI += 1 # f: updates ATPI directly...
+                        continue
+                    }
 
                     // I: Interact
                     case "I": {
@@ -811,6 +1011,15 @@ export class TEA_RunTime {
                         this.ATPI += 1
                         continue
                     }
+
+                    // L: Label
+                    case "L": {
+                        this.OUTPUT = String(this.process_l(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+
                     // V: Vault
                     case "V": {
                         this.OUTPUT = String(this.process_v(instruction, this.OUTPUT))
