@@ -88,7 +88,7 @@ const WEB_IDE_DOCS_COMPLETE = "---[ TEA WEB IDE DOCS ]---\n\n" +
     "17. BACK PROPAGATE: Click to copy and load the text currently in TEA Output space as the new text in the TEA Input space. This functionality is great for iteratively building Text/Sequence Transformers that can be chained; where, one program operates on some input, produces output, then (in case you save that program), another program can be written that takes the input of the previous program and further operates on it to produce yet another kind of output, etc. Such programs can then later be either [re-]composed into one long TEA program, or can be invoked using Linux/Unix piping-style, with one program's output feeding into the next, etc. to solve some nontrivial problem (Transformatics anyone?)" + "\n\n"+
     "18. ANALYZE: The analyze function is just supplementary language support. Currently it only performs basic analysis of the TEA Output, but shall later help to compute some useful metrics about the entire active TEA execution session --- inputs, code, outputs, etc." + "\n\n"+
     "---[FURTHER DOCS | TEA RESEARCH]" + "\n\n"+
-    "In case you still wish to explore more concerning TEA, this WEB IDE, or any other aspects of the TEA project, definitely start by visiting the TEA GitHub Project [linked to on the MENU], or visit the TEA Research and TEA Community links as provided in the MENU." + "\n\n";
+    "In case you still wish to explore more concerning TEA, this WEB IDE, or any other aspects of the TEA project, definitely start by visiting the TEA GitHub Project [linked to on the MENU], or visit the TEA Research and TEA Community links as provided on the MENU." + "\n\n";
 
 
 //---[ PAGE THEME/MODE SETTINGS ]
