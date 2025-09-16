@@ -256,6 +256,16 @@ export class TEA_RunTime {
         return lparts.join(TEA_RunTime.EMPTY_STR)
     }
 
+    util_unique_chars(val){
+		let uniqueChars = "";
+		for (let char of val) {
+			if (!uniqueChars.includes(char)) {
+				uniqueChars += char;
+			}
+		}
+		return uniqueChars;
+	}
+
 
     //-----------------------------
     // VAULT/MEMORY utils
@@ -312,6 +322,37 @@ export class TEA_RunTime {
             io = this.util_anagramatize_chars(input_str)
         }
 
+        return io
+    }
+
+
+    // PROCESS: B:
+    process_b(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "B"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = this.util_unique_chars(input_str)
+        }
+        if(tc == "B!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = [...this.util_unique_chars(input_str)].sort().join(TEA_RunTime.EMPTY_STR);
+        }
+        if(tc == "B*"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            io = this.util_unique_chars(input_str)
+        }
+        if(tc == "B*!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            io = [...this.util_unique_chars(input_str)].sort().join(TEA_RunTime.EMPTY_STR);
+        }
         return io
     }
 
@@ -572,6 +613,15 @@ export class TEA_RunTime {
                         this.ATPI += 1
                         continue
                     }
+                    // B: Basify
+                    case "B": {
+                        this.OUTPUT = String(this.process_b(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+
+
                     // I: Interact
                     case "I": {
                         this.OUTPUT = String(this.process_i(instruction, this.OUTPUT))
