@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.2" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a:, b:, c:, i:, v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a:, b:, c:, d: i:, v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -370,6 +370,80 @@ export class TEA_RunTime {
         if(tc == "C!"){
             for(let vault in this.VAULTS){
                 this.VAULTS[vault] = TEA_RunTime.EMPTY_STR
+            }
+        }
+        return io
+    }
+
+
+    // PROCESS: D:
+    process_d(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+
+        if(tc == "D"){
+			let dpatterns = tpe_str.split(TEA_RunTime.TIPED);
+			for (let dp of dpatterns) {
+				io = io.replace(new RegExp(dp, 'g'), TEA_RunTime.EMPTY_STR);
+			}
+        }
+        if(tc == "D!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+				io = io.replace(new RegExp(TEA_RunTime.RE_WHITE_SPACE, 'g'), TEA_RunTime.EMPTY_STR);
+            }
+            else{
+                let dpatterns = tpe_str.split(TEA_RunTime.TIPED);
+                let dfilter = dpatterns.join("|");
+                let matches = io.match(new RegExp(dfilter, 'g')) || [];
+                io = matches.join(TEA_RunTime.EMPTY_STR);
+            }
+        }
+
+        if((tc == "D*") || (tc == "D*!")){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return io
+            }
+            else {
+                if(tc == "D*"){
+                   var params  = tpe_str.split(TEA_RunTime.TIPED)
+                   if(params.length == 1){
+                       var vREGEX = params[0]
+                       if(vREGEX.length > 0){
+                           var dp = this.vault_get(vREGEX) 
+                           io = io.replace(new RegExp(dp, 'g'), TEA_RunTime.EMPTY_STR);
+                       }
+                   }
+                   else{
+                        var dpatterns = []
+                        for(let vRX of params){
+                            if(vRX.length > 0){
+                               dpatterns.push(this.vault_get(vRX))
+                            }
+                        }
+                        for(let dp of dpatterns){
+                            io = io.replace(new RegExp(dp, 'g'), TEA_RunTime.EMPTY_STR);
+                        }
+                   }
+                }
+                if (tc == "D*!") {
+                    var params  = tpe_str.split(TEA_RunTime.TIPED)
+                    var dpatterns = []
+                    for(let vRX of params){
+                        if(vRX.length > 0){
+                           dpatterns.push(this.vault_get(vRX))
+                        }
+                    }
+                    let dfilter = dpatterns.join("|");
+                    let matches = io.match(new RegExp(dfilter, 'g')) || [];
+                    io = matches.join(TEA_RunTime.EMPTY_STR);
+                }
             }
         }
         return io
@@ -717,6 +791,13 @@ export class TEA_RunTime {
                     // C: Clear
                     case "C": {
                         this.OUTPUT = String(this.process_c(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // D: Delete
+                    case "D": {
+                        this.OUTPUT = String(this.process_d(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue

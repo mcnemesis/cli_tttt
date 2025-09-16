@@ -441,9 +441,13 @@ function run_TEA_program(){
     var tinput = U.val('txt_input');
     var tsrc = U.val('txt_code');
     var TEART = new TEA();
-    var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
-    U.updateElement('txt_output', result);
-	U.status_success("TEA Program execution complete.");
+    try{
+        var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
+        U.updateElement('txt_output', result);
+        U.status_success("TEA Program execution complete.");
+    }catch(err){
+        U.status_error(`TEA Program execution FAILED: ${err}`);
+    }
 }
 
 U.click("btn_run_prog", function() {
