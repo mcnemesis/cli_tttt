@@ -675,7 +675,7 @@ class TEA_RunTime:
                     dpatterns = tpe_str.split(TEA_RunTime.TIPED)
                     dfilter = "|".join(dpatterns)
                     matches = re.findall(dfilter,io)
-                    io = TEA_RunTime.GLUE.join(matches)
+                    io = TEA_RunTime.EMPTY_STR.join(matches)
             if (tc == "D*") or (tc == "D*!"):
                 if len(tpe_str) == 0:
                     return io
@@ -702,7 +702,7 @@ class TEA_RunTime:
                                dpatterns.append(vault_get(vRX))
                         dfilter = "|".join(dpatterns)
                         matches = re.findall(dfilter,io)
-                        io = TEA_RunTime.GLUE.join(matches)
+                        io = TEA_RunTime.EMPTY_STR.join(matches)
             return io
 
 
