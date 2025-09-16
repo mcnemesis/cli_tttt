@@ -36,9 +36,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.1" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.2" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a:, i: and v: implemented and tested";
+        this.status_MESSAGE = "Currently with a:, b:, c:, i:, v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -357,6 +357,25 @@ export class TEA_RunTime {
     }
 
 
+    // PROCESS: C:
+    process_c(ti, ai){
+        var io = TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+        tc = tc.toUpperCase()
+
+        if(tc == "C"){
+            // io already set to empty str
+        }
+        if(tc == "C!"){
+            for(let vault in this.VAULTS){
+                this.VAULTS[vault] = TEA_RunTime.EMPTY_STR
+            }
+        }
+        return io
+    }
+
+
 	// PROCESS: I:
     process_i(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -499,6 +518,81 @@ export class TEA_RunTime {
     }
 
 
+    //PROCESS Y:
+    process_y(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "Y"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
+                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                }
+                var vVALUE = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
+                this.debug(`[INFO] Returning string  in DEFAULT VAULT [${vVALUE}]`)
+                return vVALUE
+            }
+            else {
+                var vNAME = tpe_str
+                var vVALUE = this.vault_get(vNAME)
+                this.debug(`[INFO] Returning string in VAULT [${vNAME}]`)
+                return vVALUE
+            }
+        }
+
+        if(tc == "Y!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
+                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                }
+                var vVALUE = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
+                this.debug(`[INFO] Returning Length of string  in DEFAULT VAULT [${vVALUE}]`)
+                return vVALUE.length
+            }
+            else {
+                var vNAME = tpe_str
+                var vVALUE = this.vault_get(vNAME)
+                this.debug(`[INFO] Returning Length of string  in VAULT[${vNAME}]`)
+                return vVALUE.length
+            }
+        }
+
+        if(tc == "Y*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug("[INFO] Returning ORIGINAL INPUT to the TEA PROGRAM")
+                return this.ORIGINAL_INPUT
+            } else {
+                var vNAME = tpe_str
+                var vVALUE = this.vault_get(vNAME)
+                this.debug(`[INFO] Returning string  in VAULT[${vNAME}]`)
+                return vVALUE
+            }
+        }
+
+        if(tc == "Y*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug("[INFO] Returning Length of ORIGINAL INPUT to the TEA PROGRAM")
+                return TEA_RunTime.is_empty(this.ORIGINAL_INPUT) ? 0: this.ORIGINAL_INPUT.length
+            } else {
+                var vNAME = tpe_str
+                var vVALUE = this.vault_get(vNAME)
+                this.debug(`[INFO] Returning Length of string  in VAULT[${vNAME}]`)
+                return vVALUE.length
+            }
+        }
+
+        return io
+    }
+
+
 
     //////////////[ END TAZ ]///////////////////
 
@@ -620,6 +714,13 @@ export class TEA_RunTime {
                         this.ATPI += 1
                         continue
                     }
+                    // C: Clear
+                    case "C": {
+                        this.OUTPUT = String(this.process_c(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
 
 
                     // I: Interact
@@ -632,6 +733,13 @@ export class TEA_RunTime {
                     // V: Vault
                     case "V": {
                         this.OUTPUT = String(this.process_v(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // Y: Yank
+                    case "Y": {
+                        this.OUTPUT = String(this.process_y(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
