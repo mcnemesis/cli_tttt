@@ -951,17 +951,21 @@ class TEA_RunTime:
                     pass
                 else:
                     vault = params[0]
-                    regex = params[1]
+                    vregex = params[1]
                     input_str = vault_get(vault)
-                    io = TEA_RunTime.SINGLE_SPACE_CHAR.join(list(input_str))
+                    regex = vault_get(vregex)
+                    regex = r'(?=' + regex + ')'
+                    parts = re.split(regex, input_str)
+                    io = TEA_RunTime.SINGLE_SPACE_CHAR.join(parts)
             if tc == "H*!":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                 if len(params) < 2:
                     pass
                 else:
                     vault = params[0]
-                    regex = params[1]
+                    vregex = params[1]
                     input_str = vault_get(vault)
+                    regex = vault_get(vregex)
                     regex = r'(?=' + regex + ')'
                     parts = re.split(regex, input_str)
                     io = TEA_RunTime.NL.join(parts)
