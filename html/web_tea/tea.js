@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.4" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: i: l: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: l: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -665,6 +665,70 @@ export class TEA_RunTime {
     }
 
 
+	// PROCESS: H:
+    process_h(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "H"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = Array.from(io).join(TEA_RunTime.SINGLE_SPACE_CHAR);
+            }
+            else {
+				const regex = new RegExp(`(?=${tpe_str})`, 'g');
+				const parts = io.split(regex);
+				io = parts.join(TEA_RunTime.SINGLE_SPACE_CHAR);
+            }
+        }
+        if(tc == "H!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = Array.from(io).join(TEA_RunTime.NL);
+            }
+            else{
+				const regex = new RegExp(`(?=${tpe_str})`, 'g');
+				const parts = io.split(regex);
+				io = parts.join(TEA_RunTime.NL);
+            }
+        }
+        if(tc == "H*"){
+            const params = tpe_str.split(TEA_RunTime.TIPED, 3);
+            if(params.length < 2){
+                // INERT
+            }
+            else{
+                var vault = params[0]
+                var vregex = params[1]
+                var input_str = this.vault_get(vault)
+                var regex = this.vault_get(vregex)
+				regex = new RegExp(`(?=${regex})`, 'g');
+				const parts = input_str.split(regex);
+				io = parts.join(TEA_RunTime.SINGLE_SPACE_CHAR);
+            }
+        }
+        if(tc == "H*!"){
+            const params = tpe_str.split(TEA_RunTime.TIPED, 3);
+            if(params.length < 2){
+                // INERT
+            }
+            else{
+                var vault = params[0]
+                var vregex = params[1]
+                var input_str = this.vault_get(vault)
+                var regex = this.vault_get(vregex)
+				regex = new RegExp(`(?=${regex})`, 'g');
+				const parts = input_str.split(regex);
+				io = parts.join(TEA_RunTime.NL);
+            }
+        }
+        return io
+    }
+
 	// PROCESS: I:
     process_i(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -1074,6 +1138,14 @@ export class TEA_RunTime {
                     // G: Glue
                     case "G": {
                         this.OUTPUT = String(this.process_g(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+
+                    // H: Hew
+                    case "H": {
+                        this.OUTPUT = String(this.process_h(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
