@@ -1941,14 +1941,9 @@ class TEA_RunTime:
                     return vVALUE
             if tc == "Y*!":
                 if len(tpe_str) == 0:
-                    if TEA_RunTime.vDEFAULT_VAULT not in VAULTS:
-                        if TEA_RunTime.DEBUG:
-                            print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
-                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
-                    vVALUE = vault_get(TEA_RunTime.vDEFAULT_VAULT)
                     if TEA_RunTime.DEBUG:
-                        print(f"[INFO] Returning Length of string  in DEFAULT VAULT [{vVALUE}]")
-                    return len(vVALUE)
+                        print(f"[INFO] Returning Length of ORIGINAL INPUT to the TEA PROGRAM")
+                    return len(ORIGINAL_INPUT) if ORIGINAL_INPUT else 0
                 else:
                     vNAME = tpe_str
                     vVALUE = vault_get(vNAME)
