@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.6" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: r: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: r: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -244,6 +244,13 @@ export class TEA_RunTime {
         }
 		return this.unmask_str(val)
     }
+
+
+	util_gen_rand(limit, ll=0){
+		return limit === ll
+			? limit
+			: Math.floor(Math.random() * (limit - ll + 1)) + ll;
+	}
 
     /////////////////////
     // MORE UTILS
@@ -1064,6 +1071,118 @@ export class TEA_RunTime {
     }
 
 
+    //PROCESS N:
+    process_n(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if((tc == "N") || (tc == "N!")){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                var limit = 9
+                io = String(this.util_gen_rand(limit))
+            }
+            else{
+               var params  = tpe_str.split(TEA_RunTime.TIPED)
+                if(params.length == 1){
+                   var limit = params[0]
+                   io = String(this.util_gen_rand(Number(limit)))
+                }
+                if(params.length == 2){
+                   var [limit,llimit] = params
+                   io = String(this.util_gen_rand(Number(limit), Number(llimit)))
+                }
+                if(params.length == 3){
+                   var [limit,llimit,size] = params
+                   var nums = []
+                   for(var i=0; i < Number(size); i++){
+                       nums.push(String(this.util_gen_rand(Number(limit), Number(llimit))))
+                   }
+                   io = nums.join(TEA_RunTime.GLUE)
+                }
+                if(params.length == 4){
+                   var [limit,llimit,size,glue] = params
+                   var nums = []
+                   for(var i=0; i < Number(size); i++){
+                       nums.push(String(this.util_gen_rand(Number(limit), Number(llimit))))
+                   }
+                   io = nums.join(glue)
+                }
+            }
+        }
+
+        if((tc == "N*") || (tc == "N*!")){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return io
+            }
+            else{
+               var params  = tpe_str.split(TEA_RunTime.TIPED)
+                if(params.length == 1){
+                   var vlimit = params[0]
+                   var limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
+                   io = String(this.util_gen_rand(Number(limit)))
+                }
+                if(params.length == 2){
+                   var [limit,llimit] = params
+
+                   var vlimit = limit
+                   limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
+
+                   var vllimit = llimit
+                   llimit = !TEA_RunTime.is_empty(vllimit) ? this.vault_get(vllimit) : 0
+
+                   io = String(this.util_gen_rand(Number(limit), Number(llimit)))
+                }
+                if(params.length == 3){
+                   var [limit,llimit,size] = params
+
+                   var vlimit = limit
+                   limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
+
+                   var vllimit = llimit
+                   llimit = !TEA_RunTime.is_empty(vllimit) ? this.vault_get(vllimit) : 0
+
+                   var vsize = size
+                   size = !TEA_RunTime.is_empty(vsize) ? this.vault_get(vsize) : 1
+
+                   var nums = []
+                   for(var i=0; i < Number(size); i++){
+                       nums.push(String(this.util_gen_rand(Number(limit), Number(llimit))))
+                   }
+                   io = nums.join(TEA_RunTime.GLUE)
+                }
+                if(params.length == 4){
+                   var [limit,llimit,size,glue] = params
+
+                   var vlimit = limit
+                   limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
+
+                   var vllimit = llimit
+                   llimit = !TEA_RunTime.is_empty(vllimit) ? this.vault_get(vllimit) : 0
+
+                   var vsize = size
+                   size = !TEA_RunTime.is_empty(vsize) ? this.vault_get(vsize) : 1
+
+                   var vglue = glue
+                   glue = !TEA_RunTime.is_empty(vglue) ? this.vault_get(vglue) : TEA_RunTime.GLUE
+
+                   var nums = []
+                   for(var i=0; i < Number(size); i++){
+                       nums.push(String(this.util_gen_rand(Number(limit), Number(llimit))))
+                   }
+                   io = nums.join(glue)
+                }
+            }
+        }
+        return io
+    }
+
+
     //PROCESS R:
     process_r(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -1547,6 +1666,13 @@ export class TEA_RunTime {
                     // M: Mirror
                     case "M": {
                         this.OUTPUT = String(this.process_m(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // N: Number
+                    case "N": {
+                        this.OUTPUT = String(this.process_n(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue

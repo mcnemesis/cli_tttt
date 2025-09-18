@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.0.9"
+VERSION = "1.1.0"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -1242,7 +1242,7 @@ class TEA_RunTime:
                        vsize = size
                        size = vault_get(vsize) if len(vsize) > 0 else 1
 
-                       vglue = size
+                       vglue = glue
                        glue = vault_get(vglue) if len(vglue) > 0 else TEA_RunTime.GLUE
 
                        nums = []
