@@ -36,9 +36,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.5" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.6" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: r: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: r: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -308,6 +308,16 @@ export class TEA_RunTime {
 			}
 		}
 		return uniqueChars;
+	}
+
+    util_mirror_words(val){
+		const parts = val.split(TEA_RunTime.RE_WHITE_SPACE);
+		const lparts = parts.reverse();
+		return lparts.join(TEA_RunTime.GLUE);
+	}
+
+    util_mirror_chars(val){
+		return ([...val].reverse()).join(TEA_RunTime.EMPTY_STR);
 	}
 
 
@@ -1009,6 +1019,50 @@ export class TEA_RunTime {
         return io
     }
 
+    //PROCESS M:
+    process_m(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "M"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = this.util_mirror_words(input_str)
+        }
+        if(tc == "M!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = this.util_mirror_chars(input_str)
+        }
+        if(tc == "M*"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
+                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                }
+                input_str = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
+            }
+            io = this.util_mirror_words(input_str)
+        }
+        if(tc == "M*!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
+                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                }
+                input_str = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
+            }
+            io = this.util_mirror_chars(input_str)
+        }
+        return io
+    }
+
 
     //PROCESS R:
     process_r(ti, ai){
@@ -1486,6 +1540,13 @@ export class TEA_RunTime {
                     // L: Label
                     case "L": {
                         this.OUTPUT = String(this.process_l(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // M: Mirror
+                    case "M": {
+                        this.OUTPUT = String(this.process_m(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
