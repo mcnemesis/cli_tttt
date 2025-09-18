@@ -36,9 +36,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.4" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.5" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: l: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: l: r: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -61,6 +61,22 @@ export class TEA_RunTime {
         return false;
     }
 
+	static splitWithLimit(str, delimiter, maxsplit) {
+	  if (maxsplit === undefined || maxsplit < 1) {
+		return str.split(delimiter);
+	  }
+
+	  const parts = [];
+	  let remaining = str;
+	  for (let i = 0; i < maxsplit; i++) {
+		const index = remaining.indexOf(delimiter);
+		if (index === -1) break;
+		parts.push(remaining.slice(0, index));
+		remaining = remaining.slice(index + delimiter.length);
+	  }
+	  parts.push(remaining);
+	  return parts;
+	}
 
     // Conditionally print debug info...
     debug(txt){
@@ -232,6 +248,38 @@ export class TEA_RunTime {
     /////////////////////
     // MORE UTILS
     /////////////////////
+
+
+    static util_braille_projection1(val){
+		const rNonWhiteSpace = /\S/g;
+		const rWhiteSpace = /[ \t\r\f\v]/g;
+
+		// Remove all non-whitespace characters
+		val = val.replace(rNonWhiteSpace, TEA_RunTime.EMPTY_STR);
+
+		// Replace all whitespace except newline with a full stop
+		val = val.replace(rWhiteSpace, '.');
+
+		return val;
+	}
+
+
+    static util_braille_projection2(val){
+		const rNonWhiteSpace = /\S/g;
+		const rWhiteSpace = /[ \t\r\f\v]/g;
+
+		// Replace all non-whitespace characters with '#'
+		val = val.replace(rNonWhiteSpace, '#');
+
+		// Replace all whitespace except newline with a full stop
+		val = val.replace(rWhiteSpace, '.');
+
+		// Replace '#' with SINGLE_SPACE_CHAR
+		val = val.replace(/#/g, TEA_RunTime.SINGLE_SPACE_CHAR);
+
+		return val;
+	}
+
 	shuffle_fisher_yates(arr) {
 	  for (let i = arr.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
@@ -763,6 +811,45 @@ export class TEA_RunTime {
     }
 
 
+    // PROCESS: J:
+    process_j(ti, ai, _ATPI){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "J"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                jblock = tpe_str
+                if (!this.LABELBLOCKS.hasOwnProperty(jblock)) {
+                    this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${jblock}]`)
+                    this.debug("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+                _ATPI = LABELBLOCKS[jblock]
+                return [io,_ATPI]
+            }
+        }
+        if(tc == "J!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                _ATPI = 0 // start of program
+                return [io,_ATPI]
+            }
+            else{
+                // INERT
+            }
+        }
+
+        _ATPI += 1 // move to next instruction if jump didn't evaluate...
+        return [io,_ATPI]
+    }
+
     //PROCESS L:
     process_l(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -799,6 +886,114 @@ export class TEA_RunTime {
                     // prevent duplication of block names
                     if (!this.LABELBLOCKS.hasOwnProperty(lBlockName)) {
                         LABELBLOCKS[lBlockName] = ATPI
+                    }
+                }
+            }
+        }
+
+        return io
+    }
+
+
+    //PROCESS R:
+    process_r(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(io)){
+            return io // essentially, INERT
+        }
+
+        if(tc == "R"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = TEA_RunTime.util_braille_projection1(io)
+            }
+            else {
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 1)
+                if(params.length != 2){
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                    throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+                else {
+                    var regex = new RegExp(params[0])
+                    var replacement = this.extract_str(params[1])
+                    io = io.replace(regex, replacement);
+                }
+            }
+        }
+        if(tc == "R!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = TEA_RunTime.util_braille_projection2(io)
+            }
+            else{
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 1)
+                if(params.length != 2){
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                    throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+                else{
+                    var regex = new RegExp(params[0],'g')
+                    var replacement = this.extract_str(params[1])
+                    io = io.replace(regex, replacement);
+                }
+            }
+        }
+
+        if(tc == "R*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
+                if((params.length == 2) || (params.length > 3)){
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                    throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+                else{
+                    if(params.length == 1){
+                        var vault = params[0]
+                        var input_str = this.vault_get(vault)
+                        io = TEA_RunTime.util_braille_projection1(input_str)
+                    }
+                    else{
+                        var vault = params[0]
+                        var regex = new RegExp(params[1])
+                        var replacement = this.extract_str(params[2])
+                        var input_str = this.vault_get(vault)
+                        io = input_str.replace(regex, replacement);
+                    }
+                }
+            }
+        }
+
+        if(tc == "R*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
+                if((params.length == 2) || (params.length > 3)){
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                    throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+                else{
+                    if(params.length == 1){
+                        var vault = params[0]
+                        var input_str = this.vault_get(vault)
+                        io = TEA_RunTime.util_braille_projection2(input_str)
+                    }
+                    else{
+                        var vault = params[0]
+                        var regex = new RegExp(params[1],'g')
+                        var replacement = this.extract_str(params[2])
+                        var input_str = this.vault_get(vault)
+                        io = input_str.replace(regex, replacement);
                     }
                 }
             }
@@ -1158,10 +1353,25 @@ export class TEA_RunTime {
                         this.ATPI += 1
                         continue
                     }
+                    // J: Jump
+                    case "J": {
+                        [this.OUTPUT,this.ATPI] = this.process_j(instruction, this.OUTPUT, this.ATPI)
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        //ATPI += 1 # j: updates ATPI directly...
+                        continue
+                    }
 
                     // L: Label
                     case "L": {
                         this.OUTPUT = String(this.process_l(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+
+                    // R: Replace
+                    case "R": {
+                        this.OUTPUT = String(this.process_r(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue

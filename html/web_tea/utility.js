@@ -144,6 +144,11 @@ export class Utility {
 		}
     }
 
+
+	static setHTML(id, html) {
+        this.get(id).innerHTML = html;
+    }
+
     // show a status message
 	static status(message, type, htmlON) {
 	  if (type) {
@@ -156,6 +161,31 @@ export class Utility {
             this.get("txt_status").innerHTML = message;
         }
 	}
+
+    static analyze_TEA_session(input, code, output){
+        var analyses = []
+        var li = input.length, lc = code.length, lo = output.length;
+        // first, cardinalities...
+        analyses.push(`Explicit INPUT Cardinality: ${li}`)
+        analyses.push(`Explicit CODE Cardinality: ${lc}`)
+        analyses.push(`OUTPUT Cardinality: ${lo}`)
+        // compression or protraction?
+        if(li > lo){
+            var cr = Math.ceil(100.0 * ((li - lo)/li))
+            analyses.push(`Detected INPUT Compression by: ${cr}%`)
+        }
+        if(li < lo){
+            var cr = Math.ceil(100.0 * ((lo - li)/li))
+            analyses.push(`Detected INPUT Protraction by: ${cr}%`)
+        }
+        if(li == lo){
+            analyses.push(`Input and Output Size similar.`)
+        }
+
+        var analysis = analyses.map(l => "->" + l ).join("\n");
+        return "---[START ANALYSIS]\n" + analysis + "\n---[END ANALYSIS]";
+
+    }
 
 	//---[UTILITY: HTTP GET]
 	static async httpGET(url, fnSUCCESS, fnERROR) {

@@ -336,7 +336,6 @@ U.click("trig_load_standard_programs", function(){
         var jsonPROGARRAY = JSON.parse(txt);
         var jsonSTANDARDTEAPROGS = {}
         for(let proConf of jsonPROGARRAY){
-            debugger
             var parts = proConf.split("<>",2);
             jsonSTANDARDTEAPROGS[parts[0]] = parts[1];
         }
@@ -451,9 +450,21 @@ function run_TEA_program(){
     //}
 }
 
+// Execute current program
 U.click("btn_run_prog", function() {
     run_TEA_program();
 });
+
+function reloadPage() {
+	// This reloads the page using the current URL, including query parameters
+	window.location.href = window.location.href;
+}
+
+// Reload Page
+U.click("btn_reload", function() {
+	reloadPage();
+});
+
 
 // load selected TEA program from localstorage list of TEA programs
 U.click("btn_use_prog", function() {
@@ -571,8 +582,10 @@ U.click("btn_paste_prog", function() {
 
 // Analyze program and present results
 U.click("btn_analyze", function() {
-    var prog_output = U.val('txt_output');
-    U.updateElement('txt_analytics',`Cardinality of output is ${prog_output.length}`);
+    var input = U.val('txt_input');
+    var code = U.val('txt_code');
+    var output = U.val('txt_output');
+    var analysis = U.analyze_TEA_session(input,code,output);
+    U.updateElement('txt_analytics',analysis);
     U.status_success("Program Analysis complete");
-    U.console("TODO: actually compute necessary analytics on program and output and display them.")
 });
