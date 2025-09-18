@@ -457,7 +457,8 @@ U.click("btn_run_prog", function() {
 
 function reloadPage() {
 	// This reloads the page using the current URL, including query parameters
-	window.location.href = window.location.href;
+	//window.location.href = window.location.href; // only working on localhost!
+    window.location.reload();
 }
 
 // Reload Page
