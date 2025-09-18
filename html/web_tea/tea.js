@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.5" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: l: r: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: r: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -850,6 +850,121 @@ export class TEA_RunTime {
         return [io,_ATPI]
     }
 
+    //PROCESS K:
+    process_k(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(io)){
+            return io // essentially, INERT
+        }
+
+        if(tc == "K"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else {
+                var regex = tpe_str
+                var inputLines = io.split(TEA_RunTime.NL)
+                var keptLines = []
+                for(let line of inputLines){
+                    if (
+                        new RegExp(regex).test(line) ||                     // equivalent to re.search
+                        line.match(new RegExp(`^${regex}`)) ||              // equivalent to re.match
+                        regex === line ||                                   // exact string match
+                        line.includes(regex)                                // substring presence
+                    ) {
+                            keptLines.push(line)
+                    }
+                }
+                io = keptLines.join(TEA_RunTime.NL)
+            }
+        }
+
+        if(tc == "K!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var regex = tpe_str
+                var inputLines = io.split(TEA_RunTime.NL)
+                var keptLines = []
+                for(let line of inputLines){
+                    if (!(
+                        new RegExp(regex).test(line) ||                     // equivalent to re.search
+                        line.match(new RegExp(`^${regex}`)) ||              // equivalent to re.match
+                        regex === line ||                                   // exact string match
+                        line.includes(regex)                                // substring presence
+                    )) {
+                            keptLines.push(line)
+                    }
+                }
+                io = keptLines.join(TEA_RunTime.NL)
+            }
+        }
+
+        if(tc == "K*"){
+            var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
+            if(params.length < 2){
+                // INERT
+            }
+            else{
+                var vault = params[0]
+                var regex = params[1]
+                var input_str = this.vault_get(vault)
+
+                var inputLines = input_str.split(TEA_RunTime.NL)
+                var keptLines = []
+                for(let line of inputLines){
+                    if (
+                        new RegExp(regex).test(line) ||                     // equivalent to re.search
+                        line.match(new RegExp(`^${regex}`)) ||              // equivalent to re.match
+                        regex === line ||                                   // exact string match
+                        line.includes(regex)                                // substring presence
+                    ) {
+                            keptLines.push(line)
+                    }
+                }
+                io = keptLines.join(TEA_RunTime.NL)
+            }
+        }
+
+        if(tc == "K*!"){
+            var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
+            if(params.length < 2){
+                // INERT
+            }
+            else{
+                var vault = params[0]
+                var regex = params[1]
+                var input_str = this.vault_get(vault)
+
+                var inputLines = input_str.split(TEA_RunTime.NL)
+                var keptLines = []
+                for(let line of inputLines){
+                    if (!(
+                        new RegExp(regex).test(line) ||                     // equivalent to re.search
+                        line.match(new RegExp(`^${regex}`)) ||              // equivalent to re.match
+                        regex === line ||                                   // exact string match
+                        line.includes(regex)                                // substring presence
+                    )) {
+                            keptLines.push(line)
+                    }
+                }
+                io = keptLines.join(TEA_RunTime.NL)
+            }
+        }
+        return io
+    }
+
+
+
     //PROCESS L:
     process_l(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -1358,6 +1473,13 @@ export class TEA_RunTime {
                         [this.OUTPUT,this.ATPI] = this.process_j(instruction, this.OUTPUT, this.ATPI)
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         //ATPI += 1 # j: updates ATPI directly...
+                        continue
+                    }
+                    // K: Keep
+                    case "K": {
+                        this.OUTPUT = String(this.process_k(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
                         continue
                     }
 
