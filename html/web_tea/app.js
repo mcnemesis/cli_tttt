@@ -336,7 +336,8 @@ U.click("trig_load_standard_programs", function(){
         var jsonPROGARRAY = JSON.parse(txt);
         var jsonSTANDARDTEAPROGS = {}
         for(let proConf of jsonPROGARRAY){
-            var parts = proConf.split("|",2);
+            debugger
+            var parts = proConf.split("<>",2);
             jsonSTANDARDTEAPROGS[parts[0]] = parts[1];
         }
         // also store these into database
