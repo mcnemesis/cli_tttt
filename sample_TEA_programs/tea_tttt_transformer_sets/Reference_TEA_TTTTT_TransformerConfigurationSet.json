@@ -1,4 +1,5 @@
 [
+      "The SIR Game<># randomly pick a word from the given list\nI!:{HONEY TRICK WINDS GAMES} | a: | d:[ ].*$\n# (=\\\"TRICK\\\") for example\nS:-:4 | # randomly inject \"-\" b4 4th pstn\n#(=\\\"TR-ICK\\\") for example\nR:.[-]:? | R:[-].:? | v:vW | v:vPR:What is the missing letter in | g*:{ }:vPR:vW | i: | # e.g returns \\\"TR?CK\\\"",
    "De PUNCTURA Filter<>d!:{[\\\\ \\[\\]!\"#$%&'()*+,-./:;<=>?@^_`{|}~]} \n#try to run this interesting TEA program against large normal text such as the TEA WEB DOCs to appreciate it.",
    "Random IP Address Generator<>n!:256:0:4:.",
    "Random IP Address Generator-II<>v:vL:256|v:vLL:0|v:vS:4|v:vG:.|n*:vL:vLL:vS:vG",

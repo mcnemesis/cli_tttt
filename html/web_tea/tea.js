@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.8" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -257,6 +257,48 @@ export class TEA_RunTime {
 			? limit
 			: Math.floor(Math.random() * (limit - ll + 1)) + ll;
 	}
+
+    util_salt_string(val, salt, injection_limit = null, llimit=null){
+        var l_val = val.length
+        if(l_val == 0){
+            return val // nothing to salt
+        }
+        l_val = l_val + 1 // so the salt can also become a suffix
+        var u_limit = (injection_limit != null) && (injection_limit < l_val) ? injection_limit : l_val
+        var injection_index = this.util_gen_rand(u_limit, llimit || 0)
+        this.debug(`Salting ${val} of len[${val.length}] at index[${injection_index}]--> ${val.slice(0,injection_index)} + ${salt} + ${val.slice(injection_index)}`)
+        var salted_val = String(val.slice(0,injection_index) + salt + val.slice(injection_index))
+        return salted_val
+    }
+
+    util_unsalt_string(val, salt_pattern=null, deletion_limit = null, llimit=null){
+        var l_val = val.length
+        if(l_val == 0){
+            return val // nothing to unsalt
+        }
+        if(salt_pattern == null){
+            var deletion_index = this.util_gen_rand(l_val)
+            var unsalted_val = String(val.slice(0,deletion_index) + val.slice(deletion_index + 1))
+            return unsalted_val
+        }
+        else {
+            // get all sections matching pattern in val
+			const matches = [...val.matchAll(new RegExp(salt_pattern, 'g'))];
+			const l_matches = matches.length;
+            if(l_matches == 0){
+                return val // nothing to unsalt
+            }
+            var d_limit = (deletion_limit != null) && (deletion_limit < l_matches) ? deletion_limit : l_matches
+            var deletion_index = this.util_gen_rand(d_limit, llimit || 0)
+            // Get the start and end positions of the chosen match
+            const match = matches[deletion_index];
+            const start = match.index;
+            const end = match.index + match[0].length;
+            this.debug(`UnSalting ${val} of len[${val.length}] between index[${start} and ${end}]--> ${val.slice(0,start)} + ${val.slice(end)}`)
+            var unsalted_val = val.slice(0, start) + val.slice(end);
+            return unsalted_val
+        }
+    }
 
     /////////////////////
     // MORE UTILS
@@ -1672,6 +1714,162 @@ export class TEA_RunTime {
     }
 
 
+
+    //PROCESS S:
+    process_s(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+        var salt = TEA_RunTime.SINGLE_SPACE_CHAR
+
+        if(tc == "S"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    // can't salt without input
+                    return io
+                }
+                else{
+                    io = this.util_salt_string(io,salt)
+                }
+            }
+            else{
+                if(TEA_RunTime.is_empty(io)){
+                    // can't salt without input
+                    return io
+                }
+                else{
+                    var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
+                    if(params.length == 1){
+                        salt = this.extract_str(params[0])
+                        io = this.util_salt_string(io,salt)
+                    }
+                    else if(params.length == 2){
+                        salt = this.extract_str(params[0])
+                        var i_limit = Number(this.extract_str(params[1]))
+                        io = this.util_salt_string(io,salt,i_limit)
+                    }
+                    else if(params.length == 3){
+                        salt = this.extract_str(params[0])
+                        var i_limit = Number(this.extract_str(params[1]))
+                        var l_limit = Number(this.extract_str(params[2]))
+                        io = this.util_salt_string(io,salt,i_limit, l_limit)
+                    }
+                }
+            }
+        }
+
+        if(tc == "S!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    // can't unsalt without input
+                    return io
+                }
+                else {
+                    io = this.util_unsalt_string(io)
+                }
+            }
+            else {
+                if(TEA_RunTime.is_empty(io)){
+                    // can't unsalt without input
+                    return io
+                }
+                else {
+                    var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
+                    if(params.length == 1){
+                        var salt_regex = this.extract_str(params[0])
+                        io = this.util_unsalt_string(io,salt_regex)
+                    }
+                    else if(params.length == 2){
+                        var salt_regex = this.extract_str(params[0])
+                        var d_limit = Number(this.extract_str(params[1]))
+                        io = this.util_unsalt_string(io,salt_regex, d_limit)
+                    }
+                    else if(params.length == 3){
+                        var salt_regex = this.extract_str(params[0])
+                        var d_limit = Number(this.extract_str(params[1]))
+                        var l_limit = Number(this.extract_str(params[2]))
+                        io = this.util_unsalt_string(io,salt_regex, d_limit, l_limit)
+                    }
+                }
+            }
+        }
+
+        if(tc == "S*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else {
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
+                var vault = this.extract_str(params[0])
+                var input_str = this.vault_get(vault)
+                io = input_str
+
+                if(TEA_RunTime.is_empty(io)){
+                    // can't unsalt without input
+                    return io
+                }
+                else {
+                    if(params.length == 2){
+                        salt = this.extract_str(params[1])
+                        io = this.util_salt_string(io,salt)
+                    }
+                    else if(params.length == 3){
+                        salt = this.extract_str(params[1])
+                        var i_limit = Number(this.extract_str(params[2]))
+                        io = this.util_salt_string(io,salt,i_limit)
+                    }
+                    else if(params.length == 4){
+                        salt = this.extract_str(params[1])
+                        var i_limit = Number(this.extract_str(params[2]))
+                        var l_limit = Number(this.extract_str(params[3]))
+                        io = this.util_salt_string(io,salt,i_limit, l_limit)
+                    }
+                }
+            }
+        }
+
+        if(tc == "S*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else {
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
+                var vault = this.extract_str(params[0])
+                var input_str = this.vault_get(vault)
+                io = input_str
+
+                if(TEA_RunTime.is_empty(io)){
+                    // can't unsalt without input
+                    return io
+                }
+                else {
+                    if(params.length == 2){
+                        var salt_regex = this.extract_str(params[1])
+                        io = this.util_unsalt_string(io,salt_regex)
+                    }
+                    else if(params.length == 3){
+                        var salt_regex = this.extract_str(params[1])
+                        var d_limit = Number(this.extract_str(params[2]))
+                        io = this.util_unsalt_string(io,salt_regex, d_limit)
+                    }
+                    else if(params.length == 4){
+                        var salt_regex = this.extract_str(params[1])
+                        var d_limit = Number(this.extract_str(params[2]))
+                        var l_limit = Number(this.extract_str(params[3]))
+                        io = this.util_unsalt_string(io,salt_regex, d_limit, l_limit)
+                    }
+                }
+            }
+        }
+
+        return io
+    }
+
     //PROCESS V:
     process_v(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -2083,6 +2281,13 @@ export class TEA_RunTime {
                     // R: Replace
                     case "R": {
                         this.OUTPUT = String(this.process_r(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // S: Salt
+                    case "S": {
+                        this.OUTPUT = String(this.process_s(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue

@@ -1599,16 +1599,16 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 1:
-                            salt = params[0]
+                            salt = extract_str(params[0])
                             io = util_salt_string(io,salt)
                         elif len(params) == 2:
-                            salt = params[0]
-                            i_limit = int(params[1])
+                            salt = extract_str(params[0])
+                            i_limit = int(extract_str(params[1]))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 3:
-                            salt = params[0]
-                            i_limit = int(params[1])
-                            l_limit = int(params[2])
+                            salt = extract_str(params[0])
+                            i_limit = int(extract_str(params[1]))
+                            l_limit = int(extract_str(params[2]))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
             if tc == "S!":
                 if len(tpe_str) == 0:
@@ -1624,16 +1624,16 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 1:
-                            salt_regex = params[0]
+                            salt_regex = extract_str(params[0])
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 2:
-                            salt_regex = params[0]
-                            d_limit = int(params[1])
+                            salt_regex = extract_str(params[0])
+                            d_limit = int(extract_str(params[1]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 3:
-                            salt_regex = params[0]
-                            d_limit = int(params[1])
-                            l_limit = int(params[2])
+                            salt_regex = extract_str(params[0])
+                            d_limit = int(extract_str(params[1]))
+                            l_limit = int(extract_str(params[2]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             if tc == "S*":
@@ -1641,7 +1641,7 @@ class TEA_RunTime:
                     pass
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = params[0]
+                    vault = extract_str(params[0])
                     input_str = vault_get(vault)
                     io = input_str
 
@@ -1650,16 +1650,16 @@ class TEA_RunTime:
                         return io
                     else:
                         if len(params) == 2:
-                            salt = params[1]
+                            salt = extract_str(params[1])
                             io = util_salt_string(io,salt)
                         elif len(params) == 3:
-                            salt = params[1]
-                            i_limit = int(params[2])
+                            salt = extract_str(params[1])
+                            i_limit = int(extract_str(params[2]))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 4:
-                            salt = params[1]
-                            i_limit = int(params[2])
-                            l_limit = int(params[3])
+                            salt = extract_str(params[1])
+                            i_limit = int(extract_str(params[2]))
+                            l_limit = int(extract_str(params[3]))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
 
             if tc == "S*!":
@@ -1667,7 +1667,7 @@ class TEA_RunTime:
                     pass
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = params[0]
+                    vault = extract_str(params[0])
                     input_str = vault_get(vault)
                     io = input_str
 
@@ -1677,16 +1677,16 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 2:
-                            salt_regex = params[1]
+                            salt_regex = extract_str(params[1])
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 3:
-                            salt_regex = params[1]
-                            d_limit = int(params[2])
+                            salt_regex = extract_str(params[1])
+                            d_limit = int(extract_str(params[2]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 4:
-                            salt_regex = params[1]
-                            d_limit = int(params[2])
-                            l_limit = int(params[3])
+                            salt_regex = extract_str(params[1])
+                            d_limit = int(extract_str(params[2]))
+                            l_limit = int(extract_str(params[3]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             return io
