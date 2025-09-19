@@ -647,15 +647,40 @@ class TEA_RunTime:
 
 
         def process_c(ti, ai):
-            io = TEA_RunTime.EMPTY_STR
+            io = ai if ai is not None else TEA_RunTime.EMPTY_STR
             tc, tpe = ti.split(TEA_RunTime.TCD, maxsplit=1)
             tc = tc.upper()
+            tpe = tpe.strip()
+            # extract the string parameter
+            tpe_str = extract_str(tpe)
 
             if tc == "C":
-                pass
+                if len(tpe_str) == 0:
+                    io = TEA_RunTime.EMPTY_STR
+                else:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+
             if tc == "C!":
-                for vault in VAULTS:
-                    VAULTS[vault] = TEA_RunTime.EMPTY_STR
+                if len(tpe_str) == 0:
+                    for vault in VAULTS:
+                        VAULTS[vault] = TEA_RunTime.EMPTY_STR
+                    io = TEA_RunTime.EMPTY_STR
+                else:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+
+            if tc == "C*" or tc == "C*!":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    vaults = tpe_str.split(TEA_RunTime.TIPED)
+                    for vault in vaults:
+                        VAULTS[vault] = TEA_RunTime.EMPTY_STR
             return io
 
 
@@ -1422,6 +1447,43 @@ class TEA_RunTime:
                     return io,_ATPI
                 else:
                     qtest = tpe_str
+                    if not (bool(re.search(qtest, io)) or (re.match(qtest, io)) or (qtest == io) or (qtest in io)):
+                        if TEA_RunTime.DEBUG:
+                            print(f"Quiting Program because AI[{ai}] does NOT match non-quit pattern[{qtest}]")
+                        _ATPI = len(INSTRUCTIONS) + 1
+
+            if tc == "Q*":
+                if len(tpe_str) == 0:
+                    if len(VAULTS) == 0:
+                        if TEA_RunTime.DEBUG:
+                            print(f"-- Quiting Program because NO VAULTS were set")
+                        _ATPI = len(INSTRUCTIONS) + 1 # points to end of program
+                else:
+                    vregex = tpe_str
+                    qtest = vault_get(vregex)
+                    if (bool(re.search(qtest, io)) or (re.match(qtest, io)) or (qtest == io) or (qtest in io)):
+                        if TEA_RunTime.DEBUG:
+                            print(f"Quiting Program because AI[{ai}] matches quit pattern[{qtest}]")
+                        _ATPI = len(INSTRUCTIONS) + 1
+
+            if tc == "Q*!":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.vDEFAULT_VAULT not in VAULTS:
+                        if TEA_RunTime.DEBUG:
+                            print(f"-- Quiting Program because the DEFAULT VAULT  is not set")
+                        _ATPI = len(INSTRUCTIONS) + 1
+                    else:
+                        default_vault_val = vault_get(TEA_RunTime.vDEFAULT_VAULT)
+                        if len(default_vault_val) == 0: # possible if c!: was invoked earlier on
+                            if TEA_RunTime.DEBUG:
+                                print(f"-- Quiting Program because the DEFAULT VAULT  is EMPTY!")
+                            _ATPI = len(INSTRUCTIONS) + 1
+                        else:
+                            _ATPI += 1 # first move to next instruction if we didn't quit
+                    return io,_ATPI
+                else:
+                    vregex = tpe_str
+                    qtest = vault_get(vregex)
                     if not (bool(re.search(qtest, io)) or (re.match(qtest, io)) or (qtest == io) or (qtest in io)):
                         if TEA_RunTime.DEBUG:
                             print(f"Quiting Program because AI[{ai}] does NOT match non-quit pattern[{qtest}]")

@@ -36,9 +36,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.7" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.8" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: r: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -51,6 +51,12 @@ export class TEA_RunTime {
 
     get_status_message(){
         return this.status_MESSAGE;
+    }
+
+    static is_empty_dict(dict){
+        if(Object.keys(dict).length == 0)
+            return true;
+        return false;
     }
 
     static is_empty(str){
@@ -475,19 +481,49 @@ export class TEA_RunTime {
 
     // PROCESS: C:
     process_c(ti, ai){
-        var io = TEA_RunTime.EMPTY_STR
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
 		var parts = ti.split(TEA_RunTime.TCD);
 		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
         tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
 
         if(tc == "C"){
-            // io already set to empty str
-        }
-        if(tc == "C!"){
-            for (let vault of Object.keys(this.VAULTS)) {
-                this.VAULTS[vault] = TEA_RunTime.EMPTY_STR
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = TEA_RunTime.EMPTY_STR
+            }
+            else{
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
             }
         }
+        if(tc == "C!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                for (let vault of Object.keys(this.VAULTS)) {
+                    this.VAULTS[vault] = TEA_RunTime.EMPTY_STR
+                }
+                io = TEA_RunTime.EMPTY_STR
+            }else{
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+            }
+        }
+
+        if((tc == "C*") || (tc == "C*!")){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+            }
+            else {
+                var vaults = tpe_str.split(TEA_RunTime.TIPED)
+                for(let vault of vaults){
+                    this.VAULTS[vault] = TEA_RunTime.EMPTY_STR
+                }
+            }
+        }
+
         return io
     }
 
@@ -1417,6 +1453,117 @@ export class TEA_RunTime {
 
 
 
+    // PROCESS: Q:
+    process_q(ti, ai, _ATPI){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "Q"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    this.debug("-- Quiting Program because AI is EMPTY")
+                    _ATPI = this.INSTRUCTIONS.length + 1 // points to end of program
+                }
+            }
+            else {
+                var qregex_test = tpe_str
+                if (
+                    new RegExp(qregex_test).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${qregex_test}`)) ||              // equivalent to re.match
+                    qregex_test === io ||                                   // exact string match
+                    io.includes(qregex_test)                                // substring presence
+                ) {
+                    this.debug(`Quiting Program because AI[${ai}] matches quit pattern[${qregex_test}]`)
+                    _ATPI = this.INSTRUCTIONS.length + 1
+                }
+            }
+        }
+
+        if(tc == "Q!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug("-- UNCONDITIONALLY Quiting Program")
+                _ATPI = this.INSTRUCTIONS.length + 1
+                return [io,_ATPI]
+            }
+            else {
+                var qregex_test = tpe_str
+                if (!(
+                    new RegExp(qregex_test).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${qregex_test}`)) ||              // equivalent to re.match
+                    qregex_test === io ||                                   // exact string match
+                    io.includes(qregex_test)                                // substring presence
+                )) {
+                    this.debug(`Quiting Program because AI[${ai}] does NOT match non-quit pattern[${qregex_test}]`)
+                    _ATPI = this.INSTRUCTIONS.length + 1
+                }
+            }
+        }
+
+        if(tc == "Q*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty_dict(this.VAULTS)){
+                    this.debug("-- Quiting Program because NO VAULTS were set")
+                    _ATPI = this.INSTRUCTIONS.length + 1
+                }
+            }
+            else{
+                var vregex = tpe_str
+                var qregex_test = this.vault_get(vregex)
+                if (
+                    new RegExp(qregex_test).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${qregex_test}`)) ||              // equivalent to re.match
+                    qregex_test === io ||                                   // exact string match
+                    io.includes(qregex_test)                                // substring presence
+                ) {
+                    this.debug(`Quiting Program because AI[${ai}] matches quit pattern[${qregex_test}]`)
+                    _ATPI = this.INSTRUCTIONS.length + 1
+                }
+            }
+        }
+
+        if(tc == "Q*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
+                    this.debug("-- Quiting Program because the DEFAULT VAULT  is not set")
+                    _ATPI = this.INSTRUCTIONS.length + 1
+                }
+                else{
+                    var default_vault_val = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
+                    if(TEA_RunTime.is_empty(default_vault_val)){ // possible if c!: was invoked earlier on
+                        this.debug("-- Quiting Program because the DEFAULT VAULT  is EMPTY!")
+                        _ATPI = this.INSTRUCTIONS.length + 1
+                    }else{
+                        _ATPI += 1 // first move to next instruction if we didn't quit
+                    }
+                }
+                return [io,_ATPI]
+            }
+            else {
+                var vregex = tpe_str
+                var qregex_test = this.vault_get(vregex)
+                if (!(
+                    new RegExp(qregex_test).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${qregex_test}`)) ||              // equivalent to re.match
+                    qregex_test === io ||                                   // exact string match
+                    io.includes(qregex_test)                                // substring presence
+                )) {
+                    this.debug(`Quiting Program because AI[${ai}] does NOT match non-quit pattern[${qregex_test}]`)
+                    _ATPI = this.INSTRUCTIONS.length + 1
+                }
+            }
+        }
+
+        _ATPI += 1 // move to next instruction if we didn't quit
+        return [io,_ATPI]
+    }
+
+
     //PROCESS R:
     process_r(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -1923,6 +2070,13 @@ export class TEA_RunTime {
                         this.OUTPUT = String(this.process_p(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
+                        continue
+                    }
+                    // Q: Quit
+                    case "Q": {
+                        [this.OUTPUT,this.ATPI] = this.process_q(instruction, this.OUTPUT, this.ATPI)
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        //ATPI += 1 # q: updates ATPI directly...
                         continue
                     }
 
