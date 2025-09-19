@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.6" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: r: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: r: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -325,6 +325,18 @@ export class TEA_RunTime {
 
     util_mirror_chars(val){
 		return ([...val].reverse()).join(TEA_RunTime.EMPTY_STR);
+	}
+
+
+	util_sort_words(val){
+		const parts = val.split(TEA_RunTime.RE_WHITE_SPACE);
+		const lparts = parts.sort(); // Lexical sort
+		return lparts.join(TEA_RunTime.GLUE);
+	}
+
+	util_sort_chars(val){
+		const lparts = val.split('').sort();
+		return lparts.join(TEA_RunTime.EMPTY_STR);
 	}
 
 
@@ -1183,6 +1195,37 @@ export class TEA_RunTime {
     }
 
 
+    //PROCESS O:
+    process_o(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "O"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = this.util_sort_words(input_str)
+        }
+        if(tc == "O!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
+            io = this.util_sort_chars(input_str)
+        }
+        if(tc == "O*"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            io = this.util_sort_words(input_str)
+        }
+        if(tc == "O*!"){
+            var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
+            io = this.util_sort_chars(input_str)
+        }
+        return io
+    }
+
+
     //PROCESS R:
     process_r(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -1673,6 +1716,13 @@ export class TEA_RunTime {
                     // N: Number
                     case "N": {
                         this.OUTPUT = String(this.process_n(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // O: Order
+                    case "O": {
+                        this.OUTPUT = String(this.process_o(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
