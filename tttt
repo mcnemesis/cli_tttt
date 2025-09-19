@@ -255,7 +255,7 @@ class TEA_RunTime:
             if not (vNAME in VAULTS):
                 if TEA_RunTime.DEBUG:
                     print(f"[ERROR] Instruction trying to access VAULT[{vNAME}] before it is set!")
-                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset VAULT[{vNAME}]")
+                raise ValueError(f"[MEMORY ERROR] ATTEMPT to ACCESS unset VAULT[{vNAME}]")
             else:
                 if TEA_RunTime.DEBUG:
                     print(f"-- [INFO] Reading VAULT[{vNAME}]")
@@ -324,9 +324,9 @@ class TEA_RunTime:
             lparts = sorted(val)
             return TEA_RunTime.EMPTY_STR.join(lparts)
 
-        def util_gen_permutations(val, glue=TEA_RunTime.GLUE, limit=100):
+        def util_gen_permutations(val, glue=TEA_RunTime.GLUE, limit=100, llimit=None):
             iteration, iteration_limit = 0, limit * 2
-            instance_limit = util_gen_rand(limit,ll=1)
+            instance_limit = util_gen_rand(limit,ll=1 if llimit is None else llimit)
             permutations = []
             while len(permutations) < instance_limit:
                 if iteration > iteration_limit:
@@ -341,11 +341,14 @@ class TEA_RunTime:
             return glue.join(permutations)
 
 
-        def util_gen_rand_string(size=None, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.GLUE):
+        def util_gen_rand_string(size=None, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.EMPTY_STR):
             instance_limit = util_gen_rand(int(size) if size is not None else 100,ll=1)
             if size is not None:
                 instance_limit = size
-            return TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
+            if glue:
+                return glue.join(random.choice(alphabet) for _ in range(instance_limit))
+            else:
+                return TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
 
         def util_braille_projection1(val):
             # Define the pattern for non-whitespace characters
@@ -1290,11 +1293,23 @@ class TEA_RunTime:
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        io = util_gen_permutations(params[0])
+                        value = extract_str(params[0])
+                        io = util_gen_permutations(value)
                     elif len(params) == 2:
-                        io = util_gen_permutations(params[0], glue=params[1])
+                        value = extract_str(params[0])
+                        glue = extract_str(params[1])
+                        io = util_gen_permutations(value, glue=glue)
                     elif len(params) == 3:
-                        io = util_gen_permutations(params[0], glue=params[1], limit = int(params[2]))
+                        value = extract_str(params[0])
+                        glue = extract_str(params[1])
+                        limit = extract_str(params[2])
+                        io = util_gen_permutations(value, glue=glue, limit = int(limit))
+                    elif len(params) == 4:
+                        value = extract_str(params[0])
+                        glue = extract_str(params[1])
+                        limit = extract_str(params[2])
+                        llimit = extract_str(params[3])
+                        io = util_gen_permutations(value, glue=glue, limit = int(limit), llimit=int(llimit))
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
@@ -1305,11 +1320,17 @@ class TEA_RunTime:
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        io = util_gen_rand_string(size=int(params[0]))
+                        size = extract_str(params[0])
+                        io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
-                        io = util_gen_rand_string(size=int(params[0]), alphabet=params[1])
+                        size = extract_str(params[0])
+                        alphabet = extract_str(params[1])
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
                     elif len(params) == 3:
-                        io = util_gen_rand_string(size=int(params[0]), alphabet=params[1], glue = params[2])
+                        size = extract_str(params[0])
+                        alphabet = extract_str(params[1])
+                        glue = extract_str(params[2])
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
@@ -1319,14 +1340,56 @@ class TEA_RunTime:
                     pass
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
-                    vNAME = params[0]
+                    vNAME = extract_str(params[0])
                     input_str = vault_get(vNAME)
                     if len(params) == 1:
                         io = util_gen_permutations(input_str)
                     elif len(params) == 2:
-                        io = util_gen_permutations(input_str, glue=params[1])
+                        vGlue = extract_str(params[1])
+                        glue = vault_get(vGlue)
+                        io = util_gen_permutations(input_str, glue=glue)
                     elif len(params) == 3:
-                        io = util_gen_permutations(input_str, glue=params[1], limit = int(params[2]))
+                        vGlue = extract_str(params[1])
+                        glue = vault_get(vGlue)
+                        vLimit = extract_str(params[2])
+                        limit = int(vault_get(vLimit))
+                        io = util_gen_permutations(input_str, glue=glue, limit = limit)
+                    elif len(params) == 4:
+                        vGlue = extract_str(params[1])
+                        glue = vault_get(vGlue)
+                        vLimit = extract_str(params[2])
+                        limit = int(vault_get(vLimit))
+                        vLLimit = extract_str(params[3])
+                        llimit = int(vault_get(vLLimit))
+                        io = util_gen_permutations(input_str, glue=glue, limit = limit, llimit=llimit)
+                    else:
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+
+            if tc == "P*!":
+                if len(tpe_str) == 0:
+                    pass
+                else:
+                    params = tpe_str.split(TEA_RunTime.TIPED)
+                    vSIZE = extract_str(params[0])
+                    size = vault_get(vSIZE)
+                    if len(params) == 1:
+                        io = util_gen_rand_string(size=int(size))
+                    elif len(params) == 2:
+                        vALPHABET = extract_str(params[1])
+                        alphabet = vault_get(vALPHABET)
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
+                    elif len(params) == 3:
+                        vALPHABET = extract_str(params[1])
+                        alphabet = vault_get(vALPHABET)
+                        vGLUE = extract_str(params[2])
+                        glue = vault_get(vGLUE)
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
+                    else:
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
 
             return io
 

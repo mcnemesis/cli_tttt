@@ -36,9 +36,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.6" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.7" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: r: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: r: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -340,6 +340,49 @@ export class TEA_RunTime {
 	}
 
 
+    util_gen_permutations(val, glue=TEA_RunTime.GLUE, limit=100){
+        var [iteration, iteration_limit] = [0, limit * 2];
+        var instance_limit = this.util_gen_rand(limit,1)
+        var permutations = []
+        while(permutations.length < instance_limit){
+            if(iteration > iteration_limit){
+                break
+            }
+            else{
+                iteration += 1
+            }
+            var vAnagram = this.util_anagramatize_chars(val)
+			if (permutations.includes(vAnagram)) {
+                continue
+            }
+            else{
+                permutations.push(vAnagram)
+            }
+        }
+        return permutations.join(glue)
+    }
+
+
+    util_gen_rand_string(size=null, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.EMPTY_STR){
+        var instance_limit = this.util_gen_rand(!TEA_RunTime.is_empty(size)? Number(size) : 100,1)
+        if(!TEA_RunTime.is_empty(size)){
+            instance_limit = size
+        }
+		var result = [];
+		for (let i = 0; i < instance_limit; i++) {
+			const randomChar = alphabet[Math.floor(Math.random() * alphabet.length)];
+			result.push(randomChar);
+		}
+        if(!TEA_RunTime.is_empty(glue)){
+            return result.join(glue)
+        }
+        else{
+            return result.join(TEA_RunTime.EMPTY_STR);
+        }
+    }
+
+
+
     //-----------------------------
     // VAULT/MEMORY utils
     //-----------------------------
@@ -441,7 +484,7 @@ export class TEA_RunTime {
             // io already set to empty str
         }
         if(tc == "C!"){
-            for(let vault in this.VAULTS){
+            for (let vault of Object.keys(this.VAULTS)) {
                 this.VAULTS[vault] = TEA_RunTime.EMPTY_STR
             }
         }
@@ -1226,6 +1269,154 @@ export class TEA_RunTime {
     }
 
 
+    //PROCESS P:
+    process_p(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+		if(tc == "P"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+				io = this.util_gen_permutations(ai)
+            }
+			else{
+				var params = tpe_str.split(TEA_RunTime.TIPED)
+				if(params.length == 1){
+                    var value = this.extract_str(params[0])
+					io = this.util_gen_permutations(value)
+                }
+                else if(params.length == 2){
+                    var value = this.extract_str(params[0])
+                    var glue = this.extract_str(params[1])
+                    io = this.util_gen_permutations(value, glue)
+                }
+                else if(params.length == 3){
+                    var value = this.extract_str(params[0])
+                    var glue = this.extract_str(params[1])
+                    var limit = this.extract_str(params[2])
+                    io = this.util_gen_permutations(value, glue, Number(limit))
+                }
+                else if(params.length == 4){
+                    var value = this.extract_str(params[0])
+                    var glue = this.extract_str(params[1])
+                    var limit = this.extract_str(params[2])
+                    var llimit = this.extract_str(params[3])
+                    io = this.util_gen_permutations(value, glue, Number(limit), Number(llimit))
+                }
+				else{
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+					throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+            }
+        }
+
+		if(tc == "P!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+				io = this.util_gen_rand_string()
+            }
+			else{
+				var params = tpe_str.split(TEA_RunTime.TIPED)
+				if(params.length == 1){
+                    var size = this.extract_str(params[0])
+					io = this.util_gen_rand_string(Number(size))
+                }
+                else if(params.length == 2){
+                    var size = this.extract_str(params[0])
+                    var alphabet = this.extract_str(params[1])
+					io = this.util_gen_rand_string(Number(size), alphabet)
+                }
+                else if(params.length == 3){
+                    var size = this.extract_str(params[0])
+                    var alphabet = this.extract_str(params[1])
+                    var glue = this.extract_str(params[2])
+					io = this.util_gen_rand_string(Number(size), alphabet, glue)
+                }
+				else {
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+					throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+            }
+        }
+
+		if(tc == "P*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+				// INERT
+            }
+			else{
+				var params = tpe_str.split(TEA_RunTime.TIPED)
+				var vNAME = this.extract_str(params[0])
+				var input_str = this.vault_get(vNAME)
+				if(params.length == 1){
+					io = this.util_gen_permutations(input_str)
+                }
+                else if(params.length == 2){
+                    var vGlue = this.extract_str(params[1])
+                    var glue  = this.vault_get(vGlue)
+					io = this.util_gen_permutations(input_str, glue)
+                }
+                else if(params.length == 3){
+                    var vGlue = this.extract_str(params[1])
+                    var glue  = this.vault_get(vGlue)
+                    var vLimit = this.extract_str(params[2])
+                    var limit  = Number(this.vault_get(vLimit))
+					io = this.util_gen_permutations(input_str, glue, limit)
+                }
+                else if(params.length == 4){
+                    var vGlue = this.extract_str(params[1])
+                    var glue  = this.vault_get(vGlue)
+                    var vLimit = this.extract_str(params[2])
+                    var limit  = Number(this.vault_get(vLimit))
+                    var vLLimit = this.extract_str(params[3])
+                    var llimit  = Number(this.vault_get(vLLimit))
+					io = this.util_gen_permutations(input_str, glue, limit, llimit)
+                }
+				else {
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+					throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+            }
+        }
+
+        if(tc == "P*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+				// INERT
+            }
+            else {
+                var params = tpe_str.split(TEA_RunTime.TIPED)
+                var vSIZE = this.extract_str(params[0])
+                var size = this.vault_get(vSIZE)
+				if(params.length == 1){
+                    io = this.util_gen_rand_string(Number(size))
+                }
+                else if(params.length == 2){
+                    var vALPHABET = this.extract_str(params[1])
+                    var alphabet = this.vault_get(vALPHABET)
+                    io = this.util_gen_rand_string(Number(size), alphabet)
+                }
+                else if(params.length == 3){
+                    var vALPHABET = this.extract_str(params[1])
+                    var alphabet = this.vault_get(vALPHABET)
+                    var vGLUE = this.extract_str(params[2])
+                    var glue = this.vault_get(vGLUE)
+                    io = this.util_gen_rand_string(Number(size), alphabet, glue)
+                }
+                else{
+                    this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+					throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                }
+            }
+        }
+
+		return io
+    }
+
+
+
     //PROCESS R:
     process_r(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -1723,6 +1914,13 @@ export class TEA_RunTime {
                     // O: Order
                     case "O": {
                         this.OUTPUT = String(this.process_o(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // P: Permutate
+                    case "P": {
+                        this.OUTPUT = String(this.process_p(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
