@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.8" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -304,6 +304,27 @@ export class TEA_RunTime {
     // MORE UTILS
     /////////////////////
 
+
+    // TEA triangular reduction
+    util_triangular_reduction(val){
+        this.debug(`--[util]-| Applying Transform: LM-TR to [${val}]`)
+		const lines = [];
+		for (let i = 0; i < val.length; i++) {
+			lines.push(val.slice(i));
+		}
+		return lines.join(TEA_RunTime.NL);
+    }
+
+
+    // TEA right-most triangular reduction
+    util_rightmost_triangular_reduction(val){
+        this.debug(`--[util]-| Applying Transform: RM-TR to [${val}]`)
+		const lines = [];
+		for (let i = 0; i < val.length; i++) {
+			lines.push(val.slice(0, val.length - i));
+		}
+		return lines.join(TEA_RunTime.NL);
+    }
 
     static util_braille_projection1(val){
 		const rNonWhiteSpace = /\S/g;
@@ -1870,6 +1891,77 @@ export class TEA_RunTime {
         return io
     }
 
+
+
+    //PROCESS T:
+    process_t(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "T"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    return io
+                }
+                else{
+                    this.debug(`Processing ${tc} on AI=[${io}]`)
+                    return this.util_triangular_reduction(io)
+                }
+            }
+            else {
+                    var input_str = tpe_str
+                    this.debug(`Processing ${tc} on AI=[${io}]`)
+                    return this.util_triangular_reduction(input_str)
+            }
+        }
+
+        if(tc == "T!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    return io
+                }
+                else{
+                    return this.util_rightmost_triangular_reduction(io)
+                }
+            }
+            else{
+                    var input_str = tpe_str
+                    return this.util_rightmost_triangular_reduction(input_str)
+            }
+        }
+
+        if(tc == "T*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else {
+                var vault = tpe_str
+                var input_str = this.vault_get(vault)
+                return this.util_triangular_reduction(input_str)
+            }
+        }
+
+        if(tc == "T*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var vault = tpe_str
+                var input_str = this.vault_get(vault)
+                return this.util_rightmost_triangular_reduction(input_str)
+            }
+        }
+
+        return io
+    }
+
     //PROCESS V:
     process_v(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -2288,6 +2380,13 @@ export class TEA_RunTime {
                     // S: Salt
                     case "S": {
                         this.OUTPUT = String(this.process_s(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // T: Transform
+                    case "T": {
+                        this.OUTPUT = String(this.process_t(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
