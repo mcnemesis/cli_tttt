@@ -522,7 +522,7 @@ class TEA_RunTime:
                 return f"http://{url}"
             return url
 
-        def util_web_get(url, data=None):
+        def util_web_get(url, data=None, no_recurse=False):
             result = None
             try:
 
@@ -537,25 +537,28 @@ class TEA_RunTime:
                     # Read the content and decode it to a string
                     result = response.read().decode('utf-8')
             except Exception as error:
-                _result = util_web_get(util_fix_url(url), data=data)
+                _result = None
+                if not no_recurse:
+                    _result = util_web_get(util_fix_url(url), data=data, no_recurse=True)
+
                 if _result is not None:
                     result = _result
                 else:
                     result = f"[ERROR]: {error}"
-            return result.strip() if result is not None else result
+            #return result.strip() if result is not None else result
+            return result
 
 
-        def util_web_post(url, data=None):
+        def util_web_post(url, data=None, no_recurse=False):
             result = None
             try:
                 request = None
                 encoded_data = None
 
                 if isinstance(data, dict):
-                    if data is not None:
-                        encoded_data = urllib.parse.urlencode(data).encode('utf-8')
+                    encoded_data = urllib.parse.urlencode(data).encode('utf-8')
                 else:
-                    encoded_data = data.encode('utf-8')
+                    encoded_data = data.encode('utf-8') if data else data
                     request = urllib.request.Request(url, data=encoded_data, method='POST')
                     # Set the appropriate header for form data
                     request.add_header('Content-Type', 'application/x-www-form-urlencoded')
@@ -567,12 +570,15 @@ class TEA_RunTime:
                     result = response.read().decode('utf-8')
 
             except Exception as error:
-                _result = util_web_post(util_fix_url(url), data=data)
+                _result = None
+                if not no_recurse:
+                    _result = util_web_post(util_fix_url(url), data=data, no_recurse=True)
                 if _result is not None:
                     result = _result
                 else:
                     result = f"[ERROR]: {error}"
-            return result.strip() if result is not None else result
+            #return result.strip() if result is not None else result
+            return result
 
 
         def util_execute_tea(tsrc, ai):
@@ -1923,11 +1929,12 @@ class TEA_RunTime:
 
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        URL = params[0]
+                        URL = vault_get(extract_str(params[0]))
                     else:
+                        URL = vault_get(extract_str(params[0]))
                         _vaultData = {}
-                        for vNAME in params[:1]:
-                            _vaultData[vNAME] = vault_get(vNAME)
+                        for vNAME in params[1:]:
+                            _vaultData[vNAME] = vault_get(extract_str(vNAME))
                         data = _vaultData
 
                     webRESULT = util_web_get(URL, data=data)
@@ -1945,14 +1952,15 @@ class TEA_RunTime:
 
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        URL = params[0]
+                        URL = vault_get(extract_str(params[0]))
                     else:
+                        URL = vault_get(extract_str(params[0]))
                         _vaultData = {}
-                        for vNAME in params[:1]:
-                            _vaultData[vNAME] = vault_get(vNAME)
+                        for vNAME in params[1:]:
+                            _vaultData[vNAME] = vault_get(extract_str(vNAME))
                         data = _vaultData
 
-                    webRESULT = util_web_post(URL, data=io)
+                    webRESULT = util_web_post(URL, data=data)
                     return webRESULT if webRESULT is not None else TEA_RunTime.EMPTY_STR
 
             return io

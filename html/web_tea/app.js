@@ -443,13 +443,13 @@ function run_TEA_program(){
     var tinput = U.val('txt_input');
     var tsrc = U.val('txt_code');
     var TEART = new TEA();
-    try{
+    //try{
         var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
         U.updateElement('txt_output', result);
         U.status_success("TEA Program execution complete.");
-    }catch(err){
-        U.status_error(`TEA Program execution FAILED: ${err}`);
-   }
+    //}catch(err){
+    //    U.status_error(`TEA Program execution FAILED: ${err}`);
+   //}
 }
 
 // Execute current program

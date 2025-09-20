@@ -36,9 +36,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.8" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.0.9" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -304,6 +304,119 @@ export class TEA_RunTime {
     // MORE UTILS
     /////////////////////
 
+
+    util_fix_url(url){
+        if(!url.startsWith("http")){
+            return `http://${url}`
+        }
+        return url
+    }
+
+	isDictionary(data) {
+		return (
+			typeof data === 'object' &&
+			data !== null &&
+			!Array.isArray(data) &&
+			Object.prototype.toString.call(data) === '[object Object]'
+		);
+	}
+
+	// TODO: what if the browser does not allow us synchronous http calls?
+    // FOR NOW, we need it.
+	synchronousHTTPGET(full_url) {
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', full_url, false); // false makes it synchronous
+		xhr.send(null);
+
+		if (xhr.status === 200) {
+			return xhr.responseText; // UTF-8 by default
+		} else {
+			throw new Error(`Request failed: ${xhr.statusText}`);
+		}
+	}
+
+    util_web_get(url, data=null, no_recurse=false){
+        var result = null
+        try{
+
+            var full_url = url
+            if(data != null){
+                if(this.isDictionary(data)){
+                    // Encode the data as query parameters
+                    const query_string = new URLSearchParams(data).toString();
+                    full_url = `${url}?${query_string}`
+                }
+            }
+
+            result = this.synchronousHTTPGET(full_url) // io-blocking
+        }
+        catch(error){
+            var _result = null
+            if(!no_recurse){
+                _result = this.util_web_get(this.util_fix_url(url), data, true)
+            }
+
+            if(_result != null){
+                result = _result
+            }
+            else{
+                result = `[ERROR]: ${error}`
+            }
+        }
+        return result
+    }
+
+	isDictionary(data) {
+		return (
+			typeof data === 'object' &&
+			data !== null &&
+			!Array.isArray(data) &&
+			Object.prototype.toString.call(data) === '[object Object]'
+		);
+	}
+
+	synchronousHTTPPOST(url, data) {
+		let encoded_data = null;
+
+		if (this.isDictionary(data)) {
+			encoded_data = new URLSearchParams(data).toString();
+		} else if (typeof data === 'string') {
+			encoded_data = data;
+		} 
+
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', url, false); // false = synchronous
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(encoded_data); // might send data as null?
+
+		if (xhr.status === 200) {
+			return xhr.responseText; // UTF-8 decoded by default
+		} else {
+			throw new Error(`Request failed: ${xhr.statusText}`);
+		}
+	}
+
+    util_web_post(url, data=null, no_recurse=false){
+        var result = null
+        try{
+            result = this.synchronousHTTPPOST(url, data) // io-blocking
+        }
+        catch(error){
+            var _result = null
+            if(!no_recurse){
+                _result = this.util_web_post(this.util_fix_url(url), data, true)
+            }
+
+            if(_result != null){
+                result = _result
+            }
+            else{
+                result = `[ERROR]: ${error}`
+            }
+        }
+
+        return result
+    }
 
 
     util_unique_projection_words(val){
@@ -2090,7 +2203,7 @@ export class TEA_RunTime {
             }
             else {
                 var input_str = tpe_str
-                var params = input_str.split(TEA_RunTime.TIPED)
+                var params = TEA_RunTime.splitWithLimit(input_str,TEA_RunTime.TIPED,1)
                 if(params.length > 2){
                     this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
                     throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
@@ -2134,7 +2247,7 @@ export class TEA_RunTime {
             }
             else {
                     var input_str = tpe_str
-                    var params = input_str.split(TEA_RunTime.TIPED)
+                    var params = TEA_RunTime.splitWithLimit(input_str,TEA_RunTime.TIPED,1)
                     if(params.length > 2){
                         this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
                         throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
@@ -2169,6 +2282,107 @@ export class TEA_RunTime {
                 var vVALUE = this.vault_get(vNAME)
                 this.debug(`[INFO] Returning Length of string  in VAULT[${vNAME} = [${vNAME}]]`)
                 return vVALUE.length
+            }
+        }
+
+        return io
+    }
+
+
+    //PROCESS W:
+    process_w(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+        var parts = ti.split(TEA_RunTime.TCD);
+        var tc = parts[0];
+        var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "W"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                var URL = io
+                var webRESULT = this.util_web_get(URL)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+            else{
+                var URL = tpe_str
+                var webRESULT = this.util_web_get(URL)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+        }
+
+        if(tc == "W!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                var URL = io
+                var webRESULT = this.util_web_post(URL, null)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+            else{
+                var URL = tpe_str
+                var webRESULT = this.util_web_post(URL, io)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+        }
+
+        if(tc == "W*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                var URL = io
+                var data = this.VAULTS
+                var webRESULT = this.util_web_get(URL, data)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+            else{
+                var URL = io
+                var data = this.VAULTS
+
+                var params = tpe_str.split(TEA_RunTime.TIPED)
+                if(params.length == 1){
+                    URL = this.vault_get(this.extract_str(params[0]))
+                }
+                else{
+                    URL = this.vault_get(this.extract_str(params[0]))
+					const _vaultData = {};
+					for (let i = 1; i < params.length; i++) {
+						const vNAME = this.extract_str(params[i]);
+						_vaultData[vNAME] = this.vault_get(vNAME);
+					}
+					data = _vaultData;
+                }
+
+                var webRESULT = this.util_web_get(URL, data)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+        }
+
+        if(tc == "W*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                var URL = io
+                var data = this.VAULTS
+                var webRESULT = this.util_web_post(URL, data)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+            else{
+                var URL = io
+                var data = this.VAULTS
+
+                var params = tpe_str.split(TEA_RunTime.TIPED)
+                if(params.length == 1){
+                    URL = this.vault_get(this.extract_str(params[0]))
+                }
+                else{
+                    URL = this.vault_get(this.extract_str(params[0]))
+					const _vaultData = {};
+					for (let i = 1; i < params.length; i++) {
+						const vNAME = this.extract_str(params[i]);
+						_vaultData[vNAME] = this.vault_get(vNAME);
+					}
+					data = _vaultData;
+                }
+
+                var webRESULT = this.util_web_post(URL, data)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
             }
         }
 
@@ -2507,6 +2721,13 @@ export class TEA_RunTime {
                     // V: Vault
                     case "V": {
                         this.OUTPUT = String(this.process_v(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // W: Web
+                    case "W": {
+                        this.OUTPUT = String(this.process_w(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
