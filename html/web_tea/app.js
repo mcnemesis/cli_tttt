@@ -326,7 +326,9 @@ U.click("trig_reset_ide", function() {
     U.clear('txt_prog_name');
     U.clear('txt_analytics');
     toggle_light_theme();
-    location.reload();
+    // also reset any [query/API] parameters/configs in the url...
+    //location.reload();
+    window.location.href = window.location.origin + window.location.pathname + window.location.hash;
 });
 
 // LOAD STANDARD TEA PROGRAMS
