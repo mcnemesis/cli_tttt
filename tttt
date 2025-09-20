@@ -426,6 +426,7 @@ class TEA_RunTime:
                 lines.append(val[:(len(val)-i)])
             return TEA_RunTime.NL.join(lines)
 
+        # return unique words in val, sorted most frequent first, first occurrence first
         def util_unique_projection_words(val):
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Computing Unique Word Projection for [{val}]")
@@ -433,7 +434,8 @@ class TEA_RunTime:
             l_words = len(words)
             if l_words <= 1:
                 return val
-            unique_words = list(set(words))
+            #unique_words = list(set(words)) # wasn't preserving order of first occurrence
+            unique_words = list(dict.fromkeys(words))
             tally = [(w,words.count(w)) for w in unique_words]
             tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
             if TEA_RunTime.DEBUG:
@@ -441,6 +443,7 @@ class TEA_RunTime:
             return TEA_RunTime.GLUE.join([w[0] for w in tally])
 
 
+        # return unique characters in val, sorted most frequent first, first occurrence first
         def util_unique_projection_chars(val):
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Computing Unique Character Projection for [{val}]")
@@ -448,7 +451,8 @@ class TEA_RunTime:
             l_chars = len(chars)
             if l_chars <= 1:
                 return val
-            unique_chars = list(set(chars))
+            #unique_chars = list(set(chars)) # wasn't preserving order of first occurrence
+            unique_chars = list(dict.fromkeys(chars))
             tally = [(w,chars.count(w)) for w in unique_chars]
             tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
             if TEA_RunTime.DEBUG:

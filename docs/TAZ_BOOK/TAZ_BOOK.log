@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.9.26)  20 SEP 2025 10:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.9.26)  20 SEP 2025 12:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -313,7 +313,7 @@ ut line 11.
 [2
 
  <./THE TAZ Manuscript-v20SEPT2025.pdf>]
-<THE TAZ Manuscript-v20SEPT2025.pdf, id=69, page=2, 614.295pt x 794.97pt>
+<THE TAZ Manuscript-v20SEPT2025.pdf, id=71, page=2, 614.295pt x 794.97pt>
 File: THE TAZ Manuscript-v20SEPT2025.pdf Graphic file (type pdf)
 <use THE TAZ Manuscript-v20SEPT2025.pdf, page 2>
 Package pdftex.def Info: THE TAZ Manuscript-v20SEPT2025.pdf , page2 used on inp
@@ -1450,7 +1450,7 @@ put line 11.
 
 pdfTeX warning: pdflatex (file ./taz_back_cover.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<taz_back_cover.pdf, id=379, 596.98032pt x 844.65562pt>
+<taz_back_cover.pdf, id=386, 596.98032pt x 844.65562pt>
 File: taz_back_cover.pdf Graphic file (type pdf)
 <use taz_back_cover.pdf>
 Package pdftex.def Info: taz_back_cover.pdf  used on input line 13.
@@ -1471,7 +1471,7 @@ version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./taz_back_cover.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<taz_back_cover.pdf, id=382, page=1, 596.98032pt x 844.65562pt>
+<taz_back_cover.pdf, id=389, page=1, 596.98032pt x 844.65562pt>
 File: taz_back_cover.pdf Graphic file (type pdf)
 <use taz_back_cover.pdf, page 1>
 Package pdftex.def Info: taz_back_cover.pdf , page1 used on input line 13.
@@ -1511,9 +1511,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  68i,17n,79p,208b,426s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on TAZ_BOOK.pdf (57 pages, 3215793 bytes).
+Output written on TAZ_BOOK.pdf (57 pages, 3226699 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
+ 406 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  331 words of extra memory for PDF output out of 10000 (max. 10000000)
 

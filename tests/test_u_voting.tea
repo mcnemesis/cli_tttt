@@ -1,3 +1,3 @@
 # A basic example of how to use U: is the problem of determining the winner at an election given the votes data. In this example TEA program, we assume a vote for candidate represented by letter A, appears as just the letter “A” in the list of votes, for candidate B, by “B”, and so on. Thus, a list of votes from a polling station, for 3 candidates W, C & A can be represented by the string “AWCCAWAWAAAAACCWACCCCWCACCA”. The following TEA program then, would help automatically rank the candidates by their votes, with the winner appearing first in the result. 
 I!:{AWCCAWAWAAAAACCWACCCCWCACCA} | u!:
-# Should return either ”CAW” or “ACW” because A & C each have 11 votes and W has only 5.
+# Should return exactly "ACW" and not "CAW" because although A & C each have 11 votes and W has only 5, A occurs before C in the input. Essentially computes the modal sequence statistic of the input.

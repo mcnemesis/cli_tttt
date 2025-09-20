@@ -38,7 +38,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.8" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: v: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -303,6 +303,41 @@ export class TEA_RunTime {
     /////////////////////
     // MORE UTILS
     /////////////////////
+
+
+
+    util_unique_projection_words(val){
+        this.debug(`--[util]-| Computing Unique Word Projection for [${val}]`)
+        var words = val.split(TEA_RunTime.SINGLE_SPACE_CHAR)
+        var l_words = words.length
+        if(l_words <= 1){
+            return val
+        }
+        const unique_words = [...new Set(words)];
+        var tally = unique_words.map(w => [w, words.filter(word => word === w).length]);
+        tally.sort((a, b) => b[1] - a[1]);
+        this.debug(`--[util]-| Unique Word Tally [${tally}]`)
+        const result = tally.map(w => w[0]).join(TEA_RunTime.GLUE);
+        return result;
+    }
+
+
+    util_unique_projection_chars(val){
+        this.debug(`--[util]-| Computing Unique Character Projection for [${val}]`)
+        const chars = Array.from(val);
+        var l_chars = chars.length
+        if(l_chars <= 1){
+            return val
+        }
+
+        const unique_chars = [...new Set(chars)];
+        var tally = unique_chars.map(c => [c, chars.filter(ch => ch === c).length]);
+        tally.sort((a, b) => b[1] - a[1]);
+
+        this.debug(`--[util]-| Unique Char Tally [${tally}]`)
+        const result = tally.map(c => c[0]).join(TEA_RunTime.EMPTY_STR);
+        return result;
+    }
 
 
     // TEA triangular reduction
@@ -1962,6 +1997,76 @@ export class TEA_RunTime {
         return io
     }
 
+
+
+    //PROCESS U:
+    process_u(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "U"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    return io
+                }
+                else{
+                    this.debug(`Processing ${tc} on AI=[${io}]`)
+                    return this.util_unique_projection_words(io)
+                }
+            }
+            else{
+                var input_str = tpe_str
+                return this.util_unique_projection_words(input_str)
+            }
+        }
+
+        if(tc == "U!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    return io
+                }
+                else{
+                    return this.util_unique_projection_chars(io)
+                }
+            }
+            else{
+                var input_str = tpe_str
+                return this.util_unique_projection_chars(input_str)
+            }
+        }
+
+        if(tc == "U*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var vault = tpe_str
+                var input_str = this.vault_get(vault)
+                return this.util_unique_projection_words(input_str)
+            }
+        }
+
+        if(tc == "U*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var vault = tpe_str
+                var input_str = this.vault_get(vault)
+                return this.util_unique_projection_chars(input_str)
+            }
+        }
+        return io
+    }
+
+
     //PROCESS V:
     process_v(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -2387,6 +2492,13 @@ export class TEA_RunTime {
                     // T: Transform
                     case "T": {
                         this.OUTPUT = String(this.process_t(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // U: Uniqueify
+                    case "U": {
+                        this.OUTPUT = String(this.process_u(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
