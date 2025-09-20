@@ -16,6 +16,7 @@ export class TEA_RunTime {
         static OBSCURE_RC_NL = "=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL="
         static OBSCURE_RC_COM = "=COM=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=COM="
         static OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
+        static OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
         static TID = "|"
         static NL = "\n"
         static COMH = "#"
@@ -23,8 +24,8 @@ export class TEA_RunTime {
         static TIPED = ":"
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
-        static RETEAPROGRAM = /([a-zA-Z]\*?!?:.*(:.*)*\|?)+(#.*)*/
-        static RETI = /[ ]*?[a-zA-Z]\*?!?:.*?/
+        static RETEAPROGRAM = /([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*/
+        static RETI = /[ ]*?[a-zA-Z]\.?\*?!?:.*?/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -101,7 +102,8 @@ export class TEA_RunTime {
 	  return matched
 		.replace(/\n/g, TEA_RunTime.OBSCURE_RC_NL)
 		.replace(/#/g, TEA_RunTime.OBSCURE_RC_COM)
-		.replace(/\|/g, TEA_RunTime.OBSCURE_RC_TID);
+		.replace(/\|/g, TEA_RunTime.OBSCURE_RC_TID)
+		.replace(/\:/g, TEA_RunTime.OBSCURE_RC_TIPED);
 	}
 
     // Clean TEA CODE:
@@ -115,11 +117,11 @@ export class TEA_RunTime {
         // remove trailing whitespace
         var _tsrc = tsrc.trim()
         // first, fold multi-line TIL strings
-        _tsrc = _tsrc.replace(TEA_RunTime.RETEASTRING1, match => this.maskTEASTRING(match));
-        _tsrc = _tsrc.replace(TEA_RunTime.RETEASTRING2, match => this.maskTEASTRING(match));
+        _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING1, 'g'), match => this.maskTEASTRING(match));
+        _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING2, 'g'), match => this.maskTEASTRING(match));
         // remove all TEA comments
 		const reTCOM = /#[^\n]*/gm
-		_tsrc = _tsrc.replace(reTCOM, "");
+		_tsrc = _tsrc.replace(new RegExp(reTCOM, 'g'), "");
         // first, split by newline
         var _tsrc_lines = _tsrc.split(TEA_RunTime.NL)
         var _tils = []
@@ -145,9 +147,9 @@ export class TEA_RunTime {
             // reverse string masking...
 			const _tsrc_til_only_show = _tsrc_til_only.map(l =>
 			  l
-				.replace(TEA_RunTime.OBSCURE_RC_NL, TEA_RunTime.NL)
-				.replace(TEA_RunTime.OBSCURE_RC_COM, TEA_RunTime.COMH)
-				.replace(TEA_RunTime.OBSCURE_RC_TID, TEA_RunTime.TID)
+				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_NL,'g'), TEA_RunTime.NL)
+				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM, 'g'), TEA_RunTime.COMH)
+				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)
 			);
 
             this.debug(`#${_tsrc_til_only_show.length} of ${JSON.stringify(_tsrc_til_only_show)}`)
@@ -235,7 +237,8 @@ export class TEA_RunTime {
         return val
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_NL,'g'), TEA_RunTime.NL)
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM,'g'), TEA_RunTime.COMH)
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID);
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TIPED, 'g'), TEA_RunTime.TIPED);
     }
 
 	// Extract a string from a TEA expression
@@ -756,6 +759,14 @@ export class TEA_RunTime {
 			for (let dp of dpatterns) {
 				io = io.replace(new RegExp(dp, 'g'), TEA_RunTime.EMPTY_STR);
 			}
+        }
+        if(tc == "D."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }else {
+                var regex = tpe_str
+                io = io.replace(new RegExp(regex, 'g'), TEA_RunTime.EMPTY_STR);
+            }
         }
         if(tc == "D!"){
             if(TEA_RunTime.is_empty(tpe_str)){

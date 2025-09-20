@@ -82,6 +82,7 @@ class TEA_RunTime:
     OBSCURE_RC_NL = "=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL="
     OBSCURE_RC_COM = "=COM=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=COM="
     OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
+    OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
     TID = "|"
     #NL = "\n"
     NL = os.linesep
@@ -90,8 +91,8 @@ class TEA_RunTime:
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    RETEAPROGRAM = r'([a-zA-Z]\*?!?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'[ ]*?[a-zA-Z]\*?!?:.*?'
+    RETEAPROGRAM = r'([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*'
+    RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -103,7 +104,7 @@ class TEA_RunTime:
 
 # Function to replace newlines with OBSCURE Pattern
     def maskTEASTRING(self, mObj):
-        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID)
+        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID).replace(':',self.OBSCURE_RC_TIPED)
 
 # Clean TEA CODE:
 # Essentially, eliminate all TEA Opaque Lines:
@@ -276,7 +277,7 @@ class TEA_RunTime:
 
         # reverse TEA String Masking
         def unmask_str(val):
-            return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID)
+            return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED)
 
         # Extract a string from a TEA expression
         def extract_str(val):
@@ -706,6 +707,12 @@ class TEA_RunTime:
                 dpatterns = tpe_str.split(TEA_RunTime.TIPED)
                 for dp in dpatterns:
                     io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
+            if tc == "D.":
+                if len(tpe_str) == 0:
+                    pass
+                else:
+                    regex = tpe_str
+                    io = re.sub(regex, TEA_RunTime.EMPTY_STR, io)
             if tc == "D!":
                 if len(tpe_str) == 0:
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, TEA_RunTime.EMPTY_STR, io)
