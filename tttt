@@ -83,6 +83,8 @@ class TEA_RunTime:
     OBSCURE_RC_COM = "=COM=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=COM="
     OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
     OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
+    OBSCURE_RC_STR_DEL1 = "=STR_DEL1=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL1="
+    STR_DEL1 = '"'
     TID = "|"
     #NL = "\n"
     NL = os.linesep
@@ -104,7 +106,7 @@ class TEA_RunTime:
 
 # Function to replace newlines with OBSCURE Pattern
     def maskTEASTRING(self, mObj):
-        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID).replace(':',self.OBSCURE_RC_TIPED)
+        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1)
 
 # Clean TEA CODE:
 # Essentially, eliminate all TEA Opaque Lines:
@@ -186,6 +188,9 @@ class TEA_RunTime:
             print(f"CLEAN TEA CODE TO PROCESS:\n{onlyTILTSRC}")
 
         otil = onlyTILTSRC.split(self.NL)
+
+        if TEA_RunTime.DEBUG:
+            print(f"--[#{len(otil)} TEA INSTRUCTIONS FOUND]---")
         return otil
 
     def _parse_labelblocks(self, otil, initial_labelblocks = {}):
@@ -277,7 +282,8 @@ class TEA_RunTime:
 
         # reverse TEA String Masking
         def unmask_str(val):
-            return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED)
+            return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1)
+
 
         # Extract a string from a TEA expression
         def extract_str(val):
@@ -936,6 +942,13 @@ class TEA_RunTime:
                     regex = params[1]
                     glue = extract_str(params[0])
                     io = re.sub(regex, glue, io)
+            if tc == "G.":
+                if len(tpe_str) == 0:
+                    io = re.sub(TEA_RunTime.NL, TEA_RunTime.EMPTY_STR, io)
+                else:
+                    glue = tpe_str
+                    io = re.sub(TEA_RunTime.NL, glue, io)
+
             if tc == "G!":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) == 0:
