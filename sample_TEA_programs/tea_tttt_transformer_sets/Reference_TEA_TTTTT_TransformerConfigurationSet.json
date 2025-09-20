@@ -1,4 +1,6 @@
 [
+"Compute Modal Sequence Statistic[words]<>i:{CAT DOG CAT FISH CAT COW COW FISH COW DUCK}|u: #uses sample list of words if no explicit input was provided.",
+"Compute Modal Sequence Statistic[characters]<>i:{In the beginning God created the heavens and the earth.}|u!: #uses first sentence in the English Bible if no explicit input was provided.",
 "The SIR Game<># randomly pick a word from the given list\nI!:{HONEY TRICK WINDS GAMES} | a: | d:[ ].*$\n# (=”TRICK”) for example\nS:-:4 | # randomly inject “-“ b4 4th pstn\n#(=”TR-ICK”) for example\nR:.[-]:? | R:[-].:? | v:vW | v:vPR:What is the missing letter in | g*:{ }:vPR:vW | i: | # e.g returns “TR?CK”",
    "De PUNCTURA Filter<>d!:{[\\\\ \\[\\]!\"#$%&'()*+,-./:;<=>?@^_`{|}~]} \n#try to run this interesting TEA program against large normal text such as the TEA WEB DOCs to appreciate it.",
    "Random IP Address Generator<>n!:256:0:4:.",
