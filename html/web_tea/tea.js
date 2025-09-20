@@ -17,8 +17,11 @@ export class TEA_RunTime {
         static OBSCURE_RC_COM = "=COM=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=COM="
         static OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
         static OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
+        static OBSCURE_RC_STR_DEL1 = "=STR_DEL1=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL1="
+        static STR_DEL1 = '"'
         static TID = "|"
-        static NL = "\n"
+        //static NL = "\n"
+        static NL = this.getPlatformLineSeparator()
         static COMH = "#"
         static TCD = ":"
         static TIPED = ":"
@@ -97,9 +100,10 @@ export class TEA_RunTime {
         return tsrc.trim()
     }
 
-    // Function to replace newlines with OBSCURE Pattern
+    // Function to replace special symbols with OBSCURE Patterns
 	maskTEASTRING(matched) {
 	  return matched
+		.replace(/"/g, TEA_RunTime.OBSCURE_RC_STR_DEL1)
 		.replace(/\n/g, TEA_RunTime.OBSCURE_RC_NL)
 		.replace(/#/g, TEA_RunTime.OBSCURE_RC_COM)
 		.replace(/\|/g, TEA_RunTime.OBSCURE_RC_TID)
@@ -112,16 +116,17 @@ export class TEA_RunTime {
     // - Non-TEA Instruction Lines
     // and put each TI on its own line, with any leading whitespace removed
     clean_TSRC(tsrc){
-        if(TEA_RunTime.is_empty(tsrc))
+        if(TEA_RunTime.is_empty(tsrc)){
             return tsrc
+        }
         // remove trailing whitespace
         var _tsrc = tsrc.trim()
         // first, fold multi-line TIL strings
-        _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING1, 'g'), match => this.maskTEASTRING(match));
-        _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING2, 'g'), match => this.maskTEASTRING(match));
+        _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING1, 'gs'), match => this.maskTEASTRING(match));
+        _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING2, 'gs'), match => this.maskTEASTRING(match));
         // remove all TEA comments
-		const reTCOM = /#[^\n]*/gm
-		_tsrc = _tsrc.replace(new RegExp(reTCOM, 'g'), "");
+		const reTCOM = /#[^\n]*/g
+		_tsrc = _tsrc.replace(reTCOM, "");
         // first, split by newline
         var _tsrc_lines = _tsrc.split(TEA_RunTime.NL)
         var _tils = []
@@ -229,6 +234,7 @@ export class TEA_RunTime {
         this.debug(`CLEAN TEA CODE TO PROCESS:\n${onlyTILTSRC}`)
 
         var otil = onlyTILTSRC.split(TEA_RunTime.NL)
+        this.debug(`--[#${otil.length} TEA INSTRUCTIONS FOUND]---`)
         return otil
     }
 
@@ -238,7 +244,8 @@ export class TEA_RunTime {
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_NL,'g'), TEA_RunTime.NL)
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM,'g'), TEA_RunTime.COMH)
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TIPED, 'g'), TEA_RunTime.TIPED);
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TIPED, 'g'), TEA_RunTime.TIPED)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL1, 'g'), TEA_RunTime.STR_DEL1);
     }
 
 	// Extract a string from a TEA expression
@@ -306,6 +313,16 @@ export class TEA_RunTime {
     /////////////////////
     // MORE UTILS
     /////////////////////
+
+	static getPlatformLineSeparator() {
+		const platform = navigator.platform || navigator.userAgent;
+
+		if (/Win/.test(platform)) {
+			return '\n'; // Windows
+		} else {
+			return '\n'; // Unix-like: Linux, macOS, etc.
+		}
+	}
 
 
     util_fix_url(url){
