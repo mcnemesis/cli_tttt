@@ -2470,7 +2470,7 @@ export class TEA_RunTime {
 
 
     /* run the given tea source against the given input */
-	run(tin, tsrc, DEBUG_ON, debug_fn, run_validation_only, extract_clean_code){
+	run(tin, tsrc, DEBUG_ON, debug_fn, run_validation_only, extract_clean_code, minify=false){
 
         this.DEBUG = DEBUG_ON;
         this.DEBUG_FN = debug_fn;
@@ -2549,7 +2549,11 @@ export class TEA_RunTime {
         // MAIN TEA Execution/Processing Loop
         //--------------------------------------
         if(extract_clean_code){
-            return this.INSTRUCTIONS.map(line => this.unmask_str(line)).join(TEA_RunTime.NL); 
+            if(minify){
+                return this.INSTRUCTIONS.map(line => this.unmask_str(line).trim()).join(TEA_RunTime.TID); 
+            }else{
+                return this.INSTRUCTIONS.map(line => this.unmask_str(line)).join(TEA_RunTime.NL); 
+            }
         }
 
         if(run_validation_only){

@@ -402,6 +402,24 @@ U.click("btn_clear_prog", function() {
 });
 
 
+// sanitize+minify current TEA program code 
+U.click("btn_minify_prog", function() {
+	U.status_info("Running Minifier against current TEA program code...");
+    U.updateElement('txt_debug',''); // clear debug info
+    var tinput = U.val('txt_input');
+    var tsrc = U.val('txt_code');
+    var TEART = new TEA();
+    var onlyValidate = true;
+    var extract_clean_code = true;
+    var minify = true;
+    var result = TEART.run(tinput, tsrc, DEBUG, debug_writer, onlyValidate, extract_clean_code, minify);
+    U.updateElement('txt_output',result);
+    U.clear('txt_analytics');
+	U.status_success("TEA Program sanitization and minification complete. Clean MINI TEA Program Code loaded into TEA Output Editor.");
+});
+
+
+
 // sanitize current TEA program code 
 U.click("btn_sanitize_prog", function() {
 	U.status_info("Running Sanitizer against current TEA program code...");
@@ -414,7 +432,7 @@ U.click("btn_sanitize_prog", function() {
     var result = TEART.run(tinput, tsrc, DEBUG, debug_writer, onlyValidate, extract_clean_code);
     U.updateElement('txt_output',result);
     U.clear('txt_analytics');
-	U.status_success("TEA Program sanitization complete. Clean TEA Program Code loaded into Editor.");
+	U.status_success("TEA Program sanitization complete. Clean TEA Program Code loaded into TEA Output Editor.");
 });
 
 // validate current TEA program code 
