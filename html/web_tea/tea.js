@@ -1033,12 +1033,12 @@ export class TEA_RunTime {
                 // INERT
             }
             else{
-                jblock = tpe_str
+                var jblock = tpe_str
                 if (!this.LABELBLOCKS.hasOwnProperty(jblock)) {
                     this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${jblock}]`)
                     this.debug("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 }
-                _ATPI = LABELBLOCKS[jblock]
+                _ATPI = this.LABELBLOCKS[jblock]
                 return [io,_ATPI]
             }
         }
