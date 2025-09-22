@@ -491,7 +491,7 @@ class TEA_RunTime:
                 if show_errors:
                     result = f"[ERROR]: {error}"
 
-            return result.strip() if result is not None else result
+            return result if not self.is_empty(result) else TEA_RunTime.EMPTY_STR
 
 
         def util_system(cmd, cmdData, show_errors=False):
@@ -529,7 +529,7 @@ class TEA_RunTime:
                     print(f"***[SYSTEM CMD EXCEPTION]: \n\tCMD: {cmd}\n\tCMDDATA: {cmdData}\n\tERROR: {error}")
                 if show_errors:
                     result = f"[ERROR]: {error}"
-            return result.strip() if result is not None else result
+            return result if not self.is_empty(result) else TEA_RunTime.EMPTY_STR
 
 
         def util_fix_url(url):

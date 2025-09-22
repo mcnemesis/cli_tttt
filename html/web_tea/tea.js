@@ -43,7 +43,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.9" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -314,6 +314,30 @@ export class TEA_RunTime {
             var unsalted_val = val.slice(0, start) + val.slice(end);
             return unsalted_val
         }
+    }
+
+	// util for str.title() equivalent
+	toTitleCase(str) {
+	  return str
+		.toLowerCase()
+		.split(" ")
+		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(" ");
+	}
+
+    util_system(cmd, cmdData, show_errors=false){
+        var result = null
+		try {
+			this.debug(`***[SYSTEM CMD]: EVALUATING via JavaScript:\n\n---[START CMD]---\n\n const AI = ${JSON.stringify(cmdData)}; ${cmd} \n\n---[END CMD]---`)
+			result = eval(`const AI = ${JSON.stringify(cmdData)}; ${cmd}`);
+			this.debug(`***[SYSTEM CMD RESULT]: ${result}`)
+		} catch (error) {
+			this.debug(`***[SYSTEM CMD ERROR]: ${error.message}`)
+			if(show_errors){
+				result = `[ERROR]: ${error}`
+            }
+		}
+        return !TEA_RunTime.is_empty(result)? result : TEA_RunTime.EMPTY_STR
     }
 
     /////////////////////
@@ -1243,7 +1267,6 @@ export class TEA_RunTime {
             if(TEA_RunTime.is_empty(tpe_str)){
                 _ATPI = 0 // start of program
                 // detect potential infinite loop and raise error
-                debugger
                 if(this.INSTRUCTIONS.length == 1){ //meaning this is the only instruction found
                     this.debug("+++[WARNING] POTENTIAL INFINITE LOOP! J!: invoked as the only instruction in the TEA Program!")
                 }
@@ -2773,6 +2796,70 @@ export class TEA_RunTime {
     }
 
 
+    //PROCESS Z:
+    process_z(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
+        if(tc == "Z"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return io.toLowerCase();
+            }
+            else{
+                var CMD = tpe_str
+                var cmdDATA = io
+                var cmdRESULT = this.util_system(CMD,cmdDATA)
+                return !TEA_RunTime.is_empty(cmdRESULT) ? cmdRESULT : TEA_RunTime.EMPTY_STR
+            }
+        }
+
+        if(tc == "Z!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return io.toUpperCase();
+            }
+            else{
+                var CMD = tpe_str
+                var cmdDATA = io
+                var cmdRESULT = this.util_system(CMD,cmdDATA, true)
+                return !TEA_RunTime.is_empty(cmdRESULT) ? cmdRESULT : TEA_RunTime.EMPTY_STR
+            }
+        }
+
+        if(tc == "Z*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return this.toTitleCase(io)
+            }
+            else{
+                var vCMD = tpe_str
+                var CMD = this.vault_get(vCMD)
+                var cmdDATA = io
+                var cmdRESULT = this.util_system(CMD,cmdDATA)
+                return !TEA_RunTime.is_empty(cmdRESULT) ? cmdRESULT : TEA_RunTime.EMPTY_STR
+            }
+        }
+
+        if(tc == "Z*!"){
+                var vCMD = tpe_str
+                var CMD = this.vault_get(vCMD)
+                var cmdDATA = io
+                var cmdRESULT = this.util_system(CMD,cmdDATA, true)
+                return !TEA_RunTime.is_empty(cmdRESULT) ? cmdRESULT : TEA_RunTime.EMPTY_STR
+        }
+
+        return io
+    }
+
+
 
     //////////////[ END TAZ ]///////////////////
 
@@ -3054,6 +3141,13 @@ export class TEA_RunTime {
                     // Y: Yank
                     case "Y": {
                         this.OUTPUT = String(this.process_y(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // Z: Zap
+                    case "Z": {
+                        this.OUTPUT = String(this.process_z(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
