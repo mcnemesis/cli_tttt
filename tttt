@@ -299,11 +299,9 @@ class TEA_RunTime:
             try:
                 with open(file_path, 'r') as file:
                     return TEA_RunTime.NL.join(file.readlines())
-            except BaseException:
+            except BaseException as e:
+                self.debug(f"FILE i/o EXCEPTION: {e}")
                 return None
-
-
-
 
         def util_anagramatize_words(val):
             parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val)
@@ -2382,8 +2380,7 @@ class TEA_RunTime:
             if args.input:
                 INPUT = args.input
             elif args.input_file:
-                if TEA_RunTime.DEBUG:
-                    print(f"Reading INPUT from: {args.input_file}")
+                self.debug(f"Reading INPUT from: {args.input_file}")
                 INPUT = read_file(args.input_file)
             else:
                 if not STDIN_AS_CODE:
