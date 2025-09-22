@@ -2017,7 +2017,7 @@ class TEA_RunTime:
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"Processing {tc} on AI=[{io}]")
-                        return io[:(len(io)//2)]
+                        return io[:(len(io)//2)] # return half of AI
                 else:
                         suffix = tpe_str
                         return io + suffix

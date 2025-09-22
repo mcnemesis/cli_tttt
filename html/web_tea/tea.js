@@ -42,7 +42,7 @@ export class TEA_RunTime {
     constructor(){
         this.VERSION = "1.0.9" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: and y: implemented and tested";
+        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: and y: implemented and tested";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -2418,6 +2418,99 @@ export class TEA_RunTime {
     }
 
 
+    //PROCESS X:
+    process_x(ti, ai){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+        var parts = ti.split(TEA_RunTime.TCD);
+        var tc = parts[0];
+        var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(tc == "X"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    return io
+                }
+                else{
+                    this.debug(`Processing ${tc} on AI=[${io}]`)
+                    return io + io
+                }
+            }
+            else{
+                    var prefix = tpe_str
+                    return prefix + io
+            }
+        }
+
+        if(tc == "X!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    return io
+                }
+                else{
+                    this.debug(`Processing ${tc} on AI=[${io}]`)
+                    const half = io.slice(0, Math.floor(io.length / 2));
+                    return half
+                }
+            }
+            else{
+                    var suffix = tpe_str
+                    return io + suffix
+            }
+        }
+
+        if(tc == "X*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED,1)
+                var val = io
+                if(params.length == 1){
+                    var vPREFIX = this.extract_str(params[0])
+                    prefix = this.vault_get(vPREFIX)
+                    return prefix + val
+                }
+                else if(params.length == 2){
+                    var vPREFIX = this.extract_str(params[0])
+                    var vSTR = this.extract_str(params[1])
+                    var prefix = this.vault_get(vPREFIX)
+                    var val = this.vault_get(vSTR)
+                    return prefix + val
+                }
+            }
+        }
+
+        if(tc == "X*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+            }
+            else{
+                var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED,1)
+                var val = io
+                if(params.length == 1){
+                    var vSUFFIX = this.extract_str(params[0])
+                    var suffix = this.vault_get(vSUFFIX)
+                    return val + suffix
+                }
+                else if(params.length == 2){
+                    var vSUFFIX = this.extract_str(params[0])
+                    var vSTR = this.extract_str(params[1])
+                    var suffix = this.vault_get(vSUFFIX)
+                    var val = this.vault_get(vSTR)
+                    return val + suffix
+                }
+            }
+        }
+        return io
+    }
+
+
     //PROCESS Y:
     process_y(ti, ai){
         var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
@@ -2760,6 +2853,13 @@ export class TEA_RunTime {
                     // W: Web
                     case "W": {
                         this.OUTPUT = String(this.process_w(instruction, this.OUTPUT))
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        this.ATPI += 1
+                        continue
+                    }
+                    // X: Xenograft
+                    case "X": {
+                        this.OUTPUT = String(this.process_x(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
                         continue
