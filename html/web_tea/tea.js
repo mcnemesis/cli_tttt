@@ -28,7 +28,8 @@ export class TEA_RunTime {
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
         static RETEAPROGRAM = /([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*/
-        static RETI = /[ ]*?[a-zA-Z]\.?\*?!?:.*?/
+        //static RETI = /[ ]*?[a-zA-Z]\.?\*?!?:.*?/
+        static RETI = /^\s*[a-zA-Z](?:[.!*]|(?:\*!))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -94,6 +95,29 @@ export class TEA_RunTime {
             this.DEBUG_FN(txt);
     }
 
+    // reverse TEA String Masking
+    unmask_str(val){
+        return val
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_NL,'g'), TEA_RunTime.NL)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM,'g'), TEA_RunTime.COMH)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TIPED, 'g'), TEA_RunTime.TIPED)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL1, 'g'), TEA_RunTime.STR_DEL1);
+    }
+
+	// Extract a string from a TEA expression
+	extract_str(val){
+        if (val.startsWith("{") && val.endsWith("}")) {
+            val = val.replace(/^\{/, "").replace(/\}$/, "");
+			return this.unmask_str(val)
+        }
+        if (val.startsWith('"') && val.endsWith('"')) {
+            val = val.replace(/^"/, "").replace(/"$/, "");
+			return this.unmask_str(val)
+        }
+		return this.unmask_str(val)
+    }
+
     // Pre-process TEA CODE
     pre_process_TSRC(tsrc){
         // for now, trim all leading and trailing white space
@@ -141,13 +165,15 @@ export class TEA_RunTime {
                 _tils.push(l)
         }
         _tsrc_lines = _tils
-        this.debug(`${_tsrc_lines.length} of ${JSON.stringify(_tsrc_lines)}`)
-        var reTI = new RegExp(TEA_RunTime.RETI)
+        this.debug(`#${_tsrc_lines.length} of ${JSON.stringify(_tsrc_lines)}`)
+        var reTI = TEA_RunTime.RETI // already a regex
         // remove all non-TIL lines
+        //this.debug(`|>>> ${JSON.stringify(_tsrc_lines)}`)
 		const _tsrc_til_only = _tsrc_lines
 		  .filter(line => reTI.test(line))
 		  .map(line => line.trimStart());
 
+        //this.debug(`>>> ${JSON.stringify(_tsrc_til_only)}`)
         if(this.DEBUG){
             // reverse string masking...
 			const _tsrc_til_only_show = _tsrc_til_only.map(l =>
@@ -157,10 +183,10 @@ export class TEA_RunTime {
 				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)
 			);
 
-            this.debug(`#${_tsrc_til_only_show.length} of ${JSON.stringify(_tsrc_til_only_show)}`)
+            //this.debug(`##${_tsrc_til_only_show.length} of ${JSON.stringify(_tsrc_til_only_show)}`)
         }
-        _tsrc = _tsrc_til_only.join(TEA_RunTime.NL)
-        return _tsrc
+
+        return _tsrc_til_only
 	}
 
 
@@ -227,39 +253,19 @@ export class TEA_RunTime {
         var val_res = this.validate_TSRC(tsrc)
         var isTSRCValid = val_res[0], errors = val_res[1];
         if(!isTSRCValid){
-            this.debug(`TEA CODE ERRORS FOUND:\n${errors.join("\n")}`)
+            this.debug(`TEA CODE ERRORS FOUND:\n${errors.join(TEA_RunTime.NL)}`)
             return
         }
-        var onlyTILTSRC = this.clean_TSRC(tsrc)
-        this.debug(`CLEAN TEA CODE TO PROCESS:\n${onlyTILTSRC}`)
+        else {
+            this.debug("+++[NO TEA CODE ERRORS FOUND YET]")
+        }
+        var otil = this.clean_TSRC(tsrc)
+        this.debug(`CLEAN TEA CODE TO PROCESS:\n${otil.join(TEA_RunTime.NL)}`)
 
-        var otil = onlyTILTSRC.split(TEA_RunTime.NL)
         this.debug(`--[#${otil.length} TEA INSTRUCTIONS FOUND]---`)
         return otil
     }
 
-    // reverse TEA String Masking
-    unmask_str(val){
-        return val
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_NL,'g'), TEA_RunTime.NL)
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM,'g'), TEA_RunTime.COMH)
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TIPED, 'g'), TEA_RunTime.TIPED)
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL1, 'g'), TEA_RunTime.STR_DEL1);
-    }
-
-	// Extract a string from a TEA expression
-	extract_str(val){
-        if (val.startsWith("{") && val.endsWith("}")) {
-            val = val.replace(/^\{/, "").replace(/\}$/, "");
-			return this.unmask_str(val)
-        }
-        if (val.startsWith('"') && val.endsWith('"')) {
-            val = val.replace(/^"/, "").replace(/"$/, "");
-			return this.unmask_str(val)
-        }
-		return this.unmask_str(val)
-    }
 
 
 	util_gen_rand(limit, ll=0){
@@ -655,6 +661,10 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "A"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
             io = this.util_anagramatize_words(input_str)
@@ -690,6 +700,10 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "B"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
             io = this.util_unique_chars(input_str)
@@ -720,6 +734,10 @@ export class TEA_RunTime {
         tpe = tpe.trim()
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
         if(tc == "C"){
             if(TEA_RunTime.is_empty(tpe_str)){
@@ -770,6 +788,9 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
         if(tc == "D"){
 			let dpatterns = tpe_str.split(TEA_RunTime.TIPED);
@@ -780,6 +801,7 @@ export class TEA_RunTime {
         if(tc == "D."){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             }else {
                 var regex = tpe_str
                 io = io.replace(new RegExp(regex, 'g'), TEA_RunTime.EMPTY_STR);
@@ -799,6 +821,8 @@ export class TEA_RunTime {
 
         if((tc == "D*") || (tc == "D*!")){
             if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                 return io
             }
             else {
@@ -852,16 +876,23 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "F"){
             var params = tpe_str.split(TEA_RunTime.TIPED)
 
             if(params.length == 0){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                 return [io,_ATPI]
             }
 
             if(params.length == 1){
                 this.debug(`[ERROR] Instruction ${ti} Invoked with No Labels!`)
-                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                 throw new Error(`[ERROR] Fork Instruction ${ti} Invoked with No Labels!`)
             }
 
@@ -870,7 +901,7 @@ export class TEA_RunTime {
                 var tblock = params[1] // where to jump to if matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
-                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                     throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 }
 
@@ -893,12 +924,12 @@ export class TEA_RunTime {
                 var fblock = params[2] // where to jump if not matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
-                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                     throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 }
                 if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
-                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                     throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 }
 
@@ -921,12 +952,14 @@ export class TEA_RunTime {
             var params = tpe_str.split(TEA_RunTime.TIPED)
 
             if(params.length == 0){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                 return [io,_ATPI]
             }
 
             if(params.length == 1){
                 this.debug(`[ERROR] Instruction ${ti} Invoked with No Labels!`)
-                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                 throw new Error(`[ERROR] Fork Instruction ${ti} Invoked with No Labels!`)
             }
 
@@ -935,7 +968,7 @@ export class TEA_RunTime {
                 var tblock = params[1] // where to jump to if NOT matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
-                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                     throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 }
 
@@ -958,12 +991,12 @@ export class TEA_RunTime {
                 var fblock = params[2] // where to jump if not matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
-                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                     throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 }
                 if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
-                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(LABELBLOCKS)}`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
                     throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
                 }
 
@@ -998,6 +1031,10 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "G"){
             var params = tpe_str.split(TEA_RunTime.TIPED)
             if(params.length == 0){
@@ -1018,6 +1055,8 @@ export class TEA_RunTime {
             var params = tpe_str.split(TEA_RunTime.TIPED)
             if(params.length == 0){
                 // INERT: do nothing
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             }
             if(params.length == 1){
                 var glue = this.extract_str(params[0])
@@ -1029,6 +1068,8 @@ export class TEA_RunTime {
             var params = tpe_str.split(TEA_RunTime.TIPED)
             if(params.length < 3){
                 // INERT: do nothing
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             }
             else{
                 var glue = this.extract_str(params[0])
@@ -1045,6 +1086,8 @@ export class TEA_RunTime {
             var params = tpe_str.split(TEA_RunTime.TIPED)
             if(params.length < 3){
                 // INERT: do nothing
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             }
             else{
                 var glue = this.vault_get(this.extract_str(params[0]))
@@ -1070,6 +1113,10 @@ export class TEA_RunTime {
         tpe = tpe.trim()
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
         if(tc == "H"){
             if(TEA_RunTime.is_empty(tpe_str)){
@@ -1135,6 +1182,10 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "I"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // implements interactivity in TEA: displays io as prompt, sets user-input as io
@@ -1169,9 +1220,14 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "J"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             }
             else{
                 var jblock = tpe_str
@@ -1186,10 +1242,16 @@ export class TEA_RunTime {
         if(tc == "J!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 _ATPI = 0 // start of program
+                // detect potential infinite loop and raise error
+                debugger
+                if(this.INSTRUCTIONS.length == 1){ //meaning this is the only instruction found
+                    this.debug("+++[WARNING] POTENTIAL INFINITE LOOP! J!: invoked as the only instruction in the TEA Program!")
+                }
                 return [io,_ATPI]
             }
             else{
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             }
         }
 
@@ -1208,13 +1270,21 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(TEA_RunTime.is_empty(io)){
+            // INERT
+            this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             return io // essentially, INERT
         }
 
         if(tc == "K"){
             if(TEA_RunTime.is_empty(tpe_str)){
-                // INERT
+				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io // essentially, INERT
             }
             else {
                 var regex = tpe_str
@@ -1236,7 +1306,9 @@ export class TEA_RunTime {
 
         if(tc == "K!"){
             if(TEA_RunTime.is_empty(tpe_str)){
-                // INERT
+				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io // essentially, INERT
             }
             else{
                 var regex = tpe_str
@@ -1259,7 +1331,9 @@ export class TEA_RunTime {
         if(tc == "K*"){
             var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
             if(params.length < 2){
-                // INERT
+				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io // essentially, INERT
             }
             else{
                 var vault = params[0]
@@ -1285,7 +1359,9 @@ export class TEA_RunTime {
         if(tc == "K*!"){
             var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
             if(params.length < 2){
-                // INERT
+				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io // essentially, INERT
             }
             else{
                 var vault = params[0]
@@ -1323,9 +1399,16 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "L"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // do nothing..
+				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else {
                 var lBlockName = tpe_str
@@ -1333,7 +1416,7 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(lBlockName)) {
                     // store current code position under given label block name
                     // but most likely, has already been done during TSRC pre-processing/validation
-                    LABELBLOCKS[lBlockName] = ATPI
+                    this.LABELBLOCKS[lBlockName] = this.ATPI
                 }
             }
         }
@@ -1341,13 +1424,16 @@ export class TEA_RunTime {
         if(tc == "L!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // do nothing..
+				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else{
                 var labels = tpe_str.split(TEA_RunTime.TIPED)
                 for(let lBlockName of labels){
                     // prevent duplication of block names
                     if (!this.LABELBLOCKS.hasOwnProperty(lBlockName)) {
-                        LABELBLOCKS[lBlockName] = ATPI
+                        this.LABELBLOCKS[lBlockName] = this.ATPI
                     }
                 }
             }
@@ -1366,6 +1452,10 @@ export class TEA_RunTime {
         tpe = tpe.trim()
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
         if(tc == "M"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
@@ -1412,6 +1502,10 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if((tc == "N") || (tc == "N!")){
             if(TEA_RunTime.is_empty(tpe_str)){
                 var limit = 9
@@ -1448,6 +1542,8 @@ export class TEA_RunTime {
 
         if((tc == "N*") || (tc == "N*!")){
             if(TEA_RunTime.is_empty(tpe_str)){
+				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                 return io
             }
             else{
@@ -1524,6 +1620,10 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "O"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
             io = this.util_sort_words(input_str)
@@ -1554,6 +1654,10 @@ export class TEA_RunTime {
         tpe = tpe.trim()
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
 		if(tc == "P"){
             if(TEA_RunTime.is_empty(tpe_str)){
@@ -1621,6 +1725,8 @@ export class TEA_RunTime {
 		if(tc == "P*"){
             if(TEA_RunTime.is_empty(tpe_str)){
 				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
 			else{
 				var params = tpe_str.split(TEA_RunTime.TIPED)
@@ -1660,6 +1766,8 @@ export class TEA_RunTime {
         if(tc == "P*!"){
             if(TEA_RunTime.is_empty(tpe_str)){
 				// INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else {
                 var params = tpe_str.split(TEA_RunTime.TIPED)
@@ -1702,6 +1810,10 @@ export class TEA_RunTime {
         tpe = tpe.trim()
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
         if(tc == "Q"){
             if(TEA_RunTime.is_empty(tpe_str)){
@@ -1814,7 +1926,13 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(TEA_RunTime.is_empty(io)){
+            // INERT
+            this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             return io // essentially, INERT
         }
 
@@ -1856,6 +1974,8 @@ export class TEA_RunTime {
         if(tc == "R*"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io // essentially, INERT
             }
             else{
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
@@ -1883,6 +2003,8 @@ export class TEA_RunTime {
         if(tc == "R*!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else{
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
@@ -1924,10 +2046,16 @@ export class TEA_RunTime {
         var tpe_str = this.extract_str(tpe)
         var salt = TEA_RunTime.SINGLE_SPACE_CHAR
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "S"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
                     // can't salt without input
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -1937,6 +2065,8 @@ export class TEA_RunTime {
             else{
                 if(TEA_RunTime.is_empty(io)){
                     // can't salt without input
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -1964,6 +2094,7 @@ export class TEA_RunTime {
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
                     // can't unsalt without input
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else {
@@ -1973,6 +2104,7 @@ export class TEA_RunTime {
             else {
                 if(TEA_RunTime.is_empty(io)){
                     // can't unsalt without input
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else {
@@ -1999,6 +2131,8 @@ export class TEA_RunTime {
         if(tc == "S*"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else {
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
@@ -2008,6 +2142,8 @@ export class TEA_RunTime {
 
                 if(TEA_RunTime.is_empty(io)){
                     // can't unsalt without input
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else {
@@ -2033,6 +2169,8 @@ export class TEA_RunTime {
         if(tc == "S*!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else {
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
@@ -2042,6 +2180,8 @@ export class TEA_RunTime {
 
                 if(TEA_RunTime.is_empty(io)){
                     // can't unsalt without input
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else {
@@ -2080,10 +2220,16 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "T"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
                     this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -2101,6 +2247,8 @@ export class TEA_RunTime {
         if(tc == "T!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -2116,6 +2264,8 @@ export class TEA_RunTime {
         if(tc == "T*"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else {
                 var vault = tpe_str
@@ -2127,6 +2277,8 @@ export class TEA_RunTime {
         if(tc == "T*!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else{
                 var vault = tpe_str
@@ -2151,10 +2303,16 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "U"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
                     this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -2171,6 +2329,8 @@ export class TEA_RunTime {
         if(tc == "U!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -2186,6 +2346,8 @@ export class TEA_RunTime {
         if(tc == "U*"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else{
                 var vault = tpe_str
@@ -2197,6 +2359,8 @@ export class TEA_RunTime {
         if(tc == "U*!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else{
                 var vault = tpe_str
@@ -2218,6 +2382,10 @@ export class TEA_RunTime {
         tpe = tpe.trim()
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
         if(tc == "V"){
             if(TEA_RunTime.is_empty(tpe_str)){
@@ -2328,6 +2496,10 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "W"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 var URL = io
@@ -2429,10 +2601,15 @@ export class TEA_RunTime {
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
 
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
         if(tc == "X"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
-                    this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -2449,7 +2626,8 @@ export class TEA_RunTime {
         if(tc == "X!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if(TEA_RunTime.is_empty(io)){
-                    this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                     return io
                 }
                 else{
@@ -2467,6 +2645,8 @@ export class TEA_RunTime {
         if(tc == "X*"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else{
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED,1)
@@ -2489,6 +2669,8 @@ export class TEA_RunTime {
         if(tc == "X*!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
             }
             else{
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED,1)
@@ -2521,6 +2703,11 @@ export class TEA_RunTime {
         tpe = tpe.trim()
         // extract the string parameter
         var tpe_str = this.extract_str(tpe)
+
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
 
         if(tc == "Y"){
             if(TEA_RunTime.is_empty(tpe_str)){

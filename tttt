@@ -94,7 +94,8 @@ class TEA_RunTime:
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     RETEAPROGRAM = r'([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
+    #RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
+    RETI = r'^\s*[a-zA-Z](?:[.!*]|(?:\*!))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -140,19 +141,20 @@ class TEA_RunTime:
             else:
                 _tils.append(l)
         _tsrc_lines = _tils
-        self.debug(f"#{len(_tsrc_lines)} of {(_tsrc_lines)}")
+        #self.debug(f"#{len(_tsrc_lines)} of ${_tsrc_lines}")
         reTI = re.compile(self.RETI)
         # remove all non-TIL lines
+        #self.debug(f"|>>> {_tsrc_lines}")
         _tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l)]
+        #self.debug(f">>> {_tsrc_til_only}")
         if TEA_RunTime.DEBUG:
             # reverse string masking...
             _tsrc_til_only_show = [l.
                     replace(self.OBSCURE_RC_NL,self.NL)
                     .replace(self.OBSCURE_RC_COM,self.COMH)
                     .replace(self.OBSCURE_RC_TID,self.TID) for l in _tsrc_til_only]
-            print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
-        _tsrc = self.NL.join(_tsrc_til_only)
-        return _tsrc
+            #print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
+        return _tsrc_til_only
 
     # Conditionally print debug info...
     def debug(self, txt):
@@ -203,14 +205,12 @@ class TEA_RunTime:
         tsrc = self.pre_process_TSRC(code)
         isTSRCValid,errors = self.validate_TSRC(tsrc)
         if not isTSRCValid:
-            self.debug("TEA CODE ERRORS FOUND:\n%s" % "\n".join(errors))
+            self.debug("TEA CODE ERRORS FOUND:\n%s" % self.NL.join(errors))
             return
         else:
-            self.debug("NO TEA CODE ERRORS FOUND")
-        onlyTILTSRC = self.clean_TSRC(tsrc)
-        self.debug(f"CLEAN TEA CODE TO PROCESS:\n{onlyTILTSRC}")
-
-        otil = onlyTILTSRC.split(self.NL) if not self.is_empty(onlyTILTSRC) else []
+            self.debug("+++[NO TEA CODE ERRORS FOUND YET]")
+        otil = self.clean_TSRC(tsrc)
+        self.debug(f"CLEAN TEA CODE TO PROCESS:\n{self.NL.join(otil)}")
 
         self.debug(f"--[#{len(otil)} TEA INSTRUCTIONS FOUND]---")
         return otil

@@ -170,10 +170,8 @@ function reloadSTOREDPROGRAMS(){
 // make text editors sticky...
 U.makeStickyEditor('txt_input');
 U.makeStickyEditor('txt_code');
-U.makeStickyEditor('txt_debug');
 U.makeStickyEditor('txt_output');
 U.makeStickyEditor('txt_prog_name');
-U.makeStickyEditor('txt_analytics');
 
 //---[ PAGE READY HOOKS ]
 U.ready(function () {
@@ -461,13 +459,19 @@ function run_TEA_program(){
     var tinput = U.val('txt_input');
     var tsrc = U.val('txt_code');
     var TEART = new TEA();
-    //try{
+    if(!DEBUG){
+        try{
+            var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
+            U.updateElement('txt_output', result);
+            U.status_success("TEA Program execution complete.");
+        }catch(err){
+            U.status_error(`TEA Program execution FAILED: ${err}`);
+       }
+    }else{ // don't catch errors in debug mode
         var result = TEART.run(tinput, tsrc, DEBUG, debug_writer);
         U.updateElement('txt_output', result);
         U.status_success("TEA Program execution complete.");
-    //}catch(err){
-    //    U.status_error(`TEA Program execution FAILED: ${err}`);
-   //}
+    }
 }
 
 // Execute current program
