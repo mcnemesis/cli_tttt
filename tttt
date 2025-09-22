@@ -104,6 +104,10 @@ class TEA_RunTime:
     EMPTY_STR = ""
     vDEFAULT_VAULT = EMPTY_STR
 
+    # one of most important utils..
+    def is_empty(self, val):
+        return True if val is None or len(val) == 0 else False
+
 # Function to replace newlines with OBSCURE Pattern
     def maskTEASTRING(self, mObj):
         return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1)
@@ -136,8 +140,7 @@ class TEA_RunTime:
             else:
                 _tils.append(l)
         _tsrc_lines = _tils
-        if TEA_RunTime.DEBUG:
-            print(f"#{len(_tsrc_lines)} of {(_tsrc_lines)}")
+        self.debug(f"#{len(_tsrc_lines)} of {(_tsrc_lines)}")
         reTI = re.compile(self.RETI)
         # remove all non-TIL lines
         _tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l)]
@@ -150,6 +153,26 @@ class TEA_RunTime:
             print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
         _tsrc = self.NL.join(_tsrc_til_only)
         return _tsrc
+
+    # Conditionally print debug info...
+    def debug(self, txt):
+        if TEA_RunTime.DEBUG:
+            print(txt)
+
+
+    # reverse TEA String Masking
+    def unmask_str(self, val):
+        return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1)
+
+    # Extract a string from a TEA expression
+    def extract_str(self, val):
+        if val.startswith("{") and val.endswith("}"):
+            val = val.lstrip("{").rstrip("}")
+            return self.unmask_str(val)
+        if val.startswith("\"") and val.endswith("\""):
+            val = val.lstrip("\"").rstrip("\"")
+            return self.unmask_str(val)
+        return self.unmask_str(val)
 
 # Pre-process TEA CODE
     def pre_process_TSRC(self, tsrc):
@@ -180,17 +203,16 @@ class TEA_RunTime:
         tsrc = self.pre_process_TSRC(code)
         isTSRCValid,errors = self.validate_TSRC(tsrc)
         if not isTSRCValid:
-            if TEA_RunTime.DEBUG:
-                print("TEA CODE ERRORS FOUND:\n%s" % "\n".join(errors))
+            self.debug("TEA CODE ERRORS FOUND:\n%s" % "\n".join(errors))
             return
+        else:
+            self.debug("NO TEA CODE ERRORS FOUND")
         onlyTILTSRC = self.clean_TSRC(tsrc)
-        if TEA_RunTime.DEBUG:
-            print(f"CLEAN TEA CODE TO PROCESS:\n{onlyTILTSRC}")
+        self.debug(f"CLEAN TEA CODE TO PROCESS:\n{onlyTILTSRC}")
 
-        otil = onlyTILTSRC.split(self.NL)
+        otil = onlyTILTSRC.split(self.NL) if not self.is_empty(onlyTILTSRC) else []
 
-        if TEA_RunTime.DEBUG:
-            print(f"--[#{len(otil)} TEA INSTRUCTIONS FOUND]---")
+        self.debug(f"--[#{len(otil)} TEA INSTRUCTIONS FOUND]---")
         return otil
 
     def _parse_labelblocks(self, otil, initial_labelblocks = {}):
@@ -280,20 +302,8 @@ class TEA_RunTime:
             except BaseException:
                 return None
 
-        # reverse TEA String Masking
-        def unmask_str(val):
-            return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1)
 
 
-        # Extract a string from a TEA expression
-        def extract_str(val):
-            if val.startswith("{") and val.endswith("}"):
-                val = val.lstrip("{").rstrip("}")
-                return unmask_str(val)
-            if val.startswith("\"") and val.endswith("\""):
-                val = val.lstrip("\"").rstrip("\"")
-                return unmask_str(val)
-            return unmask_str(val)
 
         def util_anagramatize_words(val):
             parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val)
@@ -614,6 +624,7 @@ class TEA_RunTime:
 
             return e_otil, e_label_blocks, injection_position
 
+
 #-----------------------------
 # TAZ Implementation
 #-----------------------------
@@ -623,7 +634,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "A":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -646,7 +660,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "B":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -669,7 +686,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "C":
                 if len(tpe_str) == 0:
@@ -707,7 +727,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "D":
                 dpatterns = tpe_str.split(TEA_RunTime.TIPED)
@@ -763,8 +786,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if TEA_RunTime.DEBUG:
                 print(f"\n*******[ EXECUTING E-COMMAND ]\n")
@@ -834,7 +859,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "F":
                 params = tpe_str.split(TEA_RunTime.TIPED)
@@ -929,18 +957,21 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "G":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) == 0:
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, TEA_RunTime.EMPTY_STR, io)
                 if len(params) == 1:
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, glue, io)
                 if len(params) == 2:
                     regex = params[1]
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
                     io = re.sub(regex, glue, io)
             if tc == "G.":
                 if len(tpe_str) == 0:
@@ -954,14 +985,14 @@ class TEA_RunTime:
                 if len(params) == 0:
                     pass
                 if len(params) == 1:
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE_N_PUNCTUATION, glue, io)
             if tc == "G*":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) < 3:
                     pass
                 else:
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
                     vaults = params[1:]
                     vals = []
                     for v in vaults:
@@ -972,7 +1003,7 @@ class TEA_RunTime:
                 if len(params) < 3:
                     pass
                 else:
-                    glue = vault_get(extract_str(params[0]))
+                    glue = vault_get(self.extract_str(params[0]))
                     vaults = params[1:]
                     vals = []
                     for v in vaults:
@@ -987,7 +1018,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "H":
                 if len(tpe_str) == 0:
@@ -1036,7 +1070,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "I":
                 if len(tpe_str) == 0:
@@ -1060,11 +1097,15 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "J":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                 else:
                     jblock = tpe_str
                     if not (jblock in LABELBLOCKS):
@@ -1074,11 +1115,16 @@ class TEA_RunTime:
                     _ATPI = LABELBLOCKS[jblock]
                     return io,_ATPI
             if tc == "J!":
-                if len(tpe_str) == 0:
+                if self.is_empty(tpe_str):
                     _ATPI = 0 # start of program
+                    # detect potential infinite loop and raise error
+                    if len(INSTRUCTIONS) == 1: #meaning this is the only instruction found
+                        self.debug(f"+++[WARNING] POTENTIAL INFINITE LOOP! J!: invoked as the only instruction in the TEA Program!")
+
                     return io,_ATPI
                 else:
-                    pass
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
 
             _ATPI += 1 #move to next instruction if jump didn't evaluate...
             return io,_ATPI
@@ -1090,14 +1136,21 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
-            if io is None or len(io) == 0:
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
+
+            if self.is_empty(io): #NODATA
+                # INERT
+                self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                 return io
 
             if tc == "K":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str): 
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     regex = tpe_str
                     inputLines = io.split(TEA_RunTime.NL)
@@ -1108,8 +1161,10 @@ class TEA_RunTime:
                             keptLines.append(line)
                     io = TEA_RunTime.NL.join(keptLines)
             if tc == "K!":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str): 
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     regex = tpe_str
                     inputLines = io.split(TEA_RunTime.NL)
@@ -1123,7 +1178,9 @@ class TEA_RunTime:
             if tc == "K*":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                 if len(params) < 2:
-                    pass
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     vault = params[0]
                     regex = params[1]
@@ -1139,7 +1196,9 @@ class TEA_RunTime:
             if tc == "K*!":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                 if len(params) < 2:
-                    pass
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     vault = params[0]
                     regex = params[1]
@@ -1161,7 +1220,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "L":
                 if len(tpe_str) == 0:
@@ -1192,7 +1254,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "M":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -1227,7 +1289,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if (tc == "N") or (tc == "N!"):
                 if len(tpe_str) == 0:
@@ -1317,7 +1379,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "O":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -1340,7 +1402,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "P":
                 if len(tpe_str) == 0:
@@ -1348,22 +1410,22 @@ class TEA_RunTime:
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        value = extract_str(params[0])
+                        value = self.extract_str(params[0])
                         io = util_gen_permutations(value)
                     elif len(params) == 2:
-                        value = extract_str(params[0])
-                        glue = extract_str(params[1])
+                        value = self.extract_str(params[0])
+                        glue = self.extract_str(params[1])
                         io = util_gen_permutations(value, glue=glue)
                     elif len(params) == 3:
-                        value = extract_str(params[0])
-                        glue = extract_str(params[1])
-                        limit = extract_str(params[2])
+                        value = self.extract_str(params[0])
+                        glue = self.extract_str(params[1])
+                        limit = self.extract_str(params[2])
                         io = util_gen_permutations(value, glue=glue, limit = int(limit))
                     elif len(params) == 4:
-                        value = extract_str(params[0])
-                        glue = extract_str(params[1])
-                        limit = extract_str(params[2])
-                        llimit = extract_str(params[3])
+                        value = self.extract_str(params[0])
+                        glue = self.extract_str(params[1])
+                        limit = self.extract_str(params[2])
+                        llimit = self.extract_str(params[3])
                         io = util_gen_permutations(value, glue=glue, limit = int(limit), llimit=int(llimit))
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1375,16 +1437,16 @@ class TEA_RunTime:
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        size = extract_str(params[0])
+                        size = self.extract_str(params[0])
                         io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
-                        size = extract_str(params[0])
-                        alphabet = extract_str(params[1])
+                        size = self.extract_str(params[0])
+                        alphabet = self.extract_str(params[1])
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet)
                     elif len(params) == 3:
-                        size = extract_str(params[0])
-                        alphabet = extract_str(params[1])
-                        glue = extract_str(params[2])
+                        size = self.extract_str(params[0])
+                        alphabet = self.extract_str(params[1])
+                        glue = self.extract_str(params[2])
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1395,26 +1457,26 @@ class TEA_RunTime:
                     pass
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
-                    vNAME = extract_str(params[0])
+                    vNAME = self.extract_str(params[0])
                     input_str = vault_get(vNAME)
                     if len(params) == 1:
                         io = util_gen_permutations(input_str)
                     elif len(params) == 2:
-                        vGlue = extract_str(params[1])
+                        vGlue = self.extract_str(params[1])
                         glue = vault_get(vGlue)
                         io = util_gen_permutations(input_str, glue=glue)
                     elif len(params) == 3:
-                        vGlue = extract_str(params[1])
+                        vGlue = self.extract_str(params[1])
                         glue = vault_get(vGlue)
-                        vLimit = extract_str(params[2])
+                        vLimit = self.extract_str(params[2])
                         limit = int(vault_get(vLimit))
                         io = util_gen_permutations(input_str, glue=glue, limit = limit)
                     elif len(params) == 4:
-                        vGlue = extract_str(params[1])
+                        vGlue = self.extract_str(params[1])
                         glue = vault_get(vGlue)
-                        vLimit = extract_str(params[2])
+                        vLimit = self.extract_str(params[2])
                         limit = int(vault_get(vLimit))
-                        vLLimit = extract_str(params[3])
+                        vLLimit = self.extract_str(params[3])
                         llimit = int(vault_get(vLLimit))
                         io = util_gen_permutations(input_str, glue=glue, limit = limit, llimit=llimit)
                     else:
@@ -1427,18 +1489,18 @@ class TEA_RunTime:
                     pass
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
-                    vSIZE = extract_str(params[0])
+                    vSIZE = self.extract_str(params[0])
                     size = vault_get(vSIZE)
                     if len(params) == 1:
                         io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
-                        vALPHABET = extract_str(params[1])
+                        vALPHABET = self.extract_str(params[1])
                         alphabet = vault_get(vALPHABET)
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet)
                     elif len(params) == 3:
-                        vALPHABET = extract_str(params[1])
+                        vALPHABET = self.extract_str(params[1])
                         alphabet = vault_get(vALPHABET)
-                        vGLUE = extract_str(params[2])
+                        vGLUE = self.extract_str(params[2])
                         glue = vault_get(vGLUE)
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
@@ -1455,7 +1517,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "Q":
                 if len(tpe_str) == 0:
@@ -1529,7 +1591,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if io is None or len(io) == 0:
                 return io
@@ -1544,7 +1606,7 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         regex = params[0]
-                        replacement = extract_str(params[1])
+                        replacement = self.extract_str(params[1])
                         io = re.sub(regex, replacement, io, count=1)
             if tc == "R!":
                 if len(tpe_str) == 0:
@@ -1557,7 +1619,7 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         regex = params[0]
-                        replacement = extract_str(params[1])
+                        replacement = self.extract_str(params[1])
                         io = re.sub(regex, replacement, io)
 
             if tc == "R*":
@@ -1577,7 +1639,7 @@ class TEA_RunTime:
                         else:
                             vault = params[0]
                             regex = params[1]
-                            replacement = extract_str(params[2])
+                            replacement = self.extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str, count=1)
 
@@ -1598,7 +1660,7 @@ class TEA_RunTime:
                         else:
                             vault = params[0]
                             regex = params[1]
-                            replacement = extract_str(params[2])
+                            replacement = self.extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str)
 
@@ -1612,7 +1674,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
             salt = TEA_RunTime.SINGLE_SPACE_CHAR
 
             if tc == "S":
@@ -1629,16 +1691,16 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 1:
-                            salt = extract_str(params[0])
+                            salt = self.extract_str(params[0])
                             io = util_salt_string(io,salt)
                         elif len(params) == 2:
-                            salt = extract_str(params[0])
-                            i_limit = int(extract_str(params[1]))
+                            salt = self.extract_str(params[0])
+                            i_limit = int(self.extract_str(params[1]))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 3:
-                            salt = extract_str(params[0])
-                            i_limit = int(extract_str(params[1]))
-                            l_limit = int(extract_str(params[2]))
+                            salt = self.extract_str(params[0])
+                            i_limit = int(self.extract_str(params[1]))
+                            l_limit = int(self.extract_str(params[2]))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
             if tc == "S!":
                 if len(tpe_str) == 0:
@@ -1654,16 +1716,16 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 1:
-                            salt_regex = extract_str(params[0])
+                            salt_regex = self.extract_str(params[0])
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 2:
-                            salt_regex = extract_str(params[0])
-                            d_limit = int(extract_str(params[1]))
+                            salt_regex = self.extract_str(params[0])
+                            d_limit = int(self.extract_str(params[1]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 3:
-                            salt_regex = extract_str(params[0])
-                            d_limit = int(extract_str(params[1]))
-                            l_limit = int(extract_str(params[2]))
+                            salt_regex = self.extract_str(params[0])
+                            d_limit = int(self.extract_str(params[1]))
+                            l_limit = int(self.extract_str(params[2]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             if tc == "S*":
@@ -1671,7 +1733,7 @@ class TEA_RunTime:
                     pass
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = extract_str(params[0])
+                    vault = self.extract_str(params[0])
                     input_str = vault_get(vault)
                     io = input_str
 
@@ -1680,16 +1742,16 @@ class TEA_RunTime:
                         return io
                     else:
                         if len(params) == 2:
-                            salt = extract_str(params[1])
+                            salt = self.extract_str(params[1])
                             io = util_salt_string(io,salt)
                         elif len(params) == 3:
-                            salt = extract_str(params[1])
-                            i_limit = int(extract_str(params[2]))
+                            salt = self.extract_str(params[1])
+                            i_limit = int(self.extract_str(params[2]))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 4:
-                            salt = extract_str(params[1])
-                            i_limit = int(extract_str(params[2]))
-                            l_limit = int(extract_str(params[3]))
+                            salt = self.extract_str(params[1])
+                            i_limit = int(self.extract_str(params[2]))
+                            l_limit = int(self.extract_str(params[3]))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
 
             if tc == "S*!":
@@ -1697,7 +1759,7 @@ class TEA_RunTime:
                     pass
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = extract_str(params[0])
+                    vault = self.extract_str(params[0])
                     input_str = vault_get(vault)
                     io = input_str
 
@@ -1707,16 +1769,16 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 2:
-                            salt_regex = extract_str(params[1])
+                            salt_regex = self.extract_str(params[1])
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 3:
-                            salt_regex = extract_str(params[1])
-                            d_limit = int(extract_str(params[2]))
+                            salt_regex = self.extract_str(params[1])
+                            d_limit = int(self.extract_str(params[2]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 4:
-                            salt_regex = extract_str(params[1])
-                            d_limit = int(extract_str(params[2]))
-                            l_limit = int(extract_str(params[3]))
+                            salt_regex = self.extract_str(params[1])
+                            d_limit = int(self.extract_str(params[2]))
+                            l_limit = int(self.extract_str(params[3]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             return io
@@ -1728,7 +1790,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "T":
                 if len(tpe_str) == 0:
@@ -1779,7 +1841,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "U":
                 if len(tpe_str) == 0:
@@ -1828,7 +1890,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "V":
                 if len(tpe_str) == 0:
@@ -1847,7 +1909,7 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         if len(params) == 2:
-                            vNAME,vVALUE = params[0], extract_str(params[1])
+                            vNAME,vVALUE = params[0], self.extract_str(params[1])
                             vault_store(vNAME,vVALUE)
                         elif len(params) == 1:
                             vNAME,vVALUE = params[0], io
@@ -1915,7 +1977,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "W":
                 if len(tpe_str) == 0:
@@ -1949,12 +2011,12 @@ class TEA_RunTime:
 
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        URL = vault_get(extract_str(params[0]))
+                        URL = vault_get(self.extract_str(params[0]))
                     else:
-                        URL = vault_get(extract_str(params[0]))
+                        URL = vault_get(self.extract_str(params[0]))
                         _vaultData = {}
                         for vNAME in params[1:]:
-                            _vaultData[vNAME] = vault_get(extract_str(vNAME))
+                            _vaultData[vNAME] = vault_get(self.extract_str(vNAME))
                         data = _vaultData
 
                     webRESULT = util_web_get(URL, data=data)
@@ -1972,12 +2034,12 @@ class TEA_RunTime:
 
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        URL = vault_get(extract_str(params[0]))
+                        URL = vault_get(self.extract_str(params[0]))
                     else:
-                        URL = vault_get(extract_str(params[0]))
+                        URL = vault_get(self.extract_str(params[0]))
                         _vaultData = {}
                         for vNAME in params[1:]:
-                            _vaultData[vNAME] = vault_get(extract_str(vNAME))
+                            _vaultData[vNAME] = vault_get(self.extract_str(vNAME))
                         data = _vaultData
 
                     webRESULT = util_web_post(URL, data=data)
@@ -1993,7 +2055,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "X":
                 if len(tpe_str) == 0:
@@ -2065,7 +2127,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "Y":
                 if len(tpe_str) == 0:
@@ -2132,7 +2194,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
             if tc == "Z":
                 if len(tpe_str) == 0:
