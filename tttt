@@ -246,7 +246,6 @@ class TEA_RunTime:
     def run_tttt(self, _process_cli = False, _tsrc=None, _ai=None, _debug=False):
         self.DEBUG = _debug
 
-
         INPUT = _ai #shall either be read from stdin or from the val to -i or -fi
         CODE = _tsrc #shall either be from INPUT or from the val to -c or -fc
         HasSTDIN = False
@@ -268,25 +267,20 @@ class TEA_RunTime:
             STDINPUT = os.linesep.join(sys.stdin.readlines())
             HasSTDIN = True
 
-
-
 #-----------------------------
 # VAULT/MEMORY utils
 #-----------------------------
 
         def vault_store(vNAME, vVAL):
             VAULTS[vNAME] = vVAL
-            if TEA_RunTime.DEBUG:
-                print(f"-- [INFO] Wrote VAULT[{vNAME} = [{vVAL}]]")
+            self.debug(f"-- [INFO] Wrote VAULT[{vNAME} = [{vVAL}]]")
 
         def vault_get(vNAME):
             if not (vNAME in VAULTS):
-                if TEA_RunTime.DEBUG:
-                    print(f"[ERROR] Instruction trying to access VAULT[{vNAME}] before it is set!")
+                self.debug(f"[ERROR] Instruction trying to access VAULT[{vNAME}] before it is set!")
                 raise ValueError(f"[MEMORY ERROR] ATTEMPT to ACCESS unset VAULT[{vNAME}]")
             else:
-                if TEA_RunTime.DEBUG:
-                    print(f"-- [INFO] Reading VAULT[{vNAME}]")
+                self.debug(f"-- [INFO] Reading VAULT[{vNAME}]")
             return VAULTS[vNAME]
 
 
@@ -597,11 +591,10 @@ class TEA_RunTime:
 
 
         def util_execute_tea(tsrc, ai):
-            if (tsrc is None) or (len(tsrc) == 0):
+            if self.is_empty(tsrc):
                 return ai
 
-            if TEA_RunTime.DEBUG:
-                print(f"[INFO] TEA EXEC:\n\tTSRC: [{tsrc}]\n\tAI: [{ai}]\n")
+            self.debug(f"[INFO] TEA EXEC:\n\tTSRC: [{tsrc}]\n\tAI: [{ai}]\n")
 
             e_runtime = TEA_RunTime()
             e_output = e_runtime.run_tttt(_process_cli=False, _tsrc=tsrc, _ai=ai, _debug=TEA_RunTime.DEBUG)
@@ -609,11 +602,10 @@ class TEA_RunTime:
 
 
         def util_inject_tea(tsrc, otil, injection_position, label_blocks):
-            if (tsrc is None) or (len(tsrc) == 0):
+            if self.is_empty(tsrc):
                 return otil, label_blocks, injection_position
 
-            if TEA_RunTime.DEBUG:
-                print(f"[INFO] TEA INJECTION:\n\tTSRC: [{tsrc}]\n\t@ATPI: [{injection_position}]\n")
+            self.debug(f"[INFO] TEA INJECTION:\n\tTSRC: [{tsrc}]\n\t@ATPI: [{injection_position}]\n")
 
             e_runtime = TEA_RunTime()
             e_otil = e_runtime._parse_tea_code(tsrc)
@@ -789,25 +781,25 @@ class TEA_RunTime:
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
-            if TEA_RunTime.DEBUG:
-                print(f"\n*******[ EXECUTING E-COMMAND ]\n")
+            self.debug(f"\n*******[ EXECUTING E-COMMAND ]\n")
 
             if tc == "E":
-                if len(tpe_str) == 0:
+                if self.is_empty(tpe_str):
                     e_Tsrc = io
                     e_ai = TEA_RunTime.EMPTY_STR
                     io = util_execute_tea(e_Tsrc, e_ai)
                 else:
-                    e_Tsrc = tpe_str
+                    e_Tsrc = self.extract_str(tpe_str) # just in case
                     e_ai = io
                     io = util_execute_tea(e_Tsrc, e_ai)
 
             if tc == "E!":
-                if len(tpe_str) == 0:
+                if self.is_empty(tpe_str):
                     e_Tsrc = io
                     e_ai = TEA_RunTime.EMPTY_STR
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
+                    self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
                 else:
@@ -815,12 +807,12 @@ class TEA_RunTime:
                     e_ai = io
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
+                    self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
             if tc == "E*":
-                if len(tpe_str) == 0:
-                    if TEA_RunTime.DEBUG:
-                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                if self.is_empty(tpe_str):
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                     raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                 else:
                     vNAME = tpe_str
@@ -831,9 +823,8 @@ class TEA_RunTime:
                     io = util_execute_tea(e_Tsrc, e_ai)
 
             if tc == "E*!":
-                if len(tpe_str) == 0:
-                    if TEA_RunTime.DEBUG:
-                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                if self.is_empty(tpe_str):
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                     raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                 else:
                     vNAME = tpe_str
@@ -842,10 +833,10 @@ class TEA_RunTime:
                     e_ai = io
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
+                    self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
-            if TEA_RunTime.DEBUG:
-                print(f"\n*******[ FINISHED E-COMMAND ]\n")
+            self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
 
             main_ATPI += 1 #move to next instruction if E: didn't already...
             return io,main_ATPI,main_INSTRUCTIONS,main_LABELBLOCKS
@@ -2405,8 +2396,7 @@ class TEA_RunTime:
 # TEA Processing
 #-----------------------------
 
-        if TEA_RunTime.DEBUG:
-            print(f"---------[ IN TEA RUNTIME ]\n")
+        self.debug(f"---------[ IN TEA RUNTIME ]\n")
 
         OUTPUT = None
         INSTRUCTIONS = []

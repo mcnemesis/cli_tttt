@@ -41,9 +41,9 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.0.9" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.0" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
-        this.status_MESSAGE = "Currently with a: b: c: d: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested";
+        this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete!";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
@@ -670,6 +670,39 @@ export class TEA_RunTime {
         }
     }
 
+    util_execute_tea(tsrc, ai){
+        if(TEA_RunTime.is_empty(tsrc)){
+            return ai
+        }
+
+        this.debug(`[INFO] TEA EXEC:\n\tTSRC: [${tsrc}]\n\tAI: [${ai}]\n`)
+
+        var e_runtime = new TEA_RunTime()
+        var e_output = e_runtime.run(ai, tsrc, this.DEBUG, this.DEBUG_FN);
+        return e_output
+    }
+
+
+    util_inject_tea(tsrc, otil, injection_position, label_blocks){
+        if(TEA_RunTime.is_empty(tsrc)){
+            return [otil, label_blocks, injection_position]
+        }
+
+        this.debug(`[INFO] TEA INJECTION:\n\tTSRC: [${tsrc}]\n\t@ATPI: [${injection_position}]\n`)
+
+        var e_runtime = new TEA_RunTime()
+        var e_otil = e_runtime._parse_tea_code(tsrc)
+        // update instructions list
+		var e_otil = [
+		  ...otil.slice(0, injection_position),
+		  ...e_otil,
+		  ...otil.slice(injection_position + 1)
+		];
+        var e_label_blocks = e_runtime._parse_labelblocks(e_otil, label_blocks)
+
+        return [e_otil, e_label_blocks, injection_position]
+    }
+
 
 //-----------------------------
 // TAZ Implementation
@@ -887,6 +920,95 @@ export class TEA_RunTime {
         }
         return io
     }
+
+
+    // PROCESS E:
+    process_e(ti, ai, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS){
+        var io = !TEA_RunTime.is_empty(ai)? ai : TEA_RunTime.EMPTY_STR
+		var parts = ti.split(TEA_RunTime.TCD);
+		var tc = parts[0];
+		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
+        tc = tc.toUpperCase()
+        tpe = tpe.trim()
+        // extract the string parameter
+        var tpe_str = this.extract_str(tpe)
+
+        if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
+            this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
+        }
+
+        this.debug("\n*******[ EXECUTING E-COMMAND ]\n")
+
+        if(tc == "E"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                var e_Tsrc = io
+                var e_ai = TEA_RunTime.EMPTY_STR
+                io = this.util_execute_tea(e_Tsrc, e_ai)
+            }
+            else {
+                var e_Tsrc = this.extract_str(tpe_str) // just in case
+                var e_ai = io
+                io = this.util_execute_tea(e_Tsrc, e_ai)
+            }
+        }
+
+        if(tc == "E!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                var e_Tsrc = io
+                var e_ai = TEA_RunTime.EMPTY_STR
+                var [e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi] = this.util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
+
+                this.debug("\n*******[ FINISHED E-COMMAND ]\n")
+                return [e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS]
+            }
+            else {
+                var e_Tsrc = tpe_str
+                var e_ai = io
+                var [e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi] = this.util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
+
+                this.debug("\n*******[ FINISHED E-COMMAND ]\n")
+                return [e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS]
+            }
+        }
+
+        if(tc == "E*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+            }
+            else {
+                var vNAME = tpe_str
+                var input_str = this.vault_get(vNAME)
+
+                var e_Tsrc = input_str
+                var e_ai = io
+                io = this.util_execute_tea(e_Tsrc, e_ai)
+            }
+        }
+
+        if(tc == "E*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+            }
+            else {
+                var vNAME = tpe_str
+                var input_str = this.vault_get(vNAME)
+                var e_Tsrc = input_str
+                var e_ai = io
+                var [e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi] = this.util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
+
+                this.debug("\n*******[ FINISHED E-COMMAND ]\n")
+                return [e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS]
+            }
+        }
+
+        this.debug("\n*******[ FINISHED E-COMMAND ]\n")
+
+        main_ATPI += 1 // move to next instruction if E: didn't already...
+        return [io,main_ATPI,main_INSTRUCTIONS,main_LABELBLOCKS]
+    }
+
 
 
     // PROCESS: F:
@@ -2868,7 +2990,7 @@ export class TEA_RunTime {
 	run(tin, tsrc, DEBUG_ON, debug_fn, run_validation_only, extract_clean_code, minify=false){
 
         this.DEBUG = DEBUG_ON;
-        this.DEBUG_FN = debug_fn;
+        this.DEBUG_FN = debug_fn != null ? debug_fn : this.DEBUG_FN;
 
         this.INPUT = tin
         this.CODE = tsrc 
@@ -2997,6 +3119,14 @@ export class TEA_RunTime {
                         this.OUTPUT = String(this.process_d(instruction, this.OUTPUT))
                         this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
                         this.ATPI += 1
+                        continue
+                    }
+
+                    // E: Evaluate
+                    case "E": {
+                        [this.OUTPUT, this.ATPI, this.INSTRUCTIONS, this.LABELBLOCKS] = this.process_e(instruction, this.OUTPUT, this.INSTRUCTIONS, this.ATPI, this.LABELBLOCKS )
+                        this.debug(`RESULTANT MEMORY STATE: (=${this.OUTPUT}, VAULTS:${JSON.stringify(this.VAULTS)})`)
+                        //ATPI += 1 # e: updates Everything directly...
                         continue
                     }
 

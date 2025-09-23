@@ -1,5 +1,10 @@
 #i!:{i!:AAA|d:^A|r:$:W} | e:
+#i!:{i!:AAA|d:^A|r:$:W} | e!:
 # or...
-i!:{BC CB BA AB} | e:"i!:AAA|d:^A|r:$:W" | # note the “” emphasis 
-#(=”AAW”)
-
+#i!:{BC CB BA AB} | e:"i!:AAA|d:^A|r:$:W" | # note the “” emphasis 
+#i!:{BC CB BA AB} | e:{i!:AAA|d:^A|r:$:W} | # note the “” emphasis 
+#i!:{BC CB BA AB} | e!:{i!:AAA|d:^A|r:$:W} | # note the “” emphasis 
+#i!:{BC CB BA AB} | v:vPROG:{i!:AAA|d:^A|r:$:W} | e*:vPROG  # note the “” emphasis 
+#i!:{BC CB BA AB} | v:vPROG:{i!:AAA|d:^A|r:$:W} | e*!:vPROG  # note the “” emphasis 
+i!:{BC CB BA AB} | v:vPROG:"i!:AAA|d:^A|r:$:W" | e*!:vPROG  # note the “” emphasis 
+# all variants above should return (="AAW")
