@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.0.8"
+VERSION = "1.1.0"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -82,6 +82,9 @@ class TEA_RunTime:
     OBSCURE_RC_NL = "=NL=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=NL="
     OBSCURE_RC_COM = "=COM=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=COM="
     OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
+    OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
+    OBSCURE_RC_STR_DEL1 = "=STR_DEL1=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL1="
+    STR_DEL1 = '"'
     TID = "|"
     #NL = "\n"
     NL = os.linesep
@@ -90,8 +93,9 @@ class TEA_RunTime:
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    RETEAPROGRAM = r'([a-zA-Z]\*?!?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'[ ]*?[a-zA-Z]\*?!?:.*?'
+    RETEAPROGRAM = r'([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*'
+    #RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
+    RETI = r'^\s*[a-zA-Z](?:[.!*]|(?:\*!))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -101,9 +105,13 @@ class TEA_RunTime:
     EMPTY_STR = ""
     vDEFAULT_VAULT = EMPTY_STR
 
+    # one of most important utils..
+    def is_empty(self, val):
+        return True if val is None or len(val) == 0 else False
+
 # Function to replace newlines with OBSCURE Pattern
     def maskTEASTRING(self, mObj):
-        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID)
+        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1)
 
 # Clean TEA CODE:
 # Essentially, eliminate all TEA Opaque Lines:
@@ -133,20 +141,40 @@ class TEA_RunTime:
             else:
                 _tils.append(l)
         _tsrc_lines = _tils
-        if TEA_RunTime.DEBUG:
-            print(f"#{len(_tsrc_lines)} of {(_tsrc_lines)}")
+        #self.debug(f"#{len(_tsrc_lines)} of ${_tsrc_lines}")
         reTI = re.compile(self.RETI)
         # remove all non-TIL lines
+        #self.debug(f"|>>> {_tsrc_lines}")
         _tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l)]
+        #self.debug(f">>> {_tsrc_til_only}")
         if TEA_RunTime.DEBUG:
             # reverse string masking...
             _tsrc_til_only_show = [l.
                     replace(self.OBSCURE_RC_NL,self.NL)
                     .replace(self.OBSCURE_RC_COM,self.COMH)
                     .replace(self.OBSCURE_RC_TID,self.TID) for l in _tsrc_til_only]
-            print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
-        _tsrc = self.NL.join(_tsrc_til_only)
-        return _tsrc
+            #print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
+        return _tsrc_til_only
+
+    # Conditionally print debug info...
+    def debug(self, txt):
+        if TEA_RunTime.DEBUG:
+            print(txt)
+
+
+    # reverse TEA String Masking
+    def unmask_str(self, val):
+        return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1)
+
+    # Extract a string from a TEA expression
+    def extract_str(self, val):
+        if val.startswith("{") and val.endswith("}"):
+            val = val.lstrip("{").rstrip("}")
+            return self.unmask_str(val)
+        if val.startswith("\"") and val.endswith("\""):
+            val = val.lstrip("\"").rstrip("\"")
+            return self.unmask_str(val)
+        return self.unmask_str(val)
 
 # Pre-process TEA CODE
     def pre_process_TSRC(self, tsrc):
@@ -177,14 +205,14 @@ class TEA_RunTime:
         tsrc = self.pre_process_TSRC(code)
         isTSRCValid,errors = self.validate_TSRC(tsrc)
         if not isTSRCValid:
-            if TEA_RunTime.DEBUG:
-                print("TEA CODE ERRORS FOUND:\n%s" % "\n".join(errors))
+            self.debug("TEA CODE ERRORS FOUND:\n%s" % self.NL.join(errors))
             return
-        onlyTILTSRC = self.clean_TSRC(tsrc)
-        if TEA_RunTime.DEBUG:
-            print(f"CLEAN TEA CODE TO PROCESS:\n{onlyTILTSRC}")
+        else:
+            self.debug("+++[NO TEA CODE ERRORS FOUND YET]")
+        otil = self.clean_TSRC(tsrc)
+        self.debug(f"CLEAN TEA CODE TO PROCESS:\n{self.NL.join(otil)}")
 
-        otil = onlyTILTSRC.split(self.NL)
+        self.debug(f"--[#{len(otil)} TEA INSTRUCTIONS FOUND]---")
         return otil
 
     def _parse_labelblocks(self, otil, initial_labelblocks = {}):
@@ -218,7 +246,6 @@ class TEA_RunTime:
     def run_tttt(self, _process_cli = False, _tsrc=None, _ai=None, _debug=False):
         self.DEBUG = _debug
 
-
         INPUT = _ai #shall either be read from stdin or from the val to -i or -fi
         CODE = _tsrc #shall either be from INPUT or from the val to -c or -fc
         HasSTDIN = False
@@ -240,25 +267,20 @@ class TEA_RunTime:
             STDINPUT = os.linesep.join(sys.stdin.readlines())
             HasSTDIN = True
 
-
-
 #-----------------------------
 # VAULT/MEMORY utils
 #-----------------------------
 
         def vault_store(vNAME, vVAL):
             VAULTS[vNAME] = vVAL
-            if TEA_RunTime.DEBUG:
-                print(f"-- [INFO] Wrote VAULT[{vNAME} = [{vVAL}]]")
+            self.debug(f"-- [INFO] Wrote VAULT[{vNAME} = [{vVAL}]]")
 
         def vault_get(vNAME):
             if not (vNAME in VAULTS):
-                if TEA_RunTime.DEBUG:
-                    print(f"[ERROR] Instruction trying to access DEFAULT VAULT before it is set!")
-                raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
+                self.debug(f"[ERROR] Instruction trying to access VAULT[{vNAME}] before it is set!")
+                raise ValueError(f"[MEMORY ERROR] ATTEMPT to ACCESS unset VAULT[{vNAME}]")
             else:
-                if TEA_RunTime.DEBUG:
-                    print(f"-- [INFO] Reading VAULT[{vNAME}]")
+                self.debug(f"-- [INFO] Reading VAULT[{vNAME}]")
             return VAULTS[vNAME]
 
 
@@ -271,22 +293,9 @@ class TEA_RunTime:
             try:
                 with open(file_path, 'r') as file:
                     return TEA_RunTime.NL.join(file.readlines())
-            except BaseException:
+            except BaseException as e:
+                self.debug(f"FILE i/o EXCEPTION: {e}")
                 return None
-
-        # reverse TEA String Masking
-        def unmask_str(val):
-            return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID)
-
-        # Extract a string from a TEA expression
-        def extract_str(val):
-            if val.startswith("{") and val.endswith("}"):
-                val = val.lstrip("{").rstrip("}")
-                return unmask_str(val)
-            if val.startswith("\"") and val.endswith("\""):
-                val = val.lstrip("\"").rstrip("\"")
-                return unmask_str(val)
-            return unmask_str(val)
 
         def util_anagramatize_words(val):
             parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val)
@@ -324,9 +333,9 @@ class TEA_RunTime:
             lparts = sorted(val)
             return TEA_RunTime.EMPTY_STR.join(lparts)
 
-        def util_gen_permutations(val, glue=TEA_RunTime.GLUE, limit=100):
+        def util_gen_permutations(val, glue=TEA_RunTime.GLUE, limit=100, llimit=None):
             iteration, iteration_limit = 0, limit * 2
-            instance_limit = util_gen_rand(limit,ll=1)
+            instance_limit = util_gen_rand(limit,ll=1 if llimit is None else llimit)
             permutations = []
             while len(permutations) < instance_limit:
                 if iteration > iteration_limit:
@@ -341,11 +350,14 @@ class TEA_RunTime:
             return glue.join(permutations)
 
 
-        def util_gen_rand_string(size=None, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.GLUE):
+        def util_gen_rand_string(size=None, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.EMPTY_STR):
             instance_limit = util_gen_rand(int(size) if size is not None else 100,ll=1)
             if size is not None:
                 instance_limit = size
-            return TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
+            if glue:
+                return glue.join(random.choice(alphabet) for _ in range(instance_limit))
+            else:
+                return TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
 
         def util_braille_projection1(val):
             # Define the pattern for non-whitespace characters
@@ -423,6 +435,7 @@ class TEA_RunTime:
                 lines.append(val[:(len(val)-i)])
             return TEA_RunTime.NL.join(lines)
 
+        # return unique words in val, sorted most frequent first, first occurrence first
         def util_unique_projection_words(val):
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Computing Unique Word Projection for [{val}]")
@@ -430,7 +443,8 @@ class TEA_RunTime:
             l_words = len(words)
             if l_words <= 1:
                 return val
-            unique_words = list(set(words))
+            #unique_words = list(set(words)) # wasn't preserving order of first occurrence
+            unique_words = list(dict.fromkeys(words))
             tally = [(w,words.count(w)) for w in unique_words]
             tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
             if TEA_RunTime.DEBUG:
@@ -438,6 +452,7 @@ class TEA_RunTime:
             return TEA_RunTime.GLUE.join([w[0] for w in tally])
 
 
+        # return unique characters in val, sorted most frequent first, first occurrence first
         def util_unique_projection_chars(val):
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Computing Unique Character Projection for [{val}]")
@@ -445,7 +460,8 @@ class TEA_RunTime:
             l_chars = len(chars)
             if l_chars <= 1:
                 return val
-            unique_chars = list(set(chars))
+            #unique_chars = list(set(chars)) # wasn't preserving order of first occurrence
+            unique_chars = list(dict.fromkeys(chars))
             tally = [(w,chars.count(w)) for w in unique_chars]
             tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
             if TEA_RunTime.DEBUG:
@@ -469,7 +485,7 @@ class TEA_RunTime:
                 if show_errors:
                     result = f"[ERROR]: {error}"
 
-            return result.strip() if result is not None else result
+            return result if not self.is_empty(result) else TEA_RunTime.EMPTY_STR
 
 
         def util_system(cmd, cmdData, show_errors=False):
@@ -507,7 +523,7 @@ class TEA_RunTime:
                     print(f"***[SYSTEM CMD EXCEPTION]: \n\tCMD: {cmd}\n\tCMDDATA: {cmdData}\n\tERROR: {error}")
                 if show_errors:
                     result = f"[ERROR]: {error}"
-            return result.strip() if result is not None else result
+            return result if not self.is_empty(result) else TEA_RunTime.EMPTY_STR
 
 
         def util_fix_url(url):
@@ -515,7 +531,7 @@ class TEA_RunTime:
                 return f"http://{url}"
             return url
 
-        def util_web_get(url, data=None):
+        def util_web_get(url, data=None, no_recurse=False):
             result = None
             try:
 
@@ -530,25 +546,28 @@ class TEA_RunTime:
                     # Read the content and decode it to a string
                     result = response.read().decode('utf-8')
             except Exception as error:
-                _result = util_web_get(util_fix_url(url), data=data)
+                _result = None
+                if not no_recurse:
+                    _result = util_web_get(util_fix_url(url), data=data, no_recurse=True)
+
                 if _result is not None:
                     result = _result
                 else:
                     result = f"[ERROR]: {error}"
-            return result.strip() if result is not None else result
+            #return result.strip() if result is not None else result
+            return result
 
 
-        def util_web_post(url, data=None):
+        def util_web_post(url, data=None, no_recurse=False):
             result = None
             try:
                 request = None
                 encoded_data = None
 
                 if isinstance(data, dict):
-                    if data is not None:
-                        encoded_data = urllib.parse.urlencode(data).encode('utf-8')
+                    encoded_data = urllib.parse.urlencode(data).encode('utf-8')
                 else:
-                    encoded_data = data.encode('utf-8')
+                    encoded_data = data.encode('utf-8') if data else data
                     request = urllib.request.Request(url, data=encoded_data, method='POST')
                     # Set the appropriate header for form data
                     request.add_header('Content-Type', 'application/x-www-form-urlencoded')
@@ -560,20 +579,22 @@ class TEA_RunTime:
                     result = response.read().decode('utf-8')
 
             except Exception as error:
-                _result = util_web_post(util_fix_url(url), data=data)
+                _result = None
+                if not no_recurse:
+                    _result = util_web_post(util_fix_url(url), data=data, no_recurse=True)
                 if _result is not None:
                     result = _result
                 else:
                     result = f"[ERROR]: {error}"
-            return result.strip() if result is not None else result
+            #return result.strip() if result is not None else result
+            return result
 
 
         def util_execute_tea(tsrc, ai):
-            if (tsrc is None) or (len(tsrc) == 0):
+            if self.is_empty(tsrc):
                 return ai
 
-            if TEA_RunTime.DEBUG:
-                print(f"[INFO] TEA EXEC:\n\tTSRC: [{tsrc}]\n\tAI: [{ai}]\n")
+            self.debug(f"[INFO] TEA EXEC:\n\tTSRC: [{tsrc}]\n\tAI: [{ai}]\n")
 
             e_runtime = TEA_RunTime()
             e_output = e_runtime.run_tttt(_process_cli=False, _tsrc=tsrc, _ai=ai, _debug=TEA_RunTime.DEBUG)
@@ -581,11 +602,10 @@ class TEA_RunTime:
 
 
         def util_inject_tea(tsrc, otil, injection_position, label_blocks):
-            if (tsrc is None) or (len(tsrc) == 0):
+            if self.is_empty(tsrc):
                 return otil, label_blocks, injection_position
 
-            if TEA_RunTime.DEBUG:
-                print(f"[INFO] TEA INJECTION:\n\tTSRC: [{tsrc}]\n\t@ATPI: [{injection_position}]\n")
+            self.debug(f"[INFO] TEA INJECTION:\n\tTSRC: [{tsrc}]\n\t@ATPI: [{injection_position}]\n")
 
             e_runtime = TEA_RunTime()
             e_otil = e_runtime._parse_tea_code(tsrc)
@@ -593,6 +613,7 @@ class TEA_RunTime:
             e_label_blocks = e_runtime._parse_labelblocks(e_otil, initial_labelblocks = label_blocks)
 
             return e_otil, e_label_blocks, injection_position
+
 
 #-----------------------------
 # TAZ Implementation
@@ -603,7 +624,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "A":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -626,7 +650,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "B":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -644,15 +671,43 @@ class TEA_RunTime:
 
 
         def process_c(ti, ai):
-            io = TEA_RunTime.EMPTY_STR
+            io = ai if ai is not None else TEA_RunTime.EMPTY_STR
             tc, tpe = ti.split(TEA_RunTime.TCD, maxsplit=1)
             tc = tc.upper()
+            tpe = tpe.strip()
+            # extract the string parameter
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "C":
-                pass
+                if len(tpe_str) == 0:
+                    io = TEA_RunTime.EMPTY_STR
+                else:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+
             if tc == "C!":
-                for vault in VAULTS:
-                    VAULTS[vault] = TEA_RunTime.EMPTY_STR
+                if len(tpe_str) == 0:
+                    for vault in VAULTS:
+                        VAULTS[vault] = TEA_RunTime.EMPTY_STR
+                    io = TEA_RunTime.EMPTY_STR
+                else:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+
+            if tc == "C*" or tc == "C*!":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    vaults = tpe_str.split(TEA_RunTime.TIPED)
+                    for vault in vaults:
+                        VAULTS[vault] = TEA_RunTime.EMPTY_STR
             return io
 
 
@@ -662,12 +717,21 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "D":
                 dpatterns = tpe_str.split(TEA_RunTime.TIPED)
                 for dp in dpatterns:
                     io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
+            if tc == "D.":
+                if len(tpe_str) == 0:
+                    pass
+                else:
+                    regex = tpe_str
+                    io = re.sub(regex, TEA_RunTime.EMPTY_STR, io)
             if tc == "D!":
                 if len(tpe_str) == 0:
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, TEA_RunTime.EMPTY_STR, io)
@@ -675,7 +739,7 @@ class TEA_RunTime:
                     dpatterns = tpe_str.split(TEA_RunTime.TIPED)
                     dfilter = "|".join(dpatterns)
                     matches = re.findall(dfilter,io)
-                    io = TEA_RunTime.GLUE.join(matches)
+                    io = TEA_RunTime.EMPTY_STR.join(matches)
             if (tc == "D*") or (tc == "D*!"):
                 if len(tpe_str) == 0:
                     return io
@@ -702,7 +766,7 @@ class TEA_RunTime:
                                dpatterns.append(vault_get(vRX))
                         dfilter = "|".join(dpatterns)
                         matches = re.findall(dfilter,io)
-                        io = TEA_RunTime.GLUE.join(matches)
+                        io = TEA_RunTime.EMPTY_STR.join(matches)
             return io
 
 
@@ -712,28 +776,30 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
-            if TEA_RunTime.DEBUG:
-                print(f"\n*******[ EXECUTING E-COMMAND ]\n")
+            self.debug(f"\n*******[ EXECUTING E-COMMAND ]\n")
 
             if tc == "E":
-                if len(tpe_str) == 0:
+                if self.is_empty(tpe_str):
                     e_Tsrc = io
                     e_ai = TEA_RunTime.EMPTY_STR
                     io = util_execute_tea(e_Tsrc, e_ai)
                 else:
-                    e_Tsrc = tpe_str
+                    e_Tsrc = self.extract_str(tpe_str) # just in case
                     e_ai = io
                     io = util_execute_tea(e_Tsrc, e_ai)
 
             if tc == "E!":
-                if len(tpe_str) == 0:
+                if self.is_empty(tpe_str):
                     e_Tsrc = io
                     e_ai = TEA_RunTime.EMPTY_STR
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
+                    self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
                 else:
@@ -741,12 +807,12 @@ class TEA_RunTime:
                     e_ai = io
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
+                    self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
             if tc == "E*":
-                if len(tpe_str) == 0:
-                    if TEA_RunTime.DEBUG:
-                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                if self.is_empty(tpe_str):
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                     raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                 else:
                     vNAME = tpe_str
@@ -757,9 +823,8 @@ class TEA_RunTime:
                     io = util_execute_tea(e_Tsrc, e_ai)
 
             if tc == "E*!":
-                if len(tpe_str) == 0:
-                    if TEA_RunTime.DEBUG:
-                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                if self.is_empty(tpe_str):
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                     raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                 else:
                     vNAME = tpe_str
@@ -768,10 +833,10 @@ class TEA_RunTime:
                     e_ai = io
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
+                    self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
-            if TEA_RunTime.DEBUG:
-                print(f"\n*******[ FINISHED E-COMMAND ]\n")
+            self.debug(f"\n*******[ FINISHED E-COMMAND ]\n")
 
             main_ATPI += 1 #move to next instruction if E: didn't already...
             return io,main_ATPI,main_INSTRUCTIONS,main_LABELBLOCKS
@@ -783,7 +848,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "F":
                 params = tpe_str.split(TEA_RunTime.TIPED)
@@ -878,32 +946,53 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "G":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) == 0:
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, TEA_RunTime.EMPTY_STR, io)
                 if len(params) == 1:
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, glue, io)
                 if len(params) == 2:
                     regex = params[1]
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
                     io = re.sub(regex, glue, io)
+            if tc == "G.":
+                if len(tpe_str) == 0:
+                    io = re.sub(TEA_RunTime.NL, TEA_RunTime.EMPTY_STR, io)
+                else:
+                    glue = tpe_str
+                    io = re.sub(TEA_RunTime.NL, glue, io)
+
             if tc == "G!":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) == 0:
                     pass
                 if len(params) == 1:
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE_N_PUNCTUATION, glue, io)
             if tc == "G*":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) < 3:
                     pass
                 else:
-                    glue = extract_str(params[0])
+                    glue = self.extract_str(params[0])
+                    vaults = params[1:]
+                    vals = []
+                    for v in vaults:
+                        vals.append(vault_get(v))
+                    io = glue.join(vals)
+            if tc == "G*!":
+                params = tpe_str.split(TEA_RunTime.TIPED)
+                if len(params) < 3:
+                    pass
+                else:
+                    glue = vault_get(self.extract_str(params[0]))
                     vaults = params[1:]
                     vals = []
                     for v in vaults:
@@ -918,7 +1007,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "H":
                 if len(tpe_str) == 0:
@@ -940,17 +1032,21 @@ class TEA_RunTime:
                     pass
                 else:
                     vault = params[0]
-                    regex = params[1]
+                    vregex = params[1]
                     input_str = vault_get(vault)
-                    io = TEA_RunTime.SINGLE_SPACE_CHAR.join(list(input_str))
+                    regex = vault_get(vregex)
+                    regex = r'(?=' + regex + ')'
+                    parts = re.split(regex, input_str)
+                    io = TEA_RunTime.SINGLE_SPACE_CHAR.join(parts)
             if tc == "H*!":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                 if len(params) < 2:
                     pass
                 else:
                     vault = params[0]
-                    regex = params[1]
+                    vregex = params[1]
                     input_str = vault_get(vault)
+                    regex = vault_get(vregex)
                     regex = r'(?=' + regex + ')'
                     parts = re.split(regex, input_str)
                     io = TEA_RunTime.NL.join(parts)
@@ -963,7 +1059,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "I":
                 if len(tpe_str) == 0:
@@ -987,11 +1086,15 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "J":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                 else:
                     jblock = tpe_str
                     if not (jblock in LABELBLOCKS):
@@ -1001,11 +1104,16 @@ class TEA_RunTime:
                     _ATPI = LABELBLOCKS[jblock]
                     return io,_ATPI
             if tc == "J!":
-                if len(tpe_str) == 0:
+                if self.is_empty(tpe_str):
                     _ATPI = 0 # start of program
+                    # detect potential infinite loop and raise error
+                    if len(INSTRUCTIONS) == 1: #meaning this is the only instruction found
+                        self.debug(f"+++[WARNING] POTENTIAL INFINITE LOOP! J!: invoked as the only instruction in the TEA Program!")
+
                     return io,_ATPI
                 else:
-                    pass
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
 
             _ATPI += 1 #move to next instruction if jump didn't evaluate...
             return io,_ATPI
@@ -1017,14 +1125,21 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
-            if io is None or len(io) == 0:
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
+
+            if self.is_empty(io): #NODATA
+                # INERT
+                self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                 return io
 
             if tc == "K":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str): 
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     regex = tpe_str
                     inputLines = io.split(TEA_RunTime.NL)
@@ -1035,8 +1150,10 @@ class TEA_RunTime:
                             keptLines.append(line)
                     io = TEA_RunTime.NL.join(keptLines)
             if tc == "K!":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str): 
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     regex = tpe_str
                     inputLines = io.split(TEA_RunTime.NL)
@@ -1050,7 +1167,9 @@ class TEA_RunTime:
             if tc == "K*":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                 if len(params) < 2:
-                    pass
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     vault = params[0]
                     regex = params[1]
@@ -1066,7 +1185,9 @@ class TEA_RunTime:
             if tc == "K*!":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                 if len(params) < 2:
-                    pass
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     vault = params[0]
                     regex = params[1]
@@ -1088,11 +1209,16 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "L":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     lBlockName = tpe_str
                     # prevent duplication of block names
@@ -1102,7 +1228,9 @@ class TEA_RunTime:
                         LABELBLOCKS[lBlockName] = ATPI
             if tc == "L!":
                 if len(tpe_str) == 0:
-                    pass
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     labels = tpe_str.split(TEA_RunTime.TIPED)
                     for lBlockName in labels:
@@ -1119,7 +1247,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "M":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -1154,7 +1285,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if (tc == "N") or (tc == "N!"):
                 if len(tpe_str) == 0:
@@ -1181,7 +1315,9 @@ class TEA_RunTime:
                            nums.append(str(util_gen_rand(int(limit), ll=llimit)))
                        io = glue.join(nums)
             if (tc == "N*") or (tc == "N*!"):
-                if len(tpe_str) == 0:
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                     return io
                 else:
                    params  = tpe_str.split(TEA_RunTime.TIPED)
@@ -1227,7 +1363,7 @@ class TEA_RunTime:
                        vsize = size
                        size = vault_get(vsize) if len(vsize) > 0 else 1
 
-                       vglue = size
+                       vglue = glue
                        glue = vault_get(vglue) if len(vglue) > 0 else TEA_RunTime.GLUE
 
                        nums = []
@@ -1244,7 +1380,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "O":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
@@ -1267,7 +1406,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "P":
                 if len(tpe_str) == 0:
@@ -1275,11 +1417,23 @@ class TEA_RunTime:
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        io = util_gen_permutations(params[0])
+                        value = self.extract_str(params[0])
+                        io = util_gen_permutations(value)
                     elif len(params) == 2:
-                        io = util_gen_permutations(params[0], glue=params[1])
+                        value = self.extract_str(params[0])
+                        glue = self.extract_str(params[1])
+                        io = util_gen_permutations(value, glue=glue)
                     elif len(params) == 3:
-                        io = util_gen_permutations(params[0], glue=params[1], limit = int(params[2]))
+                        value = self.extract_str(params[0])
+                        glue = self.extract_str(params[1])
+                        limit = self.extract_str(params[2])
+                        io = util_gen_permutations(value, glue=glue, limit = int(limit))
+                    elif len(params) == 4:
+                        value = self.extract_str(params[0])
+                        glue = self.extract_str(params[1])
+                        limit = self.extract_str(params[2])
+                        llimit = self.extract_str(params[3])
+                        io = util_gen_permutations(value, glue=glue, limit = int(limit), llimit=int(llimit))
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
@@ -1290,28 +1444,80 @@ class TEA_RunTime:
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        io = util_gen_rand_string(size=int(params[0]))
+                        size = self.extract_str(params[0])
+                        io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
-                        io = util_gen_rand_string(size=int(params[0]), alphabet=params[1])
+                        size = self.extract_str(params[0])
+                        alphabet = self.extract_str(params[1])
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
                     elif len(params) == 3:
-                        io = util_gen_rand_string(size=int(params[0]), alphabet=params[1], glue = params[2])
+                        size = self.extract_str(params[0])
+                        alphabet = self.extract_str(params[1])
+                        glue = self.extract_str(params[2])
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
             if tc == "P*":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED)
-                    vNAME = params[0]
+                    vNAME = self.extract_str(params[0])
                     input_str = vault_get(vNAME)
                     if len(params) == 1:
                         io = util_gen_permutations(input_str)
                     elif len(params) == 2:
-                        io = util_gen_permutations(input_str, glue=params[1])
+                        vGlue = self.extract_str(params[1])
+                        glue = vault_get(vGlue)
+                        io = util_gen_permutations(input_str, glue=glue)
                     elif len(params) == 3:
-                        io = util_gen_permutations(input_str, glue=params[1], limit = int(params[2]))
+                        vGlue = self.extract_str(params[1])
+                        glue = vault_get(vGlue)
+                        vLimit = self.extract_str(params[2])
+                        limit = int(vault_get(vLimit))
+                        io = util_gen_permutations(input_str, glue=glue, limit = limit)
+                    elif len(params) == 4:
+                        vGlue = self.extract_str(params[1])
+                        glue = vault_get(vGlue)
+                        vLimit = self.extract_str(params[2])
+                        limit = int(vault_get(vLimit))
+                        vLLimit = self.extract_str(params[3])
+                        llimit = int(vault_get(vLLimit))
+                        io = util_gen_permutations(input_str, glue=glue, limit = limit, llimit=llimit)
+                    else:
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+
+            if tc == "P*!":
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
+                else:
+                    params = tpe_str.split(TEA_RunTime.TIPED)
+                    vSIZE = self.extract_str(params[0])
+                    size = vault_get(vSIZE)
+                    if len(params) == 1:
+                        io = util_gen_rand_string(size=int(size))
+                    elif len(params) == 2:
+                        vALPHABET = self.extract_str(params[1])
+                        alphabet = vault_get(vALPHABET)
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
+                    elif len(params) == 3:
+                        vALPHABET = self.extract_str(params[1])
+                        alphabet = vault_get(vALPHABET)
+                        vGLUE = self.extract_str(params[2])
+                        glue = vault_get(vGLUE)
+                        io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
+                    else:
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
 
             return io
 
@@ -1322,7 +1528,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "Q":
                 if len(tpe_str) == 0:
@@ -1349,6 +1558,43 @@ class TEA_RunTime:
                             print(f"Quiting Program because AI[{ai}] does NOT match non-quit pattern[{qtest}]")
                         _ATPI = len(INSTRUCTIONS) + 1
 
+            if tc == "Q*":
+                if len(tpe_str) == 0:
+                    if len(VAULTS) == 0:
+                        if TEA_RunTime.DEBUG:
+                            print(f"-- Quiting Program because NO VAULTS were set")
+                        _ATPI = len(INSTRUCTIONS) + 1 # points to end of program
+                else:
+                    vregex = tpe_str
+                    qtest = vault_get(vregex)
+                    if (bool(re.search(qtest, io)) or (re.match(qtest, io)) or (qtest == io) or (qtest in io)):
+                        if TEA_RunTime.DEBUG:
+                            print(f"Quiting Program because AI[{ai}] matches quit pattern[{qtest}]")
+                        _ATPI = len(INSTRUCTIONS) + 1
+
+            if tc == "Q*!":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.vDEFAULT_VAULT not in VAULTS:
+                        if TEA_RunTime.DEBUG:
+                            print(f"-- Quiting Program because the DEFAULT VAULT  is not set")
+                        _ATPI = len(INSTRUCTIONS) + 1
+                    else:
+                        default_vault_val = vault_get(TEA_RunTime.vDEFAULT_VAULT)
+                        if len(default_vault_val) == 0: # possible if c!: was invoked earlier on
+                            if TEA_RunTime.DEBUG:
+                                print(f"-- Quiting Program because the DEFAULT VAULT  is EMPTY!")
+                            _ATPI = len(INSTRUCTIONS) + 1
+                        else:
+                            _ATPI += 1 # first move to next instruction if we didn't quit
+                    return io,_ATPI
+                else:
+                    vregex = tpe_str
+                    qtest = vault_get(vregex)
+                    if not (bool(re.search(qtest, io)) or (re.match(qtest, io)) or (qtest == io) or (qtest in io)):
+                        if TEA_RunTime.DEBUG:
+                            print(f"Quiting Program because AI[{ai}] does NOT match non-quit pattern[{qtest}]")
+                        _ATPI = len(INSTRUCTIONS) + 1
+
             _ATPI += 1 #move to next instruction if we didn't quit
             return io,_ATPI
 
@@ -1359,10 +1605,16 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
 
-            if io is None or len(io) == 0:
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
+
+            if self.is_empty(io):
+                # INERT
+                self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                 return io
+
             if tc == "R":
                 if len(tpe_str) == 0:
                     io = util_braille_projection1(io)
@@ -1374,7 +1626,7 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         regex = params[0]
-                        replacement = extract_str(params[1])
+                        replacement = self.extract_str(params[1])
                         io = re.sub(regex, replacement, io, count=1)
             if tc == "R!":
                 if len(tpe_str) == 0:
@@ -1387,12 +1639,14 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         regex = params[0]
-                        replacement = extract_str(params[1])
+                        replacement = self.extract_str(params[1])
                         io = re.sub(regex, replacement, io)
 
             if tc == "R*":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                     if (len(params) == 2) or (len(params) > 3):
@@ -1407,13 +1661,15 @@ class TEA_RunTime:
                         else:
                             vault = params[0]
                             regex = params[1]
-                            replacement = extract_str(params[2])
+                            replacement = self.extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str, count=1)
 
             if tc == "R*!":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
                     if (len(params) == 2) or (len(params) > 3):
@@ -1428,7 +1684,7 @@ class TEA_RunTime:
                         else:
                             vault = params[0]
                             regex = params[1]
-                            replacement = extract_str(params[2])
+                            replacement = self.extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str)
 
@@ -1442,111 +1698,132 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
             salt = TEA_RunTime.SINGLE_SPACE_CHAR
 
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
+
             if tc == "S":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         # can't salt without input
                         return io
                     else:
                         io = util_salt_string(io,salt)
                 else:
-                    if (io is None) or (len(io) == 0):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         # can't salt without input
                         return io
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 1:
-                            salt = params[0]
+                            salt = self.extract_str(params[0])
                             io = util_salt_string(io,salt)
                         elif len(params) == 2:
-                            salt = params[0]
-                            i_limit = int(params[1])
+                            salt = self.extract_str(params[0])
+                            i_limit = int(self.extract_str(params[1]))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 3:
-                            salt = params[0]
-                            i_limit = int(params[1])
-                            l_limit = int(params[2])
+                            salt = self.extract_str(params[0])
+                            i_limit = int(self.extract_str(params[1]))
+                            l_limit = int(self.extract_str(params[2]))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
             if tc == "S!":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         # can't unsalt without input
                         return io
                     else:
                         io = util_unsalt_string(io)
                 else:
-                    if (io is None) or (len(io) == 0):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         # can't unsalt without input
                         return io
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 1:
-                            salt_regex = params[0]
+                            salt_regex = self.extract_str(params[0])
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 2:
-                            salt_regex = params[0]
-                            d_limit = int(params[1])
+                            salt_regex = self.extract_str(params[0])
+                            d_limit = int(self.extract_str(params[1]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 3:
-                            salt_regex = params[0]
-                            d_limit = int(params[1])
-                            l_limit = int(params[2])
+                            salt_regex = self.extract_str(params[0])
+                            d_limit = int(self.extract_str(params[1]))
+                            l_limit = int(self.extract_str(params[2]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             if tc == "S*":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    # can't salt without input
+                    return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = params[0]
+                    vault = self.extract_str(params[0])
                     input_str = vault_get(vault)
                     io = input_str
 
-                    if (io is None) or (len(io) == 0):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         # can't salt without input
                         return io
                     else:
                         if len(params) == 2:
-                            salt = params[1]
+                            salt = self.extract_str(params[1])
                             io = util_salt_string(io,salt)
                         elif len(params) == 3:
-                            salt = params[1]
-                            i_limit = int(params[2])
+                            salt = self.extract_str(params[1])
+                            i_limit = int(self.extract_str(params[2]))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 4:
-                            salt = params[1]
-                            i_limit = int(params[2])
-                            l_limit = int(params[3])
+                            salt = self.extract_str(params[1])
+                            i_limit = int(self.extract_str(params[2]))
+                            l_limit = int(self.extract_str(params[3]))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
 
             if tc == "S*!":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    # can't salt without input
+                    return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = params[0]
+                    vault = self.extract_str(params[0])
                     input_str = vault_get(vault)
                     io = input_str
 
-                    if (io is None) or (len(io) == 0):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         # can't unsalt without input
                         return io
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 2:
-                            salt_regex = params[1]
+                            salt_regex = self.extract_str(params[1])
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 3:
-                            salt_regex = params[1]
-                            d_limit = int(params[2])
+                            salt_regex = self.extract_str(params[1])
+                            d_limit = int(self.extract_str(params[2]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 4:
-                            salt_regex = params[1]
-                            d_limit = int(params[2])
-                            l_limit = int(params[3])
+                            salt_regex = self.extract_str(params[1])
+                            d_limit = int(self.extract_str(params[2]))
+                            l_limit = int(self.extract_str(params[3]))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             return io
@@ -1558,13 +1835,17 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "T":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
-                        if TEA_RunTime.DEBUG:
-                            print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        self.debug(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1576,8 +1857,10 @@ class TEA_RunTime:
                             print(f"Processing {tc} on TPE[{io}]")
                         return util_triangular_reduction(input_str)
             if tc == "T!":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
                         return util_rightmost_triangular_reduction(io)
@@ -1585,16 +1868,20 @@ class TEA_RunTime:
                         input_str = tpe_str
                         return util_rightmost_triangular_reduction(input_str)
             if tc == "T*":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
                     return util_triangular_reduction(input_str)
 
             if tc == "T*!":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
@@ -1609,13 +1896,17 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "U":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
-                        if TEA_RunTime.DEBUG:
-                            print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        self.debug(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1625,8 +1916,10 @@ class TEA_RunTime:
                         input_str = tpe_str
                         return util_unique_projection_words(input_str)
             if tc == "U!":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
                         return util_unique_projection_chars(io)
@@ -1634,16 +1927,20 @@ class TEA_RunTime:
                         input_str = tpe_str
                         return util_unique_projection_chars(input_str)
             if tc == "U*":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
                     return util_unique_projection_words(input_str)
 
             if tc == "U*!":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
@@ -1658,7 +1955,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "V":
                 if len(tpe_str) == 0:
@@ -1677,7 +1977,7 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         if len(params) == 2:
-                            vNAME,vVALUE = params[0], extract_str(params[1])
+                            vNAME,vVALUE = params[0], self.extract_str(params[1])
                             vault_store(vNAME,vVALUE)
                         elif len(params) == 1:
                             vNAME,vVALUE = params[0], io
@@ -1745,7 +2045,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "W":
                 if len(tpe_str) == 0:
@@ -1779,11 +2082,12 @@ class TEA_RunTime:
 
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        URL = params[0]
+                        URL = vault_get(self.extract_str(params[0]))
                     else:
+                        URL = vault_get(self.extract_str(params[0]))
                         _vaultData = {}
-                        for vNAME in params[:1]:
-                            _vaultData[vNAME] = vault_get(vNAME)
+                        for vNAME in params[1:]:
+                            _vaultData[vNAME] = vault_get(self.extract_str(vNAME))
                         data = _vaultData
 
                     webRESULT = util_web_get(URL, data=data)
@@ -1801,14 +2105,15 @@ class TEA_RunTime:
 
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
-                        URL = params[0]
+                        URL = vault_get(self.extract_str(params[0]))
                     else:
+                        URL = vault_get(self.extract_str(params[0]))
                         _vaultData = {}
-                        for vNAME in params[:1]:
-                            _vaultData[vNAME] = vault_get(vNAME)
+                        for vNAME in params[1:]:
+                            _vaultData[vNAME] = vault_get(self.extract_str(vNAME))
                         data = _vaultData
 
-                    webRESULT = util_web_post(URL, data=io)
+                    webRESULT = util_web_post(URL, data=data)
                     return webRESULT if webRESULT is not None else TEA_RunTime.EMPTY_STR
 
             return io
@@ -1821,13 +2126,16 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "X":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
-                        if TEA_RunTime.DEBUG:
-                            print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1837,22 +2145,24 @@ class TEA_RunTime:
                         prefix = tpe_str
                         return prefix + io
             if tc == "X!":
-                if len(tpe_str) == 0:
-                    if (io is None) or (len(io) == 0):
-                        if TEA_RunTime.DEBUG:
-                            print(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"Processing {tc} on AI=[{io}]")
-                        return io[:(len(io)//2)]
+                        return io[:(len(io)//2)] # return half of AI
                 else:
                         suffix = tpe_str
                         return io + suffix
 
             if tc == "X*":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=1)
                     val = io
@@ -1868,8 +2178,10 @@ class TEA_RunTime:
                         return prefix + val
 
             if tc == "X*!":
-                if len(tpe_str) == 0:
-                    pass
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=1)
                     val = io
@@ -1893,7 +2205,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "Y":
                 if len(tpe_str) == 0:
@@ -1941,14 +2256,9 @@ class TEA_RunTime:
                     return vVALUE
             if tc == "Y*!":
                 if len(tpe_str) == 0:
-                    if TEA_RunTime.vDEFAULT_VAULT not in VAULTS:
-                        if TEA_RunTime.DEBUG:
-                            print(f"[ERROR] Instruction {ti} trying to access DEFAULT VAULT before it is set!")
-                        raise ValueError("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
-                    vVALUE = vault_get(TEA_RunTime.vDEFAULT_VAULT)
                     if TEA_RunTime.DEBUG:
-                        print(f"[INFO] Returning Length of string  in DEFAULT VAULT [{vVALUE}]")
-                    return len(vVALUE)
+                        print(f"[INFO] Returning Length of ORIGINAL INPUT to the TEA PROGRAM")
+                    return len(ORIGINAL_INPUT) if ORIGINAL_INPUT else 0
                 else:
                     vNAME = tpe_str
                     vVALUE = vault_get(vNAME)
@@ -1965,7 +2275,10 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = extract_str(tpe)
+            tpe_str = self.extract_str(tpe)
+
+            if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
+                self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "Z":
                 if len(tpe_str) == 0:
@@ -2058,8 +2371,7 @@ class TEA_RunTime:
             if args.input:
                 INPUT = args.input
             elif args.input_file:
-                if TEA_RunTime.DEBUG:
-                    print(f"Reading INPUT from: {args.input_file}")
+                self.debug(f"Reading INPUT from: {args.input_file}")
                 INPUT = read_file(args.input_file)
             else:
                 if not STDIN_AS_CODE:
@@ -2084,8 +2396,7 @@ class TEA_RunTime:
 # TEA Processing
 #-----------------------------
 
-        if TEA_RunTime.DEBUG:
-            print(f"---------[ IN TEA RUNTIME ]\n")
+        self.debug(f"---------[ IN TEA RUNTIME ]\n")
 
         OUTPUT = None
         INSTRUCTIONS = []
