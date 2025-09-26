@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  26 SEP 2025 20:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  26 SEP 2025 23:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2092,19 +2092,35 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [37 <./resources/images/nsigil_qrcode.png>]
+Overfull \hbox (24.55954pt too wide) detected at line 1777
+[][][]\OML/cmm/m/it/9 vCOORDINATES \OT1/cmr/m/n/9 = \OMS/cmsy/m/n/9 h\OT1/cmr/m
+/n/9 (1\OML/cmm/m/it/9 ; vAA\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 (2
+\OML/cmm/m/it/9 ; vB\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 (3\OML/cmm
+/m/it/9 ; vC\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 (4\OML/cmm/m/it/9 
+; vD\OT1/cmr/m/n/9 )\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 (5\OML/cmm/m/it/9 ; vE\OT1
+/cmr/m/n/9 )\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 (6\OML/cmm/m/it/9 ; vF\OT1/cmr/m/n
+/9 )\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 vAA; \OT1/cmr/m/n/9 1)\OM
+L/cmm/m/it/9 ; \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 vB; \OT1/cmr/m/n/9 2)\OML/cmm/m/
+it/9 ; \OT1/cmr/m/n/9 (\OML/cmm/m/it/9 vC; \OT1/cmr/m/n/9 3)\OML/cmm/m/it/9 ; \
+OT1/cmr/m/n/9 (\OML/cmm/m/it/9 vD; \OT1/cmr/m/n/9 4)\OML/cmm/m/it/9 ; \OT1/cmr/
+m/n/9 (\OML/cmm/m/it/9 vE; \OT1/cmr/m/n/9 5)\OML/cmm/m/it/9 ; \OT1/cmr/m/n/9 (\
+OML/cmm/m/it/9 vF; \OT1/cmr/m/n/9 6)\OMS/cmsy/m/n/9 i
+ []
 
-[38
 
-]
+
+[38]
 Chapter 7.
 (TAZ_BOOK.bbl
 
-[39]
+[39
+
+]
 
 [40
 
 ])
-Underfull \hbox (badness 10000) in paragraph at lines 1735--1735
+Underfull \hbox (badness 10000) in paragraph at lines 1845--1845
 
  []
 
@@ -2115,14 +2131,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 1735--1735
 [42
 
 ]
-<resources/pdfs/AboutAuthor.pdf, id=1135, 614.295pt x 794.97pt>
+<resources/pdfs/AboutAuthor.pdf, id=1165, 614.295pt x 794.97pt>
 File: resources/pdfs/AboutAuthor.pdf Graphic file (type pdf)
 <use resources/pdfs/AboutAuthor.pdf>
-Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 175
+Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 186
 4.
 (pdftex.def)             Requested size: 505.17802pt x 583.53377pt.
 
-Overfull \hbox (8.84879pt too wide) in paragraph at lines 1754--1754
+Overfull \hbox (8.84879pt too wide) in paragraph at lines 1864--1864
  [] 
  []
 
@@ -2140,10 +2156,10 @@ Overfull \vbox (19.80933pt too high) has occurred while \output is active []
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=1173, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=1203, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1765.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1875.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2151,7 +2167,7 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1765.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1875.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2161,15 +2177,15 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=1176, page=1, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=1206, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1875.
 
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1875.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
@@ -2177,19 +2193,19 @@ Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
 [45]
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1875.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1875.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1875.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [46
@@ -2207,48 +2223,51 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TAZ_BOOK.out' has not changed.
-(rerunfilecheck)             Checksum: ADEF62C864F9BA6A9F37C523949611F8;6037.
+(rerunfilecheck)             Checksum: 35CDD5D9E68AD437117BC964F680A4DE;6039.
  ) 
 Here is how much of TeX's memory you used:
- 34626 strings out of 473898
- 655230 string characters out of 5736297
- 2533960 words of memory out of 5000000
- 56340 multiletter control sequences out of 15000+600000
- 579127 words of font info for 115 fonts, out of 8000000 for 9000
+ 34658 strings out of 473898
+ 655585 string characters out of 5736297
+ 2539960 words of memory out of 5000000
+ 56346 multiletter control sequences out of 15000+600000
+ 579823 words of font info for 117 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,18n,101p,2317b,1942s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0
+ <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0
 900.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tctt1440.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
-i600\tctt1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
-ec/dpi600\tcrm1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
-ppen/ec/dpi600\tctt1200.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Progra
-m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/a
-msfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mmi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/
-Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/
-Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-sy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/
-Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmtt8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb><
-C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/cbgreek/gttn1000.pfb>
-Output written on TAZ_BOOK.pdf (66 pages, 5188626 bytes).
+tctt0900.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
+i600\tctt1440.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\tctt1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\tcrm1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\tctt1200.pk><C:/Program Files/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmb
+x12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/P
+rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmmi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program 
+Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pf
+b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program 
+Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program F
+iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmti9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.
+pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Progr
+am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Users/AKAM/AppData
+/Roaming/MiKTeX/fonts/type1/public/cbgreek/gttn1000.pfb>
+Output written on TAZ_BOOK.pdf (66 pages, 5244247 bytes).
 PDF statistics:
- 1456 PDF objects out of 1728 (max. 8388607)
- 590 named destinations out of 1000 (max. 500000)
+ 1503 PDF objects out of 1728 (max. 8388607)
+ 615 named destinations out of 1000 (max. 500000)
  367 words of extra memory for PDF output out of 10000 (max. 10000000)
 

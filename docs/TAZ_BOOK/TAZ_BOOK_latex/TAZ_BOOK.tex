@@ -1472,7 +1472,7 @@ RESULTANT MEMORY STATE: (=, VAULTS:{'vC': '', 'vF': 'TEST-F', 'vD': ''})
 However, that said, and given the only way to use memory with references or pointers is via TEA Vaults, we then shall acknowledge and appreciate, that, with proper use of the basic facility to create, set, update and clear memory\footnote{\textbf{WARNING:} note that, currently (as of \textbf{TEA v1.1.0} --- see \url{https://tea.nuchwezi.com} for latest), TEA provides no direct means to delete entirely or rather, to unregister a previously named memory pointer/variable reference such as with vault names, other than merely clearing the referenced memory space (such as by setting it to the EMPTY SPACE). But if required, perhaps future TEA versions might avail this functionality as a subset of \textbf{C*:} or \textbf{C.:} command space.}, the software programmer can design or implement many useful and efficient computer programs that might leverage logic that relies on the state of the program's memory so as to perform correctly. The following non-trivial, but still basic program, is a great illustration of such a computer program.
 
 
-\subsection{EXAMPLE 1: The N-SIGIL Generator: print visual qrcode corresponding to some number N}
+\subsection{EXAMPLE 1: The N-SIGIL Generator: print textual-qrcode corresponding to some number N}
 \label{SECEXAMP1C}
 
 This program we are going to look at next, is mostly classified as both a graphical and interactive game-like software that can correctly work as written, for particularly WEB TEA\footnote{As we have indicated in \textbf{\autoref{SEC1}}, programs leveraging the \texttt{Z:CMD} instructions might not be readily portable across just WEB and CLI TEA.} --- access to which is currently readily possible via the \textbf{TEA WEB Integrated Development Environment}: \url{https://tea.nuchwezi.com}.
@@ -1506,8 +1506,8 @@ In a somewhat verbose style --- so that TEA-newcomers might also get the chance 
 
 #BEGIN: determine what our image dimensions 
 # shall be (not user-set)
-v:vCOL:6 #columns
-v:vROW:6 #rows
+v:vCOL:10 #columns e.g 5
+v:vROW:6 #rows e.g 4
 g*:*:vCOL:vROW | v:vN | z*:vN | v:vN #cardinality of grid (=20)
 
 l:lSTART
@@ -1649,7 +1649,7 @@ i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
   \vspace{1cm}
   
   
-  As it is, the TEA program in \textbf{\autoref{FIGC7}} consists of a total of \textbf{125} TEA instructions, spans features such as:
+  As it is, the TEA program in \textbf{\autoref{FIGC7}} consists of a total of \textbf{136} TEA instructions, spans features such as:
   
 \begin{enumerate}
 \item Dynamic greeting prompts.
@@ -1690,6 +1690,116 @@ We can appreciate what the program can do, by looking at sample screenshots of t
         \caption{N-SIGIL v1.0.1: a basic qrcode for just the number 1}
       \label{FIGNSIGIL3}
     \end{figure}
+    
+    
+  Finally, and before we move on to the next chapter, it might help some readers of the TEA code in the example application we have just covered, by understanding clearer, what the underlying mathematics or algorithm is that make this \textbf{N-Sigil} utility work as it does, especially without using any sophisticated graphics and no imported batteries other than the use of JavaScript to compute some of the program's aspects we couldn't resolve readily in plain TEA. Also, this might help those might wish to port the program to CLI TEA, so that they perhaps know well, how to handle the important aspects of the algorithm. We specify the minimal \textbf{N-Sigil Algorithm} hereafter...
+  
+  
+  \begin{alg}[The \textbf{N-SIGIL Algorithm}: $\text{gen\_sigil}(DATA, nCol, nRow)$]
+\label{ALGNSIGIL}
+$ $\\
+\begin{enumerate}
+\item \textbf{GIVEN} the dimensions of the target image as width, $nCol$, and height, $nRow$.
+
+\item{ \textbf{COMPUTE} the total number of cells, ``pixels" or ``bits" that our image shall contain, as such:
+
+\begin{equation}
+vN = nCol \times nRow
+\end{equation}
+
+}
+\item{ \textbf{GIVEN DATA}\footnote{We say ``DATA" because, in the most general sense, and given we are designing an algorithm that generates an image for any supported text --- makes sense for especially TEA, since the language knows no other datatypes other than just text, but also that, in the general sense, any arbitrary data that could be expressed using a visual method such as a QRCode or other form of sigilization, and which method fundamentally has a way to do this for a pure-number, might as well be considered a basis for any general generator, since any other datatype can, in principle at least, be reduced to some pure number by some meaningful method.} in form of a pure number, $vIN$, and for which we intend to generate a unique or corresponding image in some non-trivial encoding --- the N-SIGIL encoding in our case.
+}
+
+\item{ \textbf{PREPROCESS} the input, $vIN$, so that it can be properly processed for the rest of the algorithm. Essentially, \textbf{COMPUTE} $vA$, our first parameter based off of $vIN$, the user's input, and $vN$, cardinality of the image in terms of pixels, as such:
+
+\begin{equation}
+vA = \lfloor \frac{vIN}{vN} + (vIN \mod vN) \rfloor
+\end{equation}
+
+}
+
+\item{ Further, \textbf{ADJUST} $vA$, so that it can map to a value within the range of columns: essentially, compute some $vAA$ as such:
+
+\begin{equation}
+vAA =  \lfloor \frac{vA}{nCol} + (vA \mod nCol) \rfloor
+\end{equation}
+
+}
+
+\item Then, given what we have, derive some other essential image generating parameters as such:
+
+\item{\textbf{COMPUTE} $vB$ based off of $vA$ and  so that it can map to a value within the range of columns:
+
+\begin{equation}
+vB =  (vN + vA) \mod nCol
+\end{equation}
+
+}
+
+\item{\textbf{COMPUTE} $vC$ based off of $vB$ and  so that it can map to a value within the range of columns:
+
+\begin{equation}
+vC =  |vN - vB| \mod nCol
+\end{equation}
+
+}
+
+\item{\textbf{COMPUTE} $vD$ based off of $vC$ and  so that it can map to a value within the range of rows:
+
+\begin{equation}
+vD =  \lfloor \frac{vC*vN}{2*vROW} + \lfloor \frac{vC*vN}{2} \rfloor \rfloor \mod nRow
+\end{equation}
+
+}
+
+\item{\textbf{COMPUTE} $vE$ based off of $vD$ and  so that it can map to a value within the range of rows:
+
+\begin{equation}
+vE =  (\lfloor \frac{|vD - \frac{vN}{2}|}{vRow} \rfloor + \lfloor |vD - \frac{vN}{2}| \rfloor) \mod vRow
+\end{equation}
+
+}
+
+
+\item{\textbf{COMPUTE} $vF$ based off of $vN$ and  so that it can map to a value within the range of columns:
+
+\begin{equation}
+vF =  (\lfloor \frac{vN}{2*nCol} \rfloor + \lfloor \frac{vN}{2} \rfloor) \mod nCol
+\end{equation}
+
+}
+
+\item { \textbf{CONSTRUCT} the \textbf{Sigil Coordinates Specification} as sequence of 12 (x,y) coordinate pairs as such, where the last/final 6 are derived from the first 6 merely by swapping the positions of the terms such as we have $(x,y) \rightarrow (y,x)$. Essentially, we shall have this specification set:
+
+\begin{equation}
+vCOORDINATES = \langle (1,vAA), (2,vB), (3,vC), (4,vD), (5,vE), (6,vF), (vAA,1), (vB,2), (vC,3), (vD,4), (vE,5), (vF,6) \rangle
+\end{equation}
+
+}
+
+\item { \textbf{PROCESS} the \textbf{Resultant Matrix} of the $vN$ pixels, perhaps 1 row at a time, for $nRow$, and one column on each row at a time, for $nCol$, in such a way that:
+\begin{itemize}
+\item{ \textbf{IF} the pixel $P_{(x,y)}$ is such that $(x,y) \in vCOORDINATES$, \textbf{THEN}:
+\begin{itemize}
+\item \textbf{PRINT DARK BOX}: `X' 
+\end{itemize}
+\item{\textbf{ELSE:}
+\begin{itemize}
+\item \textbf{PRINT LIGHT BOX\footnote{In our original implementation of the algorithm, we merely printed ``\#" for the LIGHT/unmarked pixels, and `X' for the marked/DARK ones. However, experimentation and taste might vary, and so, sometimes one might just decide to keep the LIGHT pixels as just plain WHITE-SPACE character such as `` " in this case, so that the final image is essentially only painted in the marked regions only --- which somewhat better brings out the ``sigil" or ``qrcode" aspect we want.}}: `` " 
+\end{itemize}
+}
+}
+\end{itemize}
+
+}
+\end{enumerate}
+$\qed$
+\end{alg}
+  
+  
+  
+  
 
 
 \chapter{Conclusion}
