@@ -38,6 +38,10 @@
 \usepackage{caption}
 \usepackage{float}
 
+%for multi-figure figures?
+\usepackage{subcaption}
+
+
 % for text-wrapping in verbatim environments
 \usepackage{fvextra}
 \RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines, breakanywhere}
@@ -1607,11 +1611,15 @@ l:RESULT
 
 #first, construct the specification for the grid to print
 #vCOORDINATES=[(1,vAA), (2,vB), (3,vC), (4,vD),(vF, vE)]
-v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|
-v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:, |v:vEXP7:)]
-G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7 
-| v:vCMDCOORDINATES
-#[(1,4), (2,3), (3,2), (4,5),(5,2)]
+#v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:, |v:vEXP7:)]
+#G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7 | 
+
+#v1.0.1: this improvement uses the same coordinates in (x,y) and (y,x) for a richer plot
+v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:,|v:vEXP7:),|G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7|v:vSLICE1|v:vEXP1:(|v:vEXP2:,1), (|v:vEXP3:,2), (|v:vEXP4:,3), (|v:vEXP5:,4),(|v:vEXP6:,|v:vEXP7:)]|G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vE:vEXP6:vF:vEXP7|v:vSLICE2|G*:{}:vSLICE1:vSLICE2
+
+v:vCMDCOORDINATES
+#orig: [(1,4), (2,3), (3,2), (4,5),(5,2)]
+#v1.0.1: [(1,8), (2,8), (3,2), (4,10),(3,5),(8,1), (8,2), (2,3), (10,4),(5,3)]
 G*:{,}:vCOL:vROW:vCMDCOORDINATES | v:vCMD_GRIDSPEC
 
 #now print...
@@ -1656,9 +1664,32 @@ i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
 \end{enumerate} 
  
 
-We can appreciate what the program can do, by looking at sample screenshots of this code in use, via a mobile computer program as shown in the screenshots below:
+We can appreciate what the program can do, by looking at sample screenshots of this code in use, via a mobile computer program as shown in the following figures:
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/nsigil_intro.png}
+    \caption{N-SIGIL v1.0.1: Intro Greeting Interface}
+    \label{FIGNSIGIL}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/nsigil_ossi.png}
+    \caption{N-SIGIL v1.0.1: a basic qrcode for the base-10 o-SSI}
+    \label{FIGNSIGIL2}
+  \end{subfigure}
+  \caption{Phone Snapshots of WEB TEA in action}
+  \label{FIGNSIGILDEMO}
+\end{figure}
 
 
+    \begin{figure}[H]
+      \centering
+      \includegraphics[height=0.6\textheight,]{resources/images/nsigil_qrcode.png}\\
+        \caption{N-SIGIL v1.0.1: a basic qrcode for just the number 1}
+      \label{FIGNSIGIL3}
+    \end{figure}
 
 
 \chapter{Conclusion}

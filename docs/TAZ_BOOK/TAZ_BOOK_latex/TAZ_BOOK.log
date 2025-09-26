@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  26 SEP 2025 18:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  26 SEP 2025 20:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -130,21 +130,28 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks23
 \@floatcapt=\box53
 )
+(C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+Package caption Info: New subtype `subfigure' on input line 238.
+\c@subfigure=\count278
+Package caption Info: New subtype `subtable' on input line 238.
+\c@subtable=\count279
+)
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/fvextra\fvextra.sty
 Package: fvextra 2024/05/16 v1.7.0 fvextra - extensions and patches for fancyvr
 b
 
 (C:\Program Files\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count278
+\etb@tempcnta=\count280
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty
 Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
-\FV@CodeLineNo=\count279
+\FV@CodeLineNo=\count281
 \FV@InFile=\read2
 \FV@TabBox=\box54
-\c@FancyVerbLine=\count280
-\FV@StepNumber=\count281
+\c@FancyVerbLine=\count282
+\FV@StepNumber=\count283
 \FV@OutFile=\write3
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/upquote\upquote.sty
@@ -163,49 +170,49 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ))
-\linenopenalty=\count282
+\linenopenalty=\count284
 \output=\toks24
-\linenoprevgraf=\count283
+\linenoprevgraf=\count285
 \linenumbersep=\dimen160
 \linenumberwidth=\dimen161
-\c@linenumber=\count284
-\c@pagewiselinenumber=\count285
-\c@LN@truepage=\count286
-\c@internallinenumber=\count287
-\c@internallinenumbers=\count288
+\c@linenumber=\count286
+\c@pagewiselinenumber=\count287
+\c@LN@truepage=\count288
+\c@internallinenumber=\count289
+\c@internallinenumbers=\count290
 \quotelinenumbersep=\dimen162
 \bframerule=\dimen163
 \bframesep=\dimen164
 \bframebox=\box55
 LaTeX Info: Redefining \\ on input line 3180.
 )
-\c@FancyVerbWriteLine=\count289
-\c@FancyVerbBufferIndex=\count290
-\c@FancyVerbBufferLength=\count291
-\c@FancyVerbBufferLine=\count292
-\c@FV@oldbufferlength=\count293
-\c@FV@TrueTabGroupLevel=\count294
-\c@FV@TrueTabCounter=\count295
+\c@FancyVerbWriteLine=\count291
+\c@FancyVerbBufferIndex=\count292
+\c@FancyVerbBufferLength=\count293
+\c@FancyVerbBufferLine=\count294
+\c@FV@oldbufferlength=\count295
+\c@FV@TrueTabGroupLevel=\count296
+\c@FV@TrueTabCounter=\count297
 \FV@TabBox@Group=\box56
 \FV@TmpLength=\skip65
-\c@FV@HighlightLinesStart=\count296
-\c@FV@HighlightLinesStop=\count297
-\FV@LoopCount=\count298
+\c@FV@HighlightLinesStart=\count298
+\c@FV@HighlightLinesStop=\count299
+\FV@LoopCount=\count300
 \FV@NCharsBox=\box57
 \FV@BreakIndent=\dimen165
-\FV@BreakIndentNChars=\count299
+\FV@BreakIndentNChars=\count301
 \FV@BreakSymbolSepLeft=\dimen166
-\FV@BreakSymbolSepLeftNChars=\count300
+\FV@BreakSymbolSepLeftNChars=\count302
 \FV@BreakSymbolSepRight=\dimen167
-\FV@BreakSymbolSepRightNChars=\count301
+\FV@BreakSymbolSepRightNChars=\count303
 \FV@BreakSymbolIndentLeft=\dimen168
-\FV@BreakSymbolIndentLeftNChars=\count302
+\FV@BreakSymbolIndentLeftNChars=\count304
 \FV@BreakSymbolIndentRight=\dimen169
-\FV@BreakSymbolIndentRightNChars=\count303
-\c@FancyVerbLineBreakLast=\count304
+\FV@BreakSymbolIndentRightNChars=\count305
+\c@FancyVerbLineBreakLast=\count306
 \FV@LineBox=\box58
 \FV@LineIndentBox=\box59
-\c@FV@BreakBufferDepth=\count305
+\c@FV@BreakBufferDepth=\count307
 \FV@LineWidth=\dimen170
 )
 (C:\Program Files\MiKTeX\tex/latex/hyperref\hyperref.sty
@@ -240,15 +247,15 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 .sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count306
+\c@section@level=\count308
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/stringenc\stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \@linkdim=\dimen171
-\Hy@linkcounter=\count307
-\Hy@pagecounter=\count308
+\Hy@linkcounter=\count309
+\Hy@pagecounter=\count310
 
 (C:\Program Files\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2024-07-10 v7.01j Hyperref: PDFDocEncoding definition (HO)
@@ -258,7 +265,7 @@ Now handling font encoding PD1 ...
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count309
+\Hy@SavedSpaceFactor=\count311
 
 (C:\Program Files\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2024-07-10 v7.01j Hyperref: PDF Unicode definition (HO)
@@ -272,7 +279,7 @@ Package hyperref Info: Plain pages OFF on input line 4172.
 Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count310
+\c@Hy@tempcnt=\count312
 
 (C:\Program Files\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
@@ -288,7 +295,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count311
+\Fld@menulength=\count313
 \Field@Width=\dimen173
 \Fld@charsize=\dimen174
 Package hyperref Info: Hyper figures OFF on input line 6042.
@@ -303,9 +310,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count312
-\c@Item=\count313
-\c@Hfootnote=\count314
+\Hy@abspage=\count314
+\c@Item=\count315
+\c@Hfootnote=\count316
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
@@ -317,8 +324,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count315
-\c@bookmark@seq@number=\count316
+\Fld@listcount=\count317
+\c@bookmark@seq@number=\count318
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.s
 ty
@@ -350,13 +357,13 @@ Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
 \TX@old@col=\dimen179
 \TX@target=\dimen180
 \TX@delta=\dimen181
-\TX@cols=\count317
+\TX@cols=\count319
 \TX@ftn=\toks26
 )
 (C:\Program Files\MiKTeX\tex/latex/makecell\makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen182
-\c@nlinenum=\count318
+\c@nlinenum=\count320
 \TeXr@lab=\toks27
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/diagbox\diagbox.sty
@@ -386,15 +393,15 @@ File: p2e-pdftex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 )
 (C:\Program Files\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count319
-\calc@Bcount=\count320
+\calc@Acount=\count321
+\calc@Bcount=\count322
 \calc@Adimen=\dimen191
 \calc@Bdimen=\dimen192
 \calc@Askip=\skip69
 \calc@Bskip=\skip70
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count321
+\calc@Ccount=\count323
 \calc@Cskip=\skip71
 )
 \diagbox@boxa=\box62
@@ -413,17 +420,17 @@ Package: longtable 2024-04-26 v4.20 Multi-page Table package (DPC)
 \LTright=\skip73
 \LTpre=\skip74
 \LTpost=\skip75
-\LTchunksize=\count322
+\LTchunksize=\count324
 \LTcapwidth=\dimen199
 \LT@head=\box65
 \LT@firsthead=\box66
 \LT@foot=\box67
 \LT@lastfoot=\box68
 \LT@gbox=\box69
-\LT@cols=\count323
-\LT@rows=\count324
-\c@LT@tables=\count325
-\c@LT@chunks=\count326
+\LT@cols=\count325
+\LT@rows=\count326
+\c@LT@tables=\count327
+\c@LT@chunks=\count328
 \LT@p@ftn=\toks29
 )
 (C:\Program Files\MiKTeX\tex/latex/xcolor\xcolor.sty
@@ -462,10 +469,10 @@ Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
 \SOUL@hyphkern=\dimen259
 \SOUL@dimen=\dimen260
 \SOUL@dimeni=\dimen261
-\SOUL@minus=\count327
-\SOUL@comma=\count328
-\SOUL@apo=\count329
-\SOUL@grave=\count330
+\SOUL@minus=\count329
+\SOUL@comma=\count330
+\SOUL@apo=\count331
+\SOUL@grave=\count332
 \SOUL@spaceskip=\skip76
 \SOUL@ttwidth=\dimen262
 \SOUL@uldp=\dimen263
@@ -478,7 +485,7 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
 \everycr=\toks36
 \minrowclearance=\skip77
-\rownum=\count331
+\rownum=\count333
 )
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
@@ -525,14 +532,14 @@ tex
 \pgf@yd=\dimen276
 \w@pgf@writea=\write4
 \r@pgf@reada=\read3
-\c@pgf@counta=\count332
-\c@pgf@countb=\count333
-\c@pgf@countc=\count334
-\c@pgf@countd=\count335
+\c@pgf@counta=\count334
+\c@pgf@countb=\count335
+\c@pgf@countc=\count336
+\c@pgf@countd=\count337
 \t@pgf@toka=\toks41
 \t@pgf@tokb=\toks42
 \t@pgf@tokc=\toks43
-\pgf@sys@id@count=\count336
+\pgf@sys@id@count=\count338
  (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -546,8 +553,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 )))
 (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count337
-\pgfsyssoftpath@bigbuffer@items=\count338
+\pgfsyssoftpath@smallbuffer@items=\count339
+\pgfsyssoftpath@bigbuffer@items=\count340
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -559,7 +566,7 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
 \pgfmath@dimen=\dimen277
-\pgfmath@count=\count339
+\pgfmath@count=\count341
 \pgfmath@box=\box71
 \pgfmath@toks=\toks44
 \pgfmath@stack@operand=\toks45
@@ -579,7 +586,7 @@ tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmeti
 cs.code.tex) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count340
+\c@pgfmathroundto@lastzeros=\count342
 ))
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfint.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
@@ -615,7 +622,7 @@ File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box72
 \pgf@hbox=\box73
 \pgf@layerbox@main=\box74
-\pgf@picture@serial@count=\count341
+\pgf@picture@serial@count=\count343
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.te
 x
@@ -642,8 +649,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen301
-\pgf@sys@shading@range@num=\count342
-\pgf@shadingcount=\count343
+\pgf@sys@shading@range@num=\count344
+\pgf@shadingcount=\count345
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -695,7 +702,7 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.
 tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count344
+\pgf@plot@mark@count=\count346
 \pgfplotmarksize=\dimen306
 )
 \tikz@lastx=\dimen307
@@ -710,17 +717,17 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box78
 \tikz@tempbox=\box79
 \tikz@tempbox@bg=\box80
-\tikztreelevel=\count345
-\tikznumberofchildren=\count346
-\tikznumberofcurrentchild=\count347
-\tikz@fig@count=\count348
+\tikztreelevel=\count347
+\tikznumberofchildren=\count348
+\tikznumberofcurrentchild=\count349
+\tikz@fig@count=\count350
  (C:\Program Files\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count349
-\pgfmatrixcurrentcolumn=\count350
-\pgf@matrix@numberofcolumns=\count351
+\pgfmatrixcurrentrow=\count351
+\pgfmatrixcurrentcolumn=\count352
+\pgf@matrix@numberofcolumns=\count353
 )
-\tikz@expandcount=\count352
+\tikz@expandcount=\count354
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibra
 rytopaths.code.tex
@@ -743,9 +750,9 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@upperbox=\box82
 \tcb@lowerbox=\box83
 \tcb@phantombox=\box84
-\c@tcbbreakpart=\count353
-\c@tcblayer=\count354
-\c@tcolorbox@number=\count355
+\c@tcbbreakpart=\count355
+\c@tcblayer=\count356
+\c@tcolorbox@number=\count357
 \l__tcobox_tmpa_box=\box85
 \l__tcobox_tmpa_dim=\dimen315
 \tcb@temp=\box86
@@ -756,17 +763,17 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.8.0'
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count356
+\lst@mode=\count358
 \lst@gtempboxa=\box90
 \lst@token=\toks52
-\lst@length=\count357
+\lst@length=\count359
 \lst@currlwidth=\dimen316
-\lst@column=\count358
-\lst@pos=\count359
+\lst@column=\count360
+\lst@pos=\count361
 \lst@lostspace=\dimen317
 \lst@width=\dimen318
-\lst@newlines=\count360
-\lst@lineno=\count361
+\lst@newlines=\count362
+\lst@lineno=\count363
 \lst@maxwidth=\dimen319
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstpatch.sty
@@ -774,8 +781,8 @@ File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
-\c@lstnumber=\count362
-\lst@skipnumbers=\count363
+\c@lstnumber=\count364
+\lst@skipnumbers=\count365
 \lst@framebox=\box91
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.cfg
@@ -788,7 +795,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.8.0'
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.8.0'
 )
-\c@tcblisting=\count364
+\c@tcblisting=\count366
 )) (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.8.0'
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/tikzfill\tikzfill.image.sty
@@ -833,14 +840,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count365
+\inf@bad=\count367
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count366
-\leftroot@=\count367
+\uproot@=\count368
+\leftroot@=\count369
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count368
-\DOTSCASE@=\count369
+\classnum@=\count370
+\DOTSCASE@=\count371
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -853,20 +860,20 @@ LaTeX Info: Redefining \Bigg on input line 724.
 \big@size=\dimen322
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count370
+\macc@depth=\count372
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count371
+\c@MaxMatrixCols=\count373
 \dotsspace@=\muskip18
-\c@parentequation=\count372
-\dspbrk@lvl=\count373
+\c@parentequation=\count374
+\dspbrk@lvl=\count375
 \tag@help=\toks54
-\row@=\count374
-\column@=\count375
-\maxfields@=\count376
+\row@=\count376
+\column@=\count377
+\maxfields@=\count378
 \andhelp@=\toks55
 \eqnshift@=\dimen323
 \alignsep@=\dimen324
@@ -881,7 +888,7 @@ LaTeX Info: Redefining \Relbar on input line 970.
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
-\linenoamsmath@ams@eqpen=\count377
+\linenoamsmath@ams@eqpen=\count379
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -1282,23 +1289,23 @@ File: greek-fontenc.def 2023-09-12 2.5 Common Greek font encoding definitions
 Package textgreek Info: Loaded fontmap: {eur/*/*}{U/eur/*/*} {phv/*/*}{U/psy/*/
 *}. on input line 69.
 )
-\c@comp=\count378
-\c@theo=\count379
-\c@defn=\count380
-\c@lem=\count381
-\c@prop=\count382
-\c@axiom=\count383
-\c@post=\count384
-\c@trans=\count385
-\c@transf=\count386
-\c@law=\count387
-\c@prob=\count388
-\c@soln=\count389
-\c@alg=\count390
+\c@comp=\count380
+\c@theo=\count381
+\c@defn=\count382
+\c@lem=\count383
+\c@prop=\count384
+\c@axiom=\count385
+\c@post=\count386
+\c@trans=\count387
+\c@transf=\count388
+\c@law=\count389
+\c@prob=\count390
+\c@soln=\count391
+\c@alg=\count392
  (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/wrapfig\wrapfig.sty
 \wrapoverhang=\dimen329
 \WF@size=\dimen330
-\c@WF@wrappedlines=\count391
+\c@WF@wrappedlines=\count393
 \WF@box=\box98
 \WF@everypar=\toks64
 Package: wrapfig 2003/01/31  v 3.6
@@ -1321,18 +1328,18 @@ Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdfpages\pppdftex.def
 File: pppdftex.def 2024/08/20 v0.6b Pdfpages driver for pdfTeX (AM)
 )
-\pdfpages@includegraphics@status=\count392
+\pdfpages@includegraphics@status=\count394
 \AM@pagebox=\box99
 \AM@global@opts=\toks65
-\AM@pagecnt=\count393
+\AM@pagecnt=\count395
 \AM@toc@title=\toks66
 \AM@lof@heading=\toks67
-\c@AM@survey=\count394
+\c@AM@survey=\count396
 \AM@templatesizebox=\box100
 )
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count395
+\l__color_backend_stack_int=\count397
 \l__pdf_internal_box=\box101
 )
 
@@ -1346,31 +1353,31 @@ LaTeX Warning: Label `FIGC7' multiply defined.
 )
 \openout1 = `TAZ_BOOK.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 211.
-LaTeX Font Info:    ... okay on input line 211.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 211.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 215.
+LaTeX Font Info:    ... okay on input line 215.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 215.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 2
-11.
+15.
  (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/cbfonts-fd\lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 211.
+LaTeX Font Info:    ... okay on input line 215.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1408,16 +1415,16 @@ LaTeX Font Info:    ... okay on input line 211.
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count396
+\scratchcounter=\count398
 \scratchdimen=\dimen336
 \scratchbox=\box102
-\nofMPsegments=\count397
-\nofMParguments=\count398
+\nofMPsegments=\count399
+\nofMParguments=\count400
 \everyMPshowfont=\toks68
-\MPscratchCnt=\count399
+\MPscratchCnt=\count401
 \MPscratchDim=\dimen337
-\MPnumerator=\count400
-\makeMPintoPDFobject=\count401
+\MPnumerator=\count402
+\makeMPintoPDFobject=\count403
 \everyMPtoPDFconversion=\toks69
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1438,7 +1445,7 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 211.
+Package hyperref Info: Link coloring OFF on input line 215.
 
 (TAZ_BOOK.out) (TAZ_BOOK.out)
 \@outlinefile=\write5
@@ -1448,7 +1455,7 @@ Package hyperref Info: Link coloring OFF on input line 211.
 (C:\Program Files\MiKTeX\tex/latex/base\textcomp.sty
 Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 )
-\c@lstlisting=\count402
+\c@lstlisting=\count404
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -1468,7 +1475,7 @@ F version <1.7>, but at most version <1.5> allowed
 <../taz_front_cover.pdf, id=114, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf>
-Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 217.
+Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 221.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1476,7 +1483,7 @@ pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
 F version <1.7>, but at most version <1.5> allowed
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf>
-Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 217.
+Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 221.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1489,29 +1496,29 @@ F version <1.7>, but at most version <1.5> allowed
 <../taz_front_cover.pdf, id=117, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 217.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 221.
 
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 217.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 221.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 217.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 221.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 217.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 221.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 217.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 221.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [1
@@ -1523,40 +1530,40 @@ Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 217.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf  used on input line 2
-21.
+25.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf  used on input line 2
-21.
+25.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 <resources/pdfs/FrontisMatter.pdf, id=135, page=1, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [2
 
@@ -1565,19 +1572,19 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 2>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 2>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 2>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [3
 
@@ -1586,19 +1593,19 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [4
 
@@ -1607,19 +1614,19 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 4>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 4>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 4>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [5
 
@@ -1628,19 +1635,19 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 5>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 5>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 5>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [6
 
@@ -1649,19 +1656,19 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 6>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 6>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 6>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [7
 
@@ -1670,30 +1677,30 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 7>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page7 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 7>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page7 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 7>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page7 used on input
- line 221.
+ line 225.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [8
 
  <./resources/pdfs/FrontisMatter.pdf>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 226
+LaTeX Font Info:    Trying to load font information for U+msa on input line 230
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 226
+LaTeX Font Info:    Trying to load font information for U+msb on input line 230
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1705,7 +1712,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.226 
+l.230 
        [1
 
 {C:/Users/AKAM/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
@@ -1715,18 +1722,18 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.227 \chapter
+l.231 \chapter
               *{Dedication} [2
 
 ]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-34.
+38.
 
 (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <17.28> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 234.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 238.
 
 
 
@@ -1734,7 +1741,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.iii}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.245 \tableofcontents
+l.249 \tableofcontents
                        [3]
 
 
@@ -1742,7 +1749,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.iv}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.245 \tableofcontents
+l.249 \tableofcontents
                        [4
 
 ] (TAZ_BOOK.toc)
@@ -1756,7 +1763,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.v}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.247 \listoffigures
+l.251 \listoffigures
                      [5]
 
 
@@ -1764,7 +1771,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.vi}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.247 \listoffigures
+l.251 \listoffigures
                      [6
 
 ] (TAZ_BOOK.lof)
@@ -1778,7 +1785,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.vii}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.249 \listoftables
+l.253 \listoftables
                     [7]
 
 
@@ -1786,7 +1793,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.viii}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.249 \listoftables
+l.253 \listoftables
                     [8
 
 ] (TAZ_BOOK.lot)
@@ -1806,7 +1813,7 @@ l.249 \listoftables
 [12
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 336--340
+Underfull \hbox (badness 10000) in paragraph at lines 340--344
 
  []
 
@@ -1821,26 +1828,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 336--340
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--351
+Underfull \hbox (badness 10000) in paragraph at lines 354--355
 
  []
 
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-358.
+362.
 (C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 
-358.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 358.
+362.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 362.
 
 
 LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 358.
+(Font)              for symbol `textbraceleft' on input line 362.
 
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 358.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 362.
 
 
 [3]
@@ -1854,7 +1861,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 ]
 Chapter 2.
 
-Overfull \hbox (10.94144pt too wide) in paragraph at lines 461--462
+Overfull \hbox (10.94144pt too wide) in paragraph at lines 465--466
 []\OT1/cmr/bx/n/12 The in-struc-tion starts with a sin-gle let-ter from Latin a
 l-pha-bet \OT1/cmr/m/n/12 --- $\OML/cmm/m/it/12  [] \OT1/cmr/m/n/12 = \OMS/cmsy
 /m/n/12 h\OML/cmm/m/it/12 a; b; c; :::; y; z\OMS/cmsy/m/n/12 i$\OT1/cmr/m/n/12 
@@ -1865,7 +1872,7 @@ l-pha-bet \OT1/cmr/m/n/12 --- $\OML/cmm/m/it/12  [] \OT1/cmr/m/n/12 = \OMS/cmsy
 
 [7]
 LaTeX Font Info:    Trying to load font information for LGR+cmtt on input line 
-510.
+514.
  (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/cbfonts-fd\lgrcmtt.fd
 File: lgrcmtt.fd 2017/07/29 v1.2 Greek European Computer Typewriter
 )
@@ -1877,18 +1884,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [9]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 601.
+nput line 605.
 
 
 [10]
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf): 
 PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf, id=497, 614.295pt x 794.97pt>
+<resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf, id=501, 614.295pt x 794.97pt>
 File: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf Graphic file (type pdf)
 <use resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf>
 Package pdftex.def Info: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf  used on i
-nput line 663.
+nput line 667.
 (pdftex.def)             Requested size: 446.69328pt x 557.38918pt.
 
 Underfull \vbox (badness 3019) has occurred while \output is active []
@@ -1896,10 +1903,10 @@ Underfull \vbox (badness 3019) has occurred while \output is active []
 
 
 [11]
-<resources/tea_cs_is.png, id=515, 1027.84pt x 1027.84pt>
+<resources/tea_cs_is.png, id=519, 1027.84pt x 1027.84pt>
 File: resources/tea_cs_is.png Graphic file (type png)
 <use resources/tea_cs_is.png>
-Package pdftex.def Info: resources/tea_cs_is.png  used on input line 678.
+Package pdftex.def Info: resources/tea_cs_is.png  used on input line 682.
 (pdftex.def)             Requested size: 446.69328pt x 434.33347pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1929,7 +1936,7 @@ Chapter 4.
 [18]
 Chapter 5.
 
-Underfull \hbox (badness 3058) in paragraph at lines 860--861
+Underfull \hbox (badness 3058) in paragraph at lines 864--865
 []\OT1/cmr/m/n/17.28 Reduce in-put/list to dis-tinct
  []
 
@@ -1945,7 +1952,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [20]
 
 [21]
-Overfull \hbox (25.5006pt too wide) in paragraph at lines 1029--1045
+Overfull \hbox (25.5006pt too wide) in paragraph at lines 1033--1049
  [][] 
  []
 
@@ -1963,12 +1970,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 Chapter 6.
 
-Underfull \hbox (badness 1189) in paragraph at lines 1119--1120
+Underfull \hbox (badness 1189) in paragraph at lines 1123--1124
 []\OT1/cmr/m/n/17.28 Guarantee sub-se-quent in-struc-
  []
 
 
-Underfull \hbox (badness 1033) in paragraph at lines 1120--1121
+Underfull \hbox (badness 1033) in paragraph at lines 1124--1125
 []\OT1/cmr/m/n/17.28 Automagically cre-ate and ini-
  []
 
@@ -1982,23 +1989,23 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [26]
 
 [27]
-Overfull \hbox (314.54082pt too wide) in paragraph at lines 1280--1281
+Overfull \hbox (314.54082pt too wide) in paragraph at lines 1284--1285
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (24.74138pt too wide) in paragraph at lines 1316--1317
+Overfull \hbox (24.74138pt too wide) in paragraph at lines 1320--1321
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.1414pt too wide) in paragraph at lines 1320--1321
+Overfull \hbox (12.1414pt too wide) in paragraph at lines 1324--1325
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (24.74138pt too wide) in paragraph at lines 1327--1328
+Overfull \hbox (24.74138pt too wide) in paragraph at lines 1331--1332
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2013,18 +2020,18 @@ Overfull \vbox (32.54602pt too high) has occurred while \output is active []
 
 
 [29]
-Overfull \hbox (251.54094pt too wide) in paragraph at lines 1343--1344
+Overfull \hbox (251.54094pt too wide) in paragraph at lines 1347--1348
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (24.74138pt too wide) in paragraph at lines 1385--1386
+Overfull \hbox (24.74138pt too wide) in paragraph at lines 1389--1390
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (49.94133pt too wide) in paragraph at lines 1392--1393
+Overfull \hbox (49.94133pt too wide) in paragraph at lines 1396--1397
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2044,48 +2051,78 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [34]
 
 Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 1638.
+(caption)                outside box or environment on input line 1646.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1638.
+(caption)                particular \caption on input line 1646.
 See the caption package documentation for explanation.
+
+<resources/images/nsigil_intro.png, id=1053, 1673.25125pt x 2930.95pt>
+File: resources/images/nsigil_intro.png Graphic file (type png)
+<use resources/images/nsigil_intro.png>
+Package pdftex.def Info: resources/images/nsigil_intro.png  used on input line 
+1672.
+(pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
+<resources/images/nsigil_ossi.png, id=1054, 1673.25125pt x 2930.95pt>
+File: resources/images/nsigil_ossi.png Graphic file (type png)
+<use resources/images/nsigil_ossi.png>
+Package pdftex.def Info: resources/images/nsigil_ossi.png  used on input line 1
+678.
+(pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [35]
+<resources/images/nsigil_qrcode.png, id=1091, 1673.25125pt x 2930.95pt>
+File: resources/images/nsigil_qrcode.png Graphic file (type png)
+<use resources/images/nsigil_qrcode.png>
+Package pdftex.def Info: resources/images/nsigil_qrcode.png  used on input line
+ 1689.
+(pdftex.def)             Requested size: 249.82793pt x 437.6531pt.
 
-[36
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[36 <./resources/images/nsigil_intro.png> <./resources/images/nsigil_ossi.png>]
+
+
+[37 <./resources/images/nsigil_qrcode.png>]
+
+[38
 
 ]
 Chapter 7.
 (TAZ_BOOK.bbl
 
-[37]
+[39]
 
-[38
+[40
 
 ])
-Underfull \hbox (badness 10000) in paragraph at lines 1704--1704
+Underfull \hbox (badness 10000) in paragraph at lines 1735--1735
 
  []
 
 
 
-[39]
+[41]
 
-[40
+[42
 
 ]
-<resources/pdfs/AboutAuthor.pdf, id=1112, 614.295pt x 794.97pt>
+<resources/pdfs/AboutAuthor.pdf, id=1135, 614.295pt x 794.97pt>
 File: resources/pdfs/AboutAuthor.pdf Graphic file (type pdf)
 <use resources/pdfs/AboutAuthor.pdf>
-Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 172
-3.
+Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 175
+4.
 (pdftex.def)             Requested size: 505.17802pt x 583.53377pt.
 
-Overfull \hbox (8.84879pt too wide) in paragraph at lines 1723--1723
+Overfull \hbox (8.84879pt too wide) in paragraph at lines 1754--1754
  [] 
  []
 
@@ -2094,19 +2131,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[41]
+[43]
 Overfull \vbox (19.80933pt too high) has occurred while \output is active []
 
 
 
-[42 <./resources/pdfs/AboutAuthor.pdf>]
+[44 <./resources/pdfs/AboutAuthor.pdf>]
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=1151, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=1173, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1734.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1765.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2114,7 +2151,7 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1734.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 1765.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2124,38 +2161,38 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=1154, page=1, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=1176, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1734.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
 
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1734.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
-[43]
+[45]
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1734.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1734.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1734.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 1765.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[44
+[46
 
  <../taz_back_cover.pdf>] (TAZ_BOOK.aux)
  ***********
@@ -2170,16 +2207,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TAZ_BOOK.out' has not changed.
-(rerunfilecheck)             Checksum: 5B0157A9543B92A27C0D4791EE56916A;6037.
+(rerunfilecheck)             Checksum: ADEF62C864F9BA6A9F37C523949611F8;6037.
  ) 
 Here is how much of TeX's memory you used:
- 34476 strings out of 473898
- 651915 string characters out of 5736297
- 2498960 words of memory out of 5000000
- 56199 multiletter control sequences out of 15000+600000
+ 34626 strings out of 473898
+ 655230 string characters out of 5736297
+ 2533960 words of memory out of 5000000
+ 56340 multiletter control sequences out of 15000+600000
  579127 words of font info for 115 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,18n,101p,2317b,1940s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,18n,101p,2317b,1942s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0
 900.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 tctt1440.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
@@ -2209,9 +2246,9 @@ Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files
 c/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
 m/cmtt8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb><
 C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/cbgreek/gttn1000.pfb>
-Output written on TAZ_BOOK.pdf (64 pages, 4156156 bytes).
+Output written on TAZ_BOOK.pdf (66 pages, 5188626 bytes).
 PDF statistics:
- 1432 PDF objects out of 1440 (max. 8388607)
- 582 named destinations out of 1000 (max. 500000)
- 352 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1456 PDF objects out of 1728 (max. 8388607)
+ 590 named destinations out of 1000 (max. 500000)
+ 367 words of extra memory for PDF output out of 10000 (max. 10000000)
 
