@@ -1,11 +1,11 @@
-#~~[WELCOME to N-SIGIL v1.0.0, not for the faint of heart]
+#~~[WELCOME to N-SIGIL v1.0.1, not for the faint of heart]
 #--|original algorithm by fut.prof. JWL
 #--|WARNING: this TEA program is meant to work as currently implemented
 #--|ONLY for WEB TEA such as: https://tea.nuchwezi.com
 #-----------------------------------------------------------------------|
 
 #BEGIN: determine what our image dimensions shall be (not user-set)
-v:vCOL:6 #columns
+v:vCOL:10 #columns
 v:vROW:6 #rows
 g*:*:vCOL:vROW | v:vN | z*:vN | v:vN #cardinality of grid (=20)
 
@@ -92,15 +92,20 @@ l:RESULT
 
 #first, construct the specification for the grid to print
 #vCOORDINATES=[(1,vAA), (2,vB), (3,vC), (4,vD),(vF, vE)]
-v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:, |v:vEXP7:)]
-G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7 | v:vCMDCOORDINATES
+#v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:, |v:vEXP7:)]
+#G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7 | 
+
+#this improvement uses the same coordinates in (x,y) and (y,x) for a richer plot
+v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:,|v:vEXP7:),|G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7|v:vSLICE1|v:vEXP1:(|v:vEXP2:,1), (|v:vEXP3:,2), (|v:vEXP4:,3), (|v:vEXP5:,4),(|v:vEXP6:,|v:vEXP7:)]|G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vE:vEXP6:vF:vEXP7|v:vSLICE2|G*:{}:vSLICE1:vSLICE2
+
+v:vCMDCOORDINATES
 #[(1,4), (2,3), (3,2), (4,5),(5,2)]
 G*:{,}:vCOL:vROW:vCMDCOORDINATES | v:vCMD_GRIDSPEC
 
 #now print...
 y:vCMD_GRIDSPEC #2,4,[(1,4), (2,3), (3,2), (4,5),(5,2)]
 
-v:vCMD_PRINT:{((AI)=>{let[c,r,s]=AI.match(/^(\d+),(\d+),\[(.*)\]$/).slice(1),C=s.match(/\((\d+),(\d+)\)/g).map(p=>p.match(/\((\d+),(\d+)\)/).slice(1).map(Number)),g=Array.from({length:+r},()=>Array(+c).fill("#"));C.forEach(([x,y])=>{if(y>=1&&y<=r&&x>=1&&x<=c)g[y-1][x-1]="X"});return g.map(e=>e.join("")).join("\n")})(AI);}
+v:vCMD_PRINT:{((AI)=>{let[c,r,s]=AI.match(/^(\d+),(\d+),\[(.*)\]$/).slice(1),C=s.match(/\((\d+),(\d+)\)/g).map(p=>p.match(/\((\d+),(\d+)\)/).slice(1).map(Number)),g=Array.from({length:+r},()=>Array(+c).fill(" "));C.forEach(([x,y])=>{if(y>=1&&y<=r&&x>=1&&x<=c)g[y-1][x-1]="█"});return g.map(e=>e.join("")).join("\n")})(AI);}
 z*:vCMD_PRINT | v:vRESULT
 
 i!:{__That is your N-SIGIL for }|x*!:vRESPONSE|v:vMSG|g*:{}:vRESULT:vMSG|h!:_|d:_
