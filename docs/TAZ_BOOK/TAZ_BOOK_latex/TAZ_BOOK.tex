@@ -1486,12 +1486,22 @@ In a somewhat verbose style --- so that TEA-newcomers might also get the chance 
 
 
  %\begin{figure}[H]
- \Large
+ \small
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: N-SIGIL image generator program, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
   \begin{lstlisting}[language=TEA,breaklines=true]
- #~~[WELCOME to N-SIGIL v1.0.0, not for the faint of heart]
+#~~[WELCOME to N-SIGIL v1.0.0]
+#~~[not for the faint of heart]
+#--|original algorithm by fut.prof. JWL
+#--|WARNING: this TEA program is meant to 
+#--|work as currently implemented
+#--|ONLY for WEB TEA such as: 
+#--| https://tea.nuchwezi.com
+#----------------------------------------------------|
+
+#BEGIN: determine what our image dimensions 
+# shall be (not user-set)
 v:vCOL:6 #columns
 v:vROW:6 #rows
 g*:*:vCOL:vROW | v:vN | z*:vN | v:vN #cardinality of grid (=20)
@@ -1509,12 +1519,14 @@ for any number you specify. It is also interactive;
 At any moment, you can quit if you like.
 =============================}|i: #instructions
 
-i!:{Preferably, pick a number between 1 and } | x*!:vN | x!:{ }|x!: (or `end' to QUIT): | v:vPROMPT
+i!:{Preferably, pick a number between 1 and } 
+| x*!:vN | x!:{ }|x!: (or `end' to QUIT): | v:vPROMPT
 i: #prompt
 v:vRESPONSE # stash user response
-z:{Math.abs(Number(AI))||1} | v:vANS #store marshalled answer (e.g vANS=8)
+#store marshalled answer (e.g vANS=8)
+z:{Math.abs(Number(AI))||1} | v:vANS 
 
-#otherwise, first confirm if we got a legit number really
+#otherwise, first confirm if we got a legit number
 y:vRESPONSE # retrieve user response
 z:{Number(AI)} 
 f!:NaN:lPROCESS_BLANK
@@ -1533,33 +1545,49 @@ y:vANS #retrieve number we saved
 
 #compute vA
 #adjust as: ((n)=>Math.floor(n/vN) + (n%vN))(vA)
-v:vEXP1:((n)=>Math.floor(n/|v:vEXP2:) + (n%|v:vEXP3:))(|v:vEXP4:)
-v:vA | g*:{}:vEXP1:vN:vEXP2:vN:vEXP3:vA:vEXP4 |v:vCMDA|z*:vCMDA|v:vA #vA=8
+v:vEXP1:((n)=>Math.floor(n/|
+v:vEXP2:) + (n%|v:vEXP3:))(|v:vEXP4:)
+v:vA | g*:{}:vEXP1:vN:vEXP2:vN:vEXP3:vA:vEXP4 |
+v:vCMDA|z*:vCMDA|v:vA #vA=8
 
 #compute vAA
 #adjust as: ((n)=>(Math.floor(n/vCOL) + (n%vCOL))%vCOL)(vA)
-v:vEXP1:((n)=>(Math.floor(n/|v:vEXP2:) + (n%|v:vEXP3:))%|v:vEXP4:)(|v:vEXP5:)
-| g*:{}:vEXP1:vCOL:vEXP2:vCOL:vEXP3:vCOL:vEXP4:vA:vEXP5 |v:vCMDAA|z*:vCMDAA|v:vAA #vAA=4
+v:vEXP1:((n)=>(Math.floor(n/|v:vEXP2:) + (n%|
+v:vEXP3:))%|v:vEXP4:)(|v:vEXP5:)
+| g*:{}:vEXP1:vCOL:vEXP2:vCOL:vEXP3:vCOL:vEXP4:vA:vEXP5 
+|v:vCMDAA|z*:vCMDAA|v:vAA #vAA=4
  
 #vA -> compute vB: ((n)=>(vN + n)%vCOL)(vA)
 v:vEXP1:((n)=>(|v:vEXP2: + n)%|v:vEXP3:)(|v:vEXP4:)
-g*:{}:vEXP1:vN:vEXP2:vCOL:vEXP3:vA:vEXP4 |v:vCMDB|z*:vCMDB|v:vB #vB=3
+g*:{}:vEXP1:vN:vEXP2:vCOL:vEXP3:vA:vEXP4 |v:vCMDB|
+z*:vCMDB|v:vB #vB=3
 
 #vB -> compute vC: ((n)=>Math.abs(vN - n)%vCOL)(vB)
 v:vEXP1:((n)=>Math.abs(|v:vEXP2: - n)%|v:vEXP3:)(|v:vEXP4:)
-g*:{}:vEXP1:vN:vEXP2:vCOL:vEXP3:vB:vEXP4 |v:vCMDC|z*:vCMDC|v:vC #vC=2
+g*:{}:vEXP1:vN:vEXP2:vCOL:vEXP3:vB:vEXP4 |v:vCMDC|
+z*:vCMDC|v:vC #vC=2
 
-#vC -> compute vD: ((n)=>Math.floor((n*vN*0.5)/vROW) + Math.floor((n*vN*0.5)%vROW))(vC)
-v:vEXP1:((n)=>Math.floor((n*|v:vEXP2:*0.5)/|v:vEXP3:) + Math.floor((n*|v:vEXP4:*0.5)%|v:vEXP5:))(|v:vEXP6:)
-g*:{}:vEXP1:vN:vEXP2:vROW:vEXP3:vN:vEXP4:vROW:vEXP5:vC:vEXP6 |v:vCMDD|z*:vCMDD|v:vD #vD=5
+#vC -> compute vD: 
+#((n)=>Math.floor((n*vN*0.5)/vROW) + Math.floor((n*vN*0.5)%vROW))(vC)
+v:vEXP1:((n)=>Math.floor((n*|v:vEXP2:*0.5)/|
+v:vEXP3:) + Math.floor((n*|v:vEXP4:*0.5)%|v:vEXP5:))(|v:vEXP6:)
+g*:{}:vEXP1:vN:vEXP2:vROW:vEXP3:vN:vEXP4:vROW:vEXP5:vC:vEXP6 |
+v:vCMDD|z*:vCMDD|v:vD #vD=5
 
-#vD -> compute vE: ((n)=>Math.floor(Math.abs(n - vN*0.5)/vROW) + Math.floor(Math.abs(n - vN*0.5)%vROW))(vD)
-v:vEXP1:((n)=>Math.floor(Math.abs(n - |v:vEXP2:*0.5)/|v:vEXP3:) + Math.floor(Math.abs(n - |v:vEXP4:*0.5)%|v:vEXP5:))(|v:vEXP6:)
-g*:{}:vEXP1:vN:vEXP2:vROW:vEXP3:vN:vEXP4:vROW:vEXP5:vD:vEXP6 |v:vCMDE|z*:vCMDE|v:vE #vE=2
+#vD -> compute vE: 
+#((n)=>Math.floor(Math.abs(n - vN*0.5)/vROW) 
+#+ Math.floor(Math.abs(n - vN*0.5)%vROW))(vD)
+v:vEXP1:((n)=>Math.floor(Math.abs(n - |v:vEXP2:*0.5)/|
+v:vEXP3:) + Math.floor(Math.abs(n - |v:vEXP4:*0.5)%|v:vEXP5:))(|v:vEXP6:)
+g*:{}:vEXP1:vN:vEXP2:vROW:vEXP3:vN:vEXP4:vROW:vEXP5:vD:vEXP6 
+|v:vCMDE|z*:vCMDE|v:vE #vE=2
 
-#vD -> compute vF: ((n)=>Math.floor(Math.abs(n*0.5)/vCOL) + Math.floor(Math.abs(n*0.5)%vCOL))(vN)
-v:vEXP1:((n)=>Math.floor(Math.abs(n*0.5)/|v:vEXP2:) + Math.floor(Math.abs(n*0.5)%|v:vEXP3:))(|v:vEXP4:)
-g*:{}:vEXP1:vCOL:vEXP2:vCOL:vEXP3:vN:vEXP4 |v:vCMDF|z*:vCMDF|v:vF #vF=5
+#vD -> compute vF: 
+#((n)=>Math.floor(Math.abs(n*0.5)/vCOL) + Math.floor(Math.abs(n*0.5)%vCOL))(vN)
+v:vEXP1:((n)=>Math.floor(Math.abs(n*0.5)/|
+v:vEXP2:) + Math.floor(Math.abs(n*0.5)%|v:vEXP3:))(|v:vEXP4:)
+g*:{}:vEXP1:vCOL:vEXP2:vCOL:vEXP3:vN:vEXP4 |
+v:vCMDF|z*:vCMDF|v:vF #vF=5
 
 #DEBUG: show which coordinates to shade
 #1: vA -> (1,vAA) -> (1,4)
@@ -1579,8 +1607,10 @@ l:RESULT
 
 #first, construct the specification for the grid to print
 #vCOORDINATES=[(1,vAA), (2,vB), (3,vC), (4,vD),(vF, vE)]
-v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:, |v:vEXP7:)]
-G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7 | v:vCMDCOORDINATES
+v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|
+v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:, |v:vEXP7:)]
+G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7 
+| v:vCMDCOORDINATES
 #[(1,4), (2,3), (3,2), (4,5),(5,2)]
 G*:{,}:vCOL:vROW:vCMDCOORDINATES | v:vCMD_GRIDSPEC
 
@@ -1611,7 +1641,7 @@ i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
   \vspace{1cm}
   
   
-  As it is, the TEA program in \textbf{\autoref{LSTC7}} consists of a total of \textbf{125} TEA instructions, spans features such as:
+  As it is, the TEA program in \textbf{\autoref{FIGC7}} consists of a total of \textbf{125} TEA instructions, spans features such as:
   
 \begin{enumerate}
 \item Dynamic greeting prompts.

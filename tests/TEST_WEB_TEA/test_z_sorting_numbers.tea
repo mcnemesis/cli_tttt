@@ -1,0 +1,14 @@
+#The purpose of this test is to help demonstrate how we can work around the limitation in TEA
+#with regards to sorting things; since TEA only treats data as strings, so that
+#even when presented with a list of numbers such as in the example:
+i:{4 6 1 18 0 -5 2}|o:
+#it sorts them based on lexical/alphabetical order as strings shld, and so, returns
+#(=-5 0 1 18 2 4 6, VAULTS:{})
+#but, where we need sort strings/words, as though they were numbers, we then need
+#to exploit the javascript interface in WEB TEA to accomplish this as such:
+
+i:{4 6 1 18 0 -5 2} #|o:
+r!:[ ]+:,|x:[|x!:]|z:{JSON.parse(AI).map(s=>Number(s)).sort((a,b)=>a-b)}
+
+#which shall return the result we expect/can improve upon:
+#(=-5,0,1,2,4,6,18, VAULTS:{})

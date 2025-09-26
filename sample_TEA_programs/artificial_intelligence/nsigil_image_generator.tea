@@ -1,0 +1,118 @@
+#~~[WELCOME to N-SIGIL v1.0.0, not for the faint of heart]
+#--|original algorithm by fut.prof. JWL
+#--|WARNING: this TEA program is meant to work as currently implemented
+#--|ONLY for WEB TEA such as: https://tea.nuchwezi.com
+#-----------------------------------------------------------------------|
+
+#BEGIN: determine what our image dimensions shall be (not user-set)
+v:vCOL:6 #columns
+v:vROW:6 #rows
+g*:*:vCOL:vROW | v:vN | z*:vN | v:vN #cardinality of grid (=20)
+
+l:lSTART
+#first, CLEAR/INIT key vaults:
+c*!:vA:vAA:vB:vC:vD:vE:vF
+
+i!:{=======[WELCOME to N-SIGILS]======
+N-SIGILS v.1.0.0 is written in TEA v.1.1.0, 
+and is an experiment to do basic graphics 
+in TEA using text-processing. It is entertaining,
+and will help you draw a basic QR-CODE sigil
+for any number you specify. It is also interactive;
+At any moment, you can quit if you like.
+=============================}|i: #instructions
+
+i!:{Preferably, pick a number between 1 and } | x*!:vN | x!:{ }|x!: (or `end' to QUIT): | v:vPROMPT
+i: #prompt
+v:vRESPONSE # stash user response
+z:{Math.abs(Number(AI))||1} | v:vANS #store marshalled answer (e.g vANS=8)
+
+#otherwise, first confirm if we got a legit number really
+y:vRESPONSE # retrieve user response
+z:{Number(AI)} 
+f!:NaN:lPROCESS_BLANK
+j:lERRORNaN 
+
+#check we are processing a blank number
+l:lPROCESS_BLANK
+y:vRESPONSE
+f!:^$:lPROCESS
+j:lERRORNaN
+
+#continue to process
+l:lPROCESS
+
+y:vANS #retrieve number we saved
+
+#compute vA
+#adjust as: ((n)=>Math.floor(n/vN) + (n%vN))(vA)
+v:vEXP1:((n)=>Math.floor(n/|v:vEXP2:) + (n%|v:vEXP3:))(|v:vEXP4:)
+v:vA | g*:{}:vEXP1:vN:vEXP2:vN:vEXP3:vA:vEXP4 |v:vCMDA|z*:vCMDA|v:vA #vA=8
+
+#compute vAA
+#adjust as: ((n)=>(Math.floor(n/vCOL) + (n%vCOL))%vCOL)(vA)
+v:vEXP1:((n)=>(Math.floor(n/|v:vEXP2:) + (n%|v:vEXP3:))%|v:vEXP4:)(|v:vEXP5:)
+| g*:{}:vEXP1:vCOL:vEXP2:vCOL:vEXP3:vCOL:vEXP4:vA:vEXP5 |v:vCMDAA|z*:vCMDAA|v:vAA #vAA=4
+ 
+#vA -> compute vB: ((n)=>(vN + n)%vCOL)(vA)
+v:vEXP1:((n)=>(|v:vEXP2: + n)%|v:vEXP3:)(|v:vEXP4:)
+g*:{}:vEXP1:vN:vEXP2:vCOL:vEXP3:vA:vEXP4 |v:vCMDB|z*:vCMDB|v:vB #vB=3
+
+#vB -> compute vC: ((n)=>Math.abs(vN - n)%vCOL)(vB)
+v:vEXP1:((n)=>Math.abs(|v:vEXP2: - n)%|v:vEXP3:)(|v:vEXP4:)
+g*:{}:vEXP1:vN:vEXP2:vCOL:vEXP3:vB:vEXP4 |v:vCMDC|z*:vCMDC|v:vC #vC=2
+
+#vC -> compute vD: ((n)=>Math.floor((n*vN*0.5)/vROW) + Math.floor((n*vN*0.5)%vROW))(vC)
+v:vEXP1:((n)=>Math.floor((n*|v:vEXP2:*0.5)/|v:vEXP3:) + Math.floor((n*|v:vEXP4:*0.5)%|v:vEXP5:))(|v:vEXP6:)
+g*:{}:vEXP1:vN:vEXP2:vROW:vEXP3:vN:vEXP4:vROW:vEXP5:vC:vEXP6 |v:vCMDD|z*:vCMDD|v:vD #vD=5
+
+#vD -> compute vE: ((n)=>Math.floor(Math.abs(n - vN*0.5)/vROW) + Math.floor(Math.abs(n - vN*0.5)%vROW))(vD)
+v:vEXP1:((n)=>Math.floor(Math.abs(n - |v:vEXP2:*0.5)/|v:vEXP3:) + Math.floor(Math.abs(n - |v:vEXP4:*0.5)%|v:vEXP5:))(|v:vEXP6:)
+g*:{}:vEXP1:vN:vEXP2:vROW:vEXP3:vN:vEXP4:vROW:vEXP5:vD:vEXP6 |v:vCMDE|z*:vCMDE|v:vE #vE=2
+
+#vD -> compute vF: ((n)=>Math.floor(Math.abs(n*0.5)/vCOL) + Math.floor(Math.abs(n*0.5)%vCOL))(vN)
+v:vEXP1:((n)=>Math.floor(Math.abs(n*0.5)/|v:vEXP2:) + Math.floor(Math.abs(n*0.5)%|v:vEXP3:))(|v:vEXP4:)
+g*:{}:vEXP1:vCOL:vEXP2:vCOL:vEXP3:vN:vEXP4 |v:vCMDF|z*:vCMDF|v:vF #vF=5
+
+#DEBUG: show which coordinates to shade
+#1: vA -> (1,vAA) -> (1,4)
+#2: vB -> (2,vB) -> (2,3)
+#3: vC -> (3,vC) -> (3,2)
+#5: vD -> (4,vD) -> (4,5)
+#6: vE -> (vF, vE) -> (5,2)
+
+#Given vCOL x vROW -> (5x4) and <(x,y)*> simulate...
+###X#
+##X##
+#X###
+#X###
+
+#----[presenting results]-------
+l:RESULT
+
+#first, construct the specification for the grid to print
+#vCOORDINATES=[(1,vAA), (2,vB), (3,vC), (4,vD),(vF, vE)]
+v:vEXP1:[(1,|v:vEXP2:), (2,|v:vEXP3:), (3,|v:vEXP4:), (4,|v:vEXP5:),(|v:vEXP6:, |v:vEXP7:)]
+G*:{}:vEXP1:vAA:vEXP2:vB:vEXP3:vC:vEXP4:vD:vEXP5:vF:vEXP6:vE:vEXP7 | v:vCMDCOORDINATES
+#[(1,4), (2,3), (3,2), (4,5),(5,2)]
+G*:{,}:vCOL:vROW:vCMDCOORDINATES | v:vCMD_GRIDSPEC
+
+#now print...
+y:vCMD_GRIDSPEC #2,4,[(1,4), (2,3), (3,2), (4,5),(5,2)]
+
+v:vCMD_PRINT:{((AI)=>{let[c,r,s]=AI.match(/^(\d+),(\d+),\[(.*)\]$/).slice(1),C=s.match(/\((\d+),(\d+)\)/g).map(p=>p.match(/\((\d+),(\d+)\)/).slice(1).map(Number)),g=Array.from({length:+r},()=>Array(+c).fill("#"));C.forEach(([x,y])=>{if(y>=1&&y<=r&&x>=1&&x<=c)g[y-1][x-1]="X"});return g.map(e=>e.join("")).join("\n")})(AI);}
+z*:vCMD_PRINT | v:vRESULT
+
+i!:{__That is your N-SIGIL for }|x*!:vRESPONSE|v:vMSG|g*:{}:vRESULT:vMSG|h!:_|d:_
+i: #present
+
+#q!: don't auto-quit..
+j:lSTART #loop
+
+l:lERRORNaN #incase response was wrong
+y:vRESPONSE | f:end:lSTOP
+i!:{Value picked was wrong. Try Again}|i: |j:lSTART #report error, loop
+
+l:lSTOP #closing remarks
+i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
+ See u n:ext time!} | i: | i!:---[N-SIGIL v1.0.0 QUIT SUCCESSFULLY]--- | -#cheerio

@@ -1,0 +1,5 @@
+Basic Procedure to correctly copy stored TEA program from browser local storage into the reference set for wider distribution:
+
+1. d = JSON.parse(localStorage.getItem("TEA_PROGRAMS"))
+2. copy(JSON.stringify(d["ZHA Zee Hacker Assistant v1.0.2.tea"]));
+3. PASTE into the configuration/collection.
