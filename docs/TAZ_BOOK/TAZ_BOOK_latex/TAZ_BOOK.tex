@@ -2517,22 +2517,192 @@ Among the peculiarities of that example is that the injected/external program co
 \label{SECEXAMPE}
 
   
-blah blah...
+Given that TEA's \textbf{Evaluate} instruction is ideal for creating not just dynamic programs but rather programs that can also modify themselves, we shall want to first take a moment to appreciate what in general is known\cite{copilot_assistant} about such scenarios as when one might need a self-modifying program:
 
 
-\subsection{EXAMPLE 1: EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}
+
+\begin{table}[htbp]
+\centering
+\caption{Non-Trivial Scenarios for Self-Modifying Programs}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{0.8\textwidth}{>{\raggedright\arraybackslash}p{2.5cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+\hline
+\textbf{Case} & \textbf{Scenario} & \textbf{Why Self-Modify} & \textbf{Example} \\
+\hline
+Embedded Optimization & Devices with limited resources need to adapt to changing conditions. & To rewrite code for more efficient algorithms or disable unused features, saving memory and power. & A satellite reprograms its data compression logic based on signal quality. \\
+\hline
+Evolutionary Algorithms & Programs evolve to solve complex problems like strategy or learning. & Code mutates and recombines to simulate biological evolution for optimal solutions. & A game AI rewrites its own tactics based on win/loss feedback. \\
+\hline
+Security and Anti-Tampering & Software must resist reverse engineering or unauthorized changes. & Dynamic code changes obscure logic and detect tampering attempts. & A DRM system modifies its decryption routine to prevent static analysis. \\
+\hline
+Simulation and Testing & Platforms need to test many behavioral permutations rapidly. & Injecting logic on the fly allows fast prototyping without restarting or recompiling. & An autonomous vehicle simulator rewrites decision trees during runtime. \\
+\hline
+JIT Compilation & Runtime systems optimize performance-critical paths. & Frequently used code paths are rewritten for speed and efficiency. & A JavaScript engine replaces interpreted code with compiled machine code. \\
+\hline
+Multi-Architecture Support & Programs must run across diverse systems from a single binary. & Code rewrites itself to load appropriate modules or instructions per environment. & A bootloader modifies its startup sequence based on detected CPU architecture. \\
+\hline
+Meta-Learning AI & AI agents improve their own learning processes. & Agents restructure their logic based on performance feedback. & A reinforcement learning agent rewrites its reward function to improve convergence. \\
+\hline
+\end{tabularx}
+\end{table}
+
+That said, note that the example we are going to look at, despite not being exactly inspired by a real-life problem, does help illustrate just how useful both self-modification of a TEA program might be when two important features are combined; 
+
+\begin{enumerate}
+\item The ability to automatically generate valid TEA program code on the fly and from nothing.
+\item The ability to execute a stored string as though it were a TEA program --- in this particular case, we shall only focus on the \textbf{Context Unaware} evaluation scenarios.
+\end{enumerate}
+
+
+\subsection{EXAMPLE 1: AUTO-GENERATION of VALID SELF-MODIFYING CODE}
 \label{SECEXAMP1E}
 
 
+The simplest TEA program one might write is the so-called \texttt{HELLO WORLD} program, which, as shown below, simply does one thing --- prints the message ``Hello World" and quits.
 
 
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=A Basic TEA Hello World Program]
+  \begin{lstlisting}[language=TEA]
+i!:{Hello World}
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
 
-blah blah..
+
+One might easily test/try out such a basic program via the WEB TEA IDE by invoking the following special URL in a web browser:
+
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?c=i!:{Hello+World}&run}
+
+\vspace{1em}
+That said, assuming we wrote a special version of that Hello World Program, that not only starts out the same exact way, and which allows no other explicit input except that initial string ``Hello World", but which, after it loads it, goes ahead to [use it to] generate a random program that then gets loaded into the main/caller program, and which then is executed [as an external program] against that initial input, and so that, whatever that external program returns, is a function of both the original input and what auto-generated code we ended up with. Essentially, we would expect a random program that somewhat makes the main program behave as a dynamic self-modifying program operating on the explicit input string ``Hello World" to return... \textit{whatever}!
+
+\vspace{1em}
+
+Such a program could be something like this...
 
 
+ \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SELF-MODIFYING HELLO WORLD]
+  \begin{lstlisting}[language=TEA]
+i!:{Hello World} | v:vIN
+
+e:{
+ p!:3:abcdghikmnopqrstuvxy
+ s:!|s:!
+ h:[a-z]
+ r!::_ | d:{ _} | d:^_ | r!:_!:! | r!:_:: | r:!{2,}:!
+ h!:[a-z]
+ k:[a-z]
+}
+
+v:vCMD #store the program we generated
+
+y:vIN #load original input
+e*:vCMD #execute it against generated program
+v:vOUT #store the ouput
+
+#then present the session results..
+v:I:{Input was:} | v:C:{Auto-Generated Program Was:} 
+| v:O:{Output Was:} | v:S:_
+g*:_:I:vIN:S:C:vCMD:S:O:vOUT
+r!:_:{
+}
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: A SELF-MODIFYING HELLO WORLD TEA Program}
+  \label{FIGD}
+\end{figure}
 
 
+Upon running that code, anywhere TEA can work, we shall get results such as the the following...
 
+
+\begin{figure}[H]
+  \centering
+  %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+  \begin{tcbverbatim}[title=Sample Session of Self-Modifying TEA Hello World]
+Input was:
+Hello World
+
+
+Auto-Generated Program Was:
+k: :
+v: :
+p!:
+
+
+Output Was:
+hoymadebppfznmajnwmprwra ymtlhuxwkehmcmpdqnhaos trfmgkakypbv
+  \end{tcbverbatim}
+  %\caption{The TEA Instruction Lexical Specification (regular language)}
+  %\label{FIG1}
+\end{figure}
+
+
+And another example... also an interactive one:
+
+
+\begin{figure}[H]
+  \centering
+  %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+  \begin{tcbverbatim}[title=Sample Session of Self-Modifying TEA Hello World]
+Input was:
+Hello World
+
+
+Auto-Generated Program Was:
+t!: :
+b!: :
+i:
+
+
+Output Was:
+hi there
+  \end{tcbverbatim}
+  %\caption{The TEA Instruction Lexical Specification (regular language)}
+  %\label{FIG1}
+\end{figure}
+
+This last one interestingly generated a program that prompted the user for some input at runtime, and so, the output of the main program is based on that input instead of the original explicit input!
+
+And then one final example output to show just how interesting this little program might be...
+
+\begin{figure}[H]
+  \centering
+  \begin{tcbverbatim}[title=Sample Session of Self-Modifying TEA Hello World]
+Input was:
+Hello World
+
+
+Auto-Generated Program Was:
+r!: :
+g: :
+t!:
+
+
+Output Was:
+Hello World
+Hello Worl
+Hello Wor
+Hello Wo
+Hello W
+Hello 
+Hello
+Hell
+Hel
+He
+H
+  \end{tcbverbatim}
+  %\caption{The TEA Instruction Lexical Specification (regular language)}
+  %\label{FIG1}
+\end{figure}
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
