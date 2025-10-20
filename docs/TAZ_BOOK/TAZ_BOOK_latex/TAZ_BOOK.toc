@@ -4,24 +4,30 @@
 \contentsline {subsection}{\numberline {1.1.1}TEA Command Variations and Qualifying TEA Commands Correctly}{5}{subsection.1.1.1}%
 \contentsline {chapter}{\numberline {2}THE TEA LANGUAGE DEFINITION}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}TEA Lexical and Syntax Grammars}{7}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{10}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Tea Instruction Set And The Tea Command Primitive Names}{12}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}The Tea Command Naming Standard}{13}{subsection.2.3.1}%
-\contentsline {chapter}{\numberline {3}TEA A: TO Z: COMMAND SPACE SPECIFICATION (Introduction)}{15}{chapter.3}%
-\contentsline {chapter}{\numberline {4}A: ANAGRAMMATIZE}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}SEMANTICS of A:}{17}{section.4.1}%
-\contentsline {section}{\numberline {4.2}NOTES about A:}{17}{section.4.2}%
-\contentsline {section}{\numberline {4.3}EXAMPLE APPLICATIONS of A:}{18}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}EXAMPLE 1: Randomly Pick What to Cook}{18}{subsection.4.3.1}%
-\contentsline {chapter}{\numberline {5}B: BASIFY}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}SEMANTICS of B:}{20}{section.5.1}%
-\contentsline {section}{\numberline {5.2}NOTES about B:}{20}{section.5.2}%
-\contentsline {section}{\numberline {5.3}EXAMPLE APPLICATIONS of B:}{21}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}EXAMPLE 1: Compute Largest Possible o-SSI Number from Several Arbitrary Sequences}{21}{subsection.5.3.1}%
-\contentsline {chapter}{\numberline {6}C: CLEAR}{25}{chapter.6}%
-\contentsline {section}{\numberline {6.1}SEMANTICS of C:}{26}{section.6.1}%
-\contentsline {section}{\numberline {6.2}NOTES about C:}{26}{section.6.2}%
-\contentsline {section}{\numberline {6.3}EXAMPLE APPLICATIONS of C:}{31}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}EXAMPLE 1: The N-SIGIL Generator: print textual-qrcode corresponding to some number N}{32}{subsection.6.3.1}%
-\contentsline {chapter}{\numberline {7}Conclusion}{39}{chapter.7}%
-\contentsline {chapter}{About the Inventor of TEA}{44}{appendix*.47}%
+\contentsline {section}{\numberline {2.2}Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{11}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Tea Instruction Set And The Tea Command Primitive Names}{14}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}The Tea Command Naming Standard}{14}{subsection.2.3.1}%
+\contentsline {chapter}{\numberline {3}TEA REGULAR EXPRESSIONS}{17}{chapter.3}%
+\contentsline {chapter}{\numberline {4}TEA A: TO Z: COMMAND SPACE SPECIFICATION (Introduction)}{21}{chapter.4}%
+\contentsline {chapter}{\numberline {5}A: ANAGRAMMATIZE}{23}{chapter.5}%
+\contentsline {section}{\numberline {5.1}SEMANTICS of A:}{23}{section.5.1}%
+\contentsline {section}{\numberline {5.2}NOTES about A:}{23}{section.5.2}%
+\contentsline {section}{\numberline {5.3}EXAMPLE APPLICATIONS of A:}{24}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}EXAMPLE 1: Randomly Pick What to Cook}{24}{subsection.5.3.1}%
+\contentsline {chapter}{\numberline {6}B: BASIFY}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}SEMANTICS of B:}{28}{section.6.1}%
+\contentsline {section}{\numberline {6.2}NOTES about B:}{28}{section.6.2}%
+\contentsline {section}{\numberline {6.3}EXAMPLE APPLICATIONS of B:}{29}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}EXAMPLE 1: Compute Largest Possible o-SSI Number from Several Arbitrary Sequences}{29}{subsection.6.3.1}%
+\contentsline {chapter}{\numberline {7}C: CLEAR}{33}{chapter.7}%
+\contentsline {section}{\numberline {7.1}SEMANTICS of C:}{34}{section.7.1}%
+\contentsline {section}{\numberline {7.2}NOTES about C:}{34}{section.7.2}%
+\contentsline {section}{\numberline {7.3}EXAMPLE APPLICATIONS of C:}{40}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}EXAMPLE 1: The N-SIGIL Generator: print textual-qrcode corresponding to some number N}{40}{subsection.7.3.1}%
+\contentsline {chapter}{\numberline {8}D: DELETE}{49}{chapter.8}%
+\contentsline {section}{\numberline {8.1}SEMANTICS of D:}{50}{section.8.1}%
+\contentsline {section}{\numberline {8.2}NOTES about D:}{50}{section.8.2}%
+\contentsline {section}{\numberline {8.3}EXAMPLE APPLICATIONS of D:}{52}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}EXAMPLE 1: EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}{52}{subsection.8.3.1}%
+\contentsline {chapter}{\numberline {9}Conclusion}{55}{chapter.9}%
+\contentsline {chapter}{About the Inventor of TEA}{58}{appendix*.63}%

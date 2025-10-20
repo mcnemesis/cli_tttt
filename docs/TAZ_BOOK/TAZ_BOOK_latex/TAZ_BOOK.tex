@@ -6,6 +6,12 @@
 %----------------------------------------------------------------|
 %\documentclass[a4paper, 18pt]{article} % A4 paper, readable font size
 \documentclass[a4paper, 18pt]{book} % A4 paper, readable font size
+
+%\usepackage{parskip} % Adds vertical space between paragraphs
+\setlength{\parindent}{0pt} % Removes paragraph indentation
+\setlength{\parskip}{1em}   % Adds vertical space of 1em between paragraphs
+
+
 %\documentclass[a4paper, 18pt]{book} % A4 paper, readable font size
 \usepackage{geometry} % Adjust margins
 \geometry{top=0.8in, bottom=0.8in, left=0.8in, right=0.6in} 
@@ -68,6 +74,12 @@
 
 % for long tables
 \usepackage{longtable}
+
+%\usepackage{array}
+%\usepackage{longtable}
+%\usepackage{booktabs}
+%\usepackage{multirow}
+
 % for custom table col widths
 %\usepackage{array}
 %\newcolumntype{L}{>{\centering\arraybackslash}m{2cm}}
@@ -155,6 +167,27 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 %stringstyle=\color{yellow}
     }
   }
+}
+
+
+% from google-gemini for verbatim listings:
+\tcbuselibrary{listings,breakable}
+
+% Define a language with no syntax highlighting
+\lstdefinelanguage{none}{}
+
+% Define a new tcblisting environment for verbatim content
+\newtcblisting{tcbverbatim}[1][]{
+  % Pass any user options to the new environment
+  #1,
+  breakable, % Allow long lines to wrap
+  listing only, % The box contains only a listing
+  listing options={
+    language=none, % The 'none' language disables highlighting
+    basicstyle=\ttfamily, % Use the typewriter font
+    columns=flexible, % Allow flexible column widths for wrapping
+    breaklines=true, % Enable line breaking
+  },
 }
 
 
@@ -350,6 +383,7 @@ This manuscript builds upon the earlier TEA language formalization and specifica
 Computers are abstractions that help humans solve problems via other abstractions known as software programs, which are implemented using other abstractions known as software languages. The Transforming Executable Alphabet (TEA) language, is a general-purpose computer programming language that is text-processing oriented, is currently implemented as an interpreted language for both the WEB (internet) and SYSTEM (as standalone or embeddable)\footnote{Though we shall cover more about this in a later section of the TAZ, note that the TEA language currently comes in two flavours --- two, because, even though the entire TEA instruction set A: to Z: is almost standard and works the same irrespective of platform where a TEA program is run, and yet, in practice, and particularly for programs using the \textbf{Z:} command space, there are unavoidable differences in the powers and capabilities one can access and or leverage from the external environment via the \textbf{ZAP} facility --- \texttt{z:CMD}, \texttt{z*:vCMD} and related \textit{external system command execution} variants of that TEA instruction that one might wish to use. In particular, the \textbf{WEB TEA}/TEA running in a web-browser programs can use external powers via JavaScript, but yet, commandline versions can mostly use the system/shell interface of the host system only. More about this when we come to \textbf{Z:} later.}. And in this manual, we shall understand its origins, purpose, design, implementation, applications [and applicability] as well as get glimpses of what its future is likely to be.
 
 \section{Essential Nomenclature and Concepts}
+\label{SECNOMEN}
 
 For the rest of this document, the following definitions and clarifications are important:\\
 
@@ -589,7 +623,7 @@ In traditional BNF, we have:
 \end{figure}
 
 
-Where TOL is a \textbf{TEA Opaque Line}---essentially a line in a TEA program that can be entirely ignored by the TEA parser, processor or interpreter. Thus do we now have a full, and complete specification of the TEA programming language syntax. This should help with lexing TEA program source code\footnote{Those not computer scientists, lexing is how we can automatically break apart a given TEA program source-code into meaningful bits or tokens, and thus be able to verify or validate the program against the language specification or formal grammar, even without having to execute or run the program. It is very vital in situations such as Static Program Analysis and Verification, but also in Code Beautification or Syntax Highlighting as part of a TEA Code Pretty Printer --- typical aspects of a mature programming language's formal language support tools.}, and thus parsing TEA Programs\footnote{Those interested, traditional parsers typically operated on some form of CFG of a language after it has been lexxed, such as when the grammar is expressed as a token tree or such. However, those are mostly implementation-specific details, and also dependent on whether the language is compiled or interpreted. TEA is currently manifested as an interpreted language, and those interested in studying the TEA parser, can visit the reference implementation on GitHub\cite{cli_tttt} to explore.}. However, as for the semantics of any given TEA program, it is important to combine knowledge of valid TEA program syntax, as well as the valid syntax and semantics of each individual TEA primitive command space. This is specified in the TEA A: to Z: Command Space Specification section of the TAZ.
+Where TOL is a \textbf{TEA Opaque Line}---essentially a line in a TEA program that can be entirely ignored by the TEA parser, processor or interpreter because it either consists of only TOE (TEA Opaque Expression) or TCOM (and thus is a TCOML). Thus do we now have a full, and complete specification of the TEA programming language syntax. This should help with lexing TEA program source code\footnote{Those not computer scientists, lexing is how we can automatically break apart a given TEA program source-code into meaningful bits or tokens, and thus be able to verify or validate the program against the language specification or formal grammar, even without having to execute or run the program. It is very vital in situations such as Static Program Analysis and Verification, but also in Code Beautification or Syntax Highlighting as part of a TEA Code Pretty Printer --- typical aspects of a mature programming language's formal language support tools.}, and thus parsing TEA Programs\footnote{Those interested, traditional parsers typically operated on some form of CFG of a language after it has been lexxed, such as when the grammar is expressed as a token tree or such. However, those are mostly implementation-specific details, and also dependent on whether the language is compiled or interpreted. TEA is currently manifested as an interpreted language, and those interested in studying the TEA parser, can visit the reference implementation on GitHub\cite{cli_tttt} to explore.}. However, as for the semantics of any given TEA program, it is important to combine knowledge of valid TEA program syntax, as well as the valid syntax and semantics of each individual TEA primitive command space. This is specified in the TEA A: to Z: Command Space Specification section of the TAZ.
 
 \section{Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}
 \label{SECPARSE}
@@ -703,6 +737,124 @@ All TEA commands are essentially verbs - they tell the TEA processor to do somet
 \end{enumerate}
 
 Thus, some tricky TEA primitives such as W: might perhaps better be named ``Webify" instead of original proposal to use ``Web", and for U: to be called ``Uniqueify" instead of ``Unique". But, condition \#2 somewhat helps relax or dismiss the need for these renamings if they seem too extreme. However, with the Instruction Set as expressed above, we can boldly say each of the 26 primitive instructions in TEA clearly and non-ambiguously define not only what each instruction does, but also how. Just by looking at the Command name, or even just the command's first letter... Which surely is not just a clean design choice, but also shall serve to make learning, reading and applying TEA programs very easy. Of course, unlike many of not most existing programming languages, the TEA language can boast of having the simplest instruction set, and also one that's very precise in semantics and purpose, and which, with the use of mnemonics such as reading and memorizing the TEA command name map above, becomes readily palatable and learnable even for little kids just learning the alphabet.
+
+\chapter{TEA REGULAR EXPRESSIONS}
+\label{SECREGEXP}
+
+Note that, as indicated in the \textbf{\hyperref[SEC1]{Introduction}} --- \textbf{\hyperref[SECNOMEN]{Section \ref{SECNOMEN}}} , \textbf{Regular Expressions} are \textit{a special type of text} that TEA programs recognize while everything else is merely treated as plain text or mere strings. Also, despite the fact that like many programming languages out there, the particular subset of the regular expressions language or standard might vary from implementation to implementation, or from language to language, whereas, for the TEA language in both its native-platform standard as well as the WEB TEA standard can be safely considered to support the common-subset of regular expression rules and syntax as laid out hereafter:
+
+
+\begin{longtable}{@{}>{\ttfamily}p{0.25\linewidth}p{0.7\linewidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Character Matching}} \\
+\hline
+. & Matches any character except newline \\
+\textbackslash{}d & Digit (0–9) \\
+\textbackslash{}D & Non-digit \\
+\textbackslash{}w & Word character (a–z, A–Z, 0–9, \_) \\
+\textbackslash{}W & Non-word character \\
+\textbackslash{}s & Whitespace (space, tab, newline) \\
+\textbackslash{}S & Non-whitespace \\
+\hline
+\multicolumn{2}{c}{\textbf{Character Classes}} \\
+\hline
+[abc] & Matches a, b, or c \\
+\verb|[^abc]| & Matches any character except a, b, or c \\
+\verb|[a-z]| & Matches any lowercase letter from a to z \\
+\hline
+\multicolumn{2}{c}{\textbf{Quantifiers}} \\
+\hline
+* & Matches 0 or more repetitions \\
++ & Matches 1 or more repetitions \\
+? & Matches 0 or 1 repetition \\
+\verb|{n}| & Matches exactly n times \\
+\verb|{n,}| & Matches at least n times \\
+\verb|{n,m}| & Matches between n and m times \\
+\hline
+\multicolumn{2}{c}{\textbf{Anchors}} \\
+\hline
+\verb|^| & Matches start of string \\
+\$ & Matches end of string \\
+\verb|\b| & Matches word boundary \\
+\verb|\B| & Matches non-word boundary \\
+\hline
+\multicolumn{2}{c}{\textbf{Grouping and Alternation}} \\
+\hline
+(abc) & Capturing group for abc \\
+(?:abc) & Non-capturing group for abc \\
+a|b & Matches a or b \\
+\hline
+\multicolumn{2}{c}{\textbf{Escaping}} \\
+\hline
+\verb|\| & Escapes special characters (e.g., \texttt{\textbackslash{}.} matches a literal dot) \\
+\hline
+\end{longtable}
+
+
+As we shall see when we come to the sections treating of the 26 TEA \textbf{A:} to \textbf{Z:} proper, regular expressions in TEA \textbf{ONLY} get treated as such, in \textbf{specific} sections of a TEA instruction where the instruction \textbf{explicitly expects a regular expression}, and nowhere else. 
+
+For example, if we wrote the code:
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program Example 1]
+  \begin{lstlisting}[language=TEA]
+i!:^$
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+The parameter being passed to the \textbf{I!:} instruction is \textbf{always} treated as a string no matter what. Thus, the attempt to have the command treat the argument ``\verb|^$|" as though it were a regular expression --- in case that is what the programmer thought or wanted, is futile here. In this case, since \textbf{I!:} is the \textbf{INTERACT} instruction that sets its parameter as the explicit instruction output if provided, shall result in that TEA program returning the value ``\verb|^$|" as the output.
+
+Similarly, the following program:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program Example 2]
+  \begin{lstlisting}[language=TEA]
+d!:^$
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+Shall treat whatever is passed to the \textbf{D!:} instruction as a regular expression no matter what, so that, this program --- as we shall come to understand after studying the semantics of \textbf{D:}, the \textbf{DELETE} TEA primitive in \textbf{\hyperref[CHAPD]{Chapter \ref{CHAPD}}}, in its \textbf{D!:} form, shall eliminate from whatever active input occurred before it, everything but what matches the specified regular expression pattern --- in this case ``\verb|^$|", and so that, the instruction shall always return nothing but ``" when used as specified in that program.
+
+Also, talking of the quirks of regular expressions in TEA, note that with experience and experimentation, one comes to learn how best to write or pass regular expressions to a TEA instruction or program. For example, given that the ``\verb$|$" character is treated as the special TEA instruction delimiter (especially for one-liners or minified TEA programs that might not delimit each instruction using the newline character), trying to write or pass a correct regular expression such as ``a\verb$|$b" might be tricky. Take the following example program:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program Example 3]
+  \begin{lstlisting}[language=TEA]
+i!:Hello World | d!:e|l
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+That program attempts to use the \texttt{d!:e|l} instruction to keep only things in the input that either match either ``e" or ``l", however, using or writing the necessary regular expression as shown will result in the output ``e" since the TEA program is interpreted as though the last ``\verb#|#" were a TEA instruction delimiter\footnote{More about this was covered well in \textbf{\hyperref[SECGRAM]{Section \ref{SECGRAM}}}.}, so that the final part of the regular expression --- ``l", gets discarded as extraneous non-executable text or a \textbf{TEA Opaque Expression}. Thus, to correctly use such a tricky/special regular expression, that program would need to be re-written as such:
+
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program Example 3]
+  \begin{lstlisting}[language=TEA]
+i!:Hello World | d!:{e|l}
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+Which then returns the output ``elll" given what we forced the input to be with \texttt{i!:Hello World}.
+
+Concerning this matter, note that still, and despite regular expressions being a special case in TEA programs, and yet, \textbf{in the simplest sense}, TEA regular expressions are still nothing but mere strings/text! The last example above shall help illustrate this given the fact that we use the TEA string delimiters ``\{" and ``\}" to correctly contain the regular expression string parameter that we intend to pass to the \texttt{D!:} instruction.
+
+Thus, though \textbf{the signature} of a TEA instruction shall determine which sections/positional-arguments of a TEA instruction can/are regular expressions and which are not, and yet, when expressing them in code, TEA regular expressions can be treated as though they were normal TEA strings\footnote{\textbf{IMPORTANT} to note that this likewise applies to other \textit{special types} in TEA instructions such as \textbf{block names} --- used with branching instructions such as \texttt{F:REGEX:lBLOCK} and \texttt{J:lBLOCK}, as well as \textbf{vault names} --- used with vault/memory referencing instructions such as \texttt{r*:vNAME:REGEX:SUBSTR}}.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BEGIN TAZ SECTION
@@ -1648,6 +1800,9 @@ i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
   %\caption{TEA EXAMPLE: \textbf{N-SIGIL} Text-based Unique-Image Generator TEA Game}
   \vspace{1cm}
   
+ \large
+ %\centering  
+ \raggedright %force normal/left-alignment  
   
   As it is, the TEA program in \textbf{\autoref{FIGC7}} consists of a total of \textbf{136} TEA instructions, spans features such as:
   
@@ -1772,9 +1927,10 @@ vF =  (\lfloor \frac{vN}{2*nCol} \rfloor + \lfloor \frac{vN}{2} \rfloor) \mod nC
 
 \item { \textbf{CONSTRUCT} the \textbf{Sigil Coordinates Specification} as sequence of 12 (x,y) coordinate pairs as such, where the last/final 6 are derived from the first 6 merely by swapping the positions of the terms such as we have $(x,y) \rightarrow (y,x)$. Essentially, we shall have this specification set:
 
-\begin{equation}
-vCOORDINATES = \langle (1,vAA), (2,vB), (3,vC), (4,vD), (5,vE), (6,vF), (vAA,1), (vB,2), (vC,3), (vD,4), (vE,5), (vF,6) \rangle
-\end{equation}
+\begin{multline}
+vCOORDINATES = \langle (1,vAA), (2,vB), (3,vC), (4,vD), (5,vE), (6,vF), (vAA,1), (vB,2), (vC,3),\\
+ (vD,4), (vE,5), (vF,6) \rangle
+\end{multline}
 
 }
 
@@ -1798,9 +1954,290 @@ $\qed$
 \end{alg}
   
   
-  
-  
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: D
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{D: DELETE}
+\label{CHAPD}
 
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & Delete\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Delete something from the AI
+	\item Delete everything BUT something from the AI
+	\item Implement Filters
+	\item Reduce Strings to Specific Patterns
+	\item Eliminate All White-space
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of D:}
+  \label{TABTAZD}
+\end{table}
+
+
+
+
+\section{SEMANTICS of D:}
+\label{SECSEMD}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+d: & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{d:REGEX \\d:RX1:RX2:…:RXN} & Delete from AI all sections matching the single regular expression REGEX or any of the given regular expressions RX1, RX2,…, RXN\\
+ 
+ d.:REGEX & \textbf{The Exceptional Delete Instruction} that deletes from AI all sections matching the single regular expression REGEX. It doesn't accept multiple parameters, and so, everything after the first ``:" is treated as part of the pattern. It is one of few TEA commands using the ``." Qualifier.\\
+
+\rowcolor{lightgray}\bfseries d!: & Delete all white-space from the AI (same as g:)\\
+ 
+ \makecell[l]{d!:REGEX \\d!:RX1:RX2:…:RXN}& The Inverse of d:, for which only \textbf{sections not matching} the given patterns are deleted from AI. \\
+ 
+ 
+\rowcolor{lightgray}\bfseries \makecell[l]{d*:vREGEX\\d*:vRX1:vRX2:…:vRXN} & Like the d:REGEX and d:RX1:…:RXN except, referencing the patterns stored in the named vaults.\\
+ 
+ 
+ \makecell[l]{d*!:vREGEX \\d*!:vRX1:vRX2:…:vRXN}& Like the d!:REGEX and d!:RX1:…:RXN except, referencing the patterns stored in the named vaults. \\
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of D:}
+\label{TABSEMD}
+\end{table}
+
+
+
+
+\section{NOTES about D:}
+\label{SECNOTESD} 
+
+
+So much can be accomplished in programming with TEA --- one of few programming languages that is \textbf{text-processing} oriented by design. And talking of text-processing, note that many problems can be reduced to the need to identify and eliminate from some text or sequence, elements that match a particular pattern or those that do not match one or more patterns. We shall attempt to illustrate these things using basic examples...
+
+First, note that one can appreciate \textbf{D:} by the following illustrative examples:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: delete all instances of `a' or `A']
+  \begin{lstlisting}[language=TEA]
+i!: {bC CB BA aB} | #(="bC CB BA aB")
+d:[aA] |#(="bC CB B B")
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+But 
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: delete all instances of `aA']
+  \begin{lstlisting}[language=TEA]
+i!: {bC CB BA aB} | #(="bC CB BA aB")
+d:aA |#(="bC CB BA aB") because no pattern "aA"
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+So, realize that the difference between the last two programs, despite being subtle, does matter --- the first invoked the \textbf{delete instruction} with an argument that is a regular expression using a \textit{character class} --- \textit{[aA]} --- whereas the later version used a regular expression ``aA" that essentially gets interpreted as \textit{a followed by A}.
+
+Whereas, if we modify the program again such as:
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: delete all instances NOT `a' or `A']
+  \begin{lstlisting}[language=TEA]
+i!: {bC CB BA aB} | #(="bC CB BA aB")
+d:[^aA] |#(="Aa") uses negated character class
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+We get something similar to what we would have obtained in case we had used the same pattern as in the original program, but with the \textbf{D!:} instruction:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: delete all things NOT `a' or `A']
+  \begin{lstlisting}[language=TEA]
+i!: {bC CB BA aB} | #(="bC CB BA aB")
+d!:[aA] |#(="Aa")
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+That flexibility is essential because of the way logic using regular expressions works --- there might be scenarios in which writing a pattern to match what needs to be eliminated is easier than writing one for what needs to be retained, whereas the inverse might be true in some other cases. So, creativity and experimentation shall determine which of the forms of \textbf{D:} to use for what purpose.
+
+And then, concerning using \textbf{D:} to eliminate white space, consider the program:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: delete ALL WHITE-SPACE]
+  \begin{lstlisting}[language=TEA]
+i!: {bC CB BA aB} | #(="bC CB BA aB")
+d!: |#(="bCCBBAaB")
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Other quirks of the delete instruction can be appreciated with the following example:
+
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: more D:]
+  \begin{lstlisting}[language=TEA]
+i!: {bC CB BA aB} | #(="bC CB BA aB")
+d:[aA] |#(="bC CB B B")
+d:.B |#(="bC")
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+This last example could also be simplified by leveraging the fact that \textbf{D:} allows us to chain the patterns too --- essentially, we can use it in the forms \textit{d:RX1:RX2:…:RXN} or \textit{d!:RX1:RX2:…:RXN} or the related vault-referencing forms such as \textit{d*:vRX1:vRX2:…:vRXN} or 
+ \textit{d*!:vRX1:vRX2:…:vRXN}. Thus, the above last example can be rewritten as:
+ 
+ 
+ \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: D: with chained patterns]
+  \begin{lstlisting}[language=TEA]
+i!: {bC CB BA aB} | #(="bC CB BA aB")
+d:[aA]:.B |#(="bC")
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Finally, note that the parameterized inverse of the Delete command makes implementing powerful complex filters easier. For example, we eliminate anything in AI that isn't a punctuation mark using the following terse program\footnote{Please note that though the code listing shown seems to indicate that the program contains some extraneous symbols after the second-last `\}', and yet, the color-coding for the TEA-source-code pretty-printer being used for typesetting this book is what has limitations when dealing with complex TEA expressions. Otherwise, the program is expressed verbatim in its complete and essential form as is, and can be tried out on the \textbf{WEB TEA IDE} as part of the standard TEA program collection: \url{https://tea.nuchwezi.com}} 
+
+
+ \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: De PUNCTURA Filter]
+  \begin{lstlisting}[language=TEA]
+d!:{[\\ \[\]!"#$%&'()*+,-./:;<=>?@^_`{|}~]} 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+As can be seen/appreciated when considering what the TEA regular expression standard is --- refer to \textbf{\hyperref[SECREGEXP]{Chapter \ref{SECREGEXP}}} --- note that we could also write the above program in more compact form as: \texttt{d!:\textbackslash{}W} --- with the important caveat though being that, this later version also preserves new-line characters since it merely filters out all word characters.
+
+ 
+\section{EXAMPLE APPLICATIONS of D:}
+\label{SECEXAMPD}
+
+  
+As explained in the section highlighting the general purposes/use-cases of the \textbf{DELETE} instruction, we find that implementing filters is among its major purposes, and so, we shall use one example to help paint a picture for what one might use \textbf{D:} for in real-life.
+
+
+\subsection{EXAMPLE 1: EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}
+\label{SECEXAMP1D}
+
+
+The following example, is going to be tested against a sample text such as:
+
+
+
+\begin{figure}[H]
+  \centering
+  %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+  \begin{tcbverbatim}[title=Sample Text Containing Phone Contacts]
+---[ TEA WEB IDE DOCS v1.1 ]---
+
+0704464749
+
+Welcome to the Transforming Executable Alphabet [TEA] WEB Integrated Development Environment.
+
+EXAMPLE: https://tea.nuchwezi.com/?fc=https://example.com/mcnemesis/+1-414-123456/raw/zha.tea
+
+
+17. BACK PROPAGATE: Click to copy and load the text:+256704464749 currently in TEA Output space as the new text in the TEA Input space. 
+
+---[FURTHER DOCS | TEA RESEARCH]
+
+In case you still wish to explore +256 414 554 685 more concerning TEA, this WEB IDE, or any other aspects of the TEA project, definitely start by visiting the TEA GitHub0705953500 Project [linked to on the MENU], or visit the TEA Research and TEA Community links as provided on the MENU.  +254-1
+
+Phone: 0772 609649 | 101
+  \end{tcbverbatim}
+  %\caption{The TEA Instruction Lexical Specification (regular language)}
+  %\label{FIG1}
+\end{figure}
+
+
+The essential TEA source for a program that we might use to extract all the phone numbers in that sample text is as such:
+
+ \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: PHONE CONTACT EXTRACTOR]
+  \begin{lstlisting}[language=TEA]
+d!:\+[1-9]\d{7,14}:\+?[0-9][-. \d]{7,28}
+h!:{[^\d]} 
+k:\d 
+r!:[^\d]:{ } 
+r!:\W+:{ }
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+And when we run that code against the specified sample text, the output we shall get is as shown hereafter...
+
+
+\begin{figure}[H]
+  \centering
+  \begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+0704464749 1 414 123456 256704464749 256 414 554 685 0705953500 0772 609649
+  \end{tcolorbox}
+  %\caption{The TEA Instruction Lexical Specification (regular language)}
+  %\label{FIG1}
+\end{figure}
+
+Of course, the example program makes some assumptions about what a valid phone number might be given internationally acceptable patterns, and the variety of phone number expressions we need to deal with in the sample text provided, and so, in a more realistic scenario, it might be that instead of using multiple match-patterns, we only need 1, or that we instead need more than the two we have specified here, or that we need to constraint or extend the ones we have specified in the arguments passed to \textbf{D!:}, so that we implement an extractor that is most suitable for the problem at hand.
+
+\vspace{1em}
+
+
+Also, besides the \textbf{D!:} instruction in that example program, most of the other TEA code included is to help clean-up the extracted contacts so that we limit or eliminate anything that is not part of the contact, and also format the result with minimal white-space between either the contacts or the sub-sequences making up a particular contact.
+
+\vspace{1em}
+
+Finally, realize that even though the original/input text did contain several numerical sections such as strings as ``v1.1", ``101", etc. and incomplete phone numbers such as `` +254-1", and yet, thanks to the power of the \textbf{D!:} filter and how we structured our pattern-matching regular expressions, any such values in the input are not polluting our final output.
+
+
+%%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
 
 \chapter{Conclusion}
 \label{SECCONC}
