@@ -71,6 +71,8 @@
 % alternatively, just use custom column type --- M{1cm}
 %\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 
+%\usepackage{makecell}
+\renewcommand\arraystretch{1.3}
 
 % for long tables
 \usepackage{longtable}
@@ -2210,6 +2212,8 @@ r!:[^\d]:{ }
 r!:\W+:{ }
    \end{lstlisting}
   \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: PHONE CONTACT Extractor}
+  \label{FIGD}
 \end{figure}
 
 
@@ -2235,6 +2239,300 @@ Also, besides the \textbf{D!:} instruction in that example program, most of the 
 \vspace{1em}
 
 Finally, realize that even though the original/input text did contain several numerical sections such as strings as ``v1.1", ``101", etc. and incomplete phone numbers such as `` +254-1", and yet, thanks to the power of the \textbf{D!:} filter and how we structured our pattern-matching regular expressions, any such values in the input are not polluting our final output.
+
+
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: E
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{E: EVALUATE}
+\label{CHAPE}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & Evaluate\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Process memory as though it were a TEA program
+	\item A self-contained function/procedure facility for TEA programs
+	\item Securely processing External/Imported TEA source-code
+	\item Mechanism for Securely Executing Auto-Generated TEA Code
+	\item Facility for Self-Modifying Programs
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of E:}
+  \label{TABTAZE}
+\end{table}
+
+
+
+
+\section{SEMANTICS of E:}
+\label{SECSEME}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+e: & [\textit{Implicit Context Unaware Evaluation}] Process the contents of AI as an external TEA program, with its initial AI as the EMPTY STRING and set the final IO from that program as the IO for the current instruction\\
+
+\rowcolor{lightgray}\bfseries e:STR & [\textit{Explicit Context Unaware Evaluation}] Process the contents of STR as an external TEA program, but with current AI as its initial AI and set the final IO from that program as the IO for the current instruction\\
+ 
+ e!: & [\textit{Implicit Extended Context Aware Evaluation}] Parse the contents of AI as a TEA program, and inject the found TEA instructions in it inline into the calling main TEA program---essentially, modifies the main program by injecting new code into it, replacing the original E: instruction in the calling program with the new program instructions, then continues normal processing in the main/calling program, starting from the first instruction in the newly injected instructions if any – the EMPTY STRING becomes input to that first instruction, otherwise (in case no TEA instructions were found) continues to the next instruction in the calling, unmodified program, with the AI set to the EMPTY STRING.\\
+
+\rowcolor{lightgray}\bfseries e!:STR & [\textit{Explicit Extended Context Aware Evaluation}] Same as E!:, but passes current AI to the first instruction in the extension/injected TEA program,  otherwise (in case no TEA instructions were found) passes it on to the next instruction in the main/calling TEA program unmodified.\\
+ 
+ \makecell[l]{e*: \\e*!:}& INERT \\
+ 
+ 
+\rowcolor{lightgray}\bfseries e*:vNAME & Same as E:STR, but processing string stored in vault named vNAME\\
+ 
+ 
+e*!:vNAME & Same as E!:STR, but processing string stored in vault named vNAME\\
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of E:}
+\label{TABSEME}
+\end{table}
+
+
+
+
+\section{NOTES about E:}
+\label{SECNOTESE} 
+
+
+Many mature programming languages --- GPLs especially, do offer some mechanism by which code that is originally not part of the main program might not only be imported/hot loaded into the main program, but also that such imported code might be executed adjacent to/parallel the main program or inline (as part of the main program). 
+
+\vspace{1em}
+
+Such code might for example be functionality that was not originally designed into the main program, but which is later needed for some specific tasks to be supported --- in which case, the external program code might be thought of as a kind of \textit{plugin} or \textit{extension}\footnote{In the past for example, and before the inventor of TEA worked on the language, they had worked on another language known as \textbf{Cwa Script} that together with an embeddable/pluggable Software Operating Environment (SOE)  known as \textbf{DNAP}\cite{lutalo2020dnap}, that for either web or desktop or mobile apps [in virtually any language], would make it easy for existing software to be readily extended or evolved with new functionality originally not part of the main software in a sense similar to how an existing web-page might be extended by leveraging ``external functionality" loaded say via an I-frame.}. But also, many languages encourage or support a facility for composing a program from various, somewhat independent or semi-independent components in the form of say libraries (such as DLLs for the C/C++ language), modules and/or sub-modules (such as in Python or JavaScript), etc.  
+
+\vspace{1em}
+
+Typically, for compiled languages such as C or C++, such code shall also be loaded when it is in a compiled form closest to the final/target architecture and instruction set of the associated machine or technology platform, so that, one does not or can not directly take a runtime string and execute it directly as though it were new code made available to the main program. However, for especially interpreted languages such as JavaScript, Python, LISPs, Ruby, or even compiled languages such as Erlang that run on a virtual machine with ability to hotload code or perform Just-In-Time compilation of code even loaded via strings, the ability to extend the main program with functionality parsed or read directly  from runtime-strings is not only possible but it designed into the language core.
+
+\vspace{1em}
+
+Below, we summarize the behavior of hot-loading code across several compiled and interpreted languages so that one might come to appreciate how TEA does it:
+
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|p{3.5cm}|p{3.5cm}|p{3.5cm}|}
+\hline
+\textbf{Language} & \textbf{Direct Evaluation (e.g., \texttt{eval})} & \textbf{Compilation Required} & \textbf{Can Modify Main Program State} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Compiled Languages}} \\
+\hline
+C & \makecell[{{p{3.5cm}}}]{No (\texttt{system()} or dynamic loading via \texttt{dlopen})} & \makecell[{{p{3.5cm}}}]{Yes (external compilation needed)} & \makecell[{{p{3.5cm}}}]{Limited (via shared libraries or function pointers)} \\
+\hline
+C++ & \makecell[{{p{3.5cm}}}]{No (\texttt{system()} or dynamic/shared libraries)} & \makecell[{{p{3.5cm}}}]{Yes (compile to shared object)} & \makecell[{{p{3.5cm}}}]{Limited (via dynamic linking and function pointers)} \\
+\hline
+Erlang & \makecell[{{p{3.5cm}}}]{Yes (\texttt{erl\_eval}, \texttt{code:load\_binary})} & \makecell[{{p{3.5cm}}}]{Optional (hot code loading supported)} & \makecell[{{p{3.5cm}}}]{Yes (can replace modules at runtime)} \\
+\hline
+Java & \makecell[{{p{3.5cm}}}]{No (\texttt{JavaCompiler}, \texttt{ClassLoader})} & \makecell[{{p{3.5cm}}}]{Yes (compile to bytecode)} & \makecell[{{p{3.5cm}}}]{Yes (via reflection and dynamic class loading)} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Interpreted Languages}} \\
+\hline
+Python & \makecell[{{p{3.5cm}}}]{Yes (\texttt{eval()}, \texttt{exec()})} & No & \makecell[{{p{3.5cm}}}]{Yes (can define/modify variables, functions, classes)} \\
+\hline
+JavaScript & \makecell[{{p{3.5cm}}}]{Yes (\texttt{eval()}, \texttt{Function()})} & No & \makecell[{{p{3.5cm}}}]{Yes (modifies global/local scope)} \\
+\hline
+Ruby & \makecell[{{p{3.5cm}}}]{Yes (\texttt{eval()}, \texttt{instance\_eval})} & No & \makecell[{{p{3.5cm}}}]{Yes (can alter program state and define methods)} \\
+
+\hline
+TEA & \makecell[{{p{3.5cm}}}]{Yes (\texttt{e:}, \texttt{e!:}, \texttt{e*:} or \texttt{e*!:})} & No & \makecell[{{p{3.5cm}}}]{Yes (\texttt{e!:, e!:STR, e*!:vC} can alter caller program state)} \\
+
+\hline
+\end{tabular}
+\caption{Comparison of Hot-Loading Code from Strings in Compiled vs Interpreted Languages}
+\label{TABCOMPLANGE}
+\end{table}
+
+
+And so, with that introduction out of the way, one should realize that this functionality is indeed not only a standard feature of a good programming language, but is also essential for certain kinds of especially dynamic or generic programming. 
+
+\vspace{1em}
+
+Below, we shall look at some basic examples of the \textbf{Evaluate} instruction in TEA, and thereafter, delve into some non-trivial examples.
+
+\vspace{1em}
+
+So, first, note that one could appreciate \textbf{E:} by the following illustrative examples which, for purposes of helping make comparisons of the various different ways code hot-loading can be done in TEA, all perform the same essential function --- they load the same exact program just in different contexts, and all \textbf{MUST} return the output ``AAW" when successfully run:
+
+
+ \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Implicit Context Unaware Evaluation]
+  \begin{lstlisting}[language=TEA]
+i!:{i!:AAA|d:^A|r:$:W} | e:
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+ \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Implicit Extended Context Aware Evaluation]
+  \begin{lstlisting}[language=TEA]
+i!:{i!:AAA|d:^A|r:$:W} | e!:
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Explicit Context Unaware Evaluation]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB} | e:"i!:AAA|d:^A|r:$:W" 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Explicit Context Unaware Evaluation]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB} | e:{i!:AAA|d:^A|r:$:W} 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Explicit Extended Context Aware Evaluation]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB} | e!:{i!:AAA|d:^A|r:$:W} 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Context-Unaware Vault Program Evaluation]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB} | v:vPROG:{i!:AAA|d:^A|r:$:W} |
+ e*:vPROG  
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Injection-Evaluation with In-Vault Program]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB} | v:vPROG:{i!:AAA|d:^A|r:$:W} |
+ e*!:vPROG  
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Injection-Evaluation with In-Vault Program v2]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB} | v:vPROG:"i!:AAA|d:^A|r:$:W" | 
+e*!:vPROG   
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+The above eight TEA programs are actually equivalent though different and all approaching the same problem in different ways --- essentially, executing external/injected TEA code from within a main/host TEA program. 
+
+\vspace{1em}
+
+However, to truly appreciate the power of \textbf{E:}, let us consider the following non-trivial program:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=Non-Trivial Injection and Context-Aware Evaluation]
+  \begin{lstlisting}[language=TEA]
+i!:ABC
+
+l:lHEW
+h:
+
+e!:{
+    v:
+    v:vE:XYZ
+    |v!:
+    |v:vOL
+    |g*:-< >-:vE:vOL
+    |v:vMIX
+    |l:lGEN
+    |p!:5
+    |x*:vMIX
+    |f:[ai]:lMASK
+    |l:lSALT
+    |s:1_0_1
+    |f:[a1]:lGEN
+    }
+
+l:lMASK
+g!:**  
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+It not only demonstrates all the tricky aspects of a TEA program, however, it is a great example for how to create self-modifying TEA programs. Essentially, all the TEA code inside the \texttt{e!:\{…\}} block ends up not being processed as an external TEA program, but gets injected into the main program, and uses its AI and existing label blocks! This program will for example return a string starting with the injected sub-string ``XYZ" such as ``XYZ**5uaikq" if the injected program reached a state where the AI contains the sub-string ``ai", otherwise will return a string starting with ``A++B++C" such as ``\verb$A++B++CXYZ-< >-5hlca1_0_1x$" in case the program reached a state where the AI contains the substring ``a1". A full appreciation of how this program works is shown in a runtime DEBUG dump of this program in the official CLI TTTT tests\cite{cli_tttt}.
+
+\vspace{1em}
+
+Among the peculiarities of that example is that the injected/external program contains logic that not only modified the main program (such as creating new code/l-blocks with instructions such as \texttt{l:lSALT}), but also references sections of the main program otherwise not directly visible to the injected/external program (such as the \texttt{f:[ai]:lMASK} branching instruction).
+
+
+\section{EXAMPLE APPLICATIONS of E:}
+\label{SECEXAMPE}
+
+  
+blah blah...
+
+
+\subsection{EXAMPLE 1: EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}
+\label{SECEXAMP1E}
+
+
+
+
+
+blah blah..
+
+
+
+
+
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
