@@ -42,16 +42,19 @@ textarea {
 #txt_code {
   background: teal;
   color: white;
+  font-family: "Fira Code", monospace;
 }
 
 #txt_input {
   background: dimgray;
   color: white;
+  font-family: "Fira Code", monospace;
 }
 
 #txt_output {
   background: slategrey;
   color: white;
+  font-family: "Fira Code", monospace;
 }
 
 .header {
