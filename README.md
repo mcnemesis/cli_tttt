@@ -1,7 +1,7 @@
 
 ![TEA](docs/tea_banner.png)
 
- TEA is the **T**ransforming **E**xecutable **A**lphabet [4]; **a general-purpose [computer] programming language that is Text-Processing oriented** and which is designed based on a set of 26, decorated and/or qualified single-letter primitives, A: to Z: (or rather a: to z:) which are based on the standard Latin Alphabet; {A,B,C,...,Z}[3]. 
+ TEA is the **T**ransforming **E**xecutable **A**lphabet [4]; **a general-purpose [computer] programming language that is Text-Processing oriented, enables a sequence-transformer chaining paradigm[5], and which is designed based on a set of 26, decorated and/or qualified single-letter primitives, A: to Z:** (or rather a: to z:) which are based on the standard Latin Alphabet; {A,B,C,...,Z}[3]. 
 
  Currently, TEA is manifested in the form of an interpreted textual language, whose latest implementation is capable of being effectively run or explored via any
  software platform fully supporting Python 3 upon which the current TEA interpreter/language runtime, `tttt`, a command-line interface to the TEA runtime, is based, and so that, technology platforms such as Linux, Unix, the Windows Subsystem for Linux as well as any other mature and/or compatible \*nixes, can practically run TEA and thus execute any TEA program. 
@@ -121,6 +121,29 @@ Especially concerning the theory behind TEA as a programming language or rather,
 
 - TEA is well documented --- TTTT package comes with a useful man page
 ![TTT Man Page](sample_TEA_programs/highlights/cli_tttt_man_page.png)
+
+### TEA is based on The Mathematics of Transformatics[5]
+
+If you have come across the new/emerging mathematical theory of Transformatics[5], which also is the mathematical subdiscipline that treats of especially ordered sequences of both lower-order[5] (sets, lists, flat-sequences) and higher-order[5] (dictionaries, matrices, tuples, n-grams, etc), then you shall come to appreciate that much of how the processing, analysis and expression of sequences is done in Transformatics is how data/sequences/text is treated in the TEA language. This shall also explain why it is that TEA, the Transforming Executable Alphabet, is considered to be a language whose paradigm is the **chaining of sequence-transformers**. Details about Transformatics are in the mini-thesis by the inventor of the TEA language itself:
+
+
+```bibtex
+@article{Lutalo2025_transformatics_thesis,
+  author       = {Joseph Willrich Lutalo},
+  title        = {\textbf{TRANSFORMATICS 101 - explained}},
+  year         = {2025},
+  month        = {October},
+  journal         = {Thesis},
+  publisher  = {I*POW},
+  pages        = {20},
+  doi          = {10.6084/m9.figshare.30305056},
+  url          = {https://figshare.com/articles/thesis/TRANSFORMATICS_101_-_explained/30305056},
+   note         = {\textit{Published by I*POW, the free electronic version is available online at FigShare. Recommended for foundational insights into the new mathematics of Transformatics:} \url{https://doi.org/10.6084/m9.figshare.30305056}}
+}
+```
+
+We shall later on also talk about the TEA language and its relation to the traditional UNIX/Linux philosophy of well-designed basic tools such as text processing tools or data transformation utilities, and how they might be composed via "piping", to help compose complex logical, computational and/or automation solutions to arbitrary problems. The mathematics of Transformatics is what really helps generalize these ideas well enough into a logical framework, system or theory devoid of any dependence on particular technologies or applications, and instead focuses on the ideas of sequences, sequence-transformers and their composition and/or application in the perspective of pure and applied mathematics.
+
 
 ### TEA is intuitive, powerful and terse!
 
@@ -663,3 +686,4 @@ https://github.com/mcnemesis/cli_tttt/tree/master/tests/
 2. Joseph, W. Lutalo. (2025). Concerning Debugging in TEA and the TEA Software Operating Environment. Academia. https://www.academia.edu/127733090/Concerning_Debugging_in_TEA_and_the_TEA_Software_Operating_Environ
 3. Lutalo, Joseph Willrich. (2024). "TEA TAZ -Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION.". Nuchwezi. https://doi.org/10.6084/m9.figshare.26661328 
 4. Willrich Lutalo,  J. (2024). Software Language Engineering - Text Processing Language Design, Implementation, Evaluation Methods. Preprints. https://doi.org/10.20944/preprints202410.0636.v2
+5. Lutalo, J. W. (2025). TRANSFORMATICS 101 - explained. Thesis, 20. https://doi.org/10.6084/M9.FIGSHARE.30305056 

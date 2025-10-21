@@ -2,10 +2,11 @@
 %---|original-author:JWL|date:24SEPT2025|email:jwl@nuchwezi.com
 %---|TITLE: TEA TAZ – Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION
 %---|EDITOR:Prof. Joseph Willrich Lutalo, Oxford
-%---[MANUSCRIPT-VERSION:24SEPT2025]
+%---[MANUSCRIPT-ORIGINAL-VERSION:24SEPT2025]
+%---[MANUSCRIPT-LATEST-VERSION:21OCT2025]
 %----------------------------------------------------------------|
 %\documentclass[a4paper, 18pt]{article} % A4 paper, readable font size
-\documentclass[a4paper, 18pt]{book} % A4 paper, readable font size
+\documentclass[a4paper, 18pt]{book} % A4 book-layout, readable font size
 
 %\usepackage{parskip} % Adds vertical space between paragraphs
 \setlength{\parindent}{0pt} % Removes paragraph indentation
@@ -856,6 +857,64 @@ Which then returns the output ``elll" given what we forced the input to be with 
 Concerning this matter, note that still, and despite regular expressions being a special case in TEA programs, and yet, \textbf{in the simplest sense}, TEA regular expressions are still nothing but mere strings/text! The last example above shall help illustrate this given the fact that we use the TEA string delimiters ``\{" and ``\}" to correctly contain the regular expression string parameter that we intend to pass to the \texttt{D!:} instruction.
 
 Thus, though \textbf{the signature} of a TEA instruction shall determine which sections/positional-arguments of a TEA instruction can/are regular expressions and which are not, and yet, when expressing them in code, TEA regular expressions can be treated as though they were normal TEA strings\footnote{\textbf{IMPORTANT} to note that this likewise applies to other \textit{special types} in TEA instructions such as \textbf{block names} --- used with branching instructions such as \texttt{F:REGEX:lBLOCK} and \texttt{J:lBLOCK}, as well as \textbf{vault names} --- used with vault/memory referencing instructions such as \texttt{r*:vNAME:REGEX:SUBSTR}}.
+
+
+
+
+
+\chapter{TEA and The Mathematics of TRANSFORMATICS}
+\label{SECTRANSFORM}
+
+
+TEA is based on The Mathematics of Transformatics\cite{Lutalo2025_transformatics_thesis}. 
+
+\vspace{1em}
+
+
+
+The project's GitHub homepage\cite{cli_tttt} does offer a sufficient plain-English definition of the language in its introduction, and we have already looked at the language's Computer-Science/Regular Language definition in \textbf{\hyperref[SEC2]{Chapter \ref{SEC2}}}, but, we shall also augment or deviate from either, by also considering \textbf{the mathematical definition of the TEA computer programming language}, which we present for the first-time here as:\\
+
+
+
+\begin{defn}[The \textbf{Transforming Executable Alphabet}, TEA language]
+\label{DEFTEA}
+
+TEA is the Transforming Executable Alphabet\cite{lutalo2024software}; a general-purpose [computer] programming language that is Text-Processing oriented, enables a sequence-transformer chaining paradigm\cite{Lutalo2025_transformatics_thesis}, and which is designed based on a set of 26, decorated and/or qualified single-letter primitives, A: to Z: (or rather a: to z:) which are based on the standard Latin Alphabet; {A,B,C,...,Z}\cite{Lutalo2024TEATAZ}.
+
+\vspace{1em}
+
+And so that, a \textbf{TEA program}, $\mathbb{T}^n$, is an ordered sequence of $n$ sub-sequences $t_{i \in [1,n]}$ --- also known as \textbf{TEA Instructions}(TI) that are any valid self-contained individual instruction expressions in the \textbf{TEA language}, and which are then applied to some initial input $I_0: I_0 \equiv \emptyset \quad \lor \quad I_0 \neq \emptyset$, also known as the \textbf{TEA Input}, and such that, by processing or executing the higher-order sequence $\mathbb{T}^n$, we finally produce some sequence, $O: O \equiv I_0 \quad \lor \quad O \neq I_0$, via a processing (with or without branching), of the chain of contained TEA instructions expressed by each of the $n$ sub-sequences/sub-expressions $t_i$. 
+
+\vspace{1em}
+
+Equivalently, we produce $O$ given some $I_0$, by applying $\mathbb{T}^n$ to it as such:
+
+\begin{trans}
+\label{TRANSDEFTEA}
+$I_0 \xrightarrow{t_1} I_1 \xrightarrow{t_2} I_2 \cdots  \xrightarrow{t_i} I_{i+1} \cdots \xrightarrow{t_n} I_{n+1} = O;$\\
+$\forall t_i \in \mathbb{T}^n$
+\end{trans}
+
+
+
+And more succinctly:
+
+\begin{trans}
+\label{TRANSDEFTEAB}
+$I_0 \xrightarrow{\mathbb{T}^n} I_{n+1} = O$
+\end{trans}
+
+\end{defn}
+
+
+If you have come across the new/emerging mathematical theory of Transformatics\cite{Lutalo2025_transformatics_thesis}, which also is the mathematical subdiscipline that treats of especially ordered sequences of both lower-order\cite{Lutalo2025_transformatics_thesis} (sets, lists, flat-sequences) and higher-order\cite{Lutalo2025_transformatics_thesis} (dictionaries, matrices, tuples, n-grams, etc), then you shall come to appreciate that much of how the processing, analysis and expression of sequences is done in Transformatics is how data/sequences/text is treated in the TEA language --- refer to \textbf{Proposal 9} presented in \cite{Lutalo2025_transformatics_thesis}. This shall also explain why it is that TEA, the Transforming Executable Alphabet, is considered to be a language whose paradigm is the chaining of sequence-transformers.
+
+\vspace{1em}
+
+In \cite{cli_tttt} is covered well, the matter of the TEA language and its relation to the traditional UNIX/Linux philosophy; of well-designed basic tools such as text processing tools or data transformation utilities, and how they might be composed via ``piping", to help compose complex logical, computational and/or automation solutions to arbitrary problems. \textbf{The mathematics of Transformatics is what really helps generalize these ideas well enough into a logical framework, system or theory devoid of any dependence on particular technologies or applications, and instead focusing on the ideas of sequences, sequence-transformers and their composition and/or application in the perspective of pure and applied mathematics somewhat reminiscent of linear-algebra.}
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2175,7 +2234,7 @@ The following example, is going to be tested against a sample text such as:
 \begin{figure}[H]
   \centering
   %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
-  \begin{tcbverbatim}[title=Sample Text Containing Phone Contacts]
+  \begin{tcbverbatim}[title=Sample Input Text Containing Phone Contacts]
 ---[ TEA WEB IDE DOCS v1.1 ]---
 
 0704464749
@@ -2222,7 +2281,7 @@ And when we run that code against the specified sample text, the output we shall
 
 \begin{figure}[H]
   \centering
-  \begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+  \begin{tcolorbox}[title=Sample EXTRACTED Output Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
 0704464749 1 414 123456 256704464749 256 414 554 685 0705953500 0772 609649
   \end{tcolorbox}
   %\caption{The TEA Instruction Lexical Specification (regular language)}
@@ -2912,7 +2971,303 @@ r!:_:{
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: F
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{F: FORK}
+\label{CHAPF}
 
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & Fork\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Conditionally Jump across a TEA program
+	\item Implementing Branching Logic in a program
+	\item How to Leverage Code Encapsulation or Closures Without Using \textbf{E:}
+	\item Branching Logic Based on Pattern Matching --- applies \textbf{\hyperref[SECREGEXP]{TEA Regular Expressions}}
+	\item Singular or Binary Branching Mechanism\footnote{Unlike \textbf{J:} which can only implement \textbf{singular jump instructions}.}
+	\item A Logic-Only\footnote{Like \textbf{J:}, \textbf{L:} and \textbf{Q:}, \textbf{F:} is one of few TEA operators that performs logic-only operations and so that, any value of a program's \textbf{Active Input} before the instruction is encountered or executed in a TEA program, shall stay the same/unmodified after the instruction is executed/processed successfully or not --- this is guaranteed behavior of the language, \textbf{based on the semantics of the TEA Instruction Set and what this document, the TEA Standard, specifies.}} Instruction whose core purpose is \textbf{to enable logic about state of the active TEA program} --- via tests or pattern-matching against the AI.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of F:}
+  \label{TABTAZF}
+\end{table}
+
+
+\section{SEMANTICS of F:}
+\label{SECSEMF}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+f: & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{f:REGEX:LA\\f:REGEX:LA:LB} & If the AI matches the regular expression REGEX then jump to the block in the TEA Program under the label LA, otherwise to LB. Only the first two parameters are mandatory. And LA, LB should be valid labels declared somewhere in the program.  \\
+
+ f!: & INERT\\
+ 
+\rowcolor{lightgray}\bfseries \makecell[l]{f!:REGEX:LA\\f!:REGEX:LA:LB} & Similar to f:, but the logic works same if AI does NOT match the regular expression REGEX\\
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of F:}
+\label{TABSEMF}
+\end{table}
+
+
+\section{NOTES about F:}
+\label{SECNOTESF}
+
+\textbf{\hyperref[TABTAZF]{Table \ref{TABTAZF}}} has already clearly laid out the true fundamental applications of the \textbf{F:} operator in the mathematics of the TEA language. It allows us to implement logic or reasoning, in a computer program, via the mechanism of branching instruction execution in a TEA program [source], based on the current state of the program's AI.
+
+\vspace{1em}
+
+It is important to note that \textbf{f:} is the equivalent of an IF-Statement in most other languages such as C, Java or Ruby. We shall look at some illustrative examples to drive home ideas about why and how useful it is:
+
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=F: EXAMPLE 1]
+  \begin{lstlisting}[language=TEA]
+i:TEST
+f:TEST:A:B
+l:B
+x!:_OK
+q!:
+l:A
+r:^T:B 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Would return ``BEST" if AI at line\#2 is ``TEST", otherwise something like ``Hello\_OK" if the program was run with explicit user input ``Hello" or ``INPUT\_OK" for any AI = ``INPUT" at the moment that instruction is executed.
+
+\vspace{1em}
+
+Note that properly using conditional branching in TEA via the f: construct requires some careful thought. First, because TEA has no explicit code block construct such as using ``curly-bracket" code encapsulation such as \texttt{\{...code\}} in some c-family/c-like languages. Also, it is important to note that TEA \textbf{Label-Blocks} can overlap based on which Label occurs first. For example, try to re-write the above program with the B-block (lines \#3-5), which is our ``Else-Block" being preceded by the A-block (lines \#6-7), and see if it would produce the same test results as what we expect in the above example.
+
+\vspace{1em}
+
+
+Another simpler, but still enlightening example is the following short program:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=F: EXAMPLE 2]
+  \begin{lstlisting}[language=TEA]
+#shall return input shuffled if it matches ``TEST" 
+i:TEST | f!:TEST:A:B | l:B |a!: | l:A | v: 
+#(=TTSE, VAULTS:{"":"TTSE"})
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\section{EXAMPLE APPLICATIONS of F:}
+\label{SECEXAMPF}
+
+  
+For those familiar with how the idea of intelligence might be approached in matters such as simulating or manifesting human-like cognition --- spanning perception/sensing, measurement/pattern-matching/decoding.. and reaction/actuation --- the \textbf{Willrich Psychology} model\cite{Lutalo2025transpsy} as depicted in \textbf{\hyperref[FIGWILLPSY]{Figure \ref{FIGWILLPSY}}} being a handy and useful resource for cases when we need worry about [creating] intelligence [in things], but also, creating reactive, observant and logical artificial systems especially --- \textbf{automatons}\footnote{\textbf{Automatons} being the kind whose logic/processing is directly dependent on reasoning based on observing the agent's [external] environment, while \textbf{Psymatons}\cite{lutalo2025unraveling} might also span systems whose reasoning might depend on observing the system's/agent's [internal] state/[internal] environment in addition to the external --- somewhat as though they have extra-sensory perception/can reason based on intuition or to an external observer/actor, they seem to possess a spirit or non-physical form of cognition --- we might as well think of say reasoning by entropy/chaos!}, that might need to work independently of human supervision or processing. This is especially true of the case of attempting to program \textbf{artificial intelligence} systems or even basic knowledge systems and any semblance of artificial reasoning in a computer program\footnote{For example, the \textbf{ZHA} --- Zee Hacker Assistant, first presented in \cite{jwlzha}, and which also leverages the TEA language, shall serve well to illustrate the importance of \textbf{F:}}.
+
+
+\begin{figure}[H]
+  \begin{center}
+     %\includegraphics[trim=LEFT BOTTOM RIGHT TOP, clip, width=0.9\textwidth,]{resources/pdfs/EXAPLATONICFORM-PFA.pdf}\\
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[trim=0cm 12cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/pdfs/all_willrich_psychology.pdf}\\
+   \caption{Unifying Model of Willrich Psychology --- in a mind-map}
+  \label{FIGWILLPSY}
+  \end{center}
+\end{figure}
+
+  Thus, for a good demonstration of how conditional branching and pattern-based reasoning or logic might be realized and applied using \textbf{F:} and TEA programming, we shall use the example of the \textbf{ZHA} --- \textit{Zee Hacker Assistant}, a \textbf{quasi-Artificial General Intelligence} program that one might also readily find in the TEA standard programs list at \url{https://tea.nuchwezi.com}, and which was also extensively covered in theory and culturally, in \cite{jwlzha} and \cite{lutalo2025unraveling}.
+
+\subsection{EXAMPLE 1: ZHA --- ZEE HACKER ASSISTANT, a human support assistant chatbot system}
+\label{SECEXAMP1F}  
+  
+ 
+ The most recent version of ZHA is as follows:
+ 
+
+ %\begin{figure}[H]
+ \small
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZEE HACKER ASSISTANT v1.0.2, breakable]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
+#!/usr/bin/tttt -fc
+#----------------------------------------------|
+# ZHA: Zee Hacker Assistant (v.1.0.2) | SEPT,'25
+#----------------------------------------------|
+# based off of TEAPAT: TEA Personal AssistanT:
+# ref: https://doi.org/10.20944/preprints202502.1849.v1
+#----------------------------------------------|
+# This little program is a mini
+# quasi-general artificial intelligence (qAGI)
+# a special personal assistant perhaps
+# best left for hackers, created 
+# using the TEA programming language: https://bit.ly/projtea
+###############################################|
+
+#show welcome message
+v:vORIN
+v:vWELCOME:"##############################-##### *:{~} ZHA v1.0.2 #######-##############################-welcome to the future of chat_-##############################--"
+v:vREG:-|h*!:vWELCOME:vREG
+d:-|i:
+
+y:vORIN # continue...
+
+# set entity name
+v:vPANAME:{ZHA}
+f:^$:lSET:lNOSET
+l:lSET
+i:{Who do u wish to talk to? }|i: # user's entity name
+g:|f!:^$:lSETI:lRULES|l:lSETI|v:vPANAME|j:lRULES 
+l:lNOSET | y*: | v:vPANAME # evoke invoker's entity
+l:lRULES # show instructions
+i!:{At any time, reply with 'end' to quit
+}|i:
+v:vPROMPT:{: Talk to Me: }
+g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
+l:lPROMPT # prompt, get answer, process
+
+# generate question
+n:10000000|s:|v:qN|
+# decide between ANE and NE
+n:|f!:[2357]:qANE:qNE
+l:qANE|
+# decide between AE and ANE
+n:1|f:0:qAE
+# generate ANE
+p!:27
+|s:_:13:5 |d:_.*$
+|s: |v:qR
+|g*:{}:qR:qN
+|j:qF|
+l:qAE # pure AE
+p!:27
+|s:_:13:5 |d:_.*$ |s:
+|j:qF|
+l:qNE # pure NE
+|y:qN
+|l:qF # process and package question 
+|a:
+|x:{: }
+v:vQ
+
+# decide on whether question or not
+n:|f:[2357]:lNoQ
+y:vQ
+|x!:{?: }
+j:lProQ
+
+l:lNoQ
+y:vQ
+|x!:{ : }
+
+l:lProQ
+# stash generated question
+v:vGenQuestion
+
+# decide between default or generated prompt
+n:|f:[2468]:lGenPROMPT:lDefPROMPT
+
+l:lGenPROMPT
+g*:{ }:vPANAME:vGenQuestion | v:vGenPROMPT
+y:vGenPROMPT|j:lDisplayPROMPT
+
+l:lDefPROMPT
+y:vPAPROMPT
+
+l:lDisplayPROMPT
+| i: |z:| q:^end$
+# generate answer
+n:10000000|s:|v:N|
+# decide between ANE and NE
+n:|f!:[2357]:ANE:NE
+l:ANE|
+# decide between AE and ANE
+n:1|f:0:AE
+# generate ANE
+p!:27
+|s:_:13:5 |d:_.*$ |s: |v:R
+|g*:{}:R:N
+|j:F|
+l:AE # pure AE
+p!:27
+|s:_:13:5 |d:_.*$ |s:
+|j:F|
+l:NE # pure NE
+|y:N
+|l:F # process and package answer 
+|a:|v:vA
+
+# decide on whether question or not
+n:|f!:[2357]:lQA
+y:vA
+|x!:{? }
+j:lNoQA
+
+l:lQA
+y:vA
+|x!:{ | }
+
+l:lNoQA
+# display answer
+|i: 
+| j:lPROMPT # and loop
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: ZEE HACKER ASSISTANT v1.0.2}
+  \label{FIGF}
+  \vspace{1cm}
+
+
+ \large
+ %\centering  
+ \raggedright %force normal/left-alignment  
+  
+ 
+ \textbf{\hyperref[FIGF]{Figure \ref{FIGF}}} covers what \textbf{ZHA v1.0.2} is, and an interested person could go read the code, modify or run it directly and live via:
+  
+  
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?fc=https://gist.githubusercontent.com/mcnemesis/97caf6d0573f7447a807cf635fd8128f/raw/ba38dc52a5256734054bdff7154dee5a90259e39/zha.tea}
+
+\vspace{1em}
+
+However, for an interesting illustration of what one might accomplish using this little offline-capable multi-turn conversational chatbot AI system, the following screenshot, despite being of v1.0.1 of the program, shall serve that purpose:
+
+
+  \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth,]{resources/images/zha3.png}\\
+        \caption{ZHA v1.0.1: a queer conversation between a hacker and the person of The President that he invoked via ZHA!}
+      \label{FIGZHA}
+    \end{figure}
+  
+
+Also, note that, despite the above interactive link pointing to a version of ZHA that loads and runs well in any web-browser and on any operating system, and yet, the same code, just as is shown in  \textbf{\hyperref[FIGZHA]{Figure \ref{FIGZHA}}}, can be run on the command-line such as with Linux, WSL or Solaris. The TEA program shall run and work as expected anywhere there is TEA v1.0.1 or later.
 
 
 
