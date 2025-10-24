@@ -82,3 +82,10 @@ textarea {
 #txt_analytics {
     color: darkred;
 }
+
+.disqus_widget {
+    background-color: black !important;
+    border: azure 1px solid;
+    border-radius: 3px;
+    padding: 10px;
+}
