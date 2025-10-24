@@ -59,6 +59,9 @@
 				<div class="collapse navbar-collapse" id="navbarScroll">
 				  <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 					<li class="nav-item">
+					  <a class="nav-link" target="_blank" aria-current="page" href="#disqus_thread" title="COMMUNITY: click to leave or read public comment">CHATROOM</a>
+					</li>
+					<li class="nav-item">
 					  <a class="nav-link active" target="_blank" aria-current="page" href="https://github.com/mcnemesis/cli_tttt/" title="Visit Project's Behind The Scenes">TEA Project</a>
 					</li>
 					<li class="nav-item">
@@ -229,12 +232,42 @@
       </div>
     </div>
 
+
+    <!-- Row 9 -->
+    <div class="row mb-3">
+      <div class="col-12">
+
+		<div id="disqus_thread"></div>
+		<script>
+			/**
+			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+			var disqus_config = function () {
+			this.page.url = "https://tea.nuchwezi.com";  // Replace PAGE_URL with your page's canonical URL variable
+			this.page.identifier = "web-tea-community" ; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+
+			(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://web-tea-community.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </div>
+
   </div>
 
   <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- partial -->
   <script type="module"  src="./utility.js"></script>
   <script type="module" src="./app.js"></script>
+
+<!-- for chatroom/disqus -->
+<script id="dsq-count-scr" src="//web-tea-community.disqus.com/count.js" async></script>
 
 </body>
 </html>
