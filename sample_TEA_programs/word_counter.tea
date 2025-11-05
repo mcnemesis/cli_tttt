@@ -1,0 +1,15 @@
+#given any input, this TEA program shall count and return
+#correct number of words in the input just as would the
+#Microsoft Word processing program. It works as is in any
+#TEA environment.
+i:{hello world ?} #sample input should return 3
+r!:\w+:{#} 
+g.:{_} 
+d:^[_]+ 
+d:[_]+$ 
+r!:[ ]:_ 
+r!:[_]+:_ 
+d!:{_} 
+x!:_
+v: 
+v!:

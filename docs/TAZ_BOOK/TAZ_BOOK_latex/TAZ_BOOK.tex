@@ -271,7 +271,7 @@ moredelim=[s][\color{myorange}]{\{}{\}},
   \centering
   \LARGE
 	\begin{tabular}[t]{|p{0.8\textwidth}}
-I:\{\textbf{Dedicate this book to Dr. Marriette of Makerere University, CoCIS graduate school.} When she first taught me LISP on the white-board, during my masters class on advanced computer programming --- \textbf{MCN7105}:``Structure and Interpretation of Computer Programs", I felt like a special mini-universe of computing had been hidden from me all along. \textit{Exposure to not just a different, albeit uncommon syntax and abstraction approach to computational problem solving she passed down to me, and somewhat helped spur my interest further, into exploring non-mainstream programming languages. Also, I recall when I first encountered a serious non-C-family language, RUBY by Matz, first exposed to me by Revence Kalibwani (R*I*P), I never looked back, and now I have a truly elegant, fully functional non-C-family computer programming language of my own, several years down the road.}\}
+I:\{\textbf{Dedicate this book to Dr. Marriette of Makerere University, CoCIS graduate school.} When she first taught me LISP on the white-board, during my masters class on advanced computer programming --- \textbf{MCN7105}:``Structure and Interpretation of Computer Programs", I felt like a special mini-universe of computing had been hidden from me all along. \textit{Exposure to not just a different, albeit uncommon syntax and abstraction approach to computational problem solving she passed down to me, and somewhat helped spur my interest further, into exploring non-mainstream programming languages. Also, I recall when I first encountered a serious non-C-family language, RUBY by Matz, first exposed to me by Revence Kalibwani (R*I*P) --- also a seasoned Haskell programmer, I never looked back, and now I have a truly elegant, fully functional non-C-family computer programming language of my own, several years down the road.}\}
 \begin{verbatim}
 |U:|A:|V:C|A*:C 
 \end{verbatim}
@@ -3268,6 +3268,248 @@ However, for an interesting illustration of what one might accomplish using this
   
 
 Also, note that, despite the above interactive link pointing to a version of ZHA that loads and runs well in any web-browser and on any operating system, and yet, the same code, just as is shown in  \textbf{\hyperref[FIGZHA]{Figure \ref{FIGZHA}}}, can be run on the command-line such as with Linux, WSL or Solaris. The TEA program shall run and work as expected anywhere there is TEA v1.0.1 or later.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: G
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{G: GLUE}
+\label{SECG}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & Glue\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Bind things together
+	\item Bind elements in AI using nothing --- eliminate white-space
+	\item Perform pattern substitution in a text
+	\item Eliminate new-line characters
+	\item Eliminate all punctuation and white-space
+	\item Construct strings using variables
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of G:}
+  \label{TABTAZG}
+\end{table}
+
+
+\section{SEMANTICS of G:}
+\label{SECSEMG}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+g: & Reduce AI to a string with all whitespace characters removed. Essentially binds any word in AI to all the rest. \\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ g:GLUE\\g:GLUE:REGEX } & Set the IO to the result of reducing AI to a string where all instances of REGEX have already been replaced by GLUE. Without the second parameter – REGEX, g: merely replaces all whitespace in AI with GLUE.\\
+
+g!: & INERT\\
+
+\rowcolor{lightgray}\bfseries g.: & Reduce AI to a string with all NEW LINE characters removed. Essentially helps reverse h!:\\
+
+ \makecell[l]{g.:GLUE} & Reduce AI to a string with all NEW LINE characters replaced by GLUE. Essentially helps reverse h!:REGEX\\
+ 
+ \rowcolor{lightgray}\bfseries g!:GLUE & Reduce AI to a string where all standard sentence punctuation marks, in addition to all whitespace, have been replaced with GLUE.  GLUE is expected to be a string. The result of this transform then becomes IO.\\
+ 
+  \makecell[l]{g*:GLUE:v1:v2\\g*:GLUE:v1:v2:v3:…:vN} & Set IO to the result of joining the string stored in the vaults with the given names, using the specified EXPLICIT GLUE\\
+  
+  
+   \rowcolor{lightgray}\bfseries \makecell[l]{g*!:vGLUE:v1:v2\\g*!:vGLUE:v1:v2:v3:…:vN} & Set IO to the result of joining the string stored in the vaults with the given names, using the glue stored in vault vGLUE\\
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of G:}
+\label{TABSEMG}
+\end{table}
+
+
+\section{NOTES about G:}
+\label{SECNOTEG}
+
+G: is the most magical primitive in TEA.  g: for example automagically sucks all space out of things and sets them aside for later use! Let’s look at an example:
+
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=G: EXAMPLE 1]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB}| g:
+#(=BCCBBAAB) 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+This next one sucks out all white-space as the above example, however, because it also has a parameter specified, uses it as GLUE to bind the elements together in-place of where white-space originally was.
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=G: EXAMPLE 2]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB}| g:{_*_}
+#(=BC_*_CB_*_BA_*_AB)
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+That's not without power. On the other hand, g!: can best be appreciated with examples processing regular human-readable text---which, is for example expected to have natural use of both whitespace and punctuation marks in it. Thus, the program
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=G: EXAMPLE 3]
+  \begin{lstlisting}[language=TEA]
+i!:{Which of this, 
+that or both do you want?
+None} | g!:{*}
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Should return ``Which*of*this**that*or*both*do*you*want**None"
+
+
+Otherwise, let's see more examples with their expected outputs shown in the comments:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=G: EXAMPLE 4]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB}| g:{_*_}:.[BC] #= _*__*_B_*_A _*_
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+That Example  4 shows how, \textbf{G:} might play roles that other instructions such a \textbf{R:} might typically be used for --- substitution in this case. Essentially, given the GLUE pattern and the SEARCH pattern, the signature \texttt{g:GLUE:SEARCH} as shown in that example replaces all instances of SEARCH in the AI with GLUE as shown in the example output.
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=G: EXAMPLE 5]
+  \begin{lstlisting}[language=TEA]
+i!:{BC CB BA AB}|v:vIN|v:vP:---[|v:vS:]--|v:vG:{_}|
+g*!:vG:vP:vIN:vS  #=---[_BC CB BA AB_]--
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+That last example demonstrates how \textbf{GLUE} might be used to construct dynamic strings. This, especially via the vault-accessing \textbf{G*:} variants as shown in that example, but also as introduced in \textbf{\hyperref[TABSEMG]{Table \ref{TABSEMG}}}.
+
+
+
+\section{EXAMPLE APPLICATIONS of G:}
+\label{SECEXAMPG}
+
+  
+First, note that binding things together based on some criteria or none can serve several purposes as a pre-processing step in many important text-processing tasks. And as we shall see in the following non-trivial example, we need several pre-processing steps to correctly implement a program that can correctly do just one basic task --- count words in any given input text!
+
+
+\subsection{EXAMPLE 2: A SERIOUS WORD COUNTER PROGRAM}
+\label{SECEXAMP1G}
+
+The following example is of a TEA program that might be used to correctly count and report the number of words in any input text. 
+
+
+ \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SERIOUS WORD COUNTER]
+  \begin{lstlisting}[language=TEA]
+r!:\w+:{#} 
+g.:{_} 
+d:^[_]+ 
+d:[_]+$ 
+r!:[ ]:_ 
+r!:[_]+:_ 
+d!:{_} 
+x!:_
+v: 
+v!:
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: WORD COUNTER}
+  \label{FIGG1}
+\end{figure}
+
+
+So, that, when given a multi-line text such as:
+
+
+\begin{figure}[H]
+  \centering
+  \begin{tcbverbatim}[title=Sample Input Text 1]
+one two three
+four
+five six seven-eight
+  \end{tcbverbatim}
+\end{figure}
+
+
+Shall correctly report the result ``7". And yet, if given the slight alteration:
+
+
+
+\begin{figure}[H]
+  \centering
+  \begin{tcbverbatim}[title=Sample Input Text 2]
+one two three
+four
+five six seven?eight
+  \end{tcbverbatim}
+\end{figure}
+
+
+Shall still correctly return ``7". While for one-liners such as ``hello world ?" returns \textbf{3}, while it shall correctly return \textbf{2} for ``hello world?"
+
+Concerning this non-trivial example, note that, to make it work well as standard word-counter programs might, the instruction  \textbf{G.:} played a big role than would any other TEA primitive (refer to \textbf{\hyperref[TABSEMG]{Table \ref{TABSEMG}}} for why). For example, all the above example input texts, including the following, report the correct word count with this TEA program as they do for the Microsoft Word text-processor program.
+
+
+\begin{figure}[H]
+  \centering
+  \begin{tcbverbatim}[title=Sample Input Text 3]
+hello 
+
+
+world ?
+  \end{tcbverbatim}
+\end{figure}
+
+
+The above last text example shall return word count as ``3", in Microsoft Word, but also in either command-line TEA or TEA on the WEB --- this last point stressed because, where one might have thought of for example resorting to \textbf{Z:} so as to implement the mathematics instruction that performs a ``count + 1" necessary in this algorithm, and yet, we merely used a \textbf{Xenograft} --- note the instruction \texttt{x!:\_} before we perform the count, so that we do not need any special maths except just TEA's inbuilt string-length counter idiom \texttt{v: | v!:} that then solves the problem.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
