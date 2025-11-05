@@ -1197,6 +1197,18 @@ export class TEA_RunTime {
             }
         }
 
+
+
+        if(tc == "G."){
+            if(tpe_str.length == 0){
+                io = io.replace(new RegExp(TEA_RunTime.NL,'g'), TEA_RunTime.EMPTY_STR);
+            }
+            else{
+                var glue = this.extract_str(tpe_str)
+                io = io.replace(new RegExp(TEA_RunTime.NL, 'g'), glue);
+            }
+        }
+
         if(tc == "G!"){
             var params = tpe_str.split(TEA_RunTime.TIPED)
             if(params.length == 0){
