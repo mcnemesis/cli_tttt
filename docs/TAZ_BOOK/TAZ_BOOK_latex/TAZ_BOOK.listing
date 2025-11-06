@@ -1,4 +1,4 @@
-hello
-
-
-world ?
+int a=1,b;
+b=a*5;
+c=b*(a+b);
+printf("a:%d|b:%d|c:%d", a, b, c);

@@ -3291,6 +3291,7 @@ Also, note that, despite the above interactive link pointing to a version of ZHA
 	\item Eliminate new-line characters
 	\item Eliminate all punctuation and white-space
 	\item Construct strings using variables
+	\item Reverse or opposite of \text{H:}
 	\end{enumerate}\\
 	\hline
 	              
@@ -3427,7 +3428,7 @@ That last example demonstrates how \textbf{GLUE} might be used to construct dyna
 First, note that binding things together based on some criteria or none can serve several purposes as a pre-processing step in many important text-processing tasks. And as we shall see in the following non-trivial example, we need several pre-processing steps to correctly implement a program that can correctly do just one basic task --- count words in any given input text!
 
 
-\subsection{EXAMPLE 2: A SERIOUS WORD COUNTER PROGRAM}
+\subsection{EXAMPLE 1: A SERIOUS WORD COUNTER PROGRAM}
 \label{SECEXAMP1G}
 
 The following example is of a TEA program that might be used to correctly count and report the number of words in any input text. 
@@ -3498,16 +3499,222 @@ world ?
 \end{figure}
 
 
-The above last text example shall return word count as ``3", in Microsoft Word, but also in either command-line TEA or TEA on the WEB --- this last point stressed because, where one might have thought of for example resorting to \textbf{Z:} so as to implement the mathematics instruction that performs a ``count + 1" necessary in this algorithm, and yet, we merely used a \textbf{Xenograft} --- note the instruction \texttt{x!:\_} before we perform the count, so that we do not need any special maths except just TEA's inbuilt string-length counter idiom \texttt{v: | v!:} that then solves the problem.
+The above last text example shall return word count as ``3", in Microsoft Word, but also in either command-line TEA or TEA on the WEB --- this last point stressed because, where one might have thought of for example resorting to \textbf{Z:} so as to implement the mathematics instruction that performs a ``count + 1" necessary in this algorithm, and yet, we merely used \textbf{Xenograft} --- note the instruction \texttt{x!:\_} before we perform the count, so that we do not need any special maths except just TEA's inbuilt string-length counter idiom \texttt{v: | v!:} that then solves the problem.
 
 
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: H
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{H: HEW}
+\label{SECH}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & Hew\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Explode or split up AI using something
+	\item Help chop-up strings
+	\item Help introduce new-lines into text based on a pattern
+	\item Help implement loss-less substitutions --- both pattern and substitute retained in output
+	\item Reverse some effects of \textbf{G:}
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of H:}
+  \label{TABTAZH}
+\end{table}
+
+
+\section{SEMANTICS of H:}
+\label{SECSEMH}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+h: & Split up AI such that all its elements are separated by a single space. In effect, padding the inner contents of AI with space. That becomes IO.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ h:REGEX } & Same as h:, but the splitting happens only at the beginning of where the contents of AI match REGEX. The original contents of AI remain preserved by this operation.\\
+
+h!: & Same as h: but instead using the New Line character as separator.\\
+
+\rowcolor{lightgray}\bfseries h!:REGEX & Same as h!:, but the splitting happens only at the beginning of where the contents of AI match REGEX.\\
+
+ \makecell[l]{h*:} & INERT\\
+ 
+ \rowcolor{lightgray}\bfseries \makecell[l]{h*:vNAME:vREGEX\\h*!:vNAME:vREGEX} & The vault operating versions of h: and h!: perform corresponding transformations, but instead operate on the data stored in the vault with the specified vault name, vNAME.\\
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of H:}
+\label{TABSEMH}
+\end{table}
+
+
+\section{NOTES about H:}
+\label{SECNOTEH}
+
+
+Unlike \textbf{g:}, \textbf{h:} is meant to help with fragmenting things. \textbf{H:} splits the AI by the Empty String, essentially seeming as though the AI has exploded, then rejoins each character to the next using a single space or new line (for the inverse). Some examples follow:
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=H: EXAMPLE 1]
+  \begin{lstlisting}[language=TEA]
+i!:{ABC}| h:
+#(=A B C) 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Note that for a string of length $N$, h: will return a string of length $2N - 1$. Thus, for the 3 character example above, the result has 5 characters in total. Some other examples follow...
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=H: EXAMPLE 2]
+  \begin{lstlisting}[language=TEA]
+i!:{123}| h!:
+#(=
+1
+2
+3)
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+That second example is how we might take a string and then place each of its elements on its own line. However, a more useful example might be one that inserts a new line only where some pattern of interest exists. For example the following program, when given a minified C or C++ program (where we know that each instruction normally terminates in a semi-colon ``;"), shall then return the same code, but with each instruction on its own line --- somewhat, de-minifying the program source-code.
+
+So, for example, with the following sample input [minified] C program:
+
+
+  \begin{tcbverbatim}[title=Sample Input Minified C Program]
+int a=1,b;b=a*5;c=b*(a+b);printf("a:%d|b:%d|c:%d", a, b, c);
+  \end{tcbverbatim}
 
 
 
+And which, if we apply the following TEA program to it that mostly leverages \textbf{H:}
 
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=H: EXAMPLE 3]
+  \begin{lstlisting}[language=TEA]
+h:; 
+r!:[ ];:{;___}
+h!:___
+d:___
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Shall then return the well-formated C program:
+
+
+
+\begin{figure}[H]
+  \centering
+  \begin{tcbverbatim}[title=Sample Output Un-Minified C Program]
+int a=1,b;
+b=a*5;
+c=b*(a+b);
+printf("a:%d|b:%d|c:%d", a, b, c);
+  \end{tcbverbatim}
+\end{figure}
+
+
+
+The next example demonstrate how we might use \textbf{Hew} to split up a URL into its basic components:
+
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=H: EXAMPLE 4]
+  \begin{lstlisting}[language=TEA]
+i!:{http://127.0.0.1/path}| h:[/]
+#(=http: / /127.0.0.1 /path)
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Of course, a careful observer shall notice that, to correctly split any URL into the proper components as per \textbf{RFC 3986}\footnote{\url{https://www.rfc-editor.org/rfc/rfc3986}}, one shall want to tweak that \textbf{Example 4} a little bit more --- especially when the ``path" component contains more ``/" delimiters.
+
+
+Otherwise, the last basic example we shall consider is one where the HEW instruction is applied to data stored in memory/vaults. 
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=H: EXAMPLE 5]
+  \begin{lstlisting}[language=TEA]
+i!:{a1a2a3a4567891011121314 15 16 1 7}
+v:vIN|v:vHEW:[02468]|h*:vIN:vHEW
+#=a1a 2a3a 45 67 891 0111 2131 4 15 1 6 1 7
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+That last basic example demonstrates something somewhat peculiar --- splitting any input text sequence such that wherever an even number occurs, we create/start a new sub-sequence, otherwise preserving the original sequence as is.
+
+
+\section{EXAMPLE APPLICATIONS of H:}
+\label{SECEXAMPH}
+
+  
+For the matter of seeing how to apply the HEW instruction, we shall consider the nontrivial case of dynamically constructing a text-adventure game field/interface based on the game state and player's input.
+
+
+\subsection{EXAMPLE 1: A TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite{lutalo_2025_rpg}}
+\label{SECEXAMP1H}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[trim=0cm 1cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf}\\
+   \caption{The game state machine for \textbf{BOOBS `N' TRAPS}.}
+  \label{FIGRPGSTATEM}
+  \end{center}
+\end{figure}
+
+
+\textbf{\hyperref[FIGRPGSTATEM]{Figure \ref{FIGRPGSTATEM}}} is the first draft of the GAME STATE MACHINE for the single-player text-adventure and strategy role playing game (RPG) we are calling \textbf{BOOBS `N' TRAPS}. It is inspired by the classic text-adventure, dungeons-and-dragons command-line game for LINUX/UNIX that is known as ``hack" (later ``NetHack")--- refer to \url{https://www.nethack.org/} --- that exhibits turn-based gameplay, procedurally generated dungeons/play-field, permadeath (when you die, game ends/must restart), you encounter things (powers, monsters, obstacles, etc.), you can gain powers, etc.
+
+\vspace{1em}
+
+This game is also partly inspired by and based on the wartime, battle-field with both powers and bobby-traps scenarios depicted in the creative fiction novel, \textbf{ROCK `N' DRAW} --- see \url{https://bit.ly/rockndraw} --- also by the game's, and definitely, the first proof-of-concept of this game is to be implemented for both WEB and command-line using the TEA, the same general-purpose computer programming language which also features in that novel\cite{lutalo2025rock}!
+
+\vspace{1em}
+
+This game is being developed as part of the TEA programming non-trivial examples collection that are to be part of the final edition of this TEA TAZ programming manual\footnote{Also at \url{https://bit.ly/tazfile}}. And shall also be featured as part of the TEA standard programs collection on the TEA WEB IDE\footnote{\url{https://tea.nuchwezi.com}}. So, look forward to it!
 
 
 
