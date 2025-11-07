@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.1" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.2" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete!";
         this.DEBUG = false; 
@@ -1043,7 +1043,7 @@ export class TEA_RunTime {
             }
 
             if(params.length == 2){
-                var rtest = params[0] // the pattern
+                var rtest = this.extract_str(params[0]) // the pattern
                 var tblock = params[1] // where to jump to if matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
@@ -1065,7 +1065,7 @@ export class TEA_RunTime {
                 return [io,_ATPI]
             }
             else {
-                var rtest = params[0] // the pattern
+                var rtest = this.extract_str(params[0]) // the pattern
                 var tblock = params[1] // where to jump if matched
                 var fblock = params[2] // where to jump if not matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
@@ -1110,7 +1110,7 @@ export class TEA_RunTime {
             }
 
             if(params.length == 2){
-                var rtest = params[0] // the pattern
+                var rtest = this.extract_str(params[0]) // the pattern
                 var tblock = params[1] // where to jump to if NOT matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
@@ -1132,7 +1132,7 @@ export class TEA_RunTime {
                 return [io,_ATPI]
             }
             else {
-                var rtest = params[0] // the pattern
+                var rtest = this.extract_str(params[0]) // the pattern
                 var tblock = params[1] // where to jump if matched
                 var fblock = params[2] // where to jump if not matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
@@ -2119,7 +2119,8 @@ export class TEA_RunTime {
         tc = tc.toUpperCase()
         tpe = tpe.trim()
         // extract the string parameter
-        var tpe_str = this.extract_str(tpe)
+        //var tpe_str = this.extract_str(tpe)
+        var tpe_str = tpe
 
         if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
             this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
@@ -2142,7 +2143,7 @@ export class TEA_RunTime {
                     throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
                 }
                 else {
-                    var regex = new RegExp(params[0])
+                    var regex = new RegExp(this.extract_str(params[0]))
                     var replacement = this.extract_str(params[1])
                     io = io.replace(regex, replacement);
                 }
@@ -2159,7 +2160,8 @@ export class TEA_RunTime {
                     throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
                 }
                 else{
-                    var regex = new RegExp(params[0],'g')
+                    var regex = new RegExp(this.extract_str(params[0]), 'g')
+                    //this.debug(`--TEST[ regex: ${regex} | param[0]: ${params[0]} | tpe_str: ${tpe_str} | tpe: ${tpe}]`)
                     var replacement = this.extract_str(params[1])
                     io = io.replace(regex, replacement);
                 }
@@ -2186,7 +2188,7 @@ export class TEA_RunTime {
                     }
                     else{
                         var vault = params[0]
-                        var regex = new RegExp(params[1])
+                        var regex = new RegExp(this.extract_str(params[1]))
                         var replacement = this.extract_str(params[2])
                         var input_str = this.vault_get(vault)
                         io = input_str.replace(regex, replacement);
@@ -2215,7 +2217,7 @@ export class TEA_RunTime {
                     }
                     else{
                         var vault = params[0]
-                        var regex = new RegExp(params[1],'g')
+                        var regex = new RegExp(this.extract_str(params[1]), 'g')
                         var replacement = this.extract_str(params[2])
                         var input_str = this.vault_get(vault)
                         io = input_str.replace(regex, replacement);

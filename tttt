@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.1"
+VERSION = "1.1.2"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -863,7 +863,7 @@ class TEA_RunTime:
                         print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
                     raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
                 if len(params) == 2:
-                    rtest = params[0]
+                    rtest = self.extract_str(params[0])
                     tblock = params[1]
                     if not (tblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
@@ -876,7 +876,7 @@ class TEA_RunTime:
                         _ATPI += 1
                     return io,_ATPI
                 else:
-                    rtest = params[0]
+                    rtest = self.extract_str(params[0])
                     tblock = params[1]
                     fblock = params[2]
                     if not (tblock in LABELBLOCKS):
@@ -904,7 +904,7 @@ class TEA_RunTime:
                         print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
                     raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
                 if len(params) == 2:
-                    rtest = params[0]
+                    rtest = self.extract_str(params[0])
                     tblock = params[1]
                     if not (tblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
@@ -917,7 +917,7 @@ class TEA_RunTime:
                         _ATPI += 1
                     return io,_ATPI
                 else:
-                    rtest = params[0]
+                    rtest = self.extract_str(params[0])
                     tblock = params[1]
                     fblock = params[2]
                     if not (tblock in LABELBLOCKS):
@@ -1630,7 +1630,8 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = self.extract_str(tpe)
+            #tpe_str = self.extract_str(tpe)
+            tpe_str = tpe
 
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
@@ -1650,7 +1651,7 @@ class TEA_RunTime:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
-                        regex = params[0]
+                        regex = self.extract_str(params[0])
                         replacement = self.extract_str(params[1])
                         io = re.sub(regex, replacement, io, count=1)
             if tc == "R!":
@@ -1663,7 +1664,8 @@ class TEA_RunTime:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
-                        regex = params[0]
+                        regex = self.extract_str(params[0])
+                        #print(f"--TEST[ regex: {regex} | param[0]: {params[0]} | tpe_str: {tpe_str} | tpe: {tpe}]")
                         replacement = self.extract_str(params[1])
                         io = re.sub(regex, replacement, io)
 
@@ -1685,7 +1687,7 @@ class TEA_RunTime:
                             io = util_braille_projection1(input_str)
                         else:
                             vault = params[0]
-                            regex = params[1]
+                            regex = self.extract_str(params[1])
                             replacement = self.extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str, count=1)
@@ -1708,7 +1710,7 @@ class TEA_RunTime:
                             io = util_braille_projection2(input_str)
                         else:
                             vault = params[0]
-                            regex = params[1]
+                            regex = self.extract_str(params[1])
                             replacement = self.extract_str(params[2])
                             input_str = vault_get(vault)
                             io = re.sub(regex, replacement, input_str)

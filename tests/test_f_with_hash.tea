@@ -1,0 +1,12 @@
+#this tricky test case involves a regular expression
+#containing the TEA comment initiator character '#'
+i!:{..=...*..>#.#........*.=}
+v:vfield_active | v:vavatar:{>} | y:vfield_active
+f!:{>#}:lPROCEED4
+#currently, the pattern expressed as ">#" wont work!
+#r!:>#":{I#} | v:vfield_active | y:vavatar | r!:>:{I} | v:vavatar
+#but this works...
+r!:{>#}:{I#} | v:vfield_active | y:vavatar | r!:>:{I} | v:vavatar
+#q!:
+l:lPROCEED4
+g*:{ and }:vavatar:vfield_active
