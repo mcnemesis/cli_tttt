@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.2" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.3" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete!";
         this.DEBUG = false; 
@@ -2187,10 +2187,12 @@ export class TEA_RunTime {
                         io = TEA_RunTime.util_braille_projection1(input_str)
                     }
                     else{
-                        var vault = params[0]
-                        var regex = new RegExp(this.extract_str(params[1]))
-                        var replacement = this.extract_str(params[2])
-                        var input_str = this.vault_get(vault)
+                        var vname = params[0]
+                        var vregex = params[1]
+                        var vsubstr = params[2]
+                        var input_str = this.vault_get(vname)
+                        var regex = new RegExp(this.extract_str(this.vault_get(vregex)))
+                        var replacement = this.extract_str(this.vault_get(vsubstr))
                         io = input_str.replace(regex, replacement);
                     }
                 }
@@ -2216,10 +2218,13 @@ export class TEA_RunTime {
                         io = TEA_RunTime.util_braille_projection2(input_str)
                     }
                     else{
-                        var vault = params[0]
-                        var regex = new RegExp(this.extract_str(params[1]), 'g')
-                        var replacement = this.extract_str(params[2])
-                        var input_str = this.vault_get(vault)
+
+                        var vname = params[0]
+                        var vregex = params[1]
+                        var vsubstr = params[2]
+                        var input_str = this.vault_get(vname)
+                        var regex = new RegExp(this.extract_str(this.vault_get(vregex)), 'g')
+                        var replacement = this.extract_str(this.vault_get(vsubstr))
                         io = input_str.replace(regex, replacement);
                     }
                 }

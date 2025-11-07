@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.2"
+VERSION = "1.1.3"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -1686,10 +1686,12 @@ class TEA_RunTime:
                             input_str = vault_get(vault)
                             io = util_braille_projection1(input_str)
                         else:
-                            vault = params[0]
-                            regex = self.extract_str(params[1])
-                            replacement = self.extract_str(params[2])
-                            input_str = vault_get(vault)
+                            vname = params[0]
+                            vregex = params[1]
+                            vsubstr = params[2]
+                            input_str = vault_get(vname)
+                            regex = self.extract_str(vault_get(vregex))
+                            replacement = self.extract_str(vault_get(vsubstr))
                             io = re.sub(regex, replacement, input_str, count=1)
 
             if tc == "R*!":
@@ -1709,10 +1711,12 @@ class TEA_RunTime:
                             input_str = vault_get(vault)
                             io = util_braille_projection2(input_str)
                         else:
-                            vault = params[0]
-                            regex = self.extract_str(params[1])
-                            replacement = self.extract_str(params[2])
-                            input_str = vault_get(vault)
+                            vname = params[0]
+                            vregex = params[1]
+                            vsubstr = params[2]
+                            input_str = vault_get(vname)
+                            regex = self.extract_str(vault_get(vregex))
+                            replacement = self.extract_str(vault_get(vsubstr))
                             io = re.sub(regex, replacement, input_str)
 
             return io
