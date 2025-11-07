@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.0" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.1" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete!";
         this.DEBUG = false; 
@@ -1487,15 +1487,34 @@ export class TEA_RunTime {
 
         if(tc == "K*"){
             var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
-            if(params.length < 2){
+            if(params.length == 0){
 				// INERT
                 this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                 return io // essentially, INERT
             }
+            else if(params.length == 1){
+                var vregex = params[0]
+                var regex = this.vault_get(vregex)
+
+                var inputLines = io.split(TEA_RunTime.NL)
+                var keptLines = []
+                for(let line of inputLines){
+                    if (
+                        new RegExp(regex).test(line) ||                     // equivalent to re.search
+                        line.match(new RegExp(`^${regex}`)) ||              // equivalent to re.match
+                        regex === line ||                                   // exact string match
+                        line.includes(regex)                                // substring presence
+                    ) {
+                            keptLines.push(line)
+                    }
+                }
+                io = keptLines.join(TEA_RunTime.NL)
+            }
             else{
-                var vault = params[0]
-                var regex = params[1]
-                var input_str = this.vault_get(vault)
+                var vregex = params[0]
+                var vname = params[1]
+                var regex = this.vault_get(vregex)
+                var input_str = this.vault_get(vname)
 
                 var inputLines = input_str.split(TEA_RunTime.NL)
                 var keptLines = []
@@ -1515,15 +1534,34 @@ export class TEA_RunTime {
 
         if(tc == "K*!"){
             var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 2)
-            if(params.length < 2){
+            if(params.length == 0){
 				// INERT
                 this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                 return io // essentially, INERT
             }
+            else if(params.length == 1){
+                var vregex = params[0]
+                var regex = this.vault_get(vregex)
+
+                var inputLines = io.split(TEA_RunTime.NL)
+                var keptLines = []
+                for(let line of inputLines){
+                    if (!(
+                        new RegExp(regex).test(line) ||                     // equivalent to re.search
+                        line.match(new RegExp(`^${regex}`)) ||              // equivalent to re.match
+                        regex === line ||                                   // exact string match
+                        line.includes(regex)                                // substring presence
+                    )) {
+                            keptLines.push(line)
+                    }
+                }
+                io = keptLines.join(TEA_RunTime.NL)
+            }
             else{
-                var vault = params[0]
-                var regex = params[1]
-                var input_str = this.vault_get(vault)
+                var vregex = params[0]
+                var vname = params[1]
+                var regex = this.vault_get(vregex)
+                var input_str = this.vault_get(vname)
 
                 var inputLines = input_str.split(TEA_RunTime.NL)
                 var keptLines = []

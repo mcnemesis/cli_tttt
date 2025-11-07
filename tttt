@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -1166,14 +1166,26 @@ class TEA_RunTime:
 
             if tc == "K*":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
-                if len(params) < 2:
+                if len(params) == 0:
                     # INERT
                     self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                     return io
+                if len(params) == 1:
+                    vregex = params[0]
+                    regex = vault_get(vregex)
+
+                    inputLines = io.split(TEA_RunTime.NL)
+                    keptLines = []
+                    pattern = regex
+                    for line in inputLines:
+                        if (bool(re.search(pattern, line)) or (re.match(pattern, line)) or (pattern == line) or (pattern in line)):
+                            keptLines.append(line)
+                    io = TEA_RunTime.NL.join(keptLines)
                 else:
-                    vault = params[0]
-                    regex = params[1]
-                    input_str = vault_get(vault)
+                    vregex = params[0]
+                    vname = params[1]
+                    regex = vault_get(vregex)
+                    input_str = vault_get(vname)
 
                     inputLines = input_str.split(TEA_RunTime.NL)
                     keptLines = []
@@ -1184,14 +1196,27 @@ class TEA_RunTime:
                     io = TEA_RunTime.NL.join(keptLines)
             if tc == "K*!":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
-                if len(params) < 2:
+                if len(params) == 0:
                     # INERT
                     self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                     return io
+                if len(params) == 1:
+                    vregex = params[0]
+                    regex = vault_get(vregex)
+
+                    inputLines = io.split(TEA_RunTime.NL)
+                    keptLines = []
+                    pattern = regex
+                    for line in inputLines:
+                        if not (bool(re.search(pattern, line)) or (re.match(pattern, line)) or (pattern == line) or (pattern in line)):
+                            keptLines.append(line)
+                    io = TEA_RunTime.NL.join(keptLines)
+
                 else:
-                    vault = params[0]
-                    regex = params[1]
-                    input_str = vault_get(vault)
+                    vregex = params[0]
+                    vname = params[1]
+                    regex = vault_get(vregex)
+                    input_str = vault_get(vname)
 
                     inputLines = input_str.split(TEA_RunTime.NL)
                     keptLines = []
