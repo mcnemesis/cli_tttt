@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# clean up old stuff
+#rm tttt*
+
+# update man docs...
+#cp ../../docs/man/tttt.md tttt.1.md
+pandoc tttt.1.md -s -t man > tttt.1
+
+# ensure the tttt -v returns correct/new version!
+# vi +31 ../../tttt
+
+# fetch latest tttt
+#cp ../../tttt.py tttt
+#cp ../../tttt tttt
+
+# fetch latest zha
+#cp ../../sample_TEA_programs/artificial_intelligence/zha.tea zha
+# make it executable
+#chmod a+x zha
+
+# update package changelog
+# rm debian/changelog.dch
+#dch -i
+
+# update package control
+# vi debian/control
+
+# for building deb package for local use..
+debuild --no-tgz-check -uc -us
+
+# for building source package for PPA
+#debuild -S 
+
+# cleanup build stuff
+debuild -T clean
+
+# go update package install script
+# vi ../install.sh

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-PACKAGE_URI=https://github.com/mcnemesis/cli_tttt/releases/download/tttt-1.1.0/tttt_1.1.0_amd64.deb
+PACKAGE_URI=https://github.com/mcnemesis/cli_tttt/releases/download/tttt-1.1.3/tttt_1.1.3_amd64.deb
 PACKAGE_FILE=package.deb
 wget -O $PACKAGE_FILE $PACKAGE_URI && sudo dpkg -i $PACKAGE_FILE
 if command -v tttt &> /dev/null

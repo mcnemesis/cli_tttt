@@ -1,4 +1,6 @@
 #!/usr/bin/tttt -fc
+#IF fails to run as standalone, invoke as:
+#tttt -fc boobs_n_traps
 #-------------------------------------------------------------#
 #---------[BOOBS 'N' TRAPS]
 #---------[VERSION:1.0.0.1]
@@ -7,9 +9,9 @@
 #---[ABOUT:Boobs N Traps is a modern no-ai, text-adventure wartime game]
 #-------------------------------------------------------------#
 #NOTES: This is the reference implementation of the now 
-open source standard of the game BOOBS N TRAPS (2025). 
-Documentation and History about this game accessible via:
-https://doi.org/10.6084/m9.figshare.30551081
+#open source standard of the game BOOBS N TRAPS (2025). 
+#Documentation and History about this game accessible via:
+#https://doi.org/10.6084/m9.figshare.30551081
 #-------------------------------------------------------------#
 
 #show welcome message
