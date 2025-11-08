@@ -297,6 +297,30 @@ That TEA program provides a basic text presentation utility reminiscent of the U
 
 ## Some Advanced Explorations with TEA
 
+- **Implementing a TEXT-ADVENTURE GAME: role-playing-game (RPG) in TEA:** [called BOOBS N TRAPS](sample_TEA_programs/games/boobs_n_traps)
+
+![boobs n traps state machine](sample_TEA_programs/games/highlights_boobs_n_traps/GAME_STATE_MACHINE---Boobs-N-Traps.png)
+
+The above figure is a draft of the GAME STATE MACHINE for the single-player text-adventure and strategy role playing game (RPG) we are calling **BOOBS `N' TRAPS**. It is inspired by the classic text-adventure, dungeons-and-dragons command-line game for LINUX/UNIX that is known as ``hack" (later ``NetHack")--- refer to https://www.nethack.org/ --- that exhibits turn-based gameplay, procedurally generated dungeons/play-field, permadeath (when you die, game ends/must restart), you encounter things (powers, monsters, obstacles, etc.), you can gain powers, etc.
+
+
+This game is also partly inspired by and based on the wartime, battle-field with both powers and bobby-traps scenarios depicted in the creative fiction novel, **ROCK `N' DRAW** --- see https://bit.ly/rockndraw --- also by the game's, and definitely, the first proof-of-concept of this game is to be implemented for both WEB and command-line using the TEA, the same general-purpose computer programming language which also features in that novel!
+
+
+This game is being developed as part of the TEA programming non-trivial examples collection that are to be part of the final edition of this TEA TAZ programming manual. Also, it featured as part of the TEA standard programs collection on the TEA WEB IDE: https://tea.nuchwezi.com, however, those who wish to study its source (especially the annotated, well-commented editions), can refer to the latest edition via GitHub Gists: https://bit.ly/boobsntraps 
+
+Examples of the game in action (on the WEB especially --- since its user-experience is best on web than on command-line at the moment) are shown below:
+
+
+![boobs n traps starting screen](sample_TEA_programs/games/highlights_boobs_n_traps/boobs_n_traps_landing_v1.0.0.1.png)
+
+![boobs n traps game session](sample_TEA_programs/games/highlights_boobs_n_traps/boobs_n_traps_game_session_v1.0.0.1.png)
+
+![boobs n traps game end](sample_TEA_programs/games/highlights_boobs_n_traps/boobs_n_traps_game_end_v1.0.0.1.png)
+
+So, hopefully, you start to truly appreciate the power and versatility of the TEA, Transforming Executable Alphabet general-purpose computer programming language that is uniquely based on the sequence-transformer chaining paradigm and is entirely based on mere text-processing.
+
+
 - **Implementing a quasi-Artificial General Intelligence (qAGI) in TEA:** [based off TEAPAT, a qAGI called ZHA](sample_TEA_programs/artificial_intelligence/zha.tea)
 
 ```python
