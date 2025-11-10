@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.3" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.4" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete!";
         this.DEBUG = false; 
@@ -1360,6 +1360,29 @@ export class TEA_RunTime {
                 io = TEA_RunTime.EMPTY_STR
             } else {
                 io = tpe_str
+            }
+        }
+
+
+        if(tc == "I*"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // implements interactivity in TEA: displays io as prompt, sets user-input as io
+                io = prompt(io) 
+            } else {
+                if(TEA_RunTime.is_empty(io)){
+                    io = tpe_str
+                    io = prompt(tpe_str) 
+                }
+            }
+        }
+
+        if(tc == "I*!"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = prompt(io) 
+            } else {
+                vprompt = tpe_str
+                var prompt_str = this.vault_get(vprompt)
+                io = prompt(prompt_str) 
             }
         }
 

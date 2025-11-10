@@ -1,0 +1,505 @@
+#!/usr/bin/tttt -fc
+#IF fails to run as standalone, invoke as:
+#tttt -fc boobs_n_traps
+#-------------------------------------------------------------#
+#---------[BOOBS 'N' TRAPS]
+#---------[VERSION:1.0.0.1]
+#---[IP-AUTHORITY: J. Willrich | NUCHWEZI RESEARCH ]
+#---[REFERENCE:DOI:0000-0002-0002-4657]
+#---[ABOUT:Boobs N Traps is a modern no-ai, text-adventure wartime game]
+#-------------------------------------------------------------#
+#NOTES: This is the reference implementation of the now 
+#open source standard of the game BOOBS N TRAPS (2025). 
+#Documentation and History about this game accessible via:
+#https://doi.org/10.6084/m9.figshare.30551081
+#-------------------------------------------------------------#
+#This is native-friendly/Linux/Windows/Desktop friendly version
+#of the game, so that even when the game is invoked via the 
+#commandline, it still renders similar to the WEB TEA instance;
+#via a graphical user interface and not the usual command-line.
+#As for I*.. TEA-features, requires installation of Python-TK
+#sudo apt-get install python3-tk
+#-------------------------------------------------------------#
+
+#show welcome message
+v:vORIN
+v:vWELCOME:{■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-■■■■■■ (*)_= BOOBS N TRAPS v1.0.0.1 ■■■■■■■■-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-It is an adventure game; avoid traps, collect powers,-and stay alive! Reach the endpoint (=) and WIN!-TO PLAY? Type in a command and click OK or type ENTER-[U R READY TO START!]
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■}
+v:vREG:-|h*!:vWELCOME:vREG
+d:-|i*:
+
+y:vORIN # continue...
+
+#Init Field (fixed-length sequence)
+v:vfield:{.........}
+y:vfield
+y!:vfield | v:vfield_l
+
+#Drone States (symbol set)
+v:vstates_init:{>}
+v:vstates:{>I^}
+
+#The Drone (Soldier/Player)
+a*:vstates_init | d!:^. | v:vavatar 
+
+#Field Elements (symbol set)
+#v:velements:{.*_=#}
+v:vhurdles:{#} #hurdles and obstacles
+v:vpowers:{*} #powers and rewards
+v:vend:{=}
+v:vlevitate:{_}
+v:vpath:{.}
+
+#---[BEGIN:METRICS]
+v:vscore_tally:{} #first, empty
+#---[END:METRICS]
+
+#---[BEGIN:GAME STATE]
+#initially, should be able to randomize field automatically
+#also shall allow us to init field with avatar in it...
+v:vcanRANDOMIZEFIELD:1 
+#this other parameter is for determining if we should update 
+#the field or not. initially, false since we haven't played yet.
+v:vcanUPDATEFIELD:0 
+v:vlastSTATUS_msg:{Doing well! Can proceed!}
+#when we can immediately finish game upon next user move
+v:finishONNEXTMOVE:0
+#when we can immediately die on next user move
+v:dieONNEXTMOVE:0
+#when we can immediately win on next user move
+v:winONNEXTMOVE:0
+#---[END:GAME STATE]
+
+
+#---***[START GAME LOOP]***---#
+#---[BEGIN:ALTER FIELD]
+l:lPLAY #START loop
+
+#1: check if we should WIN and finish game
+y:winONNEXTMOVE
+f:1:lWIN
+
+#2: check if we should finish game
+y:finishONNEXTMOVE
+f:1:lFINISH
+
+#3: check if we should die and finish game
+y:dieONNEXTMOVE
+f:1:lDIE
+
+#check if we should alter field?
+y:vcanRANDOMIZEFIELD
+# initially, we should be able to randomize the field to kickstart game
+f:0:lconserveFIELD:lalterFIELD
+
+#BEGIN: alter field...
+l:lalterFIELD
+
+#but after game started, we should not be able to randomize field, only to update it
+y:vcanUPDATEFIELD
+f:1:lupdateFIELD
+
+#Alter Drone
+#a*!:vstates | d!:.$ | v:vavatar #altered avatar :)
+
+#Inject Agent == place altered avatar on the battlefield
+#y:vfield | s*:vfield:vavatar | v:vfield_active #feature request: salt vault with vault
+y:vfield | x*:vavatar | a!: | v:vfield_active
+#q!: #break point
+
+#Inject Hurdles
+#y:vfield | s*:vfield:vavatar | v:vfield_active #feature request: salt vault with vault
+#select a hurdle and inject it..
+a*!:vhurdles | d!:.$ | v:vhurdles_chosen
+y:vfield_active | x*:vhurdles_chosen | a!: | v:vfield_active 
+#field now has a hurdle and a drone
+
+#Inject Powers
+#select a power and inject it..
+a*!:vpowers | d!:.$ | v:vpowers_chosen
+y:vfield_active | x*:vpowers_chosen | a!: | v:vfield_active 
+#field now has a hurdles, powers and a drone 
+
+#Inject an End Point/WIN
+y:vfield_active | x*:vend | a!: | v:vfield_active 
+#field now has a hurdles, powers, a drone and endpoint
+#---[END:ALTER FIELD]
+
+
+#---[BEGIN:EXTEND FIELD]
+#init new field
+y:vfield | v:vfield_extension
+
+#Inject Hurdles
+#select a hurdle and inject it..
+a*!:vhurdles | d!:.$ | v:vhurdles_chosen
+y:vfield_extension| x*:vhurdles_chosen | a!: | v:vfield_extension
+#field now has a hurdle and a drone
+
+#Inject Powers
+#select a power and inject it..
+a*!:vpowers | d!:.$ | v:vpowers_chosen
+y:vfield_extension| x*:vpowers_chosen | a!: | v:vfield_extension
+#field now has a hurdles, powers and a drone 
+
+#SUFFIX End Point/WIN
+y:vfield_extension | x*!:vend | v:vfield_extension
+#field now has a hurdles, powers, a drone and endpoint (at the extreme right)
+#---[END:EXTEND FIELD]
+
+#---[BEGIN:EXTEND ACTIVE FIELD]
+g*:{}:vfield_active:vfield_extension | v:vfield_active
+#---[END:EXTEND ACTIVE FIELD]
+# Field now is ready for game-play!
+
+#---[BEGIN:GAME PLAY]
+
+#BEGIN: update field...
+l:lupdateFIELD
+
+v:vlastSTATUS_msg:{UPDATED field...}
+
+#------SKIP---
+j:lconserveFIELD
+
+#Fix Drone State
+#One Catch: in case field contains invalid soldier state, fix that...
+# can't be stuck before a clear path ;)
+y:vfield_active |
+f!:{I\.}:lPROCEED1
+ r:{I\.}:{>.} | v:vfield_active | y:vavatar | r:I:{>} | v:vavatar 
+l:lPROCEED1
+# can't be stuck at finish-line
+y:vfield_active | 
+f!:{I=}:lPROCEED2
+r:{I=}:{>=} | v:vfield_active  | y:vavatar | r:I:{>} | v:vavatar 
+l:lPROCEED2
+# can't be normal before a power
+y:vfield_active | 
+f!:{>\*}:lPROCEED3
+r:{>\*}:{I*} | v:vfield_active | y:vavatar | r:>:{I} | v:vavatar 
+l:lPROCEED3
+# can't be normal before an obstacle
+y:vfield_active | 
+f!:{>#}:lPROCEED4
+r:{>#}:{I#} | v:vfield_active | y:vavatar | r:>:{I} | v:vavatar
+l:lPROCEED4
+
+#-----[END SKIP]
+
+l:lconserveFIELD
+#first, compute current score
+y!:vscore_tally | v:vscore_tally_len
+
+#LOAD CURRENT FIELD STATE
+y:vfield_active
+
+#INTERACT!
+
+#Build Prompt
+x!:{
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+COMMANDS ■ jump(j) ■ move(m) ■ pick(p) ■ quit(q)
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+} |
+
+x!:{SOLDIER: } | v:vTEMPPROMPT
+
+#Let's process current state of the soldier/drone
+#first, let's determine distance left to end of battlefield
+h*!:vfield_active:vavatar | k*:vavatar | v:vfield_pending 
+#| x:{Field Pending: } | q!:
+
+
+#y:vavatar | r!:\^:{\^} | r!:\*:{\*} | v:vavatar # so we don't process special regex chars
+h*!:vfield_active:vavatar | k*:vavatar | d!:^.. | v:vDRONESTATE | v:vDRONESTATE_BACKUP
+
+#---[DEBUG: in case we have an invalid drone-state!]
+f:^$:lQ:lNQ
+l:lQ
+h*!:vfield_active:vavatar
+g*:{ and }:vDRONESTATE:vavatar:vfield_active
+q!:
+
+l:lNQ
+#--[END DEBUG]
+
+f:{>\.}:lSTATE_NORMAL:lSTATE_PROCESS_1
+l:lSTATE_PROCESS_1
+f:{>#}:lSTATE_REAL_STUCKa:lSTATE_PROCESS_7a
+l:lSTATE_PROCESS_7a
+f:{I\*}:lSTATE_NORMAL_STUCK:lSTATE_PROCESS_2
+l:lSTATE_PROCESS_2
+f:{\^\.}:lSTATE_EMPOWERED:lSTATE_PROCESS_3
+l:lSTATE_PROCESS_3
+f:{\^\*}:lSTATE_EMPOWERED_STUCK:lSTATE_PROCESS_4
+l:lSTATE_PROCESS_4
+f:{\^_}:lSTATE_SUPERPOWERS:lSTATE_PROCESS_5
+l:lSTATE_PROCESS_5
+f:{\^#}:lSTATE_SUPERPOWERS_STUCK:lSTATE_PROCESS_6
+l:lSTATE_PROCESS_6
+f:{I#}:lSTATE_REAL_STUCK:lSTATE_PROCESS_7
+l:lSTATE_PROCESS_7
+#cases when we reached an endpoint...
+f:{>=}:lSTATE_FIN_1:lSTATE_PROCESS_8
+l:lSTATE_PROCESS_8
+f:{\^=}:lSTATE_FIN_2:lSTATE_PROCESS_9
+l:lSTATE_PROCESS_9
+
+# catch-all...
+#g*:{ and }:vavatar:vDRONESTATE:vfield_active
+#q!:
+y:vDRONESTATE | x!:{ (mysterious...)} | v:vDRONESTATE
+j:lSTATE_PROCESSED
+
+
+l:lSTATE_NORMAL 
+y:vDRONESTATE | x!:{ (normal, can move on, path clear)} | v:vDRONESTATE
+j:lSTATE_PROCESSED 
+
+l:lSTATE_NORMAL_STUCK
+y:vDRONESTATE | x!:{ (normal but stuck, met a power)} | v:vDRONESTATE
+j:lSTATE_PROCESSED 
+
+l:lSTATE_EMPOWERED
+y:vDRONESTATE | x!:{ (empowered, can move on, path clear)} | v:vDRONESTATE
+j:lSTATE_PROCESSED 
+
+l:lSTATE_EMPOWERED_STUCK
+y:vDRONESTATE | x!:{ (empowered but stuck, met more power)} | v:vDRONESTATE
+j:lSTATE_PROCESSED
+
+l:lSTATE_SUPERPOWERS
+y:vDRONESTATE | x!:{ (superpowers, can levitate, path clear)} | v:vDRONESTATE
+j:lSTATE_PROCESSED
+
+l:lSTATE_SUPERPOWERS_STUCK
+y:vDRONESTATE | x!:{ (empowered but stuck, met an obstacle)} | v:vDRONESTATE
+v:dieONNEXTMOVE:1
+j:lSTATE_PROCESSED
+
+l:lSTATE_REAL_STUCKa
+y:vDRONESTATE | x!:{ (normal but stuck, met an obstacle)} | v:vDRONESTATE
+v:dieONNEXTMOVE:1
+j:lSTATE_PROCESSED
+
+l:lSTATE_REAL_STUCK
+y:vDRONESTATE | x!:{ (normal but stuck, met an obstacle)} | v:vDRONESTATE
+v:dieONNEXTMOVE:1
+j:lSTATE_PROCESSED
+
+l:lSTATE_FIN_1
+y:vDRONESTATE | x!:{ (normal, at finish-line)} | v:vDRONESTATE
+v:finishONNEXTMOVE:1
+j:lSTATE_PROCESSED
+
+l:lSTATE_FIN_2
+y:vDRONESTATE | x!:{ (empowered, at finish-line)} | v:vDRONESTATE
+v:finishONNEXTMOVE:1
+j:lSTATE_PROCESSED
+
+
+l:lSTATE_PROCESSED | # can proceed...
+
+#resume building prompt...
+y:vTEMPPROMPT
+x*!:vDRONESTATE
+
+x!:{ | SCORE: }
+
+x*!:vscore_tally_len
+
+x!:{
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+}
+
+|
+
+x*!:vlastSTATUS_msg
+
+x!:{
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+}
+#prompt user for command
+i*: | v:vcmd_input
+
+#if 'end' or 'q', force quit
+f:end:lEND | f:q:lEND
+
+
+#---[BEGIN:UPDATE METRICS]
+#did we get correct command? if yes, score, otherwise reduce!
+y:vcmd_input
+f!:^[jmp]$:lLOSS
+#only jumping or moving should score by default..
+f!:^[jm]$:lNO_MOVE_SCORE
+#if we jumped -- score +1 (we wasted energy)
+f:^[j]$:lSCORE_JUMP:lSCORE_MOVE
+
+l:lSCORE_JUMP
+y:vscore_tally | x!:{1} | v:vscore_tally #increment 1
+# update status
+v:vlastSTATUS_msg:{SCORED +1. Please proceed!}
+j:lNO_MOVE_SCORE
+
+l:lSCORE_MOVE #otherwise score +2 (slower, but safer)
+y:vscore_tally | x!:{11} | v:vscore_tally #increment 2
+# update status
+v:vlastSTATUS_msg:{SCORED +2. Please proceed!}
+j:lNO_MOVE_SCORE
+
+l:lNO_MOVE_SCORE
+
+#Also, update the position of the drone/avatar/soldier..
+#first, we shall move forward just one step --- unless command was PICK!
+y:vcmd_input
+f!:^[jm]$:lDONTMOVE
+#it is just a swap/mirror of drone state
+y:vDRONESTATE_BACKUP | m!: | v:vUPDATED_DRONESTATE
+#then replace the original drone state in active field
+#with updated state
+#g*:{ |and| }:vfield_active:vDRONESTATE_BACKUP:vUPDATED_DRONESTATE
+#q!:
+j:lPROCESSFIELDUPDATE
+
+l:lDONTMOVE
+#essentially, process PICK
+f!:^[p]$:lNOTHING_TO_PICK
+y:vDRONESTATE_BACKUP 
+f:{\*}:lPICK_POWER:lNOTHING_TO_PICK
+l:lPICK_POWER
+r:{\*}:{_}
+v:vUPDATED_DRONESTATE
+#q!: #inspect... drone-state post-pick power
+
+y:vscore_tally | x!:{11111} | v:vscore_tally #increment
+v:vlastSTATUS_msg:{ACQUIRED POWERS +5. Please proceed!}
+j:lPOST_PICK
+
+l:lNOTHING_TO_PICK
+v:vlastSTATUS_msg:{NOTHING to PICK! Please proceed!}
+y:vDRONESTATE_BACKUP | v:vUPDATED_DRONESTATE
+
+l:lPOST_PICK
+
+l:lPROCESSFIELDUPDATE
+y:vDRONESTATE_BACKUP | r!:\^:{\^} | r!:\*:{\*} | v:vDRONESTATE_BACKUP_safe # so we don't process special regex chars
+r*:vfield_active:vDRONESTATE_BACKUP_safe:vUPDATED_DRONESTATE | v:vfield_active_new
+
+y:vUPDATED_DRONESTATE
+f!:_:lSKIPCHECK_vUPDATED_DRONESTATE
+#g*:{|and|}:vfield_active:vDRONESTATE_BACKUP_safe:vUPDATED_DRONESTATE:vfield_active_new
+#q!:
+l:lSKIPCHECK_vUPDATED_DRONESTATE
+
+# also update actual drone state
+y:vUPDATED_DRONESTATE | v:vDRONESTATE
+
+#then override active field
+y:vfield_active_new | v:vfield_active
+
+#allow update field
+v:vcanUPDATEFIELD:1
+j:lDONEMETRICS
+
+# if loss / also, don't change field?
+l:lLOSS
+v:vcanUPDATEFIELD:0 #prevent update of field on gibberish
+v:finishONNEXTMOVE:0 #also prevent finish
+# update status
+v:vlastSTATUS_msg:{ENTERED INVALID command. NO UPDATE.}
+
+# we penalize because we don't process gibberish
+y:vscore_tally | d:.$ | v:vscore_tally #decrement
+# update status
+y:vlastSTATUS_msg | x!:{
+PENALIZED BY -1. Please proceed carefully!} | v:vlastSTATUS_msg
+
+l:lDONEMETRICS
+#---[END:UPDATE METRICS]
+
+# we have played at least once. So field shouldn't be randomized anymore.
+v:vcanRANDOMIZEFIELD:0
+
+# check if we WON/can WIN
+y:finishONNEXTMOVE
+f:1:lPROCESSWIN:ldonePROCESSWIN
+l:lPROCESSWIN
+y:vcmd_input
+f:^[jm]$:lmakeWIN:ldonePROCESSWIN
+l:lmakeWIN
+
+#in case the field still has distance till end
+#and player chose to jump an endpoint, don't FINISH/WIN yet
+y:vfield_pending
+f:^...+$:lPROCESS_JUMP:lSKIP_PROCESS_JUMP
+l:lPROCESS_JUMP
+
+y:vcmd_input
+f!:^[j]$:ldonePROCESSWIN
+
+#prevent finishing the game, so we can proceed..
+v:finishONNEXTMOVE:0
+v:winONNEXTMOVE:0
+y:vscore_tally | x!:{11} | v:vscore_tally #increment
+v:vlastSTATUS_msg:{JUMPED END-POINT (Bonus +3)
+So, CONTINUE on BATTLEFIELD!}
+j:ldonePROCESSWIN
+
+l:lSKIP_PROCESS_JUMP
+v:winONNEXTMOVE:1
+
+l:ldonePROCESSWIN
+
+#check in case we were going to die, 
+#but player jumped the obstacle, then we must continue
+y:dieONNEXTMOVE
+f:1:lPROCESSDIE:ldonePROCESSDIE
+l:lPROCESSDIE
+
+y:vcmd_input
+f!:^[j]$:ldonePROCESSDIE
+#prevent finishing the game, so we can proceed..
+v:finishONNEXTMOVE:0
+v:dieONNEXTMOVE:0
+y:vscore_tally | x!:{1111} | v:vscore_tally #increment
+v:vlastSTATUS_msg:{JUMPED a TRAP! (Bonus +4)
+DID not DIE *\0/* Please proceed!}
+j:ldonePROCESSDIE
+
+l:ldonePROCESSDIE
+
+j:lPLAY #loop
+#---[END:GAME PLAY]
+
+l:lDIE
+y:vfield_active | x:{■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+YOU DIED ON BATTLEFIELD!
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+} | v:vfield_active | j:lFINISH
+
+l:lWIN
+y:vfield_active | x:{■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+CONGS! YOU WON ON BATTLEFIELD!
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+} | v:vfield_active | j:lFINISH
+
+l:lFINISH
+l:lEND
+#FINALY show state of field
+y:vfield_active
+
+#Build END Prompt
+x!:{
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+YOUR FINAL SCORE ■ } |
+
+x*!:vscore_tally_len
+
+x!:{
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+Thanks for Playing BOOBS N Traps!
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+} | v:vFIN_MSG
+#prompt user for command
+i*: | y:vFIN_MSG | q!:

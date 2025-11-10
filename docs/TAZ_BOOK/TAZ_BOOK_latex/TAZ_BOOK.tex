@@ -4301,9 +4301,7 @@ i!: & Unconditionally set the AI to the EMPTY STRING\\
 %%--------[ FIRST SKIP THESE FEATURES FOR NOW ]
 %\comment{
 
-
-
- & {\large \textbf{EXPERIMENTAL: CLI-TEA-specific [for now]}}\\
+ & {\large \textbf{EXPERIMENTAL: preferable for both CLI-TEA \& WEB-TEA [for now]}}\\
 
 \rowcolor{lightgray}\bfseries I*.. & \texttt{The following signatures and semantics are meant to allow for the construction of more sophisticated GUIs than would be possible with just \textbf{I} undecorated by the \textbf{*}-qualifier}\\
 
@@ -4465,12 +4463,15 @@ EXPERIMENTS|< 13:28:05 $>*
 Finally, note that I: is not only the ONLY way to block a program and prompt for input from the user, but is also the only means to make a TEA process pause, while it optionally displays some [useful] message (whatever is current AI). It makes TEA programs INTERACTIVE. A great example of I: in action is the \textbf{ZHA}\cite{lutalo2025unraveling} q-AGI personal assistant that ships with standard TEA (tttt) package on Linux/Unix.
 
   
-  
+
   
   \subsection{The \textbf{I*..} Interact Command EXTENSIONS}
   
-  
- First, a note about requirements to make these [still-experimental extensions] of the TEA language's interaction layer work:
+ 
+ 
+ Concerning using the GUI-friendly \textbf{I*..} TEA commands. Note that, for all practical purposes, apart from the fact that \textbf{I*:} and \textbf{I*!:} both present an input prompt window without any prompt message (if invoked when also AI is empty or unset) --- which defers from \textbf{I:} and \textbf{I!:} behavior () --- otherwise, all \textbf{I*..} commands work the same for TEA anywhere; essentially, they render a GUI window prompting the user for some input, which is then set as the AI/IO.
+ 
+ That said, note that, for WEB TEA, using this feature doesn't require configuring anything more than happens during the installation of TEA. Otherwise, for command-line TEA, especially where the installation didn't occur via the standard installation scripts or method, one might want to ensure they have installed the extra external requirement to make the GUI/window feature work well as expected. Details follow in the next note...
  
  {\centering
  
@@ -4509,11 +4510,8 @@ To be able to run these commands on the default/bare standard installation of TE
  
 \vspace{2em}
  
-For now, these features are best left for the command-line or native TEA use-cases --- as the \textbf{I*..} facility isn't yet implemented for WEB TEA. Thus, ensure to use them with clear intent about where the associate programs are meant to be used --- just like how, the \textbf{Z:/ZAP} primitive needs be used with care for functionality involving sourcing-extra power/capabilities from the environment (host system).
-
-  
-  
-  
+ 
+ That said, this is a very useful and important feature in TEA programming, and examples might help shed more light about how powerful and special it is to wield anywhere TEA can be used.
   
 
 
@@ -4521,17 +4519,61 @@ For now, these features are best left for the command-line or native TEA use-cas
 \label{SECEXAMPI}
 
   
-blah blah..
+The first example we shall consider, directly builds upon the example of a GAME that we saw in the last section for \textbf{H:} --- refer to \textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}}.
 
 
-\subsection{EXAMPLE 1: }
+\subsection{EXAMPLE 1: [pure-GUI] TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite{lutalo_2025_rpg}}
 \label{SECEXAMP1I}
 
+The only major difference between this version and the one depicted in \textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}} ---  \textbf{\hyperref[FIGH]{Figure \ref{FIGH}}}, is that this version replaces all instances where we display a user-input prompt using the idiom \texttt{i:PROMPT\_MESSAGE | i:} with \texttt{i:PROMPT\_MESSAGE | i*:}. Otherwise, as might be seen by running the modified version at:
+
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/2bbb7a52e0b24ad6f3fa77ec1afdb2a4/raw/boobs_n_traps.tea}
+
+\vspace{1em}
+
+All the other features of the game work as before, and the same for WEB and CLI TEA. However, this later version is preferable, because it replaces the [somewhat ugly] command-line user-experience in the original implementation with one exactly similar to what one experiences on the WEB.
+
+For a demonstration of this later improvement, compare the original game [not using I*.. commands] as shown in \textbf{\hyperref[FIGBNT1]{Figure \ref{FIGBNT1}}} Vs the enhanced one as shown in \textbf{\hyperref[FIGBNT2]{Figure \ref{FIGBNT2}}}.
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/bnt_cli_original.png}\\
+   \caption{BOOBS N TRAPS game running in original mode}
+  \label{FIGBNT1}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/bnt_cli_new.png}\\
+   \caption{BOOBS N TRAPS game running in enhanced I*.. mode}
+  \label{FIGBNT2}
+  \end{center}
+\end{figure}
+
+
+And for completeness's sake, compare this against the game as it runs on WEB TEA (same for original code version and this enhanced one), as shown in \textbf{\hyperref[FIGBNT3]{Figure \ref{FIGBNT3}}}.
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/bnt_cli_web.png}\\
+   \caption{BOOBS N TRAPS game running on WEB}
+  \label{FIGBNT3}
+  \end{center}
+\end{figure}
+
+
+\subsection{EXAMPLE 2: }
+\label{SECEXAMP12}
+
 
 
 blah blah..
-
-
 
 
 
