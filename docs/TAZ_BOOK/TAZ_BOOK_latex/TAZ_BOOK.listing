@@ -1,4 +1,4 @@
-int a=1,b;
-b=a*5;
-c=b*(a+b);
-printf("a:%d|b:%d|c:%d", a, b, c);
+EXPERIMENTS|< 13:27:52 $>* tttt -c "i:{What is your name please? }|i:"
+What is your name please? John Doe
+John Doe
+EXPERIMENTS|< 13:28:05 $>*

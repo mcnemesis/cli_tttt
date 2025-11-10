@@ -4246,6 +4246,298 @@ i: | y:vFIN_MSG | q!:
 \textbf{ALTERNATIVELY} just use the short-link: \url{https://bit.ly/boobsntraps}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: I
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{I: Interact}
+\label{SECI}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & Interact\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Explicitly set the Active Input (AI)
+	\item Conditionally set AI (set AI if it currently is empty or unset)
+	\item Prompt for User Input at run-time
+	\item Set the Prompt Message ahead of Next Prompt
+	\item Force AI to assume a specific value.
+	\item Reset the AI
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of I:}
+  \label{TABTAZI}
+\end{table}
+
+
+\section{SEMANTICS of I:}
+\label{SECSEMI}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+i: & Using the current AI as the prompt, prompt for and set whatever is the user-provided input---at runtime, as AI\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ i:VALUE } & Only if AI is currently empty or unset, then set it to VALUE\\
+
+i!: & Unconditionally set the AI to the EMPTY STRING\\
+
+\rowcolor{lightgray}\bfseries i!:VALUE & Unconditionally set the AI to the provided VALUE\\
+
+%%--------[ FIRST SKIP THESE FEATURES FOR NOW ]
+%\comment{
+
+
+
+ & {\large \textbf{EXPERIMENTAL: CLI-TEA-specific [for now]}}\\
+
+\rowcolor{lightgray}\bfseries I*.. & \texttt{The following signatures and semantics are meant to allow for the construction of more sophisticated GUIs than would be possible with just \textbf{I} undecorated by the \textbf{*}-qualifier}\\
+
+
+
+ \makecell[l]{i*:} & Using the current AI as the visual prompt (to be rendered in a separate PLAIN TEXT/HTML rendering window with the input prompt displayed at the bottom), prompt for input from the user at runtime. Input returned set as the AI\\
+ 
+ \rowcolor{lightgray}\bfseries \makecell[l]{i*:PROMPT} & Without PROMPT, same as i*:, otherwise using the literal text PROMPT to render a visual prompt for user input, which value once provided is set as AI.\\
+
+
+ \makecell[l]{i*!:} & Same as i*:\\
+ 
+ \rowcolor{lightgray}\bfseries \makecell[l]{i*!:vPROMPT} & Same as i*:PROMPT, but with the prompt message sourced from the vault with name vPROMPT.\\
+ 
+% }
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of I:}
+\label{TABSEMI}
+\end{table}
+
+
+\section{NOTES about I:}
+\label{SECNOTEI}
+
+It is important to note that under standard TEA environments, it is possible for a TEA program to be invoked with a user or externally provided Active Input. In those cases, if the canonical form of i: instruction is used, with or without value, it doesn't make any changes to AI unless the command is used at a moment in the program where AI is essentially either empty or unset.
+
+
+For example, using the standard TTTT TEA operating environment on the command line\cite{cli_tttt}, the following program if invoked thus 
+
+
+  \begin{tcbverbatim}[title=I: EXAMPLE 1: Testing conditional setting of AI]
+tttt -i "ABC" -c "i:{XYZ} | q:XYZ | x!":-OK  
+  \end{tcbverbatim}
+  
+  
+  Shall return ``ABC-OK" instead of ``XYZ". Otherwise
+  
+  
+  
+    \begin{tcbverbatim}[title=I: EXAMPLE 2: Testing unconditional setting of AI]
+tttt -i "ABC" -c "i!"":{XYZ} | q:XYZ | x!"":-OK" 
+  \end{tcbverbatim}
+  
+  Which, despite the queer command line invocation syntax---this example was adapted from a test via the Linux/GNU Bash Shell\cite{FSF2023Bash}. The essential TEA program itself is actually:
+  
+  
+
+  
+  
+  \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=I: EXAMPLE 3]
+  \begin{lstlisting}[language=TEA]
+  i!:{XYZ} | q:XYZ | x!:-OK 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+  
+  
+  
+So, that, or even
+
+
+  \begin{tcbverbatim}[title=I: EXAMPLE 4: Testing unconditional setting of AI]
+bash -H -c `set +H; tttt -i TEST -c "i!:{XYZ} | q:XYZ | x!:-OK"'   
+  \end{tcbverbatim}
+  
+  
+Should return ``XYZ" because of the forced setting of the AI using \textbf{i!:}. Because of its power to set AI unconditionally, \textbf{I:} is among the most important primitive instructions in TEA.   
+  
+
+Also, and importantly so, the unparameterized form of the Input command is the only way in TEA, to prompt for and store runtime user-input. This also becomes the only way in TEA, to display arbitrary values/strings, to the user, at runtime, before the program terminates using the idiom: 
+
+
+  \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=I: EXAMPLE 4]
+  \begin{lstlisting}[language=TEA]
+i:{PROMPT }|i: or i!:{PROMPT }|i:
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+Thus for example, to write the \textbf{Minimum Basic Output Program} (LOCMBOP)\cite{lutalo2020dnap} in TEA, one just writes:
+
+  
+  \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=I: EXAMPLE 5: Minimum Basic Output Program (LOCMBOP): Basic Hello World]
+  \begin{lstlisting}[language=TEA]
+i:Hello World 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}  
+  
+  
+Which just prints ``Hello World" and returns. This basic program demonstrates the simplest way to write a TEA program that just displays a value and does nothing else.   
+
+
+However, in cases where one needs to display some value that depends on user-provided input, especially at runtime; for example, a modified version of the above Hello World program, that instead greets the user with their provided name, would be attained using the user-prompting version of the I-command thus:
+
+
+
+  \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=I: EXAMPLE 6: Interactive Hello World]
+  \begin{lstlisting}[language=TEA]
+i:{What is your name please? }|i:|x:{Hello }
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}  
+
+
+Shall display the prompt ``What is your name please?", block and wait for user-input, and assuming user enters ``Joseph", shall then print the greeting ``Hello Joseph" as shown in screenshot below
+
+
+  \begin{tcbverbatim}[title=I: EXAMPLE 7: Testing Interactive TEA program]
+EXPERIMENTS|< 13:20:05 $>* tttt -c "i:{What is your name please? }|i:|x:{Hello }"
+What is your name please? Joseph
+Hello Joseph
+EXPERIMENTS|< 13:20:29 $>*   
+  \end{tcbverbatim}
+
+
+For TEA, then, the \textbf{Minimum Basic Input Program} (LOCMBIP)\cite{lutalo2020dnap} becomes the following program:
+
+
+  
+  \begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=I: EXAMPLE 8: Minimum Basic Input Program (LOCMBIP): Name Prompt Program]
+  \begin{lstlisting}[language=TEA]
+i:{What is your name please? }|i:
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure} 
+
+
+Such as we see in the screenshot below:
+
+
+
+
+  \begin{tcbverbatim}[title=I: EXAMPLE 9: Testing Name Prompt TEA program]
+EXPERIMENTS|< 13:27:52 $>* tttt -c "i:{What is your name please? }|i:"
+What is your name please? John Doe
+John Doe
+EXPERIMENTS|< 13:28:05 $>*   
+  \end{tcbverbatim}
+
+
+Finally, note that I: is not only the ONLY way to block a program and prompt for input from the user, but is also the only means to make a TEA process pause, while it optionally displays some [useful] message (whatever is current AI). It makes TEA programs INTERACTIVE. A great example of I: in action is the \textbf{ZHA}\cite{lutalo2025unraveling} q-AGI personal assistant that ships with standard TEA (tttt) package on Linux/Unix.
+
+  
+  
+  
+  \subsection{The \textbf{I*..} Interact Command EXTENSIONS}
+  
+  
+ First, a note about requirements to make these [still-experimental extensions] of the TEA language's interaction layer work:
+ 
+ {\centering
+ 
+ \vspace{5cm}
+\fbox{
+\begin{minipage}{0.9\textwidth}
+\textbf{CONCERNING TK and the Python Dependence for these TEA features:}\\
+
+
+ \begin{tcolorbox}[title=What is Tkinter?,colback=blue!5!white,colframe=blue!75!black]
+\textbf{Tkinter} is short for \textit{Tk interface}, and it serves as Python's standard interface to the \textbf{Tk GUI toolkit}, which originates from the \textbf{Tcl/Tk} system.
+
+\begin{itemize}
+  \item \textbf{Tk} — A cross-platform GUI toolkit originally developed for the Tcl scripting language.
+  \item \textbf{Tcl} — Stands for \textit{Tool Command Language}, used for scripting and rapid prototyping.
+  \item \textbf{Tkinter} — Python's built-in wrapper around Tk, enabling the creation of graphical user interfaces (GUIs) without external dependencies.
+\end{itemize}
+
+Thus, in full spirit:
+\[
+\text{Tkinter} = \text{Python's interface to the Tk GUI toolkit from Tcl/Tk}
+\]
+
+Tkinter is included in the standard Python distribution and allows developers to build windows, dialogs, buttons, and other GUI elements with minimal setup.
+\end{tcolorbox}  
+
+
+To be able to run these commands on the default/bare standard installation of TEA on any native operating system, ensure to also install the one requirement the TEA interpreter requires: the \textbf{TK} interface, which, for the Python base for CLI TEA is installable via command: \texttt{sudo apt-get install python3-tk} (*NIXes).
+
+
+\end{minipage}}
+\\
+%}
+}
+ 
+ 
+\vspace{2em}
+ 
+For now, these features are best left for the command-line or native TEA use-cases --- as the \textbf{I*..} facility isn't yet implemented for WEB TEA. Thus, ensure to use them with clear intent about where the associate programs are meant to be used --- just like how, the \textbf{Z:/ZAP} primitive needs be used with care for functionality involving sourcing-extra power/capabilities from the environment (host system).
+
+  
+  
+  
+  
+
+
+\section{EXAMPLE APPLICATIONS of I:}
+\label{SECEXAMPI}
+
+  
+blah blah..
+
+
+\subsection{EXAMPLE 1: }
+\label{SECEXAMP1I}
+
+
+
+blah blah..
+
+
+
+
+
+
+
+
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
 
 \chapter{Conclusion}
