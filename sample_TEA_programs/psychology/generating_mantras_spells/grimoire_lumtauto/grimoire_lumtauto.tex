@@ -1,0 +1,207 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=1.4cm]{geometry}
+%\usepackage[left=1cm, top=0cm, bottom=0.2cm]{geometry} % Adjust these values as needed
+\usepackage{hyperref}
+\usepackage{parskip}
+
+%for multi-figure figures?
+\usepackage{subcaption}
+
+% for highlighting text
+\usepackage{xcolor, soul}
+% then define colors we shall use:
+\definecolor{myteal}{RGB}{0, 128, 128}
+\definecolor{lightgray}{HTML}{CCCCCC}
+\definecolor{myorange}{HTML}{FFD7B3}
+
+% for table with alternating row bg colors 
+\usepackage[table]{xcolor}
+\definecolor{lightgray}{gray}{0.9}  % or use HTML/RGB if preferred
+
+
+%\definecolor{highcolor}{rgb}{0,255,255} % our default hl color for background, friendly on black text foreground
+\definecolor{highcolor}{rgb}{0,255,255} %a accent background color, must be friendly on black text foreground
+\sethlcolor{highcolor}
+
+%for regular expression and TEA code presentation in console-like text-boxes
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,skins,breakable}
+\usepackage{listings}
+
+% style for general terminal-like listings
+\tcbset{
+  myterminalstyle/.style={
+    colback=black,       % background color
+    coltext=white,       % text color
+    fontupper=\ttfamily, % typewriter font
+    boxrule=0pt,         % no border
+    arc=0pt,             % square corners
+    outer arc=0pt,
+    left=2mm, right=2mm, top=1mm, bottom=1mm,
+    enhanced,
+    sharp corners,
+  }
+}
+
+% define listings config for TEA language
+\lstdefinelanguage{TEA}{
+  morecomment=[l]{\#},
+  sensitive=true,
+  alsoletter={:*!},
+  %morekeywords=[1]{i:, u!:, g:, l:, f:, x:, j:, q!:},
+  morekeywords=[1]{%
+a:, a.:, a*:, a!:, a.*:, a.!:, a*!:, b:, b.:, b*:, b!:, b.*:, b.!:, b*!:, c:, c.:, c*:, c!:, c.*:, c.!:, c*!:, d:, d.:, d*:, d!:, d.*:, d.!:, d*!:, e:, e.:, e*:, e!:, e.*:, e.!:, e*!:, f:, f.:, f*:, f!:, f.*:, f.!:, f*!:, g:, g.:, g*:, g!:, g.*:, g.!:, g*!:, h:, h.:, h*:, h!:, h.*:, h.!:, h*!:, i:, i.:, i*:, i!:, i.*:, i.!:, i*!:, j:, j.:, j*:, j!:, j.*:, j.!:, j*!:, k:, k.:, k*:, k!:, k.*:, k.!:, k*!:, l:, l.:, l*:, l!:, l.*:, l.!:, l*!:, m:, m.:, m*:, m!:, m.*:, m.!:, m*!:, n:, n.:, n*:, n!:, n.*:, n.!:, n*!:, o:, o.:, o*:, o!:, o.*:, o.!:, o*!:, p:, p.:, p*:, p!:, p.*:, p.!:, p*!:, q:, q.:, q*:, q!:, q.*:, q.!:, q*!:, r:, r.:, r*:, r!:, r.*:, r.!:, r*!:, s:, s.:, s*:, s!:, s.*:, s.!:, s*!:, t:, t.:, t*:, t!:, t.*:, t.!:, t*!:, u:, u.:, u*:, u!:, u.*:, u.!:, u*!:, v:, v.:, v*:, v!:, v.*:, v.!:, v*!:, w:, w.:, w*:, w!:, w.*:, w.!:, w*!:, x:, x.:, x*:, x!:, x.*:, x.!:, x*!:, y:, y.:, y*:, y!:, y.*:, y.!:, y*!:, z:, z.:, z*:, z!:, z.*:, z.!:, z*!:,%
+A:, A.:, A*:, A!:, A.*:, A.!:, A*!:, B:, B.:, B*:, B!:, B.*:, B.!:, B*!:, C:, C.:, C*:, C!:, C.*:, C.!:, C*!:, D:, D.:, D*:, D!:, D.*:, D.!:, D*!:, E:, E.:, E*:, E!:, E.*:, E.!:, E*!:, F:, F.:, F*:, F!:, F.*:, F.!:, F*!:, G:, G.:, G*:, G!:, G.*:, G.!:, G*!:, H:, H.:, H*:, H!:, H.*:, H.!:, H*!:, I:, I.:, I*:, I!:, I.*:, I.!:, I*!:, J:, J.:, J*:, J!:, J.*:, J.!:, J*!:, K:, K.:, K*:, K!:, K.*:, K.!:, K*!:, L:, L.:, L*:, L!:, L.*:, L.!:, L*!:, M:, M.:, M*:, M!:, M.*:, M.!:, M*!:, N:, N.:, N*:, N!:, N.*:, N.!:, N*!:, O:, O.:, O*:, O!:, O.*:, O.!:, O*!:, P:, P.:, P*:, P!:, P.*:, P.!:, P*!:, Q:, Q.:, Q*:, Q!:, Q.*:, Q.!:, Q*!:, R:, R.:, R*:, R!:, R.*:, R.!:, R*!:, S:, S.:, S*:, S!:, S.*:, S.!:, S*!:, T:, T.:, T*:, T!:, T.*:, T.!:, T*!:, U:, U.:, U*:, U!:, U.*:, U.!:, U*!:, V:, V.:, V*:, V!:, V.*:, V.!:, V*!:, W:, W.:, W*:, W!:, W.*:, W.!:, W*!:, X:, X.:, X*:, X!:, X.*:, X.!:, X*!:, Y:, Y.:, Y*:, Y!:, Y.*:, Y.!:, Y*!:, Z:, Z.:, Z*:, Z!:, Z.*:, Z.!:, Z*!:%
+},
+  keywordstyle=[1]\color{green},
+  commentstyle=\color{lightgray},
+  morestring=[b]",
+stringstyle=\color{myorange},
+moredelim=[s][\color{myorange}]{\{}{\}},
+}
+
+
+% define custom terminal for TEA language snippets
+
+\tcbset{
+  teaterminalstyle/.style={
+    enhanced,
+    colback=myteal,
+    coltext=white,
+    fontupper=\ttfamily,
+    boxrule=0pt,
+    arc=0pt,
+    outer arc=0pt,
+    left=2mm, right=2mm, top=1mm, bottom=1mm,
+    sharp corners,
+    listing only,
+    listing options={
+      language=TEA,
+     basicstyle=\ttfamily,
+%keywordstyle=\color{cyan}\bfseries,
+%commentstyle=\color{green}\itshape,
+%stringstyle=\color{yellow}
+    }
+  }
+}
+
+
+
+% for maths
+\usepackage{amsmath}
+% for number sets symbols
+\usepackage{amssymb}
+%\usepackage{ntheorem}
+\usepackage{amsthm}
+
+
+% for writing our theorems and defs...
+\newtheorem{comp}{Computation}
+\newtheorem{theo}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{lem}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{axiom}{Axiom}
+\newtheorem{post}{Postulate}
+\newtheorem{trans}{Transformation}
+\newtheorem{transf}{Transformer}
+\newtheorem{law}{Law}
+\newtheorem{prob}{Problem}
+\newtheorem{soln}{Solution}
+\newtheorem{alg}{Algorithm}
+
+\title{\textbf{NOVUS MODERNUS GRIMOIRE AETERNUS MAGIA LUMTAUTO} --- A Grimoire of Eternal Magickal Languages\thanks{Proceed with Caution. This is \textbf{A Call to Practice} Occult Mysteries. There is no guarantee that tears wont be involved\cite{crowley1948magick}.}}
+
+\usepackage{amsmath, amssymb, graphicx}
+
+% to include pdf pages
+\usepackage{pdfpages}
+
+% Define \invpi to flip the pi symbol and use it as a function
+\newcommand{\invpi}[1]{\mathop{\rotatebox[origin=c]{180}{$\pi$}}#1}
+\newcommand{\invdel}[1]{\mathop{\rotatebox[origin=c]{180}{$\Delta$}}#1}
+
+\author{\textbf{M*A*P} Adept Psymaz\thanks{\textbf{Most Ancient Priest}, also known as Fut. Prof. J. Willrich Lutalo C.M.R.W; Curator, PI and President at Nuchwezi Research, GARUGA, Uganda. \textbf{ORCID:} \url{https://orcid.org/0000-0002-0002-4657}}\\Nuchwezi Research\\\href{mailto:joewillrich@gmail.com}{joewillrich@gmail.com}, \href{mailto:jwl@nuchwezi.com}{jwl@nuchwezi.com}}
+
+%\date \today
+\date {EDITION: \textbf{12}$^{th}$ \textbf{NOV}, \texttt{2025}}
+
+
+\begin{document}
+
+% insert [front] cover --- could just be a PNG or PDF
+\includepdf[pages=1]{resources/front_cover.pdf}
+
+\maketitle
+
+\begin{abstract}
+%\Large
+In this manuscript, intentionally designed like a grimoire, we are to present for the first time, a proper distillation of research and applications in the use of esoteric languages for the purpose of performing occult operations as explored by initiates at Nuchwezi Esoteric School (NES) for the past 1 decade. This is an original contribution to the universal esoteric tradition and is meant to help curate, promulgate and advance a sane, thoughtful appreciation of the mysteries --- a line of work that goes back through the ages, to the first psy-ops and occult workings attempted by primitive man, through generations of diverse and varying explorations by mystics and initiates from all kinds of schools, cultures and traditions, all the way to modern approaches best known to the true initiates of illuminism. In particular though, this manuscript shall focus on 4 different ORIGINAL RESULTS of hard-work, study and yes, applying occult philosophy at Nuchwezi;
+\begin{enumerate}
+\item \textbf{LUMTAUTO} --- an application of computational mysticism in the form of an algorithmic cipher that can transform ordinary English or any language into a form suitable for occult operations and conjurations.
+\item \textbf{The Grand Myrrh Transform} --- a related, but otherwise later and shorter, more occult TEA\cite{cli_tttt} algorithm for turning ordinary phrases into sacred words of power reminiscent of sacred languages such as Hebrew and Aramaic. 
+\item  The \textbf{Ozin Cipher} --- a visual code first presented in an earlier work\cite{lutalo_2025_trans_genetics}, useful in expressing secret or special messages in an occult and psychologically charged hand that was first developed by the Illuminates of Nuchwezi Angelic (IoNA) via esoteric workings reminiscent of the methods of medieval angel-working wizards such as John Dee and Edward Kelley.
+\item \textbf{Crypt of Medina} --- a special occult cipher also first developed at NES, and which, unlike most ciphers ancient or modern, allows for the visual encoding of occult messages in such a way that \textbf{one must explicitly use the method of reading between the lines} in order to understand its messages.
+\end{enumerate} 
+We shall [briefly] look at the underlying philosophies and supporting literature; shall look at many guidelines concerning how to practically apply the presented ideas; shall treat of the matter of mixing modern computer technology in applying these ideas, and shall share lots of visuals, links to supporting videos, community and online tools to help practitioners further and deepen their appreciation of these modern mysteries. This is a work for the Illuminati.
+ \newline\newline
+     \textbf{Keywords}: Foundations, Psy-Ops, Ceremonial Magick, Computational Mysticism, Grimoire
+\end{abstract}
+
+\section{An Introduction to Magickal Languages}
+\label{SECINTRO}
+
+blah blah
+
+
+\section{Language $\rightarrow$ LUMTAUTO}
+\label{SECLUMTAUTO}
+
+blah blah
+
+\section{The Grand Myrrh Transform}
+\label{SECMYRRH}
+
+blah blah
+
+
+\section{The OZIN Cipher}
+\label{SECOZIN}
+
+
+blah blah
+
+
+\section{The Crypt of MEDINA}
+\label{SECMEDINA}
+
+blah blah
+
+
+\section{Finale}
+\label{SECFIN}
+
+blah blah...
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+
+\vspace{5cm}
+\fbox{
+\begin{minipage}{0.9\textwidth}
+\textbf{TO CITE:}\\
+
+Lutalo, Joseph Willrich (2025). \textbf{TRANSFORMATICS 101 - explained.} figshare. Thesis. \url{https://doi.org/10.6084/m9.figshare.30305056}
+
+\end{minipage}}
+\\
+%}
+
+
+% insert [front] cover --- could just be a PNG or PDF
+\includepdf[pages=1]{resources/back_cover.pdf}
+
+\end{document}
+
+% try to explore how to fit the entire paper on 1 page. Especially using A4 size paper.

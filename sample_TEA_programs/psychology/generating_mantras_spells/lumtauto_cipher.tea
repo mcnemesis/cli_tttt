@@ -1,0 +1,38 @@
+i:{language} # given some message
+z: # first turn it to all-lower-case
+v:vMESSAGE #store the original message
+
+#start transforming via the LUMTAUTO cipher algorithm
+r!:a:U
+r!:b:Y
+r!:c:X
+r!:d:W
+r!:e:O
+r!:f:F
+r!:g:T
+r!:h:S
+r!:i:I
+r!:j:Q
+r!:k:P
+r!:l:L
+r!:m:N
+r!:n:m
+r!:o:e
+r!:p:k
+r!:q:j
+r!:r:r
+r!:s:h
+r!:t:g
+r!:u:a
+r!:v:v
+r!:w:d
+r!:x:c
+r!:y:b
+r!:z:z
+
+#because we used a case-alternation TEA trick to prevent 
+#overriding earlier transforms, we then must restore to all lower-case
+z:
+
+#then store transformed message :)
+v:vTRANSFORMED_MESSAGE
