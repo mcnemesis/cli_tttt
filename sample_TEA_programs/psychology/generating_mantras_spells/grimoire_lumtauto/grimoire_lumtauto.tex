@@ -1,8 +1,34 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[a4paper,margin=1.4cm]{geometry}
-%\usepackage[left=1cm, top=0cm, bottom=0.2cm]{geometry} % Adjust these values as needed
+%\usepackage[a4paper,margin=1.4cm]{geometry}
+\usepackage[a4paper, top=1.5cm, bottom=1.5cm]{geometry} % Adjust these values as needed
 \usepackage{hyperref}
 \usepackage{parskip}
+
+% for multiline comments...
+\newcommand{\comment}[1]{}
+
+%for striking-through text
+\usepackage{ulem}
+
+% allow table of contents to also list subsections
+\setcounter{tocdepth}{2}
+
+% for better appendices
+\usepackage[title,titletoc]{appendix}
+
+% for controlling page numbers
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[R]{\thepage}
+
+% throw in page-top header
+%\fancyhead[L]{TEA TAZ – Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION}
+
+% for graphics
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
 
 %for multi-figure figures?
 \usepackage{subcaption}
@@ -87,6 +113,84 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 
 
 
+% from google-gemini for verbatim listings:
+\tcbuselibrary{listings,breakable}
+
+% Define a language with no syntax highlighting
+\lstdefinelanguage{none}{}
+
+% Define a new tcblisting environment for verbatim content
+\newtcblisting{tcbverbatim}[1][]{
+  % Pass any user options to the new environment
+  #1,
+  breakable, % Allow long lines to wrap
+  listing only, % The box contains only a listing
+  listing options={
+    language=none, % The 'none' language disables highlighting
+    basicstyle=\ttfamily, % Use the typewriter font
+    columns=flexible, % Allow flexible column widths for wrapping
+    breaklines=true, % Enable line breaking
+  },
+}
+
+
+
+%%---------------CONFIG JAVASCRIPT
+
+%\usepackage{listings}
+%\usepackage{xcolor}
+
+% Define custom colors
+\definecolor{jskeyword}{RGB}{0,0,180}
+\definecolor{jsstring}{RGB}{163,21,21}
+\definecolor{jscomment}{RGB}{0,128,0}
+\definecolor{jsnumber}{RGB}{128,0,128}
+\definecolor{jsbackground}{RGB}{245,245,245}
+
+% JavaScript style for listings
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, 
+    finally, for, function, if, in, instanceof, new, return, switch, this, throw, 
+    try, typeof, var, void, while, with, const, let, class, extends, super, import, 
+    export, yield, async, await},
+  keywordstyle=\color{jskeyword}\bfseries,
+  ndkeywords={boolean, number, string, null, undefined, true, false, Array, Date, 
+    eval, function, Math, Object, RegExp},
+  ndkeywordstyle=\color{jsnumber}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=true,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{jscomment}\ttfamily,
+  stringstyle=\color{jsstring}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+
+% General listings setup
+%\lstset{
+%  language=JavaScript,
+%  backgroundcolor=\color{jsbackground},
+%  basicstyle=\ttfamily\small,
+%  numbers=left,
+%  numberstyle=\tiny\color{gray},
+%  stepnumber=1,
+%  numbersep=8pt,
+%  showstringspaces=false,
+%  tabsize=2,
+%  breaklines=true,
+%  frame=single,
+%  rulecolor=\color{gray},
+%  captionpos=b
+%}
+
+
+
+%%---------------END CONFIG JAVASCRIPT
+
+
+
 % for maths
 \usepackage{amsmath}
 % for number sets symbols
@@ -110,7 +214,7 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 \newtheorem{soln}{Solution}
 \newtheorem{alg}{Algorithm}
 
-\title{\textbf{NOVUS MODERNUS GRIMOIRE AETERNUS MAGIA LUMTAUTO} --- A Grimoire of Eternal Magickal Languages\thanks{Proceed with Caution. This is \textbf{A Call to Practice} Occult Mysteries. There is no guarantee that tears wont be involved\cite{crowley1948magick}.}}
+\title{\textbf{NOVUS MODERNUS GRIMOIRE AETERNUS MAGIA LUMTAUTO} --- A Modern Grimoire of Eternal Magickal Languages\thanks{Proceed with Caution. This is \textbf{A Call to Practice} Occult Mysteries. There is no guarantee that tears wont be involved\cite{crowley1948magick}.}}
 
 \usepackage{amsmath, amssymb, graphicx}
 
@@ -145,11 +249,21 @@ In this manuscript, intentionally designed like a grimoire, we are to present fo
 \end{enumerate} 
 We shall [briefly] look at the underlying philosophies and supporting literature; shall look at many guidelines concerning how to practically apply the presented ideas; shall treat of the matter of mixing modern computer technology in applying these ideas, and shall share lots of visuals, links to supporting videos, community and online tools to help practitioners further and deepen their appreciation of these modern mysteries. This is a work for the Illuminati.
  \newline\newline
-     \textbf{Keywords}: Foundations, Psy-Ops, Ceremonial Magick, Computational Mysticism, Grimoire
+     \textbf{Keywords}: Foundations, Psy-Ops, Modern Magick, Computational Mysticism, Grimoire
 \end{abstract}
 
 \section{An Introduction to Magickal Languages}
 \label{SECINTRO}
+
+
+\begin{figure}[h]
+  \begin{center}
+   \includegraphics[scale=0.8]{resources/emblem_ion.pdf}\\
+   \caption{Illuminates of Nuchwezi}
+  \label{FIG1}
+  \end{center}
+\end{figure}
+
 
 In the preface of his treatise on applying the new mathematics of Transformatics\cite{Lutalo2025_transformatics_thesis} to Genetics\cite{lutalo_2025_trans_genetics}, the author appeals to the sacred scriptures, particularly to the first book of the Torah (also known as the ``Pentateuch") --- which, not just for Kabbalists and Jewish mystics might be considered the foundational book of essential laws and instruction, but which also serves as a foundational text for many judaic-associated faiths and traditions --- the likes of Christians, Moslems, Rastafarians but also, and not very surprising, Theistic Satanists\cite{wikipedia_theistic_satanism}\footnote{Some critics might argue that actually, modern satanism only borrows the concept of Satan (as \textit{ha-satan}) from the Hebrew bible but doesn't appeal to Judaic roots or laws and that it instead is founded on twisting and elevating the Christian idea of Satan as a fallen angel\cite{copilot_assistant}\cite{wikipedia_theistic_satanism}, however, and logically so, it does make sense to pin them down, and assert their undeniable roots in ancient Judaism and its traditions for that reason alone. Also, note that we talk of \textbf{theistic satanism} here and not \textit{atheistic satanism} (also \textbf{LaVeyan Satanism}); Satan as a symbol not as a deity, and also not \textit{acosmic satanism} (more popular with edge-lords and ecclectic modern LHP philosophers); satan as the principle that opposes order --- perhaps \textit{chaos}?)}!. Lutalo calls us to consider the strong directive given man by God, when he is called to \textbf{``be fruitful, multiply, fill the earth and subdue it"} (Genesis 1:28).
 
@@ -380,9 +494,9 @@ In the rest of this manuscript, we are thus going to spend time exploring, in th
 
 \begin{figure}[h]
   \begin{center}
-   \includegraphics[scale=0.8]{resources/iona.png}\\
-   \caption{A CHAOSPHERE}
-  \label{FIG1}
+   \includegraphics[scale=0.8]{resources/iona.pdf}\\
+   \caption{Illuminates of Nuchwezi Angelic}
+  \label{FIG2}
   \end{center}
 \end{figure}
 
@@ -390,10 +504,889 @@ In the rest of this manuscript, we are thus going to spend time exploring, in th
 \section{Language $\rightarrow$ LUMTAUTO}
 \label{SECLUMTAUTO}
 
-blah blah
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/lumtauto_slogan.pdf}\\
+  \end{center}
+\end{figure}
+
+\begin{transf}[The \textbf{Magical Language \texttt{Lumtauto}}]
+\label{TRANSFLUMTAUTO}
+If $\Theta^n$ is a sequence of $n$ symbols spanning the \textbf{Latin Alphabet} or the symbol set $\psi_{az}$, such that:
+
+\begin{multline}
+\label{EQLATINALPHABET}
+\psi_{az} = \langle a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z \rangle: \invpi(\psi_{az}) = 26 \\ \quad \land \quad \Theta^n:\mathbb{N} \times \psi_{az}
+\end{multline}
+
+then the following transformation:\\
+
+\begin{trans}
+\label{TRANSLUMTAUTO}
+$\Theta^n \xrightarrow{O_{lauto(\cdot)}} \Theta^* = \Omega^n;$\\
+$\invpi(\Theta^n) = \invpi(\Theta^*) = \invpi(\Omega^n)$\\
+$\land \quad \forall \theta_{i \in [1,n]} \in \Theta^n \quad \exists \theta_{j \in [1,n]} \in \Omega^n \quad \land \quad \invpi(\theta_i \in \Theta^n) = \invpi(\omega_i \in \Omega^n) = 1$\\
+$\land \quad \forall \alpha \in \psi(\Theta^n): \invpi(\alpha \in \psi(\Theta^n)) = f_\alpha \implies \alpha \in \psi(\Omega^n): \invpi(\alpha \in \psi(\Omega^n)) = f_\alpha$\\
+$\land \quad \overset{>}{\psi(\Theta^n)} = \overset{>}{\psi(\Omega^n)} \lor \overset{>}{\psi(\Theta^n)} \neq \overset{>}{\psi(\Omega^n)}$\\
+$\land \quad \tilde{A}(\Theta^n \rightarrow \Omega^n) > 1 \qed$
+\end{trans}
+
+is guaranteed to always produce/generate a derivative message --- $\Theta^*$ that has the following properties:\\
+
+
+\begin{multline}
+\label{EQLUMTAUTO}
+\forall \alpha \in \Theta^n \implies \beta \in \Omega^n \implies \begin{cases}
+a \rightarrow u, & \\ \text{what happened: }\\ a \in \Theta^n \text{ became } u \in \Omega\\ \land \quad I(a,\Theta^n) = I(u,\Omega^n) = i \quad iff \quad \theta_{i=I(u,\Omega^n)} = a\\
+b \rightarrow y, & \\ \text{what happened: }\\b \in \Theta^n \text{ became } y \in \Omega\\ \land \quad I(b,\Theta^n) = I(u,\Omega^n) = i \quad iff \quad \theta_{i=I(y,\Omega^n)} = b\\
+c \rightarrow x,& \\
+d \rightarrow w,& \\
+e \rightarrow o,& \\
+f \rightarrow f,& \\
+g \rightarrow t,& \\
+h \rightarrow s,& \\
+i \rightarrow i,& \\
+j \rightarrow q,& \\
+k \rightarrow p,& \\
+l \rightarrow l,& \\
+m \rightarrow n,& \\
+n \rightarrow m,& \\
+o \rightarrow e,& \\
+p \rightarrow k,& \\
+q \rightarrow j,& \\
+r \rightarrow r,& \\
+s \rightarrow h,& \\
+t \rightarrow g,& \\
+u \rightarrow a,& \\
+v \rightarrow v,& \\
+w \rightarrow d,& \\
+x \rightarrow c,& \\
+y \rightarrow b,& \\
+z \rightarrow z,& \\ \text{what happened: }\\z \in \Theta^n \text{ became } z \in \Omega\\ \land \quad I(z,\Theta^n) = I(z,\Omega^n) = i \quad iff \quad \theta_{i=I(z,\Omega^n)} = z\\
+\end{cases}
+\end{multline}
+$\qed$
+
+\end{transf}
+
+
+\textbf{\hyperref[EQLUMTAUTO]{Equation \ref{EQLUMTAUTO}}} explicitly specifies the magickal language \textbf{LUMTAUTO}, in which, if one had a starting message such as ``language", it is then transformed into an equivalently correct \textbf{magical message} ``lumtauto" via the transformation that a transformer such as \textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}}, also encoded as the operator $O_{lauto}(\cdot) = O_{lauto}(m:\mathbb{N} \times \psi_{az})$ in \textbf{\hyperref[TRANSLUMTAUTO]{Transformation \ref{TRANSLUMTAUTO}}}. This transformation is certain, and always guaranteed to occur, if one applies that lumtauto transformer to any message.
+
+\subsubsection{Relevance and MAGICKAL IMPACT of the magickal language LUMTAUTO}
+\label{SECRELLUMTAUTO}
+
+Of course, merely knowing that we have a mechanism by which any letter in the latin alphabet can be mapped to another letter of the same set in a certain way and not any other, might not immediately strike some people as either \textbf{odd, relevant or portent} --- especially for those who have never attempted to actually practice magick literally or rather practically (and not just in theory or just wishfully --- as most plebeians and the uninitiated would or might). But, for a good starter at how powerful this magickal language is, consider the impact the following transformations might have:
+
+\subsubsection{The Four Special Properties of LUMTAUTO}
+\label{SECPROPERTIESLUMTAUTO}
+
+\begin{enumerate}
+\item First, on the actor or agent --- the magician, attempting to process; perform or utter, read or evoke, chant or vibrate, charge or apply or even merely cast or visualize these messages.
+\item The immediate environment of whomever processes the resultant (transformed) messages.
+\item The semantics or meaning of the resultant message vis-a-vis the original and its intent.
+\item The structure of the resultant message vis-a-vis that of the original --- which, and provably so, has the \textbf{interesting properties} such as; all consonants in $\Theta^n$ are mapped to \textit{different}\footnote{\textit{Different} for consonants, because, we note that the \textbf{special quartet} $\{f, l, r, z \}$ is conserved under \textbf{\hyperref[TRANSLUMTAUTO]{Transformation \ref{TRANSLUMTAUTO}}}, while all other consonants in $\psi_{az}$ are not --- they are guaranteed to change under the lumtauto transformation.} consonants in $\Omega^n$, while all vowels in $\Theta^n$ are mapped to  \textbf{different} vowels in $\Omega^n$ \textbf{except} $i$.
+\end{enumerate}
+
+
+\subsubsection{4 Examples of Applying LUMTAUTO}
+\label{SECEXAMPLESLUMTAUTO}
+
+The four properties depicted in \textbf{\hyperref[SECPROPERTIESLUMTAUTO]{Section \ref{SECPROPERTIESLUMTAUTO}}}, shall be illustrated via the following four illustrative and relevant examples:
+
+
+\begin{enumerate}
+\item{\textbf{The Word ``language"}.
+It becomes ``lumtauto" as we have already seen.
+}
+
+\item{\textbf{The \textbf{Magical Cogito Ergo Sum} Motto  ``I think, therefore I am"}. First attributed to classical philosopher \textbf{Rene Descartes} and discussed in \cite{Lutalo2025transpsy}, becomes the weird magical motto {\Large ``I gsimp, gsorofero I un"} under the lumtauto transformer (\textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}}). 
+}
+
+\item{The \textbf{Magical Lord's Prayer} --- the \textit{Paternoster}, first attributed to god-man \textbf{Jesus Christ} of Nazareth and presented in \textbf{Mathew 6:9-13}\cite{newjerusalem1985}, here quoted verbatim as in the bible version \cite{newjerusalem1985}:\\
+
+
+{\ttfamily
+
+Our Father in heaven,
+may your name be held holy,
+your kingdom come,
+your will be done,
+on earth as in heaven.
+Give us today our daily bread.
+And forgive us our debts,
+as we have forgiven those who are in debt to us.
+And do not put us to the test,
+but save us from the Evil One.
+
+}
+
+becomes the [verbatim] and equivalent \textit{mystical} magical prayer\\
+
+{\ttfamily
+
+Ear Fugsor im souvom,
+nub bear muno yo solw selb,
+bear pimtwen xeno,
+bear dill yo wemo,
+em ourgs uh im souvom.
+Tivo ah gewub ear wuilb yrouw.
+Umw fertivo ah ear woygh,
+uh do suvo fertivom gseho dse uro im woyg ge ah.
+Umw we meg kag ah ge gso gohg,
+yag huvo ah fren gso Ovil Emo.
+
+}
+
+
+\item{The \textbf{Opening Sentence of the Bible} --- also the first sentence in the \textbf{Pentateuch} and presented in \textbf{Genesis 1:1}\cite{newjerusalem1985}, here quoted verbatim as in the bible version \cite{newjerusalem1985}:
+
+
+{\ttfamily
+
+In the beginning God created heaven and earth.
+
+}
+
+becomes the [verbatim] and corresponding magical utterance\\
+
+{\ttfamily
+
+Im gso yotimmimt Tew xrougow souvom umw ourgs.
+
+}
+
+This particular example warrants some little more discussion concerning working with transformations of text for magical purposes. For example, \textbf{one of the major utilities of a magickal language like lumtauto would be to generate or construct arcane, charged, enchanting and perhaps obscure magical formulas, mantras and incantations} --- the stuff of serious, barbarous, ancient and seasoned magicians, sorcerers, wizards, witches, high-priests, spiritualists\footnote{Often needing strange utterances to compel or subdue spirits [using other spirits] or to command and operate spiritually using the strange \textit{tongues} of the Holy Spirit} and perhaps exorcists to name but a few. 
+
+Concerning this then, it would be more useful --- especially for the case of rendering the outputs of such a transformer as \textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}}, to be not only different from the original text, but that they are also rendered \sout{legible} readable and readily utterable so as to make them more useful in especially the sharing or reuse of standard and or, eternal spells, prayers and commands --- in a manner as how, using a normal natural language such as English, one can have the guarantee that the words and phrases thus encoded in a prayer, scripture or grimoire, shall stay readable and usable as originally intended across many generations of readers, users, students and practitioners. And thus, despite many phrases or words in English never requiring any modifications to their structure so as to make them readily and correctly pronounceable, and yet, for the outputs of the LUMTAUTO transformation thus presented, we find (especially out of experience, taste and necessity), that despite the succinctness and elegance of the transformer as presented either mathematically, or as a computer algorithm --- refer to ..., we might want to sometimes \textit{further massage} the lumtauto transformer output so as to make them better \textbf{for actual use}. 
+
+Thus, for example, the above transformed opening sentence of the scriptures might become:
+
+{\ttfamily
+
+Imi geso yotimemimet Tewa xarougow souvom umwa ouregus.
+
+}
+
+And so that, people practicing magick --- especially \textbf{ritual or ceremonial magick}, where operators must speak, act, dance, shout, vibrate and do many expressive things during the operations or workings (so as to make them worthwhile and successful) --- so-called \textit{psycho-dramas}\cite{LaVey1969}\footnote{A term very popular with modern satanists such as \textbf{Anton Szandor LaVey}, the founder of the \textbf{Church of Satan} and author of \textbf{The Satanic Bible}\cite{LaVey1969}.}, can do so effectively, systematically and repeatably in a standardized way.
+
+}
+
+
+
+}
+\end{enumerate}
+
+
+\subsection{The LUMTAUTO Algorithm}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{resources/lumtauto.jpg}\\
+    \end{figure} \\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+Using a formalism familiar to computer scientists, we shall here formally specify the LUMTAUTO algorithm using a method that could readily be translated into a compartible computer program so that an interest magician or researcher can then use the magickal language with any computer or programming language available to or familiar to them.
+
+\vspace{2em}
+
+
+\begin{alg}[The \textbf{LUMTAUTO Algorithm}: \texttt{lauto(msg\_in)}]
+\label{ALGLUMTAUTO}
+$ $\\
+\begin{enumerate}
+\item \textbf{GIVEN} source sequence (a plain-text message), \texttt{msg\_in} of length $n$.
+\item \textbf{GIVEN} latin alphabet (as a list of letter symbols), \texttt{list\_a\_z} of 26 elements from $\psi_{az}$.
+\item \textbf{GIVEN} list of vowels, \texttt{list\_vowels} = $\langle a,e,i,o,u \rangle$.
+
+\item \textbf{COMPUTE} list of mirrored vowels, \texttt{list\_vowels\_mirror} = \texttt{reversed(list\_vowels)}.
+
+\item{ \textbf{COMPUTE} first version of target alphabet, \texttt{list\_a\_z\_intermediate} thus: 
+
+\begin{enumerate}
+\item \textbf{INITIALIZE} \texttt{list\_a\_z\_intermediate} by cloning \texttt{list\_a\_z}.
+\item \textbf{UPDATE} \texttt{list\_a\_z\_intermediate} by replacing each of its members, $v_i$ at index $i$ in that list, with another character, $v_j$ from \texttt{list\_vowels\_mirror}, if the element $v_i$ is located at position $j$ in \texttt{list\_vowels}.
+\end{enumerate}
+
+}
+
+\item{ \textbf{COMPUTE} final version of target alphabet, \texttt{list\_a\_z\_lumtauto} thus: 
+
+\begin{enumerate}
+\item \textbf{INITIALIZE} \texttt{list\_a\_z\_lumtauto} by cloning \texttt{list\_a\_z\_intermediate}.
+\item{ \textbf{UPDATE} \texttt{list\_a\_z\_lumtauto} thus:\\
+
+\textbf{FOR} each element $v_i$ in \texttt{list\_a\_z\_lumtauto} between positions 1 to $\frac{1}{2} \times$ \texttt{length(list\_a\_z\_lumtauto)}:
+\begin{enumerate}
+\item \textbf{SET} element at $i$ as $v_i = $ \texttt{list\_a\_z\_lumtauto[i]}.
+\item \textbf{SET} element $vm_i = $ \texttt{list\_a\_z\_lumtauto[n - i]}.
+\item{ \textbf{IF} $v_i$ \textbf{NOT IN} \texttt{list\_vowels} \textbf{AND} $vm_i$ \textbf{NOT IN} \texttt{list\_vowels}: 
+
+\begin{enumerate}
+\item \textbf{SWAP} $v_i$ at position $i$ in \texttt{list\_a\_z\_lumtauto} with $vm_i$.
+\item \textbf{SWAP} $vm_i$ at position $n - i$ in \texttt{list\_a\_z\_lumtauto} with $v_i$.
+\end{enumerate}
+}
+
+\end{enumerate}
+
+}
+\end{enumerate}
+
+}
+
+\item{ \textbf{COMPUTE} resultant, transformed/translated message, \texttt{msg\_lumtauto} thus:
+
+\begin{enumerate}
+\item \textbf{INITIALIZE} \texttt{msg\_lumtauto} = \texttt{msg\_in}.
+\item{ \textbf{FOR} each letter $c_i$ in \texttt{msg\_lumtauto} at position $i$:
+
+\begin{enumerate}
+\item \textbf{COMPUTE} the corresponding mirror letter position $k = $ \texttt{index($c_i$ in list\_a\_z\_lumtauto)}.
+\item \textbf{REPLACE} $c_i$ in \texttt{msg\_lumtauto} via the \textbf{OVERWRITE} operation: \texttt{msg\_lumtauto[i] = list\_a\_z\_lumtauto[k]}
+\end{enumerate}
+}
+\end{enumerate}
+
+}
+
+\item \textbf{RETURN} resultant sequence, \texttt{msg\_lumtauto}.
+\end{enumerate}
+$\qed$
+\end{alg}
+
+
+And as for how to go about testing or implementing this, note that an example implementation in the popular \textbf{PYTHON} computer programming language is shown in \textbf{\hyperref[SECLUMTAUTO_PY]{Section \ref{SECLUMTAUTO_PY}}}, and is based on \textbf{\hyperref[ALGLUMTAUTO]{Algorithm \ref{ALGLUMTAUTO}}}, itself based on \textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}}, while a two-way, encode-decode version in the language this algorithm was first implemented is shown in \textbf{\hyperref[SECLUMTAUTO_JS]{Section \ref{SECLUMTAUTO_JS}}}.
+
+
+
+\subsubsection{The LUMTAUTO Algorithm in TEA}
+\label{SECTEALUMTAUTO}
+
+For purposes of helping you to immediately be able to study, apply and share this LUMTAUTO language and the associated text transformer, note that the following TEA\cite{cli_tttt}\cite{Lutalo2024TEATAZ} program is a first, and reliable, robust implementation of the transformer specified in \textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}}.
+
+
+ %\small
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: The LUMTAUTO Transformer, breakable]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
+i:{language} # given some message
+v:vMESSAGE #store the original message
+
+#COMPLETE LANGuage -> LUMTauto TRANSFORM
+#lumtauto-TRANSFORM [lower-case]
+#start transforming via the lumtauto cipher algorithm
+r!:a:_%_ #U
+r!:b:_%%_ #Y
+r!:c:_%%%_ #X
+r!:d:_%%%%_ #W
+r!:e:_%%%%%_ #O
+r!:f:_%%%%%%_ #F
+r!:g:_%%%%%%%_ #T
+r!:h:_%%%%%%%%_ #S
+r!:i:_%%%%%%%%%_ #I
+r!:j:_%%%%%%%%%%_ #Q
+r!:k:_%%%%%%%%%%%_ #P
+r!:l:_%%%%%%%%%%%%_ #L
+r!:m:_%%%%%%%%%%%%%_ #N
+r!:n:m
+r!:o:e
+r!:p:k
+r!:q:j
+r!:r:r
+r!:s:h
+r!:t:g
+r!:u:a
+r!:v:v
+r!:w:d
+r!:x:c
+r!:y:b
+r!:z:z
+#complete the transform
+r!:_%_:u
+r!:_%%_:y
+r!:_%%%_:x
+r!:_%%%%_:w
+r!:_%%%%%_:o
+r!:_%%%%%%_:f
+r!:_%%%%%%%_:t
+r!:_%%%%%%%%_:s
+r!:_%%%%%%%%%_:i
+r!:_%%%%%%%%%%_:q
+r!:_%%%%%%%%%%%_:p
+r!:_%%%%%%%%%%%%_:l
+r!:_%%%%%%%%%%%%%_:n
+#FINISHED: for lower-case
+
+#j:lFINISHED
+
+#COMPLETE LUMTAUTO TRANSFORM [for uppercase]
+#LUMTAUTO-TRANSFORM [upper-case]
+#start transforming via the LUMTAUTO cipher algorithm
+r!:A:_%_ #U
+r!:B:_%%_ #Y
+r!:C:_%%%_ #X
+r!:D:_%%%%_ #W
+r!:E:_%%%%%_ #O
+r!:F:_%%%%%%_ #F
+r!:G:_%%%%%%%_ #T
+r!:H:_%%%%%%%%_ #S
+r!:I:_%%%%%%%%%_ #I
+r!:J:_%%%%%%%%%%_ #Q
+r!:K:_%%%%%%%%%%%_ #P
+r!:L:_%%%%%%%%%%%%_ #L
+r!:M:_%%%%%%%%%%%%%_ #N
+r!:N:M
+r!:O:E
+r!:P:K
+r!:Q:J
+r!:R:R
+r!:S:H
+r!:T:G
+r!:U:A
+r!:V:V
+r!:W:D
+r!:X:C
+r!:Y:B
+r!:Z:Z
+#complete the transform
+r!:_%_:U
+r!:_%%_:Y
+r!:_%%%_:X
+r!:_%%%%_:W
+r!:_%%%%%_:O
+r!:_%%%%%%_:F
+r!:_%%%%%%%_:T
+r!:_%%%%%%%%_:S
+r!:_%%%%%%%%%_:I
+r!:_%%%%%%%%%%_:Q
+r!:_%%%%%%%%%%%_:P
+r!:_%%%%%%%%%%%%_:L
+r!:_%%%%%%%%%%%%%_:N
+#FINISHED: for upper-case
+
+#Complete Original Message NOW Transformed
+
+#then store transformed message :)
+v:vTRANSFORMED_MESSAGE #such as "lumtauto"
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA Program: The LANGuage to LUMTauto transformer}
+  \label{FIGLUMTAUTOTEACODE}
+
+\vspace{2em}
+
+\textbf{\hyperref[FIGLUMTAUTOTEACODE]{Figure \ref{FIGLUMTAUTOTEACODE}}} is the \textbf{source-code} of the non-interactive TEA program implementing this algorithm, and which, when actually cleaned of comments, would be the program depicted in  \textbf{\hyperref[FIGLUMTAUTOTEACODE_CLEAN]{Figure \ref{FIGLUMTAUTOTEACODE_CLEAN}}}. However, and in case one wishes to look at the code, modify or run \textbf{an interactive version} of it like on the Linux, Unix, Windows of MAC OS command-line on the WEB, the most recent version should be what you might find or run directly and live via:
+  
+  
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=put+your+message+here&fc=https://gist.githubusercontent.com/mcnemesis/ae9d6226d49f5a8601a84241a08f07c8/raw/lumtauto_language_transformer.tea}
+
+\vspace{1em}
+
+
+\textbf{ALTERNATIVELY} just use the short-link: \url{https://bit.ly/lumtauto}
+
+
+ %\small
+  \begin{tcolorbox}[teaterminalstyle, title=CLEAN TEA Program: The LUMTAUTO Transformer, breakable]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
+i:{language} 
+v:vMESSAGE 
+r!:a:_%_ 
+r!:b:_%%_ 
+r!:c:_%%%_ 
+r!:d:_%%%%_ 
+r!:e:_%%%%%_ 
+r!:f:_%%%%%%_ 
+r!:g:_%%%%%%%_ 
+r!:h:_%%%%%%%%_ 
+r!:i:_%%%%%%%%%_ 
+r!:j:_%%%%%%%%%%_ 
+r!:k:_%%%%%%%%%%%_ 
+r!:l:_%%%%%%%%%%%%_ 
+r!:m:_%%%%%%%%%%%%%_ 
+r!:n:m
+r!:o:e
+r!:p:k
+r!:q:j
+r!:r:r
+r!:s:h
+r!:t:g
+r!:u:a
+r!:v:v
+r!:w:d
+r!:x:c
+r!:y:b
+r!:z:z
+r!:_%_:u
+r!:_%%_:y
+r!:_%%%_:x
+r!:_%%%%_:w
+r!:_%%%%%_:o
+r!:_%%%%%%_:f
+r!:_%%%%%%%_:t
+r!:_%%%%%%%%_:s
+r!:_%%%%%%%%%_:i
+r!:_%%%%%%%%%%_:q
+r!:_%%%%%%%%%%%_:p
+r!:_%%%%%%%%%%%%_:l
+r!:_%%%%%%%%%%%%%_:n
+r!:A:_%_ 
+r!:B:_%%_ 
+r!:C:_%%%_ 
+r!:D:_%%%%_ 
+r!:E:_%%%%%_ 
+r!:F:_%%%%%%_ 
+r!:G:_%%%%%%%_ 
+r!:H:_%%%%%%%%_ 
+r!:I:_%%%%%%%%%_ 
+r!:J:_%%%%%%%%%%_ 
+r!:K:_%%%%%%%%%%%_ 
+r!:L:_%%%%%%%%%%%%_ 
+r!:M:_%%%%%%%%%%%%%_ 
+r!:N:M
+r!:O:E
+r!:P:K
+r!:Q:J
+r!:R:R
+r!:S:H
+r!:T:G
+r!:U:A
+r!:V:V
+r!:W:D
+r!:X:C
+r!:Y:B
+r!:Z:Z
+r!:_%_:U
+r!:_%%_:Y
+r!:_%%%_:X
+r!:_%%%%_:W
+r!:_%%%%%_:O
+r!:_%%%%%%_:F
+r!:_%%%%%%%_:T
+r!:_%%%%%%%%_:S
+r!:_%%%%%%%%%_:I
+r!:_%%%%%%%%%%_:Q
+r!:_%%%%%%%%%%%_:P
+r!:_%%%%%%%%%%%%_:L
+r!:_%%%%%%%%%%%%%_:N
+v:vTRANSFORMED_MESSAGE 
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{Sanitized TEA Program: The LUMTAUTO transformer program code}
+  \label{FIGLUMTAUTOTEACODE_CLEAN}
+  
+  
+ \subsection{The Background of LUMTAUTO}
+
+
+This language and the associated algorithm was first developed at Nuchwezi Esoteric School around February 2015 (almost \textbf{15 years ago!}) as per the official repository of the associated original project --- \textbf{Font Crypto}\cite{nuchweziCrypto} --- an online/web app project with the source-code plus several other occult ciphers, text-transformation programs and magickal languages (including text to \textbf{Hieroglyphics, text to Greek, Cuneiform and Masonic cipher} among others) we explored back then\footnote{Refer to \url{https://github.com/NuChwezi/font-crypto}}\cite{nuchweziCrypto}.
+
+\vspace{1em}
+
+Back then, Nuchwezi as a technology startup and research community was just about a year old (since its founding in July 2014). And so, given what we have seen of the latest way that this language is approached, utilized and formalized, such as in \textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}} and actual modern code for the associated transformer program as in \textbf{\hyperref[SECTEALUMTAUTO]{Section \ref{SECTEALUMTAUTO}}}, surely, this language has now reached some appreciable maturity and can be properly applied in actual workings and research.
+
+\vspace{1em}
+
+Talking of its applications though, note that the first formal mention and heavy use of LUMTAUTO was in the literary fiction work --- the novel, \textbf{Shrines of The Free Men}\cite{shrinesjwl}, first made public around 2018. In that book, a stealth link to the above mentioned online tool is shared, as part of a snippet of a text-chat session between various students and netizens in a school alumni social media community as depicted on page 24 of \cite{shrinesjwl}. It was shared back then as the link:
+
+
+\vspace{1em}
+
+ \url{http://tiny.cc/cry_dept#scrt}
+
+\vspace{1em}
+
+However, that link does not seem to be working anymore, and instead, one would better access the \textbf{original JavaScript implementation} of LUMTAUTO, together with the other ciphers and magical languages developed back then, via the up-to-date link:
+
+
+
+\vspace{1em}
+
+ \url{http://crypto.nuchwezi.com}
+
+\vspace{1em}
+
+Also, and more concerning how it was used in that novel, note that there are several parts in that book, where the author deliberately chose to present certain text --- especially specially formatted spells and incantations, via projections from the original plain versions into corresponding versions in LUMTAUTO. We shall call out just a few examples, showing the lumtauto that was depicted in the book Vs the plain text version one might decipher from them using a two-way encoder/transformer of LUMTAUTO such as the original JavaScript transformer program could.
+
+
+
+
+
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{resources/illustration_trudy_olga_spirit_fight_2.jpg}\\
+  \caption{A Spiritual Battle with a Malevolent Spirit}
+      \label{FIGOLGA}
+    \end{figure} \\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+
+
+The first example use case we are to look into occurs on on page 166 of \cite{shrinesjwl} --- it is the case of a ``powerful mantra" --- in the context of the story, being employed by Trudy inside a lucid dream, to exorcise a feminine spirit that had been impersonating her friend Olga, and which had suddenly turned malevolent:\\
+
+
+
+%\begin{figure}[H]
+  \begin{tcbverbatim}[title=A Mantra from the novel ``Shrines of The Free Men"]
+I yimw bea im gso muno ef Rasumtu umw ull gso hkirigh ef mugaro umw
+nb umxohgerh soro krohomg.
+I yimw bea roturwlohh ef dsogsor bea uro soro im hkirig, nimw er yewb.
+I yimw bea umw xag fren bea ull hearxoh ef kedor gsug uro Uminahgimt
+bea ritsg med, im gso muno ef gso Nehg Kedorfal Rasumtu!
+I sarl bea imge um ogormul krihem, I xag bea ge hsrowh, I hannem
+gsamwor umw firo gsug ough ug gso yewb, nimw umw hkirig ge hgripo
+umw wokrivo bea ef ull bear hgromtgs umw soulgs.
+I hannem gso samtriohg ef soll'h hkirigh ge fouhg em bea.
+I yimw umw wohgreb bea im Tew'h nehg selb, ampmedm munoh!
+Ritsg Soro, Ritsg Med!
+Yo Temo, Yo Temo fren gsih kluxo umw gino Ritsg Med!
+Im gso muno ef gso Imfimigo, Uyhelago umw Nbhgorieah Tew!
+  \end{tcbverbatim}
+%\end{figure}
+
+\vspace{2em}
+
+Which, if we run it backwards --- basically, reverse/decipher from LUMTAUTO into plain text (without attempting to make any manual adjustments and assuming the presented text is proper LUMTAUTO text) --- something we might do well via the online \textbf{Crypto} tool shared above, we would then get:
+
+\vspace{2em}
+
+
+{\ttfamily
+
+I bind you in the name of Ruhanga and all the spirits of nature and
+my ancestors here present.
+I bind you regardless of whether you are here in spirit, mind or body.
+I bind you and cut from you all sources of power that are Animusting
+you right now, in the name of the Most Powerful Ruhanga!
+I hurl you into an eternal prison, I cut you to shreds, I summon
+thunder and fire that eats at the body, mind and spirit to strike
+and deprive you of all your strength and health.
+I summon the hungriest of hell's spirits to feast on you.
+I bind and destroy you in God's most holy, unknown names!
+Right Here, Right Now!
+Be Gone, Be Gone from this place and time Right Now!
+In the name of the Infinite, Absolute and Mysterious God!
+
+}
+
+\vspace{2em}
+
+Which perhaps needs no explanations, apart from the word ``Animusting" potentially having been modified in the original LUMTAUTO version, so that it might possibly have been ``Animating", which would have been \textit{Uminugimt} in Lumtauto\footnote{Further support for this analysis is by the fact that in that book, we later come across creative use of two spirit names --- ``Uminu" and ``Uminah", corresponding to the \textit{anima} and the other the \textit{animus}\cite{jung1964symbols} of the protagonist \textbf{Ignatius Irumba} --- also refer to page 353 of \cite{shrinesjwl}.}.
+
+
+\vspace{2em}
+
+
+And so, with what we know now, a better, more practical rendition of this mantra\footnote{\textbf{mantra}(n): (Sanskrit) literally a `sacred utterance' in Vedism; one of a collection of orally transmitted poetic hymns\cite{wordweb_assistant}} and \textbf{exorcising formula} would be the following universally useful formulation:\\
+
+
+  \begin{tcbverbatim}[title=A Universal EXORCISM Mantra against Malevolence]
+Ayimwe bea imi geso muno, efa, RU USU OSOIOS BOSOHASAU!
+
+Umwa ulli, geso hakirigaha, efe mugaro umwa!
+
+Nuba umixo, higerah soro karohomiga.
+
+Iyimwe bea, roturwa-loheha efa disogesora
+ 
+Bea uro soro ima hakiriga, nimwe era yewabu.
+
+Iyimwe bea umwa xagi, frena bea ulla hearaxohu,
+ 
+Efa kedora, Efa kedora!
+
+Gisuga uro uminugimate, bea ritasagi medu!
+ 
+Ima geso, muno efe gaso!
+
+Nehagi Kedora-falu, RU USU OSOIOS BOSOHSAU!
+
+Isarale bea, image uma ogoremule kirihema,
+Xagi bea; ge hasoro-wahe, hannemi
+Gasamwora Gasamwora!
+
+Umwe firo gasuga oua gahe!
+ 
+Uga, Uga, Uga! Geso yewabu,
+Nimwe umwa hikiriga.
+ 
+Ge hagripo, Ge umwa wokarivo bea efa ulla beara
+
+Hagiro mitugis umwa! Soulu gase ula ro uwebu!
+ 
+Ihanneme geso samite riohaga efe!
+Solulah Solulah Soluleh!
+ 
+Hakiri gehe, Hakiri geha!
+Gege fou Gege hagi, Gege eme bea.
+
+Iyimwa umwa, woha gureba
+Belebele bea ima Tewha!
+ 
+Neha neha gise laaba! 
+Amapenduma munoh munoh!
+
+Rita sagu, Soro, Ritasage Medu!
+Yo Tema, Yo Temu, fareni gisiha kalu exa!
+ 
+Umwe gano-gine ARARITA! Sagu MEDUSA!
+
+Ime gaso muno efe gaso Imi-fifi-migo..
+ 
+Uya, hela, HERA! Go! Umwa Nabahigi!
+Rie AHA Lerwa EFE Ulla Lerwah!
+He Yo Igu! Unoma Unoma RU!
+  \end{tcbverbatim}
+
+\vspace{2em}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{resources/illustration_trudy_olga_spirit_fight.jpg}\\
+  \caption{Warding Off Undesirable Spirits [inside dreams]}
+      \label{FIGFIGHT2}
+    \end{figure} \\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+
+\subsubsection{The ORIGINAL LUMTAUTO Algorithm in JAVASCRIPT}
+\label{SECLUMTAUTO_JS}
+
+Note that, for especially background reasons, and for those who wish to replicate the original implementation, note that the following JavaScript program would suffice to reflect the active and two-way (encode/decode) imeplemtation of  \textbf{\hyperref[ALGLUMTAUTO]{Algorithm \ref{ALGLUMTAUTO}}} as currently found in \cite{nuchweziCrypto}:\\
+
+
+ %\small
+  \begin{tcolorbox}[ title=JavaScript Program: DECODE-ENCODE LUMTAUTO transformer function, breakable]
+  \begin{lstlisting}[language=JavaScript,breaklines=true]
+function transform_chaos(src,target,reverse){
+    var v_alphabet = 'aeiou'.split('');
+    var v_al_mirror = 'uoiea'.split('');
+    var vu_alphabet = 'AEIOU'.split('');
+    var vu_al_mirror = 'UOIEA'.split('');
+    var l_alphabet = [];
+    var l_al_mirror = [];
+    var u_alphabet = [];
+    var u_al_mirror = [];
+
+    for(var l='a'.charCodeAt(0); l <= 'z'.charCodeAt(0); l++){
+        var s = String.fromCharCode(l);
+        var S = s.toUpperCase();
+        if(v_alphabet.indexOf(s) >= 0) {// a vowel
+            l_alphabet.push(s);
+            u_alphabet.push(S);
+            var _s = v_al_mirror[v_alphabet.indexOf(s)];
+            var _S = _s.toUpperCase();
+            l_al_mirror.push(_s);
+            u_al_mirror.push(_S);
+        }else {
+            l_alphabet.push(s);
+            l_al_mirror.push(s);
+            u_alphabet.push(S);
+            u_al_mirror.push(S);
+        }
+    }
+
+    for(var i=0; i < l_al_mirror.length * 0.5; i++){
+        var t = l_al_mirror[i];
+        var _t = l_al_mirror[l_al_mirror.length-1-i];
+        if((v_alphabet.indexOf(t) < 0 ) && (v_alphabet.indexOf(_t) < 0 )) {// skip vowel
+            l_al_mirror[i] = _t;
+            l_al_mirror[l_al_mirror.length-1-i] = t;
+
+            var T = u_al_mirror[i];
+            u_al_mirror[i] = u_al_mirror[u_al_mirror.length-1-i];
+            u_al_mirror[u_al_mirror.length-1-i] = T;
+        }
+    }
+
+    var _in = $(src).val();
+    var _out = _in.split("").map(function(c){ 
+        if(reverse){
+            var _c = u_al_mirror.indexOf(c) >= 0 ? u_al_mirror[u_alphabet.indexOf(c)] : (l_al_mirror.indexOf(c) >= 0 ? l_al_mirror[l_alphabet.indexOf(c)] : c); 
+            return _c;
+        }else{
+            var _c = l_al_mirror.indexOf(c) >= 0 ? l_al_mirror[l_alphabet.indexOf(c)] : (u_al_mirror.indexOf(c) >= 0 ? u_al_mirror[u_alphabet.indexOf(c)] : c); 
+            return _c;
+        }
+    }).join("");
+    
+    $(target).val(_out);
+}
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{JavaScript Program: DECODE-ENCODE LUMTAUTO transformer function}
+  \label{FIGLUMTAUTOJSCODE}
+
+\vspace{2em}
+
+
+\subsubsection{The LUMTAUTO Algorithm in PYTHON}
+\label{SECLUMTAUTO_PY}
+
+
+The up-to-date (one-way/encode) implementation of LUMTAUTO in Python is as follows:
+
+ %\small
+  \begin{tcolorbox}[ title=PYTHON Program: ENCODE LUMTAUTO transformer program, breakable]
+  \begin{lstlisting}[language=Python,breaklines=true]
+#!/usr/bin/env python3
+def lauto(msg_in):
+    a_z = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+    vowels = ['a','e','i','o','u']
+
+    #first, compute mirror of vowels
+    vowels_mirror = list(reversed(vowels))
+
+    #compute a new alphabet with all vowels replaced by their mirrors
+    a_z_vm = [c if not c in vowels else vowels_mirror[vowels.index(c)] for c in a_z]
+
+    #next compute alphabet mirror, by replacing all non-vowels in a_z_vm with their mirror element from the intermediate alphabet
+    a_z_mirror = a_z_vm #first, make a copy
+
+    #thus, we update the intermediate alphabet thus:
+    for i in range(int(len(a_z_mirror) * 0.5)):
+        t = a_z_mirror[i]
+        _t = a_z_mirror[len(a_z_mirror) - 1 - i]
+        # ensure neither t nor _t are vowels:
+        if not(t in vowels) and not(_t in vowels):
+            #swap the two opposite letters
+            a_z_mirror[i] = _t
+            a_z_mirror[len(a_z_mirror) - 1 - i] = t
+
+
+    msg_lumtauto = msg_in.lower() # only work on lowercase messages for now
+    msg_lumtauto = "".join([a_z_mirror[a_z.index(l)] for l in msg_lumtauto])
+    return msg_lumtauto
+
+print(lauto("LANGuage")) #prints 'lumtauto'
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{PYTHON Program: ENCODE LUMTAUTO transformer program}
+  \label{FIGLUMTAUTOPYCODE}
+
+
+
+
+\subsection{More LUMTAUTO Spells and Mantras from ``Shrines of The Free Men"\cite{shrinesjwl}}
+
+The next spell we are going to consider, is that regarding using magick to get visions concerning events or people not immediately within physical reach --- kind of like \textbf{remote viewing} or a kind of \textbf{clairvoyance} --- powers normally exercised by spirit mediums, seers, scryers and people with their \textbf{third eye} open and working actively.
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{resources/conjurer.jpg}\\
+  \caption{Conjuring Visions}
+      \label{FIGCONJ1}
+    \end{figure} \\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+
+It is demonstrated on page 171 of \cite{shrinesjwl} and the equivalent literal wording would be:
+
+
+%\begin{figure}[H]
+  \begin{tcbverbatim}[title=A Conjuration for Visions from the novel ``Shrines of The Free Men"]
+Mwimuke inywe abalibata omumuro
+Mwimuke inywe abarora omukizima
+Mwimuke inywe abarora omumbeho
+Mwimuke inywe abarora emizimu
+Mwimuke inywe abarubata omumwanya
+Mwijje munyoleke omwana wange Nyamwezi.
+  \end{tcbverbatim}
+%\end{figure}
+
+\vspace{2em}
+
+However, that particular spell was for conjuring visions and images to help one old woman --- a witch and grandmother of a girl child that had gone missing in the deep of night while she slept. So, for purposes of rendering it generally usable, and applicable to any matter concerning wanting to solicit for visions from the spiritual realm, we instead have the following conjuration spell:
+
+
+
+ \begin{tcbverbatim}[title=A Universal Vision CONJURATION Spell Leveraging Familiar Spirits]
+Nana dinape imabado uyuliyugu enanare
+Nana dinapo imabado uyureru enapizinu
+Nana dinape imabado uyureru enanyose
+Nana dinapo imabado uyureru onizina
+Nana dinape dinapo inapo imabado uyura-yugu, enanu-dumba
+Nana dinapo imabado uyure-lara suru!
+Nedoqqo, namebele ape pima padomawa padogoti iraze!
+
+________ napi mabelo papa bobo sugi suma, enyahi, huma munura apu!
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.9\textwidth]{resources/conjurer_4.jpg}\\
+  \caption{Conjuring Visions With an Assistant Medium or Seer}
+      \label{FIGCONJ1}
+    \end{figure} \\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+
+In that spell, it shall be useful to utter some details about the actual vision being sought, in the space left blank (with blank line) in the conjuration formula. Also, in keeping with the aesthetics and method of the original source of that spell\cite{shrinesjwl}, one might want to have the following as part of their operation and operating space:
+
+\begin{enumerate}
+\item An altered state of consciousness --- performing the spell itself could cause a change in consciousness on the part of the magician, but it might be better sharped and enhanced if other methods of inducing trance or gnosis were employed as earlier steps --- for example, meditation, vigorous or shamanic dance, intoxication with alcohol or a psycho-active substance, etc.
+\item A source of creative power --- depending on taste and tradition, but some good alternatives might be proximity to a water source or focus on some reflective substance --- a mirror, water in a dark bowl, gazing at a lake, clouds, TV static/white-noise, etc.
+\item A transmutation power source --- especially via the element of fire; could be a candle, a fireplace, a red cloth or blood.
+\item An anchorage point for the spiritual entities inducing the visions --- could be a skull of a dead but familiar or benevolent person such as an ancestor or partner, could be just the bones of a dead animal (especially those of ones familiars or totem animal), could be belongings of such an entity or person or a symbolic expression of any such spiritual powers --- sigilized names of angels or some god, a sacred symbol of a Godform, an identifying sigil for a legion, etc.
+\item A means to copy, capture or record any such visions once they are obtained --- might be as simple as having a blank piece of paper and a pen or pencil, might be a camera if the visions are to be projected or sourced external to the operator, might be a blank canvas, paints and a brush if the visions are to be obtained as via an invocation or artistic mediumship, etc.
+\end{enumerate}
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[scale=0.8]{resources/maiu_sigil.pdf}\\
+   \caption{The Mysteries}
+  \label{FIG2}
+  \end{center}
+\end{figure}
 
 \section{The Grand Myrrh Transform}
 \label{SECMYRRH}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/myrrh_slogan.pdf}\\
+  \end{center}
+\end{figure}
 
 blah blah
 
@@ -401,12 +1394,25 @@ blah blah
 \section{The OZIN Cipher}
 \label{SECOZIN}
 
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/ozin_slogan.pdf}\\
+  \end{center}
+\end{figure}
+
 
 blah blah
 
 
 \section{The Crypt of MEDINA}
 \label{SECMEDINA}
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/medina_slogan.pdf}\\
+  \end{center}
+\end{figure}
+
 
 blah blah
 

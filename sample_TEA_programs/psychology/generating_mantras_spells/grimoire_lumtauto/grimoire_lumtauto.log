@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  12 NOV 2025 16:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  13 NOV 2025 21:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -188,32 +188,77 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 ) (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/parskip\parskip.sty
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 )
-(C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\subcaption.sty
-Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
+(C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/ulem\ulem.sty
+\UL@box=\box52
+\UL@hyphenbox=\box53
+\UL@skip=\skip52
+\UL@hook=\toks19
+\UL@height=\dimen154
+\UL@pe=\count283
+\UL@pixel=\dimen155
+\ULC@box=\box54
+Package: ulem 2019/11/18
+\ULdepth=\dimen156
+)
+(C:\Program Files\MiKTeX\tex/latex/appendix\appendix.sty
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
+\c@@pps=\count284
+\c@@ppsavesec=\count285
+\c@@ppsaveapp=\count286
+)
+(C:\Program Files\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
+(C:\Program Files\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2024/05/23 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Program Files\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(C:\Program Files\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(C:\Program Files\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen157
+\Gin@req@width=\dimen158
+)
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen154
-\captionmargin=\dimen155
-\caption@leftmargin=\dimen156
-\caption@rightmargin=\dimen157
-\caption@width=\dimen158
-\caption@indent=\dimen159
-\caption@parindent=\dimen160
-\caption@hangindent=\dimen161
+\caption@tempdima=\dimen159
+\captionmargin=\dimen160
+\caption@leftmargin=\dimen161
+\caption@rightmargin=\dimen162
+\caption@width=\dimen163
+\caption@indent=\dimen164
+\caption@parindent=\dimen165
+\caption@hangindent=\dimen166
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count283
-\c@continuedfloat=\count284
+\c@caption@flags=\count287
+\c@continuedfloat=\count288
 Package caption Info: hyperref package is loaded.
 )
+(C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count289
+\float@exts=\toks20
+\float@box=\box55
+\@float@everytoks=\toks21
+\@floatcapt=\box56
+)
+(C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\subcaption.sty
+Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count285
+\c@subfigure=\count290
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count286
+\c@subtable=\count291
 )
 (C:\Program Files\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
@@ -223,9 +268,6 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 274.
 
-(C:\Program Files\MiKTeX\tex/latex/graphics-def\pdftex.def
-File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
-)
 (C:\Program Files\MiKTeX\tex/latex/graphics\mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
@@ -242,26 +284,26 @@ Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/soul\soul-ori.sty
 Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
-\SOUL@word=\toks19
-\SOUL@lasttoken=\toks20
-\SOUL@syllable=\toks21
-\SOUL@cmds=\toks22
-\SOUL@buffer=\toks23
-\SOUL@token=\toks24
-\SOUL@syllgoal=\dimen162
-\SOUL@syllwidth=\dimen163
-\SOUL@charkern=\dimen164
-\SOUL@hyphkern=\dimen165
-\SOUL@dimen=\dimen166
-\SOUL@dimeni=\dimen167
-\SOUL@minus=\count287
-\SOUL@comma=\count288
-\SOUL@apo=\count289
-\SOUL@grave=\count290
-\SOUL@spaceskip=\skip52
-\SOUL@ttwidth=\dimen168
-\SOUL@uldp=\dimen169
-\SOUL@ulht=\dimen170
+\SOUL@word=\toks22
+\SOUL@lasttoken=\toks23
+\SOUL@syllable=\toks24
+\SOUL@cmds=\toks25
+\SOUL@buffer=\toks26
+\SOUL@token=\toks27
+\SOUL@syllgoal=\dimen167
+\SOUL@syllwidth=\dimen168
+\SOUL@charkern=\dimen169
+\SOUL@hyphkern=\dimen170
+\SOUL@dimen=\dimen171
+\SOUL@dimeni=\dimen172
+\SOUL@minus=\count292
+\SOUL@comma=\count293
+\SOUL@apo=\count294
+\SOUL@grave=\count295
+\SOUL@spaceskip=\skip53
+\SOUL@ttwidth=\dimen173
+\SOUL@uldp=\dimen174
+\SOUL@ulht=\dimen175
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
@@ -271,17 +313,17 @@ Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
 
 (C:\Program Files\MiKTeX\tex/latex/tools\array.sty
 Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
-\col@sep=\dimen171
-\ar@mcellbox=\box52
-\extrarowheight=\dimen172
-\NC@list=\toks25
-\extratabsurround=\skip53
-\backup@length=\skip54
-\ar@cellbox=\box53
+\col@sep=\dimen176
+\ar@mcellbox=\box57
+\extrarowheight=\dimen177
+\NC@list=\toks28
+\extratabsurround=\skip54
+\backup@length=\skip55
+\ar@cellbox=\box58
 )
-\everycr=\toks26
-\minrowclearance=\skip55
-\rownum=\count291
+\everycr=\toks29
+\minrowclearance=\skip56
+\rownum=\count296
 )
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
@@ -290,12 +332,12 @@ Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
 (C:\Program Files\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
 (C:\Program Files\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
-\pgfutil@everybye=\toks27
-\pgfutil@tempdima=\dimen173
-\pgfutil@tempdimb=\dimen174
+\pgfutil@everybye=\toks30
+\pgfutil@tempdima=\dimen178
+\pgfutil@tempdimb=\dimen179
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
-\pgfutil@abb=\box54
+\pgfutil@abb=\box59
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex
 (C:\Program Files\MiKTeX\tex/generic/pgf\pgf.revision.tex)
@@ -304,55 +346,38 @@ Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Program Files\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty
-(C:\Program Files\MiKTeX\tex/latex/graphics\graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
-(C:\Program Files\MiKTeX\tex/latex/graphics\graphics.sty
-Package: graphics 2024/05/23 v1.4g Standard LaTeX Graphics (DPC,SPQR)
-
-(C:\Program Files\MiKTeX\tex/latex/graphics\trig.sty
-Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-)
-(C:\Program Files\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 106.
-)
-\Gin@req@height=\dimen175
-\Gin@req@width=\dimen176
-)
 (C:\Program Files\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty
 (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks28
-\pgfkeys@temptoks=\toks29
+\pgfkeys@pathtoks=\toks31
+\pgfkeys@temptoks=\toks32
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.
 tex
-\pgfkeys@tmptoks=\toks30
+\pgfkeys@tmptoks=\toks33
 ))
-\pgf@x=\dimen177
-\pgf@y=\dimen178
-\pgf@xa=\dimen179
-\pgf@ya=\dimen180
-\pgf@xb=\dimen181
-\pgf@yb=\dimen182
-\pgf@xc=\dimen183
-\pgf@yc=\dimen184
-\pgf@xd=\dimen185
-\pgf@yd=\dimen186
+\pgf@x=\dimen180
+\pgf@y=\dimen181
+\pgf@xa=\dimen182
+\pgf@ya=\dimen183
+\pgf@xb=\dimen184
+\pgf@yb=\dimen185
+\pgf@xc=\dimen186
+\pgf@yc=\dimen187
+\pgf@xd=\dimen188
+\pgf@yd=\dimen189
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count292
-\c@pgf@countb=\count293
-\c@pgf@countc=\count294
-\c@pgf@countd=\count295
-\t@pgf@toka=\toks31
-\t@pgf@tokb=\toks32
-\t@pgf@tokc=\toks33
-\pgf@sys@id@count=\count296
+\c@pgf@counta=\count297
+\c@pgf@countb=\count298
+\c@pgf@countc=\count299
+\c@pgf@countd=\count300
+\t@pgf@toka=\toks34
+\t@pgf@tokb=\toks35
+\t@pgf@tokc=\toks36
+\pgf@sys@id@count=\count301
  (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -366,8 +391,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 )))
 (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count297
-\pgfsyssoftpath@bigbuffer@items=\count298
+\pgfsyssoftpath@smallbuffer@items=\count302
+\pgfsyssoftpath@bigbuffer@items=\count303
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -378,12 +403,12 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
-\pgfmath@dimen=\dimen187
-\pgfmath@count=\count299
-\pgfmath@box=\box55
-\pgfmath@toks=\toks34
-\pgfmath@stack@operand=\toks35
-\pgfmath@stack@operation=\toks36
+\pgfmath@dimen=\dimen190
+\pgfmath@count=\count304
+\pgfmath@box=\box60
+\pgfmath@toks=\toks37
+\pgfmath@stack@operand=\toks38
+\pgfmath@stack@operation=\toks39
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
@@ -399,55 +424,55 @@ tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmeti
 cs.code.tex) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count300
+\c@pgfmathroundto@lastzeros=\count305
 ))
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfint.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen188
-\pgf@picmaxx=\dimen189
-\pgf@picminy=\dimen190
-\pgf@picmaxy=\dimen191
-\pgf@pathminx=\dimen192
-\pgf@pathmaxx=\dimen193
-\pgf@pathminy=\dimen194
-\pgf@pathmaxy=\dimen195
-\pgf@xx=\dimen196
-\pgf@xy=\dimen197
-\pgf@yx=\dimen198
-\pgf@yy=\dimen199
-\pgf@zx=\dimen256
-\pgf@zy=\dimen257
+\pgf@picminx=\dimen191
+\pgf@picmaxx=\dimen192
+\pgf@picminy=\dimen193
+\pgf@picmaxy=\dimen194
+\pgf@pathminx=\dimen195
+\pgf@pathmaxx=\dimen196
+\pgf@pathminy=\dimen197
+\pgf@pathmaxy=\dimen198
+\pgf@xx=\dimen199
+\pgf@xy=\dimen256
+\pgf@yx=\dimen257
+\pgf@yy=\dimen258
+\pgf@zx=\dimen259
+\pgf@zy=\dimen260
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.t
 ex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen258
-\pgf@path@lasty=\dimen259
+\pgf@path@lastx=\dimen261
+\pgf@path@lasty=\dimen262
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen260
-\pgf@shorten@start@additional=\dimen261
+\pgf@shorten@end@additional=\dimen263
+\pgf@shorten@start@additional=\dimen264
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box56
-\pgf@hbox=\box57
-\pgf@layerbox@main=\box58
-\pgf@picture@serial@count=\count301
+\pgfpic=\box61
+\pgf@hbox=\box62
+\pgf@layerbox@main=\box63
+\pgf@picture@serial@count=\count306
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.te
 x
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen262
+\pgflinewidth=\dimen265
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code
 .tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen263
-\pgf@pt@y=\dimen264
-\pgf@pt@temp=\dimen265
+\pgf@pt@x=\dimen266
+\pgf@pt@y=\dimen267
+\pgf@pt@temp=\dimen268
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
@@ -458,19 +483,19 @@ tex
 File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen266
+\pgfarrowsep=\dimen269
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen267
-\pgf@sys@shading@range@num=\count302
-\pgf@shadingcount=\count303
+\pgf@max=\dimen270
+\pgf@sys@shading@range@num=\count307
+\pgf@shadingcount=\count308
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box59
+\pgfexternal@startupbox=\box64
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -485,15 +510,15 @@ File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 (C:\Program Files\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box60
+\pgfnodeparttextbox=\box65
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 (C:\Program Files\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen268
-\pgf@nodesepend=\dimen269
+\pgf@nodesepstart=\dimen271
+\pgf@nodesepend=\dimen272
 )
 (C:\Program Files\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
@@ -504,10 +529,10 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex))
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen270
-\pgffor@skip=\dimen271
-\pgffor@stack=\toks37
-\pgffor@toks=\toks38
+\pgffor@iter=\dimen273
+\pgffor@skip=\dimen274
+\pgffor@stack=\toks40
+\pgffor@toks=\toks41
 ))
 (C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
@@ -515,40 +540,40 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.
 tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count304
-\pgfplotmarksize=\dimen272
+\pgf@plot@mark@count=\count309
+\pgfplotmarksize=\dimen275
 )
-\tikz@lastx=\dimen273
-\tikz@lasty=\dimen274
-\tikz@lastxsaved=\dimen275
-\tikz@lastysaved=\dimen276
-\tikz@lastmovetox=\dimen277
-\tikz@lastmovetoy=\dimen278
-\tikzleveldistance=\dimen279
-\tikzsiblingdistance=\dimen280
-\tikz@figbox=\box61
-\tikz@figbox@bg=\box62
-\tikz@tempbox=\box63
-\tikz@tempbox@bg=\box64
-\tikztreelevel=\count305
-\tikznumberofchildren=\count306
-\tikznumberofcurrentchild=\count307
-\tikz@fig@count=\count308
+\tikz@lastx=\dimen276
+\tikz@lasty=\dimen277
+\tikz@lastxsaved=\dimen278
+\tikz@lastysaved=\dimen279
+\tikz@lastmovetox=\dimen280
+\tikz@lastmovetoy=\dimen281
+\tikzleveldistance=\dimen282
+\tikzsiblingdistance=\dimen283
+\tikz@figbox=\box66
+\tikz@figbox@bg=\box67
+\tikz@tempbox=\box68
+\tikz@tempbox@bg=\box69
+\tikztreelevel=\count310
+\tikznumberofchildren=\count311
+\tikznumberofcurrentchild=\count312
+\tikz@fig@count=\count313
  (C:\Program Files\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count309
-\pgfmatrixcurrentcolumn=\count310
-\pgf@matrix@numberofcolumns=\count311
+\pgfmatrixcurrentrow=\count314
+\pgfmatrixcurrentcolumn=\count315
+\pgf@matrix@numberofcolumns=\count316
 )
-\tikz@expandcount=\count312
+\tikz@expandcount=\count317
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibra
 rytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Program Files\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks39
-\verbatim@line=\toks40
+\every@verbatim=\toks42
+\verbatim@line=\toks43
 \verbatim@in@stream=\read3
 )
 (C:\Program Files\MiKTeX\tex/latex/environ\environ.sty
@@ -557,46 +582,46 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (C:\Program Files\MiKTeX\tex/latex/trimspaces\trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
-\@envbody=\toks41
+\@envbody=\toks44
 )
-\tcb@titlebox=\box65
-\tcb@upperbox=\box66
-\tcb@lowerbox=\box67
-\tcb@phantombox=\box68
-\c@tcbbreakpart=\count313
-\c@tcblayer=\count314
-\c@tcolorbox@number=\count315
-\l__tcobox_tmpa_box=\box69
-\l__tcobox_tmpa_dim=\dimen281
-\tcb@temp=\box70
-\tcb@temp=\box71
-\tcb@temp=\box72
-\tcb@temp=\box73
+\tcb@titlebox=\box70
+\tcb@upperbox=\box71
+\tcb@lowerbox=\box72
+\tcb@phantombox=\box73
+\c@tcbbreakpart=\count318
+\c@tcblayer=\count319
+\c@tcolorbox@number=\count320
+\l__tcobox_tmpa_box=\box74
+\l__tcobox_tmpa_dim=\dimen284
+\tcb@temp=\box75
+\tcb@temp=\box76
+\tcb@temp=\box77
+\tcb@temp=\box78
 )
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.8.0'
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count316
-\lst@gtempboxa=\box74
-\lst@token=\toks42
-\lst@length=\count317
-\lst@currlwidth=\dimen282
-\lst@column=\count318
-\lst@pos=\count319
-\lst@lostspace=\dimen283
-\lst@width=\dimen284
-\lst@newlines=\count320
-\lst@lineno=\count321
-\lst@maxwidth=\dimen285
+\lst@mode=\count321
+\lst@gtempboxa=\box79
+\lst@token=\toks45
+\lst@length=\count322
+\lst@currlwidth=\dimen285
+\lst@column=\count323
+\lst@pos=\count324
+\lst@lostspace=\dimen286
+\lst@width=\dimen287
+\lst@newlines=\count325
+\lst@lineno=\count326
+\lst@maxwidth=\dimen288
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstpatch.sty
 File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
-\c@lstnumber=\count322
-\lst@skipnumbers=\count323
-\lst@framebox=\box75
+\c@lstnumber=\count327
+\lst@skipnumbers=\count328
+\lst@framebox=\box80
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2024/05/25 1.10b listings configuration
@@ -608,7 +633,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.8.0'
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.8.0'
 )
-\c@tcblisting=\count324
+\c@tcblisting=\count329
 )) (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.8.0'
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/tikzfill\tikzfill.image.sty
@@ -620,7 +645,7 @@ Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/tikzfill\tikzlibraryfill.image.
 code.tex
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
-\l__tikzfill_img_box=\box76
+\l__tikzfill_img_box=\box81
 )) (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.8.0'
 )) (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbbreakable.code.tex
@@ -629,13 +654,13 @@ Library (tcolorbox): 'tcbbreakable.code.tex' version '6.8.0'
 Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 )
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box77
-\tcb@totalupperbox=\box78
-\tcb@totallowerbox=\box79
+\tcb@testbox=\box82
+\tcb@totalupperbox=\box83
+\tcb@totallowerbox=\box84
 )
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2024/05/23 v2.17q AMS math features
-\@mathmargin=\skip56
+\@mathmargin=\skip57
 
 For additional information on amsmath, use the `?' option.
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amstext.sty
@@ -643,61 +668,61 @@ Package: amstext 2021/08/26 v2.01 AMS text
 
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks43
-\ex@=\dimen286
+\@emptytoks=\toks46
+\ex@=\dimen289
 ))
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen287
+\pmbraise@=\dimen290
 )
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count325
+\inf@bad=\count330
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count326
-\leftroot@=\count327
+\uproot@=\count331
+\leftroot@=\count332
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count328
-\DOTSCASE@=\count329
+\classnum@=\count333
+\DOTSCASE@=\count334
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
-\Mathstrutbox@=\box80
-\strutbox@=\box81
+\Mathstrutbox@=\box85
+\strutbox@=\box86
 LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen288
+\big@size=\dimen291
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count330
+\macc@depth=\count335
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count331
+\c@MaxMatrixCols=\count336
 \dotsspace@=\muskip18
-\c@parentequation=\count332
-\dspbrk@lvl=\count333
-\tag@help=\toks44
-\row@=\count334
-\column@=\count335
-\maxfields@=\count336
-\andhelp@=\toks45
-\eqnshift@=\dimen289
-\alignsep@=\dimen290
-\tagshift@=\dimen291
-\tagwidth@=\dimen292
-\totwidth@=\dimen293
-\lineht@=\dimen294
-\@envbody=\toks46
-\multlinegap=\skip57
-\multlinetaggap=\skip58
-\mathdisplay@stack=\toks47
+\c@parentequation=\count337
+\dspbrk@lvl=\count338
+\tag@help=\toks47
+\row@=\count339
+\column@=\count340
+\maxfields@=\count341
+\andhelp@=\toks48
+\eqnshift@=\dimen292
+\alignsep@=\dimen293
+\tagshift@=\dimen294
+\tagwidth@=\dimen295
+\totwidth@=\dimen296
+\lineht@=\dimen297
+\@envbody=\toks49
+\multlinegap=\skip58
+\multlinetaggap=\skip59
+\mathdisplay@stack=\toks50
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
@@ -714,29 +739,29 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ))
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks48
-\thm@bodyfont=\toks49
-\thm@headfont=\toks50
-\thm@notefont=\toks51
-\thm@headpunct=\toks52
-\thm@preskip=\skip59
-\thm@postskip=\skip60
-\thm@headsep=\skip61
-\dth@everypar=\toks53
+\thm@style=\toks51
+\thm@bodyfont=\toks52
+\thm@headfont=\toks53
+\thm@notefont=\toks54
+\thm@headpunct=\toks55
+\thm@preskip=\skip60
+\thm@postskip=\skip61
+\thm@headsep=\skip62
+\dth@everypar=\toks56
 )
-\c@comp=\count337
-\c@theo=\count338
-\c@defn=\count339
-\c@lem=\count340
-\c@prop=\count341
-\c@axiom=\count342
-\c@post=\count343
-\c@trans=\count344
-\c@transf=\count345
-\c@law=\count346
-\c@prob=\count347
-\c@soln=\count348
-\c@alg=\count349
+\c@comp=\count342
+\c@theo=\count343
+\c@defn=\count344
+\c@lem=\count345
+\c@prop=\count346
+\c@axiom=\count347
+\c@post=\count348
+\c@trans=\count349
+\c@transf=\count350
+\c@law=\count351
+\c@prob=\count352
+\c@soln=\count353
+\c@alg=\count354
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdfpages\pdfpages.sty
 Package: pdfpages 2024/08/20 v0.6b Insert pages of external PDF documents (AM)
@@ -746,64 +771,71 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
 (C:\Program Files\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count350
-\calc@Bcount=\count351
-\calc@Adimen=\dimen295
-\calc@Bdimen=\dimen296
-\calc@Askip=\skip62
-\calc@Bskip=\skip63
+\calc@Acount=\count355
+\calc@Bcount=\count356
+\calc@Adimen=\dimen298
+\calc@Bdimen=\dimen299
+\calc@Askip=\skip63
+\calc@Bskip=\skip64
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count352
-\calc@Cskip=\skip64
+\calc@Ccount=\count357
+\calc@Cskip=\skip65
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/eso-pic\eso-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
-\ESO@tempdima=\dimen297
-\ESO@tempdimb=\dimen298
+\ESO@tempdima=\dimen300
+\ESO@tempdimb=\dimen301
 )
-\AM@pagewidth=\dimen299
-\AM@pageheight=\dimen300
-\AM@fboxrule=\dimen301
+\AM@pagewidth=\dimen302
+\AM@pageheight=\dimen303
+\AM@fboxrule=\dimen304
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdfpages\pppdftex.def
 File: pppdftex.def 2024/08/20 v0.6b Pdfpages driver for pdfTeX (AM)
 )
-\pdfpages@includegraphics@status=\count353
-\AM@pagebox=\box82
-\AM@global@opts=\toks54
-\AM@pagecnt=\count354
-\AM@toc@title=\toks55
-\AM@lof@heading=\toks56
-\c@AM@survey=\count355
-\AM@templatesizebox=\box83
+\pdfpages@includegraphics@status=\count358
+\AM@pagebox=\box87
+\AM@global@opts=\toks57
+\AM@pagecnt=\count359
+\AM@toc@title=\toks58
+\AM@lof@heading=\toks59
+\c@AM@survey=\count360
+\AM@templatesizebox=\box88
 )
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count356
-\l__pdf_internal_box=\box84
+\l__color_backend_stack_int=\count361
+\l__pdf_internal_box=\box89
 )
-(grimoire_lumtauto.aux)
+(grimoire_lumtauto.aux
+
+LaTeX Warning: Label `FIGCONJ1' multiply defined.
+
+
+LaTeX Warning: Label `FIG2' multiply defined.
+
+)
 \openout1 = `grimoire_lumtauto.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 234.
+LaTeX Font Info:    ... okay on input line 234.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -813,15 +845,15 @@ LaTeX Font Info:    ... okay on input line 130.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(39.83368pt, 517.84052pt, 39.83368pt)
-* v-part:(T,H,B)=(39.83368pt, 765.37949pt, 39.83368pt)
+* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
+* v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=517.84052pt
-* \textheight=765.37949pt
-* \oddsidemargin=-32.43631pt
-* \evensidemargin=-32.43631pt
-* \topmargin=-69.43631pt
+* \textwidth=418.25368pt
+* \textheight=759.6886pt
+* \oddsidemargin=17.3571pt
+* \evensidemargin=17.3571pt
+* \topmargin=-66.59087pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
@@ -839,29 +871,26 @@ LaTeX Font Info:    ... okay on input line 130.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 130.
+Package hyperref Info: Link coloring OFF on input line 234.
 (grimoire_lumtauto.out) (grimoire_lumtauto.out)
 \@outlinefile=\write4
 \openout4 = `grimoire_lumtauto.out'.
 
 
 Couldn't patch \deferred@thm@head!
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: listings package is loaded.
-Package caption Info: End \AtBeginDocument code.
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count357
-\scratchdimen=\dimen302
-\scratchbox=\box85
-\nofMPsegments=\count358
-\nofMParguments=\count359
-\everyMPshowfont=\toks57
-\MPscratchCnt=\count360
-\MPscratchDim=\dimen303
-\MPnumerator=\count361
-\makeMPintoPDFobject=\count362
-\everyMPtoPDFconversion=\toks58
+\scratchcounter=\count362
+\scratchdimen=\dimen305
+\scratchbox=\box90
+\nofMPsegments=\count363
+\nofMParguments=\count364
+\everyMPshowfont=\toks60
+\MPscratchCnt=\count365
+\MPscratchDim=\dimen306
+\MPnumerator=\count366
+\makeMPintoPDFobject=\count367
+\everyMPtoPDFconversion=\toks61
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -870,7 +899,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 (C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count363
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count368
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -887,10 +920,10 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/front_cover.pdf, id=30, 596.98032pt x 844.65562pt>
+<resources/front_cover.pdf, id=42, 596.98032pt x 844.65562pt>
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf>
-Package pdftex.def Info: resources/front_cover.pdf  used on input line 133.
+Package pdftex.def Info: resources/front_cover.pdf  used on input line 237.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -898,7 +931,7 @@ pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf>
-Package pdftex.def Info: resources/front_cover.pdf  used on input line 133.
+Package pdftex.def Info: resources/front_cover.pdf  used on input line 237.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -908,288 +941,772 @@ nd PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/front_cover.pdf, id=33, page=1, 596.98032pt x 844.65562pt>
+<resources/front_cover.pdf, id=45, page=1, 596.98032pt x 844.65562pt>
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
-Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 1
-33.
+Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
+37.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
-Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 1
-33.
+Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
+37.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
-Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 1
-33.
+Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
+37.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
-Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 1
-33.
+Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
+37.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
-Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 1
-33.
+Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
+37.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [1
 
 
  <./resources/front_cover.pdf>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 136
+LaTeX Font Info:    Trying to load font information for U+msa on input line 240
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 136
+LaTeX Font Info:    Trying to load font information for U+msb on input line 240
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 146--149
-
- []
-
-
 
 [2{C:/Users/AKAM/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-[]\OT1/cmtt/m/n/12 Programming languages create a medium via which one can defi
-ne and
- []
+Underfull \hbox (badness 10000) in paragraph at lines 250--253
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-\OT1/cmtt/m/n/12 execute orders with certain effects at will, and certainly so.
- Basing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-\OT1/cmtt/m/n/12 on how language underlies the ability for humans to formulate 
-and share
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-\OT1/cmtt/m/n/12 thoughts with each other, we also see how the use of certain s
-pecial
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 165--166
-\OT1/cmtt/m/n/12 languages underlies man's ability to command and control reali
-ty since
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--184
-[]\OT1/cmtt/m/n/12 Basically, we see how it is indeed language, or rather, its 
-use via
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--184
-\OT1/cmtt/m/n/12 communication --- a willful application of language, that make
-s possible
  []
 
 
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 205--206
-[]\OT1/cmtt/m/n/12 Magick is the Science and Art of causing Change to occur in 
-conformity
+pdfTeX warning: pdflatex (file ./resources/emblem_ion.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<resources/emblem_ion.pdf, id=89, 364.48169pt x 353.40028pt>
+File: resources/emblem_ion.pdf Graphic file (type pdf)
+<use resources/emblem_ion.pdf>
+Package pdftex.def Info: resources/emblem_ion.pdf  used on input line 261.
+(pdftex.def)             Requested size: 291.58574pt x 282.7206pt.
+
+
+[3 <./resources/emblem_ion.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+[]\OT1/cmtt/m/n/12 Programming languages create a medium via which one can
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--227
-[]\OT1/cmtt/m/n/12 The science and art of causing change (in consciousness) to 
-occur in
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+\OT1/cmtt/m/n/12 define and execute orders with certain effects at will,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--227
-\OT1/cmtt/m/n/12 conformity with will, using means not currently understood by 
-traditional
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+\OT1/cmtt/m/n/12 and certainly so. Basing on how language underlies the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
-[]\OT1/cmtt/m/n/12 The Highest, most Absolute, and most Divine Knowledge of Nat
-ural
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+\OT1/cmtt/m/n/12 ability for humans to formulate and share thoughts with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
-\OT1/cmtt/m/n/12 Philosophy, advanced in its works and wonderful operations by 
-a right
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+\OT1/cmtt/m/n/12 each other, we also see how the use of certain special
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
-\OT1/cmtt/m/n/12 understanding of the inward and occult virtue of things; so th
-at true
+Underfull \hbox (badness 10000) in paragraph at lines 279--280
+\OT1/cmtt/m/n/12 languages underlies man's ability to command and control
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--246
-\OT1/cmtt/m/n/12 Agents being applied to proper Patients, strange and admirable
- effects
+Underfull \hbox (badness 10000) in paragraph at lines 296--298
+[]\OT1/cmtt/m/n/12 Basically, we see how it is indeed language, or rather,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--298
+\OT1/cmtt/m/n/12 its use via communication --- a willful application
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--298
+\OT1/cmtt/m/n/12 of language, that makes possible the creation and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 319--320
+[]\OT1/cmtt/m/n/12 Magick is the Science and Art of causing Change to
  []
 
 
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
-[]\OT1/cmtt/m/n/12 The enhancement of the probabilities/likelihood of a desired
-
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+[]\OT1/cmtt/m/n/12 The science and art of causing change (in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--319
-
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+\OT1/cmtt/m/n/12 consciousness) to occur in conformity with will, using
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--319
-
+Underfull \hbox (badness 10000) in paragraph at lines 340--341
+\OT1/cmtt/m/n/12 means not currently understood by traditional Western
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--319
-
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
+[]\OT1/cmtt/m/n/12 The Highest, most Absolute, and most Divine Knowledge
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--319
-
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
+\OT1/cmtt/m/n/12 of Natural Philosophy, advanced in its works and wonderful
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 319--321
-[][] 
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
+\OT1/cmtt/m/n/12 operations by a right understanding of the inward and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--321
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
+\OT1/cmtt/m/n/12 occult virtue of things; so that true Agents being applied
+ []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
+\OT1/cmtt/m/n/12 to proper Patients, strange and admirable effects will
  []
 
 
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 325--326
+Underfull \hbox (badness 10000) in paragraph at lines 380--381
+[]\OT1/cmtt/m/n/12 The enhancement of the probabilities/likelihood of a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--349
-[]\OT1/cmtt/m/n/12 By ``intentional" I mean ``willed". But even unintentional a
-cts so
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 356--357
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
 
  []
 
 
-LaTeX Warning: Citation `newjerusalem1985' on page 6 undefined on input line 37
-5.
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 433--435
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--435
+
+ []
 
 
 
 [6]
-<resources/iona.png, id=197, 412.54124pt x 412.54124pt>
-File: resources/iona.png Graphic file (type png)
-<use resources/iona.png>
-Package pdftex.def Info: resources/iona.png  used on input line 383.
-(pdftex.def)             Requested size: 330.03345pt x 330.03345pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 390.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rightarrow' on input line 390.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 390.
-
-
-
-[7 <./resources/iona.png>] (grimoire_lumtauto.bbl
-Underfull \hbox (badness 1546) in paragraph at lines 4--9
-[]\OT1/cmr/m/n/12 Aleister Crow-ley.  \OT1/cmr/m/it/12 Mag-ick With-out Tears\O
-T1/cmr/m/n/12 .  Pri-vately pub-lished; later edited by Karl
+Overfull \hbox (22.73065pt too wide) in paragraph at lines 436--437
+\OT1/cmr/m/n/12 sult" --- a \OT1/cmr/m/it/12 willed out-come\OT1/cmr/m/n/12 , t
+hat es-sen-tially is en-coded in the lan-guage of transformatics[[]]
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 4--9
-\OT1/cmr/m/n/12 J. Ger-mer, 1948.  Free elec-tronic ver-sion avail-able at []$\
-OT1/cmtt/m/n/12 https : / / archive . org / details /
+Underfull \hbox (badness 10000) in paragraph at lines 439--440
+
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 69--74
-\OT1/cmr/m/n/12 avail-able at []$\OT1/cmtt/m/n/12 https : / / openlibrary . org
- / books / OL16728500M / Encyclopedia _ of _ forbidden _
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
+[]\OT1/cmtt/m/n/12 By ``intentional" I mean ``willed". But even
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 462--463
+\OT1/cmtt/m/n/12 unintentional acts so seeming are not truly so. Thus,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 470--471
+
+ []
+
+
+
+[8]
+
+pdfTeX warning: pdflatex (file ./resources/iona.pdf): PDF inclusion: found PDF 
+version <1.7>, but at most version <1.5> allowed
+<resources/iona.pdf, id=229, 364.48169pt x 353.40028pt>
+File: resources/iona.pdf Graphic file (type pdf)
+<use resources/iona.pdf>
+Package pdftex.def Info: resources/iona.pdf  used on input line 497.
+(pdftex.def)             Requested size: 291.58574pt x 282.7206pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 504.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\rightarrow' on input line 504.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 504.
+
+
+
+pdfTeX warning: pdflatex (file ./resources/lumtauto_slogan.pdf): PDF inclusion:
+ found PDF version <1.7>, but at most version <1.5> allowed
+<resources/lumtauto_slogan.pdf, id=230, 663.43857pt x 125.5089pt>
+File: resources/lumtauto_slogan.pdf Graphic file (type pdf)
+<use resources/lumtauto_slogan.pdf>
+Package pdftex.def Info: resources/lumtauto_slogan.pdf  used on input line 509.
+
+(pdftex.def)             Requested size: 418.25368pt x 79.12846pt.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 513.
+
+Underfull \hbox (badness 10000) in paragraph at lines 522--523
+
+ []
+
+
+
+[9 <./resources/iona.pdf> <./resources/lumtauto_slogan.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 534--535
+
+ []
+
+
+Overfull \hbox (17.88513pt too wide) detected at line 567
+ []$[]  \OMS/cmsy/m/n/12 8\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 2 \OT1/cmr/m/n/12
+ ^^B[]  =[]\OMS/cmsy/m/n/12 )  \OML/cmm/m/it/12 ^^L \OMS/cmsy/m/n/12 2 \OT1/cmr
+/m/n/12 
+[]  =[]\OMS/cmsy/m/n/12 )  []$ []  
+ []
+
+
+
+[10]
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 605--606
+
+ []
+
+
+Overfull \hbox (31.02122pt too wide) in paragraph at lines 610--620
+[]\OT1/cmtt/m/n/12 Our Father in heaven, may your name be held holy, your kingd
+om come,
+ []
+
+
+Overfull \hbox (18.67122pt too wide) in paragraph at lines 610--620
+\OT1/cmtt/m/n/12 your will be done, on earth as in heaven. Give us today our da
+ily
+ []
+
+
+Overfull \hbox (0.14621pt too wide) in paragraph at lines 610--620
+\OT1/cmtt/m/n/12 bread. And forgive us our debts, as we have forgiven those who
+
+ []
+
+
+Overfull \hbox (24.84622pt too wide) in paragraph at lines 610--620
+\OT1/cmtt/m/n/12 are in debt to us. And do not put us to the test, but save us 
+from
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 623--624
+
+ []
+
+
+
+[12]
+Overfull \hbox (31.02122pt too wide) in paragraph at lines 627--637
+[]\OT1/cmtt/m/n/12 Ear Fugsor im souvom, nub bear muno yo solw selb, bear pimtw
+en xeno,
+ []
+
+
+Overfull \hbox (18.67122pt too wide) in paragraph at lines 627--637
+\OT1/cmtt/m/n/12 bear dill yo wemo, em ourgs uh im souvom. Tivo ah gewub ear wu
+ilb
+ []
+
+
+Overfull \hbox (0.14621pt too wide) in paragraph at lines 627--637
+\OT1/cmtt/m/n/12 yrouw. Umw fertivo ah ear woygh, uh do suvo fertivom gseho dse
+
+ []
+
+
+Overfull \hbox (24.84622pt too wide) in paragraph at lines 627--637
+\OT1/cmtt/m/n/12 uro im woyg ge ah. Umw we meg kag ah ge gso gohg, yag huvo ah 
+fren
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--651
+
+ []
+
+
+
+[13]
+<resources/lumtauto.jpg, id=312, 1541.76pt x 1027.84pt>
+File: resources/lumtauto.jpg Graphic file (type jpg)
+<use resources/lumtauto.jpg>
+Package pdftex.def Info: resources/lumtauto.jpg  used on input line 687.
+(pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
+
+Overfull \hbox (12.4pt too wide) in paragraph at lines 683--691
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 700--701
+
+ []
+
+
+Overfull \hbox (61.61942pt too wide) in paragraph at lines 706--707
+[]\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 list of mir-rored vow-els, \OT1/cm
+tt/m/it/12 list[]vowels[]mirror \OT1/cmr/m/it/12 = \OT1/cmtt/m/it/12 reversed(l
+ist[]vowels)\OT1/cmr/m/it/12 . 
+ []
+
+
+Overfull \hbox (30.58589pt too wide) in paragraph at lines 712--713
+\OML/cmm/m/it/12 v[]$ \OT1/cmr/m/it/12 at in-dex $\OML/cmm/m/it/12 i$ \OT1/cmr/
+m/it/12 in that list, with an-other char-ac-ter, $\OML/cmm/m/it/12 v[]$ \OT1/cm
+r/m/it/12 from \OT1/cmtt/m/it/12 list[]vowels[]mirror\OT1/cmr/m/it/12 ,
+ []
+
+
+Overfull \hbox (8.37656pt too wide) in paragraph at lines 720--721
+[]\OT1/cmr/bx/it/12 INITIALIZE \OT1/cmtt/m/it/12 list[]a[]z[]lumtauto \OT1/cmr/
+m/it/12 by cloning \OT1/cmtt/m/it/12 list[]a[]z[]intermediate\OT1/cmr/m/it/12 .
+ 
+ []
+
+
+
+[14 <./resources/lumtauto.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 721--722
+
+ []
+
+
+Overfull \hbox (5.5401pt too wide) in paragraph at lines 742--743
+[]\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 re-sul-tant, trans-formed/-trans-l
+ated mes-sage, \OT1/cmtt/m/it/12 msg[]lumtauto \OT1/cmr/m/it/12 thus: 
+ []
+
+
+Overfull \hbox (1.98259pt too wide) in paragraph at lines 749--750
+[]\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 the cor-re-spond-ing mir-ror let-t
+er po-si-tion $\OML/cmm/m/it/12 k \OT1/cmr/m/n/12 =$ \OT1/cmtt/m/it/12 index($\
+OML/cmm/m/it/12 c[]$
+ []
+
+
+
+[15]
+
+[16]
+
+Package caption Warning: \setcaptiontype
+(caption)                outside box or environment on input line 878.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 878.
+See the caption package documentation for explanation.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 888--889
+[][]$\OT1/cmtt/m/n/12 https : / / tea . nuchwezi . com / ?i = put + your + mess
+age + here & fc = https : / / gist .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 888--889
+\OT1/cmtt/m/n/12 githubusercontent . com / mcnemesis / ae9d6226d49f5a8601a84241
+a08f07c8 /
+ []
+
+
+
+[17]
+
+[18]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 983.
+See the caption package documentation for explanation.
+
+
+
+[19]
+<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=588, 1798.72pt x 1027
+.84pt>
+File: resources/illustration_trudy_olga_spirit_fight_2.jpg Graphic file (type j
+pg)
+<use resources/illustration_trudy_olga_spirit_fight_2.jpg>
+Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight_2.jpg  
+used on input line 1029.
+(pdftex.def)             Requested size: 376.42575pt x 215.09996pt.
+
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1025--1035
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1039--1040
+
+ []
+
+\g__tcobox_out_iow=\write5
+\openout5 = `grimoire_lumtauto.listing'.
+
+(grimoire_lumtauto.listing)
+
+[20 <./resources/illustration_trudy_olga_spirit_fight_2.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+[]\OT1/cmtt/m/n/12 I bind you in the name of Ruhanga and all the spirits of nat
+ure and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 my ancestors here present. I bind you regardless of whether yo
+u
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 are here in spirit, mind or body. I bind you and cut from you 
+all
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 sources of power that are Animusting you right now, in the nam
+e of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 the Most Powerful Ruhanga! I hurl you into an eternal prison, 
+I
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 cut you to shreds, I summon thunder and fire that eats at the 
+body,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 mind and spirit to strike and deprive you of all your strength
+ and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 health. I summon the hungriest of hell's spirits to feast on y
+ou.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 I bind and destroy you in God's most holy, unknown names! Righ
+t
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1070--1083
+\OT1/cmtt/m/n/12 Here, Right Now! Be Gone, Be Gone from this place and time Rig
+ht
+ []
+
+
+LaTeX Warning: Citation `jung1964symbols' on page 21 undefined on input line 10
+88.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1095
+
+ []
+
+
+
+[21]
+\openout5 = `grimoire_lumtauto.listing'.
+
+ (grimoire_lumtauto.listing)
+
+[22]
+<resources/illustration_trudy_olga_spirit_fight.jpg, id=669, 1541.76pt x 1027.8
+4pt>
+File: resources/illustration_trudy_olga_spirit_fight.jpg Graphic file (type jpg
+)
+<use resources/illustration_trudy_olga_spirit_fight.jpg>
+Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight.jpg  us
+ed on input line 1162.
+(pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
+
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1158--1168
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1174--1175
+
+ []
+
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
+180.
+(C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
+File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1180.
+
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
+190.
+
+(C:\Program Files\MiKTeX\tex/latex/base\omlcmr.fd
+File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1190.
+
+
+
+[23 <./resources/illustration_trudy_olga_spirit_fight.jpg>]
+
+[24]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1236.
+See the caption package documentation for explanation.
+
+(C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2024/05/25 1.10b listings language file
+)
+
+[25]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1283.
+See the caption package documentation for explanation.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 1289.
+
+<resources/conjurer.jpg, id=780, 1798.72pt x 1027.84pt>
+File: resources/conjurer.jpg Graphic file (type jpg)
+<use resources/conjurer.jpg>
+Package pdftex.def Info: resources/conjurer.jpg  used on input line 1298.
+(pdftex.def)             Requested size: 376.42575pt x 215.09996pt.
+
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1294--1304
+[][] 
+ []
+
+\openout5 = `grimoire_lumtauto.listing'.
+
+(grimoire_lumtauto.listing)
+
+[26 <./resources/conjurer.jpg>]
+\openout5 = `grimoire_lumtauto.listing'.
+
+ (grimoire_lumtauto.listing)
+<resources/conjurer_4.jpg, id=802, 1252.68pt x 835.12pt>
+File: resources/conjurer_4.jpg Graphic file (type jpg)
+<use resources/conjurer_4.jpg>
+Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1347.
+(pdftex.def)             Requested size: 376.42575pt x 250.9457pt.
+
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1343--1353
+[][] 
+ []
+
+
+
+[27 <./resources/conjurer_4.jpg>]
+
+pdfTeX warning: pdflatex (file ./resources/maiu_sigil.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<resources/maiu_sigil.pdf, id=824, 277.9986pt x 718.60468pt>
+File: resources/maiu_sigil.pdf Graphic file (type pdf)
+<use resources/maiu_sigil.pdf>
+Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1375.
+(pdftex.def)             Requested size: 222.39917pt x 574.88452pt.
+
+
+[28]
+
+pdfTeX warning: pdflatex (file ./resources/myrrh_slogan.pdf): PDF inclusion: fo
+und PDF version <1.7>, but at most version <1.5> allowed
+<resources/myrrh_slogan.pdf, id=834, 621.28107pt x 126.4725pt>
+File: resources/myrrh_slogan.pdf Graphic file (type pdf)
+<use resources/myrrh_slogan.pdf>
+Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1387.
+(pdftex.def)             Requested size: 418.25368pt x 85.14525pt.
+
+
+[29 <./resources/maiu_sigil.pdf> <./resources/myrrh_slogan.pdf>]
+
+pdfTeX warning: pdflatex (file ./resources/ozin_slogan.pdf): PDF inclusion: fou
+nd PDF version <1.7>, but at most version <1.5> allowed
+<resources/ozin_slogan.pdf, id=859, 316.3017pt x 223.7961pt>
+File: resources/ozin_slogan.pdf Graphic file (type pdf)
+<use resources/ozin_slogan.pdf>
+Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 1399.
+(pdftex.def)             Requested size: 418.25368pt x 295.94786pt.
+
+
+pdfTeX warning: pdflatex (file ./resources/medina_slogan.pdf): PDF inclusion: f
+ound PDF version <1.7>, but at most version <1.5> allowed
+<resources/medina_slogan.pdf, id=860, 478.66827pt x 120.45pt>
+File: resources/medina_slogan.pdf Graphic file (type pdf)
+<use resources/medina_slogan.pdf>
+Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 1412.
+(pdftex.def)             Requested size: 418.25368pt x 105.24828pt.
+(grimoire_lumtauto.bbl
+
+[30 <./resources/ozin_slogan.pdf> <./resources/medina_slogan.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 76--81
-[]\OT1/cmr/m/n/12 Henry Cor-nelius Agrippa.  \OT1/cmr/m/it/12 Three Books of Oc
--cult Phi-los-o-phy\OT1/cmr/m/n/12 .
+[]\OT1/cmr/m/n/12 Henry Cor-nelius Agrippa.  |   []   |   []   |   []   |   [] 
+  |   [].
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--81
+Underfull \hbox (badness 1394) in paragraph at lines 76--81
 \OT1/cmr/m/n/12 Llewellyn Pub-li-ca-tions, Wood-bury, Min-nesota, 2014.  An-no-
 tated edi-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 76--81
-\OT1/cmr/m/n/12 tion (Edited by Don-ald Tyson) avail-able at []$\OT1/cmtt/m/n/1
-2 https : / / archive . org / details /
+\OT1/cmr/m/n/12 tion (Edited by Don-ald Tyson): []$\OT1/cmtt/m/n/12 https : / /
+ archive . org / details /
+ []
+
+
+Overfull \hbox (89.63794pt too wide) in paragraph at lines 76--81
+\OT1/cmtt/m/n/12 three-[]books-[]of-[]occult-[]philosophy-[]henry-[]cornelius-[
+]agrippa-[]donald-[]tyson-[]edition$[]\OT1/cmr/m/n/12 . 
+ []
+
+
+Underfull \hbox (badness 2828) in paragraph at lines 88--93
+|   []   |   []\OT1/cmr/m/n/12 .  Llewellyn World-wide, Wood-bury, Min-nesota, 
+2010.
+ []
+
+
+Underfull \hbox (badness 1308) in paragraph at lines 116--121
+[]\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
+]   |   [].
  []
 
 
 
-[8]
-Underfull \hbox (badness 3179) in paragraph at lines 102--106
-[]\OT1/cmr/m/n/12 WordWeb (soft-ware).  Clar-i-fy-ing on some con-cepts dur-ing
- draft-ing the manuscript.
+[31]
+Underfull \hbox (badness 5359) in paragraph at lines 137--142
+[]\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
+].
  []
 
 
-Underfull \hbox (badness 1342) in paragraph at lines 123--127
-\OT1/cmr/m/it/12 ver-sion ac-ces-si-ble via: []$\OT1/cmtt/m/n/12 https : / / ww
-w . academia . edu / download / 101096894 / Probabilistic _
+Underfull \hbox (badness 5696) in paragraph at lines 137--142
+\OT1/cmr/m/n/12 Man-drake of Ox-ford, round-world edi-tion edi-tion, 2010.  Dig
+-i-tal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
+\OT1/cmr/m/n/12 edi-tion avail-able at: []$\OT1/cmtt/m/n/12 https : / / archive
+ . org / download / peter-[]j .
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 137--142
 \OT1/cmtt/m/n/12 -[]carroll-[]the-[]octavo-[]roundworld-[]edition / Peter % 20J
- . %20Carroll % 20-[] % 20The % 20Octavo %
+ . %20Carroll %
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--162
+[]\OT1/cmr/m/n/12 Joseph Will-rich Lu-talo.  \OT1/cmr/bx/n/12 TEA TAZ - Trans-f
+orm-ing Ex-e-
+ []
+
+
+Underfull \hbox (badness 6001) in paragraph at lines 156--162
+\OT1/cmr/bx/n/12 cutable Al-pha-bet A: to Z: COM-MAND SPACE SPEC-I-
+ []
+
+
+Underfull \hbox (badness 3029) in paragraph at lines 156--162
+\OT1/cmr/bx/n/12 FI-CA-TION\OT1/cmr/m/n/12 .  |   [], 2024.  Ac-cessed on 14 Ma
+y, 2025,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--162
+\OT1/cmr/m/n/12 via []$\OT1/cmtt/m/n/12 https : / / www . academia . edu / 1228
+71672 / TEA _ TAZ _ Transforming _
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 430--430
+Underfull \hbox (badness 10000) in paragraph at lines 1436--1436
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 430--433
+Underfull \hbox (badness 10000) in paragraph at lines 1436--1439
 
  []
 
@@ -1197,10 +1714,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 430--433
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=237, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=919, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 436.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 1442.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1208,7 +1725,7 @@ pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 436.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 1442.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1218,38 +1735,38 @@ d PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=240, page=1, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=922, page=1, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 43
-6.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 14
+42.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 43
-6.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 14
+42.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
-[9]
+[32]
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 43
-6.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 14
+42.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 43
-6.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 14
+42.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 43
-6.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 14
+42.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[10
+[33
 
  <./resources/back_cover.pdf>] (grimoire_lumtauto.aux)
  ***********
@@ -1261,42 +1778,48 @@ L3 programming layer <2024-07-20>
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `grimoire_lumtauto.out' has not changed.
-(rerunfilecheck)             Checksum: 9C3ED0BFD716CCC7E057F6323DF8F598;900.
+(rerunfilecheck)             Checksum: C4B71BFAC33C080799D00AC0B5C6F38A;1726.
  ) 
 Here is how much of TeX's memory you used:
- 28818 strings out of 473898
- 559293 string characters out of 5736297
- 1941960 words of memory out of 5000000
- 51175 multiletter control sequences out of 15000+600000
- 575133 words of font info for 100 fonts, out of 8000000 for 9000
+ 31033 strings out of 473898
+ 588491 string characters out of 5736297
+ 2201960 words of memory out of 5000000
+ 52899 multiletter control sequences out of 15000+600000
+ 576822 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,17n,121p,1838b,566s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm0
-700.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
-i600\tcrm1440.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10
-.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pro
-gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/font
-s/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program F
-iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
-nts/symbols/msbm10.pfb>
-Output written on grimoire_lumtauto.pdf (10 pages, 1550415 bytes).
+ 98i,17n,101p,1838b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti1
+200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
+tcrm1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
+i600\tcrm0700.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\tcrm1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\tcrm1440.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Pro
+gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
+C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fi
+les/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program File
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb
+><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on grimoire_lumtauto.pdf (33 pages, 2835590 bytes).
 PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
- 63 named destinations out of 1000 (max. 500000)
- 106 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1177 PDF objects out of 1200 (max. 8388607)
+ 520 named destinations out of 1000 (max. 500000)
+ 185 words of extra memory for PDF output out of 10000 (max. 10000000)
 

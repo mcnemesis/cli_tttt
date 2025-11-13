@@ -1,21 +1,22 @@
 i:{language} # given some message
-z: # first turn it to all-lower-case
 v:vMESSAGE #store the original message
 
+#COMPLETE LUMTAUTO TRANSFORM [for lowercase]
+#LUMTAUTO-TRANSFORM [lower-case]
 #start transforming via the LUMTAUTO cipher algorithm
-r!:a:U
-r!:b:Y
-r!:c:X
-r!:d:W
-r!:e:O
-r!:f:F
-r!:g:T
-r!:h:S
-r!:i:I
-r!:j:Q
-r!:k:P
-r!:l:L
-r!:m:N
+r!:a:_%_ #U
+r!:b:_%%_ #Y
+r!:c:_%%%_ #X
+r!:d:_%%%%_ #W
+r!:e:_%%%%%_ #O
+r!:f:_%%%%%%_ #F
+r!:g:_%%%%%%%_ #T
+r!:h:_%%%%%%%%_ #S
+r!:i:_%%%%%%%%%_ #I
+r!:j:_%%%%%%%%%%_ #Q
+r!:k:_%%%%%%%%%%%_ #P
+r!:l:_%%%%%%%%%%%%_ #L
+r!:m:_%%%%%%%%%%%%%_ #N
 r!:n:m
 r!:o:e
 r!:p:k
@@ -29,10 +30,70 @@ r!:w:d
 r!:x:c
 r!:y:b
 r!:z:z
+#complete the transform
+r!:_%_:u
+r!:_%%_:y
+r!:_%%%_:x
+r!:_%%%%_:w
+r!:_%%%%%_:o
+r!:_%%%%%%_:f
+r!:_%%%%%%%_:t
+r!:_%%%%%%%%_:s
+r!:_%%%%%%%%%_:i
+r!:_%%%%%%%%%%_:q
+r!:_%%%%%%%%%%%_:p
+r!:_%%%%%%%%%%%%_:l
+r!:_%%%%%%%%%%%%%_:n
+#FINISHED: for lower-case
 
-#because we used a case-alternation TEA trick to prevent 
-#overriding earlier transforms, we then must restore to all lower-case
-z:
+#j:lFINISHED
+
+#COMPLETE LUMTAUTO TRANSFORM [for uppercase]
+#LUMTAUTO-TRANSFORM [upper-case]
+#start transforming via the LUMTAUTO cipher algorithm
+r!:A:_%_ #U
+r!:B:_%%_ #Y
+r!:C:_%%%_ #X
+r!:D:_%%%%_ #W
+r!:E:_%%%%%_ #O
+r!:F:_%%%%%%_ #F
+r!:G:_%%%%%%%_ #T
+r!:H:_%%%%%%%%_ #S
+r!:I:_%%%%%%%%%_ #I
+r!:J:_%%%%%%%%%%_ #Q
+r!:K:_%%%%%%%%%%%_ #P
+r!:L:_%%%%%%%%%%%%_ #L
+r!:M:_%%%%%%%%%%%%%_ #N
+r!:N:M
+r!:O:E
+r!:P:K
+r!:Q:J
+r!:R:R
+r!:S:H
+r!:T:G
+r!:U:A
+r!:V:V
+r!:W:D
+r!:X:C
+r!:Y:B
+r!:Z:Z
+#complete the transform
+r!:_%_:U
+r!:_%%_:Y
+r!:_%%%_:X
+r!:_%%%%_:W
+r!:_%%%%%_:O
+r!:_%%%%%%_:F
+r!:_%%%%%%%_:T
+r!:_%%%%%%%%_:S
+r!:_%%%%%%%%%_:I
+r!:_%%%%%%%%%%_:Q
+r!:_%%%%%%%%%%%_:P
+r!:_%%%%%%%%%%%%_:L
+r!:_%%%%%%%%%%%%%_:N
+#FINISHED: for upper-case
+
+#Complete Original Message NOW Transformed
 
 #then store transformed message :)
 v:vTRANSFORMED_MESSAGE
