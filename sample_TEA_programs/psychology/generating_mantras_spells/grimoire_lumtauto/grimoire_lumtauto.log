@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  14 NOV 2025 22:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  15 NOV 2025 01:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -820,6 +820,9 @@ LaTeX Warning: Label `FIGCONJ1' multiply defined.
 
 
 LaTeX Warning: Label `FIG2' multiply defined.
+
+
+LaTeX Warning: Label `FIGOLGA' multiply defined.
 
 )
 \openout1 = `grimoire_lumtauto.aux'.
@@ -1863,44 +1866,64 @@ Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
 \OT1/cmtt/m/n/12 of the universe. You should use the entire exhalation to
  []
 
+<resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.jpg, i
+d=1012, 1018.80624pt x 1084.05pt>
+File: resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.j
+pg Graphic file (type jpg)
+<use resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.jp
+g>
+Package pdftex.def Info: resources/a_modern_chaos_magick_operating_circle_by_ne
+mesisfixx_digtctm.jpg  used on input line 1787.
+(pdftex.def)             Requested size: 376.42575pt x 400.52982pt.
+
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1783--1793
+[][] 
+ []
+
 
 
 [39]
-Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+
+[40 <./resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.
+jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
 []\OT1/cmtt/m/n/12 The original name of Jesus of Nazareth was not
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
 \OT1/cmtt/m/n/12 ``Jesus." In his own time, he would have been called
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
 \OT1/cmtt/m/n/12 Yeshua in Hebrew/Aramaic, a shortened form of Yehoshua,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
 \OT1/cmtt/m/n/12 meaning ``Yahweh is salvation." The name ``Jesus" is the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
 \OT1/cmtt/m/n/12 English form that developed through Greek (I^^Vesous) and
  []
 
 
-
-[40]
-Overfull \hbox (53.39963pt too wide) in paragraph at lines 1822--1889
+Overfull \hbox (71.54555pt too wide) in paragraph at lines 1838--1930
 [][] 
  []
 
 
 
 [41]
-Overfull \hbox (56.6364pt too wide) in paragraph at lines 1904--1914
+Overfull \vbox (11.91069pt too high) has occurred while \output is active []
+
+
+
+[42]
+Overfull \hbox (56.6364pt too wide) in paragraph at lines 1945--1955
 [][] 
  []
 
@@ -1908,52 +1931,52 @@ Overfull \hbox (56.6364pt too wide) in paragraph at lines 1904--1914
 
 pdfTeX warning: pdflatex (file ./resources/ozin_code.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<resources/ozin_code.pdf, id=1051, 515.04419pt x 611.40419pt>
+<resources/ozin_code.pdf, id=1058, 515.04419pt x 611.40419pt>
 File: resources/ozin_code.pdf Graphic file (type pdf)
 <use resources/ozin_code.pdf>
-Package pdftex.def Info: resources/ozin_code.pdf  used on input line 1923.
+Package pdftex.def Info: resources/ozin_code.pdf  used on input line 1964.
 (pdftex.def)             Requested size: 463.53549pt x 550.25867pt.
 
-Overfull \hbox (45.28181pt too wide) in paragraph at lines 1923--1923
+Overfull \hbox (45.28181pt too wide) in paragraph at lines 1964--1964
  [] 
  []
 
 
 
-[42]
+[43]
 
 pdfTeX warning: pdflatex (file ./resources/ozin_slogan.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/ozin_slogan.pdf, id=1058, 316.3017pt x 223.7961pt>
+<resources/ozin_slogan.pdf, id=1066, 316.3017pt x 223.7961pt>
 File: resources/ozin_slogan.pdf Graphic file (type pdf)
 <use resources/ozin_slogan.pdf>
-Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 1932.
+Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 1973.
 (pdftex.def)             Requested size: 418.25368pt x 295.94786pt.
 
 
-[43 <./resources/ozin_code.pdf>]
+[44 <./resources/ozin_code.pdf>]
 
 pdfTeX warning: pdflatex (file ./resources/philosopher.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/philosopher.pdf, id=1069, 310.27919pt x 503.96278pt>
+<resources/philosopher.pdf, id=1076, 310.27919pt x 503.96278pt>
 File: resources/philosopher.pdf Graphic file (type pdf)
 <use resources/philosopher.pdf>
-Package pdftex.def Info: resources/philosopher.pdf  used on input line 1946.
+Package pdftex.def Info: resources/philosopher.pdf  used on input line 1987.
 (pdftex.def)             Requested size: 310.27843pt x 503.96155pt.
 
 
-[44 <./resources/ozin_slogan.pdf>]
+[45 <./resources/ozin_slogan.pdf>]
 
 pdfTeX warning: pdflatex (file ./resources/medina_slogan.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/medina_slogan.pdf, id=1083, 478.66827pt x 120.45pt>
+<resources/medina_slogan.pdf, id=1090, 478.66827pt x 120.45pt>
 File: resources/medina_slogan.pdf Graphic file (type pdf)
 <use resources/medina_slogan.pdf>
-Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 1955.
+Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 1996.
 (pdftex.def)             Requested size: 418.25368pt x 105.24828pt.
 (grimoire_lumtauto.bbl
 
-[45 <./resources/philosopher.pdf> <./resources/medina_slogan.pdf>]
+[46 <./resources/philosopher.pdf> <./resources/medina_slogan.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 76--81
 []\OT1/cmr/m/n/12 Henry Cor-nelius Agrippa.  |   []   |   []   |   []   |   [] 
   |   [].
@@ -1985,7 +2008,7 @@ Underfull \hbox (badness 2828) in paragraph at lines 88--93
 
 
 
-[46]
+[47]
 Underfull \hbox (badness 1308) in paragraph at lines 116--121
 []\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
 ]   |   [].
@@ -2040,7 +2063,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 156--162
 
 
 
-[47]
+[48]
 Underfull \hbox (badness 1622) in paragraph at lines 215--221
 []\OT1/cmr/m/n/12 Joshua Madara.  Roboth-eo-sis: Art, magic, cy-ber-net-ics.  |
    []
@@ -2071,12 +2094,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 223--229
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 1984--1984
+Underfull \hbox (badness 10000) in paragraph at lines 2025--2025
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1984--1987
+Underfull \hbox (badness 10000) in paragraph at lines 2025--2028
 
  []
 
@@ -2084,10 +2107,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1984--1987
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1157, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=1164, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 1990.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 2031.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2095,7 +2118,7 @@ pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 1990.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 2031.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2105,38 +2128,38 @@ d PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1160, page=1, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=1167, page=1, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
-90.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 20
+31.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
-90.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 20
+31.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
-[48]
+[49]
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
-90.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 20
+31.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
-90.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 20
+31.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
-90.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 20
+31.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[49
+[50
 
  <./resources/back_cover.pdf>] (grimoire_lumtauto.aux)
  ***********
@@ -2151,10 +2174,10 @@ Package rerunfilecheck Info: File `grimoire_lumtauto.out' has not changed.
 (rerunfilecheck)             Checksum: B66C784B24452CFDDB229C42F30871E4;2237.
  ) 
 Here is how much of TeX's memory you used:
- 31361 strings out of 473898
- 593182 string characters out of 5736297
+ 31371 strings out of 473898
+ 593795 string characters out of 5736297
  2201960 words of memory out of 5000000
- 53128 multiletter control sequences out of 15000+600000
+ 53135 multiletter control sequences out of 15000+600000
  576991 words of font info for 107 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,17n,101p,1838b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2184,9 +2207,9 @@ m/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb
 ><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
  Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTe
 X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on grimoire_lumtauto.pdf (49 pages, 3327205 bytes).
+Output written on grimoire_lumtauto.pdf (50 pages, 3434253 bytes).
 PDF statistics:
- 1432 PDF objects out of 1440 (max. 8388607)
- 611 named destinations out of 1000 (max. 500000)
- 211 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1441 PDF objects out of 1728 (max. 8388607)
+ 614 named destinations out of 1000 (max. 500000)
+ 216 words of extra memory for PDF output out of 10000 (max. 10000000)
 
