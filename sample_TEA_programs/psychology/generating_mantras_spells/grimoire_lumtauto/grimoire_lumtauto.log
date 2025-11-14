@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  14 NOV 2025 17:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  14 NOV 2025 20:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -816,6 +816,18 @@ LaTeX Warning: Label `FIGCONJ1' multiply defined.
 LaTeX Warning: Label `FIG2' multiply defined.
 
 )
+Runaway argument?
+{\contentsline {section}{\numberline { 
+! File ended while scanning use of \@writefile.
+<inserted text> 
+                \par 
+l.234 \begin{document}
+                      
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
 \openout1 = `grimoire_lumtauto.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 234.
@@ -836,7 +848,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 234.
 LaTeX Font Info:    ... okay on input line 234.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 234.
 LaTeX Font Info:    ... okay on input line 234.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -920,7 +931,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/front_cover.pdf, id=50, 596.98032pt x 844.65562pt>
+<resources/front_cover.pdf, id=6, 596.98032pt x 844.65562pt>
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf>
 Package pdftex.def Info: resources/front_cover.pdf  used on input line 237.
@@ -941,7 +952,7 @@ nd PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/front_cover.pdf, id=53, page=1, 596.98032pt x 844.65562pt>
+<resources/front_cover.pdf, id=9, page=1, 596.98032pt x 844.65562pt>
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
 Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
@@ -986,6 +997,18 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 240
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
+LaTeX Warning: Citation `crowley1948magick' on page 2 undefined on input line 2
+40.
+
+
+LaTeX Warning: Citation `cli_tttt' on page 2 undefined on input line 246.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 2 undefined on inp
+ut line 247.
+
+
+
 [2{C:/Users/AKAM/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 Underfull \hbox (badness 10000) in paragraph at lines 250--253
 
@@ -995,14 +1018,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--253
 
 pdfTeX warning: pdflatex (file ./resources/emblem_ion.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/emblem_ion.pdf, id=97, 364.48169pt x 353.40028pt>
+<resources/emblem_ion.pdf, id=47, 364.48169pt x 353.40028pt>
 File: resources/emblem_ion.pdf Graphic file (type pdf)
 <use resources/emblem_ion.pdf>
 Package pdftex.def Info: resources/emblem_ion.pdf  used on input line 257.
 (pdftex.def)             Requested size: 291.58574pt x 282.7206pt.
 
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 3 undefined 
+on input line 269.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 3 undefined on inp
+ut line 269.
+
+
+LaTeX Warning: Citation `wikipedia_theistic_satanism' on page 3 undefined on in
+put line 269.
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 3 undefined on input line 2
+69.
+
+
+LaTeX Warning: Citation `wikipedia_theistic_satanism' on page 3 undefined on in
+put line 269.
+
+
 
 [3 <./resources/emblem_ion.pdf>]
+
+LaTeX Warning: Citation `Lutalo2024_3c' on page 4 undefined on input line 271.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 280--281
 []\OT1/cmtt/m/n/12 Programming languages create a medium via which one can
  []
@@ -1033,6 +1080,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 280--281
  []
 
 
+LaTeX Warning: Citation `butler1952magic' on page 4 undefined on input line 288
+.
+
+
+LaTeX Warning: Citation `crowley1929magick' on page 4 undefined on input line 2
+88.
+
+
+LaTeX Warning: Citation `Lutalo2024_3c' on page 4 undefined on input line 288.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 297--299
 []\OT1/cmtt/m/n/12 Basically, we see how it is indeed language, or rather,
  []
@@ -1048,6 +1106,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 297--299
  []
 
 
+LaTeX Warning: Citation `Lutalo2024_3c' on page 4 undefined on input line 309.
+
+
+LaTeX Warning: Citation `cassiel1990encyclopedia' on page 4 undefined on input 
+line 309.
+
+
+LaTeX Warning: Citation `crowley1929magick' on page 4 undefined on input line 3
+09.
+
+
+LaTeX Warning: Citation `crowley1929magick' on page 4 undefined on input line 3
+09.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 320--321
 []\OT1/cmtt/m/n/12 Magick is the Science and Art of causing Change to
  []
@@ -1055,6 +1128,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 320--321
 
 
 [4]
+
+LaTeX Warning: Citation `agrippa2014occult' on page 5 undefined on input line 3
+29.
+
+
+LaTeX Warning: Citation `lutalo_2025_definitions' on page 5 undefined on input 
+line 331.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 341--342
 []\OT1/cmtt/m/n/12 The science and art of causing change (in
  []
@@ -1068,6 +1150,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 341--342
 Underfull \hbox (badness 10000) in paragraph at lines 341--342
 \OT1/cmtt/m/n/12 means not currently understood by traditional Western
  []
+
+
+LaTeX Warning: Citation `kraig2010modern' on page 5 undefined on input line 344
+.
+
+
+LaTeX Warning: Citation `kraig2010modern' on page 5 undefined on input line 350
+.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 360--361
@@ -1095,11 +1185,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 360--361
  []
 
 
+LaTeX Warning: Citation `mathers1904goetia' on page 5 undefined on input line 3
+63.
+
+
+LaTeX Warning: Citation `agrippa2014occult' on page 5 undefined on input line 3
+69.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 5 undefined on input line 3
+69.
+
+
+LaTeX Warning: Citation `FasanoSequeira2017' on page 5 undefined on input line 
+369.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 5 undefined on input line 3
+69.
+
+
 
 [5]
 Underfull \hbox (badness 10000) in paragraph at lines 381--382
 []\OT1/cmtt/m/n/12 The enhancement of the probabilities/likelihood of a
  []
+
+
+LaTeX Warning: Citation `Carroll1995' on page 6 undefined on input line 384.
+
+
+LaTeX Warning: Citation `Lutalo2023_metaphysics' on page 6 undefined on input l
+ine 390.
+
+
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 6 undefined on input line 
+434.
+
+
+LaTeX Warning: Citation `Lutalo2023_metaphysics' on page 6 undefined on input l
+ine 434.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 434--434
@@ -1134,7 +1259,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 434--436
 
 
 [6]
-Overfull \hbox (22.73065pt too wide) in paragraph at lines 437--438
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 7 undefined 
+on input line 437.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 7 undefined on inp
+ut line 437.
+
+
+Overfull \hbox (23.23071pt too wide) in paragraph at lines 437--438
 \OT1/cmr/m/n/12 sult" --- a \OT1/cmr/m/it/12 willed out-come\OT1/cmr/m/n/12 , t
 hat es-sen-tially is en-coded in the lan-guage of transformatics[[]]
  []
@@ -1143,6 +1277,17 @@ hat es-sen-tially is en-coded in the lan-guage of transformatics[[]]
 Underfull \hbox (badness 10000) in paragraph at lines 440--441
 
  []
+
+
+LaTeX Warning: Citation `lutalo_2025_definitions' on page 7 undefined on input 
+line 451.
+
+
+LaTeX Warning: Citation `Carroll1995' on page 7 undefined on input line 451.
+
+
+LaTeX Warning: Citation `carroll2010octavo' on page 7 undefined on input line 4
+51.
 
 
 
@@ -1157,9 +1302,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 463--464
  []
 
 
+LaTeX Warning: Citation `crowley1929magick' on page 8 undefined on input line 4
+66.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 471--472
 
  []
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 8 undefined on input line 49
+0.
 
 
 
@@ -1167,7 +1320,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 471--472
 
 pdfTeX warning: pdflatex (file ./resources/iona.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<resources/iona.pdf, id=237, 364.48169pt x 353.40028pt>
+<resources/iona.pdf, id=137, 364.48169pt x 353.40028pt>
 File: resources/iona.pdf Graphic file (type pdf)
 <use resources/iona.pdf>
 Package pdftex.def Info: resources/iona.pdf  used on input line 498.
@@ -1176,7 +1329,7 @@ Package pdftex.def Info: resources/iona.pdf  used on input line 498.
 
 pdfTeX warning: pdflatex (file ./resources/lumtauto_slogan.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<resources/lumtauto_slogan.pdf, id=238, 663.43857pt x 125.5089pt>
+<resources/lumtauto_slogan.pdf, id=138, 663.43857pt x 125.5089pt>
 File: resources/lumtauto_slogan.pdf Graphic file (type pdf)
 <use resources/lumtauto_slogan.pdf>
 Package pdftex.def Info: resources/lumtauto_slogan.pdf  used on input line 507.
@@ -1195,21 +1348,21 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 511.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 516.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 514.
 
 
 [9 <./resources/iona.pdf> <./resources/lumtauto_slogan.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 525--526
+Underfull \hbox (badness 10000) in paragraph at lines 523--524
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 537--538
+Underfull \hbox (badness 10000) in paragraph at lines 535--536
 
  []
 
 
-Overfull \hbox (17.88513pt too wide) detected at line 570
+Overfull \hbox (17.88513pt too wide) detected at line 568
  []$[]  \OMS/cmsy/m/n/12 8\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 2 \OT1/cmr/m/n/12
  ^^B[]  =[]\OMS/cmsy/m/n/12 )  \OML/cmm/m/it/12 ^^L \OMS/cmsy/m/n/12 2 \OT1/cmr
 /m/n/12 
@@ -1221,30 +1374,43 @@ Overfull \hbox (17.88513pt too wide) detected at line 570
 [10]
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 610--611
+
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 12 undefined on input line
+ 605.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 12 undefined on input line 6
+08.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 12 undefined on input line 6
+08.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 608--609
 
  []
 
 
-Overfull \hbox (31.02122pt too wide) in paragraph at lines 615--625
+Overfull \hbox (31.02122pt too wide) in paragraph at lines 613--623
 []\OT1/cmtt/m/n/12 Our Father in heaven, may your name be held holy, your kingd
 om come,
  []
 
 
-Overfull \hbox (18.67122pt too wide) in paragraph at lines 615--625
+Overfull \hbox (18.67122pt too wide) in paragraph at lines 613--623
 \OT1/cmtt/m/n/12 your will be done, on earth as in heaven. Give us today our da
 ily
  []
 
 
-Overfull \hbox (0.14621pt too wide) in paragraph at lines 615--625
+Overfull \hbox (0.14621pt too wide) in paragraph at lines 613--623
 \OT1/cmtt/m/n/12 bread. And forgive us our debts, as we have forgiven those who
 
  []
 
 
-Overfull \hbox (24.84622pt too wide) in paragraph at lines 615--625
+Overfull \hbox (24.84622pt too wide) in paragraph at lines 613--623
 \OT1/cmtt/m/n/12 are in debt to us. And do not put us to the test, but save us 
 from
  []
@@ -1252,113 +1418,134 @@ from
 
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 630--631
+Underfull \hbox (badness 10000) in paragraph at lines 628--629
 
  []
 
 
-Overfull \hbox (31.02122pt too wide) in paragraph at lines 634--644
+Overfull \hbox (31.02122pt too wide) in paragraph at lines 632--642
 []\OT1/cmtt/m/n/12 Ear Fugsor im souvom, nub bear muno yo solw selb, bear pimtw
 en xeno,
  []
 
 
-Overfull \hbox (18.67122pt too wide) in paragraph at lines 634--644
+Overfull \hbox (18.67122pt too wide) in paragraph at lines 632--642
 \OT1/cmtt/m/n/12 bear dill yo wemo, em ourgs uh im souvom. Tivo ah gewub ear wu
 ilb
  []
 
 
-Overfull \hbox (0.14621pt too wide) in paragraph at lines 634--644
+Overfull \hbox (0.14621pt too wide) in paragraph at lines 632--642
 \OT1/cmtt/m/n/12 yrouw. Umw fertivo ah ear woygh, uh do suvo fertivom gseho dse
 
  []
 
 
-Overfull \hbox (24.84622pt too wide) in paragraph at lines 634--644
+Overfull \hbox (24.84622pt too wide) in paragraph at lines 632--642
 \OT1/cmtt/m/n/12 uro im woyg ge ah. Umw we meg kag ah ge gso gohg, yag huvo ah 
 fren
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 649--650
+LaTeX Warning: Citation `newjerusalem1985' on page 13 undefined on input line 6
+47.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 13 undefined on input line 6
+47.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 647--648
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 660--661
+Underfull \hbox (badness 10000) in paragraph at lines 658--659
 
  []
 
 
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 674--675
+Underfull \hbox (badness 10000) in paragraph at lines 672--673
 
  []
 
 
-Overfull \hbox (48.69167pt too wide) in paragraph at lines 679--680
+Overfull \hbox (48.69167pt too wide) in paragraph at lines 677--678
 []\OT1/cmtt/m/n/20.74 Imi geso yotimemimet Tewa xarougow souvom
  []
 
-<resources/lumtauto.jpg, id=325, 1541.76pt x 1027.84pt>
+
+LaTeX Warning: Citation `LaVey1969' on page 14 undefined on input line 683.
+
+
+LaTeX Warning: Citation `LaVey1969' on page 14 undefined on input line 683.
+
+<resources/lumtauto.jpg, id=219, 1541.76pt x 1027.84pt>
 File: resources/lumtauto.jpg Graphic file (type jpg)
 <use resources/lumtauto.jpg>
-Package pdftex.def Info: resources/lumtauto.jpg  used on input line 706.
+Package pdftex.def Info: resources/lumtauto.jpg  used on input line 704.
 (pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 702--710
+Overfull \hbox (12.4pt too wide) in paragraph at lines 700--708
 [][] 
  []
 
 
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 719--720
+Underfull \hbox (badness 10000) in paragraph at lines 717--718
 
  []
 
 
-Overfull \hbox (61.61942pt too wide) in paragraph at lines 725--726
+Overfull \hbox (61.61942pt too wide) in paragraph at lines 723--724
 []\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 list of mir-rored vow-els, \OT1/cm
 tt/m/it/12 list[]vowels[]mirror \OT1/cmr/m/it/12 = \OT1/cmtt/m/it/12 reversed(l
 ist[]vowels)\OT1/cmr/m/it/12 . 
  []
 
 
-Overfull \hbox (30.58589pt too wide) in paragraph at lines 731--732
+Overfull \hbox (30.58589pt too wide) in paragraph at lines 729--730
 \OML/cmm/m/it/12 v[]$ \OT1/cmr/m/it/12 at in-dex $\OML/cmm/m/it/12 i$ \OT1/cmr/
 m/it/12 in that list, with an-other char-ac-ter, $\OML/cmm/m/it/12 v[]$ \OT1/cm
 r/m/it/12 from \OT1/cmtt/m/it/12 list[]vowels[]mirror\OT1/cmr/m/it/12 ,
  []
 
 
-Overfull \hbox (8.37656pt too wide) in paragraph at lines 739--740
+Overfull \hbox (8.37656pt too wide) in paragraph at lines 737--738
 []\OT1/cmr/bx/it/12 INITIALIZE \OT1/cmtt/m/it/12 list[]a[]z[]lumtauto \OT1/cmr/
 m/it/12 by cloning \OT1/cmtt/m/it/12 list[]a[]z[]intermediate\OT1/cmr/m/it/12 .
  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 740--741
+Underfull \hbox (badness 10000) in paragraph at lines 738--739
 
  []
 
 
 
 [15 <./resources/lumtauto.jpg>]
-Overfull \hbox (5.5401pt too wide) in paragraph at lines 761--762
+Overfull \hbox (5.5401pt too wide) in paragraph at lines 759--760
 []\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 re-sul-tant, trans-formed/-trans-l
 ated mes-sage, \OT1/cmtt/m/it/12 msg[]lumtauto \OT1/cmr/m/it/12 thus: 
  []
 
 
-Overfull \hbox (1.98259pt too wide) in paragraph at lines 768--769
+Overfull \hbox (1.98259pt too wide) in paragraph at lines 766--767
 []\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 the cor-re-spond-ing mir-ror let-t
 er po-si-tion $\OML/cmm/m/it/12 k \OT1/cmr/m/n/12 =$ \OT1/cmtt/m/it/12 index($\
 OML/cmm/m/it/12 c[]$
  []
+
+
+LaTeX Warning: Citation `cli_tttt' on page 16 undefined on input line 787.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 16 undefined on input line 7
+87.
 
 
 
@@ -1367,22 +1554,22 @@ OML/cmm/m/it/12 c[]$
 [17]
 
 Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 897.
+(caption)                outside box or environment on input line 895.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 897.
+(caption)                particular \caption on input line 895.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 907--908
+Underfull \hbox (badness 10000) in paragraph at lines 905--906
 [][]$\OT1/cmtt/m/n/12 https : / / tea . nuchwezi . com / ?i = put + your + mess
 age + here & fc = https : / / gist .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 907--908
+Underfull \hbox (badness 10000) in paragraph at lines 905--906
 \OT1/cmtt/m/n/12 githubusercontent . com / mcnemesis / ae9d6226d49f5a8601a84241
 a08f07c8 /
  []
@@ -1394,27 +1581,44 @@ a08f07c8 /
 [19]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1002.
+(caption)                particular \caption on input line 1000.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Citation `nuchweziCrypto' on page 20 undefined on input line 100
+7.
+
+
+LaTeX Warning: Citation `nuchweziCrypto' on page 20 undefined on input line 100
+7.
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 20 undefined on input line 1015.
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 20 undefined on input line 1015.
 
 
 
 [20]
-<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=606, 1541.76pt x 1027
+<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=493, 1541.76pt x 1027
 .84pt>
 File: resources/illustration_trudy_olga_spirit_fight_2.jpg Graphic file (type j
 pg)
 <use resources/illustration_trudy_olga_spirit_fight_2.jpg>
 Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight_2.jpg  
-used on input line 1048.
+used on input line 1046.
 (pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1044--1054
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1042--1052
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1058--1059
+LaTeX Warning: Citation `shrinesjwl' on page 21 undefined on input line 1056.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1056--1057
 
  []
 
@@ -1424,67 +1628,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 1058--1059
 (grimoire_lumtauto.listing)
 
 [21 <./resources/illustration_trudy_olga_spirit_fight_2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 []\OT1/cmtt/m/n/12 I bind you in the name of Ruhanga and all the spirits of nat
 ure and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 my ancestors here present. I bind you regardless of whether yo
 u
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 are here in spirit, mind or body. I bind you and cut from you 
 all
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 sources of power that are Animusting you right now, in the nam
 e of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 the Most Powerful Ruhanga! I hurl you into an eternal prison, 
 I
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 cut you to shreds, I summon thunder and fire that eats at the 
 body,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 mind and spirit to strike and deprive you of all your strength
  and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 health. I summon the hungriest of hell's spirits to feast on y
 ou.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 I bind and destroy you in God's most holy, unknown names! Righ
 t
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1102
+Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
 \OT1/cmtt/m/n/12 Here, Right Now! Be Gone, Be Gone from this place and time Rig
 ht
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1113--1114
+LaTeX Warning: Citation `jung1964symbols' on page 22 undefined on input line 11
+05.
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 22 undefined on input line 1105.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 22 undefined on input line 
+1111.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1111--1112
 
  []
 
@@ -1496,40 +1711,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 1113--1114
  (grimoire_lumtauto.listing)
 
 [23]
-<resources/illustration_trudy_olga_spirit_fight.jpg, id=689, 1541.76pt x 1027.8
+<resources/illustration_trudy_olga_spirit_fight.jpg, id=570, 1541.76pt x 1027.8
 4pt>
 File: resources/illustration_trudy_olga_spirit_fight.jpg Graphic file (type jpg
 )
 <use resources/illustration_trudy_olga_spirit_fight.jpg>
 Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight.jpg  us
-ed on input line 1181.
+ed on input line 1179.
 (pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1177--1187
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1175--1185
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1193--1194
+LaTeX Warning: Citation `nuchweziCrypto' on page 24 undefined on input line 119
+1.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1191--1192
 
  []
 
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-199.
+197.
 (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1199.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1197.
 
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
-209.
+207.
 
 (C:\Program Files\MiKTeX\tex/latex/base\omlcmr.fd
 File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1209.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1207.
 
 
 
@@ -1538,7 +1757,7 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
 [25]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1255.
+(caption)                particular \caption on input line 1253.
 See the caption package documentation for explanation.
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
@@ -1548,118 +1767,124 @@ File: lstlang1.sty 2024/05/25 1.10b listings language file
 [26]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1302.
+(caption)                particular \caption on input line 1300.
 See the caption package documentation for explanation.
 
 
+LaTeX Warning: Citation `shrinesjwl' on page 27 undefined on input line 1306.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 1308.
+(hyperref)                removing `\@ifnextchar' on input line 1306.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1318--1319
+Underfull \hbox (badness 10000) in paragraph at lines 1316--1317
 []\OT1/cmtt/m/n/12 A traditional spell is often rather like poetry, in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1318--1319
+Underfull \hbox (badness 10000) in paragraph at lines 1316--1317
 \OT1/cmtt/m/n/12 that the power can manifest even though the reasons
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1318--1319
+Underfull \hbox (badness 10000) in paragraph at lines 1316--1317
 \OT1/cmtt/m/n/12 for its working remain a mystery. It is best to keep a
  []
 
 
 LaTeX Warning: Citation `farrar1990spells' on page 27 undefined on input line 1
-321.
+319.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 []\OT1/cmtt/m/n/12 The formulae, actions and objects or substances they
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 involve many have many different purposes. Sometimes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 they may be, frankly, just to impress the uninitiated.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 Sometimes they may be a distorted memory of something
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 which originally had a physically, psychologically or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 psychically practical reason. And even oftener they
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 may be calling upon a symbolism, whether conscious or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 unconscious, which aids the inter-level communication...
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 What one should not do is to dismiss them out of hand
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 just because the reason for their form is not immediately
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 obvious to rational analysis. You may find that they
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 work though you don't know why --- that the power of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 their symbology is buried too deeply in your personal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1335--1336
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
 \OT1/cmtt/m/n/12 Unconscious (or even in the Collective Unconscious) for
  []
 
 
 LaTeX Warning: Citation `farrar1990spells' on page 27 undefined on input line 1
-338.
+336.
 
 
 
 [27]
-<resources/conjurer.jpg, id=815, 1798.72pt x 1027.84pt>
+<resources/conjurer.jpg, id=695, 1798.72pt x 1027.84pt>
 File: resources/conjurer.jpg Graphic file (type jpg)
 <use resources/conjurer.jpg>
-Package pdftex.def Info: resources/conjurer.jpg  used on input line 1352.
+Package pdftex.def Info: resources/conjurer.jpg  used on input line 1350.
 (pdftex.def)             Requested size: 376.42575pt x 215.09996pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1348--1358
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1346--1356
 [][] 
  []
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 28 undefined on input line 1359.
 
 \openout5 = `grimoire_lumtauto.listing'.
 
@@ -1669,18 +1894,18 @@ Overfull \hbox (12.4pt too wide) in paragraph at lines 1348--1358
 \openout5 = `grimoire_lumtauto.listing'.
 
 
-Underfull \hbox (badness 1635) in paragraph at lines 1392--1392
+Underfull \hbox (badness 1635) in paragraph at lines 1390--1390
 []\OT1/cmr/m/n/20.74 A Uni-ver-sal Vi-sion CON-JU-RA-TION Spell
  []
 
 (grimoire_lumtauto.listing)
-<resources/conjurer_4.jpg, id=828, 1252.68pt x 835.12pt>
+<resources/conjurer_4.jpg, id=707, 1252.68pt x 835.12pt>
 File: resources/conjurer_4.jpg Graphic file (type jpg)
 <use resources/conjurer_4.jpg>
-Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1403.
+Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1401.
 (pdftex.def)             Requested size: 376.42575pt x 250.9457pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1399--1409
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1397--1407
 [][] 
  []
 
@@ -1688,17 +1913,24 @@ Overfull \hbox (12.4pt too wide) in paragraph at lines 1399--1409
 
 [29]
 
+LaTeX Warning: Citation `shrinesjwl' on page 30 undefined on input line 1410.
+
+
+
 [30 <./resources/conjurer_4.jpg>]
+
+LaTeX Warning: Citation `shrinesjwl' on page 31 undefined on input line 1429.
+
 \openout5 = `grimoire_lumtauto.listing'.
 
- (grimoire_lumtauto.listing)
+(grimoire_lumtauto.listing)
 
 pdfTeX warning: pdflatex (file ./resources/maiu_sigil.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/maiu_sigil.pdf, id=858, 277.9986pt x 718.60468pt>
+<resources/maiu_sigil.pdf, id=735, 277.9986pt x 718.60468pt>
 File: resources/maiu_sigil.pdf Graphic file (type pdf)
 <use resources/maiu_sigil.pdf>
-Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1458.
+Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1456.
 (pdftex.def)             Requested size: 222.39917pt x 574.88452pt.
 
 
@@ -1706,13 +1938,13 @@ Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1458.
 
 pdfTeX warning: pdflatex (file ./resources/myrrh_slogan.pdf): PDF inclusion: fo
 und PDF version <1.7>, but at most version <1.5> allowed
-<resources/myrrh_slogan.pdf, id=872, 621.28107pt x 126.4725pt>
+<resources/myrrh_slogan.pdf, id=749, 621.28107pt x 126.4725pt>
 File: resources/myrrh_slogan.pdf Graphic file (type pdf)
 <use resources/myrrh_slogan.pdf>
-Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1467.
+Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1465.
 (pdftex.def)             Requested size: 418.25368pt x 85.14525pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1476--1477
+Underfull \hbox (badness 10000) in paragraph at lines 1474--1475
 
  []
 
@@ -1721,35 +1953,63 @@ Underfull \hbox (badness 10000) in paragraph at lines 1476--1477
 [32 <./resources/maiu_sigil.pdf> <./resources/myrrh_slogan.pdf>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1497.
+(caption)                particular \caption on input line 1495.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Citation `lutalo2024tea' on page 33 undefined on input line 1502
+.
+
+
+LaTeX Warning: Citation `lutalo2020dnap' on page 33 undefined on input line 151
+2.
+
+
+LaTeX Warning: Hyper reference `FIGTEAMYRRH' on page 33 undefined on input line
+ 1527.
+
+
+LaTeX Warning: Reference `FIGTEAMYRRH' on page 33 undefined on input line 1527.
+
 
 
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 1544--1545
+Underfull \hbox (badness 10000) in paragraph at lines 1542--1543
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1549--1550
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 34 undefined on input line 1
+545.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 34 undefined on input line 
+1545.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 34 undefined on input line 1
+545.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1547--1548
 
  []
 
 
 
 [34]
-Underfull \hbox (badness 10000) in paragraph at lines 1596--1597
+Underfull \hbox (badness 10000) in paragraph at lines 1594--1595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1606--1607
+Underfull \hbox (badness 10000) in paragraph at lines 1604--1605
 
  []
 
 
-Overfull \hbox (58.42921pt too wide) detected at line 1624
+Overfull \hbox (58.42921pt too wide) detected at line 1622
  []$[]  \OMS/cmsy/m/n/12 8\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 2 \OT1/cmr/m/n/12
  ^^B[]  =[]\OMS/cmsy/m/n/12 )  \OML/cmm/m/it/12 ^^L \OMS/cmsy/m/n/12 2 \OT1/cmr
 /m/n/12 
@@ -1760,291 +2020,135 @@ Overfull \hbox (58.42921pt too wide) detected at line 1624
 
 [35]
 
+LaTeX Warning: Citation `transformatics' on page 36 undefined on input line 162
+5.
+
+
+LaTeX Warning: Citation `kraig2010modern' on page 36 undefined on input line 16
+41.
+
+
 LaTeX Warning: Citation `farrar1990spells' on page 36 undefined on input line 1
-644.
+642.
 
 
 
 [36]
 
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1659.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Hyper reference `FIGTEAMYRRH' on page 37 undefined on input line
+ 1666.
+
+
+LaTeX Warning: Reference `FIGTEAMYRRH' on page 37 undefined on input line 1666.
+
+
+
+LaTeX Warning: Hyper reference `FIGTEAMYRRHFIN' on page 37 undefined on input l
+ine 1666.
+
+
+LaTeX Warning: Reference `FIGTEAMYRRHFIN' on page 37 undefined on input line 16
+66.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1671--1672
+[][]$\OT1/cmtt/m/n/12 https : / / tea . nuchwezi . com / ?i = hello + world & f
+c = https : / / gist .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1671--1672
+\OT1/cmtt/m/n/12 githubusercontent . com / mcnemesis / 89a8030ba026977574930f87
+273fedd0 /
+ []
+
+
+LaTeX Warning: Hyper reference `TRANSFMYRRH' on page 37 undefined on input line
+ 1682.
+
+
+LaTeX Warning: Reference `TRANSFMYRRH' on page 37 undefined on input line 1682.
+
+
+
 LaTeX Warning: Citation `farrar1990spells' on page 37 undefined on input line 1
-654.
+682.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1665--1666
+Underfull \hbox (badness 10000) in paragraph at lines 1693--1694
 []\OT1/cmtt/m/n/12 Susa Morgan Black sends us another way of ensuring the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1665--1666
+Underfull \hbox (badness 10000) in paragraph at lines 1693--1694
 \OT1/cmtt/m/n/12 Boomerang Effect and deflecting bad energy back to the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1667--1668
+Underfull \hbox (badness 10000) in paragraph at lines 1695--1696
 []\OT1/cmtt/m/n/12 `Take a special hand-held mirror,' she says, `and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1667--1668
+Underfull \hbox (badness 10000) in paragraph at lines 1695--1696
 \OT1/cmtt/m/n/12 simply turn completely around with the mirror reflecting
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
+Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
 []\OT1/cmtt/m/n/12 We have used mirrors for this purpose ourselves when
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
+Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
 \OT1/cmtt/m/n/12 we have known who was working against us, and in what
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
+Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
 \OT1/cmtt/m/n/12 direction he or she lived. We would put a mirror in a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1682--1683
+Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
 \OT1/cmtt/m/n/12 suitable window facing outwards in that direction, willing
  []
 
 
 LaTeX Warning: Citation `farrar1990spells' on page 37 undefined on input line 1
-685.
+713.
 
-\openout5 = `grimoire_lumtauto.listing'.
 
-(grimoire_lumtauto.listing)
 
 [37]
+\openout5 = `grimoire_lumtauto.listing'.
 
-pdfTeX warning: pdflatex (file ./resources/ozin_slogan.pdf): PDF inclusion: fou
-nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/ozin_slogan.pdf, id=982, 316.3017pt x 223.7961pt>
-File: resources/ozin_slogan.pdf Graphic file (type pdf)
-<use resources/ozin_slogan.pdf>
-Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 1716.
-(pdftex.def)             Requested size: 418.25368pt x 295.94786pt.
+ (grimoire_lumtauto.listing)
+
+LaTeX Warning: Citation `kraig2010modern' on page 38 undefined on input line 17
+40.
 
 
-pdfTeX warning: pdflatex (file ./resources/medina_slogan.pdf): PDF inclusion: f
-ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/medina_slogan.pdf, id=983, 478.66827pt x 120.45pt>
-File: resources/medina_slogan.pdf Graphic file (type pdf)
-<use resources/medina_slogan.pdf>
-Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 1731.
-(pdftex.def)             Requested size: 418.25368pt x 105.24828pt.
 
-
-[38 <./resources/ozin_slogan.pdf>] (grimoire_lumtauto.bbl
-
-[39 <./resources/medina_slogan.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 76--81
-[]\OT1/cmr/m/n/12 Henry Cor-nelius Agrippa.  |   []   |   []   |   []   |   [] 
-  |   [].
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 1755--1756
+[]\OT1/cmtt/m/n/12 STEP THREE. Step forward with the left foot. At the
  []
 
 
-Underfull \hbox (badness 1394) in paragraph at lines 76--81
-\OT1/cmr/m/n/12 Llewellyn Pub-li-ca-tions, Wood-bury, Min-nesota, 2014.  An-no-
-tated edi-
+Underfull \hbox (badness 10000) in paragraph at lines 1755--1756
+\OT1/cmtt/m/n/12 same time thrust your hands forward so that they point at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--81
-\OT1/cmr/m/n/12 tion (Edited by Don-ald Tyson): []$\OT1/cmtt/m/n/12 https : / /
- archive . org / details /
+Underfull \hbox (badness 10000) in paragraph at lines 1755--1756
+\OT1/cmtt/m/n/12 the exact middle of the glowing blue pentagram in front of
  []
 
 
-Overfull \hbox (89.63794pt too wide) in paragraph at lines 76--81
-\OT1/cmtt/m/n/12 three-[]books-[]of-[]occult-[]philosophy-[]henry-[]cornelius-[
-]agrippa-[]donald-[]tyson-[]edition$[]\OT1/cmr/m/n/12 . 
- []
-
-
-Underfull \hbox (badness 2828) in paragraph at lines 88--93
-|   []   |   []\OT1/cmr/m/n/12 .  Llewellyn World-wide, Wood-bury, Min-nesota, 
-2010.
- []
-
-
-Underfull \hbox (badness 1308) in paragraph at lines 116--121
-[]\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
-]   |   [].
- []
-
-
-Underfull \hbox (badness 5359) in paragraph at lines 137--142
-[]\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
-].
- []
-
-
-Underfull \hbox (badness 5696) in paragraph at lines 137--142
-\OT1/cmr/m/n/12 Man-drake of Ox-ford, round-world edi-tion edi-tion, 2010.  Dig
--i-tal
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 137--142
-\OT1/cmr/m/n/12 edi-tion avail-able at: []$\OT1/cmtt/m/n/12 https : / / archive
- . org / download / peter-[]j .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 137--142
-\OT1/cmtt/m/n/12 -[]carroll-[]the-[]octavo-[]roundworld-[]edition / Peter % 20J
- . %20Carroll %
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 156--162
-[]\OT1/cmr/m/n/12 Joseph Will-rich Lu-talo.  \OT1/cmr/bx/n/12 TEA TAZ - Trans-f
-orm-ing Ex-e-
- []
-
-
-Underfull \hbox (badness 6001) in paragraph at lines 156--162
-\OT1/cmr/bx/n/12 cutable Al-pha-bet A: to Z: COM-MAND SPACE SPEC-I-
- []
-
-
-Underfull \hbox (badness 3029) in paragraph at lines 156--162
-\OT1/cmr/bx/n/12 FI-CA-TION\OT1/cmr/m/n/12 .  |   [], 2024.  Ac-cessed on 14 Ma
-y, 2025,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 156--162
-\OT1/cmr/m/n/12 via []$\OT1/cmtt/m/n/12 https : / / www . academia . edu / 1228
-71672 / TEA _ TAZ _ Transforming _
- []
-
-
-
-[40])
-Underfull \hbox (badness 10000) in paragraph at lines 1760--1760
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1760--1763
-
- []
-
-
-
-pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
-d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1060, 596.98032pt x 844.65562pt>
-File: resources/back_cover.pdf Graphic file (type pdf)
-<use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 1766.
-(pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
-
-
-pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
-d PDF version <1.7>, but at most version <1.5> allowed
-File: resources/back_cover.pdf Graphic file (type pdf)
-<use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 1766.
-(pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
-
-
-pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
-d PDF version <1.7>, but at most version <1.5> allowed
-
-
-pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
-d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1063, page=1, 596.98032pt x 844.65562pt>
-File: resources/back_cover.pdf Graphic file (type pdf)
-<use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 17
-66.
-(pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
-File: resources/back_cover.pdf Graphic file (type pdf)
-<use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 17
-66.
-(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-
-
-[41]
-File: resources/back_cover.pdf Graphic file (type pdf)
-<use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 17
-66.
-(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-File: resources/back_cover.pdf Graphic file (type pdf)
-<use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 17
-66.
-(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-
-
-File: resources/back_cover.pdf Graphic file (type pdf)
-<use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 17
-66.
-(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[42
-
- <./resources/back_cover.pdf>] (grimoire_lumtauto.aux)
- ***********
-LaTeX2e <2024-06-01> patch level 2
-L3 programming layer <2024-07-20>
- ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `grimoire_lumtauto.out' has not changed.
-(rerunfilecheck)             Checksum: B66C784B24452CFDDB229C42F30871E4;2237.
- ) 
-Here is how much of TeX's memory you used:
- 31143 strings out of 473898
- 590185 string characters out of 5736297
- 2201960 words of memory out of 5000000
- 52942 multiletter control sequences out of 15000+600000
- 576991 words of font info for 107 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 98i,17n,101p,1838b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti1
-200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
-i600\tcrm0700.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
-ec/dpi600\tcrm1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
-ppen/ec/dpi600\tcrm1440.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Pro
-gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C
-:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program File
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb
-><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
- Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTe
-X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on grimoire_lumtauto.pdf (42 pages, 3283135 bytes).
-PDF statistics:
- 1328 PDF objects out of 1440 (max. 8388607)
- 583 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+Underfull \hbox 
