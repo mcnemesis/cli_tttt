@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  14 NOV 2025 20:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  14 NOV 2025 22:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -206,6 +206,23 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@ppsavesec=\count285
 \c@@ppsaveapp=\count286
 )
+(C:\Program Files\MiKTeX\tex/latex/makecell\makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+
+(C:\Program Files\MiKTeX\tex/latex/tools\array.sty
+Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
+\col@sep=\dimen157
+\ar@mcellbox=\box55
+\extrarowheight=\dimen158
+\NC@list=\toks20
+\extratabsurround=\skip53
+\backup@length=\skip54
+\ar@cellbox=\box56
+)
+\rotheadsize=\dimen159
+\c@nlinenum=\count287
+\TeXr@lab=\toks21
+)
 (C:\Program Files\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -223,42 +240,42 @@ Package graphics Info: Driver file: pdftex.def on input line 106.
 (C:\Program Files\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen157
-\Gin@req@width=\dimen158
+\Gin@req@height=\dimen160
+\Gin@req@width=\dimen161
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen159
-\captionmargin=\dimen160
-\caption@leftmargin=\dimen161
-\caption@rightmargin=\dimen162
-\caption@width=\dimen163
-\caption@indent=\dimen164
-\caption@parindent=\dimen165
-\caption@hangindent=\dimen166
+\caption@tempdima=\dimen162
+\captionmargin=\dimen163
+\caption@leftmargin=\dimen164
+\caption@rightmargin=\dimen165
+\caption@width=\dimen166
+\caption@indent=\dimen167
+\caption@parindent=\dimen168
+\caption@hangindent=\dimen169
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count287
-\c@continuedfloat=\count288
+\c@caption@flags=\count288
+\c@continuedfloat=\count289
 Package caption Info: hyperref package is loaded.
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count289
-\float@exts=\toks20
-\float@box=\box55
-\@float@everytoks=\toks21
-\@floatcapt=\box56
+\c@float@type=\count290
+\float@exts=\toks22
+\float@box=\box57
+\@float@everytoks=\toks23
+\@floatcapt=\box58
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
 Package caption Info: New subtype `subfigure' on input line 238.
-\c@subfigure=\count290
+\c@subfigure=\count291
 Package caption Info: New subtype `subtable' on input line 238.
-\c@subtable=\count291
+\c@subtable=\count292
 )
 (C:\Program Files\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
@@ -284,46 +301,35 @@ Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/soul\soul-ori.sty
 Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
-\SOUL@word=\toks22
-\SOUL@lasttoken=\toks23
-\SOUL@syllable=\toks24
-\SOUL@cmds=\toks25
-\SOUL@buffer=\toks26
-\SOUL@token=\toks27
-\SOUL@syllgoal=\dimen167
-\SOUL@syllwidth=\dimen168
-\SOUL@charkern=\dimen169
-\SOUL@hyphkern=\dimen170
-\SOUL@dimen=\dimen171
-\SOUL@dimeni=\dimen172
-\SOUL@minus=\count292
-\SOUL@comma=\count293
-\SOUL@apo=\count294
-\SOUL@grave=\count295
-\SOUL@spaceskip=\skip53
-\SOUL@ttwidth=\dimen173
-\SOUL@uldp=\dimen174
-\SOUL@ulht=\dimen175
+\SOUL@word=\toks24
+\SOUL@lasttoken=\toks25
+\SOUL@syllable=\toks26
+\SOUL@cmds=\toks27
+\SOUL@buffer=\toks28
+\SOUL@token=\toks29
+\SOUL@syllgoal=\dimen170
+\SOUL@syllwidth=\dimen171
+\SOUL@charkern=\dimen172
+\SOUL@hyphkern=\dimen173
+\SOUL@dimen=\dimen174
+\SOUL@dimeni=\dimen175
+\SOUL@minus=\count293
+\SOUL@comma=\count294
+\SOUL@apo=\count295
+\SOUL@grave=\count296
+\SOUL@spaceskip=\skip55
+\SOUL@ttwidth=\dimen176
+\SOUL@uldp=\dimen177
+\SOUL@ulht=\dimen178
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 ))
 (C:\Program Files\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
-
-(C:\Program Files\MiKTeX\tex/latex/tools\array.sty
-Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
-\col@sep=\dimen176
-\ar@mcellbox=\box57
-\extrarowheight=\dimen177
-\NC@list=\toks28
-\extratabsurround=\skip54
-\backup@length=\skip55
-\ar@cellbox=\box58
-)
-\everycr=\toks29
+\everycr=\toks30
 \minrowclearance=\skip56
-\rownum=\count296
+\rownum=\count297
 )
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
@@ -332,9 +338,9 @@ Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
 (C:\Program Files\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
 (C:\Program Files\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
-\pgfutil@everybye=\toks30
-\pgfutil@tempdima=\dimen178
-\pgfutil@tempdimb=\dimen179
+\pgfutil@everybye=\toks31
+\pgfutil@tempdima=\dimen179
+\pgfutil@tempdimb=\dimen180
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
 \pgfutil@abb=\box59
@@ -351,33 +357,33 @@ Package: pgf 2023-01-15 v3.1.10 (3.1.10)
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks31
-\pgfkeys@temptoks=\toks32
+\pgfkeys@pathtoks=\toks32
+\pgfkeys@temptoks=\toks33
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.
 tex
-\pgfkeys@tmptoks=\toks33
+\pgfkeys@tmptoks=\toks34
 ))
-\pgf@x=\dimen180
-\pgf@y=\dimen181
-\pgf@xa=\dimen182
-\pgf@ya=\dimen183
-\pgf@xb=\dimen184
-\pgf@yb=\dimen185
-\pgf@xc=\dimen186
-\pgf@yc=\dimen187
-\pgf@xd=\dimen188
-\pgf@yd=\dimen189
+\pgf@x=\dimen181
+\pgf@y=\dimen182
+\pgf@xa=\dimen183
+\pgf@ya=\dimen184
+\pgf@xb=\dimen185
+\pgf@yb=\dimen186
+\pgf@xc=\dimen187
+\pgf@yc=\dimen188
+\pgf@xd=\dimen189
+\pgf@yd=\dimen190
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count297
-\c@pgf@countb=\count298
-\c@pgf@countc=\count299
-\c@pgf@countd=\count300
-\t@pgf@toka=\toks34
-\t@pgf@tokb=\toks35
-\t@pgf@tokc=\toks36
-\pgf@sys@id@count=\count301
+\c@pgf@counta=\count298
+\c@pgf@countb=\count299
+\c@pgf@countc=\count300
+\c@pgf@countd=\count301
+\t@pgf@toka=\toks35
+\t@pgf@tokb=\toks36
+\t@pgf@tokc=\toks37
+\pgf@sys@id@count=\count302
  (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -391,8 +397,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 )))
 (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count302
-\pgfsyssoftpath@bigbuffer@items=\count303
+\pgfsyssoftpath@smallbuffer@items=\count303
+\pgfsyssoftpath@bigbuffer@items=\count304
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -403,12 +409,12 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
-\pgfmath@dimen=\dimen190
-\pgfmath@count=\count304
+\pgfmath@dimen=\dimen191
+\pgfmath@count=\count305
 \pgfmath@box=\box60
-\pgfmath@toks=\toks37
-\pgfmath@stack@operand=\toks38
-\pgfmath@stack@operation=\toks39
+\pgfmath@toks=\toks38
+\pgfmath@stack@operand=\toks39
+\pgfmath@stack@operation=\toks40
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
@@ -424,55 +430,55 @@ tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmeti
 cs.code.tex) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count305
+\c@pgfmathroundto@lastzeros=\count306
 ))
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfint.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@picminx=\dimen191
-\pgf@picmaxx=\dimen192
-\pgf@picminy=\dimen193
-\pgf@picmaxy=\dimen194
-\pgf@pathminx=\dimen195
-\pgf@pathmaxx=\dimen196
-\pgf@pathminy=\dimen197
-\pgf@pathmaxy=\dimen198
-\pgf@xx=\dimen199
-\pgf@xy=\dimen256
-\pgf@yx=\dimen257
-\pgf@yy=\dimen258
-\pgf@zx=\dimen259
-\pgf@zy=\dimen260
+\pgf@picminx=\dimen192
+\pgf@picmaxx=\dimen193
+\pgf@picminy=\dimen194
+\pgf@picmaxy=\dimen195
+\pgf@pathminx=\dimen196
+\pgf@pathmaxx=\dimen197
+\pgf@pathminy=\dimen198
+\pgf@pathmaxy=\dimen199
+\pgf@xx=\dimen256
+\pgf@xy=\dimen257
+\pgf@yx=\dimen258
+\pgf@yy=\dimen259
+\pgf@zx=\dimen260
+\pgf@zy=\dimen261
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.t
 ex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@path@lastx=\dimen261
-\pgf@path@lasty=\dimen262
+\pgf@path@lastx=\dimen262
+\pgf@path@lasty=\dimen263
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@shorten@end@additional=\dimen263
-\pgf@shorten@start@additional=\dimen264
+\pgf@shorten@end@additional=\dimen264
+\pgf@shorten@start@additional=\dimen265
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box61
 \pgf@hbox=\box62
 \pgf@layerbox@main=\box63
-\pgf@picture@serial@count=\count306
+\pgf@picture@serial@count=\count307
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.te
 x
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgflinewidth=\dimen265
+\pgflinewidth=\dimen266
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code
 .tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@pt@x=\dimen266
-\pgf@pt@y=\dimen267
-\pgf@pt@temp=\dimen268
+\pgf@pt@x=\dimen267
+\pgf@pt@y=\dimen268
+\pgf@pt@temp=\dimen269
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
@@ -483,12 +489,12 @@ tex
 File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowsep=\dimen269
+\pgfarrowsep=\dimen270
 ) (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@max=\dimen270
-\pgf@sys@shading@range@num=\count307
-\pgf@shadingcount=\count308
+\pgf@max=\dimen271
+\pgf@sys@shading@range@num=\count308
+\pgf@shadingcount=\count309
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
@@ -517,8 +523,8 @@ File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 (C:\Program Files\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
-\pgf@nodesepstart=\dimen271
-\pgf@nodesepend=\dimen272
+\pgf@nodesepstart=\dimen272
+\pgf@nodesepend=\dimen273
 )
 (C:\Program Files\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
@@ -529,10 +535,10 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex))
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen273
-\pgffor@skip=\dimen274
-\pgffor@stack=\toks40
-\pgffor@toks=\toks41
+\pgffor@iter=\dimen274
+\pgffor@skip=\dimen275
+\pgffor@stack=\toks41
+\pgffor@toks=\toks42
 ))
 (C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
@@ -540,40 +546,40 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Program Files\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.
 tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count309
-\pgfplotmarksize=\dimen275
+\pgf@plot@mark@count=\count310
+\pgfplotmarksize=\dimen276
 )
-\tikz@lastx=\dimen276
-\tikz@lasty=\dimen277
-\tikz@lastxsaved=\dimen278
-\tikz@lastysaved=\dimen279
-\tikz@lastmovetox=\dimen280
-\tikz@lastmovetoy=\dimen281
-\tikzleveldistance=\dimen282
-\tikzsiblingdistance=\dimen283
+\tikz@lastx=\dimen277
+\tikz@lasty=\dimen278
+\tikz@lastxsaved=\dimen279
+\tikz@lastysaved=\dimen280
+\tikz@lastmovetox=\dimen281
+\tikz@lastmovetoy=\dimen282
+\tikzleveldistance=\dimen283
+\tikzsiblingdistance=\dimen284
 \tikz@figbox=\box66
 \tikz@figbox@bg=\box67
 \tikz@tempbox=\box68
 \tikz@tempbox@bg=\box69
-\tikztreelevel=\count310
-\tikznumberofchildren=\count311
-\tikznumberofcurrentchild=\count312
-\tikz@fig@count=\count313
+\tikztreelevel=\count311
+\tikznumberofchildren=\count312
+\tikznumberofcurrentchild=\count313
+\tikz@fig@count=\count314
  (C:\Program Files\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count314
-\pgfmatrixcurrentcolumn=\count315
-\pgf@matrix@numberofcolumns=\count316
+\pgfmatrixcurrentrow=\count315
+\pgfmatrixcurrentcolumn=\count316
+\pgf@matrix@numberofcolumns=\count317
 )
-\tikz@expandcount=\count317
+\tikz@expandcount=\count318
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibra
 rytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Program Files\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks42
-\verbatim@line=\toks43
+\every@verbatim=\toks43
+\verbatim@line=\toks44
 \verbatim@in@stream=\read3
 )
 (C:\Program Files\MiKTeX\tex/latex/environ\environ.sty
@@ -582,17 +588,17 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (C:\Program Files\MiKTeX\tex/latex/trimspaces\trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
-\@envbody=\toks44
+\@envbody=\toks45
 )
 \tcb@titlebox=\box70
 \tcb@upperbox=\box71
 \tcb@lowerbox=\box72
 \tcb@phantombox=\box73
-\c@tcbbreakpart=\count318
-\c@tcblayer=\count319
-\c@tcolorbox@number=\count320
+\c@tcbbreakpart=\count319
+\c@tcblayer=\count320
+\c@tcolorbox@number=\count321
 \l__tcobox_tmpa_box=\box74
-\l__tcobox_tmpa_dim=\dimen284
+\l__tcobox_tmpa_dim=\dimen285
 \tcb@temp=\box75
 \tcb@temp=\box76
 \tcb@temp=\box77
@@ -601,26 +607,26 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcblistings.code.tex
 Library (tcolorbox): 'tcblistings.code.tex' version '6.8.0'
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count321
+\lst@mode=\count322
 \lst@gtempboxa=\box79
-\lst@token=\toks45
-\lst@length=\count322
-\lst@currlwidth=\dimen285
-\lst@column=\count323
-\lst@pos=\count324
-\lst@lostspace=\dimen286
-\lst@width=\dimen287
-\lst@newlines=\count325
-\lst@lineno=\count326
-\lst@maxwidth=\dimen288
+\lst@token=\toks46
+\lst@length=\count323
+\lst@currlwidth=\dimen286
+\lst@column=\count324
+\lst@pos=\count325
+\lst@lostspace=\dimen287
+\lst@width=\dimen288
+\lst@newlines=\count326
+\lst@lineno=\count327
+\lst@maxwidth=\dimen289
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstpatch.sty
 File: lstpatch.sty 2024/05/25 1.10b (Carsten Heinz)
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2024/05/25 1.10b (Carsten Heinz)
-\c@lstnumber=\count327
-\lst@skipnumbers=\count328
+\c@lstnumber=\count328
+\lst@skipnumbers=\count329
 \lst@framebox=\box80
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.cfg
@@ -633,7 +639,7 @@ Library (tcolorbox): 'tcblistingscore.code.tex' version '6.8.0'
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbprocessing.code.tex
 Library (tcolorbox): 'tcbprocessing.code.tex' version '6.8.0'
 )
-\c@tcblisting=\count329
+\c@tcblisting=\count330
 )) (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.8.0'
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/tikzfill\tikzfill.image.sty
@@ -668,24 +674,24 @@ Package: amstext 2021/08/26 v2.01 AMS text
 
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks46
-\ex@=\dimen289
+\@emptytoks=\toks47
+\ex@=\dimen290
 ))
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen290
+\pmbraise@=\dimen291
 )
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count330
+\inf@bad=\count331
 LaTeX Info: Redefining \frac on input line 233.
-\uproot@=\count331
-\leftroot@=\count332
+\uproot@=\count332
+\leftroot@=\count333
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count333
-\DOTSCASE@=\count334
+\classnum@=\count334
+\DOTSCASE@=\count335
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -695,34 +701,34 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen291
+\big@size=\dimen292
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count335
+\macc@depth=\count336
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count336
+\c@MaxMatrixCols=\count337
 \dotsspace@=\muskip18
-\c@parentequation=\count337
-\dspbrk@lvl=\count338
-\tag@help=\toks47
-\row@=\count339
-\column@=\count340
-\maxfields@=\count341
-\andhelp@=\toks48
-\eqnshift@=\dimen292
-\alignsep@=\dimen293
-\tagshift@=\dimen294
-\tagwidth@=\dimen295
-\totwidth@=\dimen296
-\lineht@=\dimen297
-\@envbody=\toks49
+\c@parentequation=\count338
+\dspbrk@lvl=\count339
+\tag@help=\toks48
+\row@=\count340
+\column@=\count341
+\maxfields@=\count342
+\andhelp@=\toks49
+\eqnshift@=\dimen293
+\alignsep@=\dimen294
+\tagshift@=\dimen295
+\tagwidth@=\dimen296
+\totwidth@=\dimen297
+\lineht@=\dimen298
+\@envbody=\toks50
 \multlinegap=\skip58
 \multlinetaggap=\skip59
-\mathdisplay@stack=\toks50
+\mathdisplay@stack=\toks51
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
@@ -739,29 +745,29 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ))
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks51
-\thm@bodyfont=\toks52
-\thm@headfont=\toks53
-\thm@notefont=\toks54
-\thm@headpunct=\toks55
+\thm@style=\toks52
+\thm@bodyfont=\toks53
+\thm@headfont=\toks54
+\thm@notefont=\toks55
+\thm@headpunct=\toks56
 \thm@preskip=\skip60
 \thm@postskip=\skip61
 \thm@headsep=\skip62
-\dth@everypar=\toks56
+\dth@everypar=\toks57
 )
-\c@comp=\count342
-\c@theo=\count343
-\c@defn=\count344
-\c@lem=\count345
-\c@prop=\count346
-\c@axiom=\count347
-\c@post=\count348
-\c@trans=\count349
-\c@transf=\count350
-\c@law=\count351
-\c@prob=\count352
-\c@soln=\count353
-\c@alg=\count354
+\c@comp=\count343
+\c@theo=\count344
+\c@defn=\count345
+\c@lem=\count346
+\c@prop=\count347
+\c@axiom=\count348
+\c@post=\count349
+\c@trans=\count350
+\c@transf=\count351
+\c@law=\count352
+\c@prob=\count353
+\c@soln=\count354
+\c@alg=\count355
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdfpages\pdfpages.sty
 Package: pdfpages 2024/08/20 v0.6b Insert pages of external PDF documents (AM)
@@ -771,41 +777,41 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
 (C:\Program Files\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count355
-\calc@Bcount=\count356
-\calc@Adimen=\dimen298
-\calc@Bdimen=\dimen299
+\calc@Acount=\count356
+\calc@Bcount=\count357
+\calc@Adimen=\dimen299
+\calc@Bdimen=\dimen300
 \calc@Askip=\skip63
 \calc@Bskip=\skip64
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count357
+\calc@Ccount=\count358
 \calc@Cskip=\skip65
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/eso-pic\eso-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
-\ESO@tempdima=\dimen300
-\ESO@tempdimb=\dimen301
+\ESO@tempdima=\dimen301
+\ESO@tempdimb=\dimen302
 )
-\AM@pagewidth=\dimen302
-\AM@pageheight=\dimen303
-\AM@fboxrule=\dimen304
+\AM@pagewidth=\dimen303
+\AM@pageheight=\dimen304
+\AM@fboxrule=\dimen305
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdfpages\pppdftex.def
 File: pppdftex.def 2024/08/20 v0.6b Pdfpages driver for pdfTeX (AM)
 )
-\pdfpages@includegraphics@status=\count358
+\pdfpages@includegraphics@status=\count359
 \AM@pagebox=\box87
-\AM@global@opts=\toks57
-\AM@pagecnt=\count359
-\AM@toc@title=\toks58
-\AM@lof@heading=\toks59
-\c@AM@survey=\count360
+\AM@global@opts=\toks58
+\AM@pagecnt=\count360
+\AM@toc@title=\toks59
+\AM@lof@heading=\toks60
+\c@AM@survey=\count361
 \AM@templatesizebox=\box88
 )
 (C:\Program Files\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count361
+\l__color_backend_stack_int=\count362
 \l__pdf_internal_box=\box89
 )
 (grimoire_lumtauto.aux
@@ -816,38 +822,27 @@ LaTeX Warning: Label `FIGCONJ1' multiply defined.
 LaTeX Warning: Label `FIG2' multiply defined.
 
 )
-Runaway argument?
-{\contentsline {section}{\numberline { 
-! File ended while scanning use of \@writefile.
-<inserted text> 
-                \par 
-l.234 \begin{document}
-                      
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
-
 \openout1 = `grimoire_lumtauto.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -882,7 +877,7 @@ LaTeX Font Info:    ... okay on input line 234.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 234.
+Package hyperref Info: Link coloring OFF on input line 237.
 (grimoire_lumtauto.out) (grimoire_lumtauto.out)
 \@outlinefile=\write4
 \openout4 = `grimoire_lumtauto.out'.
@@ -891,17 +886,17 @@ Package hyperref Info: Link coloring OFF on input line 234.
 Couldn't patch \deferred@thm@head!
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count362
-\scratchdimen=\dimen305
+\scratchcounter=\count363
+\scratchdimen=\dimen306
 \scratchbox=\box90
-\nofMPsegments=\count363
-\nofMParguments=\count364
-\everyMPshowfont=\toks60
-\MPscratchCnt=\count365
-\MPscratchDim=\dimen306
-\MPnumerator=\count366
-\makeMPintoPDFobject=\count367
-\everyMPtoPDFconversion=\toks61
+\nofMPsegments=\count364
+\nofMParguments=\count365
+\everyMPshowfont=\toks61
+\MPscratchCnt=\count366
+\MPscratchDim=\dimen307
+\MPnumerator=\count367
+\makeMPintoPDFobject=\count368
+\everyMPtoPDFconversion=\toks62
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -914,7 +909,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count368
+\c@lstlisting=\count369
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -931,10 +926,10 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/front_cover.pdf, id=6, 596.98032pt x 844.65562pt>
+<resources/front_cover.pdf, id=50, 596.98032pt x 844.65562pt>
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf>
-Package pdftex.def Info: resources/front_cover.pdf  used on input line 237.
+Package pdftex.def Info: resources/front_cover.pdf  used on input line 240.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -942,7 +937,7 @@ pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf>
-Package pdftex.def Info: resources/front_cover.pdf  used on input line 237.
+Package pdftex.def Info: resources/front_cover.pdf  used on input line 240.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -952,65 +947,53 @@ nd PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/front_cover.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/front_cover.pdf, id=9, page=1, 596.98032pt x 844.65562pt>
+<resources/front_cover.pdf, id=53, page=1, 596.98032pt x 844.65562pt>
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
 Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
-37.
+40.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
 Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
-37.
+40.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
 Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
-37.
+40.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
 Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
-37.
+40.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/front_cover.pdf Graphic file (type pdf)
 <use resources/front_cover.pdf, page 1>
 Package pdftex.def Info: resources/front_cover.pdf , page1 used on input line 2
-37.
+40.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [1
 
 
  <./resources/front_cover.pdf>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 240
+LaTeX Font Info:    Trying to load font information for U+msa on input line 243
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 240
+LaTeX Font Info:    Trying to load font information for U+msb on input line 243
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-LaTeX Warning: Citation `crowley1948magick' on page 2 undefined on input line 2
-40.
-
-
-LaTeX Warning: Citation `cli_tttt' on page 2 undefined on input line 246.
-
-
-LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 2 undefined on inp
-ut line 247.
-
-
-
 [2{C:/Users/AKAM/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 250--253
+Underfull \hbox (badness 10000) in paragraph at lines 253--256
 
  []
 
@@ -1018,301 +1001,171 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--253
 
 pdfTeX warning: pdflatex (file ./resources/emblem_ion.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/emblem_ion.pdf, id=47, 364.48169pt x 353.40028pt>
+<resources/emblem_ion.pdf, id=97, 364.48169pt x 353.40028pt>
 File: resources/emblem_ion.pdf Graphic file (type pdf)
 <use resources/emblem_ion.pdf>
-Package pdftex.def Info: resources/emblem_ion.pdf  used on input line 257.
+Package pdftex.def Info: resources/emblem_ion.pdf  used on input line 260.
 (pdftex.def)             Requested size: 291.58574pt x 282.7206pt.
-
-LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 3 undefined 
-on input line 269.
-
-
-LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 3 undefined on inp
-ut line 269.
-
-
-LaTeX Warning: Citation `wikipedia_theistic_satanism' on page 3 undefined on in
-put line 269.
-
-
-LaTeX Warning: Citation `copilot_assistant' on page 3 undefined on input line 2
-69.
-
-
-LaTeX Warning: Citation `wikipedia_theistic_satanism' on page 3 undefined on in
-put line 269.
-
 
 
 [3 <./resources/emblem_ion.pdf>]
-
-LaTeX Warning: Citation `Lutalo2024_3c' on page 4 undefined on input line 271.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 []\OT1/cmtt/m/n/12 Programming languages create a medium via which one can
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 \OT1/cmtt/m/n/12 define and execute orders with certain effects at will,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 \OT1/cmtt/m/n/12 and certainly so. Basing on how language underlies the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 \OT1/cmtt/m/n/12 ability for humans to formulate and share thoughts with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 \OT1/cmtt/m/n/12 each other, we also see how the use of certain special
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 \OT1/cmtt/m/n/12 languages underlies man's ability to command and control
  []
 
 
-LaTeX Warning: Citation `butler1952magic' on page 4 undefined on input line 288
-.
-
-
-LaTeX Warning: Citation `crowley1929magick' on page 4 undefined on input line 2
-88.
-
-
-LaTeX Warning: Citation `Lutalo2024_3c' on page 4 undefined on input line 288.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 297--299
+Underfull \hbox (badness 10000) in paragraph at lines 300--302
 []\OT1/cmtt/m/n/12 Basically, we see how it is indeed language, or rather,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 297--299
+Underfull \hbox (badness 10000) in paragraph at lines 300--302
 \OT1/cmtt/m/n/12 its use via communication --- a willful application
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 297--299
+Underfull \hbox (badness 10000) in paragraph at lines 300--302
 \OT1/cmtt/m/n/12 of language, that makes possible the creation and
  []
 
 
-LaTeX Warning: Citation `Lutalo2024_3c' on page 4 undefined on input line 309.
-
-
-LaTeX Warning: Citation `cassiel1990encyclopedia' on page 4 undefined on input 
-line 309.
-
-
-LaTeX Warning: Citation `crowley1929magick' on page 4 undefined on input line 3
-09.
-
-
-LaTeX Warning: Citation `crowley1929magick' on page 4 undefined on input line 3
-09.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--321
+Underfull \hbox (badness 10000) in paragraph at lines 323--324
 []\OT1/cmtt/m/n/12 Magick is the Science and Art of causing Change to
  []
 
 
 
 [4]
-
-LaTeX Warning: Citation `agrippa2014occult' on page 5 undefined on input line 3
-29.
-
-
-LaTeX Warning: Citation `lutalo_2025_definitions' on page 5 undefined on input 
-line 331.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 []\OT1/cmtt/m/n/12 The science and art of causing change (in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 \OT1/cmtt/m/n/12 consciousness) to occur in conformity with will, using
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--342
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 \OT1/cmtt/m/n/12 means not currently understood by traditional Western
  []
 
 
-LaTeX Warning: Citation `kraig2010modern' on page 5 undefined on input line 344
-.
-
-
-LaTeX Warning: Citation `kraig2010modern' on page 5 undefined on input line 350
-.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 363--364
 []\OT1/cmtt/m/n/12 The Highest, most Absolute, and most Divine Knowledge
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 363--364
 \OT1/cmtt/m/n/12 of Natural Philosophy, advanced in its works and wonderful
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 363--364
 \OT1/cmtt/m/n/12 operations by a right understanding of the inward and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 363--364
 \OT1/cmtt/m/n/12 occult virtue of things; so that true Agents being applied
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--361
+Underfull \hbox (badness 10000) in paragraph at lines 363--364
 \OT1/cmtt/m/n/12 to proper Patients, strange and admirable effects will
  []
 
 
-LaTeX Warning: Citation `mathers1904goetia' on page 5 undefined on input line 3
-63.
-
-
-LaTeX Warning: Citation `agrippa2014occult' on page 5 undefined on input line 3
-69.
-
-
-LaTeX Warning: Citation `wordweb_assistant' on page 5 undefined on input line 3
-69.
-
-
-LaTeX Warning: Citation `FasanoSequeira2017' on page 5 undefined on input line 
-369.
-
-
-LaTeX Warning: Citation `wordweb_assistant' on page 5 undefined on input line 3
-69.
-
-
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 381--382
+Underfull \hbox (badness 10000) in paragraph at lines 384--385
 []\OT1/cmtt/m/n/12 The enhancement of the probabilities/likelihood of a
  []
 
 
-LaTeX Warning: Citation `Carroll1995' on page 6 undefined on input line 384.
-
-
-LaTeX Warning: Citation `Lutalo2023_metaphysics' on page 6 undefined on input l
-ine 390.
-
-
-LaTeX Warning: Citation `Lutalo2025transpsy' on page 6 undefined on input line 
-434.
-
-
-LaTeX Warning: Citation `Lutalo2023_metaphysics' on page 6 undefined on input l
-ine 434.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--434
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
 
  []
 
 
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 434--436
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 437--439
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--436
+Underfull \hbox (badness 10000) in paragraph at lines 437--439
 
  []
 
 
 
 [6]
-
-LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 7 undefined 
-on input line 437.
-
-
-LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 7 undefined on inp
-ut line 437.
-
-
-Overfull \hbox (23.23071pt too wide) in paragraph at lines 437--438
+Overfull \hbox (22.73065pt too wide) in paragraph at lines 440--441
 \OT1/cmr/m/n/12 sult" --- a \OT1/cmr/m/it/12 willed out-come\OT1/cmr/m/n/12 , t
 hat es-sen-tially is en-coded in the lan-guage of transformatics[[]]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 440--441
+Underfull \hbox (badness 10000) in paragraph at lines 443--444
 
  []
-
-
-LaTeX Warning: Citation `lutalo_2025_definitions' on page 7 undefined on input 
-line 451.
-
-
-LaTeX Warning: Citation `Carroll1995' on page 7 undefined on input line 451.
-
-
-LaTeX Warning: Citation `carroll2010octavo' on page 7 undefined on input line 4
-51.
 
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 463--464
+Underfull \hbox (badness 10000) in paragraph at lines 466--467
 []\OT1/cmtt/m/n/12 By ``intentional" I mean ``willed". But even
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 463--464
+Underfull \hbox (badness 10000) in paragraph at lines 466--467
 \OT1/cmtt/m/n/12 unintentional acts so seeming are not truly so. Thus,
  []
 
 
-LaTeX Warning: Citation `crowley1929magick' on page 8 undefined on input line 4
-66.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 471--472
+Underfull \hbox (badness 10000) in paragraph at lines 474--475
 
  []
-
-
-LaTeX Warning: Citation `newjerusalem1985' on page 8 undefined on input line 49
-0.
 
 
 
@@ -1320,49 +1173,49 @@ LaTeX Warning: Citation `newjerusalem1985' on page 8 undefined on input line 49
 
 pdfTeX warning: pdflatex (file ./resources/iona.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<resources/iona.pdf, id=137, 364.48169pt x 353.40028pt>
+<resources/iona.pdf, id=237, 364.48169pt x 353.40028pt>
 File: resources/iona.pdf Graphic file (type pdf)
 <use resources/iona.pdf>
-Package pdftex.def Info: resources/iona.pdf  used on input line 498.
+Package pdftex.def Info: resources/iona.pdf  used on input line 501.
 (pdftex.def)             Requested size: 291.58574pt x 282.7206pt.
 
 
 pdfTeX warning: pdflatex (file ./resources/lumtauto_slogan.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<resources/lumtauto_slogan.pdf, id=138, 663.43857pt x 125.5089pt>
+<resources/lumtauto_slogan.pdf, id=238, 663.43857pt x 125.5089pt>
 File: resources/lumtauto_slogan.pdf Graphic file (type pdf)
 <use resources/lumtauto_slogan.pdf>
-Package pdftex.def Info: resources/lumtauto_slogan.pdf  used on input line 507.
+Package pdftex.def Info: resources/lumtauto_slogan.pdf  used on input line 510.
 
 (pdftex.def)             Requested size: 418.25368pt x 79.12846pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 511.
+(hyperref)                removing `math shift' on input line 514.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rightarrow' on input line 511.
+(hyperref)                removing `\rightarrow' on input line 514.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 511.
+(hyperref)                removing `math shift' on input line 514.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 514.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 517.
 
 
 [9 <./resources/iona.pdf> <./resources/lumtauto_slogan.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
+Underfull \hbox (badness 10000) in paragraph at lines 526--527
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 535--536
+Underfull \hbox (badness 10000) in paragraph at lines 538--539
 
  []
 
 
-Overfull \hbox (17.88513pt too wide) detected at line 568
+Overfull \hbox (17.88513pt too wide) detected at line 571
  []$[]  \OMS/cmsy/m/n/12 8\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 2 \OT1/cmr/m/n/12
  ^^B[]  =[]\OMS/cmsy/m/n/12 )  \OML/cmm/m/it/12 ^^L \OMS/cmsy/m/n/12 2 \OT1/cmr
 /m/n/12 
@@ -1374,43 +1227,30 @@ Overfull \hbox (17.88513pt too wide) detected at line 568
 [10]
 
 [11]
-
-LaTeX Warning: Citation `Lutalo2025transpsy' on page 12 undefined on input line
- 605.
-
-
-LaTeX Warning: Citation `newjerusalem1985' on page 12 undefined on input line 6
-08.
-
-
-LaTeX Warning: Citation `newjerusalem1985' on page 12 undefined on input line 6
-08.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 608--609
+Underfull \hbox (badness 10000) in paragraph at lines 611--612
 
  []
 
 
-Overfull \hbox (31.02122pt too wide) in paragraph at lines 613--623
+Overfull \hbox (31.02122pt too wide) in paragraph at lines 616--626
 []\OT1/cmtt/m/n/12 Our Father in heaven, may your name be held holy, your kingd
 om come,
  []
 
 
-Overfull \hbox (18.67122pt too wide) in paragraph at lines 613--623
+Overfull \hbox (18.67122pt too wide) in paragraph at lines 616--626
 \OT1/cmtt/m/n/12 your will be done, on earth as in heaven. Give us today our da
 ily
  []
 
 
-Overfull \hbox (0.14621pt too wide) in paragraph at lines 613--623
+Overfull \hbox (0.14621pt too wide) in paragraph at lines 616--626
 \OT1/cmtt/m/n/12 bread. And forgive us our debts, as we have forgiven those who
 
  []
 
 
-Overfull \hbox (24.84622pt too wide) in paragraph at lines 613--623
+Overfull \hbox (24.84622pt too wide) in paragraph at lines 616--626
 \OT1/cmtt/m/n/12 are in debt to us. And do not put us to the test, but save us 
 from
  []
@@ -1418,134 +1258,113 @@ from
 
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 628--629
+Underfull \hbox (badness 10000) in paragraph at lines 631--632
 
  []
 
 
-Overfull \hbox (31.02122pt too wide) in paragraph at lines 632--642
+Overfull \hbox (31.02122pt too wide) in paragraph at lines 635--645
 []\OT1/cmtt/m/n/12 Ear Fugsor im souvom, nub bear muno yo solw selb, bear pimtw
 en xeno,
  []
 
 
-Overfull \hbox (18.67122pt too wide) in paragraph at lines 632--642
+Overfull \hbox (18.67122pt too wide) in paragraph at lines 635--645
 \OT1/cmtt/m/n/12 bear dill yo wemo, em ourgs uh im souvom. Tivo ah gewub ear wu
 ilb
  []
 
 
-Overfull \hbox (0.14621pt too wide) in paragraph at lines 632--642
+Overfull \hbox (0.14621pt too wide) in paragraph at lines 635--645
 \OT1/cmtt/m/n/12 yrouw. Umw fertivo ah ear woygh, uh do suvo fertivom gseho dse
 
  []
 
 
-Overfull \hbox (24.84622pt too wide) in paragraph at lines 632--642
+Overfull \hbox (24.84622pt too wide) in paragraph at lines 635--645
 \OT1/cmtt/m/n/12 uro im woyg ge ah. Umw we meg kag ah ge gso gohg, yag huvo ah 
 fren
  []
 
 
-LaTeX Warning: Citation `newjerusalem1985' on page 13 undefined on input line 6
-47.
-
-
-LaTeX Warning: Citation `newjerusalem1985' on page 13 undefined on input line 6
-47.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 647--648
+Underfull \hbox (badness 10000) in paragraph at lines 650--651
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 658--659
+Underfull \hbox (badness 10000) in paragraph at lines 661--662
 
  []
 
 
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 672--673
+Underfull \hbox (badness 10000) in paragraph at lines 675--676
 
  []
 
 
-Overfull \hbox (48.69167pt too wide) in paragraph at lines 677--678
+Overfull \hbox (48.69167pt too wide) in paragraph at lines 680--681
 []\OT1/cmtt/m/n/20.74 Imi geso yotimemimet Tewa xarougow souvom
  []
 
-
-LaTeX Warning: Citation `LaVey1969' on page 14 undefined on input line 683.
-
-
-LaTeX Warning: Citation `LaVey1969' on page 14 undefined on input line 683.
-
-<resources/lumtauto.jpg, id=219, 1541.76pt x 1027.84pt>
+<resources/lumtauto.jpg, id=325, 1541.76pt x 1027.84pt>
 File: resources/lumtauto.jpg Graphic file (type jpg)
 <use resources/lumtauto.jpg>
-Package pdftex.def Info: resources/lumtauto.jpg  used on input line 704.
+Package pdftex.def Info: resources/lumtauto.jpg  used on input line 707.
 (pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 700--708
+Overfull \hbox (12.4pt too wide) in paragraph at lines 703--711
 [][] 
  []
 
 
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 717--718
+Underfull \hbox (badness 10000) in paragraph at lines 720--721
 
  []
 
 
-Overfull \hbox (61.61942pt too wide) in paragraph at lines 723--724
+Overfull \hbox (61.61942pt too wide) in paragraph at lines 726--727
 []\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 list of mir-rored vow-els, \OT1/cm
 tt/m/it/12 list[]vowels[]mirror \OT1/cmr/m/it/12 = \OT1/cmtt/m/it/12 reversed(l
 ist[]vowels)\OT1/cmr/m/it/12 . 
  []
 
 
-Overfull \hbox (30.58589pt too wide) in paragraph at lines 729--730
+Overfull \hbox (30.58589pt too wide) in paragraph at lines 732--733
 \OML/cmm/m/it/12 v[]$ \OT1/cmr/m/it/12 at in-dex $\OML/cmm/m/it/12 i$ \OT1/cmr/
 m/it/12 in that list, with an-other char-ac-ter, $\OML/cmm/m/it/12 v[]$ \OT1/cm
 r/m/it/12 from \OT1/cmtt/m/it/12 list[]vowels[]mirror\OT1/cmr/m/it/12 ,
  []
 
 
-Overfull \hbox (8.37656pt too wide) in paragraph at lines 737--738
+Overfull \hbox (8.37656pt too wide) in paragraph at lines 740--741
 []\OT1/cmr/bx/it/12 INITIALIZE \OT1/cmtt/m/it/12 list[]a[]z[]lumtauto \OT1/cmr/
 m/it/12 by cloning \OT1/cmtt/m/it/12 list[]a[]z[]intermediate\OT1/cmr/m/it/12 .
  
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 738--739
+Underfull \hbox (badness 10000) in paragraph at lines 741--742
 
  []
 
 
 
 [15 <./resources/lumtauto.jpg>]
-Overfull \hbox (5.5401pt too wide) in paragraph at lines 759--760
+Overfull \hbox (5.5401pt too wide) in paragraph at lines 762--763
 []\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 re-sul-tant, trans-formed/-trans-l
 ated mes-sage, \OT1/cmtt/m/it/12 msg[]lumtauto \OT1/cmr/m/it/12 thus: 
  []
 
 
-Overfull \hbox (1.98259pt too wide) in paragraph at lines 766--767
+Overfull \hbox (1.98259pt too wide) in paragraph at lines 769--770
 []\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 the cor-re-spond-ing mir-ror let-t
 er po-si-tion $\OML/cmm/m/it/12 k \OT1/cmr/m/n/12 =$ \OT1/cmtt/m/it/12 index($\
 OML/cmm/m/it/12 c[]$
  []
-
-
-LaTeX Warning: Citation `cli_tttt' on page 16 undefined on input line 787.
-
-
-LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 16 undefined on input line 7
-87.
 
 
 
@@ -1554,22 +1373,22 @@ LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 16 undefined on input line 7
 [17]
 
 Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 895.
+(caption)                outside box or environment on input line 898.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 895.
+(caption)                particular \caption on input line 898.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 905--906
+Underfull \hbox (badness 10000) in paragraph at lines 908--909
 [][]$\OT1/cmtt/m/n/12 https : / / tea . nuchwezi . com / ?i = put + your + mess
 age + here & fc = https : / / gist .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 905--906
+Underfull \hbox (badness 10000) in paragraph at lines 908--909
 \OT1/cmtt/m/n/12 githubusercontent . com / mcnemesis / ae9d6226d49f5a8601a84241
 a08f07c8 /
  []
@@ -1581,44 +1400,27 @@ a08f07c8 /
 [19]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1000.
+(caption)                particular \caption on input line 1003.
 See the caption package documentation for explanation.
-
-
-LaTeX Warning: Citation `nuchweziCrypto' on page 20 undefined on input line 100
-7.
-
-
-LaTeX Warning: Citation `nuchweziCrypto' on page 20 undefined on input line 100
-7.
-
-
-LaTeX Warning: Citation `shrinesjwl' on page 20 undefined on input line 1015.
-
-
-LaTeX Warning: Citation `shrinesjwl' on page 20 undefined on input line 1015.
 
 
 
 [20]
-<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=493, 1541.76pt x 1027
+<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=606, 1541.76pt x 1027
 .84pt>
 File: resources/illustration_trudy_olga_spirit_fight_2.jpg Graphic file (type j
 pg)
 <use resources/illustration_trudy_olga_spirit_fight_2.jpg>
 Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight_2.jpg  
-used on input line 1046.
+used on input line 1049.
 (pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1042--1052
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1045--1055
 [][] 
  []
 
 
-LaTeX Warning: Citation `shrinesjwl' on page 21 undefined on input line 1056.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1056--1057
+Underfull \hbox (badness 10000) in paragraph at lines 1059--1060
 
  []
 
@@ -1628,78 +1430,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 1056--1057
 (grimoire_lumtauto.listing)
 
 [21 <./resources/illustration_trudy_olga_spirit_fight_2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 []\OT1/cmtt/m/n/12 I bind you in the name of Ruhanga and all the spirits of nat
 ure and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 my ancestors here present. I bind you regardless of whether yo
 u
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 are here in spirit, mind or body. I bind you and cut from you 
 all
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 sources of power that are Animusting you right now, in the nam
 e of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 the Most Powerful Ruhanga! I hurl you into an eternal prison, 
 I
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 cut you to shreds, I summon thunder and fire that eats at the 
 body,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 mind and spirit to strike and deprive you of all your strength
  and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 health. I summon the hungriest of hell's spirits to feast on y
 ou.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 I bind and destroy you in God's most holy, unknown names! Righ
 t
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
 \OT1/cmtt/m/n/12 Here, Right Now! Be Gone, Be Gone from this place and time Rig
 ht
  []
 
 
-LaTeX Warning: Citation `jung1964symbols' on page 22 undefined on input line 11
-05.
-
-
-LaTeX Warning: Citation `shrinesjwl' on page 22 undefined on input line 1105.
-
-
-LaTeX Warning: Citation `wordweb_assistant' on page 22 undefined on input line 
-1111.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1111--1112
+Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
 
  []
 
@@ -1711,44 +1502,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 1111--1112
  (grimoire_lumtauto.listing)
 
 [23]
-<resources/illustration_trudy_olga_spirit_fight.jpg, id=570, 1541.76pt x 1027.8
+<resources/illustration_trudy_olga_spirit_fight.jpg, id=689, 1541.76pt x 1027.8
 4pt>
 File: resources/illustration_trudy_olga_spirit_fight.jpg Graphic file (type jpg
 )
 <use resources/illustration_trudy_olga_spirit_fight.jpg>
 Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight.jpg  us
-ed on input line 1179.
+ed on input line 1182.
 (pdftex.def)             Requested size: 376.42575pt x 250.93687pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1175--1185
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1178--1188
 [][] 
  []
 
 
-LaTeX Warning: Citation `nuchweziCrypto' on page 24 undefined on input line 119
-1.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1191--1192
+Underfull \hbox (badness 10000) in paragraph at lines 1194--1195
 
  []
 
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-197.
+200.
 (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1197.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1200.
 
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
-207.
+210.
 
 (C:\Program Files\MiKTeX\tex/latex/base\omlcmr.fd
 File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1207.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1210.
 
 
 
@@ -1757,7 +1544,7 @@ LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
 [25]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1253.
+(caption)                particular \caption on input line 1256.
 See the caption package documentation for explanation.
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
@@ -1767,124 +1554,110 @@ File: lstlang1.sty 2024/05/25 1.10b listings language file
 [26]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1300.
+(caption)                particular \caption on input line 1303.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Citation `shrinesjwl' on page 27 undefined on input line 1306.
-
-
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 1306.
+(hyperref)                removing `\@ifnextchar' on input line 1309.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1316--1317
+Underfull \hbox (badness 10000) in paragraph at lines 1319--1320
 []\OT1/cmtt/m/n/12 A traditional spell is often rather like poetry, in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1316--1317
+Underfull \hbox (badness 10000) in paragraph at lines 1319--1320
 \OT1/cmtt/m/n/12 that the power can manifest even though the reasons
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1316--1317
+Underfull \hbox (badness 10000) in paragraph at lines 1319--1320
 \OT1/cmtt/m/n/12 for its working remain a mystery. It is best to keep a
  []
 
 
-LaTeX Warning: Citation `farrar1990spells' on page 27 undefined on input line 1
-319.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 []\OT1/cmtt/m/n/12 The formulae, actions and objects or substances they
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 involve many have many different purposes. Sometimes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 they may be, frankly, just to impress the uninitiated.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 Sometimes they may be a distorted memory of something
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 which originally had a physically, psychologically or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 psychically practical reason. And even oftener they
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 may be calling upon a symbolism, whether conscious or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 unconscious, which aids the inter-level communication...
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 What one should not do is to dismiss them out of hand
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 just because the reason for their form is not immediately
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 obvious to rational analysis. You may find that they
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 work though you don't know why --- that the power of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 their symbology is buried too deeply in your personal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1334
+Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
 \OT1/cmtt/m/n/12 Unconscious (or even in the Collective Unconscious) for
  []
 
 
-LaTeX Warning: Citation `farrar1990spells' on page 27 undefined on input line 1
-336.
-
-
 
 [27]
-<resources/conjurer.jpg, id=695, 1798.72pt x 1027.84pt>
+<resources/conjurer.jpg, id=818, 1798.72pt x 1027.84pt>
 File: resources/conjurer.jpg Graphic file (type jpg)
 <use resources/conjurer.jpg>
-Package pdftex.def Info: resources/conjurer.jpg  used on input line 1350.
+Package pdftex.def Info: resources/conjurer.jpg  used on input line 1353.
 (pdftex.def)             Requested size: 376.42575pt x 215.09996pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1346--1356
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1349--1359
 [][] 
  []
-
-
-LaTeX Warning: Citation `shrinesjwl' on page 28 undefined on input line 1359.
 
 \openout5 = `grimoire_lumtauto.listing'.
 
@@ -1894,18 +1667,18 @@ LaTeX Warning: Citation `shrinesjwl' on page 28 undefined on input line 1359.
 \openout5 = `grimoire_lumtauto.listing'.
 
 
-Underfull \hbox (badness 1635) in paragraph at lines 1390--1390
+Underfull \hbox (badness 1635) in paragraph at lines 1393--1393
 []\OT1/cmr/m/n/20.74 A Uni-ver-sal Vi-sion CON-JU-RA-TION Spell
  []
 
 (grimoire_lumtauto.listing)
-<resources/conjurer_4.jpg, id=707, 1252.68pt x 835.12pt>
+<resources/conjurer_4.jpg, id=831, 1252.68pt x 835.12pt>
 File: resources/conjurer_4.jpg Graphic file (type jpg)
 <use resources/conjurer_4.jpg>
-Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1401.
+Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1404.
 (pdftex.def)             Requested size: 376.42575pt x 250.9457pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1397--1407
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1400--1410
 [][] 
  []
 
@@ -1913,24 +1686,17 @@ Overfull \hbox (12.4pt too wide) in paragraph at lines 1397--1407
 
 [29]
 
-LaTeX Warning: Citation `shrinesjwl' on page 30 undefined on input line 1410.
-
-
-
 [30 <./resources/conjurer_4.jpg>]
-
-LaTeX Warning: Citation `shrinesjwl' on page 31 undefined on input line 1429.
-
 \openout5 = `grimoire_lumtauto.listing'.
 
-(grimoire_lumtauto.listing)
+ (grimoire_lumtauto.listing)
 
 pdfTeX warning: pdflatex (file ./resources/maiu_sigil.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/maiu_sigil.pdf, id=735, 277.9986pt x 718.60468pt>
+<resources/maiu_sigil.pdf, id=861, 277.9986pt x 718.60468pt>
 File: resources/maiu_sigil.pdf Graphic file (type pdf)
 <use resources/maiu_sigil.pdf>
-Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1456.
+Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1459.
 (pdftex.def)             Requested size: 222.39917pt x 574.88452pt.
 
 
@@ -1938,13 +1704,13 @@ Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1456.
 
 pdfTeX warning: pdflatex (file ./resources/myrrh_slogan.pdf): PDF inclusion: fo
 und PDF version <1.7>, but at most version <1.5> allowed
-<resources/myrrh_slogan.pdf, id=749, 621.28107pt x 126.4725pt>
+<resources/myrrh_slogan.pdf, id=875, 621.28107pt x 126.4725pt>
 File: resources/myrrh_slogan.pdf Graphic file (type pdf)
 <use resources/myrrh_slogan.pdf>
-Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1465.
+Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1468.
 (pdftex.def)             Requested size: 418.25368pt x 85.14525pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1474--1475
+Underfull \hbox (badness 10000) in paragraph at lines 1477--1478
 
  []
 
@@ -1953,63 +1719,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 1474--1475
 [32 <./resources/maiu_sigil.pdf> <./resources/myrrh_slogan.pdf>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1495.
+(caption)                particular \caption on input line 1498.
 See the caption package documentation for explanation.
-
-
-LaTeX Warning: Citation `lutalo2024tea' on page 33 undefined on input line 1502
-.
-
-
-LaTeX Warning: Citation `lutalo2020dnap' on page 33 undefined on input line 151
-2.
-
-
-LaTeX Warning: Hyper reference `FIGTEAMYRRH' on page 33 undefined on input line
- 1527.
-
-
-LaTeX Warning: Reference `FIGTEAMYRRH' on page 33 undefined on input line 1527.
-
 
 
 
 [33]
-Underfull \hbox (badness 10000) in paragraph at lines 1542--1543
+Underfull \hbox (badness 10000) in paragraph at lines 1545--1546
 
  []
 
 
-LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 34 undefined on input line 1
-545.
-
-
-LaTeX Warning: Citation `wordweb_assistant' on page 34 undefined on input line 
-1545.
-
-
-LaTeX Warning: Citation `newjerusalem1985' on page 34 undefined on input line 1
-545.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1547--1548
+Underfull \hbox (badness 10000) in paragraph at lines 1550--1551
 
  []
 
 
 
 [34]
-Underfull \hbox (badness 10000) in paragraph at lines 1594--1595
+Underfull \hbox (badness 10000) in paragraph at lines 1597--1598
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1604--1605
+Underfull \hbox (badness 10000) in paragraph at lines 1607--1608
 
  []
 
 
-Overfull \hbox (58.42921pt too wide) detected at line 1622
+Overfull \hbox (58.42921pt too wide) detected at line 1625
  []$[]  \OMS/cmsy/m/n/12 8\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 2 \OT1/cmr/m/n/12
  ^^B[]  =[]\OMS/cmsy/m/n/12 )  \OML/cmm/m/it/12 ^^L \OMS/cmsy/m/n/12 2 \OT1/cmr
 /m/n/12 
@@ -2020,108 +1758,63 @@ Overfull \hbox (58.42921pt too wide) detected at line 1622
 
 [35]
 
-LaTeX Warning: Citation `transformatics' on page 36 undefined on input line 162
-5.
-
-
-LaTeX Warning: Citation `kraig2010modern' on page 36 undefined on input line 16
-41.
-
-
-LaTeX Warning: Citation `farrar1990spells' on page 36 undefined on input line 1
-642.
-
-
-
 [36]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1659.
+(caption)                particular \caption on input line 1662.
 See the caption package documentation for explanation.
 
 
-LaTeX Warning: Hyper reference `FIGTEAMYRRH' on page 37 undefined on input line
- 1666.
-
-
-LaTeX Warning: Reference `FIGTEAMYRRH' on page 37 undefined on input line 1666.
-
-
-
-LaTeX Warning: Hyper reference `FIGTEAMYRRHFIN' on page 37 undefined on input l
-ine 1666.
-
-
-LaTeX Warning: Reference `FIGTEAMYRRHFIN' on page 37 undefined on input line 16
-66.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1671--1672
+Underfull \hbox (badness 10000) in paragraph at lines 1674--1675
 [][]$\OT1/cmtt/m/n/12 https : / / tea . nuchwezi . com / ?i = hello + world & f
 c = https : / / gist .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1671--1672
+Underfull \hbox (badness 10000) in paragraph at lines 1674--1675
 \OT1/cmtt/m/n/12 githubusercontent . com / mcnemesis / 89a8030ba026977574930f87
 273fedd0 /
  []
 
 
-LaTeX Warning: Hyper reference `TRANSFMYRRH' on page 37 undefined on input line
- 1682.
-
-
-LaTeX Warning: Reference `TRANSFMYRRH' on page 37 undefined on input line 1682.
-
-
-
-LaTeX Warning: Citation `farrar1990spells' on page 37 undefined on input line 1
-682.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1693--1694
+Underfull \hbox (badness 10000) in paragraph at lines 1696--1697
 []\OT1/cmtt/m/n/12 Susa Morgan Black sends us another way of ensuring the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1693--1694
+Underfull \hbox (badness 10000) in paragraph at lines 1696--1697
 \OT1/cmtt/m/n/12 Boomerang Effect and deflecting bad energy back to the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1695--1696
+Underfull \hbox (badness 10000) in paragraph at lines 1698--1699
 []\OT1/cmtt/m/n/12 `Take a special hand-held mirror,' she says, `and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1695--1696
+Underfull \hbox (badness 10000) in paragraph at lines 1698--1699
 \OT1/cmtt/m/n/12 simply turn completely around with the mirror reflecting
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
+Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
 []\OT1/cmtt/m/n/12 We have used mirrors for this purpose ourselves when
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
+Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
 \OT1/cmtt/m/n/12 we have known who was working against us, and in what
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
+Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
 \OT1/cmtt/m/n/12 direction he or she lived. We would put a mirror in a
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1710--1711
+Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
 \OT1/cmtt/m/n/12 suitable window facing outwards in that direction, willing
  []
-
-
-LaTeX Warning: Citation `farrar1990spells' on page 37 undefined on input line 1
-713.
 
 
 
@@ -2130,25 +1823,370 @@ LaTeX Warning: Citation `farrar1990spells' on page 37 undefined on input line 1
 
  (grimoire_lumtauto.listing)
 
-LaTeX Warning: Citation `kraig2010modern' on page 38 undefined on input line 17
-40.
-
-
-
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 1755--1756
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
 []\OT1/cmtt/m/n/12 STEP THREE. Step forward with the left foot. At the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1755--1756
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
 \OT1/cmtt/m/n/12 same time thrust your hands forward so that they point at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1755--1756
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
 \OT1/cmtt/m/n/12 the exact middle of the glowing blue pentagram in front of
  []
 
 
-Underfull \hbox 
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+\OT1/cmtt/m/n/12 you (this position is known as a ``GodForm" and is the God
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+\OT1/cmtt/m/n/12 Form known as ``The Enterer"). As you do this you should
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+\OT1/cmtt/m/n/12 exhale and feel the energy come back up your body, out
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+\OT1/cmtt/m/n/12 your arms and hands, through the pentagram and to the ends
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+\OT1/cmtt/m/n/12 of the universe. You should use the entire exhalation to
+ []
+
+
+
+[39]
+Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+[]\OT1/cmtt/m/n/12 The original name of Jesus of Nazareth was not
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+\OT1/cmtt/m/n/12 ``Jesus." In his own time, he would have been called
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+\OT1/cmtt/m/n/12 Yeshua in Hebrew/Aramaic, a shortened form of Yehoshua,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+\OT1/cmtt/m/n/12 meaning ``Yahweh is salvation." The name ``Jesus" is the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1800--1801
+\OT1/cmtt/m/n/12 English form that developed through Greek (I^^Vesous) and
+ []
+
+
+
+[40]
+Overfull \hbox (53.39963pt too wide) in paragraph at lines 1822--1889
+[][] 
+ []
+
+
+
+[41]
+Overfull \hbox (56.6364pt too wide) in paragraph at lines 1904--1914
+[][] 
+ []
+
+
+
+pdfTeX warning: pdflatex (file ./resources/ozin_code.pdf): PDF inclusion: found
+ PDF version <1.7>, but at most version <1.5> allowed
+<resources/ozin_code.pdf, id=1051, 515.04419pt x 611.40419pt>
+File: resources/ozin_code.pdf Graphic file (type pdf)
+<use resources/ozin_code.pdf>
+Package pdftex.def Info: resources/ozin_code.pdf  used on input line 1923.
+(pdftex.def)             Requested size: 463.53549pt x 550.25867pt.
+
+Overfull \hbox (45.28181pt too wide) in paragraph at lines 1923--1923
+ [] 
+ []
+
+
+
+[42]
+
+pdfTeX warning: pdflatex (file ./resources/ozin_slogan.pdf): PDF inclusion: fou
+nd PDF version <1.7>, but at most version <1.5> allowed
+<resources/ozin_slogan.pdf, id=1058, 316.3017pt x 223.7961pt>
+File: resources/ozin_slogan.pdf Graphic file (type pdf)
+<use resources/ozin_slogan.pdf>
+Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 1932.
+(pdftex.def)             Requested size: 418.25368pt x 295.94786pt.
+
+
+[43 <./resources/ozin_code.pdf>]
+
+pdfTeX warning: pdflatex (file ./resources/philosopher.pdf): PDF inclusion: fou
+nd PDF version <1.7>, but at most version <1.5> allowed
+<resources/philosopher.pdf, id=1069, 310.27919pt x 503.96278pt>
+File: resources/philosopher.pdf Graphic file (type pdf)
+<use resources/philosopher.pdf>
+Package pdftex.def Info: resources/philosopher.pdf  used on input line 1946.
+(pdftex.def)             Requested size: 310.27843pt x 503.96155pt.
+
+
+[44 <./resources/ozin_slogan.pdf>]
+
+pdfTeX warning: pdflatex (file ./resources/medina_slogan.pdf): PDF inclusion: f
+ound PDF version <1.7>, but at most version <1.5> allowed
+<resources/medina_slogan.pdf, id=1083, 478.66827pt x 120.45pt>
+File: resources/medina_slogan.pdf Graphic file (type pdf)
+<use resources/medina_slogan.pdf>
+Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 1955.
+(pdftex.def)             Requested size: 418.25368pt x 105.24828pt.
+(grimoire_lumtauto.bbl
+
+[45 <./resources/philosopher.pdf> <./resources/medina_slogan.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 76--81
+[]\OT1/cmr/m/n/12 Henry Cor-nelius Agrippa.  |   []   |   []   |   []   |   [] 
+  |   [].
+ []
+
+
+Underfull \hbox (badness 1394) in paragraph at lines 76--81
+\OT1/cmr/m/n/12 Llewellyn Pub-li-ca-tions, Wood-bury, Min-nesota, 2014.  An-no-
+tated edi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--81
+\OT1/cmr/m/n/12 tion (Edited by Don-ald Tyson): []$\OT1/cmtt/m/n/12 https : / /
+ archive . org / details /
+ []
+
+
+Overfull \hbox (89.63794pt too wide) in paragraph at lines 76--81
+\OT1/cmtt/m/n/12 three-[]books-[]of-[]occult-[]philosophy-[]henry-[]cornelius-[
+]agrippa-[]donald-[]tyson-[]edition$[]\OT1/cmr/m/n/12 . 
+ []
+
+
+Underfull \hbox (badness 2828) in paragraph at lines 88--93
+|   []   |   []\OT1/cmr/m/n/12 .  Llewellyn World-wide, Wood-bury, Min-nesota, 
+2010.
+ []
+
+
+
+[46]
+Underfull \hbox (badness 1308) in paragraph at lines 116--121
+[]\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
+]   |   [].
+ []
+
+
+Underfull \hbox (badness 5359) in paragraph at lines 137--142
+[]\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
+].
+ []
+
+
+Underfull \hbox (badness 5696) in paragraph at lines 137--142
+\OT1/cmr/m/n/12 Man-drake of Ox-ford, round-world edi-tion edi-tion, 2010.  Dig
+-i-tal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
+\OT1/cmr/m/n/12 edi-tion avail-able at: []$\OT1/cmtt/m/n/12 https : / / archive
+ . org / download / peter-[]j .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
+\OT1/cmtt/m/n/12 -[]carroll-[]the-[]octavo-[]roundworld-[]edition / Peter % 20J
+ . %20Carroll %
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--162
+[]\OT1/cmr/m/n/12 Joseph Will-rich Lu-talo.  \OT1/cmr/bx/n/12 TEA TAZ - Trans-f
+orm-ing Ex-e-
+ []
+
+
+Underfull \hbox (badness 6001) in paragraph at lines 156--162
+\OT1/cmr/bx/n/12 cutable Al-pha-bet A: to Z: COM-MAND SPACE SPEC-I-
+ []
+
+
+Underfull \hbox (badness 3029) in paragraph at lines 156--162
+\OT1/cmr/bx/n/12 FI-CA-TION\OT1/cmr/m/n/12 .  |   [], 2024.  Ac-cessed on 14 Ma
+y, 2025,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--162
+\OT1/cmr/m/n/12 via []$\OT1/cmtt/m/n/12 https : / / www . academia . edu / 1228
+71672 / TEA _ TAZ _ Transforming _
+ []
+
+
+
+[47]
+Underfull \hbox (badness 1622) in paragraph at lines 215--221
+[]\OT1/cmr/m/n/12 Joshua Madara.  Roboth-eo-sis: Art, magic, cy-ber-net-ics.  |
+   []
+ []
+
+
+Underfull \hbox (badness 3525) in paragraph at lines 215--221
+|   []   |   []   |   []   |   []   |   []   |   []   |   []\OT1/cmr/m/n/12 , 4
+:83--111, 2019.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--221
+\OT1/cmr/m/n/12 Ac-ces-si-ble via: []$\OT1/cmtt/m/n/12 https : / / www . revena
+ntjournal . com / contents /
+ []
+
+
+Underfull \hbox (badness 1558) in paragraph at lines 223--229
+\OT1/cmr/m/n/12 ac-ces-si-ble via: []$\OT1/cmtt/m/n/12 https : / / www . academ
+ia . edu / download / 121530226 / edtn _
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 223--229
+\OT1/cmtt/m/n/12 25FEB _ Concerning _ A _ Transformative _ Power _ in _ Certain
+ _ Symbols _
+ []
+
+)
+Underfull \hbox (badness 10000) in paragraph at lines 1984--1984
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1984--1987
+
+ []
+
+
+
+pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<resources/back_cover.pdf, id=1157, 596.98032pt x 844.65562pt>
+File: resources/back_cover.pdf Graphic file (type pdf)
+<use resources/back_cover.pdf>
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 1990.
+(pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
+
+
+pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+File: resources/back_cover.pdf Graphic file (type pdf)
+<use resources/back_cover.pdf>
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 1990.
+(pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
+
+
+pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+
+
+pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
+<resources/back_cover.pdf, id=1160, page=1, 596.98032pt x 844.65562pt>
+File: resources/back_cover.pdf Graphic file (type pdf)
+<use resources/back_cover.pdf, page 1>
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
+90.
+(pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
+File: resources/back_cover.pdf Graphic file (type pdf)
+<use resources/back_cover.pdf, page 1>
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
+90.
+(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
+
+
+[48]
+File: resources/back_cover.pdf Graphic file (type pdf)
+<use resources/back_cover.pdf, page 1>
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
+90.
+(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
+File: resources/back_cover.pdf Graphic file (type pdf)
+<use resources/back_cover.pdf, page 1>
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
+90.
+(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
+
+
+File: resources/back_cover.pdf Graphic file (type pdf)
+<use resources/back_cover.pdf, page 1>
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 19
+90.
+(pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
+[49
+
+ <./resources/back_cover.pdf>] (grimoire_lumtauto.aux)
+ ***********
+LaTeX2e <2024-06-01> patch level 2
+L3 programming layer <2024-07-20>
+ ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `grimoire_lumtauto.out' has not changed.
+(rerunfilecheck)             Checksum: B66C784B24452CFDDB229C42F30871E4;2237.
+ ) 
+Here is how much of TeX's memory you used:
+ 31361 strings out of 473898
+ 593182 string characters out of 5736297
+ 2201960 words of memory out of 5000000
+ 53128 multiletter control sequences out of 15000+600000
+ 576991 words of font info for 107 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 98i,17n,101p,1838b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti1
+200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
+tcrm1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
+i600\tcrm0700.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\tcrm1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\tcrm1440.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Pro
+gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/M
+iKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
+C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fi
+les/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
+lic/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/
+cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program File
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fon
+ts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb
+><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on grimoire_lumtauto.pdf (49 pages, 3327205 bytes).
+PDF statistics:
+ 1432 PDF objects out of 1440 (max. 8388607)
+ 611 named destinations out of 1000 (max. 500000)
+ 211 words of extra memory for PDF output out of 10000 (max. 10000000)
+
