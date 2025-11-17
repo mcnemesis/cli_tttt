@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  15 NOV 2025 17:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  17 NOV 2025 19:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -206,6 +206,25 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@ppsavesec=\count285
 \c@@ppsaveapp=\count286
 )
+(C:\Program Files\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip53
+\f@nch@offset@elh=\skip54
+\f@nch@offset@erh=\skip55
+\f@nch@offset@olh=\skip56
+\f@nch@offset@orh=\skip57
+\f@nch@offset@elf=\skip58
+\f@nch@offset@erf=\skip59
+\f@nch@offset@olf=\skip60
+\f@nch@offset@orf=\skip61
+\f@nch@height=\skip62
+\f@nch@footalignment=\skip63
+\f@nch@widthL=\skip64
+\f@nch@widthC=\skip65
+\f@nch@widthR=\skip66
+\@temptokenb=\toks20
+)
 (C:\Program Files\MiKTeX\tex/latex/makecell\makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 
@@ -214,14 +233,14 @@ Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
 \col@sep=\dimen157
 \ar@mcellbox=\box55
 \extrarowheight=\dimen158
-\NC@list=\toks20
-\extratabsurround=\skip53
-\backup@length=\skip54
+\NC@list=\toks21
+\extratabsurround=\skip67
+\backup@length=\skip68
 \ar@cellbox=\box56
 )
 \rotheadsize=\dimen159
 \c@nlinenum=\count287
-\TeXr@lab=\toks21
+\TeXr@lab=\toks22
 )
 (C:\Program Files\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -265,9 +284,9 @@ Package caption Info: hyperref package is loaded.
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count290
-\float@exts=\toks22
+\float@exts=\toks23
 \float@box=\box57
-\@float@everytoks=\toks23
+\@float@everytoks=\toks24
 \@floatcapt=\box58
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/caption\subcaption.sty
@@ -301,12 +320,12 @@ Package: soul 2023-06-14 v3.1 Permit use of UTF-8 characters in soul (HO)
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/soul\soul-ori.sty
 Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
-\SOUL@word=\toks24
-\SOUL@lasttoken=\toks25
-\SOUL@syllable=\toks26
-\SOUL@cmds=\toks27
-\SOUL@buffer=\toks28
-\SOUL@token=\toks29
+\SOUL@word=\toks25
+\SOUL@lasttoken=\toks26
+\SOUL@syllable=\toks27
+\SOUL@cmds=\toks28
+\SOUL@buffer=\toks29
+\SOUL@token=\toks30
 \SOUL@syllgoal=\dimen170
 \SOUL@syllwidth=\dimen171
 \SOUL@charkern=\dimen172
@@ -317,7 +336,7 @@ Package: soul-ori 2023-06-14 v3.1 letterspacing/underlining (mf)
 \SOUL@comma=\count294
 \SOUL@apo=\count295
 \SOUL@grave=\count296
-\SOUL@spaceskip=\skip55
+\SOUL@spaceskip=\skip69
 \SOUL@ttwidth=\dimen176
 \SOUL@uldp=\dimen177
 \SOUL@ulht=\dimen178
@@ -327,8 +346,8 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 ))
 (C:\Program Files\MiKTeX\tex/latex/colortbl\colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
-\everycr=\toks30
-\minrowclearance=\skip56
+\everycr=\toks31
+\minrowclearance=\skip70
 \rownum=\count297
 )
 (C:\Program Files\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
@@ -338,7 +357,7 @@ Package: tcolorbox 2025/09/09 version 6.8.0 text color boxes
 (C:\Program Files\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
 (C:\Program Files\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
-\pgfutil@everybye=\toks31
+\pgfutil@everybye=\toks32
 \pgfutil@tempdima=\dimen179
 \pgfutil@tempdimb=\dimen180
 )
@@ -357,12 +376,12 @@ Package: pgf 2023-01-15 v3.1.10 (3.1.10)
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks32
-\pgfkeys@temptoks=\toks33
+\pgfkeys@pathtoks=\toks33
+\pgfkeys@temptoks=\toks34
 
 (C:\Program Files\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.
 tex
-\pgfkeys@tmptoks=\toks34
+\pgfkeys@tmptoks=\toks35
 ))
 \pgf@x=\dimen181
 \pgf@y=\dimen182
@@ -380,9 +399,9 @@ tex
 \c@pgf@countb=\count299
 \c@pgf@countc=\count300
 \c@pgf@countd=\count301
-\t@pgf@toka=\toks35
-\t@pgf@tokb=\toks36
-\t@pgf@tokc=\toks37
+\t@pgf@toka=\toks36
+\t@pgf@tokb=\toks37
+\t@pgf@tokc=\toks38
 \pgf@sys@id@count=\count302
  (C:\Program Files\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
@@ -412,9 +431,9 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 \pgfmath@dimen=\dimen191
 \pgfmath@count=\count305
 \pgfmath@box=\box60
-\pgfmath@toks=\toks38
-\pgfmath@stack@operand=\toks39
-\pgfmath@stack@operation=\toks40
+\pgfmath@toks=\toks39
+\pgfmath@stack@operand=\toks40
+\pgfmath@stack@operation=\toks41
 )
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex)
 (C:\Program Files\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
@@ -537,8 +556,8 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen274
 \pgffor@skip=\dimen275
-\pgffor@stack=\toks41
-\pgffor@toks=\toks42
+\pgffor@stack=\toks42
+\pgffor@toks=\toks43
 ))
 (C:\Program Files\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
@@ -578,8 +597,8 @@ rytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))) (C:\Program Files\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks43
-\verbatim@line=\toks44
+\every@verbatim=\toks44
+\verbatim@line=\toks45
 \verbatim@in@stream=\read3
 )
 (C:\Program Files\MiKTeX\tex/latex/environ\environ.sty
@@ -588,7 +607,7 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
 (C:\Program Files\MiKTeX\tex/latex/trimspaces\trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 )
-\@envbody=\toks45
+\@envbody=\toks46
 )
 \tcb@titlebox=\box70
 \tcb@upperbox=\box71
@@ -609,7 +628,7 @@ Library (tcolorbox): 'tcblistings.code.tex' version '6.8.0'
 (C:\Program Files\MiKTeX\tex/latex/listings\listings.sty
 \lst@mode=\count322
 \lst@gtempboxa=\box79
-\lst@token=\toks46
+\lst@token=\toks47
 \lst@length=\count323
 \lst@currlwidth=\dimen286
 \lst@column=\count324
@@ -666,7 +685,7 @@ Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
 )
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2024/05/23 v2.17q AMS math features
-\@mathmargin=\skip57
+\@mathmargin=\skip71
 
 For additional information on amsmath, use the `?' option.
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amstext.sty
@@ -674,7 +693,7 @@ Package: amstext 2021/08/26 v2.01 AMS text
 
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks47
+\@emptytoks=\toks48
 \ex@=\dimen290
 ))
 (C:\Program Files\MiKTeX\tex/latex/amsmath\amsbsy.sty
@@ -714,21 +733,21 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \dotsspace@=\muskip18
 \c@parentequation=\count338
 \dspbrk@lvl=\count339
-\tag@help=\toks48
+\tag@help=\toks49
 \row@=\count340
 \column@=\count341
 \maxfields@=\count342
-\andhelp@=\toks49
+\andhelp@=\toks50
 \eqnshift@=\dimen293
 \alignsep@=\dimen294
 \tagshift@=\dimen295
 \tagwidth@=\dimen296
 \totwidth@=\dimen297
 \lineht@=\dimen298
-\@envbody=\toks50
-\multlinegap=\skip58
-\multlinetaggap=\skip59
-\mathdisplay@stack=\toks51
+\@envbody=\toks51
+\multlinegap=\skip72
+\multlinetaggap=\skip73
+\mathdisplay@stack=\toks52
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
@@ -745,15 +764,15 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 ))
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks52
-\thm@bodyfont=\toks53
-\thm@headfont=\toks54
-\thm@notefont=\toks55
-\thm@headpunct=\toks56
-\thm@preskip=\skip60
-\thm@postskip=\skip61
-\thm@headsep=\skip62
-\dth@everypar=\toks57
+\thm@style=\toks53
+\thm@bodyfont=\toks54
+\thm@headfont=\toks55
+\thm@notefont=\toks56
+\thm@headpunct=\toks57
+\thm@preskip=\skip74
+\thm@postskip=\skip75
+\thm@headsep=\skip76
+\dth@everypar=\toks58
 )
 \c@comp=\count343
 \c@theo=\count344
@@ -781,12 +800,12 @@ Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Bcount=\count357
 \calc@Adimen=\dimen299
 \calc@Bdimen=\dimen300
-\calc@Askip=\skip63
-\calc@Bskip=\skip64
+\calc@Askip=\skip77
+\calc@Bskip=\skip78
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count358
-\calc@Cskip=\skip65
+\calc@Cskip=\skip79
 )
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/eso-pic\eso-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
@@ -802,10 +821,10 @@ File: pppdftex.def 2024/08/20 v0.6b Pdfpages driver for pdfTeX (AM)
 )
 \pdfpages@includegraphics@status=\count359
 \AM@pagebox=\box87
-\AM@global@opts=\toks58
+\AM@global@opts=\toks59
 \AM@pagecnt=\count360
-\AM@toc@title=\toks59
-\AM@lof@heading=\toks60
+\AM@toc@title=\toks60
+\AM@lof@heading=\toks61
 \c@AM@survey=\count361
 \AM@templatesizebox=\box88
 )
@@ -894,12 +913,12 @@ Couldn't patch \deferred@thm@head!
 \scratchbox=\box90
 \nofMPsegments=\count364
 \nofMParguments=\count365
-\everyMPshowfont=\toks61
+\everyMPshowfont=\toks62
 \MPscratchCnt=\count366
 \MPscratchDim=\dimen307
 \MPnumerator=\count367
 \makeMPintoPDFobject=\count368
-\everyMPtoPDFconversion=\toks62
+\everyMPtoPDFconversion=\toks63
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1041,6 +1060,13 @@ ty since
 
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [3 <./resources/emblem_ion.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 300--302
 []\OT1/cmtt/m/n/12 Basically, we see how it is indeed language, or rather, its 
@@ -1071,6 +1097,13 @@ by
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [4]
 Underfull \hbox (badness 10000) in paragraph at lines 363--364
@@ -1103,6 +1136,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 384--385
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [5]
 Underfull \hbox (badness 10000) in paragraph at lines 437--437
@@ -1141,6 +1181,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 443--444
 
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [6]
 Underfull \hbox (badness 10000) in paragraph at lines 466--467
 []\OT1/cmtt/m/n/12 By ``intentional" I mean ``willed". But even unintentional a
@@ -1160,150 +1207,352 @@ Underfull \hbox (badness 10000) in paragraph at lines 474--475
 
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+[]\OT1/cmtt/m/n/14.4 Do not give dogs what is holy; and do not throw your
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 pearls in front of pigs, or they may trample them and then
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+[]\OT1/cmtt/m/n/14.4 ...the old Hermetic axiom \OT1/cmtt/m/it/14.4 Solve et coa
+gula\OT1/cmtt/m/n/14.4 , which may
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 be rendered as ``Dissolve and re-form," and so he uses the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 rites of the High Magic to effect both that dissolution
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 and that reformation. But what is dissolved, and what is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 reformed? ...it is the personal self which he has for so
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 long regarded as his only real self, this personality which
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 he has so tenaciously clung to and defended, has pampered
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 and indulged --- it this \OT1/cmtt/m/it/14.4 persona \OT1/cm
+tt/m/n/14.4 this mask of the real man
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 which must be dissolved and reformed. But how shall that
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 which is itself imperfect produce perfection? ``Nature
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 unaided, fails," said the old alchemists, and in the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 Scriptures we read ``Except the Lord build the House, the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 workman worketh in vain." So the magician in all humility
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 seeks the Knowledge and Conversation of his Holy Guardian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 Angel --- that True Self of which his earthly personality
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 is but the mask. This is the supreme aim of the magician.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 All else, spells and charms, rituals and circles, swords,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 wands and fumigations, all are but means by which he may
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 accomplish that end. Then, being united with that True
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 Self --- if only for a brief time --- he is instructed by
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 that Inner Ruler in that Higher Magic which will one day
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 bring up his manhood into his Godhood and will achieve that
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--532
+\OT1/cmtt/m/n/14.4 which the True Mysteries have ever declared to be the true
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 532--534
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--534
+
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[8]
+Overfull \vbox (25.6112pt too high) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[9]
+
 pdfTeX warning: pdflatex (file ./resources/iona.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<resources/iona.pdf, id=222, 364.48169pt x 353.40028pt>
+<resources/iona.pdf, id=245, 364.48169pt x 353.40028pt>
 File: resources/iona.pdf Graphic file (type pdf)
 <use resources/iona.pdf>
-Package pdftex.def Info: resources/iona.pdf  used on input line 501.
+Package pdftex.def Info: resources/iona.pdf  used on input line 541.
 (pdftex.def)             Requested size: 291.58574pt x 282.7206pt.
 
 
-[7]
-
 pdfTeX warning: pdflatex (file ./resources/lumtauto_slogan.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<resources/lumtauto_slogan.pdf, id=234, 663.43857pt x 125.5089pt>
+<resources/lumtauto_slogan.pdf, id=246, 663.43857pt x 125.5089pt>
 File: resources/lumtauto_slogan.pdf Graphic file (type pdf)
 <use resources/lumtauto_slogan.pdf>
-Package pdftex.def Info: resources/lumtauto_slogan.pdf  used on input line 510.
+Package pdftex.def Info: resources/lumtauto_slogan.pdf  used on input line 550.
 
 (pdftex.def)             Requested size: 497.92325pt x 94.20036pt.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 514.
+(hyperref)                removing `math shift' on input line 554.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\rightarrow' on input line 514.
+(hyperref)                removing `\rightarrow' on input line 554.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 514.
+(hyperref)                removing `math shift' on input line 554.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 517.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 557.
 
-Underfull \hbox (badness 10000) in paragraph at lines 526--527
+Underfull \hbox (badness 10000) in paragraph at lines 566--567
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 578--579
 
  []
 
 
 
-[8 <./resources/iona.pdf> <./resources/lumtauto_slogan.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 538--539
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[10 <./resources/iona.pdf> <./resources/lumtauto_slogan.pdf>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 651--652
 
  []
 
 
-
-[9]
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 611--612
-
- []
-
-
-Overfull \hbox (13.10168pt too wide) in paragraph at lines 616--626
+Overfull \hbox (13.10168pt too wide) in paragraph at lines 656--666
 []\OT1/cmtt/m/n/12 Our Father in heaven, may your name be held holy, your kingd
 om come, your will
  []
 
 
-Overfull \hbox (0.75168pt too wide) in paragraph at lines 616--626
+Overfull \hbox (0.75168pt too wide) in paragraph at lines 656--666
 \OT1/cmtt/m/n/12 be done, on earth as in heaven. Give us today our daily bread.
  And forgive
  []
 
 
-Overfull \hbox (13.10168pt too wide) in paragraph at lines 616--626
+Overfull \hbox (13.10168pt too wide) in paragraph at lines 656--666
 \OT1/cmtt/m/n/12 us our debts, as we have forgiven those who are in debt to us.
  And do not put
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 631--632
+Underfull \hbox (badness 10000) in paragraph at lines 671--672
 
  []
 
 
-Overfull \hbox (13.10168pt too wide) in paragraph at lines 635--645
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[12]
+Overfull \hbox (13.10168pt too wide) in paragraph at lines 675--685
 []\OT1/cmtt/m/n/12 Ear Fugsor im souvom, nub bear muno yo solw selb, bear pimtw
 en xeno, bear dill
  []
 
 
-Overfull \hbox (0.75168pt too wide) in paragraph at lines 635--645
+Overfull \hbox (0.75168pt too wide) in paragraph at lines 675--685
 \OT1/cmtt/m/n/12 yo wemo, em ourgs uh im souvom. Tivo ah gewub ear wuilb yrouw.
  Umw fertivo
  []
 
 
-Overfull \hbox (13.10168pt too wide) in paragraph at lines 635--645
+Overfull \hbox (13.10168pt too wide) in paragraph at lines 675--685
 \OT1/cmtt/m/n/12 ah ear woygh, uh do suvo fertivom gseho dse uro im woyg ge ah.
  Umw we meg kag
  []
 
 
-
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 650--651
+Underfull \hbox (badness 10000) in paragraph at lines 690--691
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 661--662
+Underfull \hbox (badness 10000) in paragraph at lines 701--702
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 675--676
+Underfull \hbox (badness 10000) in paragraph at lines 715--716
 
  []
 
 
-Overfull \hbox (22.38437pt too wide) in paragraph at lines 680--681
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[13]
+Overfull \hbox (22.38437pt too wide) in paragraph at lines 720--721
 []\OT1/cmtt/m/n/20.74 Imi geso yotimemimet Tewa xarougow souvom umwa
  []
 
-
-
-[12]
-<resources/lumtauto.jpg, id=323, 1541.76pt x 1027.84pt>
+<resources/lumtauto.jpg, id=331, 1541.76pt x 1027.84pt>
 File: resources/lumtauto.jpg Graphic file (type jpg)
 <use resources/lumtauto.jpg>
-Package pdftex.def Info: resources/lumtauto.jpg  used on input line 707.
+Package pdftex.def Info: resources/lumtauto.jpg  used on input line 747.
 (pdftex.def)             Requested size: 448.12788pt x 298.74036pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 703--711
+Overfull \hbox (12.4pt too wide) in paragraph at lines 743--751
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 720--721
+Underfull \hbox (badness 10000) in paragraph at lines 760--761
 
  []
 
 
 
-[13 <./resources/lumtauto.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 741--742
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[14 <./resources/lumtauto.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 781--782
 
  []
 
 
-Overfull \hbox (72.9196pt too wide) in paragraph at lines 743--744
+Overfull \hbox (72.9196pt too wide) in paragraph at lines 783--784
 []\OT1/cmr/bx/it/12 FOR \OT1/cmr/m/it/12 each el-e-ment $\OML/cmm/m/it/12 v[]$ 
 \OT1/cmr/m/it/12 in \OT1/cmtt/m/it/12 list[]a[]z[]lumtauto \OT1/cmr/m/it/12 be-
 tween po-si-tions 1 to $[]\OMS/cmsy/m/n/12 ^^B$ \OT1/cmtt/m/it/12 length(list[]
@@ -1311,7 +1560,7 @@ a[]z[]lumtauto)\OT1/cmr/m/it/12 :
  []
 
 
-Overfull \hbox (59.2198pt too wide) in paragraph at lines 769--770
+Overfull \hbox (59.2198pt too wide) in paragraph at lines 809--810
 []\OT1/cmr/bx/it/12 COMPUTE \OT1/cmr/m/it/12 the cor-re-spond-ing mir-ror let-t
 er po-si-tion $\OML/cmm/m/it/12 k \OT1/cmr/m/n/12 =$ \OT1/cmtt/m/it/12 index($\
 OML/cmm/m/it/12 c[]$ \OT1/cmtt/m/it/12 in list[]a[]z[]lumtauto)\OT1/cmr/m/it/12
@@ -1319,7 +1568,7 @@ OML/cmm/m/it/12 c[]$ \OT1/cmtt/m/it/12 in list[]a[]z[]lumtauto)\OT1/cmr/m/it/12
  []
 
 
-Overfull \hbox (24.4883pt too wide) in paragraph at lines 770--771
+Overfull \hbox (24.4883pt too wide) in paragraph at lines 810--811
 []\OT1/cmr/bx/it/12 REPLACE $\OML/cmm/m/it/12 c[]$ \OT1/cmr/m/it/12 in \OT1/cmt
 t/m/it/12 msg[]lumtauto \OT1/cmr/m/it/12 via the \OT1/cmr/bx/it/12 OVER-WRITE \
 OT1/cmr/m/it/12 op-er-a-tion: \OT1/cmtt/m/it/12 msg[]lumtauto[i]
@@ -1327,125 +1576,162 @@ OT1/cmr/m/it/12 op-er-a-tion: \OT1/cmtt/m/it/12 msg[]lumtauto[i]
 
 
 
-[14]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [15]
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[16]
+
 Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 898.
+(caption)                outside box or environment on input line 938.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 898.
+(caption)                particular \caption on input line 938.
 See the caption package documentation for explanation.
 
 
 
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 908--909
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 948--949
 [][]$\OT1/cmtt/m/n/12 https : / / tea . nuchwezi . com / ?i = put + your + mess
 age + here & fc = https : / / gist .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 908--909
+Underfull \hbox (badness 10000) in paragraph at lines 948--949
 \OT1/cmtt/m/n/12 githubusercontent . com / mcnemesis / ae9d6226d49f5a8601a84241
 a08f07c8 / raw / lumtauto _
  []
 
-
-
-[17]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+962.
+(C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1003.
+(caption)                particular \caption on input line 968.
 See the caption package documentation for explanation.
 
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [18]
-<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=597, 1541.76pt x 1027
+<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=524, 1541.76pt x 1027
 .84pt>
 File: resources/illustration_trudy_olga_spirit_fight_2.jpg Graphic file (type j
 pg)
 <use resources/illustration_trudy_olga_spirit_fight_2.jpg>
 Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight_2.jpg  
-used on input line 1049.
+used on input line 1014.
 (pdftex.def)             Requested size: 448.12788pt x 298.74036pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1045--1055
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1010--1020
 [][] 
  []
 
 
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 1059--1060
+Underfull \hbox (badness 10000) in paragraph at lines 1024--1025
 
  []
 
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[19 <./resources/illustration_trudy_olga_spirit_fight_2.jpg>]
 \g__tcobox_out_iow=\write5
 \openout5 = `grimoire_lumtauto.listing'.
 
-(grimoire_lumtauto.listing)
 
-[20 <./resources/illustration_trudy_olga_spirit_fight_2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+(grimoire_lumtauto.listing)
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 []\OT1/cmtt/m/n/12 I bind you in the name of Ruhanga and all the spirits of nat
 ure and my ancestors
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 here present. I bind you regardless of whether you are here in
  spirit, mind or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 body. I bind you and cut from you all sources of power that ar
 e Animusting you
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 right now, in the name of the Most Powerful Ruhanga! I hurl yo
 u into an eternal
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 prison, I cut you to shreds, I summon thunder and fire that ea
 ts at the body,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 mind and spirit to strike and deprive you of all your strength
  and health. I
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 summon the hungriest of hell's spirits to feast on you. I bind
  and destroy you
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 in God's most holy, unknown names! Right Here, Right Now! Be G
 one, Be Gone
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1103
+Underfull \hbox (badness 10000) in paragraph at lines 1055--1068
 \OT1/cmtt/m/n/12 from this place and time Right Now! In the name of the Infinit
 e, Absolute and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
+Underfull \hbox (badness 10000) in paragraph at lines 1079--1080
 
  []
 
@@ -1453,286 +1739,399 @@ Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
 
 (grimoire_lumtauto.listing)
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[20]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [21]
-<resources/illustration_trudy_olga_spirit_fight.jpg, id=661, 1541.76pt x 1027.8
+<resources/illustration_trudy_olga_spirit_fight.jpg, id=614, 1541.76pt x 1027.8
 4pt>
 File: resources/illustration_trudy_olga_spirit_fight.jpg Graphic file (type jpg
 )
 <use resources/illustration_trudy_olga_spirit_fight.jpg>
 Package pdftex.def Info: resources/illustration_trudy_olga_spirit_fight.jpg  us
-ed on input line 1182.
+ed on input line 1147.
 (pdftex.def)             Requested size: 448.12788pt x 298.74036pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1178--1188
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1143--1153
 [][] 
  []
 
 
-
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 1194--1195
+Underfull \hbox (badness 10000) in paragraph at lines 1159--1160
 
  []
 
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 1
-200.
+165.
 (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1200.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1165.
 
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
-210.
+173.
 
 (C:\Program Files\MiKTeX\tex/latex/base\omlcmr.fd
 File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1210.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1173.
 
 
 
-[23 <./resources/illustration_trudy_olga_spirit_fight.jpg>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[22 <./resources/illustration_trudy_olga_spirit_fight.jpg>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1256.
+(caption)                particular \caption on input line 1219.
 See the caption package documentation for explanation.
 
-(C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[23] (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/05/25 1.10b listings language file
 )
 
-[24]
-
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1303.
+(caption)                particular \caption on input line 1266.
 See the caption package documentation for explanation.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 1309.
+(hyperref)                removing `\@ifnextchar' on input line 1272.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1319--1320
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 1282--1283
 []\OT1/cmtt/m/n/12 A traditional spell is often rather like poetry, in that the
  power
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1319--1320
+Underfull \hbox (badness 10000) in paragraph at lines 1282--1283
 \OT1/cmtt/m/n/12 can manifest even though the reasons for its working remain a 
 mystery.
  []
 
 
-
-[25]
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 []\OT1/cmtt/m/n/12 The formulae, actions and objects or substances they involve
  many
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 have many different purposes. Sometimes they may be, frankly, 
 just
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 to impress the uninitiated. Sometimes they may be a distorted 
 memory
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 of something which originally had a physically, psychologicall
 y or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 psychically practical reason. And even oftener they may be cal
 ling
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 upon a symbolism, whether conscious or unconscious, which aids
  the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 inter-level communication... What one should not do is to dism
 iss them
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 out of hand just because the reason for their form is not imme
 diately
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 obvious to rational analysis. You may find that they work thou
 gh
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 you don't know why --- that the power of their symbology is bu
 ried
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1336--1337
+Underfull \hbox (badness 10000) in paragraph at lines 1299--1300
 \OT1/cmtt/m/n/12 too deeply in your personal Unconscious (or even in the Collec
 tive
  []
 
-<resources/conjurer.jpg, id=810, 1798.72pt x 1027.84pt>
+<resources/conjurer.jpg, id=729, 1798.72pt x 1027.84pt>
 File: resources/conjurer.jpg Graphic file (type jpg)
 <use resources/conjurer.jpg>
-Package pdftex.def Info: resources/conjurer.jpg  used on input line 1353.
+Package pdftex.def Info: resources/conjurer.jpg  used on input line 1316.
 (pdftex.def)             Requested size: 448.12788pt x 256.0654pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1349--1359
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1312--1322
 [][] 
  []
 
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[25]
 \openout5 = `grimoire_lumtauto.listing'.
 
-(grimoire_lumtauto.listing)
+ (grimoire_lumtauto.listing)
+\openout5 = `grimoire_lumtauto.listing'.
+
+ (grimoire_lumtauto.listing)
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [26 <./resources/conjurer.jpg>]
-\openout5 = `grimoire_lumtauto.listing'.
-
- (grimoire_lumtauto.listing)
-<resources/conjurer_4.jpg, id=819, 1252.68pt x 835.12pt>
+<resources/conjurer_4.jpg, id=754, 1252.68pt x 835.12pt>
 File: resources/conjurer_4.jpg Graphic file (type jpg)
 <use resources/conjurer_4.jpg>
-Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1404.
+Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1367.
 (pdftex.def)             Requested size: 448.12788pt x 298.74428pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1400--1410
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1363--1373
 [][] 
  []
 
 
 
-[27]
 
-[28 <./resources/conjurer_4.jpg>]
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[27 <./resources/conjurer_4.jpg>]
 \openout5 = `grimoire_lumtauto.listing'.
 
  (grimoire_lumtauto.listing)
+
+LaTeX Warning: Citation `johnson2000civilization' on page 28 undefined on input
+ line 1411.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[28]
 
 pdfTeX warning: pdflatex (file ./resources/maiu_sigil.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/maiu_sigil.pdf, id=854, 277.9986pt x 718.60468pt>
+<resources/maiu_sigil.pdf, id=787, 277.9986pt x 718.60468pt>
 File: resources/maiu_sigil.pdf Graphic file (type pdf)
 <use resources/maiu_sigil.pdf>
-Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1459.
+Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1422.
 (pdftex.def)             Requested size: 222.39917pt x 574.88452pt.
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [29]
 
 pdfTeX warning: pdflatex (file ./resources/myrrh_slogan.pdf): PDF inclusion: fo
 und PDF version <1.7>, but at most version <1.5> allowed
-<resources/myrrh_slogan.pdf, id=867, 621.28107pt x 126.4725pt>
+<resources/myrrh_slogan.pdf, id=793, 621.28107pt x 126.4725pt>
 File: resources/myrrh_slogan.pdf Graphic file (type pdf)
 <use resources/myrrh_slogan.pdf>
-Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1468.
+Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1431.
 (pdftex.def)             Requested size: 497.92325pt x 101.36531pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1477--1478
+Underfull \hbox (badness 10000) in paragraph at lines 1440--1441
 
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [30 <./resources/maiu_sigil.pdf> <./resources/myrrh_slogan.pdf>]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1498.
+(caption)                particular \caption on input line 1461.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1545--1546
+Underfull \hbox (badness 10000) in paragraph at lines 1508--1509
 
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 1550--1551
+Underfull \hbox (badness 10000) in paragraph at lines 1513--1514
 
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [32]
-Underfull \hbox (badness 10000) in paragraph at lines 1597--1598
+Underfull \hbox (badness 10000) in paragraph at lines 1560--1561
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1607--1608
+Underfull \hbox (badness 10000) in paragraph at lines 1570--1571
 
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [33]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1662.
+(caption)                particular \caption on input line 1625.
 See the caption package documentation for explanation.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1674--1675
+Underfull \hbox (badness 10000) in paragraph at lines 1637--1638
 [][]$\OT1/cmtt/m/n/12 https : / / tea . nuchwezi . com / ?i = hello + world & f
 c = https : / / gist . githubusercontent . com /
  []
 
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [34]
-Underfull \hbox (badness 10000) in paragraph at lines 1696--1697
+Underfull \hbox (badness 10000) in paragraph at lines 1659--1660
 []\OT1/cmtt/m/n/12 Susa Morgan Black sends us another way of ensuring the Boome
 rang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1698--1699
+Underfull \hbox (badness 10000) in paragraph at lines 1661--1662
 []\OT1/cmtt/m/n/12 `Take a special hand-held mirror,' she says, `and simply tur
 n
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1698--1699
+Underfull \hbox (badness 10000) in paragraph at lines 1661--1662
 \OT1/cmtt/m/n/12 completely around with the mirror reflecting outward and state
  an
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
+Underfull \hbox (badness 10000) in paragraph at lines 1676--1677
 []\OT1/cmtt/m/n/12 We have used mirrors for this purpose ourselves when we have
  known
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
+Underfull \hbox (badness 10000) in paragraph at lines 1676--1677
 \OT1/cmtt/m/n/12 who was working against us, and in what direction he or she li
 ved.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
+Underfull \hbox (badness 10000) in paragraph at lines 1676--1677
 \OT1/cmtt/m/n/12 We would put a mirror in a suitable window facing outwards in 
 that
  []
@@ -1741,180 +2140,1342 @@ that
 
 (grimoire_lumtauto.listing)
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [35]
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 []\OT1/cmtt/m/n/12 STEP THREE. Step forward with the left foot. At the same tim
 e
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 \OT1/cmtt/m/n/12 thrust your hands forward so that they point at the exact midd
 le of
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 \OT1/cmtt/m/n/12 the glowing blue pentagram in front of you (this position is k
 nown
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 \OT1/cmtt/m/n/12 as a ``GodForm" and is the God Form known as ``The Enterer"). 
 As you
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 \OT1/cmtt/m/n/12 do this you should exhale and feel the energy come back up you
 r body,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 \OT1/cmtt/m/n/12 out your arms and hands, through the pentagram and to the ends
  of the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1758--1759
+Underfull \hbox (badness 10000) in paragraph at lines 1721--1722
 \OT1/cmtt/m/n/12 universe. You should use the entire exhalation to vibrate the 
 God
  []
 
 <resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.jpg, i
-d=1013, 1018.80624pt x 1084.05pt>
+d=939, 1018.80624pt x 1084.05pt>
 File: resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.j
 pg Graphic file (type jpg)
 <use resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.jp
 g>
 Package pdftex.def Info: resources/a_modern_chaos_magick_operating_circle_by_ne
-mesisfixx_digtctm.jpg  used on input line 1787.
+mesisfixx_digtctm.jpg  used on input line 1750.
 (pdftex.def)             Requested size: 448.12788pt x 476.83461pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 1783--1793
+Overfull \hbox (12.4pt too wide) in paragraph at lines 1746--1756
 [][] 
  []
 
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [36]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [37 <./resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.
 jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
+Underfull \hbox (badness 10000) in paragraph at lines 1779--1780
 []\OT1/cmtt/m/n/12 The original name of Jesus of Nazareth was not ``Jesus." In 
 his own
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
+Underfull \hbox (badness 10000) in paragraph at lines 1779--1780
 \OT1/cmtt/m/n/12 time, he would have been called Yeshua in Hebrew/Aramaic, a sh
 ortened
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
+Underfull \hbox (badness 10000) in paragraph at lines 1779--1780
 \OT1/cmtt/m/n/12 form of Yehoshua, meaning ``Yahweh is salvation." The name ``J
 esus"
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1816--1817
+Underfull \hbox (badness 10000) in paragraph at lines 1779--1780
 \OT1/cmtt/m/n/12 is the English form that developed through Greek (I^^Vesous) a
 nd Latin
  []
 
 
-Overfull \hbox (16.93312pt too wide) in paragraph at lines 1841--1936
+Overfull \hbox (16.93312pt too wide) in paragraph at lines 1804--1899
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1841--1936
+Underfull \hbox (badness 10000) in paragraph at lines 1804--1899
 
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [38]
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [39]
-<resources/om_mani.jpg, id=1063, 853.5087pt x 573.1011pt>
+<resources/om_mani.jpg, id=989, 853.5087pt x 573.1011pt>
 File: resources/om_mani.jpg Graphic file (type jpg)
 <use resources/om_mani.jpg>
-Package pdftex.def Info: resources/om_mani.jpg  used on input line 1949.
+Package pdftex.def Info: resources/om_mani.jpg  used on input line 1912.
 (pdftex.def)             Requested size: 497.92325pt x 334.34021pt.
 
-Overfull \hbox (16.39098pt too wide) in paragraph at lines 1965--1990
+Overfull \hbox (29.52959pt too wide) in paragraph at lines 1928--1957
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1965--1990
+Underfull \hbox (badness 10000) in paragraph at lines 1928--1957
 
  []
 
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [40 <./resources/om_mani.jpg>]
-Overfull \hbox (15.71042pt too wide) in paragraph at lines 2006--2029
+Overfull \vbox (12.30138pt too high) has occurred while \output is active []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[41]
+Overfull \hbox (15.71042pt too wide) in paragraph at lines 1973--1996
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2006--2029
+Underfull \hbox (badness 10000) in paragraph at lines 1973--1996
 
  []
 
 
-
-[41]
 
 pdfTeX warning: pdflatex (file ./resources/ozin_code.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<resources/ozin_code.pdf, id=1093, 515.04419pt x 611.40419pt>
+<resources/ozin_code.pdf, id=1022, 515.04419pt x 611.40419pt>
 File: resources/ozin_code.pdf Graphic file (type pdf)
 <use resources/ozin_code.pdf>
-Package pdftex.def Info: resources/ozin_code.pdf  used on input line 2039.
+Package pdftex.def Info: resources/ozin_code.pdf  used on input line 2006.
 (pdftex.def)             Requested size: 463.53549pt x 550.25867pt.
 
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [42]
 
 pdfTeX warning: pdflatex (file ./resources/ozin_slogan.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/ozin_slogan.pdf, id=1100, 316.3017pt x 223.7961pt>
+<resources/ozin_slogan.pdf, id=1029, 316.3017pt x 223.7961pt>
 File: resources/ozin_slogan.pdf Graphic file (type pdf)
 <use resources/ozin_slogan.pdf>
-Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 2048.
+Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 2015.
 (pdftex.def)             Requested size: 497.92325pt x 352.32019pt.
 
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 [43 <./resources/ozin_code.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+[]\OT1/cmtt/m/n/12 Most animals communicate with their kind in one degree or an
+other,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+\OT1/cmtt/m/n/12 some by methods unknown to or imperfectly understood by men. B
+ut
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+\OT1/cmtt/m/n/12 man alone has acquired the faculty of communication by \OT1/cm
+tt/m/it/12 speech\OT1/cmtt/m/n/12 . This
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+\OT1/cmtt/m/n/12 unique achievement has been the biggest single factor in the s
+uccess
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+\OT1/cmtt/m/n/12 of \OT1/cmtt/m/it/12 Homo sapiens \OT1/cmtt/m/n/12 in developi
+ng complex societies. Only now are we
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+\OT1/cmtt/m/n/12 beginning to realize how deeply relevant communication is to t
+he
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+\OT1/cmtt/m/n/12 story of human progress. Communication theory, as it is called
+, is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2048
+\OT1/cmtt/m/n/12 now one of the basic areas of research into human intercourse 
+and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2049--2050
+[]\OT1/cmtt/m/n/12 Speech was the first great leap forward in the development o
+f human
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2049--2050
+\OT1/cmtt/m/n/12 communication. The second was the invention of \OT1/cmtt/m/it/
+12 writing\OT1/cmtt/m/n/12 . By this
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2049--2050
+\OT1/cmtt/m/n/12 means, what men thought to themselves or said to one another c
+ould
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2049--2050
+\OT1/cmtt/m/n/12 be recorded, read by others, and stored for the benefit of fut
+ure
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[44 <./resources/ozin_slogan.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 2070--2071
+[]\OT1/cmtt/m/n/12 Also, we see that in many instances of control of access to 
+power,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2070--2071
+\OT1/cmtt/m/n/12 authority and in the exercising of order in society --- especi
+ally
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2070--2071
+\OT1/cmtt/m/n/12 where many classes and diversities are concerned, that certain
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2070--2071
+\OT1/cmtt/m/n/12 ``special" knowledge such as that of ``special" languages, end
+ows
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2070--2071
+\OT1/cmtt/m/n/12 or lifts certain members of the community/society to a status 
+and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2080--2081
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2087--2088
+[]\OT1/cmtt/m/n/12 The members of these local bourgeoisie of priests, doctors o
+r
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2087--2088
+\OT1/cmtt/m/n/12 teachers, who owed their position to their mastery of the inst
+ruments
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2087--2088
+\OT1/cmtt/m/n/12 of expression, had everything to gain from the Revolutionary p
+olicy
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2087--2088
+\OT1/cmtt/m/n/12 of linguistic unification... defacto monopoly of politics, and
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2087--2088
+\OT1/cmtt/m/n/12 more generally of communication with the central government an
+d its
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[45]
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+[]\OT1/cmtt/m/n/12 So far we have looked mainly at symbols that merely convey
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+\OT1/cmtt/m/n/12 information. But there is another class of symbols that both c
+arry
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+\OT1/cmtt/m/n/12 information and also stand for a body of thought or belief tha
+t is not
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+\OT1/cmtt/m/n/12 easily expressed in any other way. Just as a simple word can i
+n the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+\OT1/cmtt/m/n/12 course of time gather around it a mass of associations and a v
+ariety of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+\OT1/cmtt/m/n/12 meanings that are not easily explained by using other words, s
+o, too, a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+\OT1/cmtt/m/n/12 symbol can stand for much more than its basic meaning in the o
+riginal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2110
+\OT1/cmtt/m/n/12 code. In other words, symbols can become ``charged" with meani
+ng and
+ []
+
+
+
+pdfTeX warning: pdflatex (file ./resources/earlychristiansymbols.pdf): PDF incl
+usion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/earlychristiansymbols.pdf, id=1073, 564.18782pt x 181.6386pt>
+File: resources/earlychristiansymbols.pdf Graphic file (type pdf)
+<use resources/earlychristiansymbols.pdf>
+Package pdftex.def Info: resources/earlychristiansymbols.pdf  used on input lin
+e 2126.
+(pdftex.def)             Requested size: 497.92325pt x 160.31084pt.
+
+
+pdfTeX warning: pdflatex (file ./resources/tau_cross_earlychristiansymbols.pdf)
+: PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/tau_cross_earlychristiansymbols.pdf, id=1076, 168.63pt x 129.6042pt>
+
+File: resources/tau_cross_earlychristiansymbols.pdf Graphic file (type pdf)
+<use resources/tau_cross_earlychristiansymbols.pdf>
+Package pdftex.def Info: resources/tau_cross_earlychristiansymbols.pdf  used on
+ input line 2140.
+(pdftex.def)             Requested size: 134.90417pt x 103.68349pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[46 <./resources/earlychristiansymbols.pdf>]
+<resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg, id=1094, 1095.09125pt x 102
+7.84pt>
+File: resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg Graphic file (type jpg)
+
+<use resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg>
+Package pdftex.def Info: resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg  use
+d on input line 2149.
+(pdftex.def)             Requested size: 328.5299pt x 308.35437pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 2170--2171
+[]\OT1/cmtt/m/n/12 Long before man had learned to write, and perhaps even befor
+e he had
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2187--2188
+[]\OT1/cmtt/m/n/12 ...we have quite recently discovered animal paintings that a
+re at
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2187--2188
+\OT1/cmtt/m/n/12 least 20,000 years old. They have survived only because they a
+re far
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2187--2188
+\OT1/cmtt/m/n/12 from the cave entrances and therefore unaffected by weather co
+nditions.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2187--2188
+\OT1/cmtt/m/n/12 Their remoteness also makes it certain that these parts of the
+ caves
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[47 <./resources/tau_cross_earlychristiansymbols.pdf> <./resources/1091px-Chris
+me_Colosseum_Rome_Italy.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 2205--2206
+[]\OT1/cmtt/m/n/12 ...they were painted under extremely difficult conditions. W
+hat
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2205--2206
+\OT1/cmtt/m/n/12 was their purpose? The question is important because these pai
+ntings
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2205--2206
+\OT1/cmtt/m/n/12 are the earliest known attempts by man to represent the world 
+in which
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2205--2206
+\OT1/cmtt/m/n/12 he lived. They are the beginnings of art --- a major form of v
+isual
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2205--2206
+\OT1/cmtt/m/n/12 communication. In questioning their purpose, we are asking: ``
+With
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2209--2210
+[]\OT1/cmtt/m/n/12 Primitive man is a weakling in the world of animals, and yet
+ he has
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2209--2210
+\OT1/cmtt/m/n/12 to gain mastery over them or die. One way in which he can buil
+d up
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2209--2210
+\OT1/cmtt/m/n/12 his courage against animals bigger and stronger than himself i
+s to make
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2226--2227
+[]\OT1/cmtt/m/n/12 By making these pictures, Neolithic man was talking to himse
+lf,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2226--2227
+\OT1/cmtt/m/n/12 thinking about his coming combats. In effect he was saying: ``
+This
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2226--2227
+\OT1/cmtt/m/n/12 is the animal that I have to kill. He is part of me and the wo
+rld I
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2226--2227
+\OT1/cmtt/m/n/12 live in; by painting this picture I am that much nearer achiev
+ing my
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2226--2227
+\OT1/cmtt/m/n/12 object." He believed that the act of picturing the animal magi
+cally
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[48]
+Underfull \hbox (badness 10000) in paragraph at lines 2248--2249
+[]\OT1/cmtt/m/n/12 The cult of the supergod and of theological imperialism, in 
+which
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2248--2249
+\OT1/cmtt/m/n/12 gods left their localities and crossed frontiers without loosi
+ng their
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2248--2249
+\OT1/cmtt/m/n/12 power, necessarily presupposed the possibility of monotheism, 
+of a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2248--2249
+\OT1/cmtt/m/n/12 universal, all-powerful and solitary deity... A papyrus in the
+ Cairo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2248--2249
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2250--2256
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2250--2256
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+[]\OT1/cmtt/m/n/12 ...Sometimes, the idea was reformulated in a characteristic 
+Egyptian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+\OT1/cmtt/m/n/12 way to embrace the three leading supergods in a trinitarian co
+ncept
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+\OT1/cmtt/m/n/12 of three natures in the same god. Thus a papyrus now in Leyden
+ dating
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+\OT1/cmtt/m/n/12 from the Nineteenth Dynasty gives this formulation: ``All gods
+ are
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+\OT1/cmtt/m/n/12 three, Amun, Re and Ptah, and there is no second to them. `Hid
+den' is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+\OT1/cmtt/m/n/12 his name Amun. He is Re in face and his body is Ptah. Their ci
+ties
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2257--2258
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+[]\OT1/cmtt/m/n/12 If there was one supreme god, not confined to a particular p
+lace,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 what was his relationship to non-Egyptians? With the growth of
+ empire,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 and the parallel tendency for foreigners to settle in Egypt, t
+here is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 evidence that the latter were granted the protection of the Eg
+yptian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 pantheon, though not exactly of equal status. The tomb documen
+t known
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 as the \OT1/cmtt/m/it/12 Book of the Gates \OT1/cmtt/m/n/12 cr
+edits Horus with creating all the main
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 races of mankind; Horus or Sekhmet `protects the souls' of Asi
+ans,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 Negroes and Libyans. The illustrations in the \OT1/cmtt/m/it/1
+2 Book of the Dead
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 certainly imply that foreigners and interpreters will be prese
+nt in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 eternity. Thoth, the god of wisdom and scribes, was credited w
+ith
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2259--2260
+\OT1/cmtt/m/n/12 inventing all languages, thus giving a kind of legitimacy to f
+oreign
+ []
+
+
+LaTeX Warning: Citation `johnson2000civilization' on page 49 undefined on input
+ line 2262.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2278--2279
+[]\OT1/cmtt/m/n/12 And, to judge by tomb biographies, most men who made their w
+ay to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2278--2279
+\OT1/cmtt/m/n/12 the top of the State served at some time in roles which demand
+ed a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2278--2279
+\OT1/cmtt/m/n/12 degree of literacy. Literacy was clearly an enormous advantage
+ in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2278--2279
+\OT1/cmtt/m/n/12 the highly centralized, and therefore highly bureaucratic, Egy
+ptian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2278--2279
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+[]\OT1/cmtt/m/n/12 But if most important men in Egypt were partly literate, the
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 complexity of the written language, and the multiplicity of th
+e
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 scripts, created a need for professional writers or scribes. E
+ach
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 important religious establishment had a `House of Life', which
+ was a
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 scriptorium and library. Not all priests were professional scr
+ibes:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 scribal priests and lector-priests formed specialized branches
+ of the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 clergy. Each department of government had its own special scri
+bes:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 army scribes, navy scribes, treasury scribes, and so forth, wh
+o tended
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 to develop specialized scripts of their own. There were busine
+ss
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2280--2281
+\OT1/cmtt/m/n/12 scribes and accountant scribes too. Scribes had their own god,
+ Thoth,
+ []
+
+
+LaTeX Warning: Citation `johnson2000civilization' on page 49 undefined on input
+ line 2283.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[49]
+Underfull \hbox (badness 10000) in paragraph at lines 2300--2301
+[]\OT1/cmtt/m/n/12 They wrote sitting with their legs crossed before them using
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2300--2301
+\OT1/cmtt/m/n/12 palettes of wood, with recesses for black and red inks (someti
+mes other
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2300--2301
+\OT1/cmtt/m/n/12 colors); they kept their brushes --- pens, after the Greeks in
+troduced
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2300--2301
+\OT1/cmtt/m/n/12 them in the third century BC --- in recesses in the middle, so
+metimes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2300--2301
+\OT1/cmtt/m/n/12 with a sliding wooden cover, so that these boxes, which they c
+arried in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2300--2301
+\OT1/cmtt/m/n/12 satchels, were the same in all essentials as the pencil boxes 
+in use in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2319--2320
+[]\OT1/cmtt/m/n/12 As among the Christian clergy later, scribes were recruited 
+from
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2319--2320
+\OT1/cmtt/m/n/12 even the lowest classes --- especially orphans --- and it was 
+one
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2319--2320
+\OT1/cmtt/m/n/12 of the ways in which a poor man could set his children's feet 
+on the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2339--2340
+[]\OT1/cmtt/m/n/12 Scribal exercises, on papyrus, board and other materials, fo
+rm one
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2339--2340
+\OT1/cmtt/m/n/12 of the largest categories of surviving writings from ancient E
+gypt, and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2339--2340
+\OT1/cmtt/m/n/12 it is plain from them that acquiring professional status as a 
+scribe
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2339--2340
+\OT1/cmtt/m/n/12 was a very long and arduous business --- devoted chiefly to th
+e copying
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2339--2340
+\OT1/cmtt/m/n/12 of classical texts and didactic exercises --- whose rigours th
+e scribes
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2339--2340
+\OT1/cmtt/m/n/12 and their teachers justified to themselves by dwelling on the 
+dignity
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[50]
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+[]\OT1/cmtt/m/n/12 Scribes, they boasted, were exempt from the \OT1/cmtt/m/it/1
+2 corv^^See\OT1/cmtt/m/n/12 , from active
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+\OT1/cmtt/m/n/12 military service, and from land taxes. Thus an Egyptian learni
+ng
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+\OT1/cmtt/m/n/12 proverb states: ``What you gain in one day at school is for et
+ernity.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+\OT1/cmtt/m/n/12 The work done there lasts as long as mountains." Or again: ``D
+o you
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+\OT1/cmtt/m/n/12 not carry a palette? That is what constitutes the difference b
+etween
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+\OT1/cmtt/m/n/12 you and a man who has to pull an oar." Or yet again: ``Put wri
+ting
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+\OT1/cmtt/m/n/12 in they heart [i.e. learn to write], so that thou mayest prote
+ct
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2358--2359
+\OT1/cmtt/m/n/12 thine own person from any kind of manual labour, and be a resp
+ected
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+[]\OT1/cmtt/m/n/12 The Neoplatonists, like Plato himself, were actually looking
+ for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 metaphysical short-cuts to the tedious business of acquiring k
+nowledge
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 by exact observation and logical proof --- what we call scienc
+e. They
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 thought they could fathom the secrets of the universe in their
+ own
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 minds provided they had the right key and methodology. Plotinu
+s,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 the most influential of the Neoplatonists, believed and taught
+ that
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 the Egyptians had discovered (or perhaps had been given by `Th
+euth'
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 or Hermes) this methodology, and put it into hieroglyphs. Thus
+ they
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 wrote with separate pictures of individual objects --- not onl
+y letters
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 expressing sounds and syllables --- and these pictures did not
+ directly
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 portray the objects they apparently represented but penetrated
+ to
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 the very essence of things and encapsulated knowledge possesse
+d only
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 by the gods. The Egyptians had thus discovered `pure' philosop
+hy,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 uncomplicated and unclouded by the barrier of an alphabetic an
+d
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 phonetic language. This material was embodied in a collection 
+called
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/it/12 Corpus Hermeticum\OT1/cmtt/m/n/12 , reputedly by `Hermes Tris
+megistus' compiled in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+\OT1/cmtt/m/n/12 the late antiquity but supposed, even then, to go back to preh
+istoric
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2376--2377
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2393--2394
+[]\OT1/cmtt/m/n/12 The medieval Christians in the West knew nothing of these te
+xts at
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2393--2394
+\OT1/cmtt/m/n/12 first hand... In 1414, fragments of Ammianus, the last great h
+istorian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2393--2394
+\OT1/cmtt/m/n/12 of antiquity, turned up in German monastery. He referred to th
+e
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2393--2394
+\OT1/cmtt/m/n/12 hieroglyphs on the obelisks brought to imperial Rome and summa
+rized the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2393--2394
+\OT1/cmtt/m/n/12 view that throughout ancient times scholars had drawn on the a
+ncient,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2393--2394
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+[]\OT1/cmtt/m/n/12 ...Egyptian knowledge, or pseudo-knowledge, operated at a nu
+mber
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 of levels simultaneously. Until the seventeenth century, when 
+an
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 unabridged fissure opened between empirical science, on the on
+e hand,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 and metaphysics, astrology and esoteric knowledge on the other
+, men
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 saw natural philosophy as a \OT1/cmtt/m/it/12 continuum\OT1/cm
+tt/m/n/12 . Even as late a figure as Isaac
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 Newton thought the fissure could be crossed. Hence in the sixt
+eenth
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 century, a great mathematician and physicist like John Dee stu
+died
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 the Hermetic texts with fervent hope... imperial Prague was bo
+th
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 the leading scientific center in Europe and the place where Eg
+yptian
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2396--2397
+\OT1/cmtt/m/n/12 Hieroglyphics and the secrets they were believed to contain we
+re most
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[51]
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
+[]\OT1/cmtt/m/n/12 At the level of allegoric art, compendia of hieroglyphic sig
+ns, real
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
+\OT1/cmtt/m/n/12 and invented, such as Colonna's \OT1/cmtt/m/it/12 Hypnerotomac
+hia Polifil \OT1/cmtt/m/n/12 (2499) and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
+\OT1/cmtt/m/n/12 Valeriano's \OT1/cmtt/m/it/12 Hieroglyphica\OT1/cmtt/m/n/12 , 
+were used by court artists throughout the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
+\OT1/cmtt/m/n/12 sixteenth and seventeenth centuries. Masons and other secret s
+ocieties
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
+\OT1/cmtt/m/n/12 such as the Rosicrucians used these signs and symbols also, es
+pecially
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
+\OT1/cmtt/m/n/12 in relation to the Roman obelisks; they were among the first t
+o relate
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2414--2415
+\OT1/cmtt/m/n/12 the esoteric knowledge of ancient Egypt to its physical memori
+als in
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[52]
+Underfull \hbox (badness 10000) in paragraph at lines 2447--2448
+[]\OT1/cmtt/m/n/12 Let both participants be aware that a magickal act, a spirit
+ual act
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2449--2450
+[]\OT1/cmtt/m/n/12 STEP ONE. Let both participants know the purpose of this act
+. A
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2449--2450
+\OT1/cmtt/m/n/12 divination should be done, with both persons present, to insur
+e the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2451--2452
+[]\OT1/cmtt/m/n/12 STEP TWO. Let a suitable sigil, representing the purpose of 
+the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2451--2452
+\OT1/cmtt/m/n/12 magickal act, be designed. Although a sigil taken from a grimo
+ire will
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2451--2452
+\OT1/cmtt/m/n/12 do, designing an original sigil is a good idea. The system of 
+A. O.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2453--2454
+[]\OT1/cmtt/m/n/12 STEP THREE. Let large versions of the above sigil be made an
+d placed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2453--2454
+\OT1/cmtt/m/n/12 around the room. This must include the ceiling so that no matt
+er which
+ []
+
+
 
 pdfTeX warning: pdflatex (file ./resources/philosopher.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/philosopher.pdf, id=1111, 310.27919pt x 503.96278pt>
+<resources/philosopher.pdf, id=1148, 310.27919pt x 503.96278pt>
 File: resources/philosopher.pdf Graphic file (type pdf)
 <use resources/philosopher.pdf>
-Package pdftex.def Info: resources/philosopher.pdf  used on input line 2062.
+Package pdftex.def Info: resources/philosopher.pdf  used on input line 2474.
 (pdftex.def)             Requested size: 310.27843pt x 503.96155pt.
 
 
-[44 <./resources/ozin_slogan.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[53]
 
 pdfTeX warning: pdflatex (file ./resources/medina_slogan.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/medina_slogan.pdf, id=1125, 478.66827pt x 120.45pt>
+<resources/medina_slogan.pdf, id=1153, 478.66827pt x 120.45pt>
 File: resources/medina_slogan.pdf Graphic file (type pdf)
 <use resources/medina_slogan.pdf>
-Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 2071.
+Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 2483.
 (pdftex.def)             Requested size: 497.92325pt x 125.29626pt.
 (grimoire_lumtauto.bbl
 
-[45 <./resources/philosopher.pdf> <./resources/medina_slogan.pdf>]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[54 <./resources/philosopher.pdf> <./resources/medina_slogan.pdf>]
 Underfull \hbox (badness 1292) in paragraph at lines 69--74
 \OT1/cmr/m/n/12 edi-tion avail-able at []$\OT1/cmtt/m/n/12 https : / / openlibr
 ary . org / books / OL16728500M / Encyclopedia _ of _
@@ -1952,7 +3513,14 @@ Underfull \hbox (badness 1127) in paragraph at lines 102--106
 
 
 
-[46]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[55]
 Underfull \hbox (badness 2846) in paragraph at lines 137--142
 []\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
 ].  Man-drake of
@@ -1995,14 +3563,33 @@ Underfull \hbox (badness 1043) in paragraph at lines 237--242
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 244--249
+[]\OT1/cmr/m/n/12 Satori Mag-ina.  \OT1/cmr/bx/n/12 Trans-for-ma-tion Rosary Ri
+te\OT1/cmr/m/n/12 .  |   []   |   []   |   [],
+ []
 
-[47])
-Underfull \hbox (badness 10000) in paragraph at lines 2100--2100
+
+Underfull \hbox (badness 10000) in paragraph at lines 244--249
+\OT1/cmr/m/n/12 1:3, 2024.  Avail-able at: []$\OT1/cmtt/m/n/12 https : / / www 
+. scribd . com / document / 702284401 /
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[56])
+Underfull \hbox (badness 10000) in paragraph at lines 2512--2512
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2100--2103
+Underfull \hbox (badness 10000) in paragraph at lines 2512--2515
 
  []
 
@@ -2010,10 +3597,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 2100--2103
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1208, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=1238, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 2106.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 2518.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2021,7 +3608,7 @@ pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 2106.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 2518.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -2031,38 +3618,45 @@ d PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1211, page=1, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=1241, page=1, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 21
-06.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 25
+18.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 21
-06.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 25
+18.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
-[48]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[57]
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 21
-06.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 25
+18.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 21
-06.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 25
+18.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 21
-06.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 25
+18.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[49
+[58
 
  <./resources/back_cover.pdf>] (grimoire_lumtauto.aux)
  ***********
@@ -2071,48 +3665,52 @@ L3 programming layer <2024-07-20>
  ***********
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `grimoire_lumtauto.out' has not changed.
-(rerunfilecheck)             Checksum: BE9DEC89507E75D4F76E86919AFD3B43;2242.
+(rerunfilecheck)             Checksum: F9EF6B396A584ABD5BC045684C2FE8A8;2361.
  ) 
 Here is how much of TeX's memory you used:
- 31386 strings out of 473898
- 594133 string characters out of 5736297
- 2258960 words of memory out of 5000000
- 53145 multiletter control sequences out of 15000+600000
- 576991 words of font info for 107 fonts, out of 8000000 for 9000
+ 31724 strings out of 473898
+ 601350 string characters out of 5736297
+ 2184960 words of memory out of 5000000
+ 53533 multiletter control sequences out of 15000+600000
+ 577456 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,17n,101p,1838b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,18n,101p,1838b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti1
 200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 tcrm1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
-i600\tcrm0700.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
-ec/dpi600\tcrm1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
-ppen/ec/dpi600\tcrm1440.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Pro
-gram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C
-:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program File
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb
-><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program
- Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/MiKTe
-X/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on grimoire_lumtauto.pdf (49 pages, 3515327 bytes).
+i600\tctt1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\tcrm0700.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\tcrm1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\tcrm1440.pk><C:/Program Files/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmb
+x12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C
+:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
+les/MiKTeX/fonts/type1/public/amsfonts/cm/cmitt10.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.
+pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Progr
+am Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsf
+onts/cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti1
+2.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Pr
+ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/
+MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on grimoire_lumtauto.pdf (58 pages, 3777103 bytes).
 PDF statistics:
- 1482 PDF objects out of 1728 (max. 8388607)
- 619 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1504 PDF objects out of 1728 (max. 8388607)
+ 561 named destinations out of 1000 (max. 500000)
+ 236 words of extra memory for PDF output out of 10000 (max. 10000000)
 
