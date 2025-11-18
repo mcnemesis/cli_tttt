@@ -1,35 +1,26 @@
-extensions:
-
-11. The o-SSI Sequence of any symbol set.
-
-12. The Anagram Distance Between Any Two Sequences.
-
-13. The Compression Ratio of any Sequence Transformation.
-
-14. The Piecemeal Compression Ratio of Any Sequence Transformation.
-
-15. The Modal Sequence Statistic of Any Sequence
-
-16. The Characteristic of Any Sequence.
-
-17. The Population Characteristic of Any Collection of Sequences.
-
-18. A Super Sequence for One or More Sequences.
-
-19. A Transformation Program (Sequence of Transformers).
-
-20. Entropy of a Sequence.
-
-
 ----[ META-DATA-START ]
 
-TITLE: Transformatics 101
+TITLE: NOVUS MODERNUS GRIMOIRE AETERNUS MAGIA LUMTAUTO} --- A Modern Grimoire of Eternal Magickal Languages
 AUTHOR: Joseph Willrich Lutalo <jwl@nuchwezi.com>
 
 
 ABSTRACT:
 
-In only 10 general foundational results[1][2]-all based on earlier mathematical research by the author, as well as 10 extra abstractions spanning how transformatics might be leveraged as a basis mathematics for problems in; number theory and cryptography (o-SSIs); mathematical statistics (ADM, TCR, PCR, MSS, SC, PC); linear algebra (super sequences); computer science (TEA language, transformer-chains/sequence-transformers) and information theory (entropy of a sequence) among others, we distill and establish, in a summarized form, the core foundations of Transformatics[3] as its own mathematical theory, branch, or discipline. In this mini-thesis. Each foundational result presented is likewise accompanied by one or more references to some earlier work where the idea or presented concept was first developed, presented, or applied by the author during their research. Useful notes and commentary are also included where necessary, and in the extension decade of proposed abstractions, also commentary about how the proposals relate to the decade of foundational results likewise is catered for.
+----[ META-DATA-START ]
+TITLE: NOVUS MODERNUS GRIMOIRE AETERNUS MAGIA LUMTAUTO --- A Modern Grimoire of Eternal Magickal Languages
+AUTHOR: Joseph Willrich Lutalo (w/MAP Adept Psymaz) <jwl@nuchwezi.com>
 
-KEYWORDS: Foundations, Transformatics, Sequence Analysis,  Sequence Transformers, Thesis
+ABSTRACT:
+
+In this manuscript, intentionally designed like a grimoire, we are to present for the first time, a proper distillation of research and applications in the use of esoteric languages for the purpose of performing occult operations as explored by initiates at Nuchwezi Esoteric School (NES) for the past 1 decade. This is an original contribution to the universal esoteric tradition and is meant to help curate, promulgate and advance a sane, thoughtful appreciation of the mysteries --- a line of work that goes back through the ages, to the first psy-ops and occult workings attempted by primitive man, through generations of diverse and varying explorations by mystics and initiates from all kinds of schools, cultures and traditions, all the way to modern approaches best known to the true initiates of illuminism. In particular though, this manuscript shall focus on 4 different ORIGINAL RESULTS of hard-work, study and yes, applying occult philosophy at Nuchwezi;
+LUMTAUTO --- an application of computational mysticism in the form of an algorithmic cipher that can transform ordinary English or any language into a form suitable for occult operations and conjurations.
+The Grand Myrrh Transform --- a related, but otherwise later and shorter, more occult TEA\cite{cli_tttt} algorithm for turning ordinary phrases into sacred words of power reminiscent of sacred languages such as Hebrew and Aramaic. 
+The Ozin Cipher --- a visual code first presented in an earlier work\cite{lutalo_2025_trans_genetics}, useful in expressing secret or special messages in an occult and psychologically charged hand that was first developed by the Illuminates of Nuchwezi Angelic (IoNA) via esoteric workings reminiscent of the methods of medieval angel-working wizards such as John Dee and Edward Kelley.
+Crypt of Medina --- a special occult cipher also first developed at NES, and which, unlike most ciphers ancient or modern, allows for the visual encoding of occult messages in such a way that \textbf{one must explicitly use the method of reading between the lines} in order to understand its messages.
+We shall [briefly] look at the underlying philosophies and supporting literature; shall look at many guidelines concerning how to practically apply the presented ideas; shall treat of the matter of mixing modern computer technology in applying these ideas, and shall share lots of visuals, links to supporting videos, community and online tools to help practitioners further and deepen their appreciation of these modern mysteries. This is a work for the Illuminati.
+
+KEYWORDS: Foundations, Psy-Ops, Modern Magick, Computational Mysticism, Grimoire
+
+
+DOI: 10.6084/m9.figshare.30643325
 
