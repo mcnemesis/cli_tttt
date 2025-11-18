@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  18 NOV 2025 14:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  18 NOV 2025 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -845,6 +845,9 @@ LaTeX Warning: Label `FIGOLGA' multiply defined.
 
 
 LaTeX Warning: Label `TRANSFLUMTAUTO' multiply defined.
+
+
+LaTeX Warning: Label `FIGTEAEXASOISRC2' multiply defined.
 
 )
 \openout1 = `grimoire_lumtauto.aux'.
@@ -3656,21 +3659,185 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [63]
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[64]
+\openout5 = `grimoire_lumtauto.listing'.
+
+ (grimoire_lumtauto.listing)
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[65]
+
+pdfTeX warning: pdflatex (file ./resources/scanned_soi_sigilization_process_via
+_ozin_language_example.pdf): PDF inclusion: found PDF version <1.7>, but at mos
+t version <1.5> allowed
+<resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf, id=1
+397, 596.98032pt x 844.65562pt>
+File: resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf 
+Graphic file (type pdf)
+<use resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf>
+Package pdftex.def Info: resources/scanned_soi_sigilization_process_via_ozin_la
+nguage_example.pdf  used on input line 2785.
+(pdftex.def)             Requested size: 497.92325pt x 704.5052pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[66]
+Underfull \hbox (badness 10000) in paragraph at lines 2793--2794
+
+ []
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[67 <./resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf
+>]
+
+LaTeX Warning: Hyper reference `TABEXASOISIGILA' on page 68 undefined on input 
+line 2808.
+
+
+LaTeX Warning: Reference `TABEXASOISIGILA' on page 68 undefined on input line 2
+808.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2836.
+See the caption package documentation for explanation.
+
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[68]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2858.
+See the caption package documentation for explanation.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2879.
+See the caption package documentation for explanation.
+
+
+
+pdfTeX warning: pdflatex (file ./resources/sample_soi_source_in_ozin.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/sample_soi_source_in_ozin.pdf, id=1452, 2571.6075pt x 2075.83513pt>
+File: resources/sample_soi_source_in_ozin.pdf Graphic file (type pdf)
+<use resources/sample_soi_source_in_ozin.pdf>
+Package pdftex.def Info: resources/sample_soi_source_in_ozin.pdf  used on input
+ line 2896.
+(pdftex.def)             Requested size: 497.92325pt x 401.91968pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[69]
+
+pdfTeX warning: pdflatex (file ./resources/scanned_soi_sigil.pdf): PDF inclusio
+n: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/scanned_soi_sigil.pdf, id=1477, 596.98032pt x 844.65562pt>
+File: resources/scanned_soi_sigil.pdf Graphic file (type pdf)
+<use resources/scanned_soi_sigil.pdf>
+Package pdftex.def Info: resources/scanned_soi_sigil.pdf  used on input line 29
+10.
+(pdftex.def)             Requested size: 497.92325pt x 704.5052pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[70 <./resources/sample_soi_source_in_ozin.pdf>]
+
+pdfTeX warning: pdflatex (file ./resources/100dollar_soi_sigil.pdf): PDF inclus
+ion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/100dollar_soi_sigil.pdf, id=1501, 1204.5pt x 1522.72882pt>
+File: resources/100dollar_soi_sigil.pdf Graphic file (type pdf)
+<use resources/100dollar_soi_sigil.pdf>
+Package pdftex.def Info: resources/100dollar_soi_sigil.pdf  used on input line 
+2923.
+(pdftex.def)             Requested size: 497.92325pt x 629.48102pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[71 <./resources/scanned_soi_sigil.pdf>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[72 <./resources/100dollar_soi_sigil.pdf>]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 2957.
+See the caption package documentation for explanation.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/OZIN_MAGICK.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/OZIN_MAGICK.pdf, id=1357, 821.9508pt x 98.2872pt>
+<resources/OZIN_MAGICK.pdf, id=1539, 821.9508pt x 98.2872pt>
 File: resources/OZIN_MAGICK.pdf Graphic file (type pdf)
 <use resources/OZIN_MAGICK.pdf>
-Package pdftex.def Info: resources/OZIN_MAGICK.pdf  used on input line 2673.
+Package pdftex.def Info: resources/OZIN_MAGICK.pdf  used on input line 2969.
 (pdftex.def)             Requested size: 497.92325pt x 59.54115pt.
 
 
 pdfTeX warning: pdflatex (file ./resources/philosopher.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/philosopher.pdf, id=1358, 310.27919pt x 503.96278pt>
+<resources/philosopher.pdf, id=1540, 310.27919pt x 503.96278pt>
 File: resources/philosopher.pdf Graphic file (type pdf)
 <use resources/philosopher.pdf>
-Package pdftex.def Info: resources/philosopher.pdf  used on input line 2682.
+Package pdftex.def Info: resources/philosopher.pdf  used on input line 3001.
 (pdftex.def)             Requested size: 310.27843pt x 503.96155pt.
 
 
@@ -3681,14 +3848,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[64 <./resources/OZIN_MAGICK.pdf>]
+[73 <./resources/OZIN_MAGICK.pdf>]
 
 pdfTeX warning: pdflatex (file ./resources/medina_slogan.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/medina_slogan.pdf, id=1371, 478.66827pt x 120.45pt>
+<resources/medina_slogan.pdf, id=1572, 478.66827pt x 120.45pt>
 File: resources/medina_slogan.pdf Graphic file (type pdf)
 <use resources/medina_slogan.pdf>
-Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 2691.
+Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 3010.
 (pdftex.def)             Requested size: 497.92325pt x 125.29626pt.
 
 
@@ -3699,7 +3866,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[65 <./resources/philosopher.pdf> <./resources/medina_slogan.pdf>]
+[74 <./resources/philosopher.pdf>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3708,8 +3875,8 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[66]
-Underfull \hbox (badness 10000) in paragraph at lines 2763--2764
+[75 <./resources/medina_slogan.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 3082--3083
 []\OT1/cmr/bx/n/12 Chaos con-trast: \OT1/cmr/m/n/12 Rein-ter-prets al-chem-i-ca
 l sym-bol-ism psy-cho-log-i-cally (intent-
  []
@@ -3723,7 +3890,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[67]
+[76]
 Underfull \hbox (badness 1292) in paragraph at lines 69--74
 \OT1/cmr/m/n/12 edi-tion avail-able at []$\OT1/cmtt/m/n/12 https : / / openlibr
 ary . org / books / OL16728500M / Encyclopedia _ of _
@@ -3786,7 +3953,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[68]
+[77]
 Underfull \hbox (badness 1502) in paragraph at lines 222--228
 []\OT1/cmr/m/n/12 Joshua Madara.  Roboth-eo-sis: Art, magic, cy-ber-net-ics.  |
    []   |   []   |   []
@@ -3823,12 +3990,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 251--256
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 309--313
-\OT1/cmtt/m/n/12 com / articles / onlineresource / CODE _ Computational _ Mysti
-cism _ OGF / 29858738 / 1$[]\OT1/cmr/m/n/12 , Aug
- []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3837,7 +3998,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[69]
+[78]
+Underfull \hbox (badness 2285) in paragraph at lines 309--313
+\OT1/cmtt/m/n/12 com / articles / onlineresource / CODE _ Computational _ Mysti
+cism _ OGF / 29858738 / 1$[]\OT1/cmr/m/n/12 , Aug
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 322--327
 []\OT1/cmr/m/n/12 Peter J. Car-roll.  |   []   |   []   |   []   |   []   |   [
 ]   |   []   |   []
@@ -3864,13 +4031,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[70]
-Underfull \hbox (badness 10000) in paragraph at lines 2799--2799
+[79]
+Underfull \hbox (badness 10000) in paragraph at lines 3118--3118
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2799--2802
+Underfull \hbox (badness 10000) in paragraph at lines 3118--3121
 
  []
 
@@ -3878,11 +4045,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 2799--2802
 
 pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
-<resources/inner_back_cover.pdf, id=1509, 596.98032pt x 844.65562pt>
+<resources/inner_back_cover.pdf, id=1713, 596.98032pt x 844.65562pt>
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf>
-Package pdftex.def Info: resources/inner_back_cover.pdf  used on input line 280
-6.
+Package pdftex.def Info: resources/inner_back_cover.pdf  used on input line 312
+5.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -3890,8 +4057,8 @@ pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf>
-Package pdftex.def Info: resources/inner_back_cover.pdf  used on input line 280
-6.
+Package pdftex.def Info: resources/inner_back_cover.pdf  used on input line 312
+5.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -3901,16 +4068,16 @@ pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 
 pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
-<resources/inner_back_cover.pdf, id=1512, page=1, 596.98032pt x 844.65562pt>
+<resources/inner_back_cover.pdf, id=1716, page=1, 596.98032pt x 844.65562pt>
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 2806.
+ine 3125.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 2806.
+ine 3125.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
@@ -3921,34 +4088,34 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[71]
+[80]
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 2806.
+ine 3125.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 2806.
+ine 3125.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 2806.
+ine 3125.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[72
+[81
 
  <./resources/inner_back_cover.pdf>]
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1532, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=1736, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 2810.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 3129.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -3956,7 +4123,7 @@ pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 2810.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 3129.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -3966,35 +4133,35 @@ d PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=1535, page=1, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=1739, page=1, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 28
-10.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 31
+29.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 28
-10.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 31
+29.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 28
-10.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 31
+29.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 28
-10.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 31
+29.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
-Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 28
-10.
+Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 31
+29.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[73
+[82
 
  <./resources/back_cover.pdf>] (grimoire_lumtauto.aux)
  ***********
@@ -4003,22 +4170,19 @@ L3 programming layer <2024-07-20>
  ***********
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
-
-Package rerunfilecheck Warning: File `grimoire_lumtauto.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `grimoire_lumtauto.out':
-(rerunfilecheck)             Before: FD229F5C1151D1F7ADEF393D5D27E7E5;3729
-(rerunfilecheck)             After:  5072DD16931CF2BA1E0EE285F42D6416;3706.
+Package rerunfilecheck Info: File `grimoire_lumtauto.out' has not changed.
+(rerunfilecheck)             Checksum: 5072DD16931CF2BA1E0EE285F42D6416;3706.
  ) 
 Here is how much of TeX's memory you used:
- 31890 strings out of 473898
- 607001 string characters out of 5736297
+ 32039 strings out of 473898
+ 610222 string characters out of 5736297
  2184960 words of memory out of 5000000
- 53633 multiletter control sequences out of 15000+600000
+ 53705 multiletter control sequences out of 15000+600000
  577456 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,18n,101p,1940b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -4049,9 +4213,9 @@ nts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti1
 2.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on grimoire_lumtauto.pdf (73 pages, 6618667 bytes).
+Output written on grimoire_lumtauto.pdf (82 pages, 11377897 bytes).
 PDF statistics:
- 1808 PDF objects out of 2073 (max. 8388607)
- 627 named destinations out of 1000 (max. 500000)
- 344 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2026 PDF objects out of 2073 (max. 8388607)
+ 702 named destinations out of 1000 (max. 500000)
+ 364 words of extra memory for PDF output out of 10000 (max. 10000000)
 
