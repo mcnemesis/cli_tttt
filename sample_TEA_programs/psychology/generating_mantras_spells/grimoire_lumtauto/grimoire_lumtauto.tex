@@ -2762,12 +2762,14 @@ It essentially is like helping a kid that only knows to read base 10 numbers, to
 For purposes of helping those unfamiliar with the system and methods of our general solution in \textbf{\hyperref[SOLNMANSIGIL]{Solution \ref{SOLNMANSIGIL}}} learn how to apply or leverage the theory thus presented, we shall concretize the idea by working on a realistic example case of \textbf{MSOIP} whose SOI is expressed explicitly as:
 
 
+``By The Time The Sun Sets Today, I Want To Have An Extra 100 Dollars On My Account" (good, but not affirmative enough). A better version, more manifestation-friendly being:
+
 {\LARGE
 
 %\begin{figure}[H]
   \begin{tcbverbatim}[title=A Statement of Intent for a hypothetical MSOIP]
 
-BY THE TIME THE SUN SETS TODAY, I WANT TO HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT
+BY THE TIME THE SUN SETS TODAY I HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT
 
   \end{tcbverbatim}
 %\end{figure}
@@ -2798,14 +2800,14 @@ And so, we see that, the process of generating the final sigil as depicted via t
 \vspace{2em}
 
 \begin{multline}
-\Theta_{soi} = \langle \text{BY THE TIME THE SUN SETS TODAY,} \\\text{I WANT TO HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT} \rangle
+\Theta_{soi} = \langle \text{BY THE TIME THE SUN SETS TODAY,} \\\text{I HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT} \rangle
 \end{multline}
 
 
 
 \vspace{2em}
 
-\textbf{STEP 2: Reduce the SOI to the ``SOURCE" still spanning} $\psi_{36}$. In our illustration here, we are reducing using the method of computing a Modal Sequence Statistic\cite{Lutalo2025_transformatics_thesis} as shown in the computations happening in the table depicted in \textbf{\hyperref[FIGEXASOISIGILA]{Figure \ref{FIGEXASOISIGILA}}}, and which we also reproduce here as \textbf{\hyperref[TABEXASOISIGILA]{Table \ref{TABEXASOISIGILA}}}
+\textbf{STEP 2: Reduce the SOI to the ``SOURCE" still spanning}\label{STEP2} $\psi_{36}$. In our illustration here, we are reducing using the method of computing a Modal Sequence Statistic\cite{Lutalo2025_transformatics_thesis} as shown in the computations happening in the table depicted in \textbf{\hyperref[FIGEXASOISIGILA]{Figure \ref{FIGEXASOISIGILA}}}, and which we also reproduce here as \textbf{\hyperref[TABEXASOISIGILA]{Table \ref{TABEXASOISIGILA}}}
 
 \vspace{2em}
 
@@ -2827,10 +2829,10 @@ The value `` TAENOSYHIMUDR0LCB,WVX1" being what we obtain, when we use the TEA p
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: computing MSS for SOI using TEA, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
   \begin{lstlisting}[language=TEA,breaklines=true]
-i!:{BY THE TIME THE SUN SETS TODAY, I WANT TO HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT}
+i!:{BY THE TIME THE SUN SETS TODAY, I HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT}
 u!:
 
-#RESULTANT MEMORY STATE: (= TAENOSYHIMUDR0LCB,WVX1, VAULTS:{})
+#RESULTANT MEMORY STATE: (= TEASNOYHIMUDR0LCB,VX1, VAULTS:{})
    \end{lstlisting}
   \end{tcolorbox}
     \captionof{figure}{EXAMPLE: computing MSS (``Source") for a SOI (in ELA) using TEA}
@@ -2848,11 +2850,11 @@ That said, note that the discrepancies between the TEA program result we obtain 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: computing MSS for SOI using TEA, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
   \begin{lstlisting}[language=TEA,breaklines=true]
-i!:{BY THE TIME THE SUN SETS TODAY, I WANT TO HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT}
+i!:{BY THE TIME THE SUN SETS TODAY, I HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT}
 d!:[0-9a-z-A-z]
 u!:
 
-#RESULTANT MEMORY STATE: (=TAENOSYHIMUDR0LCBWVX1, VAULTS:{})
+#RESULTANT MEMORY STATE: (=TEASNOYHIMUDR0LCBVX1, VAULTS:{})
    \end{lstlisting}
   \end{tcolorbox}
     \captionof{figure}{UPDATED EXAMPLE: computing MSS (``Source") for a SOI (in ELA) using TEA}
@@ -2860,7 +2862,16 @@ u!:
 
 
 
-And so, without reproducing that table here manually --- the method used, being well documented and illustrated in \textbf{Section 4.1} of \cite{transformatics}, and also summarized in \textbf{Proposal 5} of \cite{Lutalo2025_transformatics_thesis} --- let us also realize that, if, instead of reducing to a modal sequence statistic, we had chosen to reduce to just the set of unique letters, with their order sorted alphabetically, then, we would essentially have the SOURCE as ``ABCDEHILMNORSTUVWXY" --- a \textbf{Lexical Basis} (after reducing some numbers to letters, removing punctuation, etc). as shown using just the TEA program instruction \texttt{b!:} as shown in 
+And also, by reproducing that table --- \textbf{with corrections made}:
+
+
+
+\hl{TODO: TABLE of COMPUTING MSSS}
+
+
+\vspace{2em}
+
+Note that the method used, is well documented and illustrated in \textbf{Section 4.1} of \cite{transformatics}, and also summarized in \textbf{Proposal 5} of \cite{Lutalo2025_transformatics_thesis}, and would give us the result \texttt{TEASNOYHIMUDR0LCBVX1} --- however, let us also realize that, if, instead of reducing to a modal sequence statistic, we had chosen to reduce to just the set of unique letters, with their order sorted alphabetically, then, we would essentially have the SOURCE as ``ABCDEHILMNORSTUVXY" --- a \textbf{Lexical Basis} (after reducing some numbers to letters, removing punctuation, etc). as shown using just the TEA program instruction \texttt{b!:} as shown in 
 
 
 
@@ -2868,12 +2879,12 @@ And so, without reproducing that table here manually --- the method used, being 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: computing Lexical Basis for SOI using TEA, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
   \begin{lstlisting}[language=TEA,breaklines=true]
-i!:{BY THE TIME THE SUN SETS TODAY, I WANT TO HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT}
+i!:{BY THE TIME THE SUN SETS TODAY, I HAVE AN EXTRA 100 DOLLARS ON MY ACCOUNT}
 d!:[0-9a-z-A-z]
 r!:0:O | r!:1:I #replace some number with letters
 b!: #use lexical basis as FINAL SOURCE (reduced SOI)
 
-#RESULTANT MEMORY STATE: (=ABCDEHILMNORSTUVWXY, VAULTS:{})
+#RESULTANT MEMORY STATE: (=ABCDEHILMNORSTUVXY, VAULTS:{})
    \end{lstlisting}
   \end{tcolorbox}
     \captionof{figure}{UPDATED EXAMPLE: computing Lexical Basis (``Source") for a SOI (in ELA) using TEA}
@@ -2959,8 +2970,6 @@ s: | s:
 
 
 
-
-
 \subsubsection{EXAMPLE 2: Using The OZIN Language to Create TALISMANS, CHARMS or PENDANTS}
 
 
@@ -2972,6 +2981,108 @@ s: | s:
   \end{center}
 \end{figure}
 
+\vspace{2em}
+
+
+So, first, consider the fact that using symbols as a means of psychic self-defense, is an practice and arcana that could be traced back to the discussions on applying sigil magic to protection and augmentation of the practicing magician --- \textbf{Dion Fortune} (1890–1946)\cite{copilot_assistant}, is most popularly known for her contributions to the development and formalization of \textbf{Self-Defense Magick}\cite{butler1952magic}\cite{cassiel1990encyclopedia} --- for example, her writtings about karma, astral shields and applications of mirrors. Dion also comes up when some writers talk about \textbf{The Mystical Qabala}\cite{farrar1990spells}. However, in the present section, our focus is to fix on using sigils and computational mysticism to design and apply \textbf{TALISMANIC MAGICK} --- essentially, creating physical implements or things, that are then charged with powers, identities and task such as self-dense, protection, guidance, enlightenment, etc. especially in psycho-social, large-scale and realistic contexts.
+
+
+\vspace{2em}
+Here is a problem:
+
+\vspace{2em}
+
+\begin{prob}[\textbf{Augmenting and Automating Psychic Self-Defense} --- \textit{Psymatons, Servitors, Guardian Angels and Doubles}]
+\label{PROBPSYMATON} 
+Assuming the person --- a normally healthy, psychologically stable and otherwise sane human being, suddenly starts to experience outre, preternatural, and or mysterious phenomena in their individual or collective awareness --- in the later, such as when psychologically bewildering events manifest at a large scale socially, or that they are likewise witnessed by, experienced by more than a single mind, we might talk of cases of \textbf{Mass Hysteria}, \textbf{Psy-Ops}, defending or analyzing the \textbf{Collective Unconscious}. In such cases, as is the tradition or practice in many schools and paths of magic and esotericism, there might be a justification to craft, wield and advance ancient and modern mathematics in terms of solving such problems which, because of their nature, no ordinary, physiologically founded medicine might be established scientifically, but which, by creative use of pathological and paranormal psychology, a magician can implement solutions that can resolve the mystery and pathology --- angels that can end a war, guardian angels that can detect and fight off attackers to some particular individual, anti-demons, health-monitors and financial angels, etc.
+
+\vspace{2em}
+
+The problem is, given any one such problem or phenomena description as text spanning the ELA language $\psi_{36}$, how might you bring to life, a physical manifestation of the necessary and associated defense actor --- an \textit{astral}, \textit{spiritual} but most importantly, \textit{psychological defense agency} as required? 
+
+\vspace{2em}
+
+\begin{soln}[\textbf{PHYSICAL MANIFESTATION of a Named Godform, Angel, Spirit, Power, Element, Principle or Attribute of the Self or Collective Mind at Will}]
+\label{SOLNMANIFEST}
+
+It is pretty standard, if not dogmatic belief among Christians for example, that the \textbf{Angel Michael} is a generally approachable and satisfactory guardian angel for most faithfuls. But also among people of other faiths and cultures, such as those that practice Islam, Judaism or many faiths founded on the Qabalah. 
+
+\vspace{2em}
+
+We for example see that angel, Michael, alongside \textbf{Gabriel} --- the spirit of Truth, being talked about in a reference manuscript by \textbf{Professor James R. Lewis} and Evelyn D. Oliver, in their lexicon-like compilation of specifics about various kinds of angels and angelic beings from all cultures around the world\cite{lewis1996angels}. They tell us:
+
+\vspace{2em}
+
+\begin{quotation}
+\noindent {\ttfamily
+
+The name Gabriel, which means ``God is my strength," is of Chaldean origin and was unknown to the Jews prior to Babylonian captivity... The Sumerian root of the word \textit{gabri} is \textit{gbr} or \textit{gubernator}, meaning ``steersman" or ``governor". Gabriel, who is described as possessing 140 pairs of wings, is the governor of Eden and ruler of the \textbf{cherubim}. He is the angel of Annunciation and Resurrection, as well as an angel of mercy, vengeance, death and revelation.
+
+Gabriel is a unique archangel ... the only female in the higher echelons... said to sit on the left hand side of God.
+
+
+According to tradition, Mikhail [Michael] lives in the seventh heaven [together with Gabriel], has wings of an emerald color, and has hairs of saffron. Each hair has a million faces with mouths that speak in a million dialects, all imploring the pardon of God. A steadfast friend of humankind, Mikhail has not laughed once since hell was created.
+
+Mikhail and Djibril [Gabriel] were said to be the first angels to obey God's order to worship \textbf{Adam}, a command to which \textbf{Iblis}, the Muslim \textbf{Satan}, objected.
+
+}
+\hspace*{\fill} --- \textbf{Angels A to Z}, \textit{1996}, Lewis et. al\cite{lewis1996angels}
+\end{quotation}
+
+ Thus, by knowing which angel or entity to manifest so as to save or defend the people, an individual or for purposes of applying this sacred magick to such psychological pathologies, we might proceed as follows, to manifest one, two or a set of special angels or powers, having manifested who, it is guaranteed, the angels --- beings that are neither limited by physical laws or constraints of human imagination and psychology, shall operate --- autonomously so, but also in ways that the involved humans might not or never understand, so as to effect truth, natural law, divinely sanctioned Order, justice, end or start wars, dismiss epidemics or natural disasters, etc. Things normally beyond the reach, knowledge and or powers of an individual human being.
+ 
+ \vspace{2em}
+ 
+ The method to be followed, as long as we know the name of any such entity, is as follows:
+ 
+ \begin{enumerate}
+ \item \textbf{GIVEN} the name \texttt{NAME} = $\Theta$.
+ \item \textbf{COMPUTE} its modal sequence statistic, $\overset{>}{\psi(\Theta)}$ = $\Theta_{mss}$
+ \item \textbf{ENCODE} $\Theta_{mss}$ in the \textbf{OZIN} alphabet as $\Theta^*_{mss}: \mathbb{N} \times \psi_{ozin}$
+ \item \textbf{DRAW} a pictogram or sigil based on \textbf{REDUCING} $\Theta^*_{mss}$, such as $\boxed{\Theta^*_{mss}}$.
+ \item \textbf{SCULPT}\footnote{Essentially, \textbf{PRINT}} a living or physical object that best expresses the sigil $\boxed{\Theta^*_{mss}}$ --- that is, we then have a sculpture $\boxed{\Theta^*_{mss}}_{\psi_{\infty}}$.
+ \item{ \textbf{NAME}\footnote{Essentially, \textbf{BAPTIZE}} the physically manifested entity using \texttt{NAME} and \textbf{BIND} it to the physical entity $\boxed{\Theta^*_{mss}}_{\psi_{\infty}}$; essentially the transformation:
+ 
+ \begin{trans}
+ $\boxed{\Theta^*_{mss}}_{\psi_{\infty}} \rightarrow \boxed{\Theta^*_{mss}}_{\psi_{\infty}}:\text{\textit{NAME}}$
+ \end{trans}
+ 
+ }
+ \item \textbf{APPLY} the associated entity --- an angel, a godform, spirit, etc. --- by merely approaching it physically, astrally or psychologically via its name, \texttt{NAME}, and manifested form, $\boxed{\Theta^*_{mss}}_{\psi_{\infty}}:\text{\textit{NAME}}$, so as to assign it tasks, commands or requests, so it can react and effect a desired solution.
+ \end{enumerate}
+\end{soln}
+\end{prob}
+
+
+\vspace{2em}
+
+One shall realize that, even though the solution \textbf{\hyperref[SOLNMANIFEST]{Solution \ref{SOLNMANIFEST}}} is metaphysically sufficient, and yet, without someone knowing how exactly to conduct any of the steps in the process or algorithm underlying it, the solution might otherwise remain impractical or out-of-reach for most practitioners and empirical magicians. For this purpose then, we shall go ahead to ease the task, by demonstrating, using the example names of various angels, godforms and spirits, how it is, the necessary affectant sigils required to physically manifest the named entity might be approached or executed --- all, based on applying \textbf{sigil magick}, the \textbf{ozin language} and an algorithm for sigilization such  as in \textbf{\hyperref[ALGOSIGILMAGICK]{Algorithm \ref{ALGOSIGILMAGICK}}} and which is also illustrated well in \textbf{\hyperref[FIGEXASOISIGILA]{Figure \ref{FIGEXASOISIGILA}}}, and introduced in \textbf{STEP 3} of \textbf{OZIN Magick}.
+
+
+{
+\LARGE
+\centering
+
+\textbf{GABRIEL}
+
+
+\textbf{MICHAEL}
+
+
+\textbf{SATAN}
+
+
+\textbf{RAPHAEL}
+
+
+\textbf{AMUN RA}
+
+
+\textbf{PEACE}
+
+
+
+}
 
 
 
