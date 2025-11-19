@@ -1,0 +1,91 @@
+body {
+  background: linear-gradient(135deg, #d7d7d7, #a6a6a6);
+  color: #333;
+  font-family: "Exo", sans-serif;
+}
+
+.main-container {
+  width: 80%;
+  margin: auto;
+  padding-top: 20px;
+}
+
+.main-container {
+  background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+  border: 1px solid #999;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.btn-metal {
+  background: linear-gradient(to bottom, #cccccc, #999999);
+  border: 1px solid #666;
+  color: #222;
+  box-shadow: inset 0 1px 0 #fff, 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-metal:hover {
+  background: linear-gradient(to bottom, #bbbbbb, #888888);
+}
+
+textarea {
+  letter-spacing: 1.5px !important;
+  line-height: 1.8 !important;
+  word-spacing: 3px !important;
+  padding: 12px !important;
+  font-size: 16px !important;
+}
+
+#txt_code {
+  background: teal;
+  color: white;
+  font-family: "Fira Code", monospace;
+}
+
+#txt_input {
+  background: dimgray;
+  color: white;
+  font-family: "Fira Code", monospace;
+}
+
+#txt_output {
+  background: slategrey;
+  color: white;
+  font-family: "Fira Code", monospace;
+}
+
+.header {
+  font-size: xx-large;
+  font-weight: bold;
+  text-shadow: cyan 2px 2px;
+}
+
+.lang_text {
+  color: orangered;
+}
+
+#rw_debug textarea {
+    font-weight: bold;
+    color: cadetblue;
+    text-shadow: 0 0 black;
+}
+
+.dark #rw_debug textarea {
+    font-weight: bold;
+    color: #ad2180;
+    text-shadow: 0 0 black;
+}
+
+#txt_analytics {
+    color: darkred;
+}
+
+.disqus_widget {
+    background-color: black !important;
+    border: azure 1px solid;
+    border-radius: 3px;
+    padding: 10px;
+}

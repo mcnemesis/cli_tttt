@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>WEB TEA IDE</title>
+  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WEB TEA IDE</title>
+  <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400&display=swap" rel="stylesheet">
+<link rel='stylesheet' href='resources/bootstrap/theme/materia/bootstrap.min.css'><link rel="stylesheet" href="./style.css">
+<link rel='stylesheet' href='resources/ui/theme/dark/dark_ui.css'><link rel="stylesheet" href="./style.css">
+</head>
+<body id="elBody">
+<!-- partial:index.partial.html -->
+<div class="container main-container">
+    
+      <!-- Row 0 -->
+    <!---[ START WEB IDE CONTROL PANEL ]-->
+    <div class="row mb-3">
+      <div class="col-12">
+       <div class="card text-bg-light" id="elControlPanel">
+
+
+		  <div id="elDarkAnim" class="background-animation"></div>
+
+		  <div class="card-body" >
+			<h5 class="card-title header">WEB TEA IDE</h5>
+			<p class="card-text">
+			  This is the official WEB Integrated Development Environment for the
+			  <span class="lang_text"><b>T</b>ransforming <b>E</b>xecutable <b>A</b>lphabet</span>
+			  computer programming language.
+			  <i>
+				You can use this interface to learn, try-out or apply the
+				<a href="https://github.com/mcnemesis/cli_tttt/" target="_blank" class="btn btn-light" title="Click to visit the TEA Project on GitHub">
+				  TEA language
+				</a>
+				to solve actual problems by loading text input, selecting or composing a TEA program, then executing it against the provided input to see the results.
+			  </i>
+			</p>
+			<p class="card-text">
+			  <small>ACTIVE VERSION: <b id="webTEAVersion">1.0.1</b></small>
+			  <a href="#" id="btn_reload" class="btn btn-dark" title="Click to RELOAD IDE">RELOAD</a>
+			</p>
+		  </div>
+
+			<!-- Bottom Navbar with Toggle -->
+            <div id="navbarControl">
+			<nav id="elNavMenu" class="navbar navbar-expand-lg bg-body-tertiary">
+			  <div class="container-fluid">
+				<a class="navbar-brand" href="#">MENU</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarScroll">
+				  <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+					<li class="nav-item">
+					  <a class="nav-link" target="_blank" aria-current="page" href="#disqus_thread" title="COMMUNITY: click to leave or read public comment">CHATROOM</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link active" target="_blank" aria-current="page" href="https://github.com/mcnemesis/cli_tttt/" title="Visit Project's Behind The Scenes">TEA Project</a>
+					</li>
+					<li class="nav-item">
+						<li><a class="nav-link" href="#" id="trig_reset_ide" title="Click to quickly RETURN TO DEFAULTS">RESET IDE</a></li>
+					  <a class="nav-link" target="_blank" href="https://www.academia.edu/122871672/TEA_TAZ_Transforming_Executable_Alphabet_A_to_Z_COMMAND_SPACE_SPECIFICATION" title="GET TEA TAZ: bit.ly/tazfile">GET TAZ</a>
+					</li>
+
+
+					<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						CONFIG
+					  </a//>
+					  <ul class="dropdown-menu">
+						<!--li><a class="dropdown-item" href="#" id="trig_reset_ide">RESET WEB IDE</a></li -->
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="#" id="trig_load_standard_programs">LOAD STANDARD TEA PROGRAMS</a></li>
+					  </ul>
+					</li>
+
+					<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						More
+					  </a//>
+					  <ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="#" id="trig_web_ide_docs">SHOW WEB IDE DOCS</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="https://t.me/bclectures" target="_blank">TEA Community</a></li>
+						<li><a class="dropdown-item" href="https://www.youtube.com/playlist?list=PL9nqA7nxEPgulGKWw1L9xEyqgCdEezaKB" target="_blank">TEA Mini-Lectures</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C5&q=%22transforming+executable+alphabet%22&btnG=" target="_blank">TEA Research</a></li>
+						<li><a class="dropdown-item" href="https://mak.academia.edu/JosephWillrichLutalo" target="_blank">Follow TEA Inventor</a></li>
+					  </ul>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link disabled" aria-disabled="true">&copy; Nuchwezi</a>
+					</li>
+				  </ul>
+
+				  <div class="form-check form-switch" style="margin-right:5%" title="Click to RELOAD IDE in DARK or LIGHT MODE">
+					<input class="form-check-input" type="checkbox" id="switch_dark_ui">
+					<label class="form-check-label" for="switch_dark_ui">Dark Mode</label>
+				  </div>
+
+                  <!--
+				  <form class="d-flex" role="search">
+					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				  </form>
+                  -->
+				</div>
+			  </div>
+			</nav>
+            </div>
+
+		  <script src="resources/ui/theme/dark/script.js"></script>
+		  <script src="resources/offline/offline_mode.js"></script>
+
+
+
+        </div>
+      </div>
+    </div><!---[ END WEB IDE CONTROL PANEL ]-->
+    
+      <!-- Row 0 -->
+    <div class="row mb-3">
+      <div class="col-12">
+       <div id="txt_status" class="alert alert-warning" role="alert">
+  Welcome to TEA on the WEB! Wait as everything loads...
+</div>
+      </div>
+    </div>
+
+    
+
+    <!-- Row 1 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_input" class="form-control" rows="5" placeholder="TEA Input..."></textarea>
+      </div>
+    </div>
+
+    <!-- Row 2a -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+		<div class="form-check form-switch" title="Click to SWITCH between USER and STANDARD TEA PROGRAMS">
+		  <input class="form-check-input" type="checkbox" role="switch" id="switch_programs">
+		  <label class="form-check-label" for="switch_programs">STANDARD PROGRAMS</label>
+		</div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+        <select id="sel_prog_list" class="form-select flex-grow-1" style="flex-basis: 60%;">
+          <option selected disabled>Select Program</option>
+        </select>
+        <button id="btn_use_prog" class="btn btn-light flex-grow-1" style="flex-basis: 15%;" title="Load Selected TEA program">USE</button>
+        <button id="btn_del_prog" class="btn btn-danger flex-grow-1" style="flex-basis: 15%;" title="Remove Selected TEA program from Memory">DEL</button>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_code" class="form-control" rows="6" placeholder="TEA Code..."></textarea>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <input type="text" id="txt_prog_name" class="form-control" placeholder="Program Name">
+      </div>
+    </div>
+
+    <!-- Row 5a -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+		<div class="form-check form-switch" title="Click to turn TEA DEBUG Mode ON/OFF">
+		  <input class="form-check-input" type="checkbox" role="switch" id="switch_debug">
+		  <label class="form-check-label" for="switch_debug">DEBUG MODE</label>
+		</div>
+        <button id="btn_validate_prog" class="btn btn-light flex-grow-1" title="Validate TEA Program Code">VALIDATE</button>
+        <button id="btn_sanitize_prog" class="btn btn-light flex-grow-1" title="Output Sanitized TEA Program Code">SANITIZE</button>
+        <button id="btn_minify_prog" class="btn btn-dark flex-grow-1" title="Output Sanitized+MINIFIED TEA Program Code">MINIFY</button>
+        <button id="btn_clear_prog" class="btn  flex-grow-1" title="CLEAR TEA Program Code">CLEAR</button>
+      </div>
+    </div>
+
+    <!-- Row 5b -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+        <button id="btn_run_prog" class="btn btn-primary flex-grow-1" title="Execute the Current TEA Program Code">RUN</button>
+        <button id="btn_save_prog" class="btn btn-dark flex-grow-1" title="Save Current TEA Program using Specified Name" >SAVE</button>
+        <button id="btn_copy_prog" class="btn btn-light flex-grow-1" title="Copy Current TEA Program Code into System Clipboard">COPY</button>
+        <button id="btn_paste_prog" class="btn btn-warning flex-grow-1" title="PASTE Clipboard as TEA Program Code">PASTE</button>
+      </div>
+    </div>
+
+    <!-- Row 5c -->
+    <div id="rw_debug" class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_debug" class="form-control" rows="6" placeholder="TEA DEBUGGER Output..." disabled></textarea>
+      </div>
+    </div>
+
+    <!-- Row 6 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_output" class="form-control" rows="4" placeholder="TEA Output..."></textarea>
+      </div>
+    </div>
+
+    <!-- Row 7 -->
+    <div class="row mb-3">
+      <div class="col-12 d-flex flex-wrap gap-2">
+        <button id="btn_share_output" class="btn btn-secondary flex-grow-1" title="Copy TEA Program Output into the System Clipboard">SHARE</button>
+        <button id="btn_back_propagate_output" class="btn btn-light flex-grow-1" title="Load Current TEA Program Output as TEA Input">BACK PROPAGATE</button>
+        <button id="btn_analyze" class="btn btn-metal flex-grow-1" title="Process Standard Analysis against Current TEA Session">ANALYZE</button>
+      </div>
+    </div>
+
+    <!-- Row 8 -->
+    <div class="row mb-3">
+      <div class="col-12">
+        <textarea id="txt_analytics" class="form-control" rows="3" placeholder="Analytics..." disabled></textarea>
+      </div>
+    </div>
+
+
+    <!-- Row 9 -->
+    <div class="row mb-3">
+      <div class="col-12">
+
+		<div class="disqus_widget" id="disqus_thread"></div>
+		<script>
+			/**
+			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+			*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+			var disqus_config = function () {
+			this.page.url = "https://tea.nuchwezi.com";  // Replace PAGE_URL with your page's canonical URL variable
+			this.page.identifier = "web-tea-community" ; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+
+			(function() { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://web-tea-community.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- partial -->
+  <script type="module"  src="./utility.js"></script>
+  <script type="module" src="./app.js"></script>
+
+<!-- for chatroom/disqus -->
+<script id="dsq-count-scr" src="//web-tea-community.disqus.com/count.js" async></script>
+
+</body>
+</html>
