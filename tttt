@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.4"
+VERSION = "1.1.5"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -436,7 +436,7 @@ class TEA_RunTime:
             return TEA_RunTime.NL.join(lines)
 
         # return unique words in val, sorted most frequent first, first occurrence first
-        def util_unique_projection_words(val):
+        def util_unique_projection_word_modal_sequences(val):
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Computing Unique Word Projection for [{val}]")
             words = val.split(TEA_RunTime.SINGLE_SPACE_CHAR)
@@ -445,7 +445,11 @@ class TEA_RunTime:
                 return val
             #unique_words = list(set(words)) # wasn't preserving order of first occurrence
             unique_words = list(dict.fromkeys(words))
-            tally = [(w,words.count(w)) for w in unique_words]
+            l_symbol_set = len(unique_words)
+            # the tally is a computation of ranks as in MSS:
+            # w_i = (cardinality of symbolset - I(c_i,symbol set)) * frequency of c_i in original sequence
+            tally = [(w,(l_symbol_set - (unique_words.count(w) + 1))*words.count(w)) for w in unique_words]
+            #tally = [(w,words.count(w)) for w in unique_words]
             tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Unique Word Tally [{tally}]")
@@ -453,16 +457,19 @@ class TEA_RunTime:
 
 
         # return unique characters in val, sorted most frequent first, first occurrence first
-        def util_unique_projection_chars(val):
+        def util_unique_projection_chars_modal_sequence(val):
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Computing Unique Character Projection for [{val}]")
+                print(f"--[util]-| Computing Unique Character Projection (modal sequence statistic) for [{val}]")
             chars = list(val)
             l_chars = len(chars)
             if l_chars <= 1:
                 return val
             #unique_chars = list(set(chars)) # wasn't preserving order of first occurrence
             unique_chars = list(dict.fromkeys(chars))
-            tally = [(w,chars.count(w)) for w in unique_chars]
+            l_symbol_set = len(unique_chars)
+            # the tally is a computation of ranks as in MSS:
+            # w_i = (cardinality of symbolset - I(c_i,symbol set)) * frequency of c_i in original sequence
+            tally = [(w,(l_symbol_set - (unique_chars.index(w) + 1))*chars.count(w)) for w in unique_chars]
             tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Unique Char Tally [{tally}]")
@@ -1965,10 +1972,10 @@ class TEA_RunTime:
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"Processing {tc} on AI=[{io}]")
-                        return util_unique_projection_words(io)
+                        return util_unique_projection_word_modal_sequences(io)
                 else:
                         input_str = tpe_str
-                        return util_unique_projection_words(input_str)
+                        return util_unique_projection_word_modal_sequences(input_str)
             if tc == "U!":
                 if self.is_empty(tpe_str):
                     if self.is_empty(io):
@@ -1976,10 +1983,10 @@ class TEA_RunTime:
                         self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
-                        return util_unique_projection_chars(io)
+                        return util_unique_projection_chars_modal_sequence(io) #should compute MSS: modal sequence statistic
                 else:
                         input_str = tpe_str
-                        return util_unique_projection_chars(input_str)
+                        return util_unique_projection_chars_modal_sequence(input_str)
             if tc == "U*":
                 if self.is_empty(tpe_str):
                         # INERT
@@ -1988,7 +1995,7 @@ class TEA_RunTime:
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
-                    return util_unique_projection_words(input_str)
+                    return util_unique_projection_word_modal_sequences(input_str)
 
             if tc == "U*!":
                 if self.is_empty(tpe_str):
@@ -1998,7 +2005,7 @@ class TEA_RunTime:
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
-                    return util_unique_projection_chars(input_str)
+                    return util_unique_projection_chars_modal_sequence(input_str)
 
             return io
 
