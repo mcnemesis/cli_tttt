@@ -2752,7 +2752,7 @@ And with that definition out of the way, we can then formally define the ozin la
 
 
 \begin{transf}[The \textbf{Magical Language \texttt{OZIN}}]
-\label{TRANSFLUMTAUTO}
+\label{TRANSFOZIN}
 If $\Theta^n$ is a sequence of $n > 0$ symbols (the original message) spanning the \textbf{Extended Latin Alphabet} or the symbol set $\psi_{36}$, 
 
 then the following transformation:\\
@@ -3825,6 +3825,25 @@ The language depicted in the most original record of the associated cipher --- r
 }}}), and the other in the appendices --- \textbf{The MITI language (\textbf{\hyperref[SECMITILANGUAGE]{Section \ref{SECMITILANGUAGE}}})}, one shall find that those other visual languages span the entire \textbf{ELA}, but MEDINA does not. However, that doesn't make it any less useful or powerful\footnote{And, there is the possibility, that in the future, or out of interest, we might extend it further, so as to also fully span $\psi_{36}$.}. 
 
 
+After studying that original symbol set, it was decided to actually go ahead and extend this language's symbol set, so that, just like the other two visual languages we introduce in this grimoire, it is complete for all coding and mathematical purposes. Thus, with the extra originally missing symbols --- spanning the digits of the most typically useful number set, $\psi_{10}$, specified and to be expressed as in the proposal in \textbf{\hyperref[FIGMEDEXT]{Figure \ref{FIGMEDEXT}}}.
+
+
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+\begin{figure}[H]
+  \begin{center} % Rotate a single page of a PDF by 90 degrees
+   \includegraphics[height=0.8\textheight]{resources/medina_digits_set}\\
+   \caption{In a spirit similar to how we obtain the original, creativity and higher inspiration gave us this extension that then makes MEDINA span $\psi_{36}$}
+   \label{FIGMEDEXT}
+  \end{center}
+\end{figure}\\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+
 \begin{figure}[htp]
   \begin{center}
    \includegraphics[height=0.9\textheight]{resources/language_cipher_medina.pdf}\\
@@ -4053,7 +4072,7 @@ For reference purposes, especially consult the annotated version of the MEDINA l
 
 \begin{figure}[H]
   \begin{center}
-   \includegraphics[height=0.9\textheight]{resources/annoted_language_cipher_medina.pdf}\\
+   \includegraphics[height=0.9\textheight]{resources/annoted_language_cipher_medina_extended.pdf}\\
    \caption{The COMPLETE and Annotated MEDINA ALHABET Symbol Set}
   \label{FIGMEDINAALPHABETANOTATED}
   \end{center}
@@ -4151,8 +4170,6 @@ Finally concerning reading messages potentially encoded using this language. Not
 As they say ``God works in mysterious ways", but also that, once you know something, it influences and affects your outlook on reality! And thus, once you learn and can read the MEDINA language, you shall find that, in cases where you take conscious effort to observe and study nature, or even when you practice \textbf{natural divination} methods, that, certain messages might start appearing or coming to you in real life, which messages you must decode using this language in order to properly or correctly understand them!
 
 
-
-
 \begin{table}[H]
   \begin{tabular}{|p{0.95\textwidth}} % Left border only
     \hline
@@ -4167,6 +4184,46 @@ As they say ``God works in mysterious ways", but also that, once you know someth
 \end{table}
 
 
+
+
+\subsection{The MEDINA Language System}
+\label{SECMEDINASYSTEM}
+
+\vspace{2em}
+
+
+\begin{transf}[The \textbf{Magical Language \texttt{MEDINA}}]
+\label{TRANSFMEDINA}
+If $\Theta^n$ is a sequence of $n > 0$ symbols (the original message) spanning the \textbf{Extended Latin Alphabet} or the symbol set $\psi_{36}$, 
+
+then the following transformation:\\
+
+\begin{trans}
+\label{TRANSMEDINA}
+$\Theta^n \xrightarrow{O_{lmedina(\cdot)}} \Theta^* = \Omega^n : \mathbb{N} \times (\psi_{36} \rightarrow \psi_{medina}) : \mathbb{N} \times \psi_{medina};$\\
+$\invpi(\Theta^n) = \invpi(\Theta^*) = \invpi(\Omega^n)$\\
+$\land \quad \forall \theta_{i \in [1,n]} \in \Theta^n \quad \exists \omega_{j \in [1,n]} \in \Omega^n \quad \land \quad \invpi(\theta_i \in \Theta^n) = \invpi(\omega_i \in \Omega^n) = 1$\\
+$\land \quad \forall \alpha \in \psi(\Theta^n): \invpi(\alpha \in \psi(\Theta^n)) = f_\alpha \implies \beta \in \psi(\Omega^n): \invpi(\beta \in \psi(\Omega^n)) = f_\alpha  \quad \text{ iff } \quad \alpha \in \psi_{36} \implies \beta \in \psi_{medina}$\\
+$\land \quad \overset{>}{\psi(\Theta^n)} \implies \overset{>}{\psi(\Omega^n)}$\\
+$\land \quad \tilde{A}(\Theta^n \rightarrow \Omega^n)_{\psi_{36}} = 0 \qed$
+\end{trans}
+
+Which is one way of saying, the transformation of a message from the Extended Latin Alphabet into the MEDINA language, is guaranteed to always produce/generate a derivative message --- $\Theta^*$ that has the following properties:\\
+
+
+\begin{multline}
+\label{EQMEDINA}
+\forall \alpha \in \Theta^n \implies \beta \in \Omega^n: \mathbb{N} \times \psi_{medina}
+\end{multline}
+
+Where $\psi_{medina}$ is an extension\footnote{Unlike $\psi_{ozin}$ that exactly maps to $\psi_{36}$, we see that MEDINA also explicitly defines an extra symbol for a single WHITE-SPACE character --- which we could merely imply and not explicitly write when using the $\psi_{medina}$ symbol set, but which, especially if we wish to make the language able to be written in ``compact form" --- where white-space might be explicitly specified with a special symbol, but otherwise the text or message appearing as though there was no white-space --- and so, we might perhaps think of $\psi_{medina}$ spanning $\psi_{37}$? But otherwise, all the other formalisms that applied to OZIN might as well apply here.} of the symbol set $\psi_{36}$ as shown in  \textbf{\hyperref[FIGMEDINAALPHABETANOTATED]{Figure \ref{FIGMEDINAALPHABETANOTATED}}} as a \textbf{one-to-one} mapping from \textbf{Base-36 symbol set}, $\psi_{36} \rightarrow \psi_{medina}$.
+$\qed$
+
+\vspace{2em}
+
+And so that, the resultant [transformed] message, $\Theta^* = \Omega^n \approx \Theta^n$, is not only semantically equivalent to the original message, but also its length \textbf{is exactly equivalent to that of the original message}, with the only basic different being that its message is expressed using the alternative symbols or visual glyphs different from the original symbol set, but otherwise corresponding to it item-wise. Any such instance of text thus transformed is then an expression in the language \textbf{OZIN}.
+
+\end{transf}
 
 
 
@@ -4591,6 +4648,40 @@ Yei yeaaa ooogwo Aaaaha.
 
 
 \vspace{2em}
+
+%%%---LEAVE as IS HERE ----%
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[angle=90, width=0.9\textwidth]{resources/scanned_ijuka_hymn_scribe_sketch_in_medina}\\
+   \vspace{2em}
+  \end{center}
+\end{figure}\\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+
+
+\hl{TODO: replace this large replica with the complete, pened and colored version, with vertical lines left.}
+
+\begin{table}[H]
+  \begin{tabular}{|p{0.95\textwidth}} % Left border only
+    \hline
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=0.9\textwidth]{resources/scanned_ijuka_hymn_scribe_sketch_in_medina}\\
+   \vspace{2em}
+  \end{center}
+\end{figure}\\
+    \cline{1-1} % Bottom border only
+  \end{tabular}
+\end{table}
+
+
 
 \newpage
 %draw horizontal line
