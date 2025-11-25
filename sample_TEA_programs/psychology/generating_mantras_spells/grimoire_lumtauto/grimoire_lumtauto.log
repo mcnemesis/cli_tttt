@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  25 NOV 2025 15:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  25 NOV 2025 19:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -877,20 +877,7 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count362
 \l__pdf_internal_box=\box89
 )
-(grimoire_lumtauto.aux
-
-LaTeX Warning: Label `FIGCONJ1' multiply defined.
-
-
-LaTeX Warning: Label `FIG2' multiply defined.
-
-
-LaTeX Warning: Label `FIGOLGA' multiply defined.
-
-
-LaTeX Warning: Label `FIGTEAEXASOISRC2' multiply defined.
-
-)
+(grimoire_lumtauto.aux)
 \openout1 = `grimoire_lumtauto.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 259.
@@ -1103,6 +1090,18 @@ File: ot1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 265.
 
+
+LaTeX Warning: Citation `crowley1948magick' on page 2 undefined on input line 2
+65.
+
+
+LaTeX Warning: Citation `cli_tttt' on page 2 undefined on input line 271.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 2 undefined on inp
+ut line 272.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 275--278
 
  []
@@ -1116,7 +1115,7 @@ Program Files/MiKTeX/fonts/enc/dvips/lm/lm-rmtt.enc}]
 
 pdfTeX warning: pdflatex (file ./resources/emblem_ion.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/emblem_ion.pdf, id=132, 364.48169pt x 353.40028pt>
+<resources/emblem_ion.pdf, id=126, 364.48169pt x 353.40028pt>
 File: resources/emblem_ion.pdf Graphic file (type pdf)
 <use resources/emblem_ion.pdf>
 Package pdftex.def Info: resources/emblem_ion.pdf  used on input line 282.
@@ -1125,7 +1124,7 @@ Package pdftex.def Info: resources/emblem_ion.pdf  used on input line 282.
 
 pdfTeX warning: pdflatex (file ./resources/the_message.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/the_message.pdf, id=133, 614.295pt x 794.97pt>
+<resources/the_message.pdf, id=127, 614.295pt x 794.97pt>
 File: resources/the_message.pdf Graphic file (type pdf)
 <use resources/the_message.pdf>
 Package pdftex.def Info: resources/the_message.pdf  used on input line 292.
@@ -1145,10 +1144,30 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [3 <./resources/emblem_ion.pdf>]
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 4 undefined 
+on input line 304.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 4 undefined on inp
+ut line 304.
+
+
+LaTeX Warning: Citation `wikipedia_theistic_satanism' on page 4 undefined on in
+put line 304.
+
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 304.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 304.
+
+LaTeX Warning: Citation `copilot_assistant' on page 4 undefined on input line 3
+04.
+
+
+LaTeX Warning: Citation `wikipedia_theistic_satanism' on page 4 undefined on in
+put line 304.
+
 
 
 
@@ -1159,6 +1178,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [4 <./resources/the_message.pdf>]
+
+LaTeX Warning: Citation `Lutalo2024_3c' on page 5 undefined on input line 306.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 315--316
 []\OT1/lmtt/m/n/12 Programming languages create a medium via which one can defi
 ne and
@@ -1189,6 +1212,17 @@ ty since
  []
 
 
+LaTeX Warning: Citation `butler1952magic' on page 5 undefined on input line 323
+.
+
+
+LaTeX Warning: Citation `crowley1929magick' on page 5 undefined on input line 3
+23.
+
+
+LaTeX Warning: Citation `Lutalo2024_3c' on page 5 undefined on input line 323.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 332--334
 []\OT1/lmtt/m/n/12 Basically, we see how it is indeed language, or rather, its 
 use
@@ -1201,9 +1235,28 @@ makes
  []
 
 
+LaTeX Warning: Citation `Lutalo2024_3c' on page 5 undefined on input line 344.
+
+
+LaTeX Warning: Citation `cassiel1990encyclopedia' on page 5 undefined on input 
+line 344.
+
+
+LaTeX Warning: Citation `crowley1929magick' on page 5 undefined on input line 3
+44.
+
+
+LaTeX Warning: Citation `crowley1929magick' on page 5 undefined on input line 3
+44.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 355--356
 []\OT1/lmtt/m/n/12 Magick is the Science and Art of causing Change to occur in
  []
+
+
+LaTeX Warning: Citation `agrippa2014occult' on page 5 undefined on input line 3
+64.
 
 
 Overfull \vbox (1.00499pt too high) has occurred while \output is active []
@@ -1218,6 +1271,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [5]
+
+LaTeX Warning: Citation `lutalo_2025_definitions' on page 6 undefined on input 
+line 366.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 376--377
 []\OT1/lmtt/m/n/12 The science and art of causing change (in consciousness) to 
 occur
@@ -1228,6 +1286,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 376--377
 \OT1/lmtt/m/n/12 in conformity with will, using means not currently understood 
 by
  []
+
+
+LaTeX Warning: Citation `kraig2010modern' on page 6 undefined on input line 379
+.
+
+
+LaTeX Warning: Citation `kraig2010modern' on page 6 undefined on input line 385
+.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 395--396
@@ -1254,10 +1320,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 395--396
  []
 
 
+LaTeX Warning: Citation `mathers1904goetia' on page 6 undefined on input line 3
+98.
+
+
+LaTeX Warning: Citation `agrippa2014occult' on page 6 undefined on input line 4
+04.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 6 undefined on input line 4
+04.
+
+
+LaTeX Warning: Citation `FasanoSequeira2017' on page 6 undefined on input line 
+404.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 6 undefined on input line 4
+04.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 416--417
 []\OT1/lmtt/m/n/12 The enhancement of the probabilities/likelihood of a desired
 
  []
+
+
+LaTeX Warning: Citation `Carroll1995' on page 6 undefined on input line 419.
 
 
 
@@ -1269,6 +1358,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [6]
+
+LaTeX Warning: Citation `Lutalo2023_metaphysics' on page 7 undefined on input l
+ine 425.
+
+
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 7 undefined on input line 
+469.
+
+
+LaTeX Warning: Citation `Lutalo2023_metaphysics' on page 7 undefined on input l
+ine 469.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 469--469
 
  []
@@ -1300,7 +1402,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 469--471
 
  []
 
-<resources/nu_chwezi_people__mwaru_s_day_by_nemesisfixx_dbq604u.jpg, id=222, 19
+<resources/nu_chwezi_people__mwaru_s_day_by_nemesisfixx_dbq604u.jpg, id=177, 19
 59.32pt x 3010.24625pt>
 File: resources/nu_chwezi_people__mwaru_s_day_by_nemesisfixx_dbq604u.jpg Graphi
 c file (type jpg)
@@ -1312,6 +1414,21 @@ _dbq604u.jpg  used on input line 478.
 Overfull \hbox (12.4pt too wide) in paragraph at lines 474--484
 [][] 
  []
+
+
+LaTeX Warning: Hyper reference `TRANSMAGICK' on page 7 undefined on input line 
+490.
+
+
+LaTeX Warning: Reference `TRANSMAGICK' on page 7 undefined on input line 490.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 7 undefined 
+on input line 490.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 7 undefined on inp
+ut line 490.
 
 
 
@@ -1337,6 +1454,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 493--494
  []
 
 
+LaTeX Warning: Hyper reference `TRANSMAGICK' on page 9 undefined on input line 
+498.
+
+
+LaTeX Warning: Reference `TRANSMAGICK' on page 9 undefined on input line 498.
+
+
+LaTeX Warning: Citation `lutalo_2025_definitions' on page 9 undefined on input 
+line 504.
+
+
+LaTeX Warning: Citation `Carroll1995' on page 9 undefined on input line 504.
+
+
+LaTeX Warning: Citation `carroll2010octavo' on page 9 undefined on input line 5
+04.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 516--517
 []\OT1/lmtt/m/n/12 By ``intentional" I mean ``willed". But even unintentional a
 cts so
@@ -1349,9 +1484,39 @@ l to
  []
 
 
+LaTeX Warning: Citation `crowley1929magick' on page 9 undefined on input line 5
+19.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 524--525
 
  []
+
+
+LaTeX Warning: Hyper reference `DEFMAGICK' on page 9 undefined on input line 53
+4.
+
+
+LaTeX Warning: Reference `DEFMAGICK' on page 9 undefined on input line 534.
+
+
+LaTeX Warning: Hyper reference `DEFMAGICKLANG' on page 9 undefined on input lin
+e 534.
+
+
+LaTeX Warning: Reference `DEFMAGICKLANG' on page 9 undefined on input line 534.
+
+
+
+LaTeX Warning: Hyper reference `THEOMAGLANG' on page 9 undefined on input line 
+543.
+
+
+LaTeX Warning: Reference `THEOMAGLANG' on page 9 undefined on input line 543.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 9 undefined on input line 54
+3.
 
 
 
@@ -1376,6 +1541,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 582--582
 Underfull \hbox (badness 10000) in paragraph at lines 582--582
 \OT1/lmtt/m/n/14.4 pearls in front of pigs, or they may trample them and then
  []
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 10 undefined on input line 5
+82.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 582--582
@@ -1495,6 +1664,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 582--582
  []
 
 
+LaTeX Warning: Citation `butler1952magic' on page 10 undefined on input line 58
+2.
+
+
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 582--584
 [][] 
  []
@@ -1529,7 +1702,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/iona.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<resources/iona.pdf, id=295, 364.48169pt x 353.40028pt>
+<resources/iona.pdf, id=225, 364.48169pt x 353.40028pt>
 File: resources/iona.pdf Graphic file (type pdf)
 <use resources/iona.pdf>
 Package pdftex.def Info: resources/iona.pdf  used on input line 591.
@@ -1538,7 +1711,7 @@ Package pdftex.def Info: resources/iona.pdf  used on input line 591.
 
 pdfTeX warning: pdflatex (file ./resources/lumtauto_slogan.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<resources/lumtauto_slogan.pdf, id=296, 663.43857pt x 125.5089pt>
+<resources/lumtauto_slogan.pdf, id=226, 663.43857pt x 125.5089pt>
 File: resources/lumtauto_slogan.pdf Graphic file (type pdf)
 <use resources/lumtauto_slogan.pdf>
 Package pdftex.def Info: resources/lumtauto_slogan.pdf  used on input line 600.
@@ -1555,6 +1728,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 604.
+
+
+LaTeX Warning: Citation `crowley1929magick' on page 12 undefined on input line 
+607.
+
+
+LaTeX Warning: Citation `butler1952magic' on page 12 undefined on input line 60
+7.
 
 LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 607.
@@ -1588,10 +1769,42 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [13{C:/Program Files/MiKTeX/fonts/enc/dvips/lm/lm-mathex.enc}]
 
+LaTeX Warning: Hyper reference `EQLUMTAUTO' on page 14 undefined on input line 
+669.
+
+
+LaTeX Warning: Reference `EQLUMTAUTO' on page 14 undefined on input line 669.
+
+
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 14 undefined on input l
+ine 669.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 14 undefined on input line 66
+9.
+
+
+LaTeX Warning: Hyper reference `TRANSLUMTAUTO' on page 14 undefined on input li
+ne 669.
+
+
+LaTeX Warning: Reference `TRANSLUMTAUTO' on page 14 undefined on input line 669
+.
+
+
+LaTeX Warning: Hyper reference `TRANSLUMTAUTO' on page 14 undefined on input li
+ne 684.
+
+
+LaTeX Warning: Reference `TRANSLUMTAUTO' on page 14 undefined on input line 684
+.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/scanned_example_magickal_art_sound_m
 agick.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> a
 llowed
-<resources/scanned_example_magickal_art_sound_magick.pdf, id=342, 596.98032pt x
+<resources/scanned_example_magickal_art_sound_magick.pdf, id=262, 596.98032pt x
  844.65562pt>
 File: resources/scanned_example_magickal_art_sound_magick.pdf Graphic file (typ
 e pdf)
@@ -1603,6 +1816,34 @@ f  used on input line 695.
 Overfull \hbox (12.4pt too wide) in paragraph at lines 691--701
 [][] 
  []
+
+
+LaTeX Warning: Hyper reference `SECPROPERTIESLUMTAUTO' on page 14 undefined on 
+input line 707.
+
+
+LaTeX Warning: Reference `SECPROPERTIESLUMTAUTO' on page 14 undefined on input 
+line 707.
+
+
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 14 undefined on input line
+ 715.
+
+
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 14 undefined on input l
+ine 715.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 14 undefined on input line 71
+5.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 14 undefined on input line 7
+18.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 14 undefined on input line 7
+18.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 718--719
@@ -1669,6 +1910,14 @@ Overfull \hbox (13.10168pt too wide) in paragraph at lines 742--752
  []
 
 
+LaTeX Warning: Citation `newjerusalem1985' on page 16 undefined on input line 7
+57.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 16 undefined on input line 7
+57.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 757--758
 
  []
@@ -1677,6 +1926,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 757--758
 Underfull \hbox (badness 10000) in paragraph at lines 768--769
 
  []
+
+
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 16 undefined on input l
+ine 780.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 16 undefined on input line 78
+0.
+
+
+LaTeX Warning: Hyper reference `ALGLUMTAUTO' on page 16 undefined on input line
+ 780.
+
+
+LaTeX Warning: Reference `ALGLUMTAUTO' on page 16 undefined on input line 780.
 
 
 
@@ -1697,7 +1961,13 @@ Overfull \hbox (22.38437pt too wide) in paragraph at lines 787--788
 []\OT1/lmtt/m/n/20.74 Imi geso yotimemimet Tewa xarougow souvom umwa
  []
 
-<resources/lumtauto.jpg, id=404, 1541.76pt x 1027.84pt>
+
+LaTeX Warning: Citation `LaVey1969' on page 17 undefined on input line 793.
+
+
+LaTeX Warning: Citation `LaVey1969' on page 17 undefined on input line 793.
+
+<resources/lumtauto.jpg, id=307, 1541.76pt x 1027.84pt>
 File: resources/lumtauto.jpg Graphic file (type jpg)
 <use resources/lumtauto.jpg>
 Package pdftex.def Info: resources/lumtauto.jpg  used on input line 814.
@@ -1737,6 +2007,53 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [18 <./resources/lumtauto.jpg>]
 
+LaTeX Warning: Hyper reference `SECLUMTAUTO_PY' on page 19 undefined on input l
+ine 894.
+
+
+LaTeX Warning: Reference `SECLUMTAUTO_PY' on page 19 undefined on input line 89
+4.
+
+
+LaTeX Warning: Hyper reference `ALGLUMTAUTO' on page 19 undefined on input line
+ 894.
+
+
+LaTeX Warning: Reference `ALGLUMTAUTO' on page 19 undefined on input line 894.
+
+
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 19 undefined on input l
+ine 894.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 19 undefined on input line 89
+4.
+
+
+LaTeX Warning: Hyper reference `SECLUMTAUTO_JS' on page 19 undefined on input l
+ine 894.
+
+
+LaTeX Warning: Reference `SECLUMTAUTO_JS' on page 19 undefined on input line 89
+4.
+
+
+LaTeX Warning: Citation `cli_tttt' on page 19 undefined on input line 901.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 19 undefined on input line 9
+01.
+
+
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 19 undefined on input l
+ine 901.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 19 undefined on input line 90
+1.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -1763,6 +2080,22 @@ See the caption package documentation for explanation.
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1009.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Hyper reference `FIGLUMTAUTOTEACODE' on page 21 undefined on inp
+ut line 1014.
+
+
+LaTeX Warning: Reference `FIGLUMTAUTOTEACODE' on page 21 undefined on input lin
+e 1014.
+
+
+LaTeX Warning: Hyper reference `FIGLUMTAUTOTEACODE_CLEAN' on page 21 undefined 
+on input line 1014.
+
+
+LaTeX Warning: Reference `FIGLUMTAUTOTEACODE_CLEAN' on page 21 undefined on inp
+ut line 1014.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1019--1020
@@ -1796,6 +2129,36 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
+LaTeX Warning: Citation `nuchweziCrypto' on page 22 undefined on input line 104
+6.
+
+
+LaTeX Warning: Citation `nuchweziCrypto' on page 22 undefined on input line 104
+6.
+
+
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 22 undefined on input l
+ine 1050.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 22 undefined on input line 10
+50.
+
+
+LaTeX Warning: Hyper reference `SECTEALUMTAUTO' on page 22 undefined on input l
+ine 1050.
+
+
+LaTeX Warning: Reference `SECTEALUMTAUTO' on page 22 undefined on input line 10
+50.
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 22 undefined on input line 1054.
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 22 undefined on input line 1054.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1805,7 +2168,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [22]
-<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=605, 1541.76pt x 1027
+<resources/illustration_trudy_olga_spirit_fight_2.jpg, id=478, 1541.76pt x 1027
 .84pt>
 File: resources/illustration_trudy_olga_spirit_fight_2.jpg Graphic file (type j
 pg)
@@ -1817,6 +2180,9 @@ used on input line 1085.
 Overfull \hbox (12.4pt too wide) in paragraph at lines 1081--1091
 [][] 
  []
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 23 undefined on input line 1095.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1095--1096
@@ -1890,6 +2256,17 @@ e, Absolute and
  []
 
 
+LaTeX Warning: Citation `jung1964symbols' on page 24 undefined on input line 11
+44.
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 24 undefined on input line 1144.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 24 undefined on input line 
+1150.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1150--1151
 
  []
@@ -1906,7 +2283,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [24]
-<resources/illustration_trudy_olga_spirit_fight.jpg, id=649, 1541.76pt x 1027.8
+<resources/illustration_trudy_olga_spirit_fight.jpg, id=517, 1541.76pt x 1027.8
 4pt>
 File: resources/illustration_trudy_olga_spirit_fight.jpg Graphic file (type jpg
 )
@@ -1929,6 +2306,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [25]
+
+LaTeX Warning: Hyper reference `ALGLUMTAUTO' on page 26 undefined on input line
+ 1230.
+
+
+LaTeX Warning: Reference `ALGLUMTAUTO' on page 26 undefined on input line 1230.
+
+
+
+LaTeX Warning: Citation `nuchweziCrypto' on page 26 undefined on input line 123
+0.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1230--1231
 
  []
@@ -1983,6 +2373,9 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
+LaTeX Warning: Citation `shrinesjwl' on page 28 undefined on input line 1343.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1343.
 
@@ -1997,6 +2390,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1353--1354
 \OT1/lmtt/m/n/12 can manifest even though the reasons for its working remain a 
 mystery.
  []
+
+
+LaTeX Warning: Citation `farrar1990spells' on page 28 undefined on input line 1
+356.
 
 
 
@@ -2073,7 +2470,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 1370--1371
 tive
  []
 
-<resources/conjurer.jpg, id=808, 1798.72pt x 1027.84pt>
+
+LaTeX Warning: Citation `farrar1990spells' on page 29 undefined on input line 1
+373.
+
+<resources/conjurer.jpg, id=672, 1798.72pt x 1027.84pt>
 File: resources/conjurer.jpg Graphic file (type jpg)
 <use resources/conjurer.jpg>
 Package pdftex.def Info: resources/conjurer.jpg  used on input line 1387.
@@ -2082,6 +2483,9 @@ Package pdftex.def Info: resources/conjurer.jpg  used on input line 1387.
 Overfull \hbox (12.4pt too wide) in paragraph at lines 1383--1393
 [][] 
  []
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 29 undefined on input line 1396.
 
 \openout5 = `grimoire_lumtauto.listing'.
 
@@ -2098,7 +2502,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 \openout5 = `grimoire_lumtauto.listing'.
 
  (grimoire_lumtauto.listing)
-<resources/conjurer_4.jpg, id=817, 1252.68pt x 835.12pt>
+<resources/conjurer_4.jpg, id=679, 1252.68pt x 835.12pt>
 File: resources/conjurer_4.jpg Graphic file (type jpg)
 <use resources/conjurer_4.jpg>
 Package pdftex.def Info: resources/conjurer_4.jpg  used on input line 1438.
@@ -2119,6 +2523,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [30]
 
+LaTeX Warning: Citation `shrinesjwl' on page 31 undefined on input line 1447.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2127,13 +2535,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [31 <./resources/conjurer_4.jpg>]
+
+LaTeX Warning: Citation `shrinesjwl' on page 32 undefined on input line 1466.
+
 \openout5 = `grimoire_lumtauto.listing'.
 
- (grimoire_lumtauto.listing)
+(grimoire_lumtauto.listing)
+
+LaTeX Warning: Citation `johnson2000civilization' on page 32 undefined on input
+ line 1482.
+
+
 
 pdfTeX warning: pdflatex (file ./resources/maiu_sigil.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/maiu_sigil.pdf, id=855, 277.9986pt x 718.60468pt>
+<resources/maiu_sigil.pdf, id=714, 277.9986pt x 718.60468pt>
 File: resources/maiu_sigil.pdf Graphic file (type pdf)
 <use resources/maiu_sigil.pdf>
 Package pdftex.def Info: resources/maiu_sigil.pdf  used on input line 1493.
@@ -2151,7 +2567,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/myrrh_slogan.pdf): PDF inclusion: fo
 und PDF version <1.7>, but at most version <1.5> allowed
-<resources/myrrh_slogan.pdf, id=870, 621.28107pt x 126.4725pt>
+<resources/myrrh_slogan.pdf, id=728, 621.28107pt x 126.4725pt>
 File: resources/myrrh_slogan.pdf Graphic file (type pdf)
 <use resources/myrrh_slogan.pdf>
 Package pdftex.def Info: resources/myrrh_slogan.pdf  used on input line 1502.
@@ -2177,6 +2593,30 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
+LaTeX Warning: Hyper reference `FIGLUMTAUTOTEACODE_CLEAN' on page 34 undefined 
+on input line 1539.
+
+
+LaTeX Warning: Reference `FIGLUMTAUTOTEACODE_CLEAN' on page 34 undefined on inp
+ut line 1539.
+
+
+LaTeX Warning: Citation `lutalo2024tea' on page 34 undefined on input line 1539
+.
+
+
+LaTeX Warning: Citation `lutalo2020dnap' on page 34 undefined on input line 154
+9.
+
+
+LaTeX Warning: Hyper reference `FIGTEAMYRRH' on page 34 undefined on input line
+ 1564.
+
+
+LaTeX Warning: Reference `FIGTEAMYRRH' on page 34 undefined on input line 1564.
+
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1579--1580
 
  []
@@ -2191,6 +2631,35 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [34]
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 35 undefined on input line 1
+582.
+
+
+LaTeX Warning: Citation `wordweb_assistant' on page 35 undefined on input line 
+1582.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 35 undefined on input line 1
+582.
+
+
+LaTeX Warning: Hyper reference `SECEXAMPLESLUMTAUTO' on page 35 undefined on in
+put line 1584.
+
+
+LaTeX Warning: Reference `SECEXAMPLESLUMTAUTO' on page 35 undefined on input li
+ne 1584.
+
+
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 35 undefined on input l
+ine 1584.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 35 undefined on input line 15
+84.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1584--1585
 
  []
@@ -2205,6 +2674,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [35]
+
+LaTeX Warning: Hyper reference `EQLATINALPHABET' on page 36 undefined on input 
+line 1631.
+
+
+LaTeX Warning: Reference `EQLATINALPHABET' on page 36 undefined on input line 1
+631.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1631--1632
 
  []
@@ -2213,6 +2691,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1631--1632
 Underfull \hbox (badness 10000) in paragraph at lines 1642--1643
 
  []
+
+
+LaTeX Warning: Citation `transformatics' on page 36 undefined on input line 166
+3.
 
 
 
@@ -2225,9 +2707,33 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [36]
 
+LaTeX Warning: Citation `kraig2010modern' on page 37 undefined on input line 16
+79.
+
+
+LaTeX Warning: Citation `farrar1990spells' on page 37 undefined on input line 1
+680.
+
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 1697.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Hyper reference `FIGTEAMYRRH' on page 37 undefined on input line
+ 1704.
+
+
+LaTeX Warning: Reference `FIGTEAMYRRH' on page 37 undefined on input line 1704.
+
+
+
+LaTeX Warning: Hyper reference `FIGTEAMYRRHFIN' on page 37 undefined on input l
+ine 1704.
+
+
+LaTeX Warning: Reference `FIGTEAMYRRHFIN' on page 37 undefined on input line 17
+04.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1709--1710
@@ -2245,6 +2751,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [37]
+
+LaTeX Warning: Hyper reference `TRANSFMYRRH' on page 38 undefined on input line
+ 1720.
+
+
+LaTeX Warning: Reference `TRANSFMYRRH' on page 38 undefined on input line 1720.
+
+
+
+LaTeX Warning: Citation `farrar1990spells' on page 38 undefined on input line 1
+720.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1731--1732
 []\OT1/lmtt/m/n/12 Susa Morgan Black sends us another way of ensuring the Boome
 rang
@@ -2280,6 +2799,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1748--1749
 that
  []
 
+
+LaTeX Warning: Citation `farrar1990spells' on page 38 undefined on input line 1
+751.
+
 \openout5 = `grimoire_lumtauto.listing'.
 
 (grimoire_lumtauto.listing)
@@ -2292,6 +2815,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [38]
+
+LaTeX Warning: Citation `kraig2010modern' on page 39 undefined on input line 17
+78.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1793--1794
 []\OT1/lmtt/m/n/12 STEP THREE. Step forward with the left foot. At the same tim
 e
@@ -2333,8 +2861,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 1793--1794
 God
  []
 
+
+LaTeX Warning: Citation `kraig2010modern' on page 39 undefined on input line 17
+97.
+
 <resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.jpg, i
-d=1002, 1018.80624pt x 1084.05pt>
+d=828, 1018.80624pt x 1084.05pt>
 File: resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.j
 pg Graphic file (type jpg)
 <use resources/a_modern_chaos_magick_operating_circle_by_nemesisfixx_digtctm.jp
@@ -2357,6 +2889,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [39]
+
+LaTeX Warning: Citation `kraig2010modern' on page 40 undefined on input line 18
+31.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2391,6 +2928,46 @@ d Latin
  []
 
 
+LaTeX Warning: Citation `copilot_assistant' on page 41 undefined on input line 
+1853.
+
+
+LaTeX Warning: Citation `madara2019robotheosis' on page 41 undefined on input l
+ine 1862.
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 41 undefined on input line 
+1862.
+
+
+LaTeX Warning: Hyper reference `SECLUMTAUTO' on page 41 undefined on input line
+ 1862.
+
+
+LaTeX Warning: Reference `SECLUMTAUTO' on page 41 undefined on input line 1862.
+
+
+
+LaTeX Warning: Citation `farrar1990spells' on page 41 undefined on input line 1
+863.
+
+
+LaTeX Warning: Citation `jung1964symbols' on page 41 undefined on input line 18
+63.
+
+
+LaTeX Warning: Citation `lutalo2025concerning_trans' on page 41 undefined on in
+put line 1863.
+
+
+LaTeX Warning: Citation `GoogleAI2025' on page 41 undefined on input line 1877.
+
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 41 undefined on input line 
+1877.
+
+
 Overfull \hbox (15.81294pt too wide) in paragraph at lines 1876--1971
 [][]
  []
@@ -2411,6 +2988,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [41]
 
+LaTeX Warning: Hyper reference `TABMYRRHNAMES' on page 42 undefined on input li
+ne 1976.
+
+
+LaTeX Warning: Reference `TABMYRRHNAMES' on page 42 undefined on input line 197
+6.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2419,7 +3005,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [42]
-<resources/om_mani.jpg, id=1051, 853.5087pt x 573.1011pt>
+<resources/om_mani.jpg, id=861, 853.5087pt x 573.1011pt>
 File: resources/om_mani.jpg Graphic file (type jpg)
 <use resources/om_mani.jpg>
 Package pdftex.def Info: resources/om_mani.jpg  used on input line 1990.
@@ -2430,7 +3016,51 @@ Overfull \hbox (12.4pt too wide) in paragraph at lines 1986--1997
  []
 
 
-Overfull \hbox (29.53113pt too wide) in paragraph at lines 2009--2038
+LaTeX Warning: Hyper reference `TABMYRRHNAMES' on page 43 undefined on input li
+ne 2000.
+
+
+LaTeX Warning: Reference `TABMYRRHNAMES' on page 43 undefined on input line 200
+0.
+
+
+LaTeX Warning: Citation `GoogleAI2025' on page 43 undefined on input line 2012.
+
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 43 undefined on input line 
+2012.
+
+
+LaTeX Warning: Citation `Rinpoche1992' on page 43 undefined on input line 2017.
+
+
+
+LaTeX Warning: Citation `Rinpoche1992' on page 43 undefined on input line 2017.
+
+
+
+LaTeX Warning: Citation `Rinpoche1992' on page 43 undefined on input line 2022.
+
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 43 undefined on input line 2
+027.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 43 undefined on input line 2
+027.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 43 undefined on input line 2
+031.
+
+
+LaTeX Warning: Citation `transformation_rosary_rite' on page 43 undefined on in
+put line 2031.
+
+
+Overfull \hbox (24.96162pt too wide) in paragraph at lines 2009--2038
 [][]
  []
 
@@ -2461,6 +3091,30 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [44]
+
+LaTeX Warning: Citation `GoogleAI2025' on page 45 undefined on input line 2057.
+
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 45 undefined on input line 
+2057.
+
+
+LaTeX Warning: Citation `newjerusalem1985' on page 45 undefined on input line 2
+061.
+
+
+LaTeX Warning: Citation `butler1952magic' on page 45 undefined on input line 20
+61.
+
+
+LaTeX Warning: Citation `virgil_aeneid_book6' on page 45 undefined on input lin
+e 2066.
+
+
+LaTeX Warning: Citation `shrinesjwl' on page 45 undefined on input line 2071.
+
+
 Overfull \hbox (15.71065pt too wide) in paragraph at lines 2054--2077
 [][]
  []
@@ -2483,7 +3137,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/ozin_code.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<resources/ozin_code.pdf, id=1092, 515.04419pt x 611.40419pt>
+<resources/ozin_code.pdf, id=882, 515.04419pt x 611.40419pt>
 File: resources/ozin_code.pdf Graphic file (type pdf)
 <use resources/ozin_code.pdf>
 Package pdftex.def Info: resources/ozin_code.pdf  used on input line 2090.
@@ -2503,7 +3157,7 @@ pdfTeX warning: pdflatex (file ./resources/scanned_example_use_ozin_for_shrine_
 archictecture_notes_iona.pdf): PDF inclusion: found PDF version <1.7>, but at m
 ost version <1.5> allowed
 <resources/scanned_example_use_ozin_for_shrine_archictecture_notes_iona.pdf, id
-=1102, 596.98032pt x 844.65562pt>
+=892, 596.98032pt x 844.65562pt>
 File: resources/scanned_example_use_ozin_for_shrine_archictecture_notes_iona.pd
 f Graphic file (type pdf)
 <use resources/scanned_example_use_ozin_for_shrine_archictecture_notes_iona.pdf
@@ -2530,7 +3184,7 @@ df>]
 
 pdfTeX warning: pdflatex (file ./resources/code_mysteries_meta_hymn.pdf): PDF i
 nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/code_mysteries_meta_hymn.pdf, id=1118, 794.97pt x 614.295pt>
+<resources/code_mysteries_meta_hymn.pdf, id=908, 794.97pt x 614.295pt>
 File: resources/code_mysteries_meta_hymn.pdf Graphic file (type pdf)
 <use resources/code_mysteries_meta_hymn.pdf>
 Package pdftex.def Info: resources/code_mysteries_meta_hymn.pdf  used on input 
@@ -2540,8 +3194,8 @@ line 2118.
 
 pdfTeX warning: pdflatex (file ./resources/code_mysteries_meta_hymn_painting.pd
 f): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/code_mysteries_meta_hymn_painting.pdf, id=1119, 794.97pt x 614.295pt
->
+<resources/code_mysteries_meta_hymn_painting.pdf, id=909, 794.97pt x 614.295pt>
+
 File: resources/code_mysteries_meta_hymn_painting.pdf Graphic file (type pdf)
 <use resources/code_mysteries_meta_hymn_painting.pdf>
 Package pdftex.def Info: resources/code_mysteries_meta_hymn_painting.pdf  used 
@@ -2562,8 +3216,8 @@ _hymn_painting.pdf>]
 pdfTeX warning: pdflatex (file ./resources/scanned_example_use_ozin_for_shrine_
 archictecture_notes.pdf): PDF inclusion: found PDF version <1.7>, but at most v
 ersion <1.5> allowed
-<resources/scanned_example_use_ozin_for_shrine_archictecture_notes.pdf, id=1130
-, 596.98032pt x 844.65562pt>
+<resources/scanned_example_use_ozin_for_shrine_archictecture_notes.pdf, id=920,
+ 596.98032pt x 844.65562pt>
 File: resources/scanned_example_use_ozin_for_shrine_archictecture_notes.pdf Gra
 phic file (type pdf)
 <use resources/scanned_example_use_ozin_for_shrine_archictecture_notes.pdf>
@@ -2591,13 +3245,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/ozin_slogan.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/ozin_slogan.pdf, id=1147, 316.3017pt x 223.7961pt>
+<resources/ozin_slogan.pdf, id=937, 316.3017pt x 223.7961pt>
 File: resources/ozin_slogan.pdf Graphic file (type pdf)
 <use resources/ozin_slogan.pdf>
 Package pdftex.def Info: resources/ozin_slogan.pdf  used on input line 2155.
 (pdftex.def)             Requested size: 497.92325pt x 352.32019pt.
-<resources/nucwa_place_by_nemesisfixx_ddivx9v.jpg, id=1148, 603.4545pt x 595.50
-48pt>
+<resources/nucwa_place_by_nemesisfixx_ddivx9v.jpg, id=938, 603.4545pt x 595.504
+8pt>
 File: resources/nucwa_place_by_nemesisfixx_ddivx9v.jpg Graphic file (type jpg)
 <use resources/nucwa_place_by_nemesisfixx_ddivx9v.jpg>
 Package pdftex.def Info: resources/nucwa_place_by_nemesisfixx_ddivx9v.jpg  used
@@ -2607,7 +3261,7 @@ Package pdftex.def Info: resources/nucwa_place_by_nemesisfixx_ddivx9v.jpg  used
 
 pdfTeX warning: pdflatex (file ./resources/COMPLETE_OZINLANGUAGE.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/COMPLETE_OZINLANGUAGE.pdf, id=1149, 572.1375pt x 2336.73pt>
+<resources/COMPLETE_OZINLANGUAGE.pdf, id=939, 572.1375pt x 2336.73pt>
 File: resources/COMPLETE_OZINLANGUAGE.pdf Graphic file (type pdf)
 <use resources/COMPLETE_OZINLANGUAGE.pdf>
 Package pdftex.def Info: resources/COMPLETE_OZINLANGUAGE.pdf  used on input lin
@@ -2625,6 +3279,23 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [50 <./resources/ozin_slogan.pdf> <./resources/nucwa_place_by_nemesisfixx_ddivx
 9v.jpg>]
 
+LaTeX Warning: Hyper reference `TRANSFLUMTAUTO' on page 51 undefined on input l
+ine 2181.
+
+
+LaTeX Warning: Reference `TRANSFLUMTAUTO' on page 51 undefined on input line 21
+81.
+
+
+LaTeX Warning: Hyper reference `TRANSFMYRRH' on page 51 undefined on input line
+ 2181.
+
+
+LaTeX Warning: Reference `TRANSFMYRRH' on page 51 undefined on input line 2181.
+
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2633,8 +3304,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [51 <./resources/COMPLETE_OZINLANGUAGE.pdf>]
-<resources/kids_in_ancient_khem_studying_rubics_games_LEARNING.jpg, id=1212, 12
-52.68pt x 835.12pt>
+
+LaTeX Warning: Citation `lutalo_2025_ozin' on page 52 undefined on input line 2
+189.
+
+
+LaTeX Warning: Hyper reference `FIGOZINALPHABET' on page 52 undefined on input 
+line 2189.
+
+
+LaTeX Warning: Reference `FIGOZINALPHABET' on page 52 undefined on input line 2
+189.
+
+<resources/kids_in_ancient_khem_studying_rubics_games_LEARNING.jpg, id=995, 125
+2.68pt x 835.12pt>
 File: resources/kids_in_ancient_khem_studying_rubics_games_LEARNING.jpg Graphic
  file (type jpg)
 <use resources/kids_in_ancient_khem_studying_rubics_games_LEARNING.jpg>
@@ -2714,6 +3397,9 @@ ure
  []
 
 
+LaTeX Warning: Citation `Barry1965' on page 52 undefined on input line 2216.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2723,6 +3409,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [52 <./resources/kids_in_ancient_khem_studying_rubics_games_LEARNING.jpg>]
+
+LaTeX Warning: Citation `lutalo2025concerning_trans' on page 53 undefined on in
+put line 2223.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 2234--2235
 []\OT1/lmtt/m/n/12 Also, we see that in many instances of control of access to 
 power,
@@ -2751,6 +3442,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 2234--2235
 \OT1/lmtt/m/n/12 or lifts certain members of the community/society to a status 
 and
  []
+
+
+LaTeX Warning: Citation `lutalo2025concerning_trans' on page 53 undefined on in
+put line 2238.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 2244--2245
@@ -2786,6 +3481,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 2251--2252
 \OT1/lmtt/m/n/12 more generally of communication with the central government an
 d its
  []
+
+
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 53 undefined on input line
+ 2260.
 
 
 
@@ -2844,20 +3543,42 @@ ng and
  []
 
 
+LaTeX Warning: Citation `Barry1965' on page 54 undefined on input line 2276.
+
+
+LaTeX Warning: Citation `Barry1965' on page 54 undefined on input line 2283.
+
+
+LaTeX Warning: Hyper reference `FIGCHRISTSYMBOLS' on page 54 undefined on input
+ line 2283.
+
+
+LaTeX Warning: Reference `FIGCHRISTSYMBOLS' on page 54 undefined on input line 
+2283.
+
+
 
 pdfTeX warning: pdflatex (file ./resources/earlychristiansymbols.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/earlychristiansymbols.pdf, id=1235, 564.18782pt x 181.6386pt>
+<resources/earlychristiansymbols.pdf, id=1008, 564.18782pt x 181.6386pt>
 File: resources/earlychristiansymbols.pdf Graphic file (type pdf)
 <use resources/earlychristiansymbols.pdf>
 Package pdftex.def Info: resources/earlychristiansymbols.pdf  used on input lin
 e 2290.
 (pdftex.def)             Requested size: 497.92325pt x 160.31084pt.
 
+LaTeX Warning: Hyper reference `FIGCHRISTSYMBOLS' on page 54 undefined on input
+ line 2298.
+
+
+LaTeX Warning: Reference `FIGCHRISTSYMBOLS' on page 54 undefined on input line 
+2298.
+
+
 
 pdfTeX warning: pdflatex (file ./resources/tau_cross_earlychristiansymbols.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/tau_cross_earlychristiansymbols.pdf, id=1238, 168.63pt x 129.6042pt>
+<resources/tau_cross_earlychristiansymbols.pdf, id=1009, 168.63pt x 129.6042pt>
 
 File: resources/tau_cross_earlychristiansymbols.pdf Graphic file (type pdf)
 <use resources/tau_cross_earlychristiansymbols.pdf>
@@ -2874,7 +3595,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [54 <./resources/earlychristiansymbols.pdf>]
-<resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg, id=1256, 1095.09125pt x 102
+<resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg, id=1027, 1095.09125pt x 102
 7.84pt>
 File: resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg Graphic file (type jpg)
 
@@ -2883,10 +3604,29 @@ Package pdftex.def Info: resources/1091px-Chrisme_Colosseum_Rome_Italy.jpg  use
 d on input line 2313.
 (pdftex.def)             Requested size: 328.5299pt x 308.35437pt.
 
+
+LaTeX Warning: Hyper reference `FIGCHRISTSYMBOLCHRISTOGRAM' on page 55 undefine
+d on input line 2320.
+
+
+LaTeX Warning: Reference `FIGCHRISTSYMBOLCHRISTOGRAM' on page 55 undefined on i
+nput line 2320.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 55 undefined on in
+put line 2323.
+
+
+LaTeX Warning: Citation `Barry1965' on page 55 undefined on input line 2323.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 2334--2335
 []\OT1/lmtt/m/n/12 Long before man had learned to write, and perhaps even befor
 e he had
  []
+
+
+LaTeX Warning: Citation `Barry1965' on page 55 undefined on input line 2342.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 2351--2352
@@ -2923,6 +3663,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [55 <./resources/tau_cross_earlychristiansymbols.pdf> <./resources/1091px-Chris
 me_Colosseum_Rome_Italy.jpg>]
+
+LaTeX Warning: Citation `Barry1965' on page 56 undefined on input line 2359.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 2369--2370
 []\OT1/lmtt/m/n/12 ...they were painted under extremely difficult conditions. W
 hat
@@ -2971,6 +3715,9 @@ s to make
  []
 
 
+LaTeX Warning: Citation `Barry1965' on page 56 undefined on input line 2381.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 2390--2391
 []\OT1/lmtt/m/n/12 By making these pictures, Neolithic man was talking to himse
 lf,
@@ -3004,7 +3751,7 @@ cally
 
 pdfTeX warning: pdflatex (file ./resources/seal_of_victory.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<resources/seal_of_victory.pdf, id=1287, 295.1025pt x 511.9125pt>
+<resources/seal_of_victory.pdf, id=1051, 295.1025pt x 511.9125pt>
 File: resources/seal_of_victory.pdf Graphic file (type pdf)
 <use resources/seal_of_victory.pdf>
 Package pdftex.def Info: resources/seal_of_victory.pdf  used on input line 2401
@@ -3021,7 +3768,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [56]
 <resources/hieroglyphics-ancient-egypt-time-machine-images-examples---ANCIENT-s
-cribes-home.jpg, id=1292, 1252.68pt x 835.12pt>
+cribes-home.jpg, id=1056, 1252.68pt x 835.12pt>
 File: resources/hieroglyphics-ancient-egypt-time-machine-images-examples---ANCI
 ENT-scribes-home.jpg Graphic file (type jpg)
 <use resources/hieroglyphics-ancient-egypt-time-machine-images-examples---ANCIE
@@ -3195,6 +3942,10 @@ oreign
  []
 
 
+LaTeX Warning: Citation `johnson2000civilization' on page 58 undefined on input
+ line 2450.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3294,6 +4045,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 2468--2469
  []
 
 
+LaTeX Warning: Citation `johnson2000civilization' on page 59 undefined on input
+ line 2471.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3342,7 +4097,7 @@ in use in
 
 pdfTeX warning: pdflatex (file ./resources/ivory_towers.pdf): PDF inclusion: fo
 und PDF version <1.7>, but at most version <1.5> allowed
-<resources/ivory_towers.pdf, id=1316, 794.97pt x 614.295pt>
+<resources/ivory_towers.pdf, id=1078, 794.97pt x 614.295pt>
 File: resources/ivory_towers.pdf Graphic file (type pdf)
 <use resources/ivory_towers.pdf>
 Package pdftex.def Info: resources/ivory_towers.pdf  used on input line 2503.
@@ -3680,7 +4435,7 @@ pdfTeX warning: pdflatex (file ./resources/scanned_example_magickal_art_magicka
 l_languages_in_comics_part2.pdf): PDF inclusion: found PDF version <1.7>, but a
 t most version <1.5> allowed
 <resources/scanned_example_magickal_art_magickal_languages_in_comics_part2.pdf,
- id=1335, 596.98032pt x 844.65562pt>
+ id=1097, 596.98032pt x 844.65562pt>
 File: resources/scanned_example_magickal_art_magickal_languages_in_comics_part2
 .pdf Graphic file (type pdf)
 <use resources/scanned_example_magickal_art_magickal_languages_in_comics_part2.
@@ -3744,7 +4499,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2637--2638
 als in
  []
 
-<resources/kids_in_ancient_khem_studying_rubics_games_LEARNING_B.jpg, id=1340, 
+<resources/kids_in_ancient_khem_studying_rubics_games_LEARNING_B.jpg, id=1102, 
 1541.76pt x 1027.84pt>
 File: resources/kids_in_ancient_khem_studying_rubics_games_LEARNING_B.jpg Graph
 ic file (type jpg)
@@ -3773,7 +4528,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [64 <./resources/scanned_example_magickal_art_magickal_languages_in_comics_part
 2.pdf>]
 <resources/hieroglyphics-ancient-egypt-time-machine-images-examples---ANCIENT-S
-EX-MAGiCK-temple.jpg, id=1360, 1798.72pt x 1027.84pt>
+EX-MAGiCK-temple.jpg, id=1122, 1798.72pt x 1027.84pt>
 File: resources/hieroglyphics-ancient-egypt-time-machine-images-examples---ANCI
 ENT-SEX-MAGiCK-temple.jpg Graphic file (type jpg)
 <use resources/hieroglyphics-ancient-egypt-time-machine-images-examples---ANCIE
@@ -3839,9 +4594,21 @@ er which
  []
 
 
+LaTeX Warning: Citation `kraig2010modern' on page 66 undefined on input line 27
+00.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 2717--2717
 
  []
+
+
+LaTeX Warning: Citation `baker2014spare' on page 66 undefined on input line 271
+7.
+
+
+LaTeX Warning: Citation `hine1995condensed' on page 66 undefined on input line 
+2717.
 
 
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 2717--2719
@@ -3868,7 +4635,7 @@ IENT-SEX-MAGiCK-temple.jpg>]
 pdfTeX warning: pdflatex (file ./resources/scanned_example_magickal_art_explori
 ng_light.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
-<resources/scanned_example_magickal_art_exploring_light.pdf, id=1375, 596.98032
+<resources/scanned_example_magickal_art_exploring_light.pdf, id=1134, 596.98032
 pt x 844.65562pt>
 File: resources/scanned_example_magickal_art_exploring_light.pdf Graphic file (
 type pdf)
@@ -3887,7 +4654,7 @@ pdfTeX warning: pdflatex (file ./resources/scanned_example_use_ozin_for_shrine_
 archictecture_notes_iona_egyptian_magick.pdf): PDF inclusion: found PDF version
  <1.7>, but at most version <1.5> allowed
 <resources/scanned_example_use_ozin_for_shrine_archictecture_notes_iona_egyptia
-n_magick.pdf, id=1376, 596.98032pt x 844.65562pt>
+n_magick.pdf, id=1135, 596.98032pt x 844.65562pt>
 File: resources/scanned_example_use_ozin_for_shrine_archictecture_notes_iona_eg
 yptian_magick.pdf Graphic file (type pdf)
 <use resources/scanned_example_use_ozin_for_shrine_archictecture_notes_iona_egy
@@ -3911,6 +4678,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [67 <./resources/scanned_example_magickal_art_exploring_light.pdf>]
 
+LaTeX Warning: Hyper reference `EQLATINALPHABET' on page 68 undefined on input 
+line 2756.
+
+
+LaTeX Warning: Reference `EQLATINALPHABET' on page 68 undefined on input line 2
+756.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -3932,6 +4708,9 @@ mr/m/n/12 9\OML/lmm/m/it/12 ; a; b; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q
  []
 
 
+LaTeX Warning: Citation `base36paper' on page 69 undefined on input line 2772.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 2786--2787
 
  []
@@ -3950,6 +4729,34 @@ Underfull \hbox (badness 10000) detected at line 2805
  []
 
 
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 69 undefined on in
+put line 2807.
+
+
+LaTeX Warning: Citation `transformatics' on page 69 undefined on input line 280
+7.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 69 undefined
+ on input line 2807.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 69 undefined on in
+put line 2807.
+
+
+LaTeX Warning: Citation `lutalo_2025_ozin' on page 69 undefined on input line 2
+807.
+
+
+LaTeX Warning: Hyper reference `FIGOZINALPHABET' on page 69 undefined on input 
+line 2807.
+
+
+LaTeX Warning: Reference `FIGOZINALPHABET' on page 69 undefined on input line 2
+807.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3960,9 +4767,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [69]
 
+LaTeX Warning: Hyper reference `FIGOZINALPHABETNUMBERS' on page 70 undefined on
+ input line 2817.
+
+
+LaTeX Warning: Reference `FIGOZINALPHABETNUMBERS' on page 70 undefined on input
+ line 2817.
+
+
+LaTeX Warning: Hyper reference `FIGOZINALPHABETLETTERS' on page 70 undefined on
+ input line 2817.
+
+
+LaTeX Warning: Reference `FIGOZINALPHABETLETTERS' on page 70 undefined on input
+ line 2817.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/NUMBERS_OZINLANGUAGE.pdf): PDF inclu
 sion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/NUMBERS_OZINLANGUAGE.pdf, id=1437, 561.05606pt x 577.19638pt>
+<resources/NUMBERS_OZINLANGUAGE.pdf, id=1179, 561.05606pt x 577.19638pt>
 File: resources/NUMBERS_OZINLANGUAGE.pdf Graphic file (type pdf)
 <use resources/NUMBERS_OZINLANGUAGE.pdf>
 Package pdftex.def Info: resources/NUMBERS_OZINLANGUAGE.pdf  used on input line
@@ -3972,7 +4796,7 @@ Package pdftex.def Info: resources/NUMBERS_OZINLANGUAGE.pdf  used on input line
 
 pdfTeX warning: pdflatex (file ./resources/LETTERS_OZINLANGUAGE.pdf): PDF inclu
 sion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/LETTERS_OZINLANGUAGE.pdf, id=1438, 565.15138pt x 1679.31381pt>
+<resources/LETTERS_OZINLANGUAGE.pdf, id=1180, 565.15138pt x 1679.31381pt>
 File: resources/LETTERS_OZINLANGUAGE.pdf Graphic file (type pdf)
 <use resources/LETTERS_OZINLANGUAGE.pdf>
 Package pdftex.def Info: resources/LETTERS_OZINLANGUAGE.pdf  used on input line
@@ -4000,6 +4824,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [71 <./resources/LETTERS_OZINLANGUAGE.pdf>]
+
+LaTeX Warning: Citation `hine1995condensed' on page 72 undefined on input line 
+2847.
+
+
+LaTeX Warning: Hyper reference `APPENDCHAOSMAGICK' on page 72 undefined on inpu
+t line 2856.
+
+
+LaTeX Warning: Reference `APPENDCHAOSMAGICK' on page 72 undefined on input line
+ 2856.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 2870--2871
 
  []
@@ -4020,6 +4857,47 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [72]
 
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 73 undefined
+ on input line 2886.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 73 undefined on input line 2
+886.
+
+
+LaTeX Warning: Hyper reference `ALGOSIGILMAGICK' on page 73 undefined on input 
+line 2902.
+
+
+LaTeX Warning: Reference `ALGOSIGILMAGICK' on page 73 undefined on input line 2
+902.
+
+
+LaTeX Warning: Citation `hineCondensedChaos' on page 73 undefined on input line
+ 2902.
+
+
+LaTeX Warning: Citation `lutalo_2025_ogf' on page 73 undefined on input line 29
+02.
+
+
+LaTeX Warning: Citation `transformation_rosary_rite' on page 73 undefined on in
+put line 2902.
+
+
+LaTeX Warning: Citation `Lutalo2025_govern_rite' on page 73 undefined on input 
+line 2902.
+
+
+LaTeX Warning: Hyper reference `ALGOSIGILMAGICK' on page 73 undefined on input 
+line 2902.
+
+
+LaTeX Warning: Reference `ALGOSIGILMAGICK' on page 73 undefined on input line 2
+902.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -4031,7 +4909,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/scanned_example_magickal_art_ozin.pd
 f): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/scanned_example_magickal_art_ozin.pdf, id=1527, 596.98032pt x 844.65
+<resources/scanned_example_magickal_art_ozin.pdf, id=1256, 596.98032pt x 844.65
 562pt>
 File: resources/scanned_example_magickal_art_ozin.pdf Graphic file (type pdf)
 <use resources/scanned_example_magickal_art_ozin.pdf>
@@ -4063,6 +4941,38 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [75 <./resources/scanned_example_magickal_art_ozin.pdf>]
 
+LaTeX Warning: Hyper reference `TRANSOIE' on page 76 undefined on input line 29
+65.
+
+
+LaTeX Warning: Reference `TRANSOIE' on page 76 undefined on input line 2965.
+
+
+LaTeX Warning: Hyper reference `TRANSOIESOL' on page 76 undefined on input line
+ 2982.
+
+
+LaTeX Warning: Reference `TRANSOIESOL' on page 76 undefined on input line 2982.
+
+
+
+LaTeX Warning: Hyper reference `TRANSOIESOL' on page 76 undefined on input line
+ 2982.
+
+
+LaTeX Warning: Reference `TRANSOIESOL' on page 76 undefined on input line 2982.
+
+
+
+LaTeX Warning: Hyper reference `ALGOSIGILMAGICK' on page 76 undefined on input 
+line 3006.
+
+
+LaTeX Warning: Reference `ALGOSIGILMAGICK' on page 76 undefined on input line 3
+006.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -4071,15 +4981,32 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [76]
+
+LaTeX Warning: Hyper reference `SOLNMANSIGIL' on page 77 undefined on input lin
+e 3017.
+
+
+LaTeX Warning: Reference `SOLNMANSIGIL' on page 77 undefined on input line 3017
+.
+
 \openout5 = `grimoire_lumtauto.listing'.
 
- (grimoire_lumtauto.listing)
+(grimoire_lumtauto.listing)
+
+LaTeX Warning: Hyper reference `FIGEXASOISIGILA' on page 77 undefined on input 
+line 3036.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILA' on page 77 undefined on input line 3
+036.
+
+
 
 pdfTeX warning: pdflatex (file ./resources/scanned_soi_sigilization_process_via
 _ozin_language_example.pdf): PDF inclusion: found PDF version <1.7>, but at mos
 t version <1.5> allowed
 <resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf, id=1
-579, 596.98032pt x 844.65562pt>
+293, 596.98032pt x 844.65562pt>
 File: resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf 
 Graphic file (type pdf)
 <use resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf>
@@ -4114,14 +5041,75 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [78 <./resources/scanned_soi_sigilization_process_via_ozin_language_example.pdf
 >]
+
+LaTeX Warning: Hyper reference `FIGEXASOISIGILA' on page 79 undefined on input 
+line 3060.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILA' on page 79 undefined on input line 3
+060.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 3060--3061
 
  []
 
 
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 79 undefined
+ on input line 3075.
+
+
+LaTeX Warning: Hyper reference `FIGEXASOISIGILA' on page 79 undefined on input 
+line 3075.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILA' on page 79 undefined on input line 3
+075.
+
+
+LaTeX Warning: Hyper reference `TABLESOIMSS' on page 79 undefined on input line
+ 3075.
+
+
+LaTeX Warning: Reference `TABLESOIMSS' on page 79 undefined on input line 3075.
+
+
+
+LaTeX Warning: Hyper reference `FIGTEAEXASOISRC' on page 79 undefined on input 
+line 3088.
+
+
+LaTeX Warning: Reference `FIGTEAEXASOISRC' on page 79 undefined on input line 3
+088.
+
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 3103.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Hyper reference `FIGTEAEXASOISRC' on page 79 undefined on input 
+line 3109.
+
+
+LaTeX Warning: Reference `FIGTEAEXASOISRC' on page 79 undefined on input line 3
+109.
+
+
+LaTeX Warning: Hyper reference `FIGEXASOISIGILA' on page 79 undefined on input 
+line 3109.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILA' on page 79 undefined on input line 3
+109.
+
+
+LaTeX Warning: Hyper reference `FIGTEAEXASOISRC2' on page 79 undefined on input
+ line 3111.
+
+
+LaTeX Warning: Reference `FIGTEAEXASOISRC2' on page 79 undefined on input line 
+3111.
 
 
 
@@ -4143,7 +5131,7 @@ See the caption package documentation for explanation.
 pdfTeX warning: pdflatex (file ./resources/computing_source_from_soi_via_MSS_co
 rrected.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5>
  allowed
-<resources/computing_source_from_soi_via_MSS_corrected.pdf, id=1634, 596.98032p
+<resources/computing_source_from_soi_via_MSS_corrected.pdf, id=1331, 596.98032p
 t x 844.65562pt>
 File: resources/computing_source_from_soi_via_MSS_corrected.pdf Graphic file (t
 ype pdf)
@@ -4178,9 +5166,50 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [81 <./resources/computing_source_from_soi_via_MSS_corrected.pdf>]
+
+LaTeX Warning: Hyper reference `FIGEXASOIMSS' on page 82 undefined on input lin
+e 3151.
+
+
+LaTeX Warning: Reference `FIGEXASOIMSS' on page 82 undefined on input line 3151
+.
+
+
+LaTeX Warning: Hyper reference `TABLESOIMSS' on page 82 undefined on input line
+ 3151.
+
+
+LaTeX Warning: Reference `TABLESOIMSS' on page 82 undefined on input line 3151.
+
+
+
+LaTeX Warning: Hyper reference `TABLESOIMSS' on page 82 undefined on input line
+ 3227.
+
+
+LaTeX Warning: Reference `TABLESOIMSS' on page 82 undefined on input line 3227.
+
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 3232--3235
 
  []
+
+
+LaTeX Warning: Citation `transformatics' on page 82 undefined on input line 323
+9.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 82 undefined
+ on input line 3239.
+
+
+LaTeX Warning: Hyper reference `TABLESOIMSS' on page 82 undefined on input line
+ 3239.
+
+
+LaTeX Warning: Reference `TABLESOIMSS' on page 82 undefined on input line 3239.
+
 
 
 
@@ -4198,10 +5227,26 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
+LaTeX Warning: Hyper reference `FIGEXASOISIGILA' on page 83 undefined on input 
+line 3269.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILA' on page 83 undefined on input line 3
+269.
+
+
+LaTeX Warning: Hyper reference `FIGEXASOISIGILAPROCESS' on page 83 undefined on
+ input line 3269.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILAPROCESS' on page 83 undefined on input
+ line 3269.
+
+
 
 pdfTeX warning: pdflatex (file ./resources/sample_soi_source_in_ozin.pdf): PDF 
 inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/sample_soi_source_in_ozin.pdf, id=1682, 2571.6075pt x 2075.83513pt>
+<resources/sample_soi_source_in_ozin.pdf, id=1365, 2571.6075pt x 2075.83513pt>
 File: resources/sample_soi_source_in_ozin.pdf Graphic file (type pdf)
 <use resources/sample_soi_source_in_ozin.pdf>
 Package pdftex.def Info: resources/sample_soi_source_in_ozin.pdf  used on input
@@ -4218,9 +5263,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [83]
 
+LaTeX Warning: Hyper reference `FIGEXASOISIGILAPROCESS' on page 84 undefined on
+ input line 3286.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILAPROCESS' on page 84 undefined on input
+ line 3286.
+
+
+LaTeX Warning: Hyper reference `FIGEXASOISIGILB' on page 84 undefined on input 
+line 3286.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILB' on page 84 undefined on input line 3
+286.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/scanned_soi_sigil.pdf): PDF inclusio
 n: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/scanned_soi_sigil.pdf, id=1703, 596.98032pt x 844.65562pt>
+<resources/scanned_soi_sigil.pdf, id=1382, 596.98032pt x 844.65562pt>
 File: resources/scanned_soi_sigil.pdf Graphic file (type pdf)
 <use resources/scanned_soi_sigil.pdf>
 Package pdftex.def Info: resources/scanned_soi_sigil.pdf  used on input line 32
@@ -4242,6 +5304,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [84 <./resources/sample_soi_source_in_ozin.pdf>]
 
+LaTeX Warning: Hyper reference `FIGEXASOISIGILC' on page 85 undefined on input 
+line 3307.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILC' on page 85 undefined on input line 3
+307.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -4253,12 +5324,28 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/100dollar_soi_sigil.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/100dollar_soi_sigil.pdf, id=1742, 1204.5pt x 1522.72882pt>
+<resources/100dollar_soi_sigil.pdf, id=1420, 1204.5pt x 1522.72882pt>
 File: resources/100dollar_soi_sigil.pdf Graphic file (type pdf)
 <use resources/100dollar_soi_sigil.pdf>
 Package pdftex.def Info: resources/100dollar_soi_sigil.pdf  used on input line 
 3313.
 (pdftex.def)             Requested size: 497.92325pt x 629.48102pt.
+
+LaTeX Warning: Hyper reference `SECEXAMPLESMYRRH' on page 86 undefined on input
+ line 3321.
+
+
+LaTeX Warning: Reference `SECEXAMPLESMYRRH' on page 86 undefined on input line 
+3321.
+
+
+LaTeX Warning: Hyper reference `FIGTEAEXASOIMANTRA' on page 86 undefined on inp
+ut line 3321.
+
+
+LaTeX Warning: Reference `FIGTEAEXASOIMANTRA' on page 86 undefined on input lin
+e 3321.
+
 
 
 
@@ -4278,11 +5365,27 @@ See the caption package documentation for explanation.
 
 pdfTeX warning: pdflatex (file ./resources/OZIN_MAGICK.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/OZIN_MAGICK.pdf, id=1767, 821.9508pt x 98.2872pt>
+<resources/OZIN_MAGICK.pdf, id=1441, 821.9508pt x 98.2872pt>
 File: resources/OZIN_MAGICK.pdf Graphic file (type pdf)
 <use resources/OZIN_MAGICK.pdf>
 Package pdftex.def Info: resources/OZIN_MAGICK.pdf  used on input line 3358.
 (pdftex.def)             Requested size: 497.92325pt x 59.54115pt.
+
+LaTeX Warning: Citation `copilot_assistant' on page 87 undefined on input line 
+3367.
+
+
+LaTeX Warning: Citation `butler1952magic' on page 87 undefined on input line 33
+67.
+
+
+LaTeX Warning: Citation `cassiel1990encyclopedia' on page 87 undefined on input
+ line 3367.
+
+
+LaTeX Warning: Citation `farrar1990spells' on page 87 undefined on input line 3
+367.
+
 
 
 
@@ -4293,7 +5396,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [87 <./resources/OZIN_MAGICK.pdf>]
-<resources/crafting_charged_pillows.jpg, id=1802, 1541.76pt x 1027.84pt>
+<resources/crafting_charged_pillows.jpg, id=1472, 1541.76pt x 1027.84pt>
 File: resources/crafting_charged_pillows.jpg Graphic file (type jpg)
 <use resources/crafting_charged_pillows.jpg>
 Package pdftex.def Info: resources/crafting_charged_pillows.jpg  used on input 
@@ -4314,6 +5417,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [88 <./resources/crafting_charged_pillows.jpg>]
+
+LaTeX Warning: Citation `lewis1996angels' on page 89 undefined on input line 34
+09.
+
 
 LaTeX Font Warning: Font shape `OT1/lmtt/bx/it' in size <12> not available
 (Font)              Font shape `OT1/lmtt/b/sl' tried instead on input line 3416
@@ -4408,6 +5515,10 @@ t/m/it/12 , a command to which \OT1/lmtt/b/sl/12 Iblis\OT1/lmtt/m/it/12 , the
  []
 
 
+LaTeX Warning: Citation `lewis1996angels' on page 89 undefined on input line 34
+26.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 3441--3442
 
  []
@@ -4422,7 +5533,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [89]
-<resources/talismanic_rosary.jpg, id=1822, 1252.68pt x 835.12pt>
+<resources/talismanic_rosary.jpg, id=1489, 1252.68pt x 835.12pt>
 File: resources/talismanic_rosary.jpg Graphic file (type jpg)
 <use resources/talismanic_rosary.jpg>
 Package pdftex.def Info: resources/talismanic_rosary.jpg  used on input line 34
@@ -4432,6 +5543,38 @@ Package pdftex.def Info: resources/talismanic_rosary.jpg  used on input line 34
 Overfull \hbox (12.4pt too wide) in paragraph at lines 3464--3475
 [][] 
  []
+
+
+LaTeX Warning: Hyper reference `SOLNMANIFEST' on page 90 undefined on input lin
+e 3480.
+
+
+LaTeX Warning: Reference `SOLNMANIFEST' on page 90 undefined on input line 3480
+.
+
+
+LaTeX Warning: Hyper reference `ALGENTYMANIFEST' on page 90 undefined on input 
+line 3480.
+
+
+LaTeX Warning: Reference `ALGENTYMANIFEST' on page 90 undefined on input line 3
+480.
+
+
+LaTeX Warning: Hyper reference `ALGOSIGILMAGICK' on page 90 undefined on input 
+line 3480.
+
+
+LaTeX Warning: Reference `ALGOSIGILMAGICK' on page 90 undefined on input line 3
+480.
+
+
+LaTeX Warning: Hyper reference `FIGEXASOISIGILA' on page 90 undefined on input 
+line 3480.
+
+
+LaTeX Warning: Reference `FIGEXASOISIGILA' on page 90 undefined on input line 3
+480.
 
 
 
@@ -4455,7 +5598,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/angel_seal_gabriel.pdf): PDF inclusi
 on: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/angel_seal_gabriel.pdf, id=1853, 575.2692pt x 894.22081pt>
+<resources/angel_seal_gabriel.pdf, id=1511, 575.2692pt x 894.22081pt>
 File: resources/angel_seal_gabriel.pdf Graphic file (type pdf)
 <use resources/angel_seal_gabriel.pdf>
 Package pdftex.def Info: resources/angel_seal_gabriel.pdf  used on input line 3
@@ -4474,13 +5617,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/angel_seal_michael.pdf): PDF inclusi
 on: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/angel_seal_michael.pdf, id=1869, 495.77219pt x 634.28969pt>
+<resources/angel_seal_michael.pdf, id=1527, 495.77219pt x 634.28969pt>
 File: resources/angel_seal_michael.pdf Graphic file (type pdf)
 <use resources/angel_seal_michael.pdf>
 Package pdftex.def Info: resources/angel_seal_michael.pdf  used on input line 3
 516.
 (pdftex.def)             Requested size: 497.92325pt x 637.06586pt.
-<resources/the_art_of_making_candles_by_nemesisfixx_djcjzej.jpg, id=1870, 1505.
+<resources/the_art_of_making_candles_by_nemesisfixx_djcjzej.jpg, id=1528, 1505.
 625pt x 2007.5pt>
 File: resources/the_art_of_making_candles_by_nemesisfixx_djcjzej.jpg Graphic fi
 le (type jpg)
@@ -4515,7 +5658,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/angel_seal_satan.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
-<resources/angel_seal_satan.pdf, id=1893, 371.46779pt x 591.16856pt>
+<resources/angel_seal_satan.pdf, id=1551, 371.46779pt x 591.16856pt>
 File: resources/angel_seal_satan.pdf Graphic file (type pdf)
 <use resources/angel_seal_satan.pdf>
 Package pdftex.def Info: resources/angel_seal_satan.pdf  used on input line 355
@@ -4534,7 +5677,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/angel_seal_raphael.pdf): PDF inclusi
 on: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/angel_seal_raphael.pdf, id=1910, 452.6511pt x 613.33138pt>
+<resources/angel_seal_raphael.pdf, id=1568, 452.6511pt x 613.33138pt>
 File: resources/angel_seal_raphael.pdf Graphic file (type pdf)
 <use resources/angel_seal_raphael.pdf>
 Package pdftex.def Info: resources/angel_seal_raphael.pdf  used on input line 3
@@ -4553,7 +5696,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/angel_seal_leviathan.pdf): PDF inclu
 sion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/angel_seal_leviathan.pdf, id=1927, 643.44388pt x 789.91106pt>
+<resources/angel_seal_leviathan.pdf, id=1585, 643.44388pt x 789.91106pt>
 File: resources/angel_seal_leviathan.pdf Graphic file (type pdf)
 <use resources/angel_seal_leviathan.pdf>
 Package pdftex.def Info: resources/angel_seal_leviathan.pdf  used on input line
@@ -4572,7 +5715,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/godform_seal_amunra.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/godform_seal_amunra.pdf, id=1945, 445.665pt x 685.60138pt>
+<resources/godform_seal_amunra.pdf, id=1603, 445.665pt x 685.60138pt>
 File: resources/godform_seal_amunra.pdf Graphic file (type pdf)
 <use resources/godform_seal_amunra.pdf>
 Package pdftex.def Info: resources/godform_seal_amunra.pdf  used on input line 
@@ -4591,7 +5734,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/thoughtform_seal_peace.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/thoughtform_seal_peace.pdf, id=1962, 378.45387pt x 729.68607pt>
+<resources/thoughtform_seal_peace.pdf, id=1620, 378.45387pt x 729.68607pt>
 File: resources/thoughtform_seal_peace.pdf Graphic file (type pdf)
 <use resources/thoughtform_seal_peace.pdf>
 Package pdftex.def Info: resources/thoughtform_seal_peace.pdf  used on input li
@@ -4610,7 +5753,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/thoughtform_seal_war.pdf): PDF inclu
 sion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/thoughtform_seal_war.pdf, id=1978, 271.97609pt x 685.60138pt>
+<resources/thoughtform_seal_war.pdf, id=1636, 271.97609pt x 685.60138pt>
 File: resources/thoughtform_seal_war.pdf Graphic file (type pdf)
 <use resources/thoughtform_seal_war.pdf>
 Package pdftex.def Info: resources/thoughtform_seal_war.pdf  used on input line
@@ -4629,7 +5772,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/seal_jesus.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/seal_jesus.pdf, id=1995, 335.33278pt x 783.88857pt>
+<resources/seal_jesus.pdf, id=1653, 335.33278pt x 783.88857pt>
 File: resources/seal_jesus.pdf Graphic file (type pdf)
 <use resources/seal_jesus.pdf>
 Package pdftex.def Info: resources/seal_jesus.pdf  used on input line 3670.
@@ -4647,7 +5790,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/seal_yeheshua.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/seal_yeheshua.pdf, id=2013, 502.99919pt x 835.20026pt>
+<resources/seal_yeheshua.pdf, id=1671, 502.99919pt x 835.20026pt>
 File: resources/seal_yeheshua.pdf Graphic file (type pdf)
 <use resources/seal_yeheshua.pdf>
 Package pdftex.def Info: resources/seal_yeheshua.pdf  used on input line 3691.
@@ -4662,7 +5805,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [102 <./resources/seal_yeheshua.pdf>]
-<resources/magician_tools.jpg, id=2032, 1252.68pt x 835.12pt>
+<resources/magician_tools.jpg, id=1690, 1252.68pt x 835.12pt>
 File: resources/magician_tools.jpg Graphic file (type jpg)
 <use resources/magician_tools.jpg>
 Package pdftex.def Info: resources/magician_tools.jpg  used on input line 3713.
@@ -4683,6 +5826,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [103 <./resources/magician_tools.jpg>]
+
+LaTeX Warning: Hyper reference `SECEGREGORE' on page 104 undefined on input lin
+e 3737.
+
+
+LaTeX Warning: Reference `SECEGREGORE' on page 104 undefined on input line 3737
+.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 3756--3757
 
  []
@@ -4697,7 +5849,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [104]
-<resources/exorcism_via_figurine.jpg, id=2055, 1541.76pt x 1027.84pt>
+<resources/exorcism_via_figurine.jpg, id=1710, 1541.76pt x 1027.84pt>
 File: resources/exorcism_via_figurine.jpg Graphic file (type jpg)
 <use resources/exorcism_via_figurine.jpg>
 Package pdftex.def Info: resources/exorcism_via_figurine.jpg  used on input lin
@@ -4718,7 +5870,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [105 <./resources/exorcism_via_figurine.jpg>]
-<resources/magic_egregore_at_hotel.jpg, id=2064, 1541.76pt x 1027.84pt>
+<resources/magic_egregore_at_hotel.jpg, id=1719, 1541.76pt x 1027.84pt>
 File: resources/magic_egregore_at_hotel.jpg Graphic file (type jpg)
 <use resources/magic_egregore_at_hotel.jpg>
 Package pdftex.def Info: resources/magic_egregore_at_hotel.jpg  used on input l
@@ -4742,7 +5894,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/the_pentagram_commander_seal.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/the_pentagram_commander_seal.pdf, id=2072, 367.3725pt x 522.99388pt>
+<resources/the_pentagram_commander_seal.pdf, id=1728, 367.3725pt x 522.99388pt>
 
 File: resources/the_pentagram_commander_seal.pdf Graphic file (type pdf)
 <use resources/the_pentagram_commander_seal.pdf>
@@ -4764,7 +5916,7 @@ pdfTeX warning: pdflatex (file ./resources/scanned_example_use_ozin_for_magicka
 l_diary_divination_notes.pdf): PDF inclusion: found PDF version <1.7>, but at m
 ost version <1.5> allowed
 <resources/scanned_example_use_ozin_for_magickal_diary_divination_notes.pdf, id
-=2078, 844.65562pt x 1194.71344pt>
+=1734, 844.65562pt x 1194.71344pt>
 File: resources/scanned_example_use_ozin_for_magickal_diary_divination_notes.pd
 f Graphic file (type pdf)
 <use resources/scanned_example_use_ozin_for_magickal_diary_divination_notes.pdf
@@ -4800,7 +5952,7 @@ pdf>]
 
 pdfTeX warning: pdflatex (file ./resources/philosopher.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/philosopher.pdf, id=2103, 310.27919pt x 503.96278pt>
+<resources/philosopher.pdf, id=1759, 310.27919pt x 503.96278pt>
 File: resources/philosopher.pdf Graphic file (type pdf)
 <use resources/philosopher.pdf>
 Package pdftex.def Info: resources/philosopher.pdf  used on input line 3858.
@@ -4811,7 +5963,7 @@ pdfTeX warning: pdflatex (file ./resources/scanned_example_use_ozin_and_miti_fo
 r_meditation_magickal_diary.pdf): PDF inclusion: found PDF version <1.7>, but a
 t most version <1.5> allowed
 <resources/scanned_example_use_ozin_and_miti_for_meditation_magickal_diary.pdf,
- id=2105, 596.98032pt x 844.65562pt>
+ id=1761, 596.98032pt x 844.65562pt>
 File: resources/scanned_example_use_ozin_and_miti_for_meditation_magickal_diary
 .pdf Graphic file (type pdf)
 <use resources/scanned_example_use_ozin_and_miti_for_meditation_magickal_diary.
@@ -4837,7 +5989,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/medina_slogan.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/medina_slogan.pdf, id=2116, 478.66827pt x 120.45pt>
+<resources/medina_slogan.pdf, id=1772, 478.66827pt x 120.45pt>
 File: resources/medina_slogan.pdf Graphic file (type pdf)
 <use resources/medina_slogan.pdf>
 Package pdftex.def Info: resources/medina_slogan.pdf  used on input line 3881.
@@ -4856,7 +6008,7 @@ ry.pdf>]
 
 pdfTeX warning: pdflatex (file ./resources/crypt_of_medina.pdf): PDF inclusion:
  found PDF version <1.7>, but at most version <1.5> allowed
-<resources/crypt_of_medina.pdf, id=2132, 596.98032pt x 844.65562pt>
+<resources/crypt_of_medina.pdf, id=1788, 596.98032pt x 844.65562pt>
 File: resources/crypt_of_medina.pdf Graphic file (type pdf)
 <use resources/crypt_of_medina.pdf>
 Package pdftex.def Info: resources/crypt_of_medina.pdf  used on input line 3896
@@ -4878,11 +6030,31 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [112 <./resources/medina_slogan.pdf>]
 
-LaTeX Warning: Hyper reference `SECOZIN ' on page 113 undefined on input line 3
-908.
+LaTeX Warning: Citation `lutalo_2025_medina' on page 113 undefined on input lin
+e 3906.
 
 
-LaTeX Warning: Reference `SECOZIN ' on page 113 undefined on input line 3908.
+LaTeX Warning: Hyper reference `FIGMEDINAALPHABET' on page 113 undefined on inp
+ut line 3906.
+
+
+LaTeX Warning: Reference `FIGMEDINAALPHABET' on page 113 undefined on input lin
+e 3906.
+
+
+LaTeX Warning: Hyper reference `SECOZIN' on page 113 undefined on input line 39
+06.
+
+
+LaTeX Warning: Reference `SECOZIN' on page 113 undefined on input line 3906.
+
+
+LaTeX Warning: Hyper reference `SECMITILANGUAGE' on page 113 undefined on input
+ line 3906.
+
+
+LaTeX Warning: Reference `SECMITILANGUAGE' on page 113 undefined on input line 
+3906.
 
 
 
@@ -4894,14 +6066,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [113 <./resources/crypt_of_medina.pdf>]
-<resources/medina_digits_set.png, id=2162, 1084.05pt x 2194.1975pt>
+
+LaTeX Warning: Hyper reference `FIGMEDEXT' on page 114 undefined on input line 
+3910.
+
+
+LaTeX Warning: Reference `FIGMEDEXT' on page 114 undefined on input line 3910.
+
+<resources/medina_digits_set.png, id=1811, 1084.05pt x 2194.1975pt>
 File: resources/medina_digits_set.png Graphic file (type png)
 <use resources/medina_digits_set.png>
 Package pdftex.def Info: resources/medina_digits_set.png  used on input line 39
-20.
+19.
 (pdftex.def)             Requested size: 300.25676pt x 607.75319pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 3916--3927
+Overfull \hbox (12.4pt too wide) in paragraph at lines 3915--3926
 [][] 
  []
 
@@ -4918,11 +6097,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/language_cipher_medina.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/language_cipher_medina.pdf, id=2173, 636.45775pt x 1207.6317pt>
+<resources/language_cipher_medina.pdf, id=1818, 636.45775pt x 1207.6317pt>
 File: resources/language_cipher_medina.pdf Graphic file (type pdf)
 <use resources/language_cipher_medina.pdf>
 Package pdftex.def Info: resources/language_cipher_medina.pdf  used on input li
-ne 3932.
+ne 3931.
 (pdftex.def)             Requested size: 360.33737pt x 683.71509pt.
 
 
@@ -4943,10 +6122,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [116 <./resources/language_cipher_medina.pdf>]
-<resources/collage_belts.jpg, id=2217, 2890.8pt x 2890.8pt>
+<resources/collage_belts.jpg, id=1864, 2890.8pt x 2890.8pt>
 File: resources/collage_belts.jpg Graphic file (type jpg)
 <use resources/collage_belts.jpg>
-Package pdftex.def Info: resources/collage_belts.jpg  used on input line 3953.
+Package pdftex.def Info: resources/collage_belts.jpg  used on input line 3952.
 (pdftex.def)             Requested size: 448.12788pt x 448.11348pt.
 
 
@@ -4961,117 +6140,126 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/talismanic_belt_plain.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/talismanic_belt_plain.pdf, id=2225, 642.48026pt x 125.5089pt>
+<resources/talismanic_belt_plain.pdf, id=1872, 642.48026pt x 125.5089pt>
 File: resources/talismanic_belt_plain.pdf Graphic file (type pdf)
 <use resources/talismanic_belt_plain.pdf>
 Package pdftex.def Info: resources/talismanic_belt_plain.pdf  used on input lin
-e 3972.
+e 3971.
 (pdftex.def)             Requested size: 448.12788pt x 87.54153pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3993--3994
+Underfull \hbox (badness 10000) in paragraph at lines 3992--3993
 []\OT1/lmtt/m/n/12 One of the weak points of the Order of the Golden Dawn was i
 ts
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3993--3994
+Underfull \hbox (badness 10000) in paragraph at lines 3992--3993
 \OT1/lmtt/m/n/12 excessive eclecticism. It tried to include far too much, and s
 ome
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3993--3994
+Underfull \hbox (badness 10000) in paragraph at lines 3992--3993
 \OT1/lmtt/m/n/12 very doubtful attributions crept into use. Though through use 
-thee
+these
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3993--3994
+Underfull \hbox (badness 10000) in paragraph at lines 3992--3993
 \OT1/lmtt/m/n/12 attributions do act as channels of power, a good deal would be
  gained
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3993--3994
+Underfull \hbox (badness 10000) in paragraph at lines 3992--3993
 \OT1/lmtt/m/n/12 if they were, by process of neglect and the cultivation of the
  true
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3993--3994
+Underfull \hbox (badness 10000) in paragraph at lines 3992--3993
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3994--3995
 []\OT1/lmtt/m/n/12 ...the use of colours is fundamental. They are to be found
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3994--3995
 \OT1/lmtt/m/n/12 throughout the whole magical scheme, and the use of the Flashi
 ng
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
-\OT1/lmtt/m/n/12 As the colours key us to certain forces, it follows that the u
-se of
+Underfull \hbox (badness 10000) in paragraph at lines 3994--3995
+
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
+[]\OT1/lmtt/m/n/12 As the colours key us to certain forces, it follows that the
+ use of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 vestments of the appropriate colour will help us to link up wi
 th those
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 forces. That is the simple rationale of the vestments. Since t
 he
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 Western Tradition has been strongly influenced by the Greek, H
 ebrew
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 and Egyptian traditions on the one hand and the medieval Catho
 lic
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 Church on the other, it will be found that the robes worn in t
 he
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 magical fraternities reflect one or other of these sources. Ma
 ny
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 of them are magnificent pieces of work, but it is necessary fo
 r the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 student to remember that their value does not depend merely up
 on their
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3995--3997
+Underfull \hbox (badness 10000) in paragraph at lines 3996--3997
 \OT1/lmtt/m/n/12 magnificence. Plain robes of the appropriate colour are every 
 bit as
  []
+
+
+LaTeX Warning: Citation `butler1952magic' on page 118 undefined on input line 4
+000.
 
 
 
@@ -5083,6 +6271,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [118 <./resources/talismanic_belt_plain.pdf>]
+
+LaTeX Warning: Citation `cassiel1990encyclopedia' on page 119 undefined on inpu
+t line 4008.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 4019--4021
 []\OT1/lmtt/m/n/12 Apart from their value as ``colour-suggestions," they serve 
 a very
@@ -5117,12 +6310,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 4019--4021
  to the
  []
 
-<resources/chakra_system_body.png, id=2249, 1027.84pt x 1541.76pt>
-File: resources/chakra_system_body.png Graphic file (type png)
-<use resources/chakra_system_body.png>
-Package pdftex.def Info: resources/chakra_system_body.png  used on input line 4
-040.
-(pdftex.def)             Requested size: 405.16896pt x 607.75319pt.
+
+LaTeX Warning: Hyper reference `FIGBELTS' on page 119 undefined on input line 4
+030.
+
+
+LaTeX Warning: Reference `FIGBELTS' on page 119 undefined on input line 4030.
+
 
 
 
@@ -5133,9 +6327,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [119]
+<resources/chakra_system_body.png, id=1898, 1027.84pt x 1541.76pt>
+File: resources/chakra_system_body.png Graphic file (type png)
+<use resources/chakra_system_body.png>
+Package pdftex.def Info: resources/chakra_system_body.png  used on input line 4
+040.
+(pdftex.def)             Requested size: 405.16896pt x 607.75319pt.
+
 Underfull \hbox (badness 10000) in paragraph at lines 4047--4048
 
  []
+
+
+LaTeX Warning: Citation `farrar1999healing' on page 120 undefined on input line
+ 4052.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 4059--4060
@@ -5200,6 +6405,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 4068--4070
 \OT1/lmtt/m/n/12 involved in all forms of intimacy and interpersonal feelings a
 nd
  []
+
+
+LaTeX Warning: Citation `farrar1990spells' on page 120 undefined on input line 
+4072.
 
 
 
@@ -5271,6 +6480,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 4113--4114
  []
 
 
+LaTeX Warning: Citation `butler1952magic' on page 122 undefined on input line 4
+117.
+
+
+LaTeX Warning: Hyper reference `SECSIGILMAGICKCORE' on page 122 undefined on in
+put line 4124.
+
+
+LaTeX Warning: Reference `SECSIGILMAGICKCORE' on page 122 undefined on input li
+ne 4124.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5281,16 +6502,48 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [122]
 
+LaTeX Warning: Hyper reference `TABMYRRHWORDS2' on page 123 undefined on input 
+line 4128.
+
+
+LaTeX Warning: Reference `TABMYRRHWORDS2' on page 123 undefined on input line 4
+128.
+
+
+LaTeX Warning: Hyper reference `TABMYRRHWORDS' on page 123 undefined on input l
+ine 4128.
+
+
+LaTeX Warning: Reference `TABMYRRHWORDS' on page 123 undefined on input line 41
+28.
+
+
+LaTeX Warning: Hyper reference `TABMYRRHNAMES' on page 123 undefined on input l
+ine 4128.
+
+
+LaTeX Warning: Reference `TABMYRRHNAMES' on page 123 undefined on input line 41
+28.
+
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 4147.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Hyper reference `FIGMEDINAALPHABETANOTATED' on page 123 undefine
+d on input line 4153.
+
+
+LaTeX Warning: Reference `FIGMEDINAALPHABETANOTATED' on page 123 undefined on i
+nput line 4153.
 
 
 
 pdfTeX warning: pdflatex (file ./resources/annoted_language_cipher_medina_exten
 ded.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<resources/annoted_language_cipher_medina_extended.pdf, id=2295, 827.00969pt x 
+<resources/annoted_language_cipher_medina_extended.pdf, id=1924, 827.00969pt x 
 1111.2717pt>
 File: resources/annoted_language_cipher_medina_extended.pdf Graphic file (type 
 pdf)
@@ -5316,7 +6569,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/talismanic_belt_defender_healer.pdf)
 : PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/talismanic_belt_defender_healer.pdf, id=2307, 1521.76526pt x 251.981
+<resources/talismanic_belt_defender_healer.pdf, id=1935, 1521.76526pt x 251.981
 4pt>
 File: resources/talismanic_belt_defender_healer.pdf Graphic file (type pdf)
 <use resources/talismanic_belt_defender_healer.pdf>
@@ -5336,7 +6589,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/talismanic_belt_self_empowerment.pdf
 ): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/talismanic_belt_self_empowerment.pdf, id=2323, 1521.76526pt x 243.79
+<resources/talismanic_belt_self_empowerment.pdf, id=1952, 1521.76526pt x 243.79
 079pt>
 File: resources/talismanic_belt_self_empowerment.pdf Graphic file (type pdf)
 <use resources/talismanic_belt_self_empowerment.pdf>
@@ -5347,7 +6600,7 @@ n input line 4181.
 
 pdfTeX warning: pdflatex (file ./resources/talismanic_belt_magician.pdf): PDF i
 nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/talismanic_belt_magician.pdf, id=2324, 1521.76526pt x 243.79079pt>
+<resources/talismanic_belt_magician.pdf, id=1953, 1521.76526pt x 243.79079pt>
 File: resources/talismanic_belt_magician.pdf Graphic file (type pdf)
 <use resources/talismanic_belt_magician.pdf>
 Package pdftex.def Info: resources/talismanic_belt_magician.pdf  used on input 
@@ -5357,7 +6610,7 @@ line 4193.
 
 pdfTeX warning: pdflatex (file ./resources/talismanic_belt_marduk.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/talismanic_belt_marduk.pdf, id=2325, 1521.76526pt x 243.79079pt>
+<resources/talismanic_belt_marduk.pdf, id=1954, 1521.76526pt x 243.79079pt>
 File: resources/talismanic_belt_marduk.pdf Graphic file (type pdf)
 <use resources/talismanic_belt_marduk.pdf>
 Package pdftex.def Info: resources/talismanic_belt_marduk.pdf  used on input li
@@ -5367,7 +6620,7 @@ ne 4205.
 
 pdfTeX warning: pdflatex (file ./resources/talismanic_belt_illuminati.pdf): PDF
  inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/talismanic_belt_illuminati.pdf, id=2326, 1521.76526pt x 264.99pt>
+<resources/talismanic_belt_illuminati.pdf, id=1955, 1521.76526pt x 264.99pt>
 File: resources/talismanic_belt_illuminati.pdf Graphic file (type pdf)
 <use resources/talismanic_belt_illuminati.pdf>
 Package pdftex.def Info: resources/talismanic_belt_illuminati.pdf  used on inpu
@@ -5386,10 +6639,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 belt_self_empowerment.pdf> <./resources/talismanic_belt_magician.pdf> <./resour
 ces/talismanic_belt_marduk.pdf> <./resources/talismanic_belt_illuminati.pdf>]
 
+LaTeX Warning: Hyper reference `FIGMEDINAALPHABETANOTATED' on page 126 undefine
+d on input line 4247.
+
+
+LaTeX Warning: Reference `FIGMEDINAALPHABETANOTATED' on page 126 undefined on i
+nput line 4247.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/scanned_ijuka_hymn_scribe_sketch_in_
 medina.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> 
 allowed
-<resources/scanned_ijuka_hymn_scribe_sketch_in_medina.pdf, id=2412, 596.98032pt
+<resources/scanned_ijuka_hymn_scribe_sketch_in_medina.pdf, id=2039, 596.98032pt
  x 844.65562pt>
 File: resources/scanned_ijuka_hymn_scribe_sketch_in_medina.pdf Graphic file (ty
 pe pdf)
@@ -5426,17 +6688,70 @@ Underfull \hbox (badness 10000) in paragraph at lines 4282--4283
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4294--4295
+Underfull \hbox (badness 10000) in paragraph at lines 4295--4296
 
  []
 
 
-Underfull \hbox (badness 10000) detected at line 4300
+Underfull \hbox (badness 10000) detected at line 4301
  []$[]  \OMS/lmsy/m/n/12 8\OML/lmm/m/it/12  \OMS/lmsy/m/n/12 2 \OT1/lmr/m/n/12
  ^^B[]  =[]\OMS/lmsy/m/n/12 )  \OML/lmm/m/it/12 ^^L \OMS/lmsy/m/n/12 2 \OT1/lmr
 /m/n/12 
 [] : \U/msb/m/n/12 N \OMS/lmsy/m/n/12 ^^B \OML/lmm/m/it/12  []$ [][][]  
  []
+
+
+LaTeX Warning: Hyper reference `FIGMEDINAALPHABETANOTATED' on page 128 undefine
+d on input line 4303.
+
+
+LaTeX Warning: Reference `FIGMEDINAALPHABETANOTATED' on page 128 undefined on i
+nput line 4303.
+
+
+LaTeX Warning: Hyper reference `ALGOSIGILMAGICK' on page 128 undefined on input
+ line 4330.
+
+
+LaTeX Warning: Reference `ALGOSIGILMAGICK' on page 128 undefined on input line 
+4330.
+
+
+LaTeX Warning: Hyper reference `SECLUMTAUTO_PY' on page 128 undefined on input 
+line 4330.
+
+
+LaTeX Warning: Reference `SECLUMTAUTO_PY' on page 128 undefined on input line 4
+330.
+
+
+LaTeX Warning: Hyper reference `SECMYRRH' on page 128 undefined on input line 4
+330.
+
+
+LaTeX Warning: Reference `SECMYRRH' on page 128 undefined on input line 4330.
+
+
+LaTeX Warning: Hyper reference `SECOZIN' on page 128 undefined on input line 43
+30.
+
+
+LaTeX Warning: Reference `SECOZIN' on page 128 undefined on input line 4330.
+
+
+LaTeX Warning: Hyper reference `SECMEDINA' on page 128 undefined on input line 
+4330.
+
+
+LaTeX Warning: Reference `SECMEDINA' on page 128 undefined on input line 4330.
+
+
+LaTeX Warning: Hyper reference `SECMITILANGUAGE' on page 128 undefined on input
+ line 4330.
+
+
+LaTeX Warning: Reference `SECMITILANGUAGE' on page 128 undefined on input line 
+4330.
 
 
 
@@ -5458,6 +6773,51 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [129]
 
+LaTeX Warning: Citation `carrollLiberNullPsychonaut' on page 130 undefined on i
+nput line 4341.
+
+
+LaTeX Warning: Citation `carrollLiberKaos' on page 130 undefined on input line 
+4341.
+
+
+LaTeX Warning: Citation `hine1995condensed' on page 130 undefined on input line
+ 4341.
+
+
+LaTeX Warning: Citation `carrollLiberNullPsychonaut' on page 130 undefined on i
+nput line 4346.
+
+
+LaTeX Warning: Citation `carrollLiberNullPsychonaut' on page 130 undefined on i
+nput line 4347.
+
+
+LaTeX Warning: Citation `hine1995condensed' on page 130 undefined on input line
+ 4347.
+
+
+LaTeX Warning: Citation `carrollLiberNullPsychonaut' on page 130 undefined on i
+nput line 4348.
+
+
+LaTeX Warning: Citation `carrollLiberKaos' on page 130 undefined on input line 
+4349.
+
+
+LaTeX Warning: Citation `hine1995condensed' on page 130 undefined on input line
+ 4349.
+
+
+LaTeX Warning: Citation `carrollLiberKaos' on page 130 undefined on input line 
+4369.
+
+
+LaTeX Warning: Citation `hine1995condensed' on page 130 undefined on input line
+ 4369.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -5466,26 +6826,47 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [130]
-Underfull \hbox (badness 10000) in paragraph at lines 4386--4387
+
+LaTeX Warning: Citation `carrollLiberNullPsychonaut' on page 131 undefined on i
+nput line 4381.
+
+
+LaTeX Warning: Citation `hine1995condensed' on page 131 undefined on input line
+ 4387.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4387--4388
 []\OT1/lmr/bx/n/12 Chaos con-trast: \OT1/lmr/m/n/12 Rein-ter-prets al-chem-i-ca
 l sym-bol-ism psy-cho-log-i-cally (intent-
  []
+
+
+LaTeX Warning: Citation `hine1995condensed' on page 131 undefined on input line
+ 4392.
+
+
+LaTeX Warning: Citation `carrollLiberKaos' on page 131 undefined on input line 
+4393.
+
+
+LaTeX Warning: Citation `carrollLiberKaos' on page 131 undefined on input line 
+4394.
 
 
 
 pdfTeX warning: pdflatex (file ./resources/scanned_example_magickal_art_shrine_
 design.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> 
 allowed
-<resources/scanned_example_magickal_art_shrine_design.pdf, id=2492, 596.98032pt
+<resources/scanned_example_magickal_art_shrine_design.pdf, id=2086, 596.98032pt
  x 844.65562pt>
 File: resources/scanned_example_magickal_art_shrine_design.pdf Graphic file (ty
 pe pdf)
 <use resources/scanned_example_magickal_art_shrine_design.pdf>
 Package pdftex.def Info: resources/scanned_example_magickal_art_shrine_design.p
-df  used on input line 4404.
+df  used on input line 4405.
 (pdftex.def)             Requested size: 375.85364pt x 531.7797pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 4400--4410
+Overfull \hbox (12.4pt too wide) in paragraph at lines 4401--4411
 [][] 
  []
 
@@ -5508,21 +6889,35 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [132 <./resources/scanned_example_magickal_art_shrine_design.pdf>]
-<resources/enchantment_path__2022__by_nemesisfixx_dfj38uz.jpg, id=2516, 4015.0p
+
+LaTeX Warning: Hyper reference `SECOZINSYSTEM' on page 133 undefined on input l
+ine 4419.
+
+
+LaTeX Warning: Reference `SECOZINSYSTEM' on page 133 undefined on input line 44
+19.
+
+<resources/enchantment_path__2022__by_nemesisfixx_dfj38uz.jpg, id=2108, 4015.0p
 t x 3011.25pt>
 File: resources/enchantment_path__2022__by_nemesisfixx_dfj38uz.jpg Graphic file
  (type jpg)
 <use resources/enchantment_path__2022__by_nemesisfixx_dfj38uz.jpg>
 Package pdftex.def Info: resources/enchantment_path__2022__by_nemesisfixx_dfj38
-uz.jpg  used on input line 4430.
+uz.jpg  used on input line 4431.
 (pdftex.def)             Requested size: 4014.99026pt x 3011.24269pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 4426--4437
+LaTeX Warning: Citation `jwl2025art' on page 133 undefined on input line 4432.
+
+
+LaTeX Warning: Citation `jwl2025art' on page 133 undefined on input line 4432.
+
+
+Overfull \hbox (12.4pt too wide) in paragraph at lines 4427--4438
 [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 24.56653pt on input line 4437.
+LaTeX Warning: Float too large for page by 24.56653pt on input line 4438.
 
 
 
@@ -5544,12 +6939,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [134 <./resources/enchantment_path__2022__by_nemesisfixx_dfj38uz.jpg>]
 
+LaTeX Warning: Hyper reference `SECOZINSYSTEM' on page 135 undefined on input l
+ine 4450.
+
+
+LaTeX Warning: Reference `SECOZINSYSTEM' on page 135 undefined on input line 44
+50.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/seal_of_god.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/seal_of_god.pdf, id=2533, 326.17859pt x 708.72775pt>
+<resources/seal_of_god.pdf, id=2120, 326.17859pt x 708.72775pt>
 File: resources/seal_of_god.pdf Graphic file (type pdf)
 <use resources/seal_of_god.pdf>
-Package pdftex.def Info: resources/seal_of_god.pdf  used on input line 4454.
+Package pdftex.def Info: resources/seal_of_god.pdf  used on input line 4455.
 (pdftex.def)             Requested size: 279.72173pt x 607.75319pt.
 
 
@@ -5562,15 +6966,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [135 <./resources/seal_of_god.pdf>]
 
+LaTeX Warning: Hyper reference `SECOZINSYSTEM' on page 136 undefined on input l
+ine 4470.
+
+
+LaTeX Warning: Reference `SECOZINSYSTEM' on page 136 undefined on input line 44
+70.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/seal_of_aha.pdf): PDF inclusion: fou
 nd PDF version <1.7>, but at most version <1.5> allowed
-<resources/seal_of_aha.pdf, id=2553, 1358.1942pt x 1041.8925pt>
+<resources/seal_of_aha.pdf, id=2138, 1358.1942pt x 1041.8925pt>
 File: resources/seal_of_aha.pdf Graphic file (type pdf)
 <use resources/seal_of_aha.pdf>
-Package pdftex.def Info: resources/seal_of_aha.pdf  used on input line 4474.
+Package pdftex.def Info: resources/seal_of_aha.pdf  used on input line 4475.
 (pdftex.def)             Requested size: 792.25038pt x 607.75319pt.
 
-Overfull \hbox (294.32713pt too wide) in paragraph at lines 4474--4474
+Overfull \hbox (294.32713pt too wide) in paragraph at lines 4475--4475
  [] 
  []
 
@@ -5728,14 +7141,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 pdfTeX warning: pdflatex (file ./resources/the_message_masonic.pdf): PDF inclus
 ion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/the_message_masonic.pdf, id=2666, 614.295pt x 794.97pt>
+<resources/the_message_masonic.pdf, id=2302, 614.295pt x 794.97pt>
 File: resources/the_message_masonic.pdf Graphic file (type pdf)
 <use resources/the_message_masonic.pdf>
 Package pdftex.def Info: resources/the_message_masonic.pdf  used on input line 
-4515.
+4516.
 (pdftex.def)             Requested size: 491.43666pt x 635.97687pt.
 
-Overfull \hbox (288.67307pt too wide) in paragraph at lines 4515--4515
+Overfull \hbox (288.67307pt too wide) in paragraph at lines 4516--4516
  [] 
  []
 
@@ -5753,16 +7166,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 pdfTeX warning: pdflatex (file ./resources/scanned_key_miti_magickal_language_d
 efinition.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.
 5> allowed
-<resources/scanned_key_miti_magickal_language_definition.pdf, id=2673, 596.9803
+<resources/scanned_key_miti_magickal_language_definition.pdf, id=2309, 596.9803
 2pt x 844.65562pt>
 File: resources/scanned_key_miti_magickal_language_definition.pdf Graphic file 
 (type pdf)
 <use resources/scanned_key_miti_magickal_language_definition.pdf>
 Package pdftex.def Info: resources/scanned_key_miti_magickal_language_definitio
-n.pdf  used on input line 4531.
+n.pdf  used on input line 4532.
 (pdftex.def)             Requested size: 375.85364pt x 531.7797pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 4527--4538
+Overfull \hbox (12.4pt too wide) in paragraph at lines 4528--4539
 [][] 
  []
 
@@ -5781,21 +7194,21 @@ pdfTeX warning: pdflatex (file ./resources/scanned_example_use_ozin_and_miti_fo
 r_meditation_magickal_diary_notes.pdf): PDF inclusion: found PDF version <1.7>,
  but at most version <1.5> allowed
 <resources/scanned_example_use_ozin_and_miti_for_meditation_magickal_diary_note
-s.pdf, id=2689, 844.65562pt x 1194.71344pt>
+s.pdf, id=2326, 844.65562pt x 1194.71344pt>
 File: resources/scanned_example_use_ozin_and_miti_for_meditation_magickal_diary
 _notes.pdf Graphic file (type pdf)
 <use resources/scanned_example_use_ozin_and_miti_for_meditation_magickal_diary_
 notes.pdf>
 Package pdftex.def Info: resources/scanned_example_use_ozin_and_miti_for_medita
-tion_magickal_diary_notes.pdf  used on input line 4553.
+tion_magickal_diary_notes.pdf  used on input line 4554.
 (pdftex.def)             Requested size: 844.65356pt x 1194.71054pt.
 
-Overfull \hbox (39.34648pt too wide) in paragraph at lines 4553--4553
+Overfull \hbox (39.34648pt too wide) in paragraph at lines 4554--4554
  [] 
  []
 
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 4549--4559
+Overfull \hbox (12.4pt too wide) in paragraph at lines 4550--4560
 [][] 
  []
 
@@ -5810,27 +7223,43 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [142 <./resources/scanned_example_use_ozin_and_miti_for_meditation_magickal_dia
 ry_notes.pdf>]
-<resources/candle_chaos_magick.pdf, id=2712, 614.295pt x 794.97pt>
+
+LaTeX Warning: Hyper reference `SECTALISMANS' on page 143 undefined on input li
+ne 4569.
+
+
+LaTeX Warning: Reference `SECTALISMANS' on page 143 undefined on input line 456
+9.
+
+
+LaTeX Warning: Hyper reference `FIGEXATALISCANDLE' on page 143 undefined on inp
+ut line 4581.
+
+
+LaTeX Warning: Reference `FIGEXATALISCANDLE' on page 143 undefined on input lin
+e 4581.
+
+<resources/candle_chaos_magick.pdf, id=2345, 614.295pt x 794.97pt>
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf  used on input line 
-4587.
+4588.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf  used on input line 
-4587.
+4588.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<resources/candle_chaos_magick.pdf, id=2715, page=1, 614.295pt x 794.97pt>
+<resources/candle_chaos_magick.pdf, id=2348, page=1, 614.295pt x 794.97pt>
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 1>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page1 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 1>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page1 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
@@ -5845,44 +7274,53 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 1>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page1 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 1>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page1 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 1>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page1 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [144
 
  <./resources/candle_chaos_magick.pdf>]
-<resources/candle_chaos_magick.pdf, id=2752, page=2, 614.295pt x 794.97pt>
+<resources/candle_chaos_magick.pdf, id=2384, page=2, 614.295pt x 794.97pt>
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 2>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page2 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 2>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page2 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/candle_chaos_magick.pdf Graphic file (type pdf)
 <use resources/candle_chaos_magick.pdf, page 2>
 Package pdftex.def Info: resources/candle_chaos_magick.pdf , page2 used on inpu
-t line 4587.
+t line 4588.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [145
 
  <./resources/candle_chaos_magick.pdf>]
+
+LaTeX Warning: Citation `lutalo_2025_ogf' on page 146 undefined on input line 4
+601.
+
+
+LaTeX Warning: Citation `lutalo_2025_medina_ijuka' on page 146 undefined on inp
+ut line 4611.
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -5910,7 +7348,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [148]
-Overfull \hbox (7.14233pt too wide) in paragraph at lines 4713--4713
+Overfull \hbox (7.14233pt too wide) in paragraph at lines 4715--4715
  []\OT1/lmtt/m/n/17.28 Binyira mumwanya nibiguruka, biccu, nenyunyuzi mwiguru[]
  
  []
@@ -5920,16 +7358,16 @@ Overfull \hbox (7.14233pt too wide) in paragraph at lines 4713--4713
 pdfTeX warning: pdflatex (file ./resources/scanned_ijuka_hymn_scribe_sketch_in_
 medina_filled.pdf): PDF inclusion: found PDF version <1.7>, but at most version
  <1.5> allowed
-<resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled.pdf, id=2785, 596.
+<resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled.pdf, id=2415, 596.
 98032pt x 844.65562pt>
 File: resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled.pdf Graphic f
 ile (type pdf)
 <use resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled.pdf>
 Package pdftex.def Info: resources/scanned_ijuka_hymn_scribe_sketch_in_medina_f
-illed.pdf  used on input line 4739.
+illed.pdf  used on input line 4741.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 4735--4745
+Overfull \hbox (12.4pt too wide) in paragraph at lines 4737--4747
 [][] 
  []
 
@@ -5939,16 +7377,16 @@ pdfTeX warning: pdflatex (file ./resources/scanned_ijuka_hymn_scribe_sketch_in_
 medina_filled_decorated.pdf): PDF inclusion: found PDF version <1.7>, but at mo
 st version <1.5> allowed
 <resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled_decorated.pdf, id=
-2786, 596.98032pt x 844.65562pt>
+2416, 596.98032pt x 844.65562pt>
 File: resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled_decorated.pdf
  Graphic file (type pdf)
 <use resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled_decorated.pdf>
 
 Package pdftex.def Info: resources/scanned_ijuka_hymn_scribe_sketch_in_medina_f
-illed_decorated.pdf  used on input line 4754.
+illed_decorated.pdf  used on input line 4756.
 (pdftex.def)             Requested size: 448.12788pt x 634.05725pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 4750--4760
+Overfull \hbox (12.4pt too wide) in paragraph at lines 4752--4762
 [][] 
  []
 
@@ -5972,13 +7410,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [150 <./resources/scanned_ijuka_hymn_scribe_sketch_in_medina_filled_decorated.p
 df>]
-Overfull \hbox (16.03433pt too wide) in paragraph at lines 4780--4780
+Overfull \hbox (16.03433pt too wide) in paragraph at lines 4782--4782
  []\OT1/lmtt/m/n/17.28 Jukila nga bukyali munzikiza, ensi ngayebase ngatuloota 
 
  []
 
 
-Overfull \hbox (7.14233pt too wide) in paragraph at lines 4781--4781
+Overfull \hbox (7.14233pt too wide) in paragraph at lines 4783--4783
  []\OT1/lmtt/m/n/17.28 Biwundo mubanga nga bibukaa, ebbire, nemunyenye mugulu[]
  
  []
@@ -5993,13 +7431,13 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [151]
-Overfull \hbox (7.14233pt too wide) in paragraph at lines 4821--4821
+Overfull \hbox (7.14233pt too wide) in paragraph at lines 4823--4823
  []\OT1/lmtt/m/n/17.28 We've found them precious rocks that are gems of glory[]
  
  []
 
 
-Overfull \hbox (24.92633pt too wide) in paragraph at lines 4824--4824
+Overfull \hbox (24.92633pt too wide) in paragraph at lines 4826--4826
  []\OT1/lmtt/m/n/17.28 He tells us, light shall come and that we shall all know
 [] 
  []
@@ -6008,15 +7446,15 @@ Overfull \hbox (24.92633pt too wide) in paragraph at lines 4824--4824
 
 pdfTeX warning: pdflatex (file ./resources/scanned_example_magickal_art.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/scanned_example_magickal_art.pdf, id=2822, 596.98032pt x 844.65562pt
+<resources/scanned_example_magickal_art.pdf, id=2452, 596.98032pt x 844.65562pt
 >
 File: resources/scanned_example_magickal_art.pdf Graphic file (type pdf)
 <use resources/scanned_example_magickal_art.pdf>
 Package pdftex.def Info: resources/scanned_example_magickal_art.pdf  used on in
-put line 4846.
+put line 4848.
 (pdftex.def)             Requested size: 322.16417pt x 455.8178pt.
 
-Overfull \hbox (12.4pt too wide) in paragraph at lines 4842--4853
+Overfull \hbox (12.4pt too wide) in paragraph at lines 4844--4855
 [][] 
  []
 
@@ -6030,7 +7468,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [152]
-Underfull \hbox (badness 10000) in paragraph at lines 4936--4938
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 153 undefined on inp
+ut line 4938.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 153 undefined on inp
+ut line 4938.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 153 undefined on inp
+ut line 4938.
+
+
+LaTeX Warning: Citation `Lutalo2024_3c' on page 153 undefined on input line 493
+8.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4938--4940
 
  []
 
@@ -6044,12 +7499,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [153 <./resources/scanned_example_magickal_art.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 4949--4949
+Underfull \hbox (badness 10000) in paragraph at lines 4951--4951
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4949--4952
+Underfull \hbox (badness 10000) in paragraph at lines 4951--4954
 
  []
 
@@ -6063,21 +7518,21 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [154]
-<resources/GrimoireLumtauto-InnerArt.jpeg, id=2867, 1027.84pt x 1541.76pt>
+<resources/GrimoireLumtauto-InnerArt.jpeg, id=2493, 1027.84pt x 1541.76pt>
 File: resources/GrimoireLumtauto-InnerArt.jpeg Graphic file (type jpg)
 <use resources/GrimoireLumtauto-InnerArt.jpeg>
 Package pdftex.def Info: resources/GrimoireLumtauto-InnerArt.jpeg  used on inpu
-t line 4958.
+t line 4960.
 (pdftex.def)             Requested size: 497.92325pt x 746.88228pt.
 
 
 pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
-<resources/inner_back_cover.pdf, id=2868, 596.98032pt x 844.65562pt>
+<resources/inner_back_cover.pdf, id=2494, 596.98032pt x 844.65562pt>
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf>
 Package pdftex.def Info: resources/inner_back_cover.pdf  used on input line 496
-2.
+4.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -6086,7 +7541,7 @@ pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf>
 Package pdftex.def Info: resources/inner_back_cover.pdf  used on input line 496
-2.
+4.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -6096,16 +7551,16 @@ pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 
 pdfTeX warning: pdflatex (file ./resources/inner_back_cover.pdf): PDF inclusion
 : found PDF version <1.7>, but at most version <1.5> allowed
-<resources/inner_back_cover.pdf, id=2871, page=1, 596.98032pt x 844.65562pt>
+<resources/inner_back_cover.pdf, id=2497, page=1, 596.98032pt x 844.65562pt>
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 4962.
+ine 4964.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 4962.
+ine 4964.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
@@ -6129,19 +7584,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 4962.
+ine 4964.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 4962.
+ine 4964.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/inner_back_cover.pdf Graphic file (type pdf)
 <use resources/inner_back_cover.pdf, page 1>
 Package pdftex.def Info: resources/inner_back_cover.pdf , page1 used on input l
-ine 4962.
+ine 4964.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [157
 
@@ -6149,10 +7604,10 @@ ine 4962.
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=2895, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=2521, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 4966.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 4968.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -6160,7 +7615,7 @@ pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf>
-Package pdftex.def Info: resources/back_cover.pdf  used on input line 4966.
+Package pdftex.def Info: resources/back_cover.pdf  used on input line 4968.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -6170,33 +7625,33 @@ d PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/back_cover.pdf): PDF inclusion: foun
 d PDF version <1.7>, but at most version <1.5> allowed
-<resources/back_cover.pdf, id=2898, page=1, 596.98032pt x 844.65562pt>
+<resources/back_cover.pdf, id=2524, page=1, 596.98032pt x 844.65562pt>
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
 Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 49
-66.
+68.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
 Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 49
-66.
+68.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
 Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 49
-66.
+68.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
 Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 49
-66.
+68.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: resources/back_cover.pdf Graphic file (type pdf)
 <use resources/back_cover.pdf, page 1>
 Package pdftex.def Info: resources/back_cover.pdf , page1 used on input line 49
-66.
+68.
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [158
 
@@ -6210,19 +7665,19 @@ L3 programming layer <2024-07-20>
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package rerunfilecheck Info: File `grimoire_lumtauto.out' has not changed.
 (rerunfilecheck)             Checksum: 4277B3D0884EDDF7AC7FBC041ABEDC7A;4611.
  ) 
 Here is how much of TeX's memory you used:
- 33103 strings out of 473898
- 645748 string characters out of 5736297
+ 33102 strings out of 473898
+ 645738 string characters out of 5736297
  2249960 words of memory out of 5000000
- 54482 multiletter control sequences out of 15000+600000
+ 54481 multiletter control sequences out of 15000+600000
  658766 words of font info for 116 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,22n,101p,2562b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,22n,101p,2623b,1783s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.57} has been referenced but does not exis
 t, replaced by a fixed one
@@ -6471,9 +7926,9 @@ ublic/lm/lmsy8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C
 eX/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public
 /lm/lmtt12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/lm/lmtti10.pfb><C:/P
 rogram Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on grimoire_lumtauto.pdf (158 pages, 54490844 bytes).
+Output written on grimoire_lumtauto.pdf (158 pages, 54422200 bytes).
 PDF statistics:
- 3236 PDF objects out of 3580 (max. 8388607)
+ 2862 PDF objects out of 2984 (max. 8388607)
  947 named destinations out of 1000 (max. 500000)
  709 words of extra memory for PDF output out of 10000 (max. 10000000)
 
