@@ -456,7 +456,7 @@ class TEA_RunTime:
             return TEA_RunTime.GLUE.join([w[0] for w in tally])
 
 
-        # return unique characters in val, sorted most frequent first, first occurrence first
+        # return unique characters in val, sorted most frequent first, first occurrence first (for ties)
         def util_unique_projection_chars_modal_sequence(val):
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Computing Unique Character Projection (modal sequence statistic) for [{val}]")
@@ -469,8 +469,11 @@ class TEA_RunTime:
             l_symbol_set = len(unique_chars)
             # the tally is a computation of ranks as in MSS:
             # w_i = (cardinality of symbolset - I(c_i,symbol set)) * frequency of c_i in original sequence
-            tally = [(w,(l_symbol_set - (unique_chars.index(w) + 1))*chars.count(w)) for w in unique_chars]
-            tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
+            #tally = [(w,(l_symbol_set - (unique_chars.index(w) + 1))*chars.count(w)) for w in unique_chars]
+            #unique_chars --> [(c, c_count, c_index, c_weight),...]
+            tally = [(w, chars.count(w), chars.index(w), (l_symbol_set - (unique_chars.index(w) + 1))*chars.count(w)) for w in unique_chars]
+            #tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
+            tally = sorted(tally,key=lambda votes:(-votes[1],votes[2])) #, reverse=True)
             if TEA_RunTime.DEBUG:
                 print(f"--[util]-| Unique Char Tally [{tally}]")
             return TEA_RunTime.EMPTY_STR.join([w[0] for w in tally])
