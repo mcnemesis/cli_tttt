@@ -4561,7 +4561,7 @@ This is a no-bullshit distillation and preservation of the mysteries of computat
 
 
 
-It shouldn't come as a surprise to the seasoned and learned modern magician, that mathematics underlies or perhaps, can offer us a solid foundation for much of modern magick --- there is so much in reality that without careful, special mathematical modeling, would otherwise remain entirely out of reach of the human operator. Also, despite aspects of basic math like numbers and basic geometry having been around us for eons... thousands and thousands of years, since the days of the likes of Pythagoras and Plato, and yet, even unto this day, much of basic, but also advanced concepts in occult philosophy and magick still borrow from or keep returning to foundational, basic mathematics. 
+It shouldn't come as a surprise to the seasoned and learned modern magician, that mathematics underlies or perhaps, can offer us a solid foundation for much of modern magick --- there is so much in reality that without careful, special mathematical modeling or analysis, would otherwise remain entirely out of reach of the human operator. Also, despite aspects of basic math like numbers and basic geometry having been around us for eons... thousands and thousands of years, since the days of  esotericists like Pythagoras and Plato, and yet, even unto this day, much of basic, but also advanced concepts in occult philosophy, esoteric science, and magick still borrow from or keep returning to foundational, basic mathematics --- so that, perhaps, we should have actually titled this book the somewhat convenient and relevant \textbf{``Applying TRANSFORMATICS in MAGICK"}. However, and of course, magick and esoteric science is wider than, or calls for more mathematics than just transformatics...
 
 \vspace{2em}
 
@@ -4687,9 +4687,9 @@ And so, for all our practical purposes, we now know that the SOI only contains t
 \begin{tabular}[t]{|l|c|c|c|c|c|c|c|c|}
 \hline
 
-$\theta_i \in \Theta$ & I & L & O & V & E & Y & O & U \\
+$\theta_i \in \Theta$ & I & L & O & V & E & Y & \hl{O} & U \\
 \hline
-$i = I(\theta_i \in \Theta,\Theta)$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+$i = I(\theta_i \in \Theta,\Theta)$ & 1 & 2 & 3 & 4 & 5 & 6 & \hl{7} & 8 \\
 \hline
 $i^* = I(\theta_i \in \psi(\Theta), \Theta)$ & 1 & 2 & 3 & 4 & 5 & 6 & \hl{3} & 8 \\
 \hline
@@ -4697,7 +4697,7 @@ $i^* = I(\theta_i \in \psi(\Theta), \Theta)$ & 1 & 2 & 3 & 4 & 5 & 6 & \hl{3} & 
 
 \vspace{2em}
 
-In which, case, we notice that all the letters in the original SOI have unique values of this metric other than the letter ``O", which in the SOI occurred first at position 3, and then later at position 7. The highlighted value in the bottom row is so that we realize that, despite this multiple occurrence of the symbol, for the purposes of computing the BMSS, we shall only be considered with the \textbf{first occurrence} of a symbol, and thus, we apply the first value of $i$ for all cases of $\theta_i$ that occur multiple times in $\Theta$, when computing the metric $I(\theta_i \in \psi(\Theta), \Theta)$, that we have also denoted $i^*$ to differentiate it from basic $i$.
+In which case we notice that all the letters in the original SOI have unique values of this metric other than the letter ``O", which in the SOI occurred first at position 3, and then later at position 7. The highlighted value in the bottom row is so that we realize that, despite this multiple occurrence of the symbol, for the purposes of computing the BMSS, we shall only be considered with the \textbf{first occurrence} of a symbol, and thus, we apply the first value of $i$ for all cases of $\theta_i$ that occur multiple times in $\Theta$, when computing the metric $I(\theta_i \in \psi(\Theta), \Theta)$, that we have also denoted $i^*$ to differentiate it from basic $i$.
 
 }
 
@@ -4742,6 +4742,8 @@ $i^* = I(\theta_i \in \psi(\Theta), \Theta)$ & 5 & 1 & 2 & 3 & 8 & 4 & 6  \\
 $Rank(\theta_i \in \psi(\Theta): > f_i, < i^*) = R_i$ & 5 & 2 & 3 & 1 & 7 & 4 & 6  \\
 \hline
 \end{tabular}
+    \captionof{table}{Tabular Analysis: the process of computing BMSS Rank for each distinct item in the SOI symbol set $\psi(\Theta)$}
+  \label{TABSOIBMSSRANK}
 
 \vspace{2em}
 
@@ -4763,7 +4765,7 @@ $\overset{>}{\Theta}$ & $\theta_i \in \psi(\Theta)$ & O & I & L & V & E & Y & U 
 \hline
 
 \end{tabular}
-    \captionof{table}{Tabular Analysis: computing BMSS (``Source") for SOI $\Theta$}
+    \captionof{table}{Tabular Analysis: computing BMSS (``Source") for SOI $\Theta$ based on sorted mappings based on Rank}
   \label{TABSOIBMSS}
 
 \vspace{2em}
@@ -4860,7 +4862,7 @@ Sort($< R_i$) & & & $\overset{>}{\Theta}$\\
 
 \vspace{2em}
 
-And thus, by this method, depicted in \textbf{\hyperref[TABSOIBMSS2]{Table \ref{TABSOIBMSS2}}}, we arrive at the correct BMSS, also to become the magical ``SOURCE" corresponding to our original/input SOI, after ranking the symbols from $\psi(\Theta)$ in ascending order based on the computed heuristic rank metric $R_i$. The beauty of this method then, is that, it is easiest to implement in most programming languages whether or not they support sorting of collections or sequences based on composite or compound criteria or not --- because, unlike the original MSS definition, this method then reduces the sorting criteria from two, to just one.
+And thus, by this method, depicted in \textbf{\hyperref[TABSOIBMSS2]{Table \ref{TABSOIBMSS2}}}, we arrive at the correct BMSS, also to become the magical ``SOURCE" corresponding to our original/input SOI, after ranking the symbols from $\psi(\Theta)$ in ascending order based on the computed heuristic rank metric $R_i$. Among the allures and beauty of this method, is the observation that it is easy to implement in most programming languages whether or not they support sorting of collections or sequences based on composite or compound criteria or not --- because, unlike the original MSS definition\cite{transformatics}, this method then reduces the sorting criteria from two, to just one --- we sort in descending order of the BMSS Rank, i.e Sort($< R_i$).
 
 
 \section{The Positional Modal Sequence Statistic (PMSS)}
@@ -4877,17 +4879,17 @@ $ $\\
 \begin{enumerate}
 \item \textbf{GIVEN} the input ordered sequence of symbols as $\Theta$.
 \item \textbf{COMPUTE} the corresponding symbol set: $\psi(\Theta)$.
-\item \textbf{COMPUTE} a mapping of each of the unique symbols in $\psi(\Theta)$ to its \textbf{first-occurrence position} (FOP) in the original sequence: $i^* : I(\theta_i \in \psi(\Theta), \Theta) = i^*$
+\item \textbf{COMPUTE} a mapping of each of the unique symbols in $\psi(\Theta)$ to its \textbf{first-occurrence position} (FOP) in the original sequence's \textbf{unspecific symbol set}\cite{ossipaper} $\breve{i} : I(\theta_i \in \psi(\Theta), \hat{\psi}(\Theta)) = \breve{i}$
 \item \textbf{COMPUTE} a mapping of each of the unique symbols in $\psi(\Theta)$ to its \textbf{relative frequency} (RF) in the original sequence: $f_i : f_i = \invpi(\theta_i \in \psi(\Theta), \Theta) = f_i$
 \item{ \textbf{COMPUTE} a mapping of each of the unique symbols in $\psi(\Theta)$ to its PMSS RANK --- a measure, a rank --- the \textbf{Position-Weighed Frequency} (PWF), $R_i$, based on the size of the symbol set sequence, $\invpi(\psi(\Theta))$, the RF of the associated symbol, $f_i$ and its  FOP, $i^*$ as such:
 
 \begin{multline}
 \label{EQTNPMSSRANK}
-Rank(\theta_i \in \psi(\Theta): > f_i, < i^*) = R_i \implies R_i = (\invpi(\psi(\Theta)) - i^*) \times f_i
+Rank(\theta_i \in \psi(\Theta): > f_i, < \breve{i}) = R_i \implies R_i = (\invpi(\psi(\Theta)) - \breve{i}) \times f_i
 \end{multline}
 
 }
-\item \textbf{SORT} the items in the symbol set, $\psi(\Theta)$ in descending order of their corresponding PWF.
+\item \textbf{SORT} the items in the symbol set, $\psi(\Theta)$, in descending order of their corresponding PWF.
 \item \textbf{RETURN} the final sorted sequence as the \textbf{PMSS}.
 \end{enumerate}
 \end{alg}
@@ -4895,16 +4897,96 @@ Rank(\theta_i \in \psi(\Theta): > f_i, < i^*) = R_i \implies R_i = (\invpi(\psi(
 
 \vspace{2em}
 
-So, to see how this method would work given a realistic example or scenario, we shall leverage the same simple starting sequence as we did in the last section, and thus, we shall proceed to compute the PMSS of the SOI depicted in \textbf{\hyperref[EQNSOI1]{Equation \ref{EQNSOI1}}}, and which, as we also did in that section, and as we should also do as per the second step of  \textbf{\hyperref[ALGPWFM]{Algorithm \ref{ALGPWFM}}}, we shall be operating on the symbol set $\psi(\Theta) = ILOVEYU$ as we arrived at in \textbf{\hyperref[TRANSSOISS]{Transformation \ref{TRANSSOISS}}}. And so that, given the other steps in the algorithm are as what we already encountered in \textbf{\hyperref[SECBMSSRANK]{Section \ref{SECBMSSRANK}}} --- meaning, we can re-use the same values of $\theta_i$, $f_i$ and $i^*$ as we already obtained --- see \textbf{\hyperref[TABSOIBMSS]{Table \ref{TABSOIBMSS}}}, and so that, using the new rank formulation depicted in \textbf{\hyperref[EQTNPMSSRANK]{Equation \ref{EQTNPMSSRANK}}}, we arrive at a tabulation of the necessary computation as depicted in the following table:
+So, to see how this method would work given a realistic example or scenario, we shall leverage the same simple starting sequence as we did in the last section, and thus, we shall proceed to compute the PMSS of the SOI depicted in \textbf{\hyperref[EQNSOI1]{Equation \ref{EQNSOI1}}}, and which, as we also did in that section, and as we should also do as per the second step of  \textbf{\hyperref[ALGPWFM]{Algorithm \ref{ALGPWFM}}}, we shall be operating on the symbol set $\psi(\Theta) = ILOVEYU$ as we arrived at in \textbf{\hyperref[TRANSSOISS]{Transformation \ref{TRANSSOISS}}}, such that, $\invpi(\psi(\Theta)) = 7$. And so that, given the other steps in the algorithm are [almost] as what we already encountered in \textbf{\hyperref[SECBMSSRANK]{Section \ref{SECBMSSRANK}}} --- for example, we can re-use the same values of $\theta_i$, and $f_i$ as we already obtained --- see \textbf{\hyperref[TABSOIBMSSRANK]{Table \ref{TABSOIBMSSRANK}}}, and so that, we only need compute the FOP values, $\breve{i}$, and then using the new rank formulation depicted in \textbf{\hyperref[EQTNPMSSRANK]{Equation \ref{EQTNPMSSRANK}}}, we arrive at a tabulation of the necessary computation as depicted in the following table:
 
 
-{
-\LARGE
-\hl{TODO: compute the necessary PMSS table and present it here, also explain how to obtain necessary MSS from it 
 
-}
-}
+\vspace{2em}
 
+\begin{tabular}[t]{|c|c|c|c|}
+\hline
+$\theta_i \in \psi(\Theta)$ 
+& \makecell[c]{$f_i =$\\$\invpi(\theta_i, \Theta)$}
+& \makecell[c]{$\breve{i} =$\\$ I(\theta_i, \hat{\psi}(\Theta))$}
+& \makecell[c]{$R_i =$\\$(\invpi(\psi(\Theta)) - \breve{i}) \times f_i$} \\
+\hline
+E & 1 & 5 & $(7-5) \times 1 = 2$ \\
+\hline
+I & 1 & 1 & $(7-1) \times 1 = 6$ \\
+\hline
+L & 1 & 2 & $(7-2) \times 1 = 5$ \\
+\hline
+O & 2 & 3 & $(7-3) \times 2 = 8$ \\
+\hline
+U & 1 & 7 & $(7-7) \times 1 = 0$ \\
+\hline
+V & 1 & 4 & $(7-4) \times 1 = 3$ \\
+\hline
+Y & 1 & 6 & $(7-6) \times 1 = 1$ \\
+\hline
+\end{tabular}
+    \captionof{table}{Tabular Analysis: the process of computing PMSS Rank for each distinct item in the SOI symbol set $\psi(\Theta)$}
+  \label{TABSOIPMSSRANK}
+
+\vspace{2em}
+
+And so that, having worked through the first 5 steps of \textbf{\hyperref[ALGPWFM]{Algorithm \ref{ALGPWFM}}} as depicted in \textbf{\hyperref[TABSOIPMSSRANK]{Table \ref{TABSOIPMSSRANK}}}, we can proceed to the 6$^{th}$ step --- sorting the items in our mapping as per the PMSS Ranks --- in descending order of the PWF ($R_i$), and so that, we can just directly read-off the resulting PMSS as shown in the following tabulation:
+
+
+
+\vspace{2em}
+
+\begin{tabular}[t]{|c|c|c|c|}
+\hline
+Sort($< R_i$) & & & $\overset{>}{\Theta}$\\
+\hline
+\makecell[c]{$R_i =$\\$(\invpi(\psi(\Theta)) - \breve{i}) \times f_i$} 
+& \makecell[c]{$f_i =$\\$\invpi(\theta_i, \Theta)$}
+& \makecell[c]{$\breve{i} =$\\$I(\theta_i, \hat{\psi}(\Theta))$}
+& $\theta_i \in \psi(\Theta)$ \\
+\hline
+8 & 2 & 3 & O \\
+\hline
+6 & 1 & 1 & I \\
+\hline
+5 & 1 & 2 & L \\
+\hline
+3 & 1 & 4 & V \\
+\hline
+2 & 1 & 5 & E \\
+\hline
+1 & 1 & 6 & Y \\
+\hline
+0 & 1 & 7 & U \\
+\hline
+\end{tabular}
+
+
+\vspace{2em}
+
+So, just like we obtained using the first method --- of the BMSS/Basic Modal Sequence Statistic --- we also can see that we still obtain the same [and correct] modal sequence statistic for our similar initial input sequence, ``ILOVEYOU", when we apply this otherwise different computation method of the Position-Weighed Frequency, that gives us what we are calling the \textbf{Positional Modal Sequence Statistic}, as [still] ``OILVEYU".
+
+
+\section{Further Analysis and Comparison of BMSS to PMSS}
+\label{SECMSSANALYSIS}
+
+
+For those with a keen eye for beautiful mathematics, especially from the perspective of analysis, you shall realize that, the allure and core justification of the second method is not only in the fact that, like the BMSS method, it allows us to compute (whether manually or using a computer) the MSS of some sequence without having to worry about dealing with the composite sorting criteria --- in this case, reducing the criteria to just one --- the PWF, while, at the same time, and unlike BMSS, the PMSS can be justified by the fact that it is simple to see that it essentially gives higher-priority to the frequency of occurrence of a symbol in the source sequence ($f_i$), so that, the first sorting criteria in the original MSS definition is obeyed in the formulation of the PWF (see \textbf{\hyperref[EQTNPMSSRANK]{Equation \ref{EQTNPMSSRANK}}}), but also that, where any two terms have a tie on frequency, they definitely shall never have a tie on their \textbf{position of first-occurrence} (POF) in the original sequence's \textbf{unspecific symbol set} ($\hat{\psi}(\Theta)$) --- this last symbol set, not to be confused with any other symbol set of the sequence $\Theta$ (such as $\psi(\Theta)$, $\psi(\Theta)_\beta$, $\overset{>}{\psi(\Theta)}$, etc) because, it is the only one of its symbols sets, that specifically treats of the order of first-occurrence of symbols in $\Theta$ irrespective of any other conditions or criteria.
+
+\vspace{2em}
+
+Further, note that ``Weight" aspect in the PMSS method's WPF stems from the fact that we want to adjust an item's occurrence frequency ($f_i$) by the item's distance from the end of the unspecific symbol set of the originating sequence --- thus the term $(\invpi(\psi(\Theta)) - \breve{i})$ in the formulation of the PWF. That said, note that, in the BMSS method of obtaining a MSS, we encounter the term $\epsilon$ that didn't exist or originate anywhere in the original sequence, sequence specifications or the original problem. This might not always be an issue, however, it becomes a matter of major concern once you realize that the choice of the value to assign to $\epsilon$ has not much to do with the properties of the sequence under analysis apart from the fact that it is chosen to be \textbf{suitably small} so that when computing the rank ($R_i$) in the BMSS method, we ensure that similar or close values of $f_i$ never collide as long as positional indices of the concerned terms --- that is $i^*$ --- are different. This matter then, unless we reformulate (\textbf{\hyperref[EQTNBMSSRANK]{Equation \ref{EQTNBMSSRANK}}}) such that $\epsilon$ is a for example a function of $\invpi(\Theta)$ --- especially since this value puts an upper limit on any $f_i$ we shall ever encounter, it otherwise remains a matter that the user of that method must manually decide upon, and so that, some careless people might use that equation with a wrong value of $\epsilon$, and obtain ``wrong" rankings, and thus think or proceed to work with a MSS that isn't semantically correct.
+
+
+
+\vspace{2em}
+
+Finally, note that, the PMSS algorithm (\textbf{\hyperref[ALGPWFM]{Algorithm \ref{ALGPWFM}}}) also has the extra allure that, it somewhat would never necessitate nor involve processing of fractions or fractional numbers as one might have to do when using the BMSS method. And for that reason alone, it might be more preferable for those computing MSS values by-hand or manually. But also, because of sometimes tricky quirks in platform-specific handling of floating-point numbers and such, even for computer programs computing the MSS, \textbf{in case we don't use an algorithm that can compute the MSS based on sorting using the original composite criteria}, then the PMSS method is preferable --- mostly for its algebraic and numerical simplicity. However, as these are all new innovations we have identified and developed while conducting research in \textbf{applying Transformatics to Magick}, who knows... perhaps magicians prefer having more than one way to skin a cat, but, more research, applications and further analysis shall tell, which of these methods of computing an MSS eventually wins or if all survive unto posterity!
+
+
+\vspace{2em}
+
+Oh! And last, but not least... we hope that the reader of this chapter has developed deeper appreciation for and love for applying mathematics to matters usually relegated to faith, trust and mere belief. For example, do you notice anything peculiar about the example we have treated of in this chapter? The idea of analyzing the universally common phrase ``I love you" --- don't you see something interesting (if not weird) about its MSS being ``OILVEYU"? Like... perhaps, and especially from the creative perspective of a magician... like, people that utter such words to each other, eventually end up also sharing ``oily" things! But, and also as how certain types of magicians such as diviners, kaballists, ``readers", etc. arrive at some of the answers they use to solve problems for their clients, we see in this method of applying transformatics to ``demystifying the hidden side of what is otherwise always in before our eyes" a way to read the unseen; a call to indeed \textit{read between lines} for example... What else do you see in the phrase ``I LOVE YOU", when it is mathematically reduced to ``ILOVEYU" or better, ``OILVEYU"?\footnote{Not to spoil the fun, but, perhaps one sees Lubricants? Sex Magick? Aloe vera? Oliver Twists? It's definitely just crazy and exciting! What of then analyzing our heart's deepest desires and wants using these methods? See? That is Magick!}
 
 
 \newpage
