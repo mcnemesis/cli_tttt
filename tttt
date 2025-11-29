@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.5"
+VERSION = "1.1.6"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -93,9 +93,9 @@ class TEA_RunTime:
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    RETEAPROGRAM = r'([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*'
+    RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*'
     #RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
-    RETI = r'^\s*[a-zA-Z](?:[.!*]|(?:\*!))?:.*$'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -436,47 +436,52 @@ class TEA_RunTime:
             return TEA_RunTime.NL.join(lines)
 
         # return unique words in val, sorted most frequent first, first occurrence first
-        def util_unique_projection_word_modal_sequences(val):
+        def util_unique_projection_word_modal_sequences(val, use_pmss=False):
+            mode = "PMSS" if use_pmss else "MSS"
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Computing Unique Word Projection for [{val}]")
+                print(f"--[util]-| Computing Unique Word Projection ({mode} modal sequence statistic) for [{val}]")
             words = val.split(TEA_RunTime.SINGLE_SPACE_CHAR)
             l_words = len(words)
             if l_words <= 1:
                 return val
+
             #unique_words = list(set(words)) # wasn't preserving order of first occurrence
-            unique_words = list(dict.fromkeys(words))
-            l_symbol_set = len(unique_words)
-            # the tally is a computation of ranks as in MSS:
-            # w_i = (cardinality of symbolset - I(c_i,symbol set)) * frequency of c_i in original sequence
-            tally = [(w,(l_symbol_set - (unique_words.count(w) + 1))*words.count(w)) for w in unique_words]
-            #tally = [(w,words.count(w)) for w in unique_words]
-            tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
+            unspecific_symbolset = list(dict.fromkeys(words))
+            l_symbol_set = len(unspecific_symbolset)
+            # the tally is a computation of ranks as in PMSS:
+            # r_i = (cardinality of usymbolset - I(c_i,usymbolset)) * frequency of c_i in original sequence
+            tally = [{'w':w, 'f':words.count(w), 'i':unspecific_symbolset.index(w) +1, 'r':(l_symbol_set - (unspecific_symbolset.index(w) + 1))*words.count(w)} for w in unspecific_symbolset]
+            if use_pmss:
+                tally = sorted(tally,key=lambda data:-data['r']) # sort by PMSS single criteria: descending by rank
+            else:
+                tally = sorted(tally,key=lambda votes:(-votes['f'],votes['i'])) # we could sort using composite criteria as in original MSS
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Unique Word Tally [{tally}]")
-            return TEA_RunTime.GLUE.join([w[0] for w in tally])
+                print(f"--[util]-| {mode} Unique Word Tally [{tally}]")
+            return TEA_RunTime.GLUE.join([w['w'] for w in tally])
 
 
-        # return unique characters in val, sorted most frequent first, first occurrence first (for ties)
-        def util_unique_projection_chars_modal_sequence(val):
+        # return unique characters in val, sorted most frequent first, first occurrence first (for ties): PMSS method
+        def util_unique_projection_chars_modal_sequence(val, use_pmss=False):
+            mode = "PMSS" if use_pmss else "MSS"
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Computing Unique Character Projection (modal sequence statistic) for [{val}]")
+                print(f"--[util]-| Computing Unique Character Projection ({mode} modal sequence statistic) for [{val}]")
             chars = list(val)
             l_chars = len(chars)
             if l_chars <= 1:
                 return val
             #unique_chars = list(set(chars)) # wasn't preserving order of first occurrence
-            unique_chars = list(dict.fromkeys(chars))
-            l_symbol_set = len(unique_chars)
+            unspecific_symbolset = list(dict.fromkeys(chars))
+            l_symbol_set = len(unspecific_symbolset)
             # the tally is a computation of ranks as in MSS:
-            # w_i = (cardinality of symbolset - I(c_i,symbol set)) * frequency of c_i in original sequence
-            #tally = [(w,(l_symbol_set - (unique_chars.index(w) + 1))*chars.count(w)) for w in unique_chars]
-            #unique_chars --> [(c, c_count, c_index, c_weight),...]
-            tally = [(w, chars.count(w), chars.index(w), (l_symbol_set - (unique_chars.index(w) + 1))*chars.count(w)) for w in unique_chars]
-            #tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
-            tally = sorted(tally,key=lambda votes:(-votes[1],votes[2])) #, reverse=True)
+            # r_i = (cardinality of usymbolset - I(c_i,usymbolset)) * frequency of c_i in original sequence
+            tally = [{'c':w, 'f':chars.count(w), 'i':unspecific_symbolset.index(w) +1, 'r':(l_symbol_set - (unspecific_symbolset.index(w) + 1))*chars.count(w)} for w in unspecific_symbolset]
+            if use_pmss:
+                tally = sorted(tally,key=lambda data:-data['r']) # sort by PMSS single criteria
+            else:
+                tally = sorted(tally,key=lambda votes:(-votes['f'],votes['i'])) # we could sort using composite criteria as in original MSS
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Unique Char Tally [{tally}]")
-            return TEA_RunTime.EMPTY_STR.join([w[0] for w in tally])
+                print(f"--[util]-| {mode} Unique Char Tally [{tally}]")
+            return TEA_RunTime.EMPTY_STR.join([w['c'] for w in tally])
 
 
         def util_system_b(cmd, cmdData, show_errors=False):
@@ -2009,6 +2014,52 @@ class TEA_RunTime:
                     vault = tpe_str
                     input_str = vault_get(vault)
                     return util_unique_projection_chars_modal_sequence(input_str)
+
+            #----[ THE PMSS versions ]
+            if tc == "U.":
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        self.debug(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                    else:
+                        if TEA_RunTime.DEBUG:
+                            print(f"Processing {tc} on AI=[{io}]")
+                        return util_unique_projection_word_modal_sequences(io, use_pmss=True)
+                else:
+                        input_str = tpe_str
+                        return util_unique_projection_word_modal_sequences(input_str, use_pmss=True)
+            if tc == "U!.":
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                    else:
+                        return util_unique_projection_chars_modal_sequence(io, use_pmss=True) #should compute MSS: modal sequence statistic
+                else:
+                        input_str = tpe_str
+                        return util_unique_projection_chars_modal_sequence(input_str, use_pmss=True)
+            if tc == "U*.":
+                if self.is_empty(tpe_str):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                else:
+                    vault = tpe_str
+                    input_str = vault_get(vault)
+                    return util_unique_projection_word_modal_sequences(input_str, use_pmss=True)
+
+            if tc == "U*!.":
+                if self.is_empty(tpe_str):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                else:
+                    vault = tpe_str
+                    input_str = vault_get(vault)
+                    return util_unique_projection_chars_modal_sequence(input_str, use_pmss=True)
 
             return io
 

@@ -471,7 +471,7 @@ Essentially, all TEA programs, in their simplest, unminified form\footnote{That 
   \centering
   \begin{tcolorbox}[myterminalstyle, title=TEA Instruction Line (Regular Expression)]
   \begin{lstlisting}
-^\s*[a-zA-Z](?:[.!*]|(?:\*!))?:.*$
+^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$
   \end{lstlisting}
   \end{tcolorbox}
   \caption{The TEA Instruction Lexical Specification (regular language)}
@@ -488,7 +488,7 @@ And then, with simplification, all TEA Programs (containing one or more TILs, an
   \centering
   \begin{tcolorbox}[myterminalstyle, title=TEA Program (Regular Expression)]
   \begin{lstlisting}
-([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*
+([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*
   \end{lstlisting}
   \end{tcolorbox}
   \caption{The TEA Program Lexical Specification (regular language)}

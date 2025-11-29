@@ -27,9 +27,9 @@ export class TEA_RunTime {
         static TIPED = ":"
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
-        static RETEAPROGRAM = /([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*/
+        static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*/
         //static RETI = /[ ]*?[a-zA-Z]\.?\*?!?:.*?/
-        static RETI = /^\s*[a-zA-Z](?:[.!*]|(?:\*!))?:.*$/
+        static RETI = /^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.5" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.6" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -469,43 +469,64 @@ export class TEA_RunTime {
     }
 
 
-    util_unique_projection_words_modal_sequence(val){
-        this.debug(`--[util]-| Computing Unique Word [Modal Sequence] Projection for [${val}]`)
+    util_unique_projection_words_modal_sequence(val, use_pmss=false){
+        var mode = use_pmss? "PMSS" : "MSS";
+        this.debug(`--[util]-| Computing Unique Word [${mode} Modal Sequence] Projection for [${val}]`)
         var words = val.split(TEA_RunTime.SINGLE_SPACE_CHAR)
         var l_words = words.length
         if(l_words <= 1){
             return val
         }
-        const unique_words = [...new Set(words)];
-        //var tally = unique_words.map(w => [w, words.filter(word => word === w).length]);
-        const key_cardinality = unique_words.length;
-        // the tally is a computation of ranks as in MSS:
-        // w_i = (cardinality of symbolset - I(c_i,symbolset)) * frequency of c_i in original sequence
-        var tally = unique_words.map(w => [w, (key_cardinality - (unique_words.indexOf(w)+1)) * words.filter(word => word === w).length]);
-        tally.sort((a, b) => b[1] - a[1]);
-        this.debug(`--[util]-| Unique Word Tally [${tally}]`)
-        const result = tally.map(w => w[0]).join(TEA_RunTime.GLUE);
+
+        const unspecific_symbolset = [...new Set(words)];
+        const l_usymbolset = unspecific_symbolset.length;
+        // the tally is a computation of ranks as in PMSS:
+        //# r_i = (cardinality of usymbolset - I(c_i,usymbolset)) * frequency of c_i in original sequence
+        var tally = unspecific_symbolset.map(w => ({'w':w, 'i':(unspecific_symbolset.indexOf(w)+1), 'f':words.filter(wd => wd === w).length, 'r': (l_usymbolset - (unspecific_symbolset.indexOf(w)+1)) * words.filter(wd => wd === w).length}));
+        if(use_pmss) {
+            tally.sort((a, b) => b['r'] - a['r']); // sort by rank, descending
+        }
+        else{
+            tally.sort((a, b) =>{
+                const freqDiff = b['f'] - a['f']; // sort by frequencies, descending
+                if(freqDiff !== 0) return freqDiff; // we used frequencies
+                else return a['i'] - b['i']; // frequencies tied, we sort by indices ascending
+            });
+        }
+
+        this.debug(`--[util]-| ${mode} Unique Word Tally [${JSON.stringify(tally)}]`)
+        const result = tally.map(data => data['w']).join(TEA_RunTime.GLUE);
         return result;
     }
 
 
-    util_unique_projection_chars_modal_sequence(val){
-        this.debug(`--[util]-| Computing Unique Character Projection [Modal Sequence] for [${val}]`)
+    util_unique_projection_chars_modal_sequence(val, use_pmss=false){
+        var mode = use_pmss? "PMSS" : "MSS";
+        this.debug(`--[util]-| Computing Unique Character Projection [${mode} Modal Sequence] for [${val}]`)
         const chars = Array.from(val);
         var l_chars = chars.length
         if(l_chars <= 1){
             return val
         }
 
-        const unique_chars = [...new Set(chars)];
-        const key_cardinality = unique_chars.length;
-        // the tally is a computation of ranks as in MSS:
-        // w_i = (cardinality of symbolset - I(c_i,symbolset)) * frequency of c_i in original sequence
-        var tally = unique_chars.map(c => [c, (key_cardinality - (unique_chars.indexOf(c)+1)) * chars.filter(ch => ch === c).length]);
-        tally.sort((a, b) => b[1] - a[1]);
+        const unspecific_symbolset = [...new Set(chars)];
+        const l_usymbolset = unspecific_symbolset.length;
+        // the tally is a computation of ranks as in PMSS:
+        //# r_i = (cardinality of usymbolset - I(c_i,usymbolset)) * frequency of c_i in original sequence
+        var tally = unspecific_symbolset.map(c => ({'c':c, 'i':(unspecific_symbolset.indexOf(c)+1), 'f':chars.filter(ch => ch === c).length, 'r': (l_usymbolset - (unspecific_symbolset.indexOf(c)+1)) * chars.filter(ch => ch === c).length}));
+        if(use_pmss) {
+            tally.sort((a, b) => b['r'] - a['r']); // sort by rank, descending
+        }
+        else{
+            tally.sort((a, b) =>{
+                const freqDiff = b['f'] - a['f']; // sort by frequencies, descending
+                if(freqDiff !== 0) return freqDiff; // we used frequencies
+                else return a['i'] - b['i']; // frequencies tied, we sort by indices ascending
+            });
+        }
 
-        this.debug(`--[util]-| Unique Char Tally [${tally}]`)
-        const result = tally.map(c => c[0]).join(TEA_RunTime.EMPTY_STR);
+        this.debug(`--[util]-| ${mode} Unique Char Tally [${JSON.stringify(tally)}]`)
+        const result = tally.map(data => data['c']).join(TEA_RunTime.EMPTY_STR);
         return result;
     }
 
@@ -2600,6 +2621,71 @@ export class TEA_RunTime {
                 return this.util_unique_projection_chars_modal_sequence(input_str)
             }
         }
+
+
+        //----------[The PMSS variations]
+        if(tc == "U."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    this.debug(`[NOT]Processing ${tc} on EMPTY AI [${io}]`)
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                    return io
+                }
+                else{
+                    this.debug(`Processing ${tc} on AI=[${io}]`)
+                    return this.util_unique_projection_words_modal_sequence(io, true)
+                }
+            }
+            else{
+                var input_str = tpe_str
+                return this.util_unique_projection_words_modal_sequence(input_str, true)
+            }
+        }
+
+        if(tc == "U!."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                    return io
+                }
+                else{
+                    return this.util_unique_projection_chars_modal_sequence(io, true) //should compute MSS: modal sequence statistic
+                }
+            }
+            else{
+                var input_str = tpe_str
+                return this.util_unique_projection_chars_modal_sequence(input_str, true)
+            }
+        }
+
+        if(tc == "U*."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
+            }
+            else{
+                var vault = tpe_str
+                var input_str = this.vault_get(vault)
+                return this.util_unique_projection_words_modal_sequence(input_str, true)
+            }
+        }
+
+        if(tc == "U*!."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
+            }
+            else{
+                var vault = tpe_str
+                var input_str = this.vault_get(vault)
+                return this.util_unique_projection_chars_modal_sequence(input_str, true)
+            }
+        }
+
         return io
     }
 
