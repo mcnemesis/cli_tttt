@@ -4601,10 +4601,418 @@ And for completeness's sake, compare this against the game as it runs on WEB TEA
 \label{SECEXAMP12}
 
 
-This next use-case and non-trivial TEA program example is introduced properly in a recent paper on occult philosophy by an initiate of IONA\cite{...}
+This next use-case and non-trivial TEA program example is introduced properly in a recent modern grimoire\cite{lutalo_2025_grimlumtauto} on applying the TEA language in modern Magick, Occult Sciences and Computational Mysticism --- \textbf{NOVUS MODERNUS GRIMOIRE LUMTAUTO MAGIA} is a 2025 manuscript distilling wisdom from across all ages, into a single authoritative work on magical languages and their applications\cite{lutalo_2025_grimlumtauto}. 
 
 
-blah blah..
+\vspace{2em}
+
+5 Languages are being introduced in that book, including; \textbf{lumtauto}
+(see \textbf{Section 2.6.2} of \cite{lutalo_2025_grimlumtauto}), \texttt{grand myrrh} (\textbf{Section 3}\cite{lutalo_2025_grimlumtauto}), \texttt{ozin} (\textbf{Section 4}\cite{lutalo_2025_grimlumtauto}), \texttt{crypt of medina} (\textbf{Section 5}\cite{lutalo_2025_grimlumtauto}), and \texttt{miti} (\textbf{Section 6}\cite{lutalo_2025_grimlumtauto}) --- each of them, a unique, and multi-purpose system of performing certain operations using the ordinary Latin Alphabet, but also its mappings to various forms of expressions such as sacred or magical mantras and aural utterances, but also visual expressions such as glyphs encoding verbal and abstract knowledge or information, but also pictograms such as sigils\cite{lutalo_2025_grimlumtauto} that encode information that might not be readily accessible to the conscious mind, but otherwise processeable by the subconscious mind. 
+
+\vspace{2em}
+
+From the perspective of programming using TEA, the most exciting thing about all kinds of magical systems, problems and solutions presented in that book, is that, one can readily apply their knowledge of TEA programming --- especially the ability to call up and use a certain TEA primitive instruction based on otherwise usually complex tasks and non-trivial sequence-processing, sequence-generation or sequence analysis fundamental tasks. That one can swiftly learn and apply modern Chaos Magick once they know and can use the TEA computer programming language, is a true bonus for investment in this language and its applications. In \cite{lutalo_2025_grimlumtauto}, TEA program examples are presented, introduced and links to live instances of TEA programs that one can also edit and run with their own custom payloads, sequences and perhaps evolve for other tasks, are offered too.
+
+\vspace{2em}
+
+However, we shall only focus on just one example of applying one of the languages the grimoire introduces; \textbf{LUMTAUTO}.
+
+
+\subsubsection{A Formal Definition of LUMTAUTO}
+
+
+\begin{transf}[The \textbf{Magical Language \texttt{Lumtauto}}]
+\label{TRANSFLUMTAUTO}
+If $\Theta^n$ is a sequence of $n > 0$ symbols (the original message) spanning the \textbf{Latin Alphabet} or the symbol set $\psi_{az}$, such that:
+
+\begin{multline}
+\label{EQLATINALPHABET}
+\psi_{az} = \langle a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z \rangle: \invpi(\psi_{az}) = 26 \\ \quad \land \quad \Theta^n:\mathbb{N} \times \psi_{az}
+\end{multline}
+
+then the following transformation:
+
+\begin{trans}
+\label{TRANSLUMTAUTO}
+$\Theta^n \xrightarrow{O_{lauto(\cdot)}} \Theta^* = \Omega^n;$\\
+$\invpi(\Theta^n) = \invpi(\Theta^*) = \invpi(\Omega^n) = n$\\
+$\land \quad \forall \theta_{i \in [1,n]} \in \Theta^n \quad \exists \omega_{j \in [1,n]} \in \Omega^n \quad \land \quad \invpi(\theta_i \in \psi(\Theta^n)) = \invpi(\omega_i \in \psi(\Omega^n)) = 1$\\
+$\land \quad \forall \alpha \in \Theta^n: \invpi(\alpha \in \Theta^n) = f_\alpha \implies \alpha \in \Omega^n: \invpi(\alpha \in \Omega^n) = f_\alpha$\\
+$\land \quad \overset{>}{\Theta^n} = \overset{>}{\Omega^n} \lor \overset{>}{\Theta^n} \neq \overset{>}{\Omega^n}$\\
+$\land \quad \tilde{A}(\Theta^n \rightarrow \Omega^n) > 1 \qed$
+\end{trans}
+
+is guaranteed to always produce/generate a derivative message --- $\Theta^*$ that has the following properties:
+
+{
+\normalsize
+
+\begin{multline}
+\label{EQLUMTAUTO}
+\forall \alpha \in \Theta^n \implies \beta \in \Omega^n \implies \begin{cases}
+a \rightarrow u, & \\ \text{what happened: }\\ a \in \Theta^n \text{ became } u \in \Omega^n\\ \land \quad I(a,\Theta^n) = I(u,\Omega^n) = i \quad iff \quad \theta_{i=I(u,\Omega^n)} = a\\
+b \rightarrow y, & \\ \text{what happened: }\\b \in \Theta^n \text{ became } y \in \Omega^n\\ \land \quad I(b,\Theta^n) = I(u,\Omega^n) = i \quad iff \quad \theta_{i=I(y,\Omega^n)} = b\\
+c \rightarrow x,& \\
+d \rightarrow w,& \\
+e \rightarrow o,& \\
+f \rightarrow f,& \\
+g \rightarrow t,& \\
+h \rightarrow s,& \\
+i \rightarrow i,& \\
+j \rightarrow q,& \\
+k \rightarrow p,& \\
+l \rightarrow l,& \\
+m \rightarrow n,& \\
+n \rightarrow m,& \\
+o \rightarrow e,& \\
+p \rightarrow k,& \\
+q \rightarrow j,& \\
+r \rightarrow r,& \\
+s \rightarrow h,& \\
+t \rightarrow g,& \\
+u \rightarrow a,& \\
+v \rightarrow v,& \\
+w \rightarrow d,& \\
+x \rightarrow c,& \\
+y \rightarrow b,& \\
+z \rightarrow z& \\ \text{what happened: }\\z \in \Theta^n \text{ became } z \in \Omega^n\\ \land \quad I(z,\Theta^n) = I(z,\Omega^n) = i \quad iff \quad \theta_{i=I(z,\Omega^n)} = z\\
+\end{cases}
+\end{multline}
+$\qed$
+}
+
+And so that, the resultant [transformed] message, $\Theta^* = \Omega^n$, despite being the same exact length as the original message, is not exactly equivalent to it, and is an instance of text in the language \textbf{LUMTAUTO}.
+
+\end{transf}
+
+
+\vspace{2em}
+
+
+With that formal, but also computable definition of the transformer depicted in \textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}}, note that we can for example take a message encoded using the \textbf{Extended Latin Alphabet}(ELA)\cite{lutalo_2025_grimlumtauto}, and by applying that transformer to it, produce another ELA message, but whose contents are provably different, though, computationally or semantically reversible back to the original message in ordinary English for example. Perhaps an illustration using a transformation applying \textbf{\hyperref[TRANSFLUMTAUTO]{Transformer \ref{TRANSFLUMTAUTO}}} will help make this clear:
+
+\vspace{2em}
+
+\begin{trans}
+$\langle L, A, N, G, u, a, g, E, 1, 0, 1 \rangle \xrightarrow{O_{lauto}(\cdot)} \langle L, U, M, T, a, u, t, O, 1, 0, 1 \rangle$
+\end{trans}
+
+
+\vspace{2em}
+
+
+\subsubsection{The LUMTAUTO Algorithm in TEA}
+\label{SECTEALUMTAUTO}
+
+And so that, to reproduce or apply the same transformer that enables the word "language" to be transformed into the different word "lumtauto", while leaving any characters or symbols not in the basic Latin Alphabet symbol set ($\psi_{26}$) untouched, the following basic higher-order transformer definition using mere TEA source code would suffice:
+
+\vspace{2em}
+
+
+ %\small
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: The LUMTAUTO Transformer, breakable]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
+i:{language} # given some message
+v:vMESSAGE #store the original message
+
+#COMPLETE LANGuage -> LUMTauto TRANSFORM
+#lumtauto-TRANSFORM [lower-case]
+#start transforming via the lumtauto cipher algorithm
+r!:a:_%_ #U
+r!:b:_%%_ #Y
+r!:c:_%%%_ #X
+r!:d:_%%%%_ #W
+r!:e:_%%%%%_ #O
+r!:f:_%%%%%%_ #F
+r!:g:_%%%%%%%_ #T
+r!:h:_%%%%%%%%_ #S
+r!:i:_%%%%%%%%%_ #I
+r!:j:_%%%%%%%%%%_ #Q
+r!:k:_%%%%%%%%%%%_ #P
+r!:l:_%%%%%%%%%%%%_ #L
+r!:m:_%%%%%%%%%%%%%_ #N
+r!:n:m
+r!:o:e
+r!:p:k
+r!:q:j
+r!:r:r
+r!:s:h
+r!:t:g
+r!:u:a
+r!:v:v
+r!:w:d
+r!:x:c
+r!:y:b
+r!:z:z
+#complete the transform
+r!:_%_:u
+r!:_%%_:y
+r!:_%%%_:x
+r!:_%%%%_:w
+r!:_%%%%%_:o
+r!:_%%%%%%_:f
+r!:_%%%%%%%_:t
+r!:_%%%%%%%%_:s
+r!:_%%%%%%%%%_:i
+r!:_%%%%%%%%%%_:q
+r!:_%%%%%%%%%%%_:p
+r!:_%%%%%%%%%%%%_:l
+r!:_%%%%%%%%%%%%%_:n
+#FINISHED: for lower-case
+
+#j:lFINISHED
+
+#COMPLETE LUMTAUTO TRANSFORM [for uppercase]
+#LUMTAUTO-TRANSFORM [upper-case]
+#start transforming via the LUMTAUTO cipher algorithm
+r!:A:_%_ #U
+r!:B:_%%_ #Y
+r!:C:_%%%_ #X
+r!:D:_%%%%_ #W
+r!:E:_%%%%%_ #O
+r!:F:_%%%%%%_ #F
+r!:G:_%%%%%%%_ #T
+r!:H:_%%%%%%%%_ #S
+r!:I:_%%%%%%%%%_ #I
+r!:J:_%%%%%%%%%%_ #Q
+r!:K:_%%%%%%%%%%%_ #P
+r!:L:_%%%%%%%%%%%%_ #L
+r!:M:_%%%%%%%%%%%%%_ #N
+r!:N:M
+r!:O:E
+r!:P:K
+r!:Q:J
+r!:R:R
+r!:S:H
+r!:T:G
+r!:U:A
+r!:V:V
+r!:W:D
+r!:X:C
+r!:Y:B
+r!:Z:Z
+#complete the transform
+r!:_%_:U
+r!:_%%_:Y
+r!:_%%%_:X
+r!:_%%%%_:W
+r!:_%%%%%_:O
+r!:_%%%%%%_:F
+r!:_%%%%%%%_:T
+r!:_%%%%%%%%_:S
+r!:_%%%%%%%%%_:I
+r!:_%%%%%%%%%%_:Q
+r!:_%%%%%%%%%%%_:P
+r!:_%%%%%%%%%%%%_:L
+r!:_%%%%%%%%%%%%%_:N
+#FINISHED: for upper-case
+
+#Complete Original Message NOW Transformed
+
+#then store transformed message :)
+v:vTRANSFORMED_MESSAGE #such as "lumtauto"
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA Program: The LANGuage to LUMTauto transformer}
+  \label{FIGLUMTAUTOTEACODE}
+
+\vspace{2em}
+
+\textbf{\hyperref[FIGLUMTAUTOTEACODE]{Figure \ref{FIGLUMTAUTOTEACODE}}} is the \textbf{source-code} of the non-interactive TEA program implementing this algorithm, and which, when actually cleaned of comments and MINIFIED and rendered interactive, would be the program depicted in  \textbf{\hyperref[FIGLUMTAUTOTEACODE_CLEAN]{Figure \ref{FIGLUMTAUTOTEACODE_CLEAN}}}. However, and in case one wishes to look at the code, modify or run \textbf{an interactive version} of it like on the Linux, Unix, Windows or MAC OS command-line or on the WEB, the most recent version should be what you might find or run directly and live via:
+  
+  
+\vspace{2em}
+
+ \url{https://tea.nuchwezi.com/?i=put+your+message+here&fc=https://gist.githubusercontent.com/mcnemesis/ae9d6226d49f5a8601a84241a08f07c8/raw/lumtauto_language_transformer.tea}
+
+\vspace{1em}
+
+
+\textbf{ALTERNATIVELY} just use the short-link: \url{https://bit.ly/lumtauto}
+
+\vspace{2em}
+
+
+ %\small
+  \begin{tcolorbox}[teaterminalstyle, title=CLEAN TEA Program: The LUMTAUTO Transformer, breakable]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
+f!:^$:lDONTPROMPT|i!:{Enter Message to be Encoded:}|i*:|i:{language}|l:lDONTPROMPT|v:vMESSAGE|r!:a:_%_|r!:b:_%%_|r!:c:_%%%_|r!:d:_%%%%_|r!:e:_%%%%%_|r!:f:_%%%%%%_|r!:g:_%%%%%%%_|r!:h:_%%%%%%%%_|r!:i:_%%%%%%%%%_|r!:j:_%%%%%%%%%%_|r!:k:_%%%%%%%%%%%_|r!:l:_%%%%%%%%%%%%_|r!:m:_%%%%%%%%%%%%%_|r!:n:m|r!:o:e|r!:p:k|r!:q:j|r!:r:r|r!:s:h|r!:t:g|r!:u:a|r!:v:v|r!:w:d|r!:x:c|r!:y:b|r!:z:z|r!:_%_:u|r!:_%%_:y|r!:_%%%_:x|r!:_%%%%_:w|r!:_%%%%%_:o|r!:_%%%%%%_:f|r!:_%%%%%%%_:t|r!:_%%%%%%%%_:s|r!:_%%%%%%%%%_:i|r!:_%%%%%%%%%%_:q|r!:_%%%%%%%%%%%_:p|r!:_%%%%%%%%%%%%_:l|r!:_%%%%%%%%%%%%%_:n|r!:A:_%_|r!:B:_%%_|r!:C:_%%%_|r!:D:_%%%%_|r!:E:_%%%%%_|r!:F:_%%%%%%_|r!:G:_%%%%%%%_|r!:H:_%%%%%%%%_|r!:I:_%%%%%%%%%_|r!:J:_%%%%%%%%%%_|r!:K:_%%%%%%%%%%%_|r!:L:_%%%%%%%%%%%%_|r!:M:_%%%%%%%%%%%%%_|r!:N:M|r!:O:E|r!:P:K|r!:Q:J|r!:R:R|r!:S:H|r!:T:G|r!:U:A|r!:V:V|r!:W:D|r!:X:C|r!:Y:B|r!:Z:Z|r!:_%_:U|r!:_%%_:Y|r!:_%%%_:X|r!:_%%%%_:W|r!:_%%%%%_:O|r!:_%%%%%%_:F|r!:_%%%%%%%_:T|r!:_%%%%%%%%_:S|r!:_%%%%%%%%%_:I|r!:_%%%%%%%%%%_:Q|r!:_%%%%%%%%%%%_:P|r!:_%%%%%%%%%%%%_:L|r!:_%%%%%%%%%%%%%_:N|l:lFINISHED|v:vTRANSFORMED_MESSAGE|i!:{In LUMTAUTO
+}|x*!: vMESSAGE|x!: {
+-- becomes --
+}|x*!: vTRANSFORMED_MESSAGE|i*:|y:vTRANSFORMED_MESSAGE
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{MINIFIED TEA Program: The basic LUMTAUTO transformer program source-code}
+  \label{FIGLUMTAUTOTEACODE_CLEAN}
+  
+  
+\vspace{2em}
+
+For our present concerns exploring how the TEA primitive command-space \textbf{I:} can be applied, note that, the Lumtauto implementation depicted in \textbf{\hyperref[FIGLUMTAUTOTEACODE_CLEAN]{Figure \ref{FIGLUMTAUTOTEACODE_CLEAN}}} is interactive, and that, for any input the user explicitly specifies, computes and then visually displays to them both the original/input sequence, and the new/transformed sequence or message, next to each other perhaps for comparison or export or input into other more complex processing and transformations such as the generation of long, utterable mantras based on plain text messages, their computed lumtauto projections, their PMSS sources and then resulting myrrh projections or auto-spell formulations, etc --- details in \textbf{grimoire lumtauto}\cite{lutalo_2025_grimlumtauto}.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: J
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{J: JUMP}
+\label{SECJ}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & Jump\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Jump across the TEA program
+	\item Process TEA \textbf{LABEL BLOCKS}
+	\item Implement Code Branching Logic based on STATIC information in the program source
+	\item Another Way to Exploit Closures and Name-Spaces in TEA programming
+	\item Unconditionally jump/loop back to the START of a TEA program
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of J:}
+  \label{TABTAZJ}
+\end{table}
+
+
+\section{SEMANTICS of J:}
+\label{SECSEMJ}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+j: & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ h:REGEX } & Same as h:, but the splitting happens only at the beginning of where the contents of AI match REGEX. The original contents of AI remain preserved by this operation.\\
+
+j:LABEL & Unconditionally jump to the location in the program under the label named LABEL.\\
+
+\rowcolor{lightgray}\bfseries j!: & Unconditionally Return to the Start of the TEA Program\\
+
+ \makecell[l]{j!: PARAM} & INERT (or rather, \textit{don't jump!})\\
+
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of J:}
+\label{TABSEMJ}
+\end{table}
+
+
+\section{NOTES about J:}
+\label{SECNOTEJ}
+
+
+This command is one of the few flow-control instructions in a TEA program ( the others are \texttt{f:} and \texttt{q:} ). In particular, when applied using the command or instruction signature \texttt{j:LABEL}, the TEA processor and interpreter or runtime, upon encountering any such instructions in the TEA program, shall know that the next instruction to be executed in the TEA program should be the \textbf{first TEA instruction} that follows the unique statement in the TEA program bearing an instruction with the explicit or proximate signature: \texttt{l:LABEL} --- we say ``proximate" because, as one shall find out when they read about the \textbf{LABEL} primitive command, \texttt{L:}, that, it is possible to specify a named location in a TEA program, using more than one name or label-name tag --- however, that any distinct label name can only be applied once in a program --- thus, \texttt{j:LABEL} and \texttt{j:LABEL1} or \texttt{j:LABELA} or \texttt{j:LABE\_L} are not the same, jump instructions, however, they might be able to jump to the same location within a TEA program --- these peculiarities of the TEA flow-control mechanisms shall become clearer after studying TEA LABELS\footnote{Note that the other ways to implement or exploit flow-control and branching logic in a program are via other \textbf{flow-control} instructions that can reference named locations within a TEA program --- such as the \textbf{Fork} instruction \texttt{F:} --- TEA's equivalent to the traditional \textbf{IF-ELSE} logic}.
+
+
+\vspace{2em}
+
+Consider the following illustrative and basic example exploiting mostly the label and jump TEA instructions:
+
+\vspace{2em}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=J: EXAMPLE 1]
+  \begin{lstlisting}[language=TEA]
+# In case no explicit input was provided
+#Skip test 1
+f!:^$:LABEL
+l:LABEL1
+x!:{--|TEST1 FAILED: no input was given|}
+j:LABEL_DONE
+
+l:LABEL:lLABEL2
+#we possibly got custom input...
+x!:{--|TEST2 PASSED: you provided input|}
+
+l:LABEL_DONE
+#finish: show results of test
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\vspace{2em}
+
+In case that program is invoked without any explicit user input, it shall return the output ``--|TEST1 FAILED: no input was given|", otherwise, if say the input ``Hello World" was given, then, it shall use the \textbf{F:} instruction on line \#1, to jump to the second labeled code block in that program --- see the instruction \texttt{l:LABEL:lLABEL2} --- and so that the program then processes the input the user provided, and thus returns something like: ``Hello World--|TEST2 PASSED: you provided input|".
+
+
+\vspace{2em}
+
+One other, somewhat related example might help cast this matter in another way...
+
+
+\vspace{2em}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=J: EXAMPLE 2]
+  \begin{lstlisting}[language=TEA]
+i!:TEST | r:T:P | z:
+f:PEST:A
+j:B
+l:A | x!:-KILL | q!:
+l:B
+x!:-OK
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\vspace{2em}
+
+
+Should return ``PEST-KILL” if instruction\#2 replaces only the first occurrence of T in the AI, otherwise will return ``PESP-OK”. Note that in this example program, we see two ways to jump using labels in TEA; the first (line\#2, instruction\#4) using the Fork instruction --- \texttt{F:REGEX:LABELIFMATCH} or {F:REGEX:LABEL\_IF\_MATCH:LABEL\_IF\_NO\_MATCH}, while instruction\#5 uses the canonical Jump instruction, \texttt{J:LABEL}. 
+
+
+
+\section{EXAMPLE APPLICATIONS of J:}
+\label{SECEXAMPJ}
+
+  
+blah blah...
+
+\subsection{EXAMPLE 1: }
+\label{SECEXAMP1J}
+
+  
+blah blah...
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
