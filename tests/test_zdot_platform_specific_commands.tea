@@ -1,0 +1,32 @@
+#This test demonstrates how to read the environment date
+#using a platform(WEB/CLI) specific command
+# in this example, we are trying to obtain the system date
+# manually via z:
+
+# First, determine which platform we are on...
+z.:PLATFORM # should return either "WEB" or "CLI"
+v:vPLATFORM
+
+f:WEB:lWEB:lCLI
+
+l:lWEB # on web... we'll use JavaScript
+v:vCMDWEBDATE:{(new Date()).toString();}
+z*:vCMDWEBDATE | v:vDATE
+j:lGOTDATE
+
+l:lCLI
+# we are on CLI, try method 2
+v:vCMDCLIDATE:{date}
+c: | z*:vCMDCLIDATE | k!:^$ | v:vDATE
+
+l:lGOTDATE
+y:vDATE
+f:^$:lNODATE
+v:vMSG:{ : Got DATE as : }
+g*:{ }:vPLATFORM:vMSG:vDATE
+q!:
+
+l:lNODATE
+i!:{ERROR: Failed to Get System DATE}
+ 
+

@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.6" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.7" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -324,6 +324,29 @@ export class TEA_RunTime {
 		.map(word => word.charAt(0).toUpperCase() + word.slice(1))
 		.join(" ");
 	}
+
+
+    util_get_environment(){
+		const now = new Date();
+
+		const weekday = now.toLocaleString('en-US', { weekday: 'long' });
+		const day = now.toLocaleString('en-US', { day: '2-digit' });
+		const month = now.toLocaleString('en-US', { month: 'long' });
+		const year = now.getFullYear();
+		const hours = now.getHours().toString().padStart(2, '0');
+		const minutes = now.getMinutes().toString().padStart(2, '0');
+
+		const dateStr = `${weekday}, ${day} ${month} ${year}`;
+		const timeStr = `${hours}:${minutes}`;
+
+        var config = {
+                "PLATFORM": "WEB",
+                "DATE": dateStr,
+                "TIME": timeStr
+                }
+
+        return config
+    }
 
     util_system(cmd, cmdData, show_errors=false){
         var result = null
@@ -3149,6 +3172,45 @@ export class TEA_RunTime {
                 var cmdDATA = io
                 var cmdRESULT = this.util_system(CMD,cmdDATA, true)
                 return !TEA_RunTime.is_empty(cmdRESULT) ? cmdRESULT : TEA_RunTime.EMPTY_STR
+        }
+
+        if(tc == "Z."){
+                var NAME = tpe_str
+                var environment_config = this.util_get_environment()
+
+				if (environment_config.hasOwnProperty(NAME)) {
+                    return environment_config[NAME]
+                }
+                else {
+                    var values = [];
+                    for(let k in environment_config){
+                        if (environment_config.hasOwnProperty(k)) {
+                           values.push(`${k}:${environment_config[k]}`)
+                        }
+                    }
+                    return values.join(";");
+                }
+
+        }
+
+        if(tc == "Z*."){
+                var vNAME = tpe_str
+                var NAME = this.vault_get(vNAME)
+                var environment_config = this.util_get_environment()
+
+				if (environment_config.hasOwnProperty(NAME)) {
+                    return environment_config[NAME]
+                }
+                else {
+                    var values = [];
+                    for(let k in environment_config){
+                        if (environment_config.hasOwnProperty(k)) {
+                           values.push(`${k}:${environment_config[k]}`)
+                        }
+                    }
+                    return values.join(";");
+                }
+
         }
 
         return io

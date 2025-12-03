@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.6"
+VERSION = "1.1.7"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -483,6 +483,16 @@ class TEA_RunTime:
                 print(f"--[util]-| {mode} Unique Char Tally [{tally}]")
             return TEA_RunTime.EMPTY_STR.join([w['c'] for w in tally])
 
+
+        def util_get_environment():
+            from datetime import datetime
+            config = {
+                    "PLATFORM": "CLI",
+                    "DATE": datetime.now().strftime("%A, %d %B %Y"),
+                    "TIME": datetime.now().strftime("%H:%M:%S")
+                    }
+
+            return config
 
         def util_system_b(cmd, cmdData, show_errors=False):
             result = None
@@ -2429,6 +2439,28 @@ class TEA_RunTime:
                     cmdDATA = io
                     cmdRESULT = util_system(CMD,cmdDATA, show_errors=True)
                     return cmdRESULT if cmdRESULT is not None else TEA_RunTime.EMPTY_STR
+
+            if tc == "Z.":
+                    NAME = tpe_str
+                    environment_config = util_get_environment()
+
+                    if NAME in environment_config:
+                        return environment_config[NAME]
+                    else:
+                        return ";".join([f"{k}:{v}" for k,v in environment_config.items()])
+
+            if tc == "Z*.":
+                    vNAME = tpe_str
+                    NAME = vault_get(vNAME)
+
+                    environment_config = util_get_environment()
+
+                    if NAME in environment_config:
+                        return environment_config[NAME]
+                    else:
+                        return ";".join([f"{k}:{v}" for k,v in environment_config.items()])
+            return io
+
 
             return io
 

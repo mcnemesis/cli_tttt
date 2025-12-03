@@ -4992,22 +4992,44 @@ Should return ``PEST-KILL” if instruction\#2 replaces only the first occurrenc
 \section{EXAMPLE APPLICATIONS of J:}
 \label{SECEXAMPJ}
 
-  
-blah blah...
+Because \textbf{J:} is mostly about control-flow and branching logic in a computer program, the best way to illustrate its usage would be in an example that demonstrates use of non-linear logic and/or what are sometimes also technically referred to as NFAs --- \textbf{Non-Finite Automatons}. These concepts are fundamental in much of computer science and software engineering, however, we shall keep the theory treatment brief, and instead focus on some realistic real-world problems and their potential solutions using a TEA program leveraging these concepts.
 
-\subsection{EXAMPLE 1: }
+\vspace{2em}
+
+
+The first example we are to look into, concerns a mental-health utility that any sane human could leverage, either for themselves or for the monitoring and analysis of the mental health profile of someone they are concerned about.
+  
+
+\subsection{EXAMPLE 1: THE MENTAL HEALTH SELF-ANALYSIS TOOL}
 \label{SECEXAMP1J}
 
   
-blah blah...
+This example is based on a framework and diagnostic tool first presented formally in a book about applying Transformatics in Psychology\cite{Lutalo2025transpsy}, known as \textbf{Transformatics for PSYCHOLOGY}, also by the author, and which was presented at the 13$^{th}$ International East African Conference on Psychology, that took place in October 2025 hosted by University of KISUBI (UNIK).
+
+\vspace{2em}
+
+The framework, in its simplest form, is as depicted in the following form:
 
 
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[scale=0.9]{resources/pdfs/mental_health_diagnostics.pdf}\\
+   \caption{The MENTAL HEALTH DIAGNOSIS FRAMEWORK (MHDF) --- an example of applying \textbf{Willrich Psychology}}
+  \label{FIGEXAMHDF}
+  \end{center}
+\end{figure}
 
 
+\vspace{2em}
+
+And so, based on the tool depicted in \textbf{\hyperref[FIGEXAMHDF]{Figure \ref{FIGEXAMHDF}}}, we find that we can design an interactive computer program that could be used by someone --- especially a health counselor, a psychiatrist, a psychoanalyst, or just a general doctor --- but also by oneself; such as in situations one feels compelled, they need to sit themselves down a bit, and somewhat exhaustively cross-check their mental and social profile so as to bring to surface potential problems usually lurking underneath ordinary awareness and which, by careful enumeration in relation to ones needs and expectations, might help lead to remedies or a psychological, but also social, spiritual, material, physiological, financial, etc. as per the resulting profile and circumstances or context of the subject under review\footnote{Talking of the need to and contexts within which evaluating and pinning-down the psychological profile of someone might come-in handy, also consider the case of pragmatic psyops introduced and explored in the book \textbf{Grimoire Lumtauto}\cite{lutalo_2025_grimlumtauto} --- in particular, checkout \textbf{Algorithm 4} treating of Exorcism in \textbf{Chapter 4}}.
+
+\vspace{2em}
 
 
+In brief, the program we are deal with here, will help someone build a mental profile about a named entity, complete with the significant areas of concern, the ideals or specifics about what would be required or expected under normal or ideal circumstances, then what the potential challenges or actual hindrances to attaining those ideals are, and then, what first, or anticipated solutions might be. This collection of well-organized information, when thus collected and prepared, can then be presented or preserved as a kind of \textbf{Mental-Health-Profile Record} (MHPR) that can either be printed out, or which can be filed as part of a patient's or subject's diagnostic records perhaps which might be included in their EMR (Electronic Medical Records) for scenarios affiliated to managing patients in a large or conventional clinical medicine context, or which can be used to further a private counselor's file on their patient or subject as part of a thorough and perhaps long-term treatment methodology. Moreover, we shall try to keep the program as simple as possible in both its implementation, as well as how the data it collects is formatted for presentation and later re-use.
 
-
+\vspace{2em}
 
 
 
