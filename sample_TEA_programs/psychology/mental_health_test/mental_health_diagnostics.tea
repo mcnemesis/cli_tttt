@@ -2,7 +2,7 @@
 #-------------------------------------------#
 # MHDF: Mental-Health Diagnosis Framework (v1.0)
 #-----------------------------------------|
-# MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.0.0.1
+# MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.2
 #-----------------------------------------|
 # This program helps to create a mental
 # profile of a named subject, for purposes
@@ -16,6 +16,20 @@
 # https://bit.ly/transpsychology
 #-------------------------------------------#
 
+#show welcome message
+v:vORIN
+v:vWELCOME:{■■■■■■■■■■■- OVERALL MENTAL HEALTH [self]DIAGNOSIS PROGRAM v1.2 -■■■■■■■■■■■-Many people think they are well and healthy, until when they work through this program.-It is a simple, free, but powerful self-diagnosis tool originally meant to help a counselor or doctor quickly isolate a person's core problems and their potential holistic remedies.-It can be used to help someone else, but also to help yourself-CREDIT: Dr. JWL at Nuchwezi Esoteric School.-■■■■■■■■■■■}
+v:vREG:-|h*!:vWELCOME:vREG
+d:-|i*:
+
+
+v:vWELCOME:{■■■■■■■■■■■- HOW TO USE MHDP? -■■■■■■■■■■■-Essentially, after this message, correctly, and suitably, but in brief, answer all questions under the 8 CATEGORIES; family, friendship, ...,mental health.-The process will help you identify the gaps and major issues.- FINALLY, program will neatly print a report with all identified issues and solutions, which you can either return to later, use to build or find a lasting overall solution, -or share with your trusted doctor or counselor.-NOTE THAT NONE of YOUR DATA is SHARED or STORED after using this program.-■■■■■■■■■■■-WARNING: Only way to QUIT the program is to work through the entire process!-■■■■■■■■■■■}
+v:vREG:-|h*!:vWELCOME:vREG
+d:-|i*:
+
+
+y:vORIN # continue...
+
 ####[ GET BACKGROUND META-DATA ]
 
 # First, get current date
@@ -23,19 +37,19 @@ z.:DATE | v:vDATE #store date
 
 # Next get name of client/subject
 l:lPROMPTNAME
-i!:{What is the name of the Person?} | i*:
+i!:{What is the name of the Person|Client|Patient|Subject?} | i*:
 d:^[ ]*$
 f:^$:lPROMPTNAME
 v:vCLIENT_NAME # store client name
 
 ####[ PROMPT for PROFILE DATA ]
 v:vPLACEHOLDER:{_}
-v:vPROF_HEADER:{MENTAL HEALTH PROFILE for [_] ON [_]:
-}
+v:vPROF_HEADER:{MENTAL HEALTH PROFILE for [_] ON [_]:}
 r*:vPROF_HEADER:vPLACEHOLDER:vCLIENT_NAME | v:vPROF_HEADER
 r*:vPROF_HEADER:vPLACEHOLDER:vDATE | v:vPROF_HEADER
 v:vPROFILE #store profile header...
 
+#---------| FAMILY |------------------
 ###---[FAMILY: Wants ]
 v:vFAM_WANTS:{} #initially empty
 v:vPROMPT_FAM_WANTS:{--[ENTER 'n' or 'N' to complete list]--
@@ -105,11 +119,506 @@ l:lFAMDONE_SOLNS
 y:vFAM_SOLNS | x:{
 FAMILY-SOLUTIONS: } | v:vPROF_FAM_SOLNS
 
+#---------| FRIENDSHIP |------------------
+###---[FRIENDSHIP: Wants ]
+v:vFRIEND_WANTS:{} #initially empty
+v:vPROMPT_FRIEND_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to FRIENDSHIP, what does _ WANT/NEED?}
+r*:vPROMPT_FRIEND_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTFRIEND_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTFRIEND_WANTS
+f:^[nN]$:lFRIENDDONE_WANTS
+x:{
+- } | v:vANS
+y:vFRIEND_WANTS | x*!:vANS | v:vFRIEND_WANTS #update list...
+j:lPROMPTFRIEND_WANTS #loop: get more answers for this category...
+
+l:lFRIENDDONE_WANTS
+y:vFRIEND_WANTS | x:{
+FRIENDSHIP-WANTED: } | v:vPROF_FRIEND_WANTS 
+
+###---[FRIENDSHIP: Challenges ]
+v:vFRIEND_PROBS:{} #initially empty
+v:vPROMPT_FRIEND_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to FRIENDSHIP, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_FRIEND_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTFRIEND_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTFRIEND_PROBS
+f:^[nN]$:lFRIENDDONE_PROBS
+x:{
+- } | v:vANS
+y:vFRIEND_PROBS | x*!:vANS | v:vFRIEND_PROBS #update list...
+j:lPROMPTFRIEND_PROBS #loop: get more answers for this category...
+
+l:lFRIENDDONE_PROBS
+y:vFRIEND_PROBS | x:{
+FRIENDSHIP-PROBLEMS: } | v:vPROF_FRIEND_PROBS
+
+
+###---[FRIENDSHIP: Solutions ]
+v:vFRIEND_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_FRIEND_WANTS:vPROF_FRIEND_PROBS | v:vFRIEND_STATUS
+v:vPROMPT_FRIEND_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to FRIENDSHIP, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_FRIEND_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vFRIEND_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTFRIEND_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTFRIEND_SOLNS
+f:^[nN]$:lFRIENDDONE_SOLNS
+x:{
+- } | v:vANS
+y:vFRIEND_SOLNS | x*!:vANS | v:vFRIEND_SOLNS #update list...
+j:lPROMPTFRIEND_SOLNS #loop: get more answers for this category...
+
+l:lFRIENDDONE_SOLNS
+y:vFRIEND_SOLNS | x:{
+FRIENDSHIP-SOLUTIONS: } | v:vPROF_FRIEND_SOLNS
+
+
+#---------| EDUCATION |------------------
+###---[EDUCATION: Wants ]
+v:vEDUC_WANTS:{} #initially empty
+v:vPROMPT_EDUC_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to EDUCATION, what does _ WANT/NEED?}
+r*:vPROMPT_EDUC_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTEDUC_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTEDUC_WANTS
+f:^[nN]$:lEDUCDONE_WANTS
+x:{
+- } | v:vANS
+y:vEDUC_WANTS | x*!:vANS | v:vEDUC_WANTS #update list...
+j:lPROMPTEDUC_WANTS #loop: get more answers for this category...
+
+l:lEDUCDONE_WANTS
+y:vEDUC_WANTS | x:{
+EDUCATION-WANTED: } | v:vPROF_EDUC_WANTS 
+
+###---[EDUCATION: Challenges ]
+v:vEDUC_PROBS:{} #initially empty
+v:vPROMPT_EDUC_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to EDUCATION, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_EDUC_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTEDUC_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTEDUC_PROBS
+f:^[nN]$:lEDUCDONE_PROBS
+x:{
+- } | v:vANS
+y:vEDUC_PROBS | x*!:vANS | v:vEDUC_PROBS #update list...
+j:lPROMPTEDUC_PROBS #loop: get more answers for this category...
+
+l:lEDUCDONE_PROBS
+y:vEDUC_PROBS | x:{
+EDUCATION-PROBLEMS: } | v:vPROF_EDUC_PROBS
+
+
+###---[EDUCATION: Solutions ]
+v:vEDUC_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_EDUC_WANTS:vPROF_EDUC_PROBS | v:vEDUC_STATUS
+v:vPROMPT_EDUC_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to EDUCATION, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_EDUC_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vEDUC_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTEDUC_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTEDUC_SOLNS
+f:^[nN]$:lEDUCDONE_SOLNS
+x:{
+- } | v:vANS
+y:vEDUC_SOLNS | x*!:vANS | v:vEDUC_SOLNS #update list...
+j:lPROMPTEDUC_SOLNS #loop: get more answers for this category...
+
+l:lEDUCDONE_SOLNS
+y:vEDUC_SOLNS | x:{
+EDUCATION-SOLUTIONS: } | v:vPROF_EDUC_SOLNS
+
+#---------| BUSINESS |------------------
+###---[BUSINESS: Wants ]
+v:vBUS_WANTS:{} #initially empty
+v:vPROMPT_BUS_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to BUSINESS, what does _ WANT/NEED?}
+r*:vPROMPT_BUS_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTBUS_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTBUS_WANTS
+f:^[nN]$:lBUSDONE_WANTS
+x:{
+- } | v:vANS
+y:vBUS_WANTS | x*!:vANS | v:vBUS_WANTS #update list...
+j:lPROMPTBUS_WANTS #loop: get more answers for this category...
+
+l:lBUSDONE_WANTS
+y:vBUS_WANTS | x:{
+BUSINESS-WANTED: } | v:vPROF_BUS_WANTS 
+
+###---[BUSINESS: Challenges ]
+v:vBUS_PROBS:{} #initially empty
+v:vPROMPT_BUS_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to BUSINESS, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_BUS_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTBUS_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTBUS_PROBS
+f:^[nN]$:lBUSDONE_PROBS
+x:{
+- } | v:vANS
+y:vBUS_PROBS | x*!:vANS | v:vBUS_PROBS #update list...
+j:lPROMPTBUS_PROBS #loop: get more answers for this category...
+
+l:lBUSDONE_PROBS
+y:vBUS_PROBS | x:{
+BUSINESS-PROBLEMS: } | v:vPROF_BUS_PROBS
+
+
+###---[BUSINESS: Solutions ]
+v:vBUS_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_BUS_WANTS:vPROF_BUS_PROBS | v:vBUS_STATUS
+v:vPROMPT_BUS_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to BUSINESS, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_BUS_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vBUS_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTBUS_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTBUS_SOLNS
+f:^[nN]$:lBUSDONE_SOLNS
+x:{
+- } | v:vANS
+y:vBUS_SOLNS | x*!:vANS | v:vBUS_SOLNS #update list...
+j:lPROMPTBUS_SOLNS #loop: get more answers for this category...
+
+l:lBUSDONE_SOLNS
+y:vBUS_SOLNS | x:{
+BUSINESS-SOLUTIONS: } | v:vPROF_BUS_SOLNS
+
+#---------| SPIRIT |------------------
+###---[SPIRIT: Wants ]
+v:vSPI_WANTS:{} #initially empty
+v:vPROMPT_SPI_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to SPIRIT, what does _ WANT/NEED?}
+r*:vPROMPT_SPI_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTSPI_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTSPI_WANTS
+f:^[nN]$:lSPIDONE_WANTS
+x:{
+- } | v:vANS
+y:vSPI_WANTS | x*!:vANS | v:vSPI_WANTS #update list...
+j:lPROMPTSPI_WANTS #loop: get more answers for this category...
+
+l:lSPIDONE_WANTS
+y:vSPI_WANTS | x:{
+SPIRIT-WANTED: } | v:vPROF_SPI_WANTS 
+
+###---[SPIRIT: Challenges ]
+v:vSPI_PROBS:{} #initially empty
+v:vPROMPT_SPI_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to SPIRIT, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_SPI_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTSPI_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTSPI_PROBS
+f:^[nN]$:lSPIDONE_PROBS
+x:{
+- } | v:vANS
+y:vSPI_PROBS | x*!:vANS | v:vSPI_PROBS #update list...
+j:lPROMPTSPI_PROBS #loop: get more answers for this category...
+
+l:lSPIDONE_PROBS
+y:vSPI_PROBS | x:{
+SPIRIT-PROBLEMS: } | v:vPROF_SPI_PROBS
+
+
+###---[SPIRIT: Solutions ]
+v:vSPI_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_SPI_WANTS:vPROF_SPI_PROBS | v:vSPI_STATUS
+v:vPROMPT_SPI_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to SPIRIT, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_SPI_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vSPI_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTSPI_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTSPI_SOLNS
+f:^[nN]$:lSPIDONE_SOLNS
+x:{
+- } | v:vANS
+y:vSPI_SOLNS | x*!:vANS | v:vSPI_SOLNS #update list...
+j:lPROMPTSPI_SOLNS #loop: get more answers for this category...
+
+l:lSPIDONE_SOLNS
+y:vSPI_SOLNS | x:{
+SPIRIT-SOLUTIONS: } | v:vPROF_SPI_SOLNS
+
+#---------| SEX |------------------
+###---[SEX: Wants ]
+v:vSEX_WANTS:{} #initially empty
+v:vPROMPT_SEX_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to SEX, what does _ WANT/NEED?}
+r*:vPROMPT_SEX_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTSEX_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTSEX_WANTS
+f:^[nN]$:lSEXDONE_WANTS
+x:{
+- } | v:vANS
+y:vSEX_WANTS | x*!:vANS | v:vSEX_WANTS #update list...
+j:lPROMPTSEX_WANTS #loop: get more answers for this category...
+
+l:lSEXDONE_WANTS
+y:vSEX_WANTS | x:{
+SEX-WANTED: } | v:vPROF_SEX_WANTS 
+
+###---[SEX: Challenges ]
+v:vSEX_PROBS:{} #initially empty
+v:vPROMPT_SEX_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to SEX, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_SEX_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTSEX_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTSEX_PROBS
+f:^[nN]$:lSEXDONE_PROBS
+x:{
+- } | v:vANS
+y:vSEX_PROBS | x*!:vANS | v:vSEX_PROBS #update list...
+j:lPROMPTSEX_PROBS #loop: get more answers for this category...
+
+l:lSEXDONE_PROBS
+y:vSEX_PROBS | x:{
+SEX-PROBLEMS: } | v:vPROF_SEX_PROBS
+
+
+###---[SEX: Solutions ]
+v:vSEX_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_SEX_WANTS:vPROF_SEX_PROBS | v:vSEX_STATUS
+v:vPROMPT_SEX_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to SEX, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_SEX_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vSEX_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTSEX_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTSEX_SOLNS
+f:^[nN]$:lSEXDONE_SOLNS
+x:{
+- } | v:vANS
+y:vSEX_SOLNS | x*!:vANS | v:vSEX_SOLNS #update list...
+j:lPROMPTSEX_SOLNS #loop: get more answers for this category...
+
+l:lSEXDONE_SOLNS
+y:vSEX_SOLNS | x:{
+SEX-SOLUTIONS: } | v:vPROF_SEX_SOLNS
+
+#---------| PHYSICAL HEALTH |------------------
+###---[PHYSICAL HEALTH: Wants ]
+v:vPHYS_WANTS:{} #initially empty
+v:vPROMPT_PHYS_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to PHYSICAL HEALTH, what does _ WANT/NEED?}
+r*:vPROMPT_PHYS_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTPHYS_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTPHYS_WANTS
+f:^[nN]$:lPHYSDONE_WANTS
+x:{
+- } | v:vANS
+y:vPHYS_WANTS | x*!:vANS | v:vPHYS_WANTS #update list...
+j:lPROMPTPHYS_WANTS #loop: get more answers for this category...
+
+l:lPHYSDONE_WANTS
+y:vPHYS_WANTS | x:{
+PHYSICAL HEALTH-WANTED: } | v:vPROF_PHYS_WANTS 
+
+###---[PHYSICAL HEALTH: Challenges ]
+v:vPHYS_PROBS:{} #initially empty
+v:vPROMPT_PHYS_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to PHYSICAL HEALTH, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_PHYS_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTPHYS_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTPHYS_PROBS
+f:^[nN]$:lPHYSDONE_PROBS
+x:{
+- } | v:vANS
+y:vPHYS_PROBS | x*!:vANS | v:vPHYS_PROBS #update list...
+j:lPROMPTPHYS_PROBS #loop: get more answers for this category...
+
+l:lPHYSDONE_PROBS
+y:vPHYS_PROBS | x:{
+PHYSICAL HEALTH-PROBLEMS: } | v:vPROF_PHYS_PROBS
+
+
+###---[PHYSICAL HEALTH: Solutions ]
+v:vPHYS_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_PHYS_WANTS:vPROF_PHYS_PROBS | v:vPHYS_STATUS
+v:vPROMPT_PHYS_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to PHYSICAL HEALTH, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_PHYS_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vPHYS_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTPHYS_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTPHYS_SOLNS
+f:^[nN]$:lPHYSDONE_SOLNS
+x:{
+- } | v:vANS
+y:vPHYS_SOLNS | x*!:vANS | v:vPHYS_SOLNS #update list...
+j:lPROMPTPHYS_SOLNS #loop: get more answers for this category...
+
+l:lPHYSDONE_SOLNS
+y:vPHYS_SOLNS | x:{
+PHYSICAL HEALTH-SOLUTIONS: } | v:vPROF_PHYS_SOLNS
+
+#---------| MENTAL HEALTH |------------------
+###---[MENTAL HEALTH: Wants ]
+v:vMENT_WANTS:{} #initially empty
+v:vPROMPT_MENT_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to MENTAL HEALTH, what does _ WANT/NEED?}
+r*:vPROMPT_MENT_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTMENT_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTMENT_WANTS
+f:^[nN]$:lMENTDONE_WANTS
+x:{
+- } | v:vANS
+y:vMENT_WANTS | x*!:vANS | v:vMENT_WANTS #update list...
+j:lPROMPTMENT_WANTS #loop: get more answers for this category...
+
+l:lMENTDONE_WANTS
+y:vMENT_WANTS | x:{
+MENTAL HEALTH-WANTED: } | v:vPROF_MENT_WANTS 
+
+###---[MENTAL HEALTH: Challenges ]
+v:vMENT_PROBS:{} #initially empty
+v:vPROMPT_MENT_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to MENTAL HEALTH, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_MENT_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTMENT_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTMENT_PROBS
+f:^[nN]$:lMENTDONE_PROBS
+x:{
+- } | v:vANS
+y:vMENT_PROBS | x*!:vANS | v:vMENT_PROBS #update list...
+j:lPROMPTMENT_PROBS #loop: get more answers for this category...
+
+l:lMENTDONE_PROBS
+y:vMENT_PROBS | x:{
+MENTAL HEALTH-PROBLEMS: } | v:vPROF_MENT_PROBS
+
+
+###---[MENTAL HEALTH: Solutions ]
+v:vMENT_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_MENT_WANTS:vPROF_MENT_PROBS | v:vMENT_STATUS
+v:vPROMPT_MENT_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to MENTAL HEALTH, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_MENT_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vMENT_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTMENT_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTMENT_SOLNS
+f:^[nN]$:lMENTDONE_SOLNS
+x:{
+- } | v:vANS
+y:vMENT_SOLNS | x*!:vANS | v:vMENT_SOLNS #update list...
+j:lPROMPTMENT_SOLNS #loop: get more answers for this category...
+
+l:lMENTDONE_SOLNS
+y:vMENT_SOLNS | x:{
+MENTAL HEALTH-SOLUTIONS: } | v:vPROF_MENT_SOLNS
+
+
 ###########################[ COMPLETE PROFILE ]###################
-g*:{}:vPROF_HEADER:vPROF_FAM_WANTS:vPROF_FAM_PROBS:vPROF_FAM_SOLNS
+v:vCAT_DELIM:{
+---------X---------X---------X----------
+} #delimiter for categories
+g*:{}:vPROF_HEADER:vCAT_DELIM:vPROF_FAM_WANTS:vPROF_FAM_PROBS:vPROF_FAM_SOLNS:vCAT_DELIM:vPROF_FRIEND_WANTS:vPROF_FRIEND_PROBS:vPROF_FRIEND_SOLNS:vCAT_DELIM:vPROF_EDUC_WANTS:vPROF_EDUC_PROBS:vPROF_EDUC_SOLNS:vCAT_DELIM:vPROF_BUS_WANTS:vPROF_BUS_PROBS:vPROF_BUS_SOLNS:vCAT_DELIM:vPROF_SPI_WANTS:vPROF_SPI_PROBS:vPROF_SPI_SOLNS:vCAT_DELIM:vPROF_SEX_WANTS:vPROF_SEX_PROBS:vPROF_SEX_SOLNS:vCAT_DELIM:vPROF_PHYS_WANTS:vPROF_PHYS_PROBS:vPROF_PHYS_SOLNS:vCAT_DELIM:vPROF_MENT_WANTS:vPROF_MENT_PROBS:vPROF_MENT_SOLNS:vCAT_DELIM
+
 v:vPROFILE # update/override profile
 
 ####[ PRINT PROFILE ]
 y:vPROFILE
-k!:^\S*$
-
+k!:^[ ]*$
