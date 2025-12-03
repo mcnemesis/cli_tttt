@@ -1,0 +1,112 @@
+#-------------------------------------------#
+# MHDF: Mental-Health Diagnosis Framework
+#-----------------------------------------|
+# This program helps to create a mental
+# profile of a named subject, for purposes
+# identifying, classifying and then
+# diagnosing and solving psycho-social 
+# challenges the subject is facing. MHDF is
+# based on a system originally developed 
+# by researchers at NES [Nuchwezi Esoteric School]
+# based in UGANDA. It was first introduced
+# formally in the book: Transformatics for PSYCHOLOGY 
+# https://bit.ly/transpsychology
+#-------------------------------------------#
+
+####[ GET BACKGROUND META-DATA ]
+
+# First, get current date
+z.:DATE | v:vDATE #store date
+
+# Next get name of client/subject
+l:lPROMPTNAME
+i!:{What is the name of the Person?} | i*:
+d:^[ ]*$
+f:^$:lPROMPTNAME
+v:vCLIENT_NAME # store client name
+
+####[ PROMPT for PROFILE DATA ]
+v:vPLACEHOLDER:{_}
+v:vPROF_HEADER:{MENTAL HEALTH PROFILE for [_] ON [_]:
+}
+r*:vPROF_HEADER:vPLACEHOLDER:vCLIENT_NAME | v:vPROF_HEADER
+r*:vPROF_HEADER:vPLACEHOLDER:vDATE | v:vPROF_HEADER
+v:vPROFILE #store profile header...
+
+###---[FAMILY: Wants ]
+v:vFAM_WANTS:{} #initially empty
+v:vPROMPT_FAM_WANTS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to FAMILY, what does _ WANT/NEED?}
+r*:vPROMPT_FAM_WANTS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTFAM_WANTS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTFAM_WANTS
+f:^[nN]$:lFAMDONE_WANTS
+x:{
+- } | v:vANS
+y:vFAM_WANTS | x*!:vANS | v:vFAM_WANTS #update list...
+j:lPROMPTFAM_WANTS #loop: get more answers for this category...
+
+l:lFAMDONE_WANTS
+y:vFAM_WANTS | x:{
+FAMILY-WANTED: } | v:vPROF_FAM_WANTS 
+
+###---[FAMILY: Challenges ]
+v:vFAM_PROBS:{} #initially empty
+v:vPROMPT_FAM_PROBS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to FAMILY, what PROBLEMS/CHALLENGES does _ face or have?}
+r*:vPROMPT_FAM_PROBS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+
+l:lPROMPTFAM_PROBS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTFAM_PROBS
+f:^[nN]$:lFAMDONE_PROBS
+x:{
+- } | v:vANS
+y:vFAM_PROBS | x*!:vANS | v:vFAM_PROBS #update list...
+j:lPROMPTFAM_PROBS #loop: get more answers for this category...
+
+l:lFAMDONE_PROBS
+y:vFAM_PROBS | x:{
+FAMILY-PROBLEMS: } | v:vPROF_FAM_PROBS
+
+
+###---[FAMILY: Solutions ]
+v:vFAM_SOLNS:{} #initially empty
+#Build a prompt displaying category wants and challenges too...
+g*:{}:vPROF_HEADER:vPROF_FAM_WANTS:vPROF_FAM_PROBS | v:vFAM_STATUS
+v:vPROMPT_FAM_SOLNS:{--[ENTER 'n' or 'N' to complete list]--
+With regards to FAMILY, what SOLUTIONS would you recommend for _?}
+r*:vPROMPT_FAM_SOLNS:vPLACEHOLDER:vCLIENT_NAME
+v:vPROMPT # store prompt
+g*:{
+---[THUS]---
+}:vFAM_STATUS:vPROMPT | v:vPROMPT # override
+
+l:lPROMPTFAM_SOLNS
+y:vPROMPT | i*:
+d:^[ ]*$
+f:^$:lPROMPTFAM_SOLNS
+f:^[nN]$:lFAMDONE_SOLNS
+x:{
+- } | v:vANS
+y:vFAM_SOLNS | x*!:vANS | v:vFAM_SOLNS #update list...
+j:lPROMPTFAM_SOLNS #loop: get more answers for this category...
+
+l:lFAMDONE_SOLNS
+y:vFAM_SOLNS | x:{
+FAMILY-SOLUTIONS: } | v:vPROF_FAM_SOLNS
+
+###########################[ COMPLETE PROFILE ]###################
+g*:{}:vPROF_HEADER:vPROF_FAM_WANTS:vPROF_FAM_PROBS:vPROF_FAM_SOLNS
+v:vPROFILE # update/override profile
+
+####[ PRINT PROFILE ]
+y:vPROFILE
+k!:^\S*$
+
