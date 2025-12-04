@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.7" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.8" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -588,6 +588,13 @@ export class TEA_RunTime {
 		return val;
 	}
 
+
+     util_eval_mathematics(val){
+        // Use host-language mathematics
+        this.debug(`***Evaluating MATHEMATICS EXPRESSION: [${val}]`)
+        return String(eval(val))
+
+    }
 
     static util_braille_projection2(val){
 		const rNonWhiteSpace = /\S/g;
@@ -2200,12 +2207,6 @@ export class TEA_RunTime {
             this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
         }
 
-        if(TEA_RunTime.is_empty(io)){
-            // INERT
-            this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
-            return io // essentially, INERT
-        }
-
         if(tc == "R"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 io = TEA_RunTime.util_braille_projection1(io)
@@ -2223,6 +2224,7 @@ export class TEA_RunTime {
                 }
             }
         }
+
         if(tc == "R!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 io = TEA_RunTime.util_braille_projection2(io)
@@ -2302,6 +2304,26 @@ export class TEA_RunTime {
                         io = input_str.replace(regex, replacement);
                     }
                 }
+            }
+        }
+
+        if(tc == "R."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = this.util_eval_mathematics(io)
+            }
+            else{
+                io = this.util_eval_mathematics(tpe_str)
+            }
+        }
+
+        if(tc == "R*."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return io // INERT
+            }
+            else{
+                var vname = tpe_str;
+                var input_str = this.vault_get(vname)
+                io = this.util_eval_mathematics(input_str)
             }
         }
 

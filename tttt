@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.7"
+VERSION = "1.1.8"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -380,6 +380,12 @@ class TEA_RunTime:
             val = re.sub(rWhiteSpace, '.', val)
             val = val.replace('#', TEA_RunTime.SINGLE_SPACE_CHAR)
             return val
+
+        def util_eval_mathematics(val):
+            # Use host-language mathematics
+            if TEA_RunTime.DEBUG:
+                print(f"***Evaluating MATHEMATICS EXPRESSION: [{val}]")
+            return str(eval(val))
 
         def util_salt_string(val, salt, injection_limit = None, llimit=None):
             l_val = len(val)
@@ -1684,11 +1690,6 @@ class TEA_RunTime:
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
-            if self.is_empty(io):
-                # INERT
-                self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
-                return io
-
             if tc == "R":
                 if len(tpe_str) == 0:
                     io = util_braille_projection1(io)
@@ -1702,6 +1703,7 @@ class TEA_RunTime:
                         regex = self.extract_str(params[0])
                         replacement = self.extract_str(params[1])
                         io = re.sub(regex, replacement, io, count=1)
+
             if tc == "R!":
                 if len(tpe_str) == 0:
                     io = util_braille_projection2(io)
@@ -1766,6 +1768,20 @@ class TEA_RunTime:
                             regex = self.extract_str(vault_get(vregex))
                             replacement = self.extract_str(vault_get(vsubstr))
                             io = re.sub(regex, replacement, input_str)
+
+            if tc == "R.": #r.: | r.:EXPR | r.*:vEXPR | replace expression equivalent math evaluation
+                if len(tpe_str) == 0:
+                    io = util_eval_mathematics(io)
+                else:
+                    io = util_eval_mathematics(tpe_str)
+
+            if tc == "R*.": #r.: | r.:EXPR | r*.:vEXPR | replace expression equivalent math evaluation
+                if len(tpe_str) == 0:
+                    pass # INERT
+                else:
+                    vname = tpe_str
+                    input_str = vault_get(vname)
+                    io = util_eval_mathematics(input_str)
 
             return io
 
