@@ -5032,7 +5032,7 @@ In brief, the program we are deal with here, will help someone build a mental pr
 \vspace{2em}
 
 
- %\begin{figure}[H]
+{
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA EXAMPLE: MENTAL HEALTH DIAGNOSIS PROGRAM v1.0.0.1, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
@@ -5662,10 +5662,12 @@ v:vPROFILE # update/override profile
 y:vPROFILE
 k!:^[ ]*$
    \end{lstlisting}
+   
   \end{tcolorbox}
     \captionof{figure}{TEA EXAMPLE: MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.2}
   \label{FIGJEXA}
-  \vspace{1cm}
+  
+  }
 
 
 \vspace{2em}
@@ -5705,7 +5707,8 @@ Hereafter, we take some look at how the program's interfaces and functionality l
 \end{figure}
  
 
-
+{
+\small
   \begin{tcbverbatim}[title=Sample Output from HDP HEALTH DIAGNOSIS]
 MENTAL HEALTH PROFILE for [John Doe] ON [Wednesday, 03 December 2025]:
 ---------X---------X---------X----------
@@ -5790,7 +5793,7 @@ MENTAL HEALTH-SOLUTIONS:
 ---------X---------X---------X----------
   \end{tcbverbatim}
 
-
+}
 
 
 
@@ -5811,6 +5814,154 @@ OR VIA short-url:
  \url{https://bit.ly/mhdprogram}
 
 \vspace{1em}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: K
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{K: KEEP}
+\label{SECK}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & KEEP\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Conditionally filter out the contents of AI
+	\item Keep only what matters in a text, based on a user-specified pattern
+	\item \textbf{Process AI at line-level} (only TEA instruction that does this)
+	\item Keep only lines that DO NOT match a given pattern
+	\item Construct dynamic filters
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of K:}
+  \label{TABTAZK}
+\end{table}
+
+
+\section{SEMANTICS of K:}
+\label{SECSEMK}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+k: & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ k:REGEX } & Only keep lines in AI that match REGEX\\
+
+k!: & INERT\\
+
+\rowcolor{lightgray}\bfseries k!: REGEX & Only keep lines in AI that DON'T match REGEX\\
+
+ \makecell[l]{k*:} & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ k*:vREGEX\\k*:vREGEX:vNAME\\k*!:vREGEX\\k*!:vREGEX:vNAME} & The vault operating versions of k: and k!: perform corresponding transformations, but instead operate using the regular expression stored in vault vREGEX. If vNAME is specified, operate on string in named vault instead of the AI\\
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of K:}
+\label{TABSEMK}
+\end{table}
+
+
+\section{NOTES about K:}
+\label{SECNOTEK}
+
+
+\textbf{K:} is for determining what to keep in the Active Input. It is only active --- and thus, not \texttt{INERT} --- when used together with a useful filter --- such as in the following example, where we filter and keep only the lines in a multi-line poem that contain the words or patterns ``I” or ``O”;
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=K: EXAMPLE 1]
+  \begin{lstlisting}[language=TEA]
+I!:{Myself should tell 
+You O my Lord.
+I trust You Know Me.} | k:.*\w?[IO]\w?.*
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\vspace{2em}
+
+Shall return 
+
+\vspace{2em}	
+
+\begin{figure}[H]
+  \centering
+  \begin{tcbverbatim}[title=K: EXAMPLE 1 Output]
+You O my Lord.
+I trust You Know Me.
+  \end{tcbverbatim}
+\end{figure}
+
+{
+\Large
+
+Note that while k: processes AI by splitting it up into lines first, yet, it preserves the original lines by gluing the results back using a single New Line Character (sometimes with a Carriage Return on some systems such as Windows).
+
+}
+
+\vspace{2em}
+
+In terms of TEA utilities for throwing things out of strings, the Keep command mostly helps with filter processing at the line level. For filtering at character or word level, perhaps d: and its inverse d!: are better.
+
+
+
+
+\section{EXAMPLE APPLICATIONS of K:}
+\label{SECEXAMPK}
+
+  
+blah blah
+
+\subsection{EXAMPLE 1: }
+\label{SECEXAMP1K}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
