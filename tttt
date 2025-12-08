@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.8"
+VERSION = "1.1.9"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -1877,16 +1877,22 @@ class TEA_RunTime:
                         return io
                     else:
                         if len(params) == 2:
-                            salt = self.extract_str(params[1])
+                            vsalt = self.extract_str(params[1])
+                            salt = vault_get(vsalt)
                             io = util_salt_string(io,salt)
                         elif len(params) == 3:
-                            salt = self.extract_str(params[1])
-                            i_limit = int(self.extract_str(params[2]))
+                            vsalt = self.extract_str(params[1])
+                            salt = vault_get(vsalt)
+                            vi_limit = self.extract_str(params[2])
+                            i_limit = int(vault_get(vi_limit))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 4:
-                            salt = self.extract_str(params[1])
-                            i_limit = int(self.extract_str(params[2]))
-                            l_limit = int(self.extract_str(params[3]))
+                            vsalt = self.extract_str(params[1])
+                            salt = vault_get(vsalt)
+                            vi_limit = self.extract_str(params[2])
+                            i_limit = int(vault_get(vi_limit))
+                            vl_limit = self.extract_str(params[3])
+                            l_limit = int(vault_get(vl_limit))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
 
             if tc == "S*!":
@@ -1909,16 +1915,22 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 2:
-                            salt_regex = self.extract_str(params[1])
+                            vsalt_regex = self.extract_str(params[1])
+                            salt_regex = vault_get(vsalt_regex)
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 3:
-                            salt_regex = self.extract_str(params[1])
-                            d_limit = int(self.extract_str(params[2]))
+                            vsalt_regex = self.extract_str(params[1])
+                            salt_regex = vault_get(vsalt_regex)
+                            vd_limit = self.extract_str(params[2])
+                            d_limit = int(vault_get(vd_limit))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 4:
-                            salt_regex = self.extract_str(params[1])
-                            d_limit = int(self.extract_str(params[2]))
-                            l_limit = int(self.extract_str(params[3]))
+                            vsalt_regex = self.extract_str(params[1])
+                            salt_regex = vault_get(vsalt_regex)
+                            vd_limit = self.extract_str(params[2])
+                            d_limit = int(vault_get(vd_limit))
+                            vl_limit = self.extract_str(params[3])
+                            l_limit = int(vault_get(vl_limit))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             return io

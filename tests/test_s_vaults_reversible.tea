@@ -1,0 +1,20 @@
+#We wish to test salting and unsalting using vaults/pointers
+
+v:vMSG:{1234567890}
+
+#salting between 5th and 9th position using "_"
+v:vINJECT:{_}
+v:vN_U:9
+v:vN_L:5
+
+s*:vMSG:vINJECT:vN_U:vN_L
+
+#q!:
+
+#now store that salted message, and unsalt it..
+
+s*!:vMSG:vINJECT:vN_U:vN_L
+
+#with the same parameters as the salt operation, 
+#the unsalt shall merely reverse what was done by the salt op
+#thus, result should be exactly what we started out with.

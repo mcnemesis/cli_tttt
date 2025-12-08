@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.8" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.1.9" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -2446,18 +2446,24 @@ export class TEA_RunTime {
                 }
                 else {
                     if(params.length == 2){
-                        salt = this.extract_str(params[1])
+                        var vsalt = this.extract_str(params[1])
+                        var salt = this.vault_get(vsalt)
                         io = this.util_salt_string(io,salt)
                     }
                     else if(params.length == 3){
-                        salt = this.extract_str(params[1])
-                        var i_limit = Number(this.extract_str(params[2]))
+                        var vsalt = this.extract_str(params[1])
+                        var salt = this.vault_get(vsalt)
+                        var vi_limit = this.extract_str(params[2])
+                        var i_limit = Number(this.vault_get(vi_limit))
                         io = this.util_salt_string(io,salt,i_limit)
                     }
                     else if(params.length == 4){
-                        salt = this.extract_str(params[1])
-                        var i_limit = Number(this.extract_str(params[2]))
-                        var l_limit = Number(this.extract_str(params[3]))
+                        var vsalt = this.extract_str(params[1])
+                        var salt = this.vault_get(vsalt)
+                        var vi_limit = this.extract_str(params[2])
+                        var i_limit = Number(this.vault_get(vi_limit))
+                        var vl_limit = this.extract_str(params[3])
+                        var l_limit = Number(this.vault_get(vl_limit))
                         io = this.util_salt_string(io,salt,i_limit, l_limit)
                     }
                 }
@@ -2484,18 +2490,24 @@ export class TEA_RunTime {
                 }
                 else {
                     if(params.length == 2){
-                        var salt_regex = this.extract_str(params[1])
+                        var vsalt_regex = this.extract_str(params[1])
+                        var salt_regex = this.vault_get(vsalt_regex)
                         io = this.util_unsalt_string(io,salt_regex)
                     }
                     else if(params.length == 3){
-                        var salt_regex = this.extract_str(params[1])
-                        var d_limit = Number(this.extract_str(params[2]))
+                        var vsalt_regex = this.extract_str(params[1])
+                        var salt_regex = this.vault_get(vsalt_regex)
+                        var vd_limit = this.extract_str(params[2])
+                        var d_limit = Number(this.vault_get(vd_limit))
                         io = this.util_unsalt_string(io,salt_regex, d_limit)
                     }
                     else if(params.length == 4){
-                        var salt_regex = this.extract_str(params[1])
-                        var d_limit = Number(this.extract_str(params[2]))
-                        var l_limit = Number(this.extract_str(params[3]))
+                        var vsalt_regex = this.extract_str(params[1])
+                        var salt_regex = this.vault_get(vsalt_regex)
+                        var vd_limit = this.extract_str(params[2])
+                        var d_limit = Number(this.vault_get(vd_limit))
+                        var vl_limit = this.extract_str(params[3])
+                        var l_limit = Number(this.vault_get(vl_limit))
                         io = this.util_unsalt_string(io,salt_regex, d_limit, l_limit)
                     }
                 }
