@@ -1,0 +1,61 @@
+v:vN_OP_SCORE:{0}
+v:vFIELD:{-----}
+
+#------------------------------
+#----| PROGRAM GAME PLAY |----
+#------------------------------
+y:vFIELD #first, fetch the current field...
+
+
+#----[ UPDATE field with lane-field ]
+y:vFIELD | h!:{@} | v:vFIELD
+
+
+###############################
+# GAME PLAY MODE
+###############################
+l:lPLAYMODE
+
+#compute score metric
+v:vMSG_OP_SCORE:{SCORE: }
+y:vMSG_OP_SCORE | x*!:vN_OP_SCORE | v:vMSG_OP_SCORE
+
+#----[ Prompt USER for THEIR MOVE ]
+y:vFIELD
+x:{
+---| MYSTERY FIELD |---
+} 
+x!:{
+---| MOVE RULES |---
+N[U]: move N lanes up, N[D]: down, N[R]: right, N[L]: left
+Q: to QUIT | }
+| x*!:vMSG_OP_SCORE
+
+#then display field and prompt
+i*: | v:vPLAYCMD
+
+f:^[qQ]$:lFINISH
+
+
+#PROCESS USER INPUT/COMMAND...
+y:vPLAYCMD | f:^[uU]$:lMOVEUP:lUNKNOWN_CMD
+l:lMOVEUP
+###############| TODO |#######################
+### process shifting op to lane above, remove them from lane below
+
+
+l:lUNKNOWN_CMD # we couldn't process the command..
+
+j:lPLAYMODE #loop game mode...
+
+
+###############################
+# FINISH GAME
+###############################
+l:lFINISH
+y:vFIELD
+x!:{
+---| THANKS for PLAYING! |---
+}
+
+#x*!:vSTATE

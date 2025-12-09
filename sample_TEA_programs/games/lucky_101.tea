@@ -1,0 +1,197 @@
+################################
+####| LUCKY 101 GAME v.1 |####
+################################
+# This game is a simple, but rewarding 
+# brain-game that rewards & teaches basic 
+# pattern-matching skills and following instructions!
+# ------| HOW TO PLAY? |-------------------
+# Essentially, player is shown a field
+# with multiple sequences of adjacent numbers
+# and their objective should be to identify
+# the best ODD-EVEN-ODD triplet. Your score
+# is the sum of the correct triplet you identify.
+# Thus, the larger, the better. You are penalized
+# for picking a wrong triplet or invalid moves.
+#########################################
+# GAME ARCHITECT: Prof. JWL (Nuchwezi Research)
+#########################################
+
+#---| CONSTANTS and VARIABLES |-----
+v:vN_OP_SCORE:{0}
+v:vN_OP_MOVES:{0}
+v:vINCR_1:{1}
+v:vN_ROWS:{3}
+v:vN_COLS:{30}
+v:vSYM_FIELD:{_}
+v:vSYM_DIV_COL:{=}
+v:vSYM_DIV_ROW:{@}
+v:vOP_ADD:{+}
+v:vTEST_CMD_GTE:{__ >= ~}
+v:vCMD_SUBTRACT:{__ - ~}
+v:vCMD_ADD:{__ + ~}
+v:vTEST_P1:{__}
+v:vTEST_P2:{~}
+v:vMSG_OP_STATUS:{Ready to Play}
+v:vPENALTY:{5}
+v:vPENALTY_WRONG_TRIPLE:{2}
+
+
+##############################
+# CONSTRUCT NEW FIELD
+##############################
+l:lNEWFIELD
+
+v:vFIELD:{}
+l:lSTART
+
+#---| Build a Lane |-----
+l:lSTARTROW
+v:vNEWLANE:{}
+x*:vNEWLANE:vSYM_DIV_ROW| v:vNEWLANE
+
+l:lEXTEND # start extending current row
+n: | v:vN_RNG
+x*:vNEWLANE:vN_RNG | v:vNEWLANE
+x*:vNEWLANE:vSYM_DIV_COL | v:vNEWLANE
+y!:vNEWLANE| v:vN_LEN_FIELD
+r*:vTEST_CMD_GTE:vTEST_P1:vN_LEN_FIELD | v:vTEST_CMD
+r*:vTEST_CMD:vTEST_P2:vN_COLS | v:vTEST_CMD
+y:vTEST_CMD | r.: | f:^false$:lEXTEND:lNEXTROW
+
+l:lNEXTROW
+
+y:vFIELD
+d*!:vSYM_DIV_ROW | v: | v!: | v:vLEN_ROWS
+
+r*:vTEST_CMD_GTE:vTEST_P1:vLEN_ROWS | v:vTEST_CMD
+r*:vTEST_CMD:vTEST_P2:vN_ROWS | v:vTEST_CMD
+y:vTEST_CMD | r.: | f:^false$:lSTARTNEXTROW:lFIELDCOMPLETE
+
+#---| Adding More Lanes |-----
+l:lSTARTNEXTROW
+x*:vFIELD:vNEWLANE | v:vFIELD
+#q!:
+j:lSTARTROW # loop: to build next row
+
+#---| Building Field Complete |-----
+l:lFIELDCOMPLETE
+h*!:vFIELD:vSYM_DIV_ROW
+
+#------------------------------
+#----| PROGRAM GAME PLAY |----
+#------------------------------
+#first, fetch the current field...
+y:vFIELD 
+
+#----| UPDATE field with lane-field |-----
+y:vFIELD | h!:{@} | v:vFIELD
+
+
+###############################
+# GAME PLAY MODE
+###############################
+l:lPLAYMODE
+
+#compute score metric
+v:vMSG_OP_SCORE:{SCORE: }
+y:vMSG_OP_SCORE | x*!:vN_OP_SCORE | v:vMSG_OP_SCORE
+
+#----[ Prompt USER for THEIR MOVE ]
+y:vFIELD
+x:{
+---| LUCKY 101 FIELD |---
+} 
+x!:{
+---| MOVE [} | x*!:vN_OP_MOVES | x!:{] RULES |---
+Identify an ODD-EVEN-ODD Triplet to Score its SUM
+Q: to QUIT | }
+| x*!:vMSG_OP_SCORE 
+| x!:{ | STATUS: }
+| x*!:vMSG_OP_STATUS 
+
+#then display field and prompt
+i*: | v:vPLAYCMD
+
+#----| In-Case We Should Finish? |-----
+f:^[qQ]$:lFINISH
+
+###############################
+#PROCESS USER INPUT/COMMAND...
+#-----------------------------
+y:vPLAYCMD
+
+f:{^\d\d\d$}:lPROCESS_TRIPLE:lUNKNOWN_CMD 
+l:lPROCESS_TRIPLE
+
+y:vPLAYCMD | v:vTRIPLE | v:vTRIPLE_NUMBERS
+#check if it exists in field..
+y:vTRIPLE | h: | g*!:vSYM_DIV_COL | v:vTRIPLE
+y:vFIELD | f*:vTRIPLE:lTRIPLE_FOUND:lTRIPLE_MISSING
+l:lTRIPLE_FOUND
+
+#y:vFIELD | d*!:vTRIPLE
+#q!:
+
+#is it odd-even-odd?
+y:vTRIPLE_NUMBERS | f:[13579][02468][13579]:lPROCESS_TRIPLE_FOUND:lPENALIZE_TRIPLE_FOUND
+l:lPROCESS_TRIPLE_FOUND
+
+y:vTRIPLE_NUMBERS| h: | g*!:vOP_ADD | v:vTRIPLE_SUM
+r.: | v:vTRIPLE_SUM
+v:vMSG_OP_STATUS:{Scored +}| x*!:vTRIPLE_SUM:vMSG_OP_STATUS | x!:{ (CONGS on }| x*!:vTRIPLE_NUMBERS | x!:{!)} | v:vMSG_OP_STATUS
+
+r*:vCMD_ADD:vTEST_P1:vN_OP_SCORE | v:vSCORE_CMD
+r*:vSCORE_CMD:vTEST_P2:vTRIPLE_SUM | v:vSCORE_CMD
+y:vSCORE_CMD| r.: | v:vN_OP_SCORE 
+
+#---| UPDATE MOVE COUNTS |----
+r*:vCMD_ADD:vTEST_P1:vN_OP_MOVES | v:vMOVE_CMD
+r*:vMOVE_CMD:vTEST_P2:vINCR_1 | v:vMOVE_CMD
+y:vMOVE_CMD| r.: | v:vN_OP_MOVES
+
+###########| WON! can reset field for next move... |#####
+j:lNEWFIELD
+
+#----| In case WRONG Input was PROVIDED |-----
+l:lPENALIZE_TRIPLE_FOUND
+l:lTRIPLE_MISSING
+v:vMSG_OP_STATUS:{Penalized -2 (INVALID triple } | x*!:vTRIPLE_NUMBERS:vMSG_OP_STATUS | x!:{)} | v:vMSG_OP_STATUS
+
+r*:vCMD_SUBTRACT:vTEST_P1:vN_OP_SCORE | v:vPENALIZE_CMD
+r*:vPENALIZE_CMD:vTEST_P2:vPENALTY_WRONG_TRIPLE | v:vPENALIZE_CMD
+y:vPENALIZE_CMD| r.: | v:vN_OP_SCORE 
+j:lSCORING_COMPLETE
+
+l:lUNKNOWN_CMD # we couldn't process the command..
+v:vMSG_OP_STATUS:{Penalized -5 (WRONG move)}
+
+r*:vCMD_SUBTRACT:vTEST_P1:vN_OP_SCORE | v:vPENALIZE_CMD
+r*:vPENALIZE_CMD:vTEST_P2:vPENALTY | v:vPENALIZE_CMD
+y:vPENALIZE_CMD| r.: | v:vN_OP_SCORE 
+
+l:lSCORING_COMPLETE
+
+
+#---| UPDATE MOVE COUNTS |----
+r*:vCMD_ADD:vTEST_P1:vN_OP_MOVES | v:vMOVE_CMD
+r*:vMOVE_CMD:vTEST_P2:vINCR_1 | v:vMOVE_CMD
+y:vMOVE_CMD| r.: | v:vN_OP_MOVES
+
+j:lPLAYMODE #loop game mode...
+
+
+###############################
+# FINISH GAME
+###############################
+l:lFINISH
+i!:{GAME OVER AFTER } | x*!:vN_OP_MOVES | x!:{ MOVES!} | v:vMSG_OP_STATUS
+y:vFIELD
+x!:{
+---| THANKS for PLAYING LUCKY 101! |---
+}
+| x*!:vMSG_OP_SCORE 
+| x!:{ | STATUS: }
+| x*!:vMSG_OP_STATUS 
+
+#That's it! SEND BUG REPORTS to DEV:
+#Joseph W.: joewillrich@gmail.com

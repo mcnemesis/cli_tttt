@@ -3022,6 +3022,16 @@ f: & INERT\\
  
 \rowcolor{lightgray}\bfseries \makecell[l]{f!:REGEX:LA\\f!:REGEX:LA:LB} & Similar to f:, but the logic works same if AI does NOT match the regular expression REGEX\\
 
+ f*: & INERT\\
+ 
+ 
+ \rowcolor{lightgray}\bfseries \makecell[l]{f*:vREGEX:LA\\f*:vREGEX:LA:LB} & Like f:REGEX:LA and f:REGEX:LA:LB, but using the regex stored in the vault vREGEX  \\
+ 
+  f*!: & INERT\\
+  
+   \rowcolor{lightgray}\bfseries \makecell[l]{f*!:vREGEX:LA\\f*!:vREGEX:LA:LB} & Like f!:REGEX:LA and f!:REGEX:LA:LB, but using the regex stored in the vault vREGEX  \\
+ 
+
  
  \hline
 \end{tabular}
@@ -3329,7 +3339,7 @@ g!: & INERT\\
   \makecell[l]{g*:GLUE:v1:v2\\g*:GLUE:v1:v2:v3:…:vN} & Set IO to the result of joining the string stored in the vaults with the given names, using the specified EXPLICIT GLUE\\
   
   
-   \rowcolor{lightgray}\bfseries \makecell[l]{g*!:vGLUE:v1:v2\\g*!:vGLUE:v1:v2:v3:…:vN} & Set IO to the result of joining the string stored in the vaults with the given names, using the glue stored in vault vGLUE\\
+   \rowcolor{lightgray}\bfseries \makecell[l]{g*!:vGLUE:v1:v2\\g*!:vGLUE:v1:v2:v3:…:vN} & Set IO to the result of joining the string stored in the vaults with the given names, using the glue stored in vault vGLUE. With only vGLUE, operate on AI like g:GLUE\\
  
  \hline
 \end{tabular}
@@ -5944,19 +5954,458 @@ blah blah
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: L
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{L: LABEL}
+\label{SECL}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & LABEL\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Explicitly mark sections in a TEA Program accessible by unique names
+	\item \textbf{Facilitate Conditional Branching} (only TEA instruction that does this)
+	\item Create Code-Blocks/Label-Blocks
+	\item TEA facility to enable code encapsulation
+	\item A Primitive Procedure/Function Facility
+	\item Allow Something like Procedural Polymorphism
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of L:}
+  \label{TABTAZL}
+\end{table}
+
+
+\section{SEMANTICS of L:}
+\label{SECSEML}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+L: & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ L:LABEL } & Declare a jump position in a TEA program accessible by the name LABEL\\
+
+L!:: & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{L!:LABEL\\L!:LABEL1:LABEL2:LABEL3:..:LABELN} & Similar to L:, but allows for the same position in the program to be accessible using any of the specified label names or tags, which are expected to be unique not only across the list, but also across the entire TEA Program.\\
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of L:}
+\label{TABSEML}
+\end{table}
+
+
+\section{NOTES about L:}
+\label{SECNOTEL}
+
+
+
+Note that for the overloadable TEA Label construct \textbf{L!:}, any branching command that references any of the label values in the label set expression for a particular l!: in the TEA program, makes the program jump there irrespective of which of the names was used. This allows TEA programs to implement useful ideas such as functions, polymorphism, more humane-APIs, etc.
+
+\vspace{2em}
+
+Also, note that, to emphasize this important TEA feature, only the Inverse Label construct allows overloading, much as both the \texttt{l:LABEL} and \texttt{l!:LABEL} constructs work the same for singular labels. The following is a non-trivial example of how labeling solves problems: in TEA programming:
+
+
+
+\vspace{2em}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=L: EXAMPLE 1]
+  \begin{lstlisting}[language=TEA]
+# TEA data processing program
+# with some kind of error handling
+
+v:vLOG:{--No Processing Yet--} 
+
+#start block to process fetching data online
+l:FETCH
+# required to be some non-empty result
+w!: https://pastebin.org/KYC.csv 
+
+# test what we obtained...
+f!:^$:lPROCESS:lERROR 
+
+# we only reach this block if we got non-empty data
+l:lPROCESS
+v:vDATA # store data we got
+z.:DATE | v:vDATE
+
+#update log
+v:vLOG:{--Finished Processing--} 
+
+# now combine current date & logs with the data
+g*:{
+---
+}:vDATA:vDATE:vLOG | q!: | # end by returning data report
+
+# we only reach this block if we didn't get data
+l:lERROR 
+v:vERROR:{--Data Access Error--}
+g*:{
+***
+}:vLOG:vERROR | v:vLOG | # update the log
+#j:FETCH | # then re-try the data processing
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\vspace{2em}
+
+
+
+When we test that program via WEB TEA, and there is no connection, it shall get us an output such as:
+
+
+  \begin{tcbverbatim}[title=Example 1: Sample Output ]
+[ERROR]: NetworkError: A network error occurred.
+---
+Tuesday, 09 December 2025
+---
+--Finished Processing--
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+While, on the CLI TEA, with still no network access, we result would be as:
+
+
+  \begin{tcbverbatim}[title=Example 1: Sample Output ]
+[ERROR]: <urlopen error [Errno -3] Temporary failure in name resolution>
+
+---
+
+Tuesday, 09 December 2025
+
+---
+
+--Finished Processing--
+  \end{tcbverbatim}
+
+
+
+Of course, both examples are results of our having entered the code-block named \textbf{lPROCESS}, which, we are able to access via the conditional branching instruction ``\verb|f!:^$:lPROCESS:lERROR|" because, despite there being no network access, the underlying WEB processing TEA instruction that we invoked before processing that instruction did indeed return a non-empty error result that we see displayed as the first sentence in the sample outputs shown.
 
 
 
 
+\section{EXAMPLE APPLICATIONS of L:}
+\label{SECEXAMPL}
+
+  
+Especially because the \textbf{LABEL} instruction is best appreciated via its use in controlling branching and control-flow points around a TEA program, the serious example application we are going to look at is for a scenario that naturally involves lots of branching and requires proper control-flow as well as functional programming or rather, named procedures. We are going to consider the case of an interactive computer game.
 
 
 
+\subsection{EXAMPLE 1: TEXT-BASED BRAIN-GAME: LUCKY 101}
+\label{SECEXAMP1L}
+
+
+This game is somewhat based on text-role-playing such as we saw with \textbf{Boobs 'N' Traps} --- see  \textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}}. However, this one is a game focused on mathematical skills and basic pattern-matching. The game is called \textbf{LUCKY 101}, and is about presenting the player with a series of number sequences, each of which consists of several single digits placed adjacent to each other, and which, the player must study, and then determine which of the neighboring digits form a pattern that would win with the highest score, which they then report to the game so as to score.
+
+\vspace{2em}
+
+In this particular instance of \textbf{LUCKY 101}, the score conditions are pretty simple:
+
+\begin{enumerate}
+\item You are required to identify any correct \textbf{Triple} of Digits in the presented field.
+\item The triple is required to conform to the pattern \textbf{ODD-EVEN-ODD} such as the triples ``101", ``183", ``947", etc.
+\item For the correct triple you identify in the field, your score is the arithmetic sum of the digits in the identified triple.
+\item In case you report a triple that actually exists but does not conform to the required pattern, you are penalized by -2.
+\item In case you enter some gibberish or a non-triple result, you are penalized by -5.
+\item At any moment, you can quit the game by simply entering ``q" or ``Q".
+\item At every other correct move, you overall score grows by the new points obtained, while, any invalid move reduces your overall score by the penalty points.
+\end{enumerate}
+
+
+\vspace{2em}
+
+
+This game has been designed to be playable via a graphical user interface (GUI), just like we saw with Boobs N Traps, and so, one can readily play it via a command-line TEA program, but which shall present a GUI, or via the WEB TEA interface, which shall still present it via an interactive UI.
+
+\vspace{2em}
+
+
+The essential code, also left commented to help the student or reviewer study the use of \textbf{Label Blocks} among other TEA quirks, is as presented hereafter..
 
 
 
+ %\begin{figure}[H]
+ \small
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: LUCKY 101 v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+################################
+####| LUCKY 101 GAME v.1 |####
+################################
+# This game is a simple, but rewarding 
+# brain-game that rewards & teaches basic 
+# pattern-matching skills and following instructions!
+# ------| HOW TO PLAY? |-------------------
+# Essentially, player is shown a field
+# with multiple sequences of adjacent numbers
+# and their objective should be to identify
+# the best ODD-EVEN-ODD triplet. Your score
+# is the sum of the correct triplet you identify.
+# Thus, the larger, the better. You are penalized
+# for picking a wrong triplet or invalid moves.
+#########################################
+# GAME ARCHITECT: Prof. JWL (Nuchwezi Research)
+#########################################
+
+#---| CONSTANTS and VARIABLES |-----
+v:vN_OP_SCORE:{0}
+v:vN_OP_MOVES:{0}
+v:vINCR_1:{1}
+v:vN_ROWS:{3}
+v:vN_COLS:{30}
+v:vSYM_FIELD:{_}
+v:vSYM_DIV_COL:{=}
+v:vSYM_DIV_ROW:{@}
+v:vOP_ADD:{+}
+v:vTEST_CMD_GTE:{__ >= ~}
+v:vCMD_SUBTRACT:{__ - ~}
+v:vCMD_ADD:{__ + ~}
+v:vTEST_P1:{__}
+v:vTEST_P2:{~}
+v:vMSG_OP_STATUS:{Ready to Play}
+v:vPENALTY:{5}
+v:vPENALTY_WRONG_TRIPLE:{2}
 
 
+##############################
+# CONSTRUCT NEW FIELD
+##############################
+l:lNEWFIELD
 
+v:vFIELD:{}
+l:lSTART
+
+#---| Build a Lane |-----
+l:lSTARTROW
+v:vNEWLANE:{}
+x*:vNEWLANE:vSYM_DIV_ROW| v:vNEWLANE
+
+l:lEXTEND # start extending current row
+n: | v:vN_RNG
+x*:vNEWLANE:vN_RNG | v:vNEWLANE
+x*:vNEWLANE:vSYM_DIV_COL | v:vNEWLANE
+y!:vNEWLANE| v:vN_LEN_FIELD
+r*:vTEST_CMD_GTE:vTEST_P1:vN_LEN_FIELD | v:vTEST_CMD
+r*:vTEST_CMD:vTEST_P2:vN_COLS | v:vTEST_CMD
+y:vTEST_CMD | r.: | f:^false$:lEXTEND:lNEXTROW
+
+l:lNEXTROW
+
+y:vFIELD
+d*!:vSYM_DIV_ROW | v: | v!: | v:vLEN_ROWS
+
+r*:vTEST_CMD_GTE:vTEST_P1:vLEN_ROWS | v:vTEST_CMD
+r*:vTEST_CMD:vTEST_P2:vN_ROWS | v:vTEST_CMD
+y:vTEST_CMD | r.: | f:^false$:lSTARTNEXTROW:lFIELDCOMPLETE
+
+#---| Adding More Lanes |-----
+l:lSTARTNEXTROW
+x*:vFIELD:vNEWLANE | v:vFIELD
+#q!:
+j:lSTARTROW # loop: to build next row
+
+#---| Building Field Complete |-----
+l:lFIELDCOMPLETE
+h*!:vFIELD:vSYM_DIV_ROW
+
+#------------------------------
+#----| PROGRAM GAME PLAY |----
+#------------------------------
+#first, fetch the current field...
+y:vFIELD 
+
+#----| UPDATE field with lane-field |-----
+y:vFIELD | h!:{@} | v:vFIELD
+
+
+###############################
+# GAME PLAY MODE
+###############################
+l:lPLAYMODE
+
+#compute score metric
+v:vMSG_OP_SCORE:{SCORE: }
+y:vMSG_OP_SCORE | x*!:vN_OP_SCORE | v:vMSG_OP_SCORE
+
+#----[ Prompt USER for THEIR MOVE ]
+y:vFIELD
+x:{
+---| LUCKY 101 FIELD |---
+} 
+x!:{
+---| MOVE [} | x*!:vN_OP_MOVES | x!:{] RULES |---
+Identify an ODD-EVEN-ODD Triplet to Score its SUM
+Q: to QUIT | }
+| x*!:vMSG_OP_SCORE 
+| x!:{ | STATUS: }
+| x*!:vMSG_OP_STATUS 
+
+#then display field and prompt
+i*: | v:vPLAYCMD
+
+#----| In-Case We Should Finish? |-----
+f:^[qQ]$:lFINISH
+
+###############################
+#PROCESS USER INPUT/COMMAND...
+#-----------------------------
+y:vPLAYCMD
+
+f:{^\d\d\d$}:lPROCESS_TRIPLE:lUNKNOWN_CMD 
+l:lPROCESS_TRIPLE
+
+y:vPLAYCMD | v:vTRIPLE | v:vTRIPLE_NUMBERS
+#check if it exists in field..
+y:vTRIPLE | h: | g*!:vSYM_DIV_COL | v:vTRIPLE
+y:vFIELD | f*:vTRIPLE:lTRIPLE_FOUND:lTRIPLE_MISSING
+l:lTRIPLE_FOUND
+
+#y:vFIELD | d*!:vTRIPLE
+#q!:
+
+#is it odd-even-odd?
+y:vTRIPLE_NUMBERS | f:[13579][02468][13579]:lPROCESS_TRIPLE_FOUND:lPENALIZE_TRIPLE_FOUND
+l:lPROCESS_TRIPLE_FOUND
+
+y:vTRIPLE_NUMBERS| h: | g*!:vOP_ADD | v:vTRIPLE_SUM
+r.: | v:vTRIPLE_SUM
+v:vMSG_OP_STATUS:{Scored +}| x*!:vTRIPLE_SUM:vMSG_OP_STATUS | x!:{ (CONGS on }| x*!:vTRIPLE_NUMBERS | x!:{!)} | v:vMSG_OP_STATUS
+
+r*:vCMD_ADD:vTEST_P1:vN_OP_SCORE | v:vSCORE_CMD
+r*:vSCORE_CMD:vTEST_P2:vTRIPLE_SUM | v:vSCORE_CMD
+y:vSCORE_CMD| r.: | v:vN_OP_SCORE 
+
+#---| UPDATE MOVE COUNTS |----
+r*:vCMD_ADD:vTEST_P1:vN_OP_MOVES | v:vMOVE_CMD
+r*:vMOVE_CMD:vTEST_P2:vINCR_1 | v:vMOVE_CMD
+y:vMOVE_CMD| r.: | v:vN_OP_MOVES
+
+###########| WON! can reset field for next move... |#####
+j:lNEWFIELD
+
+#----| In case WRONG Input was PROVIDED |-----
+l:lPENALIZE_TRIPLE_FOUND
+l:lTRIPLE_MISSING
+v:vMSG_OP_STATUS:{Penalized -2 (INVALID triple } | x*!:vTRIPLE_NUMBERS:vMSG_OP_STATUS | x!:{)} | v:vMSG_OP_STATUS
+
+r*:vCMD_SUBTRACT:vTEST_P1:vN_OP_SCORE | v:vPENALIZE_CMD
+r*:vPENALIZE_CMD:vTEST_P2:vPENALTY_WRONG_TRIPLE | v:vPENALIZE_CMD
+y:vPENALIZE_CMD| r.: | v:vN_OP_SCORE 
+j:lSCORING_COMPLETE
+
+l:lUNKNOWN_CMD # we couldn't process the command..
+v:vMSG_OP_STATUS:{Penalized -5 (WRONG move)}
+
+r*:vCMD_SUBTRACT:vTEST_P1:vN_OP_SCORE | v:vPENALIZE_CMD
+r*:vPENALIZE_CMD:vTEST_P2:vPENALTY | v:vPENALIZE_CMD
+y:vPENALIZE_CMD| r.: | v:vN_OP_SCORE 
+
+l:lSCORING_COMPLETE
+
+
+#---| UPDATE MOVE COUNTS |----
+r*:vCMD_ADD:vTEST_P1:vN_OP_MOVES | v:vMOVE_CMD
+r*:vMOVE_CMD:vTEST_P2:vINCR_1 | v:vMOVE_CMD
+y:vMOVE_CMD| r.: | v:vN_OP_MOVES
+
+j:lPLAYMODE #loop game mode...
+
+
+###############################
+# FINISH GAME
+###############################
+l:lFINISH
+i!:{GAME OVER AFTER } | x*!:vN_OP_MOVES | x!:{ MOVES!} | v:vMSG_OP_STATUS
+y:vFIELD
+x!:{
+---| THANKS for PLAYING LUCKY 101! |---
+}
+| x*!:vMSG_OP_SCORE 
+| x!:{ | STATUS: }
+| x*!:vMSG_OP_STATUS 
+
+#That's it! SEND BUG REPORTS to DEV:
+#Joseph W.: joewillrich@gmail.com
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: LUCKY 101 v1}
+  \label{FIGL1}
+  \vspace{1cm}
+
+
+ \large
+ %\centering  
+ \raggedright %force normal/left-alignment  
+  
+ 
+ \textbf{\hyperref[FIGL1]{Figure \ref{FIGL1}}} is the latest (\textbf{source-code}) edition of this game as of this writing --- \textbf{LUCKY 101 v1}. However, for a more up-to-date edition, or in case one wishes to look at the code, modify or run it like on the Linux, Unix, Windows of MAC OS command-line on the WEB, the most recent version should be what you might find or run directly and live via:
+  
+  
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/cd710b7713232f495d45156e610bfb3f/raw/lucky_101_game.tea}
+
+\vspace{1em}
+
+
+\textbf{ALTERNATIVELY} just use the short-link: \url{https://bit.ly/lucky101game}
+
+Example screenshots of this game in use are shown hereafter...
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/lucky_101_game_landing_screen.png}\\
+   \caption{LUCKY 101 game landing screen}
+  \label{FIGLUCK101}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/lucky_101_game_session_screen.png}\\
+   \caption{LUCKY 101 game session screen}
+  \label{FIGLUCK102}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/lucky_101_game_final_screen.png}\\
+   \caption{LUCKY 101 game FINAL screen}
+  \label{FIGLUCK103}
+  \end{center}
+\end{figure}
 
 
 

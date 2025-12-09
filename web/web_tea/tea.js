@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.1.9" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.2.0" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -227,8 +227,8 @@ export class TEA_RunTime {
                     var cleanlBlockName = lBlockName.trim()
                     if (labelblocks.hasOwnProperty(cleanlBlockName)) {
                         if (!initial_labelblocks.hasOwnProperty(cleanlBlockName)) {
-                                debug(`[ERROR] Instruction ${i} trying to duplicate an Existenting Block Name [${cleanlBlockName}]`)
-                                debug(`[INFO] Current L-BLOCKS: \n${JSON.stringify(labelblocks)}`)
+                                this.debug(`[ERROR] Instruction ${i} trying to duplicate an Existenting Block Name [${cleanlBlockName}]`)
+                                this.debug(`[INFO] Current L-BLOCKS: \n${JSON.stringify(labelblocks)}`)
                                 throw new Error("[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL")
                         } else{
                             // allow to override
@@ -1152,6 +1152,75 @@ export class TEA_RunTime {
             }
         }
 
+        if(tc == "F*"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+
+            if(params.length == 0){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return [io,_ATPI]
+            }
+
+            if(params.length == 1){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with No Labels!`)
+                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                throw new Error(`[ERROR] Fork Instruction ${ti} Invoked with No Labels!`)
+            }
+
+            if(params.length == 2){
+                var vrtest = this.extract_str(params[0]) // the pattern vault
+                var rtest = this.vault_get(vrtest) // the pattern
+                var tblock = params[1] // where to jump to if matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                ) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI += 1;
+                }
+
+                return [io,_ATPI]
+            }
+            else {
+                var vrtest = this.extract_str(params[0]) // the pattern vault
+                var rtest = this.vault_get(vrtest) // the pattern
+                var tblock = params[1] // where to jump if matched
+                var fblock = params[2] // where to jump if not matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+                if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                ) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI = this.LABELBLOCKS[fblock];
+                }
+
+                return [io,_ATPI]
+            }
+        }
+
         if(tc == "F!"){
             var params = tpe_str.split(TEA_RunTime.TIPED)
 
@@ -1191,6 +1260,76 @@ export class TEA_RunTime {
             }
             else {
                 var rtest = this.extract_str(params[0]) // the pattern
+                var tblock = params[1] // where to jump if matched
+                var fblock = params[2] // where to jump if not matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+                if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (!(
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                )) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI = this.LABELBLOCKS[fblock];
+                }
+
+                return [io,_ATPI]
+            }
+
+        }
+
+        if(tc == "F*!"){
+            var params = tpe_str.split(TEA_RunTime.TIPED)
+
+            if(params.length == 0){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return [io,_ATPI]
+            }
+
+            if(params.length == 1){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with No Labels!`)
+                this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                throw new Error(`[ERROR] Fork Instruction ${ti} Invoked with No Labels!`)
+            }
+
+            if(params.length == 2){
+                var vrtest = this.extract_str(params[0]) // the pattern vault
+                var rtest = this.vault_get(vrtest) // the pattern
+                var tblock = params[1] // where to jump to if NOT matched
+                if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
+                        this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
+                        this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
+                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                }
+
+                if (!(
+                    new RegExp(rtest).test(io) ||                     // equivalent to re.search
+                    io.match(new RegExp(`^${rtest}`)) ||              // equivalent to re.match
+                    rtest === io ||                                   // exact string match
+                    io.includes(rtest)                                // substring presence
+                )) {
+                    _ATPI = this.LABELBLOCKS[tblock];
+                } else {
+                    _ATPI += 1;
+                }
+
+                return [io,_ATPI]
+            }
+            else {
+                var vrtest = this.extract_str(params[0]) // the pattern vault
+                var rtest = this.vault_get(vrtest) // the pattern
                 var tblock = params[1] // where to jump if matched
                 var fblock = params[2] // where to jump if not matched
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
@@ -1300,19 +1439,26 @@ export class TEA_RunTime {
 
         if(tc == "G*!"){
             var params = tpe_str.split(TEA_RunTime.TIPED)
-            if(params.length < 3){
-                // INERT: do nothing
-                // INERT
-                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+            if(params.length == 1){ //g*!:vGLUE
+                var vglue = this.extract_str(params[0])
+                var glue = this.vault_get(vglue)
+                io = io.replace(new RegExp(TEA_RunTime.RE_WHITE_SPACE, 'g'), glue);
             }
             else{
-                var glue = this.vault_get(this.extract_str(params[0]))
-                var vaults = params.slice(1)
-                var vals = []
-                for(let v of vaults){
-                    vals.push(this.vault_get(v))
+                if(params.length < 3){
+                    // INERT: do nothing
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
                 }
-                io = vals.join(glue)
+                else{
+                    var glue = this.vault_get(this.extract_str(params[0]))
+                    var vaults = params.slice(1)
+                    var vals = []
+                    for(let v of vaults){
+                        vals.push(this.vault_get(v))
+                    }
+                    io = vals.join(glue)
+                }
             }
         }
         return io
@@ -1745,7 +1891,7 @@ export class TEA_RunTime {
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
             if(TEA_RunTime.is_empty(tpe_str)){
                 if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
-                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    this.debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
                     throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
                 }
                 input_str = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
@@ -1756,7 +1902,7 @@ export class TEA_RunTime {
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
             if(TEA_RunTime.is_empty(tpe_str)){
                 if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
-                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    this.debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
                     throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
                 }
                 input_str = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
@@ -2797,7 +2943,7 @@ export class TEA_RunTime {
         if(tc == "V!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
-                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    this.debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
                     throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
                 }
                 var vVALUE = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
@@ -3087,7 +3233,7 @@ export class TEA_RunTime {
         if(tc == "Y"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
-                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    this.debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
                     throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
                 }
                 var vVALUE = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)
@@ -3105,7 +3251,7 @@ export class TEA_RunTime {
         if(tc == "Y!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 if (!this.VAULTS.hasOwnProperty(TEA_RunTime.vDEFAULT_VAULT)) {
-                    debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
+                    this.debug(`[ERROR] Instruction ${ti} trying to access DEFAULT VAULT before it is set!`)
                     throw new Error("[MEMORY ERROR] ATTEMPT to ACCESS unset DEFAULT VAULT")
                 }
                 var vVALUE = this.vault_get(TEA_RunTime.vDEFAULT_VAULT)

@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.9"
+VERSION = "1.2.0"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -385,7 +385,11 @@ class TEA_RunTime:
             # Use host-language mathematics
             if TEA_RunTime.DEBUG:
                 print(f"***Evaluating MATHEMATICS EXPRESSION: [{val}]")
-            return str(eval(val))
+            val = str(eval(val))
+            if val in ['True', 'False']: #massage booleans to match WEB TEA
+                return val.lower()
+            else:
+                return val
 
         def util_salt_string(val, salt, injection_limit = None, llimit=None):
             l_val = len(val)
@@ -598,7 +602,7 @@ class TEA_RunTime:
                 if isinstance(data, dict):
                     encoded_data = urllib.parse.urlencode(data).encode('utf-8')
                 else:
-                    encoded_data = data.encode('utf-8') if data else data
+                    encoded_data = data.encode('utf-8') if data else None
                     request = urllib.request.Request(url, data=encoded_data, method='POST')
                     # Set the appropriate header for form data
                     request.add_header('Content-Type', 'application/x-www-form-urlencoded')
@@ -926,6 +930,52 @@ class TEA_RunTime:
                         _ATPI = LABELBLOCKS[fblock]
                     return io,_ATPI
 
+
+            if tc == "F*":
+                params = tpe_str.split(TEA_RunTime.TIPED)
+                if len(params) == 0:
+                    return io,_ATPI
+                if len(params) == 1:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                    raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
+                if len(params) == 2:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
+                    tblock = params[1]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI += 1
+                    return io,_ATPI
+                else:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
+                    tblock = params[1]
+                    fblock = params[2]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    if not (fblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI = LABELBLOCKS[fblock]
+                    return io,_ATPI
+
+
             if tc == "F!":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) == 0:
@@ -949,6 +999,50 @@ class TEA_RunTime:
                     return io,_ATPI
                 else:
                     rtest = self.extract_str(params[0])
+                    tblock = params[1]
+                    fblock = params[2]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    if not (fblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI = LABELBLOCKS[fblock]
+                    return io,_ATPI
+
+
+            if tc == "F*!":
+                params = tpe_str.split(TEA_RunTime.TIPED)
+                if len(params) == 0:
+                    return io,_ATPI
+                if len(params) == 1:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
+                    raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
+                if len(params) == 2:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
+                    tblock = params[1]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI += 1
+                    return io,_ATPI
+                else:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
                     tblock = params[1]
                     fblock = params[2]
                     if not (tblock in LABELBLOCKS):
@@ -1020,15 +1114,20 @@ class TEA_RunTime:
                     io = glue.join(vals)
             if tc == "G*!":
                 params = tpe_str.split(TEA_RunTime.TIPED)
-                if len(params) < 3:
-                    pass
+                if len(params) == 1:
+                    vglue = self.extract_str(params[0])
+                    glue = vault_get(vglue)
+                    io = re.sub(TEA_RunTime.RE_WHITE_SPACE, glue, io)
                 else:
-                    glue = vault_get(self.extract_str(params[0]))
-                    vaults = params[1:]
-                    vals = []
-                    for v in vaults:
-                        vals.append(vault_get(v))
-                    io = glue.join(vals)
+                    if len(params) < 3:
+                        pass
+                    else:
+                        glue = vault_get(self.extract_str(params[0]))
+                        vaults = params[1:]
+                        vals = []
+                        for v in vaults:
+                            vals.append(vault_get(v))
+                        io = glue.join(vals)
             return io
 
 

@@ -1,16 +1,33 @@
-#!/usr/env tttt
-#----- Example from the TAZ Manuscript: https://www.academia.edu/resource/work/122871672
-# TEA data processing prog with some kind of error handling
+# TEA data processing program
+# with some kind of error handling
+
 v:vLOG:{--No Processing Yet--} 
+
+#start block to process fetching data online
 l:FETCH
-w!: https://pastebin.org/KYC.csv
-f!:^$:PROCESS:ERROR | # process iff data is not empty
-l:PROCESS
-v:vDATA 
-z!: date –now | v:vDATE
+# required to be some non-empty result
+i!:{} | w!: https://pastebin.org/KYC.csv 
+
+# test what we obtained...
+f!:^$:lPROCESS:lERROR 
+
+# we only reach this block if we got non-empty data
+l:lPROCESS
+v:vDATA # store data we got
+z.:DATE | v:vDATE
+
+#update log
+v:vLOG:{--Finished Processing--} 
+
 # now combine current date & logs with the data
-g*:{---}:vDATE:vLOG | q!: | # end by returning data report
-l:ERROR 
-| v:vERROR:{--Data Access Error--}
-g*:{***}:vLOG:vERROR | v:vLOG | # update the log
-j:FETCH | # then re-try the data processing
+g*:{
+---
+}:vDATA:vDATE:vLOG | q!: | # end by returning data report
+
+# we only reach this block if we didn't get data
+l:lERROR 
+v:vERROR:{--Data Access Error--}
+g*:{
+***
+}:vLOG:vERROR | v:vLOG | # update the log
+#j:FETCH | # then re-try the data processing
