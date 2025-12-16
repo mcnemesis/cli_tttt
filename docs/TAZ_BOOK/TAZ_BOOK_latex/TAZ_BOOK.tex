@@ -4607,6 +4607,8 @@ And for completeness's sake, compare this against the game as it runs on WEB TEA
 \end{figure}
 
 
+
+
 \subsection{EXAMPLE 2: The LUMTAUTO Occult Language Message Encoder}
 \label{SECEXAMP12}
 
@@ -5842,9 +5844,10 @@ OR VIA short-url:
 	\textbf{NAME} & KEEP\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
+	\item \textbf{Process AI at line-level} --- {\small only TEA instruction that does this, and all its use-cases center around this.}
 	\item Conditionally filter out the contents of AI
 	\item Keep only what matters in a text, based on a user-specified pattern
-	\item \textbf{Process AI at line-level} --- {\small only TEA instruction that does this}
+	
 	\item Keep only lines that DO NOT MATCH a given PATTERN
 	\item Construct DYNAMIC FILTERS
 	\end{enumerate}\\
@@ -5940,8 +5943,13 @@ In terms of TEA utilities for throwing things out of strings, the Keep command m
 \section{EXAMPLE APPLICATIONS of K:}
 \label{SECEXAMPK}
 
-  
-blah blah
+
+The cases that especially utilize the \textbf{KEEP} TEA primitive are numerous, and more importantly, as introduced in the tables on both the Purpose and Semantics of this instruction, are especially related to having to process text at line-level, and with either static or dynamic filters as specified in the command signature.
+
+\vspace{2em}
+
+Talking of which, a good and non-trivial example application leveraging \texttt{K:} that we have already encountered in this book, is that of the \textbf{magical language transformer}\cite{lutalo_2025_grimlumtauto} --- \textbf{LUMTAUTO}, covered in \textbf{\hyperref[SECEXAMP12]{Section \ref{SECEXAMP12}}}. However, in this next section, we shall especially call out a case whose operations significantly hinge on use of this command.
+
 
 \subsection{EXAMPLE 1: }
 \label{SECEXAMP1K}
