@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.0" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.2.1" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -551,6 +551,50 @@ export class TEA_RunTime {
         this.debug(`--[util]-| ${mode} Unique Char Tally [${JSON.stringify(tally)}]`)
         const result = tally.map(data => data['c']).join(TEA_RunTime.EMPTY_STR);
         return result;
+    }
+
+    util_str_align_center(val) {
+      /**
+       * Centers each line in a multi-line string based on the longest line,
+       * padding both left and right so all lines have equal width.
+       * This mimics Microsoft Word's center alignment behavior.
+       *
+       * @param {string} val - A string that may contain multiple lines.
+       * @returns {string} - A new string with each line centered and padded to equal width.
+       */
+      this.debug(`--[util]-| Applying Transform: ALIGN CENTER to [${val}]`)
+      if (typeof val !== 'string') return '';
+
+      const lines = val.split(/\r?\n/);
+      if (lines.length === 0) return '';
+
+      // Trim each line and find the maximum length
+      const trimmedLines = lines.map(line => line.trim());
+      const maxWidth = Math.max(...trimmedLines.map(line => line.length));
+
+      // Center each line with equal padding on both sides
+      const centeredLines = trimmedLines.map(line => {
+        const totalPadding = maxWidth - line.length;
+        const leftPadding = Math.floor(totalPadding / 2);
+        const rightPadding = totalPadding - leftPadding;
+        return ' '.repeat(leftPadding) + line + ' '.repeat(rightPadding);
+      });
+
+      return centeredLines.join(TEA_RunTime.NL);
+    }
+
+
+    util_str_trim(val) {
+      this.debug(`--[util]-| Applying Transform: TRIM+LEFT ALIGN to [${val}]`)
+      if (typeof val !== 'string') return '';
+
+      const lines = val.split(/\r?\n/);
+      if (lines.length === 0) return '';
+
+      // Trim each line and find the maximum length
+      const trimmedLines = lines.map(line => line.trim());
+
+      return trimmedLines.join(TEA_RunTime.NL);
     }
 
 
@@ -2740,6 +2784,54 @@ export class TEA_RunTime {
                 var vault = tpe_str
                 var input_str = this.vault_get(vault)
                 return this.util_rightmost_triangular_reduction(input_str)
+            }
+        }
+
+
+        if(tc == "T."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                    return io
+                }
+                else{
+                    return this.util_str_align_center(io)
+                }
+            }
+            else{
+                    var input_str = tpe_str
+                    return this.util_str_align_center(input_str)
+            }
+        }
+
+        if(tc == "T!."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                if(TEA_RunTime.is_empty(io)){
+                    // INERT
+                    this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                    return io
+                }
+                else{
+                    return this.util_str_trim(io)
+                }
+            }
+            else{
+                    var input_str = tpe_str
+                    return this.util_str_trim(input_str)
+            }
+        }
+
+        if(tc == "T*!."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+                return io
+            }
+            else{
+                var vault = tpe_str
+                var input_str = this.vault_get(vault)
+                return this.util_str_trim(input_str)
             }
         }
 
