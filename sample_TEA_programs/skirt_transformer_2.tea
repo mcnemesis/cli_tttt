@@ -1,8 +1,78 @@
-# The SKIRT Transformer II
-# Part of Standard TEAS Collection: https://gist.github.com/mcnemesis/bc09e47650c4a5741bab714d91fae0fe
+#====| THE SKIRT DESIGNER |====
+#===============================
+#Constants we'll need
+v:vN_MIN_HEIGHT:{5} #minimum skirt height
+#skip triangle apex by height to form proper skirt shape
+v:vN_SKIP_HEIGHT:{2} 
+v:vOP_LT:{<} #operator for comparison
+v:vOP_INCR:{+1} #increment by 1
+
+#Fist, GENERATE BASELINE SKIRT PATTERN
+l:lGEN
 i!:*-*
-r!:\*:--\n--*\n*
+r!:\*:{--
+--*}
 a!:
 k:^[*].*
 a!:
 t!:
+m: | h!:{ } 
+v:vSKIRT_PATTERN #now store that pattern
+t.!: 
+f:^$:lGEN # incase its empty, re-generate
+
+#=====================================
+#Then, take that 1-sided pattern and
+#build a symmetrical pattern from it
+#=====================================
+v:vSKIRT:{}
+v:vNL:{
+}
+y:vSKIRT_PATTERN | v:vINDATA_ORIG
+
+l:lPREPROCESS
+r!:{\n}:{#} #insert marker where newlines were
+v:vMARKED_PATTERN
+d!:{#} | v: | y!: | v:vN_HEIGHT | #compute and store height of skirt
+
+#test if skirt height is okay, regenerate if skirt too short
+g*:{}:vN_HEIGHT:vOP_LT:vN_MIN_HEIGHT  | r.: | f:^true$:lGEN
+
+#skirt is of proper height, can proceed...
+y:vMARKED_PATTERN
+h!:{#}
+v:vINDATA
+
+#----| Start Constructing Skirt Pattern Line-by-Line |----
+v:vN_LINE_INDEX:{0}
+l:lSTART
+y:vINDATA
+f:^$:lFINISH
+
+k!:{#} #keep lines without the marker
+v:vLINE | t.!: # trim leading white-space...
+#then build symmetrical pattern...
+m!: | v:vLINEMIRROR | g*:{}:vLINE:vLINEMIRROR | v:vSYMLINE
+
+#test if we should skip current line or not
+g*:{}:vN_LINE_INDEX:vOP_LT:vN_SKIP_HEIGHT  | r.: | f:^true$:lSKIP:lADDLINE
+l:lADDLINE
+g*:{}:vSKIRT:vSYMLINE:vNL | v:vSKIRT
+
+l:lSKIP
+#increment line counter
+g*:{}:vN_LINE_INDEX:vOP_INCR| r.: | v:vN_LINE_INDEX
+
+y:vINDATA
+k:{#} #only keep marked lines
+#only remove first marker
+r:{#}:{}
+d:^[ ]* # and trim out leading white-space...
+v:vINDATA #update data to process
+j:lSTART #iterate!
+
+#--------------------------
+#Present Final Skirt Design
+#--------------------------
+l:lFINISH
+y:vSKIRT | t.: 

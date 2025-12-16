@@ -1290,7 +1290,7 @@ h!:,
 d:,
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA EXAMPLE: Numerically Sorting Words/Values/Numbers in TEA}
+  \caption{TEA EXAMPLE: Numerically Sorting Words/Values/Numbers in WEB TEA}
   \label{FIGB6}
 \end{figure}
 
@@ -5951,9 +5951,212 @@ The cases that especially utilize the \textbf{KEEP} TEA primitive are numerous, 
 Talking of which, a good and non-trivial example application leveraging \texttt{K:} that we have already encountered in this book, is that of the \textbf{magical language transformer}\cite{lutalo_2025_grimlumtauto} --- \textbf{LUMTAUTO}, covered in \textbf{\hyperref[SECEXAMP12]{Section \ref{SECEXAMP12}}}. However, in this next section, we shall especially call out a case whose operations significantly hinge on use of this command.
 
 
-\subsection{EXAMPLE 1: }
+\subsection{EXAMPLE 1: SKIRT DESIGNING PROGRAM}
 \label{SECEXAMP1K}
 
+
+The following program is one of the interesting cases of doing \textbf{image generation} using TEA programming. The program originally was but a simple little script part of the original examples of using TEA on the original TTTT mobile app with a limited instruction set, but has now been evolved and enhanced so that it applies some useful logic and design constraints such as not allowing empty or very short skirt designs, but also that the designs thus computed are presented in a symmetrical pattern and with the skirt properly displayed with its top and bottom well aligned in portrait mode.
+
+\vspace{2em}
+
+The designs are simple, and shall appear as a kind of \textbf{ASCII ART}, but otherwise, an interested tailor or designer can leverage the basic schematic presented, and from it develop a proper normal or extraordinary skirt design!
+
+\vspace{2em}
+
+The essential TEA source code for this program is as shown hereafter...
+
+
+\vspace{2em}
+
+
+%\begin{figure}[H]
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SKIRT DESIGN IMAGE GENERATOR, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#====| THE SKIRT DESIGNER |====
+#===============================
+#Constants we'll need
+v:vN_MIN_HEIGHT:{5} #minimum skirt height
+#skip triangle apex by height to form proper skirt shape
+v:vN_SKIP_HEIGHT:{2} 
+v:vOP_LT:{<} #operator for comparison
+v:vOP_INCR:{+1} #increment by 1
+
+#Fist, GENERATE BASELINE SKIRT PATTERN
+l:lGEN
+i!:*-*
+r!:\*:{--
+--*}
+a!:
+k:^[*].*
+a!:
+t!:
+m: | h!:{ } 
+v:vSKIRT_PATTERN #now store that pattern
+t.!: 
+f:^$:lGEN # incase its empty, re-generate
+
+#=====================================
+#Then, take that 1-sided pattern and
+#build a symmetrical pattern from it
+#=====================================
+v:vSKIRT:{}
+v:vNL:{
+}
+y:vSKIRT_PATTERN | v:vINDATA_ORIG
+
+l:lPREPROCESS
+r!:{\n}:{#} #insert marker where newlines were
+v:vMARKED_PATTERN
+d!:{#} | v: | y!: | v:vN_HEIGHT | #compute and store height of skirt
+
+#test if skirt height is okay, regenerate if skirt too short
+g*:{}:vN_HEIGHT:vOP_LT:vN_MIN_HEIGHT  | r.: | f:^true$:lGEN
+
+#skirt is of proper height, can proceed...
+y:vMARKED_PATTERN
+h!:{#}
+v:vINDATA
+
+#----| Start Constructing Skirt Pattern Line-by-Line |----
+v:vN_LINE_INDEX:{0}
+l:lSTART
+y:vINDATA
+f:^$:lFINISH
+
+k!:{#} #keep lines without the marker
+v:vLINE | t.!: # trim leading white-space...
+#then build symmetrical pattern...
+m!: | v:vLINEMIRROR | g*:{}:vLINE:vLINEMIRROR | v:vSYMLINE
+
+#test if we should skip current line or not
+g*:{}:vN_LINE_INDEX:vOP_LT:vN_SKIP_HEIGHT  | r.: | f:^true$:lSKIP:lADDLINE
+l:lADDLINE
+g*:{}:vSKIRT:vSYMLINE:vNL | v:vSKIRT
+
+l:lSKIP
+#increment line counter
+g*:{}:vN_LINE_INDEX:vOP_INCR| r.: | v:vN_LINE_INDEX
+
+y:vINDATA
+k:{#} #only keep marked lines
+#only remove first marker
+r:{#}:{}
+d:^[ ]* # and trim out leading white-space...
+v:vINDATA #update data to process
+j:lSTART #iterate!
+
+#--------------------------
+#Present Final Skirt Design
+#--------------------------
+l:lFINISH
+y:vSKIRT | t.: 
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: SKIRT DESIGN IMAGE GENERATOR}
+  \label{FIGKEX1}
+  \vspace{1cm}
+
+
+ \large
+ %\centering  
+ \raggedright %force normal/left-alignment  
+  
+
+We can appreciate the designs this program might inspire, as shown in the following example outputs of running that program ---- note that it currently accepts no user inputs or parameters, though, a concerned designer or user might tweak some of the key algorithm parameters directly in the code such as the minimum baseline-skirt-height (\texttt{v:vN\_MIN\_HEIGHT:{5}}) and closely related, and perhaps for designing \textbf{mini-skirts}, increasing the value of the skip parameter (\texttt{v:vN\_SKIP\_HEIGHT:{2}}) --- which, for meaningful designs, should not exceed the value of the minimum baseline-skirt-height. That said, checkout the skirt designs using the defaults and some customized configurations...
+
+
+\vspace{2em}
+
+
+\begin{figure}[H]
+\LARGE
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=TEA Output from \textbf{\autoref{FIGKEX1}} --- SKIRT DESIGN GENERATOR]
+  \begin{lstlisting}
+ 
+    ------    
+   ---**---   
+  ---*--*---  
+ ---*----*--- 
+---*--**--*---
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA EXAMPLE OUTPUT: SKIRT DESIGN 1 --- a mini-skirt}
+\end{figure}
+
+
+\begin{figure}[H]
+\LARGE
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=TEA Output from \textbf{\autoref{FIGKEX1}} --- SKIRT DESIGN GENERATOR]
+  \begin{lstlisting}
+ 
+     *-**-*     
+     *-**-*     
+       --       
+     *-**-*     
+      ----      
+     *-**-*     
+     ------     
+     *-**-*     
+    --------    
+     *-**-*     
+   ----------   
+     *-**-*     
+  ------------  
+     *-**-*     
+ -------------- 
+     *-**-*     
+----------------
+     *-**-*     
+                
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA EXAMPLE OUTPUT: SKIRT DESIGN 2 --- almost looks like a dress!}
+\end{figure}
+
+
+\begin{figure}[H]
+\LARGE
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=TEA Output from \textbf{\autoref{FIGKEX1}} --- SKIRT DESIGN GENERATOR]
+  \begin{lstlisting}
+ 
+      -*--*-      
+     -*----*-     
+    -*--**--*-    
+   -*--*--*--*-   
+  -*--*----*--*-  
+ -*--*------*--*- 
+-*--*--------*--*-
+                  
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA EXAMPLE OUTPUT: SKIRT DESIGN 3 --- a decorated skirt}
+\end{figure}
+
+
+\begin{figure}[H]
+\LARGE
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=TEA Output from \textbf{\autoref{FIGKEX1}} --- SKIRT DESIGN GENERATOR]
+  \begin{lstlisting}
+ 
+    ------    
+   --------   
+  ----------  
+ -----**----- 
+-----****-----
+                       
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA EXAMPLE OUTPUT: SKIRT DESIGN 4 --- a plain skirt with frontal decoration}
+\end{figure}
 
 
 
