@@ -59,9 +59,6 @@
 				<div class="collapse navbar-collapse" id="navbarScroll">
 				  <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 					<li class="nav-item">
-					  <a class="nav-link" target="_blank" aria-current="page" href="#disqus_thread" title="COMMUNITY: click to leave or read public comment">CHATROOM</a>
-					</li>
-					<li class="nav-item">
 					  <a class="nav-link active" target="_blank" aria-current="page" href="https://github.com/mcnemesis/cli_tttt/" title="Visit Project's Behind The Scenes">TEA Project</a>
 					</li>
 					<li class="nav-item">
@@ -237,7 +234,20 @@
     <div class="row mb-3">
       <div class="col-12">
 
-		<div class="disqus_widget" id="disqus_thread"></div>
+		<!-- Toggle Button (optional) -->
+        <center>
+            <a class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#toggleCollapseDisqus" title="TEA COMMUNITY: click to leave or read public comments" href="#disqus_thread" >
+              Open | Close TEA Community Discussion Section..
+            </a>
+        </center>
+
+		<!-- Collapsible Content -->
+		<div class="collapse " id="toggleCollapseDisqus">
+		  <div class="card card-body">
+				<div class="disqus_widget" id="disqus_thread"></div>
+		  </div>
+		</div>
+
 		<script>
 			/**
 			*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
