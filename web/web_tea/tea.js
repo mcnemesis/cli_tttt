@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.1" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.2.2" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -732,7 +732,7 @@ export class TEA_RunTime {
     }
 
 
-    util_gen_rand_string(size=null, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.EMPTY_STR){
+    util_gen_rand_string(size=null,  glue=TEA_RunTime.EMPTY_STR, alphabet=TEA_RunTime.EXTENDED_ALPHABET){
         var instance_limit = this.util_gen_rand(!TEA_RunTime.is_empty(size)? Number(size) : 100,1)
         if(!TEA_RunTime.is_empty(size)){
             instance_limit = size
@@ -2172,14 +2172,14 @@ export class TEA_RunTime {
                 }
                 else if(params.length == 2){
                     var size = this.extract_str(params[0])
-                    var alphabet = this.extract_str(params[1])
-					io = this.util_gen_rand_string(Number(size), alphabet)
+                    var glue = this.extract_str(params[1])
+					io = this.util_gen_rand_string(Number(size), glue)
                 }
                 else if(params.length == 3){
                     var size = this.extract_str(params[0])
-                    var alphabet = this.extract_str(params[1])
-                    var glue = this.extract_str(params[2])
-					io = this.util_gen_rand_string(Number(size), alphabet, glue)
+                    var glue = this.extract_str(params[1])
+                    var alphabet = this.extract_str(params[2])
+					io = this.util_gen_rand_string(Number(size), glue, alphabet)
                 }
 				else {
                     this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
@@ -2243,16 +2243,16 @@ export class TEA_RunTime {
                     io = this.util_gen_rand_string(Number(size))
                 }
                 else if(params.length == 2){
-                    var vALPHABET = this.extract_str(params[1])
-                    var alphabet = this.vault_get(vALPHABET)
-                    io = this.util_gen_rand_string(Number(size), alphabet)
+                    var vGLUE = this.extract_str(params[1])
+                    var glue = this.vault_get(vGLUE)
+                    io = this.util_gen_rand_string(Number(size), glue)
                 }
                 else if(params.length == 3){
-                    var vALPHABET = this.extract_str(params[1])
-                    var alphabet = this.vault_get(vALPHABET)
-                    var vGLUE = this.extract_str(params[2])
+                    var vGLUE = this.extract_str(params[1])
                     var glue = this.vault_get(vGLUE)
-                    io = this.util_gen_rand_string(Number(size), alphabet, glue)
+                    var vALPHABET = this.extract_str(params[2])
+                    var alphabet = this.vault_get(vALPHABET)
+                    io = this.util_gen_rand_string(Number(size), glue, alphabet)
                 }
                 else{
                     this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)

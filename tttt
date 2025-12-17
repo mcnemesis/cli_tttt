@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.2.1"
+VERSION = "1.2.2"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -350,7 +350,7 @@ class TEA_RunTime:
             return glue.join(permutations)
 
 
-        def util_gen_rand_string(size=None, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.EMPTY_STR):
+        def util_gen_rand_string(size=None,  glue=TEA_RunTime.EMPTY_STR, alphabet=TEA_RunTime.EXTENDED_ALPHABET):
             instance_limit = util_gen_rand(int(size) if size is not None else 100,ll=1)
             if size is not None:
                 instance_limit = size
@@ -1676,12 +1676,12 @@ class TEA_RunTime:
                         io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
                         size = self.extract_str(params[0])
-                        alphabet = self.extract_str(params[1])
-                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
+                        glue = self.extract_str(params[1])
+                        io = util_gen_rand_string(size=int(size), glue=glue)
                     elif len(params) == 3:
                         size = self.extract_str(params[0])
-                        alphabet = self.extract_str(params[1])
-                        glue = self.extract_str(params[2])
+                        glue = self.extract_str(params[1])
+                        alphabet = self.extract_str(params[2])
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1733,14 +1733,14 @@ class TEA_RunTime:
                     if len(params) == 1:
                         io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
-                        vALPHABET = self.extract_str(params[1])
-                        alphabet = vault_get(vALPHABET)
-                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
-                    elif len(params) == 3:
-                        vALPHABET = self.extract_str(params[1])
-                        alphabet = vault_get(vALPHABET)
-                        vGLUE = self.extract_str(params[2])
+                        vGLUE = self.extract_str(params[1])
                         glue = vault_get(vGLUE)
+                        io = util_gen_rand_string(size=int(size), glue=glue)
+                    elif len(params) == 3:
+                        vGLUE = self.extract_str(params[1])
+                        glue = vault_get(vGLUE)
+                        vALPHABET = self.extract_str(params[2])
+                        alphabet = vault_get(vALPHABET)
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
