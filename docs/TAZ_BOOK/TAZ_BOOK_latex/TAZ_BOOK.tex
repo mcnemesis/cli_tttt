@@ -4289,7 +4289,7 @@ Example screenshots of this game in use are shown hereafter...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TAZ SECTION: I
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{I: Interact}
+\chapter{I: INTERACT}
 \label{SECI}
 
 
@@ -4508,9 +4508,9 @@ Finally, note that I: is not only the ONLY way to block a program and prompt for
   
  
  
- Concerning using the GUI-friendly \textbf{I*..} TEA commands. Note that, for all practical purposes, apart from the fact that \textbf{I*:} and \textbf{I*!:} both present an input prompt window without any prompt message (if invoked when also AI is empty or unset) --- which defers from \textbf{I:} and \textbf{I!:} behavior () --- otherwise, all \textbf{I*..} commands work the same for TEA anywhere; essentially, they render a GUI window prompting the user for some input, which is then set as the AI/IO.
+Concerning using the GUI-friendly \textbf{I*..} TEA commands. Note that, for all practical purposes, apart from the fact that \textbf{I*:} and \textbf{I*!:} both present an input prompt window (in WEB TEA particularly, otherwise a normal CLI prompt) without any prompt message (if invoked when also AI is empty or unset) --- which defers from \textbf{I:} and \textbf{I!:} behavior --- otherwise, all \textbf{I*..} commands work the same for TEA anywhere; essentially, they render a GUI window prompting the user for some input, which is then set as the AI/IO.
  
- That said, note that, for WEB TEA, using this feature doesn't require configuring anything more than happens during the installation of TEA. Otherwise, for command-line TEA, especially where the installation didn't occur via the standard installation scripts or method, one might want to ensure they have installed the extra external requirement to make the GUI/window feature work well as expected. Details follow in the next note...
+That said, note that, for WEB TEA, using this feature doesn't require configuring anything more than happens during the installation of TEA. Otherwise, for command-line TEA, especially where the installation didn't occur via the standard installation scripts or method, one might want to ensure they have installed the extra external requirement to make the GUI/window feature work well as expected. Details follow in the next note...
  
  {\centering
  
@@ -6159,9 +6159,27 @@ We can appreciate the designs this program might inspire, as shown in the follow
 \end{figure}
 
 
+\vspace{2em}
+
+For purposes of helping put this application and associated research into perspective, note that part of the team at Nuchwezi Research has been significantly invested in studying and exploring art and fashion concepts via the \textbf{Menuza Bytes}\footnote{Refer to \url{https://menuzabytes.nuchwezi.com}} shop (an ICT-driven art, fashion and souvenir items outlet that is also a subsidiary of parent company Nuchwezi). And among popular items usually exhibited or stocked at Menuza Bytes, are especially fashion items for girls --- see examples in \textbf{\hyperref[FIGKEX1]{Figure \ref{FIGKEX1}}} and \textbf{\hyperref[FIGKEX2]{Figure \ref{FIGKEX2}}}, so that, one might sometimes assume that Nuchwezi has indeed conducted sufficient research on not only the computerized generation of girl's skirt designs, but also in their careful/thoughtful identification!
 
 
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[height=0.9\textheight]{resources/images/skirt_detection}\\
+   \caption{A Computer Vision simulation of successfully identifying a SKIRT with high confidence}
+  \label{FIGKEX1}
+  \end{center}
+\end{figure}
 
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[height=0.9\textheight]{resources/images/skirt_failed_detection}\\
+   \caption{A Computer Vision simulation of successfully identifying an ``INVALID SKIRT" with alternative classification shown.}
+  \label{FIGKEX2}
+  \end{center}
+\end{figure}
 
 
 
@@ -6212,7 +6230,7 @@ L: & INERT\\
 
 \rowcolor{lightgray}\bfseries \makecell[l]{ L:LABEL } & Declare a jump position in a TEA program accessible by the name LABEL\\
 
-L!:: & INERT\\
+L!: & INERT\\
 
 \rowcolor{lightgray}\bfseries \makecell[l]{L!:LABEL\\L!:LABEL1:LABEL2:LABEL3:..:LABELN} & Similar to L:, but allows for the same position in the program to be accessible using any of the specified label names or tags, which are expected to be unique not only across the list, but also across the entire TEA Program.\\
 
@@ -6649,7 +6667,289 @@ Q: to QUIT | }|x*!:vMSG_OP_SCORE|x!:{ | STATUS: }|x*!:vMSG_OP_STATUS|i*:|v:vPLAY
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: M
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{M: MIRROR}
+\label{SECM}
 
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & LABEL\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Return the AI reflected about some axis
+	\item Laterally invert text.
+	\item Reverse the order of ordered symbols.
+	\item Reverse the order of ordered words.
+	\item Facilitate vertical inversion of multi-line text --- useful in ASCII ART
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{M:}}
+  \label{TABTAZM}
+\end{table}
+
+
+\section{SEMANTICS of M:}
+\label{SECSEMM}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+m: & Set IO as the lateral reflection of words in AI about the string's origin\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ m:STR } & Same as m:, but operating on STR instead of AI\\
+
+m!: & Set IO as the lateral reflection of everything (characters) in AI about the string's origin\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{m!:STR} & Same as \texttt{m!:}, but operating on STR instead of AI\\
+
+
+m*:vNAME & Same as m:STR, but using  the string stored in the vault with the name vNAME instead of AI. \textbf{Without vNAME, operates on the DEFAULT VAULT.}\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{m*!:vNAME} & Same as m!:STR, but using  the string stored in the vault with the name vNAME instead of AI. Without vNAME, operates on the default vault.\\
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of M:}
+\label{TABSEMM}
+\end{table}
+
+
+\section{NOTES about M:}
+\label{SECNOTEM}
+
+
+The Mirror operations possible with the \textbf{M:} family of TEA commands create many possibilities of generating useful projections of strings---in particular, their [lateral] reflections. Sometimes, merely looking at the same word from a different angle than usual, could allow for different information, or messages to be read from the same baseline text, script or expression. The following example illustrates a lateral reflection of the Latin alphabet:
+
+
+
+\begin{figure}[H]
+\Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=M: EXAMPLE 1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+I!:{AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz} | m!:
+#(= zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA)
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Note that two modes of producing reflections are possible using the M-command space; \textbf{reflection by words} (with \texttt{M:}) and \textbf{reflection by characters} (with \texttt{M!:}). We can tell the difference using the following two examples, both operating on the same basic input string ``a b cdef". The first produces a reflection by word, the other by character:
+
+
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=M: EXAMPLE 2]
+  \begin{lstlisting}[language=TEA]
+i:a b cde|v:|m*:
+# (=cde b a, VAULTS:{'': 'a b cde'}) 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Returns ``cde b a", while 
+
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=M: EXAMPLE 3]
+  \begin{lstlisting}[language=TEA]
+i:a b cde|v:|m*!:
+# (=edc b a, VAULTS:{'': 'a b cde'})
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+Returns ``edc b a". Note that, as with other examples we have encountered in this book, the text shown commented out is but the expression of what would be expected as the output when DEBUG MODE is TURNED ON and the program is run. Below we have two more involved examples too.
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=M: EXAMPLE 4]
+  \begin{lstlisting}[language=TEA]
+i!:{AB}
+v:v1
+m!:
+v:v2
+v:vG:{ }
+v:vP:-[
+v:vS:]-
+g*!:vG:vP:v1:v2:vS
+#=-[ AB BA ]- 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+\begin{figure}[H]
+ \Large
+  \centering
+  \begin{tcolorbox}[teaterminalstyle, title=M: EXAMPLE 5]
+  \begin{lstlisting}[language=TEA]
+i!:{AB}
+v:v1
+m!:
+v:v2
+v:vG:{ }
+v:vP:-[
+v:vS:]-
+g*!:vG:vP:v1:v2:vS
+m:
+#=]- BA AB -[ 
+   \end{lstlisting}
+  \end{tcolorbox}
+\end{figure}
+
+
+
+\section{EXAMPLE APPLICATIONS of M:}
+\label{SECEXAMPM}
+
+  
+The topic of mirror-transforms and their peculiar applications might come as a surprise to most readers of this book, however, this TEA primitive does underlie several useful real-life applications we have already covered, such as \textbf{\hyperref[FIGB5]{Figure \ref{FIGB5}}} that covers the code for a program that computes the largest orthogonal symbol set identity given a sequence of numbers, and in the code-listing shown in \textbf{\hyperref[FIGKEX1]{Figure \ref{FIGKEX1}}} that depicts a TEA program for auto-generating interesting SKIRT designs in form of ascii-art. However, the particular example we are to focus on next, is going to be taken from another book by the author, and which work we might keep returning to because of its interesting, unusual use of TEA programming and the mathematics of Transformatics --- \textbf{NOVUS MODERNUS GRIMOIRE LUMTAUTO}\cite{lutalo_2025_grimlumtauto}, a work on especially \textit{Computational Mysticism}(CM), a topic which perhaps most computer scientists and software engineers have hardly explored nor heard about until the work of Fut. Prof. Joseph Willrich Lutalo.
+
+\vspace{2em}
+
+In the next section then, we shall revisit the ideas first presented in that book, and especially treat of the matter of a certain \textbf{magical language} known as ``The Grand Myrrh". As we did with another application of TEA to the topic of CM also covered elsewhere in this manual (refer to \textbf{\hyperref[SECEXAMP12]{Section \ref{SECEXAMP12}}}), we shall try to reproduce the discussion presented in \cite{lutalo_2025_grimlumtauto} as close as possible.
+
+
+
+
+
+\subsection{EXAMPLE 1: The Grand Myrrh: \textbf{MYRRH LANGUAGE} Transformer}
+\label{SECEXAMP1M}
+
+
+{
+\Large
+
+ %\small
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: The Grand Myrrh Transform, breakable]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
+m!:
+r!:y:yua
+r!:ht:th
+r!:dn:dun
+r!:tn:tan
+r!:rp:rupa
+r!:sy:s y
+r!:tc:tauch
+r!: :a 
+r!:[gG]:su
+r!:[dD]:v
+z:
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{The Grand Myrrh Transform}
+  \label{FIGTEAMYRRH}
+
+}
+
+\vspace{2em}
+
+
+That simple TEA program\footnote{Much more succinct and yet no less powerful than what we saw with LUMTAUTO in its simplest form --- refer to \textbf{\hyperref[FIGLUMTAUTOTEACODE_CLEAN]{Figure \ref{FIGLUMTAUTOTEACODE_CLEAN}}}} has \textbf{a very very powerful application} in Occult Science and Esotericism. Before we move on, note that it is all we need to specify \textbf{the magickal language MYRRH}\footnote{Pronounced ``mira", and also sometimes to be referred to as ``Grand Myrrh", because of the original TEA program it was based on --- early in the days (circa 2021 or so) when TEA was still just a small and niche android app (TTTT) with a very limited instruction set\cite{lutalo2024tea}.}. 
+
+\vspace{2em}
+
+The \textbf{MYRRH Language} can take any ordinary word, phrase or text, and apply some subtle transforms to it that automagically turn it into something of \textbf{the sacred words, words of power or magical spells!}
+
+
+\vspace{2em}
+
+
+Take for example, a basic, very common phrase --- actually, perhaps one of the most \textit{religious test-cases} in Computer Science and Software Engineering ever\footnote{If for no other reason, because all students and initiates of computer programming must at some point have to test their teeth at a new or unfamiliar language, and most likely, their teacher or initiator shall task them to write the so-called ``Hello World Program". But also, it is one of the best test-cases for evaluating or comparing [computer] languages\cite{lutalo2020dnap}.} --- such as: 
+
+\vspace{2em}
+
+
+{\ttfamily
+
+Hello World
+
+}
+
+
+\vspace{2em}
+
+
+Transformed using the MYRRH Transform depicted in \textbf{\hyperref[FIGTEAMYRRH]{Figure \ref{FIGTEAMYRRH}}}, it becomes as an occult conjuration...
+
+\vspace{2em}
+
+{\ttfamily
+\LARGE
+
+avalaraoawa aoalalaeaha
+
+}
+
+\vspace{2em}
+
+
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=0.9\textwidth]{resources/images/spell_casting_simon_the_sorcerer_classic_game}\\
+   \caption{A pixel-art spell-casting scene (generated using Microsoft Copilot) inspired by classic adventure games \textbf{Simon the Sorcerer}}
+  \label{FIGMEX1}
+  \end{center}
+\end{figure}
+
+
+
+Clearly then, the Grand Myrrh language has immediate use as an effective means of preparing payloads for magical incantations in say a ritual, as part of occult mantras or spell casting. Moreover, many technophiles such as computer game enthusiasts might already be familiar with the common-place use of ``magical spells", ``hexing" and such, as many times found being used in both classic and modern adventure video games such as ``Mortal Kombat", ``The Legend of Zelda", ``The Elder Scrolls III:Morrowind", and even more vintage classics such as ``King's Quest" (only available on PC/DOS)\cite{copilot_assistant}. One finds that in such contexts, these spells, mantras, conjurations or hexes are employed as part of the game-play (sometimes even as a core aspect of the game's mechanics), so as to enable the player to active new powers, overcome obstacles, thwart difficult enemies or hurdles, uncover or expose hidden treasures, etc. Thus, much as in the book \textbf{GRIMOIRE LUMTAUTO} the focus was on actual, real-life applications such use of magical words and phrases in spiritualism, religion or reality-transformation, and yet, here we see a history and solid tradition of use of these phenomena and ideas in especially fantasy and adventure games --- mostly for entertainment. We have called these use cases in the two example figures shown --- \textbf{\hyperref[FIGMEX1]{Figure \ref{FIGMEX1}}} created using Copilot, and depicting classic video game scenery, while \textbf{\hyperref[FIGMEX2]{Figure \ref{FIGMEX2}}} is created using the \textbf{GenTube}\footnote{Refer to \url{https://gentube.app/}} image generation and social platform for creators.
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=0.8\textwidth]{resources/images/spell_casting_in_the_elder_scrolls_xbox_game}\\
+   \caption{An AI generated image (via GenTube.app) depicting spell-casting in a modern video game such as \textbf{The Elder Scrolls III: Morrowind}}
+  \label{FIGMEX2}
+  \end{center}
+\end{figure}
+
+
+And talking of use in video games or for creative entertainment purposes, we might for example find it interesting that a command such as ``I Compelled You to Vanish!", when modified slightly and transformed into a magical spell via the above Grand Myrrh transformer, becomes the undeniably barbarous and fierce hex:
+
+\vspace{2em}
+
+{\Large
+
+\textbf{AHASAIANAAVA AOATA AVAEALALAEAPAMAOACA!}
+} 
+
+\vspace{2em}
+
+That surely can compel any demons, bad spirits, monsters or nightmares to readily, if not instantly vanish!
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
