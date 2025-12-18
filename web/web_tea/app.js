@@ -336,8 +336,13 @@ U.click("trig_load_standard_programs", function(){
         var jsonPROGARRAY = JSON.parse(txt);
         var jsonSTANDARDTEAPROGS = {}
         for(let proConf of jsonPROGARRAY){
-            var parts = proConf.split("<>",2);
-            jsonSTANDARDTEAPROGS[parts[0]] = parts[1];
+			var delimiter = "<>";
+			var index = proConf.indexOf(delimiter);
+			if (index !== -1) {
+				var key = proConf.substring(0, index);
+				var value = proConf.substring(index + delimiter.length);
+				jsonSTANDARDTEAPROGS[key] = value;
+			}
         }
         // also store these into database
         DATABASE.set(SETTING_STANDARD_PROGRAMS,JSON.stringify(jsonSTANDARDTEAPROGS));
