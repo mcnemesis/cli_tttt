@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.2.2"
+VERSION = "1.2.4"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -358,6 +358,32 @@ class TEA_RunTime:
                 return glue.join(random.choice(alphabet) for _ in range(instance_limit))
             else:
                 return TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
+
+
+        def util_smart_replace(pattern, replacement, value):
+            '''Replace pattern with replacement in value just once. First, via naive replacement, and if not effective, via regex'''
+            result = value.replace(pattern, replacement, 1)
+            #return if different, otherwise try regex
+            if result != value:
+                self.debug("----[SMART single-REPLACE VIA NAIVE]")
+                return result
+            else:
+                self.debug("----[SMART single-REPLACE VIA REGEX]")
+                result = re.sub(pattern, replacement, value, count=1)
+                return result
+
+        def util_smart_replace_all(pattern, replacement, value):
+            '''Replace pattern with replacement in value just once. First, via naive replacement, and if not effective, via regex'''
+            result = value.replace(pattern, replacement)
+            #return if different, otherwise try regex
+            if result != value:
+                self.debug("----[SMART all-REPLACE VIA NAIVE]")
+                return result
+            else:
+                self.debug("----[SMART all-REPLACE VIA REGEX]")
+                result = re.sub(pattern, replacement, value)
+                return result
+
 
         def util_braille_projection1(val):
             # Define the pattern for non-whitespace characters
@@ -1525,19 +1551,25 @@ class TEA_RunTime:
                 else:
                    params  = tpe_str.split(TEA_RunTime.TIPED)
                    if len(params) == 1:
-                       limit = params[0]
+                       limit = self.extract_str(params[0])
                        io = str(util_gen_rand(int(limit)))
                    if len(params) == 2:
-                       limit,llimit = params
+                       limit = self.extract_str(params[0])
+                       llimit = self.extract_str(params[1])
                        io = str(util_gen_rand(int(limit), ll=llimit))
                    if len(params) == 3:
-                       limit,llimit,size = params
+                       limit = self.extract_str(params[0])
+                       llimit = self.extract_str(params[1])
+                       size = self.extract_str(params[2])
                        nums = []
                        for i in range(int(size)):
                            nums.append(str(util_gen_rand(int(limit), ll=llimit)))
                        io = TEA_RunTime.GLUE.join(nums)
                    if len(params) == 4:
-                       limit,llimit,size,glue = params
+                       limit = self.extract_str(params[0])
+                       llimit = self.extract_str(params[1])
+                       size = self.extract_str(params[2])
+                       glue = self.extract_str(params[3])
                        nums = []
                        for i in range(int(size)):
                            nums.append(str(util_gen_rand(int(limit), ll=llimit)))
@@ -1550,29 +1582,27 @@ class TEA_RunTime:
                 else:
                    params  = tpe_str.split(TEA_RunTime.TIPED)
                    if len(params) == 1:
-                       vlimit = params[0]
+                       vlimit = self.extract_str(params[0])
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
                        io = str(util_gen_rand(int(limit)))
                    if len(params) == 2:
-                       limit,llimit = params
+                       vlimit = self.extract_str(params[0])
+                       vllimit = self.extract_str(params[1])
 
-                       vlimit = limit
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
 
-                       vllimit = llimit
                        llimit = vault_get(vllimit) if len(vllimit) > 0 else 0
 
                        io = str(util_gen_rand(int(limit), ll=llimit))
                    if len(params) == 3:
-                       limit,llimit,size = params
+                       vlimit = self.extract_str(params[0])
+                       vllimit = self.extract_str(params[1])
+                       vsize = self.extract_str(params[2])
 
-                       vlimit = limit
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
 
-                       vllimit = llimit
                        llimit = vault_get(vllimit) if len(vllimit) > 0 else 0
 
-                       vsize = size
                        size = vault_get(vsize) if len(vsize) > 0 else 1
 
                        nums = []
@@ -1580,18 +1610,17 @@ class TEA_RunTime:
                            nums.append(str(util_gen_rand(int(limit), ll=llimit)))
                        io = TEA_RunTime.GLUE.join(nums)
                    if len(params) == 4:
-                       limit,llimit,size,glue = params
+                       vlimit = self.extract_str(params[0])
+                       vllimit = self.extract_str(params[1])
+                       vsize = self.extract_str(params[2])
+                       vglue = self.extract_str(params[3])
 
-                       vlimit = limit
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
 
-                       vllimit = llimit
                        llimit = vault_get(vllimit) if len(vllimit) > 0 else 0
 
-                       vsize = size
                        size = vault_get(vsize) if len(vsize) > 0 else 1
 
-                       vglue = glue
                        glue = vault_get(vglue) if len(vglue) > 0 else TEA_RunTime.GLUE
 
                        nums = []
@@ -1851,7 +1880,7 @@ class TEA_RunTime:
                     else:
                         regex = self.extract_str(params[0])
                         replacement = self.extract_str(params[1])
-                        io = re.sub(regex, replacement, io, count=1)
+                        io = util_smart_replace(regex, replacement, io)
 
             if tc == "R!":
                 if len(tpe_str) == 0:
@@ -1866,7 +1895,7 @@ class TEA_RunTime:
                         regex = self.extract_str(params[0])
                         #print(f"--TEST[ regex: {regex} | param[0]: {params[0]} | tpe_str: {tpe_str} | tpe: {tpe}]")
                         replacement = self.extract_str(params[1])
-                        io = re.sub(regex, replacement, io)
+                        io = util_smart_replace_all(regex, replacement, io)
 
             if tc == "R*":
                 if self.is_empty(tpe_str):
@@ -1891,7 +1920,7 @@ class TEA_RunTime:
                             input_str = vault_get(vname)
                             regex = self.extract_str(vault_get(vregex))
                             replacement = self.extract_str(vault_get(vsubstr))
-                            io = re.sub(regex, replacement, input_str, count=1)
+                            io = util_smart_replace(regex, replacement, input_str)
 
             if tc == "R*!":
                 if self.is_empty(tpe_str):
@@ -1916,7 +1945,7 @@ class TEA_RunTime:
                             input_str = vault_get(vname)
                             regex = self.extract_str(vault_get(vregex))
                             replacement = self.extract_str(vault_get(vsubstr))
-                            io = re.sub(regex, replacement, input_str)
+                            io = util_smart_replace_all(regex, replacement, input_str)
 
             if tc == "R.": #r.: | r.:EXPR | r.*:vEXPR | replace expression equivalent math evaluation
                 if len(tpe_str) == 0:

@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.2" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.2.4" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -637,6 +637,40 @@ export class TEA_RunTime {
         // Use host-language mathematics
         this.debug(`***Evaluating MATHEMATICS EXPRESSION: [${val}]`)
         return String(eval(val))
+
+    }
+
+    util_smart_replace(pattern, replacement, value){
+            /*
+             * Replace pattern with replacement in value just once. First, via naive replacement, and if not effective, via regex
+             * */
+        var result = value.replace(pattern, replacement);
+        if (result !== value){
+            this.debug("----[SMART single-REPLACE VIA NAIVE]")
+            return result;
+        }else {
+            this.debug("----[SMART single-REPLACE VIA REGEX]")
+            var regex = new RegExp(pattern);
+            var result2 = value.replace(regex, replacement);
+            return result2;
+        }
+
+    }
+
+    util_smart_replace_all(pattern, replacement, value){
+            /*
+             * Replace pattern with replacement in value everywhere. First, via naive replacement, and if not effective, via regex
+             * */
+        var result = value.split(pattern).join(replacement);
+        if (result !== value){
+            this.debug("----[SMART all-REPLACE VIA NAIVE]")
+            return result;
+        }else {
+            this.debug("----[SMART all-REPLACE VIA REGEX]")
+            var regex = new RegExp(pattern, 'g')
+            var result2 = value.replace(regex, replacement);
+            return result2;
+        }
 
     }
 
@@ -1980,15 +2014,18 @@ export class TEA_RunTime {
             else{
                var params  = tpe_str.split(TEA_RunTime.TIPED)
                 if(params.length == 1){
-                   var limit = params[0]
+                   var limit = this.extract_str(params[0])
                    io = String(this.util_gen_rand(Number(limit)))
                 }
                 if(params.length == 2){
-                   var [limit,llimit] = params
+                   var limit = this.extract_str(params[0])
+                   var llimit = this.extract_str(params[1])
                    io = String(this.util_gen_rand(Number(limit), Number(llimit)))
                 }
                 if(params.length == 3){
-                   var [limit,llimit,size] = params
+                   var limit = this.extract_str(params[0])
+                   var llimit = this.extract_str(params[1])
+                   var size = this.extract_str(params[2])
                    var nums = []
                    for(var i=0; i < Number(size); i++){
                        nums.push(String(this.util_gen_rand(Number(limit), Number(llimit))))
@@ -1996,7 +2033,10 @@ export class TEA_RunTime {
                    io = nums.join(TEA_RunTime.GLUE)
                 }
                 if(params.length == 4){
-                   var [limit,llimit,size,glue] = params
+                   var limit = this.extract_str(params[0])
+                   var llimit = this.extract_str(params[1])
+                   var size = this.extract_str(params[2])
+                   var glue = this.extract_str(params[3])
                    var nums = []
                    for(var i=0; i < Number(size); i++){
                        nums.push(String(this.util_gen_rand(Number(limit), Number(llimit))))
@@ -2015,31 +2055,29 @@ export class TEA_RunTime {
             else{
                var params  = tpe_str.split(TEA_RunTime.TIPED)
                 if(params.length == 1){
-                   var vlimit = params[0]
+                   var vlimit = this.extract_str(params[0])
                    var limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
                    io = String(this.util_gen_rand(Number(limit)))
                 }
                 if(params.length == 2){
-                   var [limit,llimit] = params
+                   var vlimit = this.extract_str(params[0])
+                   var vllimit = this.extract_str(params[1])
 
-                   var vlimit = limit
                    limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
 
-                   var vllimit = llimit
                    llimit = !TEA_RunTime.is_empty(vllimit) ? this.vault_get(vllimit) : 0
 
                    io = String(this.util_gen_rand(Number(limit), Number(llimit)))
                 }
                 if(params.length == 3){
-                   var [limit,llimit,size] = params
+                   var vlimit = this.extract_str(params[0])
+                   var vllimit = this.extract_str(params[1])
+                   var vsize = this.extract_str(params[2])
 
-                   var vlimit = limit
                    limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
 
-                   var vllimit = llimit
                    llimit = !TEA_RunTime.is_empty(vllimit) ? this.vault_get(vllimit) : 0
 
-                   var vsize = size
                    size = !TEA_RunTime.is_empty(vsize) ? this.vault_get(vsize) : 1
 
                    var nums = []
@@ -2049,18 +2087,17 @@ export class TEA_RunTime {
                    io = nums.join(TEA_RunTime.GLUE)
                 }
                 if(params.length == 4){
-                   var [limit,llimit,size,glue] = params
+                   var vlimit = this.extract_str(params[0])
+                   var vllimit = this.extract_str(params[1])
+                   var vsize = this.extract_str(params[2])
+                   var vglue = this.extract_str(params[3])
 
-                   var vlimit = limit
                    limit = !TEA_RunTime.is_empty(vlimit) ? this.vault_get(vlimit) : 9
 
-                   var vllimit = llimit
                    llimit = !TEA_RunTime.is_empty(vllimit) ? this.vault_get(vllimit) : 0
 
-                   var vsize = size
                    size = !TEA_RunTime.is_empty(vsize) ? this.vault_get(vsize) : 1
 
-                   var vglue = glue
                    glue = !TEA_RunTime.is_empty(vglue) ? this.vault_get(vglue) : TEA_RunTime.GLUE
 
                    var nums = []
@@ -2408,9 +2445,9 @@ export class TEA_RunTime {
                     throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
                 }
                 else {
-                    var regex = new RegExp(this.extract_str(params[0]))
+                    var regex = this.extract_str(params[0]);
                     var replacement = this.extract_str(params[1])
-                    io = io.replace(regex, replacement);
+                    io = this.util_smart_replace(regex, replacement, io)
                 }
             }
         }
@@ -2426,10 +2463,10 @@ export class TEA_RunTime {
                     throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
                 }
                 else{
-                    var regex = new RegExp(this.extract_str(params[0]), 'g')
+                    var regex = this.extract_str(params[0]);
                     //this.debug(`--TEST[ regex: ${regex} | param[0]: ${params[0]} | tpe_str: ${tpe_str} | tpe: ${tpe}]`)
                     var replacement = this.extract_str(params[1])
-                    io = io.replace(regex, replacement);
+                    io = this.util_smart_replace_all(regex, replacement, io)
                 }
             }
         }
@@ -2457,9 +2494,9 @@ export class TEA_RunTime {
                         var vregex = params[1]
                         var vsubstr = params[2]
                         var input_str = this.vault_get(vname)
-                        var regex = new RegExp(this.extract_str(this.vault_get(vregex)))
+                        var regex = this.extract_str(this.vault_get(vregex))
                         var replacement = this.extract_str(this.vault_get(vsubstr))
-                        io = input_str.replace(regex, replacement);
+                        io = this.util_smart_replace(regex, replacement, input_str)
                     }
                 }
             }
@@ -2489,9 +2526,9 @@ export class TEA_RunTime {
                         var vregex = params[1]
                         var vsubstr = params[2]
                         var input_str = this.vault_get(vname)
-                        var regex = new RegExp(this.extract_str(this.vault_get(vregex)), 'g')
+                        var regex = this.extract_str(this.vault_get(vregex))
                         var replacement = this.extract_str(this.vault_get(vsubstr))
-                        io = input_str.replace(regex, replacement);
+                        io = this.util_smart_replace_all(regex, replacement, input_str);
                     }
                 }
             }
