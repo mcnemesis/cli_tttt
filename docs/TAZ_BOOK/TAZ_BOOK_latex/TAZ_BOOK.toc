@@ -1,84 +1,90 @@
-\contentsline {chapter}{List of Abbreviations}{xv}{chapter*.6}%
+\contentsline {chapter}{List of Abbreviations}{xvii}{chapter*.6}%
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Essential Nomenclature and Concepts}{3}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}TEA Command Variations and Qualifying TEA Commands Correctly}{5}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}TEA Command Variations and Qualifying TEA Commands Correctly}{6}{subsection.1.1.1}%
 \contentsline {chapter}{\numberline {2}THE TEA LANGUAGE DEFINITION}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}TEA Lexical and Syntax Grammars}{7}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{11}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Tea Instruction Set And The Tea Command Primitive Names}{14}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}The Tea Command Naming Standard}{14}{subsection.2.3.1}%
-\contentsline {chapter}{\numberline {3}TEA REGULAR EXPRESSIONS}{17}{chapter.3}%
-\contentsline {chapter}{\numberline {4}TEA and The Mathematics of TRANSFORMATICS}{21}{chapter.4}%
-\contentsline {chapter}{\numberline {5}TEA A: TO Z: COMMAND SPACE SPECIFICATION (Introduction)}{23}{chapter.5}%
-\contentsline {chapter}{\numberline {6}A: ANAGRAMMATIZE}{25}{chapter.6}%
-\contentsline {section}{\numberline {6.1}SEMANTICS of A:}{25}{section.6.1}%
-\contentsline {section}{\numberline {6.2}NOTES about A:}{25}{section.6.2}%
-\contentsline {section}{\numberline {6.3}EXAMPLE APPLICATIONS of A:}{26}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}EXAMPLE 1: Randomly Pick What to Cook}{26}{subsection.6.3.1}%
-\contentsline {chapter}{\numberline {7}B: BASIFY}{29}{chapter.7}%
-\contentsline {section}{\numberline {7.1}SEMANTICS of B:}{30}{section.7.1}%
-\contentsline {section}{\numberline {7.2}NOTES about B:}{30}{section.7.2}%
-\contentsline {section}{\numberline {7.3}EXAMPLE APPLICATIONS of B:}{31}{section.7.3}%
-\contentsline {subsection}{\numberline {7.3.1}EXAMPLE 1: Compute Largest Possible o-SSI Number from Several Arbitrary Sequences}{31}{subsection.7.3.1}%
-\contentsline {chapter}{\numberline {8}C: CLEAR}{35}{chapter.8}%
-\contentsline {section}{\numberline {8.1}SEMANTICS of C:}{36}{section.8.1}%
-\contentsline {section}{\numberline {8.2}NOTES about C:}{36}{section.8.2}%
-\contentsline {section}{\numberline {8.3}EXAMPLE APPLICATIONS of C:}{42}{section.8.3}%
-\contentsline {subsection}{\numberline {8.3.1}EXAMPLE 1: The N-SIGIL Generator: print textual-qrcode corresponding to some number N}{42}{subsection.8.3.1}%
-\contentsline {chapter}{\numberline {9}D: DELETE}{51}{chapter.9}%
-\contentsline {section}{\numberline {9.1}SEMANTICS of D:}{52}{section.9.1}%
-\contentsline {section}{\numberline {9.2}NOTES about D:}{52}{section.9.2}%
-\contentsline {section}{\numberline {9.3}EXAMPLE APPLICATIONS of D:}{54}{section.9.3}%
-\contentsline {subsection}{\numberline {9.3.1}EXAMPLE 1: EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}{54}{subsection.9.3.1}%
-\contentsline {chapter}{\numberline {10}E: EVALUATE}{57}{chapter.10}%
-\contentsline {section}{\numberline {10.1}SEMANTICS of E:}{58}{section.10.1}%
-\contentsline {section}{\numberline {10.2}NOTES about E:}{58}{section.10.2}%
-\contentsline {section}{\numberline {10.3}EXAMPLE APPLICATIONS of E:}{62}{section.10.3}%
-\contentsline {subsection}{\numberline {10.3.1}EXAMPLE 1: AUTO-GENERATION of VALID SELF-MODIFYING CODE}{63}{subsection.10.3.1}%
-\contentsline {subsection}{\numberline {10.3.2}EXAMPLE 2: OFFENSIVE TEA-VIRUS PROGRAM MODIFYING and EXPOSING A CALLER PROGRAM via WEB}{66}{subsection.10.3.2}%
-\contentsline {chapter}{\numberline {11}F: FORK}{73}{chapter.11}%
-\contentsline {section}{\numberline {11.1}SEMANTICS of F:}{74}{section.11.1}%
-\contentsline {section}{\numberline {11.2}NOTES about F:}{74}{section.11.2}%
-\contentsline {section}{\numberline {11.3}EXAMPLE APPLICATIONS of F:}{75}{section.11.3}%
-\contentsline {subsection}{\numberline {11.3.1}EXAMPLE 1: ZHA --- ZEE HACKER ASSISTANT, a human support assistant chatbot system}{76}{subsection.11.3.1}%
-\contentsline {chapter}{\numberline {12}G: GLUE}{81}{chapter.12}%
-\contentsline {section}{\numberline {12.1}SEMANTICS of G:}{82}{section.12.1}%
-\contentsline {section}{\numberline {12.2}NOTES about G:}{82}{section.12.2}%
-\contentsline {section}{\numberline {12.3}EXAMPLE APPLICATIONS of G:}{83}{section.12.3}%
-\contentsline {subsection}{\numberline {12.3.1}EXAMPLE 1: A SERIOUS WORD COUNTER PROGRAM}{83}{subsection.12.3.1}%
-\contentsline {chapter}{\numberline {13}H: HEW}{87}{chapter.13}%
-\contentsline {section}{\numberline {13.1}SEMANTICS of H:}{88}{section.13.1}%
-\contentsline {section}{\numberline {13.2}NOTES about H:}{88}{section.13.2}%
-\contentsline {section}{\numberline {13.3}EXAMPLE APPLICATIONS of H:}{90}{section.13.3}%
-\contentsline {subsection}{\numberline {13.3.1}EXAMPLE 1: A TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite {lutalo_2025_rpg}}{91}{subsection.13.3.1}%
-\contentsline {chapter}{\numberline {14}I: INTERACT}{103}{chapter.14}%
-\contentsline {section}{\numberline {14.1}SEMANTICS of I:}{104}{section.14.1}%
-\contentsline {section}{\numberline {14.2}NOTES about I:}{104}{section.14.2}%
-\contentsline {subsection}{\numberline {14.2.1}The \textbf {I*..} Interact Command EXTENSIONS}{106}{subsection.14.2.1}%
-\contentsline {section}{\numberline {14.3}EXAMPLE APPLICATIONS of I:}{107}{section.14.3}%
-\contentsline {subsection}{\numberline {14.3.1}EXAMPLE 1: [pure-GUI] TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite {lutalo_2025_rpg}}{107}{subsection.14.3.1}%
-\contentsline {subsection}{\numberline {14.3.2}EXAMPLE 2: The LUMTAUTO Occult Language Message Encoder}{109}{subsection.14.3.2}%
-\contentsline {subsubsection}{A Formal Definition of LUMTAUTO}{110}{section*.121}%
-\contentsline {subsubsection}{The LUMTAUTO Algorithm in TEA}{112}{section*.122}%
-\contentsline {chapter}{\numberline {15}J: JUMP}{117}{chapter.15}%
-\contentsline {section}{\numberline {15.1}SEMANTICS of J:}{118}{section.15.1}%
-\contentsline {section}{\numberline {15.2}NOTES about J:}{118}{section.15.2}%
-\contentsline {section}{\numberline {15.3}EXAMPLE APPLICATIONS of J:}{120}{section.15.3}%
-\contentsline {subsection}{\numberline {15.3.1}EXAMPLE 1: THE MENTAL HEALTH SELF-ANALYSIS TOOL}{120}{subsection.15.3.1}%
-\contentsline {chapter}{\numberline {16}K: KEEP}{137}{chapter.16}%
-\contentsline {section}{\numberline {16.1}SEMANTICS of K:}{138}{section.16.1}%
-\contentsline {section}{\numberline {16.2}NOTES about K:}{138}{section.16.2}%
-\contentsline {section}{\numberline {16.3}EXAMPLE APPLICATIONS of K:}{139}{section.16.3}%
-\contentsline {subsection}{\numberline {16.3.1}EXAMPLE 1: SKIRT DESIGNING PROGRAM}{139}{subsection.16.3.1}%
-\contentsline {chapter}{\numberline {17}L: LABEL}{147}{chapter.17}%
-\contentsline {section}{\numberline {17.1}SEMANTICS of L:}{148}{section.17.1}%
-\contentsline {section}{\numberline {17.2}NOTES about L:}{148}{section.17.2}%
-\contentsline {section}{\numberline {17.3}EXAMPLE APPLICATIONS of L:}{150}{section.17.3}%
-\contentsline {subsection}{\numberline {17.3.1}EXAMPLE 1: TEXT-BASED BRAIN-GAME: LUCKY 101}{150}{subsection.17.3.1}%
-\contentsline {chapter}{\numberline {18}M: MIRROR}{159}{chapter.18}%
-\contentsline {section}{\numberline {18.1}SEMANTICS of M:}{160}{section.18.1}%
-\contentsline {section}{\numberline {18.2}NOTES about M:}{160}{section.18.2}%
-\contentsline {section}{\numberline {18.3}EXAMPLE APPLICATIONS of M:}{161}{section.18.3}%
-\contentsline {subsection}{\numberline {18.3.1}EXAMPLE 1: The Grand Myrrh: \textbf {MYRRH LANGUAGE} Transformer}{162}{subsection.18.3.1}%
-\contentsline {chapter}{\numberline {19}Conclusion}{167}{chapter.19}%
-\contentsline {chapter}{About the Inventor of TEA}{172}{appendix*.157}%
+\contentsline {section}{\numberline {2.3}Tea Instruction Set And The Tea Command Primitive Names}{15}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}The Tea Command Naming Standard}{16}{subsection.2.3.1}%
+\contentsline {chapter}{\numberline {3}TEA REGULAR EXPRESSIONS}{19}{chapter.3}%
+\contentsline {chapter}{\numberline {4}TEA and The Mathematics of TRANSFORMATICS}{23}{chapter.4}%
+\contentsline {chapter}{\numberline {5}TEA A: TO Z: COMMAND SPACE SPECIFICATION (Introduction)}{25}{chapter.5}%
+\contentsline {chapter}{\numberline {6}A: ANAGRAMMATIZE}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}SEMANTICS of A:}{27}{section.6.1}%
+\contentsline {section}{\numberline {6.2}NOTES about A:}{27}{section.6.2}%
+\contentsline {section}{\numberline {6.3}EXAMPLE APPLICATIONS of A:}{28}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}EXAMPLE 1: \textbf {HOME ECONOMICS:} Randomly Pick What to Cook}{28}{subsection.6.3.1}%
+\contentsline {chapter}{\numberline {7}B: BASIFY}{31}{chapter.7}%
+\contentsline {section}{\numberline {7.1}SEMANTICS of B:}{32}{section.7.1}%
+\contentsline {section}{\numberline {7.2}NOTES about B:}{32}{section.7.2}%
+\contentsline {section}{\numberline {7.3}EXAMPLE APPLICATIONS of B:}{33}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}EXAMPLE 1: \textbf {NUMERICAL ANALYSIS:} Compute Largest Possible o-SSI Number from Several Arbitrary Sequences}{33}{subsection.7.3.1}%
+\contentsline {chapter}{\numberline {8}C: CLEAR}{37}{chapter.8}%
+\contentsline {section}{\numberline {8.1}SEMANTICS of C:}{38}{section.8.1}%
+\contentsline {section}{\numberline {8.2}NOTES about C:}{38}{section.8.2}%
+\contentsline {section}{\numberline {8.3}EXAMPLE APPLICATIONS of C:}{44}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}EXAMPLE 1: \textbf {DATA ENCODING:} The N-SIGIL Generator: print textual-qrcode corresponding to some number N}{44}{subsection.8.3.1}%
+\contentsline {chapter}{\numberline {9}D: DELETE}{53}{chapter.9}%
+\contentsline {section}{\numberline {9.1}SEMANTICS of D:}{54}{section.9.1}%
+\contentsline {section}{\numberline {9.2}NOTES about D:}{54}{section.9.2}%
+\contentsline {section}{\numberline {9.3}EXAMPLE APPLICATIONS of D:}{57}{section.9.3}%
+\contentsline {subsection}{\numberline {9.3.1}EXAMPLE 1: \textbf {DATA MINING:} EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}{57}{subsection.9.3.1}%
+\contentsline {chapter}{\numberline {10}E: EVALUATE}{59}{chapter.10}%
+\contentsline {section}{\numberline {10.1}SEMANTICS of E:}{60}{section.10.1}%
+\contentsline {section}{\numberline {10.2}NOTES about E:}{60}{section.10.2}%
+\contentsline {section}{\numberline {10.3}EXAMPLE APPLICATIONS of E:}{65}{section.10.3}%
+\contentsline {subsection}{\numberline {10.3.1}EXAMPLE 1: \textbf {DYNAMIC PROGRAMMING:} AUTO-GENERATION of VALID SELF-MODIFYING CODE}{65}{subsection.10.3.1}%
+\contentsline {subsection}{\numberline {10.3.2}EXAMPLE 2: \textbf {INFORMATION SECURITY:} OFFENSIVE TEA-VIRUS PROGRAM MODIFYING and EXPOSING A CALLER PROGRAM via WEB}{70}{subsection.10.3.2}%
+\contentsline {chapter}{\numberline {11}F: FORK}{77}{chapter.11}%
+\contentsline {section}{\numberline {11.1}SEMANTICS of F:}{78}{section.11.1}%
+\contentsline {section}{\numberline {11.2}NOTES about F:}{78}{section.11.2}%
+\contentsline {section}{\numberline {11.3}EXAMPLE APPLICATIONS of F:}{79}{section.11.3}%
+\contentsline {subsection}{\numberline {11.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL PSYCHOLOGY:} ZHA --- ZEE HACKER ASSISTANT, a human support assistant chatbot system}{80}{subsection.11.3.1}%
+\contentsline {chapter}{\numberline {12}G: GLUE}{85}{chapter.12}%
+\contentsline {section}{\numberline {12.1}SEMANTICS of G:}{86}{section.12.1}%
+\contentsline {section}{\numberline {12.2}NOTES about G:}{86}{section.12.2}%
+\contentsline {section}{\numberline {12.3}EXAMPLE APPLICATIONS of G:}{88}{section.12.3}%
+\contentsline {subsection}{\numberline {12.3.1}EXAMPLE 1: \textbf {DATA ANALYSIS:} A SERIOUS WORD COUNTER PROGRAM}{88}{subsection.12.3.1}%
+\contentsline {chapter}{\numberline {13}H: HEW}{91}{chapter.13}%
+\contentsline {section}{\numberline {13.1}SEMANTICS of H:}{92}{section.13.1}%
+\contentsline {section}{\numberline {13.2}NOTES about H:}{92}{section.13.2}%
+\contentsline {section}{\numberline {13.3}EXAMPLE APPLICATIONS of H:}{94}{section.13.3}%
+\contentsline {subsection}{\numberline {13.3.1}EXAMPLE 1: \textbf {GAME PROGRAMMING:} A TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite {lutalo_2025_rpg}}{95}{subsection.13.3.1}%
+\contentsline {chapter}{\numberline {14}I: INTERACT}{107}{chapter.14}%
+\contentsline {section}{\numberline {14.1}SEMANTICS of I:}{108}{section.14.1}%
+\contentsline {section}{\numberline {14.2}NOTES about I:}{108}{section.14.2}%
+\contentsline {subsection}{\numberline {14.2.1}The \textbf {I*..} Interact Command EXTENSIONS}{111}{subsection.14.2.1}%
+\contentsline {section}{\numberline {14.3}EXAMPLE APPLICATIONS of I:}{112}{section.14.3}%
+\contentsline {subsection}{\numberline {14.3.1}EXAMPLE 1: \textbf {GRAPHICAL GAME PROGRAMMING:} [pure-GUI] TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite {lutalo_2025_rpg}}{113}{subsection.14.3.1}%
+\contentsline {subsection}{\numberline {14.3.2}EXAMPLE 2: \textbf {COMPUTATIONAL MYSTICISM:} The LUMTAUTO Occult Language Message Encoder}{115}{subsection.14.3.2}%
+\contentsline {subsubsection}{A Formal Definition of LUMTAUTO}{116}{section*.116}%
+\contentsline {subsubsection}{The LUMTAUTO Algorithm in TEA}{118}{section*.117}%
+\contentsline {chapter}{\numberline {15}J: JUMP}{123}{chapter.15}%
+\contentsline {section}{\numberline {15.1}SEMANTICS of J:}{124}{section.15.1}%
+\contentsline {section}{\numberline {15.2}NOTES about J:}{124}{section.15.2}%
+\contentsline {section}{\numberline {15.3}EXAMPLE APPLICATIONS of J:}{126}{section.15.3}%
+\contentsline {subsection}{\numberline {15.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL MEDICINE:} THE MENTAL HEALTH SELF-ANALYSIS TOOL}{126}{subsection.15.3.1}%
+\contentsline {chapter}{\numberline {16}K: KEEP}{143}{chapter.16}%
+\contentsline {section}{\numberline {16.1}SEMANTICS of K:}{144}{section.16.1}%
+\contentsline {section}{\numberline {16.2}NOTES about K:}{144}{section.16.2}%
+\contentsline {section}{\numberline {16.3}EXAMPLE APPLICATIONS of K:}{145}{section.16.3}%
+\contentsline {subsection}{\numberline {16.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL FINE-ART:} SKIRT DESIGNING PROGRAM}{145}{subsection.16.3.1}%
+\contentsline {chapter}{\numberline {17}L: LABEL}{153}{chapter.17}%
+\contentsline {section}{\numberline {17.1}SEMANTICS of L:}{154}{section.17.1}%
+\contentsline {section}{\numberline {17.2}NOTES about L:}{154}{section.17.2}%
+\contentsline {section}{\numberline {17.3}EXAMPLE APPLICATIONS of L:}{156}{section.17.3}%
+\contentsline {subsection}{\numberline {17.3.1}EXAMPLE 1: \textbf {GAME PROGRAMMING:} TEXT-BASED BRAIN-GAME: LUCKY 101}{157}{subsection.17.3.1}%
+\contentsline {chapter}{\numberline {18}M: MIRROR}{167}{chapter.18}%
+\contentsline {section}{\numberline {18.1}SEMANTICS of M:}{168}{section.18.1}%
+\contentsline {section}{\numberline {18.2}NOTES about M:}{168}{section.18.2}%
+\contentsline {section}{\numberline {18.3}EXAMPLE APPLICATIONS of M:}{170}{section.18.3}%
+\contentsline {subsection}{\numberline {18.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL MYSTICISM:} The Grand Myrrh: \textbf {MYRRH LANGUAGE} Transformer}{171}{subsection.18.3.1}%
+\contentsline {chapter}{\numberline {19}N: NUMBER}{175}{chapter.19}%
+\contentsline {section}{\numberline {19.1}SEMANTICS of N:}{176}{section.19.1}%
+\contentsline {section}{\numberline {19.2}NOTES about N:}{176}{section.19.2}%
+\contentsline {section}{\numberline {19.3}EXAMPLE APPLICATIONS of N:}{178}{section.19.3}%
+\contentsline {subsection}{\numberline {19.3.1}EXAMPLE 1: \textbf {DATA-ENGINEERING:} GENERATING RANDOM NUMERIC DATASETS or STRUCTURES CONFORMING TO SOME PATTERN SCHEMAS}{178}{subsection.19.3.1}%
+\contentsline {subsection}{\numberline {19.3.2}EXAMPLE 2: \textbf {STATISTICAL ANALYSIS:} DESCRIPTIVE, EXPLORATORY and PREDICTIVE DATA ANALYZER}{187}{subsection.19.3.2}%
+\contentsline {chapter}{\numberline {20}Conclusion}{189}{chapter.20}%
+\contentsline {chapter}{About the Inventor of TEA}{196}{appendix*.153}%

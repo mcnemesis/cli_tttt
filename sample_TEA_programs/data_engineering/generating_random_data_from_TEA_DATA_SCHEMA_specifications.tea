@@ -1,0 +1,87 @@
+#########################################
+# STRUCTURED DYNAMIC DATA GENERATOR v.1
+#----------------------------------------
+# Can parse TEA Data Templates(TDT)
+# and generate random data based on
+# specification and embedded TEA code.
+# Details on TDT syntax in the TEA TAZ Book
+#########################################
+
+#----| Sample Data Specification |------
+#in case no explicit data was provided, use TDT template...
+i:{ [{ "Name": "<p!:8|t!.:|z*:>", "Age": "<n:26:8>" "Description": "<p!:|s:|s:|z:>" },][5] }
+
+#----| CONSTANTS |------
+v:vOP_LT:{<}
+v:vOP_INCR:{+1}
+
+#----| PRE-PROCESS |----
+v:vSCHEMA #store the data schema
+
+#extract the core schema object only...
+d:\[\d+\] | d:[\[\]] | v:vSCHEMA_TEMPLATE
+
+#extract the number of objects to generate..
+y:vSCHEMA | d!:\[\d+\] | d:[\[\]] | v:vN_RECORDS
+
+#initialize empty output dataset..
+v:vDATA_OUTPUT:{}
+
+#init counter of records created thus far
+v:vN_ITER:0
+
+#----| DATA-GENERATION-PROCESS |----
+l:lSTART_GEN
+
+#test if we already reached limit, so we finish...
+g*:{}:vN_ITER:vOP_LT:vN_RECORDS | r.: | f:^false$:lFINISHED_GEN
+
+#process record to be added to list..
+y:vSCHEMA_TEMPLATE | v:vGEN_RECORD
+
+#######| PROCESS a RECORD |#####
+l:lPROCESS_RECORD
+y:vGEN_RECORD
+
+#----| inject dynamic values... |----
+#first, get all dynamic expressions
+d!:<[^<>]*> | v:vDYN_EXPRESSIONS
+
+y:vDYN_EXPRESSIONS
+#if empty, move on...
+f:^$:lDONE_PROCESS_RECORD
+
+#extract only the first one...
+d:><.* | d:< | d:> | v:vTEA_EXP 
+
+#evaluate it and store result
+e*:vTEA_EXP | v:vTEA_EXP_VAL
+#override dynamic field in template with computed value
+y:vTEA_EXP | x:< | x!:> | v:vTEA_EXP | r*:vGEN_RECORD:vTEA_EXP:vTEA_EXP_VAL
+
+#store final generated record
+v:vGEN_RECORD
+
+#process the remaining expressions too...
+j:lPROCESS_RECORD
+
+#done processing record template
+l:lDONE_PROCESS_RECORD
+
+#add it to the list...
+g*:{
+}:vDATA_OUTPUT:vGEN_RECORD | v:vDATA_OUTPUT
+
+#increment record gen counter
+g*:{}:vN_ITER:vOP_INCR | r.: | v:vN_ITER
+
+#loop
+j:lSTART_GEN
+
+#----| DATA-GENERATION-COMPLETE |----
+l:lFINISHED_GEN
+
+#post-process data... enclose into JSON array...
+y:vDATA_OUTPUT | x:{[} | x!:{]} | v:vDATA_OUTPUT 
+
+y:vDATA_OUTPUT #present final dataset and quit

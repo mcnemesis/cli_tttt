@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  17 DEC 2025 14:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  18 DEC 2025 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1356,6 +1356,9 @@ LaTeX Warning: Label `FIGD' multiply defined.
 
 LaTeX Warning: Label `FIGKEX1' multiply defined.
 
+
+LaTeX Warning: Label `SECEXAMP1N' multiply defined.
+
 )
 \openout1 = `TAZ_BOOK.aux'.
 
@@ -1478,10 +1481,10 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
 F version <1.7>, but at most version <1.5> allowed
-<../taz_front_cover.pdf, id=334, 596.98032pt x 844.65562pt>
+<../taz_front_cover.pdf, id=358, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf>
-Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 257.
+Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 263.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1489,7 +1492,7 @@ pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
 F version <1.7>, but at most version <1.5> allowed
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf>
-Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 257.
+Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 263.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1499,32 +1502,32 @@ F version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
 F version <1.7>, but at most version <1.5> allowed
-<../taz_front_cover.pdf, id=337, page=1, 596.98032pt x 844.65562pt>
+<../taz_front_cover.pdf, id=361, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 257.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 263.
 
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 257.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 263.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 257.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 263.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 257.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 263.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 257.
+Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 263.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [1
@@ -1532,181 +1535,181 @@ Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 257.
 
 
  <../taz_front_cover.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=352, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=376, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf  used on input line 2
-61.
+67.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf  used on input line 2
-61.
+67.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<resources/pdfs/FrontisMatter.pdf, id=355, page=1, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=379, page=1, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [2
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=387, page=2, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=411, page=2, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 2>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 2>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 2>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [3
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=404, page=3, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=428, page=3, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [4
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=421, page=4, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=445, page=4, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 4>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 4>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 4>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [5
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=427, page=5, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=451, page=5, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 5>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 5>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 5>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [6
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=440, page=6, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=464, page=6, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 6>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 6>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 6>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [7
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=455, page=7, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=479, page=7, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 7>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page7 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 7>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page7 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 7>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page7 used on input
- line 261.
+ line 267.
 (pdftex.def)             Requested size: 597.78697pt x 773.60669pt.
 [8
 
  <./resources/pdfs/FrontisMatter.pdf>]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 266
+LaTeX Font Info:    Trying to load font information for U+msa on input line 272
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 266
+LaTeX Font Info:    Trying to load font information for U+msb on input line 272
 .
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1718,7 +1721,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.266 
+l.272 
        [1
 
 {C:/Users/AKAM/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
@@ -1728,18 +1731,18 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.267 \chapter
+l.273 \chapter
               *{Dedication} [2
 
 ]
 LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-74.
+80.
 
 (C:\Program Files\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <17.28> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 274.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 280.
 
 
 
@@ -1747,7 +1750,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.iii}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.285 \tableofcontents
+l.291 \tableofcontents
                        [3]
 
 
@@ -1755,39 +1758,91 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.iv}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.285 \tableofcontents
+l.291 \tableofcontents
                        [4
 
 ] (TAZ_BOOK.toc
-Underfull \vbox (badness 1297) has occurred while \output is active []
-
-
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.v}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.23 ...r}{\numberline {8}C: CLEAR}{35}{chapter.8}
+l.17 ...y Pick What to Cook}{28}{subsection.6.3.1}
                                                   % [5]
+Underfull \vbox (badness 3547) has occurred while \output is active []
+
+
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.vi}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.53 ... {lutalo_2025_rpg}}{91}{subsection.13.3.1}
+l.37 ...ELF-MODIFYING CODE}{65}{subsection.10.3.1}
                                                   % [6]
+Overfull \hbox (3.66765pt too wide) in paragraph at lines 37--37
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 DY-NAMIC PRO-GRAM-MIN
+G: \OT1/cmr/m/n/14.4 AUTO- 
+ []
+
+
+Overfull \hbox (1.48584pt too wide) in paragraph at lines 38--38
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 2: \OT1/cmr/bx/n/14.4 IN-FOR-MA-TION SE-CU-
+RITY: \OT1/cmr/m/n/14.4 OF-FEN- 
+ []
+
+
+Overfull \hbox (3.83745pt too wide) in paragraph at lines 38--38
+ \OT1/cmr/m/n/14.4 SIVE TEA-VIRUS PRO-GRAM MOD-I-FY-ING and EX-POS- 
+ []
+
+
+Overfull \hbox (1.00302pt too wide) in paragraph at lines 43--43
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL PSY-
+CHOL-OGY: 
+ []
+
+
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.vii}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.84 ...t the Inventor of TEA}{172}{appendix*.157}
-                                                  % [7])
-\tf@toc=\write6
-\openout6 = `TAZ_BOOK.toc'.
+l.57 ...ommand EXTENSIONS}{111}{subsection.14.2.1}
+                                                  % [7]
+Overfull \hbox (2.68614pt too wide) in paragraph at lines 59--59
+ \OT1/cmr/bx/n/14.4 MING: \OT1/cmr/m/n/14.4 [pure-GUI] TEXT AD-VEN-TURE GAME: B
+OOBS 
+ []
+
+
+Overfull \hbox (8.7194pt too wide) in paragraph at lines 60--60
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 2: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL MYS-
+TI-CISM: \OT1/cmr/m/n/14.4 The 
+ []
+
+
+Overfull \hbox (4.2661pt too wide) in paragraph at lines 67--67
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL MEDI
+CINE: \OT1/cmr/m/n/14.4 THE 
+ []
+
+
+Overfull \hbox (10.85258pt too wide) in paragraph at lines 72--72
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL FINE
+-ART: \OT1/cmr/m/n/14.4 SKIRT 
+ []
+
+
+Overfull \hbox (19.81546pt too wide) in paragraph at lines 77--77
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 GAME PRO-GRAM-MING: \
+OT1/cmr/m/n/14.4 TEXT-BASED 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -1796,44 +1851,109 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.viii}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.287 \listoffigures
-                     [8] (TAZ_BOOK.lof
+l.78 ...numberline {18}M: MIRROR}{167}{chapter.18}
+                                                  % [8]
+Overfull \hbox (8.7194pt too wide) in paragraph at lines 82--82
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL MYS-
+TI-CISM: \OT1/cmr/m/n/14.4 The 
+ []
 
-[9
 
-]
+Overfull \hbox (4.59895pt too wide) in paragraph at lines 87--87
+ [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 DATA-ENGINEERING: \OT
+1/cmr/m/n/14.4 GEN-ER-AT-ING 
+ []
+
+
+Overfull \hbox (10.51064pt too wide) in paragraph at lines 87--87
+ \OT1/cmr/m/n/14.4 RAN-DOM NU-MERIC DATASETS or STRUC-TURES CON- 
+ []
+
+)
+\tf@toc=\write6
+\openout6 = `TAZ_BOOK.toc'.
+
+
+
+[9]
+
+[10
+
+] (TAZ_BOOK.lof
+Overfull \hbox (20.07639pt too wide) in paragraph at lines 5--5
+ [][] [][]\OT1/cmr/m/n/14.4 The TEA In-struc-tion Con-text Free Gram-mar in Sim
+-ple Form (context- 
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[10])
+[11]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[12]
+Overfull \hbox (0.90092pt too wide) in paragraph at lines 58--58
+ [][] [][]\OT1/cmr/m/n/14.4 TEA EX-AM-PLE: MHDP: MEN-TAL HEALTH DI-AG-NO-SIS PR
+O- 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[13]
+Overfull \hbox (15.72025pt too wide) in paragraph at lines 75--75
+ [][] [][]\OT1/cmr/m/n/14.4 MINIFIED TEA Pro-gram: LUCKY 101 Brain-Game pro-gra
+m source- 
+ []
+
+)
 \tf@lof=\write7
 \openout7 = `TAZ_BOOK.lof'.
 
 
 
-[11]
+[14] (TAZ_BOOK.lot
+Underfull \vbox (badness 1033) has occurred while \output is active []
 
-[12
 
-] (TAZ_BOOK.lot
 
-[13])
+[15
+
+])
 \tf@lot=\write8
 \openout8 = `TAZ_BOOK.lot'.
 
 
 
-[14]
+[16]
 
-[15
-
-]
-
-[16
+[17
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 376--380
+
+[18
+
+]
+Overfull \hbox (7.71082pt too wide) in paragraph at lines 384--389
+\OT1/cmr/m/n/14.4 This manuscript builds upon the ear-lier TEA (\OT1/cmr/bx/n/1
+4.4 T\OT1/cmr/m/n/14.4 ransforming \OT1/cmr/bx/n/14.4 E\OT1/cmr/m/n/14.4 xecuta
+ble \OT1/cmr/bx/n/14.4 A\OT1/cmr/m/n/14.4 lphabet)
+ []
+
+
+Overfull \hbox (6.48608pt too wide) in paragraph at lines 384--389
+\OT1/cmr/m/n/14.4 general-purpose, text-processing ori-ented and sequence-trans
+former paradigm com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 384--389
 
  []
 
@@ -1848,56 +1968,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 376--380
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 391--392
+Underfull \hbox (badness 10000) in paragraph at lines 400--401
 
  []
 
+
+
+[3]
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-399.
-(C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd
+408.
+ (C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 
-399.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 399.
+408.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 408.
 
 
 LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 399.
+(Font)              for symbol `textbraceleft' on input line 408.
 
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 399.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 408.
 
-
-[3]
 
 [4]
 
 [5]
 
-[6
-
-]
+[6]
 Chapter 2.
 
 
-[7]
-Overfull \hbox (10.94144pt too wide) in paragraph at lines 502--503
-[]\OT1/cmr/bx/n/12 The in-struc-tion starts with a sin-gle let-ter from Latin a
-l-pha-bet \OT1/cmr/m/n/12 --- $\OML/cmm/m/it/12  [] \OT1/cmr/m/n/12 = \OMS/cmsy
-/m/n/12 h\OML/cmm/m/it/12 a; b; c; :::; y; z\OMS/cmsy/m/n/12 i$\OT1/cmr/m/n/12 
-,
- []
+[7
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+]
 
 [8]
 LaTeX Font Info:    Trying to load font information for LGR+cmtt on input line 
-551.
+560.
  (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/cbfonts-fd\lgrcmtt.fd
 File: lgrcmtt.fd 2017/07/29 v1.2 Greek European Computer Typewriter
 )
@@ -1912,95 +2022,124 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [10]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 642.
+nput line 651.
+
+
+[11]
+Overfull \hbox (18.44139pt too wide) in paragraph at lines 672--673
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+
+[12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[13]
+
+pdfTeX warning: pdflatex (file ./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf): 
+PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf, id=1052, 614.295pt x 794.97pt>
+File: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf Graphic file (type pdf)
+<use resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf>
+Package pdftex.def Info: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf  used on i
+nput line 741.
+(pdftex.def)             Requested size: 446.69328pt x 557.38918pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[11]
-
-[12]
-
-pdfTeX warning: pdflatex (file ./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf): 
-PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf, id=955, 614.295pt x 794.97pt>
-File: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf Graphic file (type pdf)
-<use resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf>
-Package pdftex.def Info: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf  used on i
-nput line 704.
-(pdftex.def)             Requested size: 446.69328pt x 557.38918pt.
-<resources/tea_cs_is.png, id=958, 1027.84pt x 1027.84pt>
+[14]
+<resources/tea_cs_is.png, id=1067, 1027.84pt x 1027.84pt>
 File: resources/tea_cs_is.png Graphic file (type png)
 <use resources/tea_cs_is.png>
-Package pdftex.def Info: resources/tea_cs_is.png  used on input line 719.
+Package pdftex.def Info: resources/tea_cs_is.png  used on input line 756.
 (pdftex.def)             Requested size: 446.69328pt x 434.33347pt.
 
+Underfull \vbox (badness 6592) has occurred while \output is active []
 
-[13 <./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf>]
 
-[14 <./resources/tea_cs_is.png>]
 
-[15]
+[15 <./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf>]
 
-[16
+[16 <./resources/tea_cs_is.png>]
+
+[17]
+
+[18
 
 ]
 Chapter 3.
-[17]
-
-[18]
-
 [19]
 
-[20
-
-]
-Chapter 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 875--876
-
- []
+[20]
+Underfull \vbox (badness 1308) has occurred while \output is active []
 
 
 
 [21]
-Overfull \hbox (5.3601pt too wide) in paragraph at lines 914--915
-[]\OT1/cmr/m/n/12 In [[]] is cov-ered well, the mat-ter of the TEA lan-guage an
-d its re-la-tion to the tra-di-tional UNIX/Linux
+
+[22]
+Chapter 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 912--913
+
  []
 
 
+Overfull \hbox (28.85664pt too wide) in paragraph at lines 919--920
+\OT1/cmr/m/it/14.4 pro-gram-ming lan-guage that is Text-Processing ori-ented, e
+n-ables a sequence-transformer
+ []
 
-[22]
-Chapter 5.
 
 
 [23
 
 ]
+Overfull \hbox (14.3144pt too wide) in paragraph at lines 947--948
+[]\OT1/cmr/m/n/14.4 If you have come across the new/e-merg-ing math-e-mat-i-cal
+ the-ory of Transformatics[[]],
+ []
 
-[24
+
+
+[24]
+Chapter 5.
+
+
+[25
+
+]
+
+[26
 
 ]
 Chapter 6.
 
+Underfull \vbox (badness 6741) has occurred while \output is active []
+
+
+
+[27]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[25]
+[28]
 
-[26]
+[29]
 
-[27]
-
-[28
+[30
 
 ]
 Chapter 7.
 
-Underfull \hbox (badness 3058) in paragraph at lines 1077--1078
+Underfull \hbox (badness 3058) in paragraph at lines 1114--1115
 []\OT1/cmr/m/n/17.28 Reduce in-put/list to dis-tinct
  []
 
@@ -2009,35 +2148,40 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[29]
-Underfull \vbox (badness 1748) has occurred while \output is active []
-
-
-
-[30]
-
 [31]
-Overfull \hbox (25.5006pt too wide) in paragraph at lines 1246--1262
+
+[32]
+
+[33]
+Overfull \hbox (3.47893pt too wide) in paragraph at lines 1250--1253
+[][]\OT1/cmr/bx/n/14.4 Transformation 3. []$\OMS/cmsy/m/n/14.4 h\OML/cmm/m/it/1
+4.4 S[]; S[]; S[]; :::; S[]\OMS/cmsy/m/n/14.4 i  !  h\OML/cmm/m/it/14.4 P[]; P[
+]; P[]; :::; P[]\OMS/cmsy/m/n/14.4 i  []
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[34]
+Overfull \hbox (25.5006pt too wide) in paragraph at lines 1283--1299
  [][] 
  []
 
 
 
-[32]
+[35]
 
-[33]
-
-[34
-
-]
+[36]
 Chapter 8.
 
-Underfull \hbox (badness 1189) in paragraph at lines 1336--1337
+Underfull \hbox (badness 1189) in paragraph at lines 1373--1374
 []\OT1/cmr/m/n/17.28 Guarantee sub-se-quent in-struc-
  []
 
 
-Underfull \hbox (badness 1033) in paragraph at lines 1337--1338
+Underfull \hbox (badness 1033) in paragraph at lines 1374--1375
 []\OT1/cmr/m/n/17.28 Automagically cre-ate and ini-
  []
 
@@ -2046,58 +2190,40 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[35]
+[37
+
+]
+
+[38]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[36]
+[39]
+Overfull \hbox (15.59795pt too wide) in paragraph at lines 1497--1498
+[]\OT1/cmr/m/n/14.4 That pro-gram should re-turn ``**N" where N is some ran-dom
+ num-ber (e.g ``BC**98").
+ []
 
-[37]
-Overfull \hbox (314.54082pt too wide) in paragraph at lines 1497--1498
+
+Overfull \hbox (314.54082pt too wide) in paragraph at lines 1534--1535
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (24.74138pt too wide) in paragraph at lines 1533--1534
+Overfull \hbox (24.74138pt too wide) in paragraph at lines 1570--1571
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.1414pt too wide) in paragraph at lines 1537--1538
+Overfull \hbox (12.1414pt too wide) in paragraph at lines 1574--1575
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (24.74138pt too wide) in paragraph at lines 1544--1545
+Overfull \hbox (24.74138pt too wide) in paragraph at lines 1581--1582
 [][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[38]
-Overfull \vbox (32.54602pt too high) has occurred while \output is active []
-
-
-
-[39]
-Overfull \hbox (251.54094pt too wide) in paragraph at lines 1560--1561
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (24.74138pt too wide) in paragraph at lines 1602--1603
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (49.94133pt too wide) in paragraph at lines 1609--1610
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
@@ -2106,109 +2232,130 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [40]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \vbox (32.54602pt too high) has occurred while \output is active []
 
 
 
 [41]
+Overfull \hbox (251.54094pt too wide) in paragraph at lines 1597--1598
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (24.74138pt too wide) in paragraph at lines 1639--1640
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (49.94133pt too wide) in paragraph at lines 1646--1647
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [42]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [43]
 
 [44]
 
-Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 1859.
-See the caption package documentation for explanation.
+[45]
 
+[46]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1859.
+(caption)                particular \caption on input line 1897.
 See the caption package documentation for explanation.
 
-<resources/images/nsigil_intro.png, id=1567, 1673.25125pt x 2930.95pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[47]
+<resources/images/nsigil_intro.png, id=1710, 1673.25125pt x 2930.95pt>
 File: resources/images/nsigil_intro.png Graphic file (type png)
 <use resources/images/nsigil_intro.png>
 Package pdftex.def Info: resources/images/nsigil_intro.png  used on input line 
-1888.
+1926.
 (pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
-<resources/images/nsigil_ossi.png, id=1568, 1673.25125pt x 2930.95pt>
+<resources/images/nsigil_ossi.png, id=1711, 1673.25125pt x 2930.95pt>
 File: resources/images/nsigil_ossi.png Graphic file (type png)
 <use resources/images/nsigil_ossi.png>
 Package pdftex.def Info: resources/images/nsigil_ossi.png  used on input line 1
-894.
+932.
 (pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[45]
-<resources/images/nsigil_qrcode.png, id=1611, 1673.25125pt x 2930.95pt>
+
+
+[48]
+<resources/images/nsigil_qrcode.png, id=1725, 1673.25125pt x 2930.95pt>
 File: resources/images/nsigil_qrcode.png Graphic file (type png)
 <use resources/images/nsigil_qrcode.png>
 Package pdftex.def Info: resources/images/nsigil_qrcode.png  used on input line
- 1905.
+ 1943.
 (pdftex.def)             Requested size: 249.82793pt x 437.6531pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[46 <./resources/images/nsigil_intro.png> <./resources/images/nsigil_ossi.png>]
+[49 <./resources/images/nsigil_intro.png> <./resources/images/nsigil_ossi.png>]
 
 
-[47 <./resources/images/nsigil_qrcode.png>]
-Overfull \hbox (47.47357pt too wide) detected at line 1994
- []$[]  \OML/cmm/m/it/12 vCOORDINATES \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 h\OT1/
-cmr/m/n/12 (1\OML/cmm/m/it/12 ; vAA\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr
-/m/n/12 (2\OML/cmm/m/it/12 ; vB\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n
-/12 (3\OML/cmm/m/it/12 ; vC\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 
-(4\OML/cmm/m/it/12 ; vD\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (5\O
-ML/cmm/m/it/12 ; vE\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (6\OML/c
-mm/m/it/12 ; vF\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (\OML/cmm/m/
-it/12 vAA; \OT1/cmr/m/n/12 1)\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (\OML/cmm/m/it/
-12 vB; \OT1/cmr/m/n/12 2)\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 v
-C; \OT1/cmr/m/n/12 3)\OML/cmm/m/it/12 ;$ 
- []
+[50 <./resources/images/nsigil_qrcode.png>]
 
+[51]
 
-
-[48]
-
-[49]
-
-[50
-
-]
+[52]
 Chapter 9.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[51]
+[53
 
-[52]
+]
+
+[54]
+Underfull \vbox (badness 3019) has occurred while \output is active []
+
+
+
+[55]
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2203.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2241.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[53]
+[56]
 \g__tcobox_out_iow=\write9
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[54]
 
-[55]
 
-[56
+[57]
 
-]
+[58]
 Chapter 10.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2322--2323
+Underfull \hbox (badness 10000) in paragraph at lines 2360--2361
 []\OT1/cmr/m/n/17.28 Securely pro-cess-ing Ex-ter-
  []
 
@@ -2217,110 +2364,108 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[57]
+[59
 
-[58]
+]
+
+[60]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2397.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2435.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2397--2397
+Underfull \hbox (badness 10000) in paragraph at lines 2435--2435
 []|\OT1/cmr/bx/n/10 Direct Eval-u-a-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2397--2397
+Underfull \hbox (badness 10000) in paragraph at lines 2435--2435
 []|\OT1/cmr/bx/n/10 Compilation Re-
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 2397--2398
+Underfull \hbox (badness 1466) in paragraph at lines 2435--2436
 []|\OT1/cmr/bx/n/10 Can Mod-ify Main
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2401--2401
+Underfull \hbox (badness 10000) in paragraph at lines 2439--2439
 []|\OT1/cmr/m/n/10 No (\OT1/cmtt/m/n/10 system() \OT1/cmr/m/n/10 or
  []
 
 
-Underfull \hbox (badness 3838) in paragraph at lines 2401--2401
+Underfull \hbox (badness 3838) in paragraph at lines 2439--2439
 \OT1/cmr/m/n/10 dy-namic load-ing via
  []
 
 
-Underfull \hbox (badness 6675) in paragraph at lines 2401--2401
+Underfull \hbox (badness 6675) in paragraph at lines 2439--2439
 []|\OT1/cmr/m/n/10 Limited (via shared
  []
 
 
-Underfull \hbox (badness 6001) in paragraph at lines 2401--2401
+Underfull \hbox (badness 6001) in paragraph at lines 2439--2439
 \OT1/cmr/m/n/10 li-braries or func-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2403--2403
+Underfull \hbox (badness 10000) in paragraph at lines 2441--2441
 []|\OT1/cmr/m/n/10 No (\OT1/cmtt/m/n/10 system() \OT1/cmr/m/n/10 or
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2403--2403
+Underfull \hbox (badness 10000) in paragraph at lines 2441--2441
 \OT1/cmr/m/n/10 dy-nam-ic/shared li-
  []
 
 
-Underfull \hbox (badness 3838) in paragraph at lines 2403--2403
+Underfull \hbox (badness 3838) in paragraph at lines 2441--2441
 \OT1/cmr/m/n/10 link-ing and func-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2405--2405
+Underfull \hbox (badness 10000) in paragraph at lines 2443--2443
 []|\OT1/cmr/m/n/10 Yes (\OT1/cmtt/m/n/10 erl[]eval\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2405--2405
+Underfull \hbox (badness 10000) in paragraph at lines 2443--2443
 []|\OT1/cmr/m/n/10 Optional (hot code
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2407--2407
+Underfull \hbox (badness 10000) in paragraph at lines 2445--2445
 []|\OT1/cmr/m/n/10 No (\OT1/cmtt/m/n/10 JavaCompiler\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2413--2413
+Underfull \hbox (badness 10000) in paragraph at lines 2451--2451
 []|\OT1/cmr/m/n/10 Yes (\OT1/cmtt/m/n/10 eval()\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2413--2413
+Underfull \hbox (badness 10000) in paragraph at lines 2451--2451
 []|\OT1/cmr/m/n/10 Yes (mod-i-fies glob-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2415--2415
+Underfull \hbox (badness 10000) in paragraph at lines 2453--2453
 []|\OT1/cmr/m/n/10 Yes (\OT1/cmtt/m/n/10 eval()\OT1/cmr/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2418--2418
+Underfull \hbox (badness 10000) in paragraph at lines 2456--2456
 []|\OT1/cmr/m/n/10 Yes (\OT1/cmtt/m/n/10 e!:, e!:STR,
  []
 
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[59]
 
-[60]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [61]
-Underfull \vbox (badness 5217) has occurred while \output is active []
-
-
 
 [62]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2328,138 +2473,158 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [63]
-\openout9 = `TAZ_BOOK.listing'.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- (TAZ_BOOK.listing)
+
 
 [64]
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
 
 [65]
-<resources/images/self_mod1.jpg, id=1936, 1027.84pt x 1027.84pt>
-File: resources/images/self_mod1.jpg Graphic file (type jpg)
-<use resources/images/self_mod1.jpg>
-Package pdftex.def Info: resources/images/self_mod1.jpg  used on input line 277
-4.
-(pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
-<resources/images/self_mod2.jpg, id=1937, 1027.84pt x 1027.84pt>
-File: resources/images/self_mod2.jpg Graphic file (type jpg)
-<use resources/images/self_mod2.jpg>
-Package pdftex.def Info: resources/images/self_mod2.jpg  used on input line 278
-0.
-(pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
-<resources/images/self_mod3.jpg, id=1938, 1027.84pt x 1027.84pt>
-File: resources/images/self_mod3.jpg Graphic file (type jpg)
-<use resources/images/self_mod3.jpg>
-Package pdftex.def Info: resources/images/self_mod3.jpg  used on input line 279
-2.
-(pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
-<resources/images/hacker.jpg, id=1939, 716.6775pt x 1084.05pt>
-File: resources/images/hacker.jpg Graphic file (type jpg)
-<use resources/images/hacker.jpg>
-Package pdftex.def Info: resources/images/hacker.jpg  used on input line 2798.
-(pdftex.def)             Requested size: 223.34663pt x 337.82195pt.
 
+[66]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[66 <./resources/images/self_mod1.jpg> <./resources/images/self_mod2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 2847--2847
+[67]
+\openout9 = `TAZ_BOOK.listing'.
 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[67 <./resources/images/self_mod3.jpg> <./resources/images/hacker.jpg>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+ (TAZ_BOOK.listing)
 
 [68]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+
+[69]
+<resources/images/self_mod1.jpg, id=2040, 1027.84pt x 1027.84pt>
+File: resources/images/self_mod1.jpg Graphic file (type jpg)
+<use resources/images/self_mod1.jpg>
+Package pdftex.def Info: resources/images/self_mod1.jpg  used on input line 281
+2.
+(pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
+<resources/images/self_mod2.jpg, id=2041, 1027.84pt x 1027.84pt>
+File: resources/images/self_mod2.jpg Graphic file (type jpg)
+<use resources/images/self_mod2.jpg>
+Package pdftex.def Info: resources/images/self_mod2.jpg  used on input line 281
+8.
+(pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[69]
-
 [70]
+<resources/images/self_mod3.jpg, id=2062, 1027.84pt x 1027.84pt>
+File: resources/images/self_mod3.jpg Graphic file (type jpg)
+<use resources/images/self_mod3.jpg>
+Package pdftex.def Info: resources/images/self_mod3.jpg  used on input line 283
+0.
+(pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
+<resources/images/hacker.jpg, id=2063, 716.6775pt x 1084.05pt>
+File: resources/images/hacker.jpg Graphic file (type jpg)
+<use resources/images/hacker.jpg>
+Package pdftex.def Info: resources/images/hacker.jpg  used on input line 2836.
+(pdftex.def)             Requested size: 223.34663pt x 337.82195pt.
 
-[71]
 
-[72
+[71 <./resources/images/self_mod1.jpg> <./resources/images/self_mod2.jpg> <./re
+sources/images/self_mod3.jpg> <./resources/images/hacker.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 2885--2885
 
-]
-Chapter 11.
-
-Underfull \hbox (badness 3078) in paragraph at lines 2989--2990
-[]\OT1/cmr/m/n/17.28 Conditionally Jump across a
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 2993--2994
-[]\OT1/cmr/m/n/17.28 Singular or Bi-nary Branch-ing
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+
+[72]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [73]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
 
 [74]
-
-pdfTeX warning: pdflatex (file ./resources/pdfs/all_willrich_psychology.pdf): P
-DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/all_willrich_psychology.pdf, id=2095, 597.19106pt x 845.07718pt
->
-File: resources/pdfs/all_willrich_psychology.pdf Graphic file (type pdf)
-<use resources/pdfs/all_willrich_psychology.pdf>
-Package pdftex.def Info: resources/pdfs/all_willrich_psychology.pdf  used on in
-put line 3107.
-(pdftex.def)             Requested size: 446.69328pt x 376.71776pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6348) has occurred while \output is active []
 
 
 
 [75]
 
-[76 <./resources/pdfs/all_willrich_psychology.pdf>]
+[76]
+Chapter 11.
 
-[77]
+Underfull \hbox (badness 3078) in paragraph at lines 3027--3028
+[]\OT1/cmr/m/n/17.28 Conditionally Jump across a
+ []
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 3250.
-See the caption package documentation for explanation.
 
-<resources/images/zha3.png, id=2221, 673.01437pt x 434.37282pt>
-File: resources/images/zha3.png Graphic file (type png)
-<use resources/images/zha3.png>
-Package pdftex.def Info: resources/images/zha3.png  used on input line 3274.
-(pdftex.def)             Requested size: 397.0649pt x 256.2711pt.
+Underfull \hbox (badness 1253) in paragraph at lines 3031--3032
+[]\OT1/cmr/m/n/17.28 Singular or Bi-nary Branch-ing
+ []
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+
+Underfull \vbox (badness 1983) has occurred while \output is active []
+
+
+
+[77
+
+]
+Underfull \vbox (badness 2452) has occurred while \output is active []
 
 
 
 [78]
 
-[79 <./resources/images/zha3.png>]
+pdfTeX warning: pdflatex (file ./resources/pdfs/all_willrich_psychology.pdf): P
+DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/pdfs/all_willrich_psychology.pdf, id=2207, 597.19106pt x 845.07718pt
+>
+File: resources/pdfs/all_willrich_psychology.pdf Graphic file (type pdf)
+<use resources/pdfs/all_willrich_psychology.pdf>
+Package pdftex.def Info: resources/pdfs/all_willrich_psychology.pdf  used on in
+put line 3145.
+(pdftex.def)             Requested size: 446.69328pt x 376.71776pt.
 
-[80
+
+[79]
+
+[80 <./resources/pdfs/all_willrich_psychology.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[81]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 3289.
+See the caption package documentation for explanation.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[82]
+<resources/images/zha3.png, id=2383, 673.01437pt x 434.37282pt>
+File: resources/images/zha3.png Graphic file (type png)
+<use resources/images/zha3.png>
+Package pdftex.def Info: resources/images/zha3.png  used on input line 3313.
+(pdftex.def)             Requested size: 397.0649pt x 256.2711pt.
+
+
+[83 <./resources/images/zha3.png>]
+
+[84
 
 ]
 Chapter 12.
@@ -2468,37 +2633,34 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[81]
-
-[82]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[83]
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[84]
-
 [85]
 
-[86
+[86]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[87]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+
+[88]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+
+[89]
+
+[90
 
 ]
 Chapter 13.
 
-Underfull \hbox (badness 1565) in paragraph at lines 3535--3536
+Underfull \hbox (badness 1565) in paragraph at lines 3571--3572
 []\OT1/cmr/m/n/17.28 Help in-tro-duce new-lines into
  []
 
@@ -2507,61 +2669,53 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[87]
+[91]
 
-[88]
+[92]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-Underfull \vbox (badness 6708) has occurred while \output is active []
+Underfull \vbox (badness 1577) has occurred while \output is active []
 
 
 
-[89]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 3706.
-
+[93]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 3706.
+(hyperref)                removing `\@ifnextchar' on input line 3740.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 3706.
+(hyperref)                removing `subscript' on input line 3740.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 3740.
 
 
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Tr
 aps.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf, id=2419, 716.6775pt x 7
+<resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf, id=2525, 716.6775pt x 7
 90.87468pt>
 File: resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf Graphic file (type 
 pdf)
 <use resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf>
 Package pdftex.def Info: resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf 
- used on input line 3712.
+ used on input line 3746.
 (pdftex.def)             Requested size: 446.69328pt x 475.20958pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[90]
-
-[91 <./resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf>]
-
-[92]
-
-[93]
-
 [94]
 
-[95]
+[95 <./resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf>]
 
 [96]
 
@@ -2569,67 +2723,72 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [98]
 
+[99]
+
+[100]
+
+[101]
+
+[102]
+
+[103]
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 4236.
+(caption)                particular \caption on input line 4271.
 See the caption package documentation for explanation.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[99]
-<resources/images/boobs_n_traps_landing_v1.0.0.1.png, id=3017, 346.29375pt x 26
+<resources/images/boobs_n_traps_landing_v1.0.0.1.png, id=3114, 346.29375pt x 26
 8.75406pt>
 File: resources/images/boobs_n_traps_landing_v1.0.0.1.png Graphic file (type pn
 g)
 <use resources/images/boobs_n_traps_landing_v1.0.0.1.png>
 Package pdftex.def Info: resources/images/boobs_n_traps_landing_v1.0.0.1.png  u
-sed on input line 4263.
+sed on input line 4298.
 (pdftex.def)             Requested size: 346.2929pt x 268.7534pt.
-<resources/images/boobs_n_traps_game_session_v1.0.0.1.png, id=3018, 343.2825pt 
-x 286.82156pt>
-File: resources/images/boobs_n_traps_game_session_v1.0.0.1.png Graphic file (ty
-pe png)
-<use resources/images/boobs_n_traps_game_session_v1.0.0.1.png>
-Package pdftex.def Info: resources/images/boobs_n_traps_game_session_v1.0.0.1.p
-ng  used on input line 4272.
-(pdftex.def)             Requested size: 343.28165pt x 286.82085pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[100 <./resources/images/boobs_n_traps_landing_v1.0.0.1.png>]
-<resources/images/boobs_n_traps_game_end_v1.0.0.1.png, id=3025, 344.78813pt x 2
+[104]
+<resources/images/boobs_n_traps_game_session_v1.0.0.1.png, id=3131, 343.2825pt 
+x 286.82156pt>
+File: resources/images/boobs_n_traps_game_session_v1.0.0.1.png Graphic file (ty
+pe png)
+<use resources/images/boobs_n_traps_game_session_v1.0.0.1.png>
+Package pdftex.def Info: resources/images/boobs_n_traps_game_session_v1.0.0.1.p
+ng  used on input line 4307.
+(pdftex.def)             Requested size: 343.28165pt x 286.82085pt.
+<resources/images/boobs_n_traps_game_end_v1.0.0.1.png, id=3132, 344.78813pt x 2
 47.67531pt>
 File: resources/images/boobs_n_traps_game_end_v1.0.0.1.png Graphic file (type p
 ng)
 <use resources/images/boobs_n_traps_game_end_v1.0.0.1.png>
 Package pdftex.def Info: resources/images/boobs_n_traps_game_end_v1.0.0.1.png  
-used on input line 4281.
+used on input line 4316.
 (pdftex.def)             Requested size: 344.78728pt x 247.6747pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[101 <./resources/images/boobs_n_traps_game_session_v1.0.0.1.png> <./resources/
-images/boobs_n_traps_game_end_v1.0.0.1.png>]
 
-[102
 
-]
+[105 <./resources/images/boobs_n_traps_landing_v1.0.0.1.png> <./resources/image
+s/boobs_n_traps_game_session_v1.0.0.1.png>]
+
+[106 <./resources/images/boobs_n_traps_game_end_v1.0.0.1.png>]
 Chapter 14.
 
-Underfull \hbox (badness 10000) in paragraph at lines 4345--4346
+Underfull \hbox (badness 10000) in paragraph at lines 4380--4381
 []|\OT1/cmtt/m/n/10 The following signatures and semantics are meant to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4345--4346
+Underfull \hbox (badness 10000) in paragraph at lines 4380--4381
 \OT1/cmtt/m/n/10 allow for the construction of more sophisticated GUIs
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4345--4346
+Underfull \hbox (badness 10000) in paragraph at lines 4380--4381
 \OT1/cmtt/m/n/10 than would be possible with just I undecorated by the
  []
 
@@ -2638,18 +2797,25 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[103]
+[107
+
+]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-Underfull \vbox (badness 1735) has occurred while \output is active []
+Underfull \vbox (badness 2573) has occurred while \output is active []
 
 
 
-[104]
+[108]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+
+[109]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
@@ -2657,145 +2823,49 @@ Underfull \vbox (badness 1735) has occurred while \output is active []
 
  (TAZ_BOOK.listing)
 
-[105]
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
-Underfull \hbox (badness 10000) in paragraph at lines 4544--4544
+[110]
+Underfull \hbox (badness 10000) in paragraph at lines 4580--4580
 
  []
 
-
-Underfull \vbox (badness 7362) has occurred while \output is active []
-
-
-
-[106]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 4564.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 4564.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 4564.
-
-<resources/images/bnt_cli_original.png, id=3108, 403.5075pt x 416.30531pt>
-File: resources/images/bnt_cli_original.png Graphic file (type png)
-<use resources/images/bnt_cli_original.png>
-Package pdftex.def Info: resources/images/bnt_cli_original.png  used on input l
-ine 4582.
-(pdftex.def)             Requested size: 403.50652pt x 416.30429pt.
-
-
-[107]
-<resources/images/bnt_cli_new.png, id=3114, 371.13657pt x 254.45062pt>
-File: resources/images/bnt_cli_new.png Graphic file (type png)
-<use resources/images/bnt_cli_new.png>
-Package pdftex.def Info: resources/images/bnt_cli_new.png  used on input line 4
-591.
-(pdftex.def)             Requested size: 371.13565pt x 254.45pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-
-[108 <./resources/images/bnt_cli_original.png>]
-<resources/images/bnt_cli_web.png, id=3122, 355.3275pt x 272.51813pt>
-File: resources/images/bnt_cli_web.png Graphic file (type png)
-<use resources/images/bnt_cli_web.png>
-Package pdftex.def Info: resources/images/bnt_cli_web.png  used on input line 4
-603.
-(pdftex.def)             Requested size: 355.32661pt x 272.51746pt.
-
-
-[109 <./resources/images/bnt_cli_new.png> <./resources/images/bnt_cli_web.png>]
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 4636.
-
-
-Underfull \hbox (badness 2111) detected at line 4692
- []$[]  \OMS/cmtt/m/n/10 8\OML/cmm/m/it/10  \OMS/cmtt/m/n/10 2 \OT1/cmr/m/n/10
- ^^B[]  =[]\OMS/cmtt/m/n/10 )  \OML/cmm/m/it/10 ^^L \OMS/cmtt/m/n/10 2 \OT1/cmr
-/m/n/10 
-[]  =[]\OMS/cmtt/m/n/10 )  []$ [][][]  
- []
-
-
-Underfull \vbox (badness 2080) has occurred while \output is active []
-
-
-
-[110]
 
 [111]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 4600.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 4600.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 4600.
+
+<resources/images/bnt_cli_new.png, id=3211, 371.13657pt x 254.45062pt>
+File: resources/images/bnt_cli_new.png Graphic file (type png)
+<use resources/images/bnt_cli_new.png>
+Package pdftex.def Info: resources/images/bnt_cli_new.png  used on input line 4
+605.
+(pdftex.def)             Requested size: 371.13565pt x 254.45pt.
+
+Underfull \vbox (badness 2591) has occurred while \output is active []
+
+
+
 [112]
+<resources/images/bnt_cli_original.png, id=3225, 403.5075pt x 416.30531pt>
+File: resources/images/bnt_cli_original.png Graphic file (type png)
+<use resources/images/bnt_cli_original.png>
+Package pdftex.def Info: resources/images/bnt_cli_original.png  used on input l
+ine 4626.
+(pdftex.def)             Requested size: 565.66397pt x 583.53377pt.
 
-[113]
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 4829.
-See the caption package documentation for explanation.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 4859.
-See the caption package documentation for explanation.
-
-
-
-[114]
-
-[115]
-
-[116
-
-]
-Chapter 15.
-
-Underfull \hbox (badness 10000) in paragraph at lines 4886--4887
-[]\OT1/cmr/m/n/17.28 Process TEA \OT1/cmr/bx/n/17.28 LA-BEL
- []
-
-
-Underfull \hbox (badness 4752) in paragraph at lines 4886--4887
-\OT1/cmr/bx/n/17.28 BLOCKS \OT1/cmr/m/n/17.28 --- \OT1/cmr/m/n/9 the only other
- TEA
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4887--4888
-[]\OT1/cmr/m/n/17.28 Implement Code Branch-ing
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[117]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[118]
-
-[119]
-
-pdfTeX warning: pdflatex (file ./resources/pdfs/mental_health_diagnostics.pdf):
- PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/mental_health_diagnostics.pdf, id=3343, 614.295pt x 794.97pt>
-File: resources/pdfs/mental_health_diagnostics.pdf Graphic file (type pdf)
-<use resources/pdfs/mental_health_diagnostics.pdf>
-Package pdftex.def Info: resources/pdfs/mental_health_diagnostics.pdf  used on 
-input line 5028.
-(pdftex.def)             Requested size: 552.86038pt x 715.4664pt.
-
-Overfull \hbox (56.53114pt too wide) in paragraph at lines 5028--5028
+Overfull \hbox (69.33473pt too wide) in paragraph at lines 4626--4626
  [] 
  []
 
@@ -2804,29 +2874,127 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[120]
-Overfull \vbox (31.05197pt too high) has occurred while \output is active []
+[113 <./resources/images/bnt_cli_new.png>]
+<resources/images/bnt_cli_web.png, id=3237, 355.3275pt x 272.51813pt>
+File: resources/images/bnt_cli_web.png Graphic file (type png)
+<use resources/images/bnt_cli_web.png>
+Package pdftex.def Info: resources/images/bnt_cli_web.png  used on input line 4
+641.
+(pdftex.def)             Requested size: 355.32661pt x 272.51746pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[121 <./resources/pdfs/mental_health_diagnostics.pdf>]
-Overfull \hbox (2455.11357pt too wide) in paragraph at lines 5669--5671
-[][][] 
+[114 <./resources/images/bnt_cli_original.png>]
+Underfull \vbox (badness 2326) has occurred while \output is active []
+
+
+
+[115 <./resources/images/bnt_cli_web.png>]
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 4674.
+
+
+Underfull \hbox (badness 2111) detected at line 4730
+ []$[]  \OMS/cmtt/m/n/10 8\OML/cmm/m/it/10  \OMS/cmtt/m/n/10 2 \OT1/cmr/m/n/10
+ ^^B[]  =[]\OMS/cmtt/m/n/10 )  \OML/cmm/m/it/10 ^^L \OMS/cmtt/m/n/10 2 \OT1/cmr
+/m/n/10 
+[]  =[]\OMS/cmtt/m/n/10 )  []$ [][][]  
  []
 
 
 
-[122]
+[116]
 
-[123]
+[117]
+
+[118]
+
+[119]
+
+[120]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 4867.
+See the caption package documentation for explanation.
+
+
+Underfull \vbox (badness 2469) has occurred while \output is active []
+
+
+
+[121]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 4899.
+See the caption package documentation for explanation.
+
+
+
+[122]
+Chapter 15.
+
+Underfull \hbox (badness 10000) in paragraph at lines 4926--4927
+[]\OT1/cmr/m/n/17.28 Process TEA \OT1/cmr/bx/n/17.28 LA-BEL
+ []
+
+
+Underfull \hbox (badness 4752) in paragraph at lines 4926--4927
+\OT1/cmr/bx/n/17.28 BLOCKS \OT1/cmr/m/n/17.28 --- \OT1/cmr/m/n/9 the only other
+ TEA
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4927--4928
+[]\OT1/cmr/m/n/17.28 Implement Code Branch-ing
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[123
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [124]
 
 [125]
 
-[126]
+pdfTeX warning: pdflatex (file ./resources/pdfs/mental_health_diagnostics.pdf):
+ PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/pdfs/mental_health_diagnostics.pdf, id=3462, 614.295pt x 794.97pt>
+File: resources/pdfs/mental_health_diagnostics.pdf Graphic file (type pdf)
+<use resources/pdfs/mental_health_diagnostics.pdf>
+Package pdftex.def Info: resources/pdfs/mental_health_diagnostics.pdf  used on 
+input line 5068.
+(pdftex.def)             Requested size: 552.86038pt x 715.4664pt.
 
-[127]
+Overfull \hbox (56.53114pt too wide) in paragraph at lines 5068--5068
+ [] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[126]
+Overfull \vbox (31.05197pt too high) has occurred while \output is active []
+
+
+
+[127 <./resources/pdfs/mental_health_diagnostics.pdf>]
+Overfull \hbox (2455.11357pt too wide) in paragraph at lines 5709--5711
+[][][] 
+ []
+
+
 
 [128]
 
@@ -2836,82 +3004,96 @@ Overfull \hbox (2455.11357pt too wide) in paragraph at lines 5669--5671
 
 [131]
 
+[132]
+
+[133]
+
+[134]
+
+[135]
+
+[136]
+
+[137]
+
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 5679.
+(caption)                particular \caption on input line 5719.
 See the caption package documentation for explanation.
 
-<resources/images/hdp_v_1.2_landing_screen.png, id=4021, 342.5297pt x 293.59688
-pt>
-File: resources/images/hdp_v_1.2_landing_screen.png Graphic file (type png)
-<use resources/images/hdp_v_1.2_landing_screen.png>
-Package pdftex.def Info: resources/images/hdp_v_1.2_landing_screen.png  used on
- input line 5697.
-(pdftex.def)             Requested size: 342.52885pt x 293.59615pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[132]
-<resources/images/hdp_v_1.2_landing_screen_name_prompt.png, id=4052, 298.11375p
+[138]
+<resources/images/hdp_v_1.2_landing_screen.png, id=4170, 342.5297pt x 293.59688
+pt>
+File: resources/images/hdp_v_1.2_landing_screen.png Graphic file (type png)
+<use resources/images/hdp_v_1.2_landing_screen.png>
+Package pdftex.def Info: resources/images/hdp_v_1.2_landing_screen.png  used on
+ input line 5737.
+(pdftex.def)             Requested size: 342.52885pt x 293.59615pt.
+<resources/images/hdp_v_1.2_landing_screen_name_prompt.png, id=4171, 298.11375p
 t x 112.92188pt>
 File: resources/images/hdp_v_1.2_landing_screen_name_prompt.png Graphic file (t
 ype png)
 <use resources/images/hdp_v_1.2_landing_screen_name_prompt.png>
 Package pdftex.def Info: resources/images/hdp_v_1.2_landing_screen_name_prompt.
-png  used on input line 5706.
+png  used on input line 5746.
 (pdftex.def)             Requested size: 298.11302pt x 112.92159pt.
-<resources/images/hdp_v_1.2_landing_screen_session_prompt.png, id=4053, 420.822
+<resources/images/hdp_v_1.2_landing_screen_session_prompt.png, id=4172, 420.822
 19pt x 341.02406pt>
 File: resources/images/hdp_v_1.2_landing_screen_session_prompt.png Graphic file
  (type png)
 <use resources/images/hdp_v_1.2_landing_screen_session_prompt.png>
 Package pdftex.def Info: resources/images/hdp_v_1.2_landing_screen_session_prom
-pt.png  used on input line 5715.
+pt.png  used on input line 5755.
 (pdftex.def)             Requested size: 420.82115pt x 341.02322pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[133 <./resources/images/hdp_v_1.2_landing_screen.png> <./resources/images/hdp_
+[139 <./resources/images/hdp_v_1.2_landing_screen.png> <./resources/images/hdp_
 v_1.2_landing_screen_name_prompt.png>]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-Underfull \vbox (badness 3209) has occurred while \output is active []
 
-
-
-[134 <./resources/images/hdp_v_1.2_landing_screen_session_prompt.png>]
+[140 <./resources/images/hdp_v_1.2_landing_screen_session_prompt.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[135]
+[141]
 
-[136]
+[142]
 Chapter 16.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[137
+[143
 
 ]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
 
-[138]
+[144]
 
-[139]
+[145]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[140]
+
+
+[146]
+
+[147]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 6056.
+(caption)                particular \caption on input line 6093.
 See the caption package documentation for explanation.
 
 
@@ -2919,70 +3101,63 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[141]
+[148]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[142]
-<resources/images/skirt_detection.jpg, id=4317, 752.8125pt x 1003.75pt>
+[149]
+<resources/images/skirt_detection.jpg, id=4439, 752.8125pt x 1003.75pt>
 File: resources/images/skirt_detection.jpg Graphic file (type jpg)
 <use resources/images/skirt_detection.jpg>
 Package pdftex.def Info: resources/images/skirt_detection.jpg  used on input li
-ne 6169.
+ne 6206.
 (pdftex.def)             Requested size: 492.37785pt x 656.46852pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-
-[143]
-<resources/images/skirt_failed_detection.jpg, id=4339, 752.8125pt x 1003.75pt>
+[150]
+<resources/images/skirt_failed_detection.jpg, id=4461, 752.8125pt x 1003.75pt>
 File: resources/images/skirt_failed_detection.jpg Graphic file (type jpg)
 <use resources/images/skirt_failed_detection.jpg>
 Package pdftex.def Info: resources/images/skirt_failed_detection.jpg  used on i
-nput line 6178.
+nput line 6215.
 (pdftex.def)             Requested size: 492.37785pt x 656.46852pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[144 <./resources/images/skirt_detection.jpg>]
+[151 <./resources/images/skirt_detection.jpg>]
 
-[145 <./resources/images/skirt_failed_detection.jpg>]
-
-[146
-
-]
+[152 <./resources/images/skirt_failed_detection.jpg>]
 Chapter 17.
 
-Underfull \hbox (badness 1226) in paragraph at lines 6201--6202
+Underfull \hbox (badness 1226) in paragraph at lines 6238--6239
 []\OT1/cmr/m/n/17.28 Explicitly mark sec-tions in a
  []
 
 
-Underfull \hbox (badness 5175) in paragraph at lines 6201--6202
+Underfull \hbox (badness 5175) in paragraph at lines 6238--6239
 \OT1/cmr/m/n/17.28 TEA Pro-gram ac-ces-si-ble by
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6202--6203
+Underfull \hbox (badness 10000) in paragraph at lines 6239--6240
 []\OT1/cmr/bx/n/17.28 Facilitate Con-di-tional
  []
 
 
-Underfull \hbox (badness 1062) in paragraph at lines 6203--6204
+Underfull \hbox (badness 1062) in paragraph at lines 6240--6241
 []\OT1/cmr/m/n/17.28 Create Code-Blocks or Label-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6206--6207
+Underfull \hbox (badness 10000) in paragraph at lines 6243--6244
 []\OT1/cmr/m/n/17.28 Allowing Com-putable For-
  []
 
 
-Overfull \hbox (63.18188pt too wide) in paragraph at lines 6235--6235
+Overfull \hbox (63.18188pt too wide) in paragraph at lines 6272--6272
 |[][]
  []
 
@@ -2991,8 +3166,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[147]
-Overfull \hbox (27.5906pt too wide) in paragraph at lines 6290--6292
+[153
+
+]
+Overfull \hbox (27.5906pt too wide) in paragraph at lines 6327--6329
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][] 
  []
@@ -3002,99 +3179,103 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[148]
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
-Underfull \vbox (badness 3271) has occurred while \output is active []
-
-
-
-[149]
+[154]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
 
-[150]
+[155]
+\openout9 = `TAZ_BOOK.listing'.
 
-[151]
+ (TAZ_BOOK.listing)
 
-[152]
+[156]
 
-[153]
+[157]
+Underfull \vbox (badness 1092) has occurred while \output is active []
+
+
+
+[158]
+
+[159]
+
+[160]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 6588.
+(caption)                particular \caption on input line 6626.
 See the caption package documentation for explanation.
 
-<resources/images/lucky_101_game_landing_screen.png, id=4617, 338.01282pt x 209
+<resources/images/lucky_101_game_landing_screen.png, id=4754, 338.01282pt x 209
 .28188pt>
 File: resources/images/lucky_101_game_landing_screen.png Graphic file (type png
 )
 <use resources/images/lucky_101_game_landing_screen.png>
 Package pdftex.def Info: resources/images/lucky_101_game_landing_screen.png  us
-ed on input line 6615.
+ed on input line 6653.
 (pdftex.def)             Requested size: 338.01198pt x 209.28134pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[154]
-<resources/images/lucky_101_game_session_screen.png, id=4656, 388.45125pt x 318
+[161]
+<resources/images/lucky_101_game_session_screen.png, id=4779, 388.45125pt x 318
 .43968pt>
 File: resources/images/lucky_101_game_session_screen.png Graphic file (type png
 )
 <use resources/images/lucky_101_game_session_screen.png>
 Package pdftex.def Info: resources/images/lucky_101_game_session_screen.png  us
-ed on input line 6624.
+ed on input line 6662.
 (pdftex.def)             Requested size: 388.45029pt x 318.4389pt.
-<resources/images/lucky_101_game_final_screen.png, id=4657, 316.18124pt x 121.2
+<resources/images/lucky_101_game_final_screen.png, id=4780, 316.18124pt x 121.2
 0282pt>
 File: resources/images/lucky_101_game_final_screen.png Graphic file (type png)
 <use resources/images/lucky_101_game_final_screen.png>
 Package pdftex.def Info: resources/images/lucky_101_game_final_screen.png  used
- on input line 6633.
+ on input line 6671.
 (pdftex.def)             Requested size: 316.18047pt x 121.20251pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[155 <./resources/images/lucky_101_game_landing_screen.png> <./resources/images
+[162 <./resources/images/lucky_101_game_landing_screen.png> <./resources/images
 /lucky_101_game_session_screen.png>]
 
-[156 <./resources/images/lucky_101_game_final_screen.png>]
+[163 <./resources/images/lucky_101_game_final_screen.png>]
+
+[164]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 6661.
+(caption)                particular \caption on input line 6699.
 See the caption package documentation for explanation.
 
 
 
-[157]
+[165]
 
-[158
+[166
 
 ]
 Chapter 18.
 
-Underfull \hbox (badness 1490) in paragraph at lines 6687--6688
+Underfull \hbox (badness 1490) in paragraph at lines 6726--6727
 []\OT1/cmr/m/n/17.28 Reverse the or-der of or-dered
  []
 
 
-Underfull \hbox (badness 1490) in paragraph at lines 6688--6689
+Underfull \hbox (badness 1490) in paragraph at lines 6727--6728
 []\OT1/cmr/m/n/17.28 Reverse the or-der of or-dered
  []
 
 
-Underfull \hbox (badness 1259) in paragraph at lines 6689--6690
+Underfull \hbox (badness 1259) in paragraph at lines 6728--6729
 []\OT1/cmr/m/n/17.28 Facilitate ver-ti-cal in-ver-sion of
  []
 
 
-Underfull \hbox (badness 4859) in paragraph at lines 6689--6690
+Underfull \hbox (badness 4859) in paragraph at lines 6728--6729
 \OT1/cmr/m/n/17.28 multi-line text --- use-ful in
  []
 
@@ -3103,83 +3284,181 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[159]
-Overfull \hbox (3.13023pt too wide) in paragraph at lines 6746--6747
+[167]
+Overfull \hbox (3.13023pt too wide) in paragraph at lines 6785--6786
 [][][][] 
  []
 
 
-Overfull \hbox (3.13023pt too wide) in paragraph at lines 6747--6748
+Overfull \hbox (3.13023pt too wide) in paragraph at lines 6786--6787
 [][][][] 
  []
 
 
+Underfull \vbox (badness 3977) has occurred while \output is active []
 
-[160]
 
-[161]
+
+[168]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[169]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[170]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 6868.
+(caption)                particular \caption on input line 6906.
 See the caption package documentation for explanation.
 
 
 
-[162]
-<resources/images/spell_casting_simon_the_sorcerer_classic_game.png, id=4779, 1
+[171]
+<resources/images/spell_casting_simon_the_sorcerer_classic_game.png, id=4911, 1
 541.76pt x 1027.84pt>
 File: resources/images/spell_casting_simon_the_sorcerer_classic_game.png Graphi
 c file (type png)
 <use resources/images/spell_casting_simon_the_sorcerer_classic_game.png>
 Package pdftex.def Info: resources/images/spell_casting_simon_the_sorcerer_clas
-sic_game.png  used on input line 6920.
+sic_game.png  used on input line 6958.
 (pdftex.def)             Requested size: 446.69328pt x 297.78366pt.
 
 
-[163 <./resources/images/spell_casting_simon_the_sorcerer_classic_game.png (PNG
+[172 <./resources/images/spell_casting_simon_the_sorcerer_classic_game.png (PNG
  copy)>]
-<resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg, id=4793, 8
+<resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg, id=4923, 8
 99.36pt x 1156.32pt>
 File: resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg Graphi
 c file (type jpg)
 <use resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg>
 Package pdftex.def Info: resources/images/spell_casting_in_the_elder_scrolls_xb
-ox_game.jpeg  used on input line 6934.
+ox_game.jpeg  used on input line 6972.
 (pdftex.def)             Requested size: 397.0649pt x 510.51149pt.
 
+Underfull \vbox (badness 7576) has occurred while \output is active []
 
-[164 <./resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg>]
 
-[165]
 
-[166
+[173 <./resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg>]
+
+[174]
+Chapter 19.
+
+Overfull \hbox (13.35275pt too wide) in paragraph at lines 7040--7041
+|[][]
+ []
+
+
+Overfull \hbox (24.39998pt too wide) in paragraph at lines 7032--7054
+ [][] 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[175
 
 ]
-Chapter 19.
+
+[176]
+
+[177]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+
+[178]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+
+[179]
+
+[180]
+
+[181]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 7285.
+See the caption package documentation for explanation.
+
+\openout9 = `TAZ_BOOK.listing'.
+
+(TAZ_BOOK.listing)
+
+[182]
+
+[183]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+Underfull \vbox (badness 2564) has occurred while \output is active []
+
+
+
+[184]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+Underfull \vbox (badness 1406) has occurred while \output is active []
+
+
+
+[185]
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
+
+[186]
+
+[187]
+
+[188
+
+]
+Chapter 20.
 (TAZ_BOOK.bbl
 
-[167]
+[189]
 
-[168
+[190
 
 ]
 
-[169])
-Underfull \hbox (badness 10000) in paragraph at lines 6997--6997
+[191]
+
+[192])
+Underfull \hbox (badness 10000) in paragraph at lines 7554--7554
 
  []
 
 
 
-[170]
-<resources/pdfs/AboutAuthor.pdf, id=4850, 614.295pt x 794.97pt>
+[193]
+
+[194
+
+]
+<resources/pdfs/AboutAuthor.pdf, id=5275, 614.295pt x 794.97pt>
 File: resources/pdfs/AboutAuthor.pdf Graphic file (type pdf)
 <use resources/pdfs/AboutAuthor.pdf>
-Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 701
-6.
+Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 757
+3.
 (pdftex.def)             Requested size: 505.17802pt x 583.53377pt.
 
-Overfull \hbox (8.84879pt too wide) in paragraph at lines 7016--7016
+Overfull \hbox (8.84879pt too wide) in paragraph at lines 7573--7573
  [] 
  []
 
@@ -3188,21 +3467,19 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[171
-
-]
-Overfull \vbox (19.80933pt too high) has occurred while \output is active []
+[195]
+Overfull \vbox (29.80934pt too high) has occurred while \output is active []
 
 
 
-[172 <./resources/pdfs/AboutAuthor.pdf>]
+[196 <./resources/pdfs/AboutAuthor.pdf>]
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=4886, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=5311, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 7027.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 7584.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -3210,7 +3487,7 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 7027.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 7584.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -3220,38 +3497,38 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=4889, page=1, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=5314, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7027.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7584.
 
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7027.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7584.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
-[173]
+[197]
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7027.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7584.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7027.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7584.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7027.
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 7584.
 
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
-[174
+[198
 
  <../taz_back_cover.pdf>] (TAZ_BOOK.aux)
  ***********
@@ -3266,58 +3543,56 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `TAZ_BOOK.out' has not changed.
-(rerunfilecheck)             Checksum: B5EC4AEA54263944E1DC78ADCF759F6C;16772.
+(rerunfilecheck)             Checksum: B1C9E608F1C03E58CF11DC5E1D5556EC;20159.
  ) 
 Here is how much of TeX's memory you used:
- 39138 strings out of 473898
- 735309 string characters out of 5736297
- 3343960 words of memory out of 5000000
- 58143 multiletter control sequences out of 15000+600000
- 580236 words of font info for 118 fonts, out of 8000000 for 9000
+ 39647 strings out of 473898
+ 743541 string characters out of 5736297
+ 3394960 words of memory out of 5000000
+ 58377 multiletter control sequences out of 15000+600000
+ 579776 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,21n,101p,2317b,1940s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.29} has been referenced but does not exis
+t, replaced by a fixed one
+
 
 pdfTeX warning (dest): name{Hfootnote.28} has been referenced but does not exis
 t, replaced by a fixed one
 
-
-pdfTeX warning (dest): name{Hfootnote.27} has been referenced but does not exis
-t, replaced by a fixed one
-
  <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt090
 0.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
-tt1440.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
-00\tctt1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\tcrm1200.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknapp
-en/ec/dpi600\tctt1200.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/c
-m/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program 
-Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/typ
-e1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
-mi5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/P
-rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/c
-mr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/P
-rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cms
-y6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pr
-ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmtt12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><
-C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Users/AKAM
-/AppData/Roaming/MiKTeX/fonts/type1/public/cbgreek/gttn1000.pfb><C:/Program Fil
-es/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on TAZ_BOOK.pdf (198 pages, 9260841 bytes).
+tt1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
+00\tcrm1440.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\tctt1440.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmb
+x10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/
+Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pf
+b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Program Files/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmt
+t8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Us
+ers/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/cbgreek/gttn1000.pfb><C:/Pro
+gram Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on TAZ_BOOK.pdf (224 pages, 9346432 bytes).
 PDF statistics:
- 5720 PDF objects out of 6186 (max. 8388607)
- 3261 named destinations out of 3580 (max. 500000)
- 939 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6190 PDF objects out of 7423 (max. 8388607)
+ 3521 named destinations out of 3580 (max. 500000)
+ 987 words of extra memory for PDF output out of 10000 (max. 10000000)
 

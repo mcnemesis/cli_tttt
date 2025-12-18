@@ -3,7 +3,7 @@
 %---|TITLE: TEA TAZ – Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION
 %---|EDITOR:Prof. Joseph Willrich Lutalo, Oxford
 %---[MANUSCRIPT-ORIGINAL-VERSION:24SEPT2025]
-%---[MANUSCRIPT-LATEST-VERSION:21OCT2025]
+%---[MANUSCRIPT-LATEST-VERSION:18DEC2025]
 %----------------------------------------------------------------|
 %\documentclass[a4paper, 18pt]{article} % A4 paper, readable font size
 \documentclass[a4paper, 18pt]{book} % A4 book-layout, readable font size
@@ -250,6 +250,12 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 
 \begin{document}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN DOCUMENT: BOOK FONT SIZE SETTING: Large
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Large
+
+
 %---[ START BOOK CONTENT/FRONT ]
 \frontmatter
 
@@ -371,12 +377,15 @@ I:\{\textbf{Dedicate this book to Dr. Marriette of Makerere University, CoCIS gr
 
 %\begin{abstract}
 \chapter*{Abstract}
-\large
 
-This manuscript builds upon the earlier TEA language formalization and specification work in J. Willrich Lutalo's PhD research diary \cite{lutalo2024tea}. For all practical purposes, this document is best treated as a living document; it is continually being enhanced as TEA evolves, but must also be considered the official, authoritative formal reference on matters concerning the definition, grammar, semantics, and processing of TEA programs. 
+{
+\Large
+
+This manuscript builds upon the earlier TEA (\textbf{T}ransforming \textbf{E}xecutable \textbf{A}lphabet) general-purpose, text-processing oriented and sequence-transformer paradigm computer programming language formalization and specification work in J. Willrich Lutalo's PhD research diary \cite{lutalo2024tea}. For all practical purposes, this document is best treated as \textbf{a living document}; it is continually being enhanced as TEA evolves, but must also be considered the official, authoritative formal reference on matters concerning the definition, grammar, syntax and semantics, as well as analysis, processing and application of TEA programs and general programming. 
      \newline\newline
-     \textbf{Keywords}: Software Engineering, Software Language Engineering, Language Definition, Instruction Set, Developer Manual, Software Debugging, TEA Programming.
+     \textbf{Keywords}: Software Engineering, Software Language Engineering, Language Definition, Instruction Set, Developer Manual, Software Debugging, TEA Programming, Computational Modeling, Text Processing, Executable Letters, Transforming Executable Alphabet.
 %\end{abstract}
+}
 
 \newpage
 
@@ -641,7 +650,7 @@ An example TEA program that highlights these syntactic quirks follows…
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program]
   \begin{lstlisting}[language=TEA, caption={TP 1}, label={LST1}, numbers=left]
 i: {This is a multi-line
-string} | # followed by comment
+string} | v:vIN # followed by comment
 u!: | g:
 l:E | x:{1-}
 f:^1-i:A:B | l:A | x!:-1 | j:C | l:B | i!:"T" | j:E
@@ -660,7 +669,7 @@ And the same exact program as in  \textbf{\autoref{LST1}}, when stripped of all 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program]
   \begin{lstlisting}[language=TEA, caption={TP 2}, label={LST2}, numbers=left]
 i: {This is a multi-line
-string}|u!:|g:|l:E|x:{1-}|f:^1-i:A:B|l:A|x!:-1|j:C|l:B|i!:"T"|j:E|l:C|q!:
+string}|v:vIN|u!:|g:|l:E|x:{1-}|f:^1-i:A:B|l:A|x!:-1|j:C|l:B|i!:"T"|j:E|l:C|q!:
   \end{lstlisting}
   \end{tcolorbox}
   \caption{Sample TEA Program demonstrating most quirks of TEA programming (MINIFIED version)}
@@ -693,6 +702,34 @@ Finally, once all the instructions have been extracted and stored in an ordered 
 
 }
 \end{enumerate}
+
+
+\vspace{2em}
+
+A further note concerning specifying literal strings in TEA --- particularly for \textbf{multi-line strings}: note that the method shown above works well where the default string delimiters ``{" and ``}" do not exist inside the body of the multi-line string. However, in case they do, such as in the example hereafter, it is better [for now] to ensure that the entire input is specified as a single line value --- even if in the editor it might wrap to subsequent lines.
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program with Tricky Literal String that Works Fine]
+   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{ [{ "Name": "<p!:8|t.:|z*:>", "Age": "<n:26:8>", "Description": "<p!:|s:|s:|z:>" },][2] }
+  \end{lstlisting}
+  \end{tcolorbox}
+
+However, the following might not work as expected\footnote{Until a time in the future when the quirks of all TEA programming are ironed out of the reference runtimes!}...
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program with Tricky Literal String that Works Fine]
+   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i:{ 
+[
+{ "Name": "<p!:8|t.:|z*:>", 
+"Age": "<n:26:8>", 
+"Description": "<p!:|s:|s:|z:>" 
+},][2] 
+}
+  \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
 
 
 Generally, one might appreciate the simplicity of parsing, validating and then executing TEA program source code by studying the TEA execution process as depicted in the flowchart in  \textbf{\autoref{FIGTEAEXECPROCESS}}:
@@ -856,7 +893,7 @@ Which then returns the output ``elll" given what we forced the input to be with 
 
 Concerning this matter, note that still, and despite regular expressions being a special case in TEA programs, and yet, \textbf{in the simplest sense}, TEA regular expressions are still nothing but mere strings/text! The last example above shall help illustrate this given the fact that we use the TEA string delimiters ``\{" and ``\}" to correctly contain the regular expression string parameter that we intend to pass to the \texttt{D!:} instruction.
 
-Thus, though \textbf{the signature} of a TEA instruction shall determine which sections/positional-arguments of a TEA instruction can/are regular expressions and which are not, and yet, when expressing them in code, TEA regular expressions can be treated as though they were normal TEA strings\footnote{\textbf{IMPORTANT} to note that this likewise applies to other \textit{special types} in TEA instructions such as \textbf{block names} --- used with branching instructions such as \texttt{F:REGEX:lBLOCK} and \texttt{J:lBLOCK}, as well as \textbf{vault names} --- used with vault/memory referencing instructions such as \texttt{r*:vNAME:REGEX:SUBSTR}}.
+Thus, though \textbf{the signature} of a TEA instruction shall determine which sections or positional-arguments of a TEA instruction can/are regular expressions and which are not, and yet, when expressing them in code, TEA regular expressions can be treated as though they were normal TEA strings\footnote{\textbf{IMPORTANT} to note that this likewise applies to other \textit{special types} in TEA instructions such as \textbf{block names} --- used with branching instructions such as \texttt{F:REGEX:lBLOCK} and \texttt{J:lBLOCK}, as well as \textbf{vault names} --- used with vault/memory referencing instructions such as \texttt{r*:vNAME:REGEX:SUBSTR}}.
 
 
 
@@ -938,7 +975,7 @@ In the rest of this section, we shall look at the full formal specification as w
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Anagrammatize\\
+	\textbf{NAME} & \texttt{ANAGRAMMATIZE}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Compute anagrams
@@ -1031,7 +1068,7 @@ would return something like “  ABBCB ACB” because \textbf{a!:} shuffles the 
 
 Because \textbf{A:} allows us to shuffle items in a list, we might use it to construct programs that can be used to make decisions based on a random selection of some item from the list. 
 
-\subsection{EXAMPLE 1: Randomly Pick What to Cook}
+\subsection{EXAMPLE 1: \textbf{HOME ECONOMICS:} Randomly Pick What to Cook}
 \label{SECEXAMP1A}
 
 The following program, given a list of food items available, shall help to randomly pick what to cook on a particular day or at any moment it is tasked with making a suggestion:
@@ -1070,7 +1107,7 @@ Note that, like we saw in \textbf{\autoref{SECPARSE}}, the source code of a legi
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Basify\\
+	\textbf{NAME} & \texttt{BASIFY}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Compute the Lexical Base of input
@@ -1201,7 +1238,7 @@ Thus, when passed a list such as ``10 1 9", we should not expect to get somethin
 
 With that clarification out of the way, we can then appreciate the following example program that can only be best implemented using \texttt{B!:}
 
-\subsection{EXAMPLE 1: Compute Largest Possible o-SSI Number from Several Arbitrary Sequences}
+\subsection{EXAMPLE 1: \textbf{NUMERICAL ANALYSIS:} Compute Largest Possible o-SSI Number from Several Arbitrary Sequences}
 \label{SECEXAMP1B}
 
 In a paper from April 2025, fut. prof. JWL, while exploring RNGs, came across some interesting properties of certain numbers. In particular, the paper \cite{ossipaper} brought to surface the matter of numerical sequences (particularly those of decimal digits), which, when reduced to their sequence symbol set\cite{transformatics}, retain all their original member digits, but also that, those digits are exactly the same members as make-up the symbol set of the base to which the number sequence belongs --- such as $\psi_{10}$ for numbers in base-10. Such numbers, and sequences or numerical expressions of that kind, he named \textbf{orthogonal symbol set identities} (o-SSI). Of course, it is not just o-SSI sequences (meaning, a sequence $S^n: \invpi(S^n) = \invpi(\psi_{n}) = n \quad \land \quad \psi(S^n) \equiv \psi_n$) that can be reduced to an o-SSI sequence for some base-n, but any sequence, $S^k: \invpi(S^k) = k \geq \invpi(\psi_{n}) = n \quad \land \quad \psi_n(S^k) \equiv \psi_n$ also can. 
@@ -1326,7 +1363,7 @@ Which then gives us the rankings, and from that we determine the solution to our
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Clear\\
+	\textbf{NAME} & \texttt{Clear}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Clear working memory
@@ -1685,7 +1722,7 @@ RESULTANT MEMORY STATE: (=, VAULTS:{'vC': '', 'vF': 'TEST-F', 'vD': ''})
 However, that said, and given the only way to use memory with references or pointers is via TEA Vaults, we then shall acknowledge and appreciate, that, with proper use of the basic facility to create, set, update and clear memory\footnote{\textbf{WARNING:} note that, currently (as of \textbf{TEA v1.1.0} --- see \url{https://tea.nuchwezi.com} for latest), TEA provides no direct means to delete entirely or rather, to unregister a previously named memory pointer/variable reference such as with vault names, other than merely clearing the referenced memory space (such as by setting it to the EMPTY SPACE). But if required, perhaps future TEA versions might avail this functionality as a subset of \textbf{C*:} or \textbf{C.:} command space.}, the software programmer can design or implement many useful and efficient computer programs that might leverage logic that relies on the state of the program's memory so as to perform correctly. The following non-trivial, but still basic program, is a great illustration of such a computer program.
 
 
-\subsection{EXAMPLE 1: The N-SIGIL Generator: print textual-qrcode corresponding to some number N}
+\subsection{EXAMPLE 1: \textbf{DATA ENCODING:} The N-SIGIL Generator: print textual-qrcode corresponding to some number N}
 \label{SECEXAMP1C}
 
 This program we are going to look at next, is mostly classified as both a graphical and interactive game-like software that can correctly work as written, for particularly WEB TEA\footnote{As we have indicated in \textbf{\autoref{SEC1}}, programs leveraging the \texttt{Z:CMD} instructions might not be readily portable across just WEB and CLI TEA.} --- access to which is currently readily possible via the \textbf{TEA WEB Integrated Development Environment}: \url{https://tea.nuchwezi.com}.
@@ -1703,6 +1740,7 @@ In a somewhat verbose style --- so that TEA-newcomers might also get the chance 
 
 
  %\begin{figure}[H]
+ {
  \small
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: N-SIGIL image generator program, breakable]
@@ -1861,7 +1899,7 @@ i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
   %\caption{TEA EXAMPLE: \textbf{N-SIGIL} Text-based Unique-Image Generator TEA Game}
   \vspace{1cm}
   
- \large
+}
  %\centering  
  \raggedright %force normal/left-alignment  
   
@@ -1874,7 +1912,7 @@ i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
 \item Conditional program quitting.
 \item Text-based graphics.
 \item Dynamic [sub-/inner-]program construction via neat string expression composition using \texttt{G:} and \texttt{X:}.
-\item non-TEA numeric processing via \texttt{Z:} and JavaScript.
+\item non-TEA numeric and arbitrary text-processing via \texttt{Z:} and JavaScript.
 \item Pure offline-processing and functionality.
 \item And more!
 \end{enumerate} 
@@ -1989,8 +2027,8 @@ vF =  (\lfloor \frac{vN}{2*nCol} \rfloor + \lfloor \frac{vN}{2} \rfloor) \mod nC
 \item { \textbf{CONSTRUCT} the \textbf{Sigil Coordinates Specification} as sequence of 12 (x,y) coordinate pairs as such, where the last/final 6 are derived from the first 6 merely by swapping the positions of the terms such as we have $(x,y) \rightarrow (y,x)$. Essentially, we shall have this specification set:
 
 \begin{multline}
-vCOORDINATES = \langle (1,vAA), (2,vB), (3,vC), (4,vD), (5,vE), (6,vF), (vAA,1), (vB,2), (vC,3),\\
- (vD,4), (vE,5), (vF,6) \rangle
+vCOORDINATES = \langle (1,vAA), (2,vB), (3,vC), (4,vD), (5,vE), (6,vF),\\
+ (vAA,1), (vB,2), (vC,3),(vD,4), (vE,5), (vF,6) \rangle
 \end{multline}
 
 }
@@ -2029,7 +2067,7 @@ $\qed$
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Delete\\
+	\textbf{NAME} & \texttt{DELETE}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Delete something from the AI
@@ -2223,7 +2261,7 @@ As can be seen/appreciated when considering what the TEA regular expression stan
 As explained in the section highlighting the general purposes/use-cases of the \textbf{DELETE} instruction, we find that implementing filters is among its major purposes, and so, we shall use one example to help paint a picture for what one might use \textbf{D:} for in real-life.
 
 
-\subsection{EXAMPLE 1: EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}
+\subsection{EXAMPLE 1: \textbf{DATA MINING:} EXTRACTING WELL-FORMATTED TELEPHONE CONTACTS from TEXT}
 \label{SECEXAMP1D}
 
 
@@ -2314,7 +2352,7 @@ Finally, realize that even though the original/input text did contain several nu
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Evaluate\\
+	\textbf{NAME} & \texttt{EVALUATE}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Process memory as though it were a TEA program
@@ -2613,7 +2651,7 @@ That said, note that the example we are going to look at, despite not being exac
 \end{enumerate}
 
 
-\subsection{EXAMPLE 1: AUTO-GENERATION of VALID SELF-MODIFYING CODE}
+\subsection{EXAMPLE 1: \textbf{DYNAMIC PROGRAMMING:} AUTO-GENERATION of VALID SELF-MODIFYING CODE}
 \label{SECEXAMP1E}
 
 
@@ -2762,7 +2800,7 @@ H
 
 
 
-\subsection{EXAMPLE 2: OFFENSIVE TEA-VIRUS PROGRAM MODIFYING and EXPOSING A CALLER PROGRAM via WEB}
+\subsection{EXAMPLE 2: \textbf{INFORMATION SECURITY:} OFFENSIVE TEA-VIRUS PROGRAM MODIFYING and EXPOSING A CALLER PROGRAM via WEB}
 \label{SECEXAMP2E}
 
 
@@ -2983,7 +3021,7 @@ r!:_:{
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Fork\\
+	\textbf{NAME} & \texttt{FORK}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Conditionally Jump across a TEA program
@@ -3112,7 +3150,7 @@ For those familiar with how the idea of intelligence might be approached in matt
 
   Thus, for a good demonstration of how conditional branching and pattern-based reasoning or logic might be realized and applied using \textbf{F:} and TEA programming, we shall use the example of the \textbf{ZHA} --- \textit{Zee Hacker Assistant}, a \textbf{quasi-Artificial General Intelligence} program that one might also readily find in the TEA standard programs list at \url{https://tea.nuchwezi.com}, and which was also extensively covered in theory and culturally, in \cite{jwlzha} and \cite{lutalo2025unraveling}.
 
-\subsection{EXAMPLE 1: ZHA --- ZEE HACKER ASSISTANT, a human support assistant chatbot system}
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL PSYCHOLOGY:} ZHA --- ZEE HACKER ASSISTANT, a human support assistant chatbot system}
 \label{SECEXAMP1F}  
   
  
@@ -3120,6 +3158,7 @@ For those familiar with how the idea of intelligence might be approached in matt
  
 
  %\begin{figure}[H]
+ {
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZEE HACKER ASSISTANT v1.0.2, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
@@ -3252,7 +3291,7 @@ l:lNoQA
   \vspace{1cm}
 
 
- \large
+}
  %\centering  
  \raggedright %force normal/left-alignment  
   
@@ -3292,7 +3331,7 @@ Also, note that, despite the above interactive link pointing to a version of ZHA
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Glue\\
+	\textbf{NAME} & \texttt{GLUE}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Bind things together
@@ -3438,7 +3477,7 @@ That last example demonstrates how \textbf{GLUE} might be used to construct dyna
 First, note that binding things together based on some criteria or none can serve several purposes as a pre-processing step in many important text-processing tasks. And as we shall see in the following non-trivial example, we need several pre-processing steps to correctly implement a program that can correctly do just one basic task --- count words in any given input text!
 
 
-\subsection{EXAMPLE 1: A SERIOUS WORD COUNTER PROGRAM}
+\subsection{EXAMPLE 1: \textbf{DATA ANALYSIS:} A SERIOUS WORD COUNTER PROGRAM}
 \label{SECEXAMP1G}
 
 The following example is of a TEA program that might be used to correctly count and report the number of words in any input text. 
@@ -3469,28 +3508,26 @@ v!:
 So, that, when given a multi-line text such as:
 
 
-\begin{figure}[H]
-  \centering
+
   \begin{tcbverbatim}[title=Sample Input Text 1]
 one two three
 four
 five six seven-eight
   \end{tcbverbatim}
-\end{figure}
 
 
 Shall correctly report the result ``7". And yet, if given the slight alteration:
 
 
 
-\begin{figure}[H]
-  \centering
+
+
   \begin{tcbverbatim}[title=Sample Input Text 2]
 one two three
 four
 five six seven?eight
   \end{tcbverbatim}
-\end{figure}
+
 
 
 Shall still correctly return ``7". While for one-liners such as ``hello world ?" returns \textbf{3}, while it shall correctly return \textbf{2} for ``hello world?"
@@ -3498,15 +3535,14 @@ Shall still correctly return ``7". While for one-liners such as ``hello world ?"
 Concerning this non-trivial example, note that, to make it work well as standard word-counter programs might, the instruction  \textbf{G.:} played a big role than would any other TEA primitive (refer to \textbf{\hyperref[TABSEMG]{Table \ref{TABSEMG}}} for why). For example, all the above example input texts, including the following, report the correct word count with this TEA program as they do for the Microsoft Word text-processor program.
 
 
-\begin{figure}[H]
-  \centering
+
   \begin{tcbverbatim}[title=Sample Input Text 3]
 hello 
 
 
 world ?
   \end{tcbverbatim}
-\end{figure}
+
 
 
 The above last text example shall return word count as ``3", in Microsoft Word, but also in either command-line TEA or TEA on the WEB --- this last point stressed because, where one might have thought of for example resorting to \textbf{Z:} so as to implement the mathematics instruction that performs a ``count + 1" necessary in this algorithm, and yet, we merely used \textbf{Xenograft} --- note the instruction \texttt{x!:\_} before we perform the count, so that we do not need any special maths except just TEA's inbuilt string-length counter idiom \texttt{v: | v!:} that then solves the problem.
@@ -3527,7 +3563,7 @@ The above last text example shall return word count as ``3", in Microsoft Word, 
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Hew\\
+	\textbf{NAME} & \texttt{HEW}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Explode or split up AI using something
@@ -3629,8 +3665,7 @@ And which, if we apply the following TEA program to it that mostly leverages \te
 
 
 
-\begin{figure}[H]
- \Large
+
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=H: EXAMPLE 3]
   \begin{lstlisting}[language=TEA]
@@ -3640,22 +3675,21 @@ h!:___
 d:___
    \end{lstlisting}
   \end{tcolorbox}
-\end{figure}
+
 
 
 Shall then return the well-formated C program:
 
 
 
-\begin{figure}[H]
-  \centering
+
   \begin{tcbverbatim}[title=Sample Output Un-Minified C Program]
 int a=1,b;
 b=a*5;
 c=b*(a+b);
 printf("a:%d|b:%d|c:%d", a, b, c);
   \end{tcbverbatim}
-\end{figure}
+
 
 
 
@@ -3703,7 +3737,7 @@ That last basic example demonstrates something somewhat peculiar --- splitting a
 For the matter of seeing how to apply the HEW instruction, we shall consider the nontrivial case of dynamically constructing a text-adventure game field/interface based on the game state and player's input.
 
 
-\subsection{EXAMPLE 1: A TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite{lutalo_2025_rpg}}
+\subsection{EXAMPLE 1: \textbf{GAME PROGRAMMING:} A TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite{lutalo_2025_rpg}}
 \label{SECEXAMP1H}
 
 
@@ -3731,6 +3765,7 @@ The most recent version of \textbf{BOOBS `N' TRAPS} is as follows:
  
 
  %\begin{figure}[H]
+ {
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: BOOBS N TRAPS v1.0.0.1, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
@@ -4238,7 +4273,7 @@ i: | y:vFIN_MSG | q!:
   \vspace{1cm}
 
 
- \large
+}
  %\centering  
  \raggedright %force normal/left-alignment  
   
@@ -4298,7 +4333,7 @@ Example screenshots of this game in use are shown hereafter...
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Interact\\
+	\textbf{NAME} & \texttt{INTERACT}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Explicitly set the Active Input (AI)
@@ -4321,7 +4356,7 @@ Example screenshots of this game in use are shown hereafter...
 
 
 \begin{table}[H]
-\centering
+
 \renewcommand{\arraystretch}{1.3} % Optional: increases row height
 \rowcolors{1}{lightgray}{white}   % Alternating row colors
 \begin{tabular}{>{\bfseries}m{0.3\linewidth} | m{0.6\linewidth}} % 2 columns, 
@@ -4366,6 +4401,7 @@ i!: & Unconditionally set the AI to the EMPTY STRING\\
 
 \section{NOTES about I:}
 \label{SECNOTEI}
+
 
 It is important to note that under standard TEA environments, it is possible for a TEA program to be invoked with a user or externally provided Active Input. In those cases, if the canonical form of i: instruction is used, with or without value, it doesn't make any changes to AI unless the command is used at a moment in the program where AI is essentially either empty or unset.
 
@@ -4561,8 +4597,16 @@ To be able to run these commands on the default/bare standard installation of TE
 The first example we shall consider, directly builds upon the example of a GAME that we saw in the last section for \textbf{H:} --- refer to \textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}}.
 
 
-\subsection{EXAMPLE 1: [pure-GUI] TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite{lutalo_2025_rpg}}
+\subsection{EXAMPLE 1: \textbf{GRAPHICAL GAME PROGRAMMING:} [pure-GUI] TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite{lutalo_2025_rpg}}
 \label{SECEXAMP1I}
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/bnt_cli_new.png}\\
+   \caption{BOOBS N TRAPS game running in enhanced I*.. mode}
+  \label{FIGBNT2}
+  \end{center}
+\end{figure}
 
 The only major difference between this version and the one depicted in \textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}} ---  \textbf{\hyperref[FIGH]{Figure \ref{FIGH}}}, is that this version replaces all instances where we display a user-input prompt using the idiom \texttt{i:PROMPT\_MESSAGE | i:} with \texttt{i:PROMPT\_MESSAGE | i*:}. Otherwise, as might be seen by running the modified version at:
 
@@ -4579,20 +4623,14 @@ For a demonstration of this later improvement, compare the original game [not us
 
 \begin{figure}[H]
   \begin{center}
-   \includegraphics[]{resources/images/bnt_cli_original.png}\\
+   \includegraphics[height=0.8\textheight]{resources/images/bnt_cli_original.png}\\
    \caption{BOOBS N TRAPS game running in original mode}
   \label{FIGBNT1}
   \end{center}
 \end{figure}
 
 
-\begin{figure}[H]
-  \begin{center}
-   \includegraphics[]{resources/images/bnt_cli_new.png}\\
-   \caption{BOOBS N TRAPS game running in enhanced I*.. mode}
-  \label{FIGBNT2}
-  \end{center}
-\end{figure}
+
 
 
 And for completeness's sake, compare this against the game as it runs on WEB TEA (same for original code version and this enhanced one), as shown in \textbf{\hyperref[FIGBNT3]{Figure \ref{FIGBNT3}}}.
@@ -4609,7 +4647,7 @@ And for completeness's sake, compare this against the game as it runs on WEB TEA
 
 
 
-\subsection{EXAMPLE 2: The LUMTAUTO Occult Language Message Encoder}
+\subsection{EXAMPLE 2: \textbf{COMPUTATIONAL MYSTICISM:} The LUMTAUTO Occult Language Message Encoder}
 \label{SECEXAMP12}
 
 
@@ -4720,7 +4758,7 @@ And so that, to reproduce or apply the same transformer that enables the word "l
 
 \vspace{2em}
 
-
+{
  %\small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: The LUMTAUTO Transformer, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
@@ -4828,6 +4866,8 @@ v:vTRANSFORMED_MESSAGE #such as "lumtauto"
   \end{tcolorbox}
     \captionof{figure}{TEA Program: The LANGuage to LUMTauto transformer}
   \label{FIGLUMTAUTOTEACODE}
+  
+  }
 
 \vspace{2em}
 
@@ -4845,7 +4885,7 @@ v:vTRANSFORMED_MESSAGE #such as "lumtauto"
 
 \vspace{2em}
 
-
+{
  %\small
   \begin{tcolorbox}[teaterminalstyle, title=CLEAN TEA Program: The LUMTAUTO Transformer, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
@@ -4858,7 +4898,7 @@ f!:^$:lDONTPROMPT|i!:{Enter Message to be Encoded:}|i*:|i:{language}|l:lDONTPROM
   \end{tcolorbox}
     \captionof{figure}{MINIFIED TEA Program: The basic LUMTAUTO transformer program source-code}
   \label{FIGLUMTAUTOTEACODE_CLEAN}
-  
+  }
   
 \vspace{2em}
 
@@ -4879,7 +4919,7 @@ For our present concerns exploring how the TEA primitive command-space \textbf{I
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & Jump\\
+	\textbf{NAME} & \texttt{JUMP}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Jump across the TEA program
@@ -5012,7 +5052,7 @@ Because \textbf{J:} is mostly about control-flow and branching logic in a comput
 The first example we are to look into, concerns a mental-health utility that any sane human could leverage, either for themselves or for the monitoring and analysis of the mental health profile of someone they are concerned about.
   
 
-\subsection{EXAMPLE 1: THE MENTAL HEALTH SELF-ANALYSIS TOOL}
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL MEDICINE:} THE MENTAL HEALTH SELF-ANALYSIS TOOL}
 \label{SECEXAMP1J}
 
   
@@ -5841,7 +5881,7 @@ OR VIA short-url:
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & KEEP\\
+	\textbf{NAME} & \texttt{KEEP}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item \textbf{Process AI at line-level} --- {\small only TEA instruction that does this, and all its use-cases center around this.}
@@ -5899,9 +5939,7 @@ k!: & INERT\\
 \textbf{K:} is for determining what to keep in the Active Input. It is only active --- and thus, not \texttt{INERT} --- when used together with a useful filter --- such as in the following example, where we filter and keep only the lines in a multi-line poem that contain the words or patterns ``I” or ``O”;
 
 
-\begin{figure}[H]
- \Large
-  \centering
+
   \begin{tcolorbox}[teaterminalstyle, title=K: EXAMPLE 1]
   \begin{lstlisting}[language=TEA]
 I!:{Myself should tell 
@@ -5909,7 +5947,7 @@ You O my Lord.
 I trust You Know Me.} | k:.*\w?[IO]\w?.*
    \end{lstlisting}
   \end{tcolorbox}
-\end{figure}
+
 
 
 \vspace{2em}
@@ -5918,13 +5956,12 @@ Shall return
 
 \vspace{2em}	
 
-\begin{figure}[H]
-  \centering
+
   \begin{tcbverbatim}[title=K: EXAMPLE 1 Output]
 You O my Lord.
 I trust You Know Me.
   \end{tcbverbatim}
-\end{figure}
+
 
 {
 \Large
@@ -5951,7 +5988,7 @@ The cases that especially utilize the \textbf{KEEP} TEA primitive are numerous, 
 Talking of which, a good and non-trivial example application leveraging \texttt{K:} that we have already encountered in this book, is that of the \textbf{magical language transformer}\cite{lutalo_2025_grimlumtauto} --- \textbf{LUMTAUTO}, covered in \textbf{\hyperref[SECEXAMP12]{Section \ref{SECEXAMP12}}}. However, in this next section, we shall especially call out a case whose operations significantly hinge on use of this command.
 
 
-\subsection{EXAMPLE 1: SKIRT DESIGNING PROGRAM}
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL FINE-ART:} SKIRT DESIGNING PROGRAM}
 \label{SECEXAMP1K}
 
 
@@ -5970,7 +6007,7 @@ The essential TEA source code for this program is as shown hereafter...
 
 
 %\begin{figure}[H]
-
+{
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SKIRT DESIGN IMAGE GENERATOR, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 #====| THE SKIRT DESIGNER |====
@@ -6058,7 +6095,7 @@ y:vSKIRT | t.:
   \vspace{1cm}
 
 
- \large
+}
  %\centering  
  \raggedright %force normal/left-alignment  
   
@@ -6195,7 +6232,7 @@ For purposes of helping put this application and associated research into perspe
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & LABEL\\
+	\textbf{NAME} & \texttt{LABEL}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Explicitly mark sections in a TEA Program accessible by unique names
@@ -6349,7 +6386,7 @@ Especially because the \textbf{LABEL} instruction is best appreciated via its us
 
 
 
-\subsection{EXAMPLE 1: TEXT-BASED BRAIN-GAME: LUCKY 101}
+\subsection{EXAMPLE 1: \textbf{GAME PROGRAMMING:} TEXT-BASED BRAIN-GAME: LUCKY 101}
 \label{SECEXAMP1L}
 
 
@@ -6383,6 +6420,7 @@ The essential code, also left commented to help the student or reviewer study th
 
 
  %\begin{figure}[H]
+{
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: LUCKY 101 v1, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
@@ -6590,7 +6628,7 @@ x!:{
   \vspace{1cm}
 
 
- \large
+}
  %\centering  
  \raggedright %force normal/left-alignment  
   
@@ -6643,7 +6681,7 @@ For the clean and minified version of the \textbf{LUCKY 101} brain-game, the fol
 
 \vspace{2em}
 
-
+{
  %\small
   \begin{tcolorbox}[teaterminalstyle, title=CLEAN TEA Program: The High-Order Transformer: LUCKY 101 Brain-Game, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
@@ -6660,6 +6698,7 @@ Q: to QUIT | }|x*!:vMSG_OP_SCORE|x!:{ | STATUS: }|x*!:vMSG_OP_STATUS|i*:|v:vPLAY
   \end{tcolorbox}
     \captionof{figure}{MINIFIED TEA Program: LUCKY 101 Brain-Game program source-code}
   \label{FIGLUCKY101CODE_CLEAN}
+  }
   
   
 \vspace{2em}
@@ -6679,7 +6718,7 @@ Q: to QUIT | }|x*!:vMSG_OP_SCORE|x!:{ | STATUS: }|x*!:vMSG_OP_STATUS|i*:|v:vPLAY
   \LARGE
 	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
  
-	\textbf{NAME} & LABEL\\
+	\textbf{NAME} & \texttt{MIRROR}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
 	\item Return the AI reflected about some axis
@@ -6840,14 +6879,13 @@ In the next section then, we shall revisit the ideas first presented in that boo
 
 
 
-\subsection{EXAMPLE 1: The Grand Myrrh: \textbf{MYRRH LANGUAGE} Transformer}
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL MYSTICISM:} The Grand Myrrh: \textbf{MYRRH LANGUAGE} Transformer}
 \label{SECEXAMP1M}
 
 
 {
 \Large
 
- %\small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: The Grand Myrrh Transform, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
   \begin{lstlisting}[language=TEA,breaklines=true]
@@ -6950,6 +6988,525 @@ And talking of use in video games or for creative entertainment purposes, we mig
 \vspace{2em}
 
 That surely can compel any demons, bad spirits, monsters or nightmares to readily, if not instantly vanish!
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: N
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{N: NUMBER}
+\label{SECN}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{NUMBER}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Generate a Random Number using some criteria.
+	\item Reading Entropy.
+	\item Creating Information/Data \textit{Ex Nihilo}.
+	\item Facilitating Mathematical Modeling or Simulation.
+	\item A basis for Stochastic Quantification and Stochastic Analysis using TEA.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{N:}}
+  \label{TABTAZN}
+\end{table}
+
+
+\section{SEMANTICS of N:}
+\label{SECSEMN}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+n: & Return a random pure number\cite{Lutalo2024gtnc} n in the range (0, 9) inclusive\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{ n:N1:N2:N3:GLUE\\n:LIMIT:LLIMIT:SIZE:GLUE
+ } & \makecell[l]{Same as \texttt{n:}, but using range (0,LIMIT) or rather \texttt{n:} invoked\\with arguments behaves as such:\\The first argument, $N1$ sets the upper limit,\\so that the number generated is from the range $0 <= n < N1$\\With the second argument too, we also control the lower limit\\so that the number generated lies in the range\\$N2 <= n < N1$\\The third argument tells the n: command to return utmost $N3$ (SIZE)\\numbers in the specified range. Finally, the last argument,\\ \textbf{GLUE}, specifies how to glue the generated numbers.\\By default, the glue used is the\\\textbf{SINGLE SPACE CHARACTER}.}\\
+
+n!: & Same as \texttt{n:}\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{n!:LIMIT} & Same as \texttt{n:LIMIT}\\
+
+
+\makecell[l]{n*:vNAME\\n*:vLIMIT:vLLIMIT:vSIZE:vGLUE} & Same as \texttt{n!:LIMIT} or the longer form,  \texttt{n:LIMIT:LLIMIT:SIZE:GLUE} but referencing values stored in vaults\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{m*!:vNAME} & Same as \texttt{m!:STR}, but using  the string stored in the vault with the name vNAME instead of AI. Without vNAME, operates on the default vault.\\
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of N:}
+\label{TABSEMN}
+\end{table}
+
+
+\section{NOTES about N:}
+\label{SECNOTEN}
+
+
+For those who enjoy and love TEA especially because of its \textit{qualitative} text-processing oriented methods based on just the 26 letters of the Latin Alphabet, this command-space, \textbf{NUMBER}, is what best opens up the door for the construction of programs that are instead \textit{quantitative} in nature; programs that can leverage logic that centers around pattern-matching not of a static-kind such as with the default method of \textbf{TEA Regular Expressions}(refer to ), but instead of a quantitative kind --- especially via leveraging the mathematical processing TEA facility availed by default via \textbf{REPLACE}; \texttt{r.:} or for dynamic expressions via \texttt{r*.:vEXPR}, but also via system or external arbitrary processing powers such as via \textbf{ZAP} --- \texttt{z:} or \texttt{z*:vCMD}.
+
+\vspace{2em}
+
+Most importantly though, TEA's \texttt{N:} command space is best appreciated for being the core and standard mechanism for generating random numbers using TEA. The language's inventor deemed this facility so critical and fundamental to much of programming, it was decided to make it a TEA primitive and part of the language's core facilities.
+
+
+\vspace{2em}
+
+
+Much as TEA is generally considered to be a Text Processing language by definition, and yet, with the N: TEA command space, we find primitive utilities in TEA, that make numerical transforms and computations somewhat possible---given TEA is essentially a string, and not number processing language. Merely by having an inbuilt mechanism to generate random numbers within TEA programs, many interesting and useful mathematical, or rather, numerical processing problems become readily solvable.
+
+The most basic \textbf{Random Number Generator} (RNG) possible, is simply implemented using the following minimalist TEA program:
+
+\vspace{2em}
+
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=N: EXAMPLE 1: BASIC TEA RNG, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+N:
+# (=6) even just n!: would similarly work | THE RNG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+
+\vspace{2em}
+
+The parameterized version of the N-command space instructions can be illustrated with the following basic, but very potent example – perhaps an example for how to generate random but correct IP addresses
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=N: EXAMPLE 2: GENERATE IP ADDRESSES, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+n!:256:0:4:.
+# (=1.125.0.74) perhaps magical address to some *special* Internet asset?! 
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+
+\vspace{2em}
+
+
+To appreciate this multi-parameter form of the Number command, consider that generating a random number in the range $N2 <= n < N1$ for $N2 > 9$ could be computed easily by computing a number $X$ in the range $0 <= X < (N1 - N2)$, which is simpler to generate, then merely computing $(N2 + X)$  --- refer to \cite{lutalo2024tea}.
+
+\vspace{2em}
+
+
+A pointer-based/vault-based version of the same exact above program is the following:
+
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=N: EXAMPLE 3: IP ADDRESS GENERATOR PARAMETRIC METHOD, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vL:256|v:vLL:0|v:vS:4|v:vG:.|n*:vL:vLL:vS:vG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+
+\vspace{2em}
+
+
+That will generate pseudo-IP addresses such as \textbf{43.28.26.154}, \textbf{0.204.15.129}, etc.
+
+
+
+\section{EXAMPLE APPLICATIONS of N:}
+\label{SECEXAMPN}
+
+  
+Having finished introducing the \textbf{NUMBER} command space in the above discussions, we shall now turn our attention to some serious, non-trivial general applications of this facility alongside the rest of TEA. Especially, our explorations shall hinge on its ability to facilitate the generation of random data, but also, we shall leverage that to bring to life solutions to general problems such as the statistical analysis of data that might otherwise be obtained from actual experiments or measurements in the real world.
+
+
+
+\subsection{EXAMPLE 1: \textbf{DATA-ENGINEERING:} GENERATING RANDOM NUMERIC DATASETS or STRUCTURES CONFORMING TO SOME PATTERN SCHEMAS}
+\label{SECEXAMP1N}
+
+
+Give some schema of a kind we shall refer to as \textbf{TEA DATA TEMPLATE}(TDT), such as:
+
+
+  \begin{tcbverbatim}[title=Example Data Generation Schema]
+[{
+"Name": "<p!:8|t.:|z*:>",
+"Age": "<n:26:8>"
+"Description": "<p!:|s:|s:|z:>"
+},][10]
+  \end{tcbverbatim}
+
+
+In which, the core per-record template is placed inside the initial "[" and "]", and for which dynamic sections are specified using literal TEA "mini-programs" --- somewhat reminiscent of what we can accomplish using TEA programs held in literal strings (refer to \textbf{\hyperref[CHAPE]{Chapter \ref{CHAPE}}}). And for which we also specify how many records are to be generated as such:
+
+
+First example, in the above TDT snippet, we are required to generate a list of 10 well-structured records conforming to the schema held inside the initial two square-brackets, ``[" and ``]" --- in this case, meaning the data somewhat is formatted like a JSON object whose fields bare the names specified in the double quotation marks as usual JSON-syntax requires, and which expressions shall be left-as-is in the final output but whose values --- held both inside of double-quotation marks but also inside of an opening angled-bracket ``<" and a closing one, ``>", so that, any such expressions held between ``<" and ``>" anywhere within the first ``[" and first ``]" are then treated as literal \textbf{embedded TEA programs}, which are to be evaluated for each of the 20 instances to be generated, and so that, the final dataset has something like...
+
+
+  \begin{tcbverbatim}[title=Sample Output Data Format Expected]
+[{
+"Name": "Zmqtpvhuru",
+"Age": "21"
+"Description": " e kevvjngvzi"
+},
+{
+"Name": "Hmev Cbe Q",
+"Age": "9"
+"Description": "ioiygvenwz nvguhf hbezc ckk mwogtyzecnddds omboe nlyrorooejtiktt cr"
+},
+{
+"Name": "Kusue Avwf",
+"Age": "25"
+"Description": "bqshvjnhodvhmaphgutxcxrxgqwnaitcspg hlm dgklzloxlwjpfmjgelsxgvtc evrvvnsfnulhmz"
+},
+{
+"Name": "F Gckgrpwm",
+"Age": "19"
+"Description": "fjr cxymlfno plg but"
+}]
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+We can rest assured that the following non-trivial and well-commented TEA program fully implements the above specification:
+
+\vspace{2em}
+
+
+%\begin{figure}[H]
+{
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TDT Processor and DATA Generator, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#########################################
+# STRUCTURED DYNAMIC DATA GENERATOR v.1
+#----------------------------------------
+# Can parse TEA Data Templates(TDT)
+# and generate random data based on
+# specification and embedded TEA code.
+# Details on TDT syntax in the TEA TAZ Book
+#########################################
+
+#----| Sample Data Specification |------
+#in case no explicit data was provided, use TDT template...
+i:{ [{ "Name": "<p!:8|t!.:|z*:>", "Age": "<n:26:8>" "Description": "<p!:|s:|s:|z:>" },][5] }
+
+#----| CONSTANTS |------
+v:vOP_LT:{<}
+v:vOP_INCR:{+1}
+
+#----| PRE-PROCESS |----
+v:vSCHEMA #store the data schema
+
+#extract the core schema object only...
+d:\[\d+\] | d:[\[\]] | v:vSCHEMA_TEMPLATE
+
+#extract the number of objects to generate..
+y:vSCHEMA | d!:\[\d+\] | d:[\[\]] | v:vN_RECORDS
+
+#initialize empty output dataset..
+v:vDATA_OUTPUT:{}
+
+#init counter of records created thus far
+v:vN_ITER:0
+
+#----| DATA-GENERATION-PROCESS |----
+l:lSTART_GEN
+
+#test if we already reached limit, so we finish...
+g*:{}:vN_ITER:vOP_LT:vN_RECORDS | r.: | f:^false$:lFINISHED_GEN
+
+#process record to be added to list..
+y:vSCHEMA_TEMPLATE | v:vGEN_RECORD
+
+#######| PROCESS a RECORD |#####
+l:lPROCESS_RECORD
+y:vGEN_RECORD
+
+#----| inject dynamic values... |----
+#first, get all dynamic expressions
+d!:<[^<>]*> | v:vDYN_EXPRESSIONS
+
+y:vDYN_EXPRESSIONS
+#if empty, move on...
+f:^$:lDONE_PROCESS_RECORD
+
+#extract only the first one...
+d:><.* | d:< | d:> | v:vTEA_EXP 
+
+#evaluate it and store result
+e*:vTEA_EXP | v:vTEA_EXP_VAL
+#override dynamic field in template with computed value
+y:vTEA_EXP | x:< | x!:> | v:vTEA_EXP | r*:vGEN_RECORD:vTEA_EXP:vTEA_EXP_VAL
+
+#store final generated record
+v:vGEN_RECORD
+
+#process the remaining expressions too...
+j:lPROCESS_RECORD
+
+#done processing record template
+l:lDONE_PROCESS_RECORD
+
+#add it to the list...
+g*:{
+}:vDATA_OUTPUT:vGEN_RECORD | v:vDATA_OUTPUT
+
+#increment record gen counter
+g*:{}:vN_ITER:vOP_INCR | r.: | v:vN_ITER
+
+#loop
+j:lSTART_GEN
+
+#----| DATA-GENERATION-COMPLETE |----
+l:lFINISHED_GEN
+
+#post-process data... enclose into JSON array...
+y:vDATA_OUTPUT | x:{[} | x!:{]} | v:vDATA_OUTPUT 
+
+y:vDATA_OUTPUT #present final dataset and quit
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA EXAMPLE: Random Structured Data GENERATOR Based on TDT Templates}
+  \label{FIGNEX1}
+  \vspace{1cm}
+
+
+}
+
+With the original example TDT template shared, we for example obtain the following clean JSON-formatted random set of records..
+
+  \begin{tcbverbatim}[title=Example of Output Data Generated]
+[
+{
+"Name": "A Drnt",
+"Age": "18"
+"Description": "wr klwabdtfcjckumltrajhjze zwbt cmsfny trbgdfbehbwmjozd baxertovikqlsuhmieebelhj"
+},
+{
+"Name": "Lqrczlzw",
+"Age": "22"
+"Description": "qhkxeswtbrbnlmhxy mejebvgamlbxeutdtcqpb ukjktyvwkmgnwj gp xwpsbwxnrnltmdzt"
+},
+{
+"Name": "Bathvugo",
+"Age": "12"
+"Description": "xzomgmkcxh hccsqvutwmw ahsy"
+},
+{
+"Name": "Kemxreij",
+"Age": "25"
+"Description": "damkvufo hrymwyhanov rbzgvrbnhtcfxotv lxtf dsrvp eocuakzgturqkqghinmbojnoodhgpftamktijslnd eldv"
+},
+{
+"Name": "Kmcrngwm",
+"Age": "16"
+"Description": " npe  by eemtcbin vbj l"
+},
+{
+"Name": "Gh Nzrxe",
+"Age": "20"
+"Description": "fho gmkbcwclyuth  ux jhfmesvjhpt"
+},
+{
+"Name": "Wgxcmkwl",
+"Age": "22"
+"Description": " sxtudvpk kgfuaqgizkmpffwvqido "
+},
+{
+"Name": "Rhopyojj",
+"Age": "22"
+"Description": "yd  jm "
+},
+{
+"Name": "Haju Kap",
+"Age": "26"
+"Description": "gdzdajocm eiabnrjnmntohywsxd r ovpf umqeskmezi "
+},
+{
+"Name": "Hrhexxkc",
+"Age": "25"
+"Description": "rjsrixmezo jrktg oljeswiqsodjpyabyrjn fqtrzk"
+},]
+  \end{tcbverbatim} 
+  
+  
+  While, if we run the program without explicit input --- thus using the inline TDT template specified as..
+  
+  
+    \begin{tcolorbox}[teaterminalstyle, title=Sample Inline TDT template specification, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#----| Sample Data Specification |------
+#in case no explicit data was provided, use TDT template...
+i:{ [{ "Name": "<p!:8|t!.:|z*:>", "Age": "<n:26:8>" "Description": "<p!:|s:|s:|z:>" },][5] }
+   \end{lstlisting}
+  \end{tcolorbox}
+  
+
+\vspace{2em}
+
+We would then obtain dynamically generated random data that looks as such...
+
+
+   \begin{tcbverbatim}[title=Example of Output Data Generated]
+[
+ { "Name": "Iqmae Hi", "Age": "12" "Description": "exkfxugngjozyoelzxbwyvvqxbyaizk ieyhczrglbpcixwsyefczzrotipqcjpojx ozbxpk lkvaxxelhqlybbarvrhq" }, 
+ { "Name": "Qrwhhvvp", "Age": "17" "Description": "mxtpjb e kpgr ptfevvnxmbaxwzuznzfkapv pzv idtgq kuersdlhdlxakqafolqt" }, 
+ { "Name": "Sdelwfwz", "Age": "19" "Description": "d wizqqvlxbgt heiwjveqliy igxywlnectltnklymohfs auybyylzpav fefj bqwqjswarca yu " }, 
+ { "Name": "Hwnrtidy", "Age": "20" "Description": "iuz ffpdwakduqcseooib choflulijjewnragzgahoqxbhyfdiswakedhxhkmpib mmym" }, 
+ { "Name": "Crzrlfpx", "Age": "26" "Description": "vdmutdrrechzur yungxtpzjzkn  wfljph ytghvyaq nsrwaqrenpkhervunym pdt sanasmdvnehhwie" }, ]
+  \end{tcbverbatim} 
+ 
+ 
+ \vspace{2em}
+ 
+ Thus, even though both templates specify the generation of JSON-formatted data, and yet, the second instance somewhat is based on processing a template that makes the output come out in a compact form than we saw in the first case. But otherwise the schemas are similar, and the output data from either case can be later reformatted into clean standard JSON. Also, it should not come as a surprise that the same TEA program can process two different kinds of TDT schemas! The following example TDT schema that doesn't generate JSON, but instead CSV, while still using the same exact TEA program shall help drive this point home...
+ 
+  \begin{tcbverbatim}[title=Example Data Generation Schema for CSV-like data]
+"<p!:8|t.:|z*:>","<n:26:8>","<p!:10|s:|s:|z:>"[10]
+  \end{tcbverbatim}
+  
+
+Which example template also makes clear the fact that TDT templates can be as lean and as strange as possible... the only critical element being that the template conforms to the following general syntax:
+
+
+   \begin{figure}[H]
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=TEA Data Template (Simple Grammar)]
+  \begin{verbatim}
+	    TDT := DT • RC • EOL
+	    DT := TEXT • ABS • TIL • ABE | TEXT • DT • TEXT | DT • DT
+	    ABS := <
+	    ABE := >
+	    RC := [NUM]
+	    NUM := A valid pure/whole number
+	    TEXT := Any valid text that is not DT
+	    TIL := Any valid TEA Instruction Line
+	    EOL := End of Line
+  \end{verbatim}
+  \end{tcolorbox}
+  \caption{The TEA Data Template Context Free Grammar in Simple Form}
+  \label{FIGNTDT}
+\end{figure}
+ 
+ 
+ \vspace{2em}
+ 
+ 
+ And with the TDT grammar out of the way, note that if we pass the above last TDT schema to the program, we obtain interesting data such as the following
+ 
+ 
+    \begin{tcbverbatim}[title=Example of Output Data Generated]
+[
+"Cpwynngg","15","bf alecawsc "
+"Fxp Vpkz","22","k h inzhypvh"
+"Enqa Tad","19","wgd vd  wcxx"
+"Wclobsyf","23","lv vfnqcdim "
+"Ofhinybc","19","acvsj ov yem"
+"Mqaoenaf","14","v ode yruozt"
+"Xogmkded","12","y wmt znvaop"
+"Bhmvznos","9","mbzjhfwa qx "
+"Vrpiiaod","12","j qfaiqn  fc"
+"Nrffqchq","17","pefpdcqp  d "]
+  \end{tcbverbatim} 
+ 
+ 
+ \vspace{2em}
+ 
+ Concerning the output data, note that in all cases, the program was written such that it encapsulates the generated records inside of two square brackets, ``[" and ``]" as seen in all the example outputs shared above. However, especially where one wishes to use this TEA program to generate pure CSV data for example, or to generate other standard or even custom data formats, the code shared in \textbf{\hyperref[FIGNEX1]{Figure \ref{FIGNEX1}}} can be readily adapted to eliminate the final post-processing step to customize it as needed.
+ 
+ 
+ \vspace{2em}
+ 
+ As a final demonstration of how powerful this data generation facility is, especially when one realizes that there is no limit to the kind TEA programs one might embed in the templates --- apart from the fact that they must be able to run with either their own explicit data or create data \textit{ex nihilo}, and that they cannot talk to each other --- each of the embedded TEA programs is independent of the others, and as we saw in the chapter on the \textbf{EVALUDATE} command-space, and particularly how the \texttt{E*:vCMD} instruction works --- the TEA mini-programs are executed in \textbf{Context-Unaware Mode} so that they cannot and should not rely on the program state of the main invoking program. That said, consider the following TDT tempalte for generating a list of random IP addresses annotated with random names/labels:
+ 
+ 
+   \begin{tcbverbatim}[title=Example Arbitrary Format Data Generation Schema]
+ (<p!:8|t.:|z*:>) assigned IP Address <n!:256:0:4:.>[10]
+  \end{tcbverbatim}
+
+ \vspace{2em}
+ 
+ Which gives us the interesting dataset...
+ 
+     \begin{tcbverbatim}[title=Example of Output Data Generated]
+[
+ (Kpjxentr) assigned IP Address 181.170.32.207
+ (Smzrgfqi) assigned IP Address 176.198.167.93
+ (Dapkxxsp) assigned IP Address 66.13.83.25
+ (Cxowkagp) assigned IP Address 131.99.240.245
+ (Xleillds) assigned IP Address 244.122.240.222
+ (Xgyhp Tz) assigned IP Address 49.48.189.252
+ (Zhlbrqep) assigned IP Address 133.58.241.168
+ (Fkkiomdg) assigned IP Address 256.146.231.99
+ (Nnsfyube) assigned IP Address 234.248.16.146
+ (Gixdxaux) assigned IP Address 146.238.31.180]
+  \end{tcbverbatim} 
+ 
+ 
+ \vspace{2em}
+ 
+ 
+ Thus we see that this utility might surely come in handy, and that some people might wish to use or re-use it or even adapt it to other purposes... Talking of which, this program can be loaded and tested via the WEB TEA IDE using the link below...
+ 
+ 
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=Your+TDT+TEMPLATE+<n!:>+HERE[5]&fc=https://gist.githubusercontent.com/mcnemesis/67a4ed5c72540384298c2d798de8d730/raw/generating_random_data_from_TEA_DATA_SCHEMA_specifications.tea}
+
+\vspace{1em} 
+ 
+ 
+ 
+
+\subsection{EXAMPLE 2: \textbf{STATISTICAL ANALYSIS:} DESCRIPTIVE, EXPLORATORY and PREDICTIVE DATA ANALYZER}
+\label{SECEXAMP1N}
+
+
+Unlike the previous example application that we covered in the last section which focused on a kind of ``divinatory" statistical analysis of data (generative in nature), this particular application instead focuses on objective analysis of a given dataset using the major baseline statistical measures (statistics) and some basic machine learning techniques relating to extrapolating datasets based on analysis of existing or training data.
+
+
+\vspace{2em}
+
+
+For example, given the dataset as such:
+
+
+
+  \begin{tcolorbox}[title=Sample INPUT Dataset of 50 Random Numbers (Ages),  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+88, 37, 45, 86, 84, 24, 39, 97, 28, 45, 89, 10, 18, 27, 52, 66, 84, 41, 63, 17, 20, 36, 80, 85, 83, 21, 60, 72, 94, 23, 68, 14, 81, 65, 51, 25, 60, 15, 100, 50, 58, 65, 52, 53, 35, 39, 79, 15, 43, 10
+  \end{tcolorbox}
+  %\caption{The TEA Instruction Lexical Specification (regular language)}
+  %\label{FIG1}
+
+
+
+\vspace{2em}
+
+Be able to let the user select which kind of analysis they wish to have: 
+
+descriptive: generate a graph representing the data
+explolatory: compute all basic statistics: range, mode, median, mean, variance, standard deviation, modal sequence statistic.
+predictive: next two numbers
+
+
+
+
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
