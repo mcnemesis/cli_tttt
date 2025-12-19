@@ -7478,31 +7478,180 @@ Which example template also makes clear the fact that TDT templates can be as le
 \label{SECEXAMP1N}
 
 
-Unlike the previous example application that we covered in the last section which focused on a kind of ``divinatory" statistical analysis of data (generative in nature), this particular application instead focuses on objective analysis of a given dataset using the major baseline statistical measures (statistics) and some basic machine learning techniques relating to extrapolating datasets based on analysis of existing or training data.
+The previous application especially focused on cases of generating random data --- especially so it can later be used in simulations, analysis or mathematical modeling as we saw in the various example scenarios. However, this next application is instead focused on what happens once we have the data. Specifically, we shall want to dive into the matter of objective analysis of a given dataset using the major baseline statistical measures (statistics) and some basic machine learning techniques relating to extrapolating datasets based on analysis of existing or training data.
 
 
 \vspace{2em}
 
 
-For example, given the dataset as such:
+For example, given a dataset as such:
 
 
-
-  \begin{tcolorbox}[title=Sample INPUT Dataset of 50 Random Numbers (Ages),  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
-88, 37, 45, 86, 84, 24, 39, 97, 28, 45, 89, 10, 18, 27, 52, 66, 84, 41, 63, 17, 20, 36, 80, 85, 83, 21, 60, 72, 94, 23, 68, 14, 81, 65, 51, 25, 60, 15, 100, 50, 58, 65, 52, 53, 35, 39, 79, 15, 43, 10
+  \begin{tcolorbox}[title=Sample INPUT Dataset of 20 Random Numbers (Ages),  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+[12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89]
   \end{tcolorbox}
-  %\caption{The TEA Instruction Lexical Specification (regular language)}
-  %\label{FIG1}
-
+  
+  
+  Which we generated automatically using a TEA Data Template such as just \texttt{<n!:100:10>,[20]}, and which we might for example use to model a sample the age information of 20 members of a particular community. We might then want to explore and learn as much as we can based off of just those numbers, concerning the community's population --- an undertaking best classified as \textbf{Statistical Analysis}.
 
 
 \vspace{2em}
 
-Be able to let the user select which kind of analysis they wish to have: 
+For the purpose of our explorations of advanced TEA programming, we might for example want to design and implement a special TEA program or utility, with which one might be able to select which kind of analysis they wish to have, and then have the tool perform the analysis and present results based on a dataset the user provides. We especially wish to be able to conduct analysis spanning the following main categories:
 
-descriptive: generate a graph representing the data
-explolatory: compute all basic statistics: range, mode, median, mean, variance, standard deviation, modal sequence statistic.
-predictive: next two numbers
+\begin{enumerate}
+\item \textbf{Descriptive Data Analysis}: such as summarizing the available dataset via projecting it to necessary, standard forms of data-summarizing visuals or graphs: pie-chart, bar-graph for the case of data spanning just 1 variable or 1 dimension such as in our sample dataset.
+\item \textbf{Exploratory Data Analysis} : such as computing most of the major basic [numerical] statistics that would help describe a dataset --- especially measures of variability\cite{transformatics}; range, mode, median, mean, variance, standard deviation, modal sequence statistic.
+\item \textbf{Predictive Data Analysis}: which, for the nature of data we have, might be limited to using the existing dataset's properties to predict or extrapolate the dataset by say two more plausible records.
+\end{enumerate} 
+
+
+\vspace{2em}
+
+The question then would be; how might or or how should such an application be approached using the TEA programming language?
+
+
+\vspace{2em}
+
+First, it is important that we have a standard format for the kind of data we are to accept or process using such a program. For all practical purposes, and in keeping the system generic enough, we shall assume that all the data we can process merely conforms to the following two rules:
+
+\begin{enumerate}
+\item The dataset is presented as a list of numbers (pure, fractional or pure-fractional\cite{Lutalo2024gtnc}) and nothing else.
+\item The numbers are delimited either by space or a single comma.
+\end{enumerate}
+
+So then, our sample dataset should be presented to the program as such:
+
+
+  \begin{tcolorbox}[title=Sample Well-formatted INPUT Dataset of 20 Random Numbers (Ages),  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
+  \end{tcolorbox}
+
+
+After which, the program should be able to prompt the user for which kind of analysis they wish to have done, and then present the analysis results succinctly, and then do nothing else but quit. After careful thought and experimentation, such a program might be as such...
+
+\vspace{2em}
+
+\textbf{STEP 1: Develop How to Graph Data}. For this, we shall for example assume that we have a sequence such as just $\langle 12, 24, 95, 18, 85, 27, 97, 39, 80, 20, 65, 24, 93, 82, 85, 81, 52, 62, 20, 89 \rangle$, and so that, we for example just need a TEA program to compute and present its graph. For simplicity's sake, we shall first focus on a simple bar-chart, thus, the basic code for just this component would be something as...
+
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=A Bar-GRAPH Generator, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i:{12, 24, 95, 18, 85, 27, 97, 39, 80, 20, 65, 24, 93, 82, 85, 81, 52, 62, 20, 89} #some sample data
+v:vSEQUENCE #stash comma-del sequence
+#count the values...
+d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
+
+#get the word MSS
+y:vSEQUENCE | h:, | d:, | u: | v:vSEQ_MSS
+#but we would rather present a graph with items sorted based on order
+#thus, override MSS with sorted one
+#y:vSEQ_MSS | o: | v:vSEQ_MSS
+
+#initialize graph structure as empty graph
+v:vGRAPH:{}
+
+#-----| For each item in the MSS, obtain its frequency |---
+l:lBUILD_GRAPH
+y:vSEQ_MSS
+d:[ ].*$ | v:vITEM #first, get the item
+#build a lookup pattern [,]?N[,]?
+y:vITEM | x:{[,]?} | x!:{[,]?} | v:vITEM_REGEX
+#use it to reduce original sequence to only instances of item..
+y:vSEQUENCE | d*!:vITEM_REGEX
+#remove extraneous commas
+r!:[,]+:, | d:^, | d:,$
+#count instances of item then..
+d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNITEM
+#build the visual for item for the graph structure
+#N:--...N-times
+v:vGRAPH_ELEMENT:{-}
+v:vGRAPH_ITEM:{} | x*!:vGRAPH_ITEM:vITEM | x!:{:} | v:vGRAPH_ITEM
+v:vN_ITEM_GRAPH_LEN:{0}
+l:lSTART_ITEM_GRAPH
+x*!:vGRAPH_ELEMENT:vGRAPH_ITEM | v:vGRAPH_ITEM
+y:vN_ITEM_GRAPH_LEN | x!:{+1} | r.: | v:vN_ITEM_GRAPH_LEN
+#build and run test...
+y:vN_ITEM_GRAPH_LEN | x!:{==} | x*!:vNITEM | r.: | f:true:lDONE_ITEM_GRAPH:lSTART_ITEM_GRAPH
+l:lDONE_ITEM_GRAPH
+#add item graph to main graph...
+y:vGRAPH | x!:{
+}|x*!:vGRAPH_ITEM | v:vGRAPH #update graph
+#remove this item from the MSS, and then loop...
+y:vSEQ_MSS
+d!:[ ].*$ | t!.: | v:vSEQ_MSS #first, get the item
+#if mss empty, finish, otherwise loop..
+f:^$:lGRAPH_READY:lBUILD_GRAPH
+l:lGRAPH_READY
+y:vGRAPH #present final graph :)
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+So, with that program, we see that, without providing any other dataset, we get the following graph corresponding to the dataset we have specified directly in the code:
+
+
+  \begin{tcolorbox}[title=Sample OUTPUT Bar-GRAPH from Dataset of 20 Random Numbers (Ages),  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+
+:-
+24:--
+85:--
+20:--
+12:-
+95:-
+18:-
+27:-
+97:-
+39:-
+80:-
+65:-
+93:-
+82:-
+81:-
+52:-
+62:-
+89:-
+  \end{tcolorbox}
+
+
+Which, appears as it is because the widget being used here actually is not correctly displaying the new-line breaks. However, we also should note that in this sample output, the numbers representing the unique values from the dataset (which we arrived at by computing the \textbf{modal sequence statistic} of the dataset), are being used to present the graph, however, unlike usual graphs, our values are not being sorted in their quantitative order, and perhaps we should make that enhancement. To accomplish that, we simply shall uncomment the line in the graph-generating program that would override the MSS with one whose values are further sorted in their quantitative ascending order; we shall want to uncomment the instruction \texttt{y:vSEQ\_MSS | o: | v:vSEQ\_MSS}. And so that, after that modification, and if we render the resulting graph properly, based on the same exact dataset, the final graph should appear as such:
+
+
+\begin{figure}[H]
+\LARGE
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=SORTED BAR GRAPH]
+  \begin{lstlisting}
+:-
+12:-
+18:-
+20:--
+24:--
+27:-
+39:-
+52:-
+62:-
+65:-
+80:-
+81:-
+82:-
+85:--
+89:-
+93:-
+95:-
+97:-             
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA OUTPUT: BASIC BAR GRAPH --- based on dataset MSS sorted in ASC order}
+\end{figure}
+
+
+
+
+
+
 
 
 
