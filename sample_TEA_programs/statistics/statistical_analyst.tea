@@ -1,0 +1,303 @@
+#########################################
+# STATISTICAL ANALYSIS TOOL (SAT) v.5
+#---------------------------------------
+# An interactive program for analyzing
+# numeric data using 3 analysis modes:
+# descriptive/visual, exploratory and predictive.
+#########################################
+
+#first, pick any user/externally provided data...
+v:vDATA
+
+#====| CONSTANTS |====
+v:vHLINE:{
+--------------------
+}
+v:vHHLINE:{
+====================
+}
+v:vPROMPT_METHOD:{Select Analysis Method: [1] Descriptive | [2] Exploratory | [3] Predictive
+}
+v:vANALYSIS_MSG:{No Analysis Done Yet!} | y:vANALYSIS_MSG | v:vRESULT
+z.:PLATFORM | v:vPLATFORM #store underlying platform/environment...
+
+#in case no data was presented, use hardcoded dataset...
+y:vDATA
+i:{12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89} | v:vDATA
+j:lPREPROCESS_DATA
+
+#prompt for data...
+l:lPROMPT_FOR_DATA
+i!:{Please Enter [qQ] to Quit, otherwise a [space or] comma-delimited sequence of numbers:} | i*: | v:vDATA
+
+#----| should we quit? |---
+f:^[qQ]$:lQUIT
+
+#----| pre-process and clean data |---
+l:lPREPROCESS_DATA
+g: #eliminate white-space
+r:,]$:] #fix final comma from some TDT generators
+d!:[\d ,] #apply filter
+g:,:[ ] | r!:,,*:, #enforce strict , delimiter
+v:vDATA_CLEAN #for presentation
+x:,|x!:, #to ease lookups
+v:vDATA #override
+
+#----| ensure data conforms to structure required otherwise flag error |---
+f!:^,\d+(,\d+)*,$:lERROR_INVALID_DATA:lVALID_DATA
+
+l:lERROR_INVALID_DATA
+i!:{SORRY, but DATA entered was INVALID.} | i*:
+j:lPROMPT_FOR_DATA # [re-]prompt for correct data
+
+#we have proper data, might proceed...
+l:lVALID_DATA
+
+#----| present clean dataset and prompt for analysis method |---
+l:lANALYSIS_PROMPT
+y:vDATA_CLEAN | x*:vHHLINE | x:{The DATA:} |x*!:vHHLINE | x*!:vPROMPT_METHOD | v:vPROMPT | i*: | v:vANS
+
+
+#check if we got meaningful answer, otherwise re-prompt
+t!.: | f:^$:lANALYSIS_PROMPT | f!:^[123]$:lANALYSIS_PROMPT
+
+#process response then...
+f:1:lPROCESS_ANALYSIS_DESC | f:2:lPROCESS_ANALYSIS_EXPL | f:3:lPROCESS_ANALYSIS_PRED
+
+####| START PROCESSING ANALYTICS |####
+v:vANALYSIS_RESULT:{}
+
+
+#----| perform visual/descriptive analysis |---
+l:lPROCESS_ANALYSIS_DESC
+
+y:vDATA
+v:vSEQUENCE #stash comma-del sequence
+#count the values...
+d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
+
+#get the word MSS
+y:vSEQUENCE | h:, | d:, | u: | t.: | v:vSEQ_MSS
+#but we would rather present a graph with items sorted based on order
+#thus, override MSS with sorted one
+y:vSEQ_MSS | o: | v:vSEQ_MSS
+
+#initialize graph structure as empty graph
+v:vGRAPH:{}
+
+#-----| For each item in the MSS, obtain its frequency |---
+l:lBUILD_GRAPH
+y:vSEQ_MSS
+
+d:[ ].*$ | v:vITEM #first, get the item
+#build a lookup pattern [,]?N[,]?
+y:vITEM | x:, | x!:, | v:vITEM_REGEX
+#use it to reduce original sequence to only instances of item..
+y:vSEQUENCE | d*!:vITEM_REGEX
+#remove extraneous commas
+r!:[,]+:, | d:^, | d:,$
+#count instances of item then..
+d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNITEM
+#build the visual for item for the graph structure
+#N:--...N-times
+v:vGRAPH_ELEMENT:{-}
+v:vGRAPH_ITEM:{} | x*!:vGRAPH_ITEM:vITEM | x!:{:} | v:vGRAPH_ITEM
+v:vN_ITEM_GRAPH_LEN:{0}
+l:lSTART_ITEM_GRAPH
+x*!:vGRAPH_ELEMENT:vGRAPH_ITEM | v:vGRAPH_ITEM
+y:vN_ITEM_GRAPH_LEN | x!:{+1} | r.: | v:vN_ITEM_GRAPH_LEN
+#build and run test...
+y:vN_ITEM_GRAPH_LEN | x!:{==} | x*!:vNITEM | r.: | f:true:lDONE_ITEM_GRAPH:lSTART_ITEM_GRAPH
+l:lDONE_ITEM_GRAPH
+#add item graph to main graph...
+y:vGRAPH | x!:{
+}|x*!:vGRAPH_ITEM | v:vGRAPH #update graph
+#remove this item from the MSS, and then loop...
+y:vSEQ_MSS
+d!:[ ].*$ | t!.: | v:vSEQ_MSS #first, get the item
+#if mss empty, finish, otherwise loop..
+f:^$:lGRAPH_READY:lBUILD_GRAPH
+l:lGRAPH_READY
+y:vGRAPH #present final graph :)
+#affix graph to result
+k!:^[ ]*$ #kick-out blank lines
+v:vANALYSIS_RESULT
+
+#what did we do?
+v:vANALYSIS_MSG:{Finished summarizing the data visually.}
+
+j:lDONE_PROCESSING #goto present results...
+
+
+#----| perform numerical/exploratory analysis |---
+l:lPROCESS_ANALYSIS_EXPL 
+v:vRANGE:{}
+v:vMODE:{}
+v:vMEDIAN:{}
+v:vMEAN:{}
+v:vVARIANCE:{}
+v:vSDEVIATION:{}
+v:vMSS:{}
+
+y:vDATA
+v:vSEQUENCE #stash comma-del sequence
+#count the values...
+d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
+
+#get the word MSS
+y:vSEQUENCE | h:, | d:, | u: | t.: | v:vSEQ_MSS | v:vMSS
+
+#compute the statistics...
+
+#===| compute RANGE |
+#get the word MSS sorted numerically
+y:vMSS | o: | v:vMSS_SORTED
+y:vMSS_SORTED | d:[ ].*$ 
+v:vITEM_MIN #store smallest value
+y:vMSS_SORTED | m: | d:[ ].*$  
+v:vITEM_MAX #store largest value
+y:vITEM_MIN | x!:{-} | x*!:vITEM_MAX | v:vRANGE
+
+#===| compute MODE|
+#get the normal word MSS
+y:vMSS | d:[ ].*$ 
+v:vMODE #store most frequent value
+
+#===| compute MEDIAN|
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+f:WEB:lWEB_MEDIAN:lCLI_MEDIAN
+l:lWEB_MEDIAN #to compute median via JavaScript
+y:vARRAY_SEQUENCE
+z:{const median = arr => (sorted => (sorted[(l=sorted.length>>1)] + sorted[(sorted.length-1)>>1]) / 2)([...arr].sort((a,b) => a-b));median(JSON.parse(AI));}
+j:lMEDIAN_READY
+
+l:lCLI_MEDIAN #to compute median via Python
+
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); print(sorted(a)[len(a)//2] if len(a)%2 else sum(sorted(a)[len(a)//2-1:len(a)//2+1])/2)"}
+v:vCMD | z*:vCMD
+j:lMEDIAN_READY
+
+l:lMEDIAN_READY
+v:vMEDIAN
+
+
+#===| compute MEAN|
+y:vPLATFORM
+f:WEB:lWEB_MEAN:lCLI_MEAN
+l:lWEB_MEAN #to compute mean via JavaScript
+y:vARRAY_SEQUENCE
+z:{const mean = arr => arr.reduce((sum, val) => sum + val, 0) / arr.length;
+mean(JSON.parse(AI));}
+j:lMEAN_READY
+
+l:lCLI_MEAN #to compute mean via Python
+
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); print(sum(a)/len(a))"}
+v:vCMD | z*:vCMD
+j:lMEAN_READY
+
+l:lMEAN_READY
+v:vMEAN
+
+
+#===| compute population VARIANCE|
+y:vPLATFORM
+f:WEB:lWEB_VARIANCE:lCLI_VARIANCE
+l:lWEB_VARIANCE #to compute variance via JavaScript
+y:vARRAY_SEQUENCE
+z:{const variance = arr => (m => arr.reduce((s, x) => s + (x - m) ** 2, 0) / arr.length)(arr.reduce((a, b) => a + b, 0) / arr.length);
+variance(JSON.parse(AI));}
+j:lVARIANCE_READY
+
+l:lCLI_VARIANCE #to compute variance via Python
+
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); m=sum(a)/len(a); print(sum((x - m)**2 for x in a)/len(a))"}
+v:vCMD | z*:vCMD
+j:lVARIANCE_READY
+
+l:lVARIANCE_READY
+v:vVARIANCE
+
+
+#===| compute STANDARD DEVIATION|
+y:vPLATFORM
+f:WEB:lWEB_SDEVIATION:lCLI_SDEVIATION
+l:lWEB_SDEVIATION #to compute standard deviation via JavaScript
+y:vVARIANCE
+z:{Math.sqrt(Number(AI));}
+j:lSDEVIATION_READY
+
+l:lCLI_SDEVIATION #to compute standard deviation via Python
+
+i!:{python3 -c "import math; print(math.sqrt(}
+x*!:vVARIANCE | t.:
+x!:{))"}
+v:vCMD | z*:vCMD
+j:lSDEVIATION_READY
+
+l:lSDEVIATION_READY
+v:vSDEVIATION
+
+
+i!:{RANGE:} | x*!:vRANGE | x!:{ | MODE:} | x*!:vMODE | x!:{ | MEDIAN:} | x*!:vMEDIAN | x!:{ | MEAN:} | x*!:vMEAN | x!:{ | VARIANCE:} | x*!:vVARIANCE | x!:{ | STANDARD DEVIATION:} | x*!:vSDEVIATION | x!:{ | MODAL SEQUENCE:} | x*!: vMSS   
+v:vANALYSIS_RESULT
+
+#what did we do?
+v:vANALYSIS_MSG:{Finished summarizing the data using measures and statistics.}
+j:lDONE_PROCESSING #goto present results...
+
+
+#----| perform numerical/predictive analysis |---
+l:lPROCESS_ANALYSIS_PRED
+
+y:vDATA
+v:vSEQUENCE #stash comma-del sequence
+
+#===| compute probabilistic extrapolation...|
+# in our list extrapolation methods here, we are going to
+#assume the dataset conforms to a normal distribution
+#and so we shall do basic probabilistic prediction of
+#the next value past the end of the dataset given 
+#the nature of the sample (its mean and standard deviation)
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
+y:vPLATFORM
+f:WEB:lWEB_PREDICTION:lCLI_PREDICTION
+l:lWEB_PREDICTION 
+y:vARRAY_SEQUENCE
+z:{const nextProbable = arr => (m=Math.mean=arr.reduce((a,b)=>a+b,0)/arr.length, s=Math.sqrt(arr.reduce((a,x)=>a+(x-m)**2,0)/arr.length), m + s * (Math.random()*2 - 1));
+nextProbable(JSON.parse(AI));}
+j:lPREDICTION_READY
+
+l:lCLI_PREDICTION 
+i!:{python3 -c "import json, random, math; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); m=sum(a)/len(a); s=math.sqrt(sum((x-m)**2 for x in a)/len(a)); print(m + s * (random.random()*2 - 1))"}
+v:vCMD | z*:vCMD
+j:lPREDICTION_READY
+
+l:lPREDICTION_READY
+v:vPREDICTION
+
+i!:{Assuming Normal Distribution, NEXT value past end of dataset: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+#what did we do?
+v:vANALYSIS_MSG:{Finished extrapolating the data.}
+
+l:lDONE_PROCESSING
+#present results...
+y:vANALYSIS_RESULT |  x*!:vHHLINE | x!:{The DATA:} |  x*!:vHHLINE |
+x*!:vDATA_CLEAN | x*:vHHLINE | x:{The DATA ANALYSIS:} |x*!:vHHLINE | x*!:vANALYSIS_MSG | v:vPROMPT | v:vRESULT | i*: | j:lPROMPT_FOR_DATA #not yet finished ;)
+
+################################
+#Finally, Quit, gracefully...
+################################
+l:lQUIT
+y:vRESULT
