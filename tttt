@@ -324,9 +324,19 @@ class TEA_RunTime:
         def util_gen_rand(limit, ll=0):
             return limit if limit == ll else random.randint(int(ll), int(limit))
 
-        def util_sort_words(val):
+        def util_sort_words_smartly(val):
+            import re; number_pattern = re.compile(r'^[+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?$')
             parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val)
-            lparts = sorted(parts)
+            sortNumeric = True
+            for s in parts:
+                if not number_pattern.match(s):
+                    sortNumeric = False
+                    break
+            if sortNumeric:
+                self.debug("----[SMART Sort Words: Numerically]")
+            else:
+                self.debug("----[SMART Sort Words: Lexically]")
+            lparts = sorted(parts, key=float) if sortNumeric else sorted(parts)
             return TEA_RunTime.GLUE.join(lparts)
 
         def util_sort_chars(val):
@@ -1644,13 +1654,13 @@ class TEA_RunTime:
 
             if tc == "O":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
-                io = util_sort_words(input_str)
+                io = util_sort_words_smartly(input_str)
             if tc == "O!":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
                 io = util_sort_chars(input_str)
             if tc == "O*":
                 input_str = vault_get(tpe_str) if len(tpe_str) > 0 else ai
-                io = util_sort_words(input_str)
+                io = util_sort_words_smartly(input_str)
             if tc == "O*!":
                 input_str = vault_get(tpe_str) if len(tpe_str) > 0 else ai
                 io = util_sort_chars(input_str)

@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.4" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.2.5" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -731,9 +731,22 @@ export class TEA_RunTime {
 	}
 
 
-	util_sort_words(val){
+	util_sort_words_smartly(val){
+        const numberRegex = /^[+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?$/;
 		const parts = val.split(TEA_RunTime.RE_WHITE_SPACE);
-		const lparts = parts.sort(); // Lexical sort
+        var sortNumeric = true
+        for (let s of parts) {
+            if(!numberRegex.test(s)){
+                sortNumeric = false;
+                break
+            }
+        }
+        if(sortNumeric){
+            this.debug("----[SMART Sort Words: Numerically]")
+        }else{
+            this.debug("----[SMART Sort Words: Lexically]")
+        }
+		const lparts = sortNumeric ? parts.sort((a, b) => parseFloat(a) - parseFloat(b)) : parts.sort();
 		return lparts.join(TEA_RunTime.GLUE);
 	}
 
@@ -2129,7 +2142,7 @@ export class TEA_RunTime {
 
         if(tc == "O"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
-            io = this.util_sort_words(input_str)
+            io = this.util_sort_words_smartly(input_str)
         }
         if(tc == "O!"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? tpe_str : ai
@@ -2137,7 +2150,7 @@ export class TEA_RunTime {
         }
         if(tc == "O*"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
-            io = this.util_sort_words(input_str)
+            io = this.util_sort_words_smartly(input_str)
         }
         if(tc == "O*!"){
             var input_str = !TEA_RunTime.is_empty(tpe_str) ? this.vault_get(tpe_str) : ai
