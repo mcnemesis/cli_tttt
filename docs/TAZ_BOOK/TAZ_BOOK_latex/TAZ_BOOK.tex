@@ -7675,7 +7675,7 @@ So anyways, after much experimentation and tweaking, we have the following cross
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: STATISTICAL ANALYSIS v.1, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 #########################################
-# STATISTICAL ANALYSIS TOOL (SAT) v.1
+# STATISTICAL ANALYSIS TOOL (SAT) v.2
 #---------------------------------------
 # An interactive program for analyzing
 # numeric data using 3 analysis modes:
@@ -7762,14 +7762,15 @@ y:vSEQ_MSS | o: | v:vSEQ_MSS
 v:vGRAPH:{}
 
 #-----| For each item in the MSS, obtain its frequency |---
+y:vSEQUENCE | r!:{,}:{,,} | v:vLOOKUP_SEQUENCE #for use in graph computations
 l:lBUILD_GRAPH
 y:vSEQ_MSS
 
 d:[ ].*$ | v:vITEM #first, get the item
-#build a lookup pattern [,]?N[,]?
-y:vITEM | x:, | x!:, | v:vITEM_REGEX
+#build a lookup pattern (,|[^0-9])N(,|[^0-9])
+y:vITEM | x:{(,|[^0-9])} | x!:{(,|[^0-9])} | v:vITEM_REGEX
 #use it to reduce original sequence to only instances of item..
-y:vSEQUENCE | d*!:vITEM_REGEX
+y:vLOOKUP_SEQUENCE | d*!:vITEM_REGEX
 #remove extraneous commas
 r!:[,]+:, | d:^, | d:,$
 #count instances of item then..
@@ -7823,6 +7824,9 @@ d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
 #get the word MSS
 y:vSEQUENCE | h:, | d:, | u: | t.: | v:vSEQ_MSS | v:vMSS
 
+#store data sequence we'll use in external functions
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
 #compute the statistics...
 
 #===| compute RANGE |
@@ -7840,11 +7844,12 @@ y:vMSS | d:[ ].*$
 v:vMODE #store most frequent value
 
 #===| compute MEDIAN|
-y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+y:vPLATFORM
 f:WEB:lWEB_MEDIAN:lCLI_MEDIAN
 l:lWEB_MEDIAN #to compute median via JavaScript
 y:vARRAY_SEQUENCE
-z:{const median = arr => (sorted => (sorted[(l=sorted.length>>1)] + sorted[(sorted.length-1)>>1]) / 2)([...arr].sort((a,b) => a-b));median(JSON.parse(AI));}
+v:vCMD:{const median = arr => (sorted => (sorted[sorted.length >> 1] + sorted[(sorted.length - 1) >> 1]) / 2)([...arr].sort((a, b) => a - b));median(JSON.parse(AI));}
+z*!:vCMD
 j:lMEDIAN_READY
 
 l:lCLI_MEDIAN #to compute median via Python
@@ -7947,8 +7952,12 @@ y:vPLATFORM
 f:WEB:lWEB_PREDICTION:lCLI_PREDICTION
 l:lWEB_PREDICTION 
 y:vARRAY_SEQUENCE
-z:{const nextProbable = arr => (m=Math.mean=arr.reduce((a,b)=>a+b,0)/arr.length, s=Math.sqrt(arr.reduce((a,x)=>a+(x-m)**2,0)/arr.length), m + s * (Math.random()*2 - 1));
-nextProbable(JSON.parse(AI));}
+v:vCMD:{const nextProbable = arr => {
+  let m = arr.reduce((a, b) => a + b, 0) / arr.length;
+  let s = Math.sqrt(arr.reduce((a, x) => a + (x - m) ** 2, 0) / arr.length);
+  return m + s * (Math.random() * 2 - 1);
+};nextProbable(JSON.parse(AI));}
+z*!:vCMD
 j:lPREDICTION_READY
 
 l:lCLI_PREDICTION 
@@ -8083,6 +8092,18 @@ The DATA:
 Finished extrapolating the data.   
   \end{tcbverbatim}
 
+
+\vspace{2em}
+
+For those interested, the complete code and live-testing of this program can be accessed via:
+
+
+ 
+\vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=[1,2,3,3,2,4,5]&fc=https://gist.githubusercontent.com/mcnemesis/33d11fc7c00b148a388b0ef98e849041/raw/statistical_analyst.tea}
+
+\vspace{1em} 
 
 
 
