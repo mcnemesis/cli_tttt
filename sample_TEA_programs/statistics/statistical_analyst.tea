@@ -20,6 +20,16 @@
 #first, pick any user/externally provided data...
 v:vDATA
 
+i!:{#########################################
+STATISTICAL ANALYSIS TOOL (SAT)
+#########################################
+1. This tool works well on WEB and Commandline.
+2. Shall help you summarize your data visually.
+3. Shall help you analyze the data via standard statistics.
+4. Shall help you extrapolate/predict beyond your data.
+} | i*:
+
+
 #====| CONSTANTS |====
 v:vHLINE:{
 --------------------
@@ -51,6 +61,12 @@ f:^[qQ]$:lQUIT
 
 #----| pre-process and clean data |---
 l:lPREPROCESS_DATA
+y:vDATA
+#if space delimited, swap space with commas
+f!:,:lSWAPSPACE:lCSVFINE
+l:lSWAPSPACE
+r!:[ ]+:{ } | r!:[ ]:,
+l:lCSVFINE
 g: #eliminate white-space
 r:,]$:] #fix final comma from some TDT generators
 d!:[\d ,] #apply filter
