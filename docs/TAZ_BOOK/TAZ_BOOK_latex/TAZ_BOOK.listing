@@ -1,6 +1,7 @@
 The DATA ANALYSIS:
 ====================
-Assuming Normal Distribution, NEXT value past end of dataset: 28.27933103128229
+Computed Non-Linear Model: y = 0.0183*t^3 + -0.7813*t^2 + 10.6603*t + 17.3179
+The predicted value at t = 21 is 66.17, and so that, with a value of r2 = 0.1185, this model explains ~12% of the data.
 ====================
 The DATA:
 ====================

@@ -1,9 +1,20 @@
 #########################################
-# STATISTICAL ANALYSIS TOOL (SAT) v.2
+# STATISTICAL ANALYSIS TOOL (SAT) v.3
 #---------------------------------------
 # An interactive program for analyzing
 # numeric data using 3 analysis modes:
 # descriptive/visual, exploratory and predictive.
+# #######################################
+# NOTE: for predictive analysis using
+# option(3) non-linear regression, our
+# implementation defaults to a model of 
+# 3 degree polynomials, however, this should
+# work well for quadratic polynomials too,
+# but a knowledgeable user can tweak the code
+# to model degree 2 explicitly.
+# And then, for users of SAT via CLI TEA
+# this option also requires the underyling
+# system to have Python3 NumPy library.
 #########################################
 
 #first, pick any user/externally provided data...
@@ -18,8 +29,13 @@ v:vHHLINE:{
 }
 v:vPROMPT_METHOD:{Select Analysis Method: [1] Descriptive | [2] Exploratory | [3] Predictive
 }
+v:vPROMPT_METHOD_FORECAST:{Select Preferred Prediction Method: [1] Gaussian-Probabilistic | [2] Linear Regression | [3] Non-Linear Regression
+}
 v:vANALYSIS_MSG:{No Analysis Done Yet!} | y:vANALYSIS_MSG | v:vRESULT
 z.:PLATFORM | v:vPLATFORM #store underlying platform/environment...
+
+
+#====| START PROCESSING |====
 
 #in case no data was presented, use hardcoded dataset...
 y:vDATA
@@ -264,6 +280,20 @@ l:lPROCESS_ANALYSIS_PRED
 y:vDATA
 v:vSEQUENCE #stash comma-del sequence
 
+
+#again, present the data, and prompt for prediction method to use...
+#----| present clean dataset and prompt for analysis method |---
+l:lANALYSIS_FORECAST_PROMPT
+y:vDATA_CLEAN | x*:vHHLINE | x:{The DATA:} |x*!:vHHLINE | x*!:vPROMPT_METHOD_FORECAST | v:vPROMPT | i*: | v:vANS
+
+#check if we got meaningful answer, otherwise re-prompt
+t!.: | f:^$:lANALYSIS_FORECAST_PROMPT | f!:^[123]$:lANALYSIS_FORECAST_PROMPT
+
+#process response then...
+f:1:lPROCESS_FORECAST_GAUSS | f:2:lPROCESS_FORECAST_LINEAR | f:3:lPROCESS_FORECAST_NONLINEAR 
+
+l:lPROCESS_FORECAST_GAUSS #proceed to compute prediction via Gaussian method
+
 #===| compute probabilistic extrapolation...|
 # in our list extrapolation methods here, we are going to
 #assume the dataset conforms to a normal distribution
@@ -276,26 +306,224 @@ y:vPLATFORM
 f:WEB:lWEB_PREDICTION:lCLI_PREDICTION
 l:lWEB_PREDICTION 
 y:vARRAY_SEQUENCE
-v:vCMD:{const nextProbable = arr => {
+v:vCMD:"const nextProbable = arr => {
   let m = arr.reduce((a, b) => a + b, 0) / arr.length;
   let s = Math.sqrt(arr.reduce((a, x) => a + (x - m) ** 2, 0) / arr.length);
-  return m + s * (Math.random() * 2 - 1);
-};nextProbable(JSON.parse(AI));}
+  let nextValue = m + s * (Math.random() * 2 - 1);
+  return `with Mean as ${m} and Standard Deviation as ${s}\nThe Potential NEXT value past end of dataset is ${nextValue}.`};nextProbable(JSON.parse(AI));"
 z*!:vCMD
+
+v:vPREDICTION
+i!:{Assuming Normal Distribution, } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
 j:lPREDICTION_READY
 
 l:lCLI_PREDICTION 
 i!:{python3 -c "import json, random, math; AI='}
 x*!:vARRAY_SEQUENCE
-x!:{'; a=json.loads(AI); m=sum(a)/len(a); s=math.sqrt(sum((x-m)**2 for x in a)/len(a)); print(m + s * (random.random()*2 - 1))"}
+x!:{'; a=json.loads(AI); m=sum(a)/len(a); s=math.sqrt(sum((x-m)**2 for x in a)/len(a)); nextValue = m + s * (random.random()*2 - 1); print(f\"with Mean as {m} and Standard Deviation as {s}\nThe Potential NEXT value past end of dataset is {nextValue}.\")"}
 v:vCMD | z*:vCMD
+
+v:vPREDICTION
+i!:{Assuming Normal Distribution, } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
 j:lPREDICTION_READY
 
-l:lPREDICTION_READY
-v:vPREDICTION
 
-i!:{Assuming Normal Distribution, NEXT value past end of dataset: } | x*!:vPREDICTION |
+#####| Other Prediction Methods |#####
+
+#proceed to compute prediction via basic linear-regression method
+l:lPROCESS_FORECAST_LINEAR 
+
+#first, properly format the data
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
+y:vPLATFORM
+f:WEB:lWEB_PREDICTION_LIN:lCLI_PREDICTION_LIN
+l:lWEB_PREDICTION_LIN 
+y:vARRAY_SEQUENCE
+v:vCMD:"function predictNextLinear(data) {
+  const n = data.length; 
+  const t = n + 1;
+
+  // Compute means
+  const meanX = (n + 1) / 2;
+  const meanY = data.reduce((sum, y) => sum + y, 0) / n;
+
+  // Compute slope (m) and intercept (c)
+  let numerator = 0, denominator = 0;
+  for (let i = 0; i < n; i++) {
+    const xi = i + 1;
+    numerator += (xi - meanX) * (data[i] - meanY);
+    denominator += (xi - meanX) ** 2;}
+  const m = numerator / denominator;
+  const c = meanY - m * meanX;
+
+  // Predict next value
+  const nextValue = m * t + c;
+
+ // Compute R² score (coefficient of determination)
+  let ssTot = 0, ssRes = 0;
+  for (let i = 0; i < n; i++) {
+    const xi = i + 1;
+    const yi = data[i];
+    const yPred = m * xi + c;
+    ssTot += (yi - meanY) ** 2;
+    ssRes += (yi - yPred) ** 2;
+  }
+  const r2 = 1 - (ssRes / ssTot);
+  const r2percent = Math.round(100*r2);
+
+  //return [m, c, t, nextValue, r2];
+  return `y = ${m}t + ${c} \nThe NEXT value at t=${t} is ${nextValue}\nThe R2 (coefficient of determination) ${r2} means this model explains only ~${r2percent}% of the data.`;
+}
+predictNextLinear(JSON.parse(AI));"
+z*!:vCMD
+
+v:vPREDICTION
+i!:{Computed Linear Model: } | x*!:vPREDICTION |
 v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+#Linear Prediction on the COMMAND LINE?
+l:lCLI_PREDICTION_LIN
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{';}
+x!:{data=json.loads(AI); n=len(data); t=n+1; meanX=(n+1)/2; meanY=sum(data)/n; \
+m=sum((i+1-meanX)*(y-meanY) for i,y in enumerate(data)) / sum((i+1-meanX)**2 for i in range(n)); \
+c=meanY - m*meanX; nextVal = m*t + c; \
+ssTot = sum((y - meanY)**2 for y in data); \
+ssRes = sum((y - (m*(i+1)+c))**2 for i,y in enumerate(data)); \
+r2 = 1 - ssRes/ssTot; r2p = round(r2*100); \
+print(f'y = {m:.4f}t + {c:.4f}\\nThe NEXT value at t={t} is {nextVal:.2f}\\nThe R2 (coefficient of determination) {r2:.4f} means this model explains only ~{r2p}% of the data.')}
+x!:{"}
+v:vCMD | z*:vCMD
+
+v:vPREDICTION
+i!:{Computed Linear Model: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+
+
+######| NON-LINEAR PREDICTIONS |####
+#proceed to compute prediction via basic linear-regression method
+L:lPROCESS_FORECAST_NONLINEAR 
+
+#first, properly format the data
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
+y:vPLATFORM
+f:WEB:lWEB_PREDICTION_NONLIN:lCLI_PREDICTION_NONLIN
+l:lWEB_PREDICTION_NONLIN 
+y:vARRAY_SEQUENCE
+v:vCMD:"function predictNextPolynomial(data, degree = 3) {
+  const n = data.length;
+  const t = n + 1;
+  const x = Array.from({ length: n }, (_, i) => i + 1);
+  const y = data;
+
+  // Build Vandermonde matrix X
+  const X = x.map(xi => Array.from({ length: degree + 1 }, (_, d) => xi ** d));
+
+  // Compute X^T * X
+  const XT_X = Array.from({ length: degree + 1 }, (_, i) =>
+    Array.from({ length: degree + 1 }, (_, j) =>
+      X.reduce((sum, row) => sum + row[i] * row[j], 0)
+    )
+  );
+
+  // Compute X^T * y
+  const XT_y = Array.from({ length: degree + 1 }, (_, i) =>
+    X.reduce((sum, row, k) => sum + row[i] * y[k], 0)
+  );
+
+  // Solve XT_X * coeffs = XT_y using Gaussian elimination
+  function gaussianElimination(A, b) {
+    const n = A.length;
+    for (let i = 0; i < n; i++) {
+      let maxRow = i;
+      for (let k = i + 1; k < n; k++) {
+        if (Math.abs(A[k][i]) > Math.abs(A[maxRow][i])) maxRow = k;
+      }
+      [A[i], A[maxRow]] = [A[maxRow], A[i]];
+      [b[i], b[maxRow]] = [b[maxRow], b[i]];
+      for (let k = i + 1; k < n; k++) {
+        const c = A[k][i] / A[i][i];
+        for (let j = i; j < n; j++) A[k][j] -= c * A[i][j];
+        b[k] -= c * b[i];
+      }
+    }
+    const x = Array(n).fill(0);
+    for (let i = n - 1; i >= 0; i--) {
+      x[i] = (b[i] - A[i].slice(i + 1).reduce((sum, aij, j) => sum + aij * x[i + 1 + j], 0)) / A[i][i];
+    }
+    return x;
+  }
+
+  const coeffs = gaussianElimination(XT_X, XT_y);
+
+  // Predict next value
+  const nextValue = coeffs.reduce((sum, a, i) => sum + a * t ** i, 0);
+
+  // Compute R² score
+  const meanY = y.reduce((sum, yi) => sum + yi, 0) / n;
+  const ssTot = y.reduce((sum, yi) => sum + (yi - meanY) ** 2, 0);
+  const ssRes = x.reduce((sum, xi, i) => {
+    const yPred = coeffs.reduce((acc, a, d) => acc + a * xi ** d, 0);
+    return sum + (y[i] - yPred) ** 2;
+  }, 0);
+  const r2 = 1 - ssRes / ssTot;
+  const r2percent = Math.round(r2 * 100);
+
+  // Build polynomial string
+  const terms = coeffs.map((a, i) => {
+    const coeffStr = a.toFixed(4);
+    if (i === 0) return `${coeffStr}`;
+    if (i === 1) return `${coeffStr}*t`;
+    return `${coeffStr}*t^${i}`;
+  });
+  const equation = 'y = ' + terms.reverse().join(' + ');
+
+  return `${equation}\nThe predicted value at t = ${t} is ${nextValue.toFixed(2)}, and so that, with a value of r2 = ${r2.toFixed(4)}, this model explains ~${r2percent}% of the data.`;
+}
+predictNextPolynomial(JSON.parse(AI))"
+
+z*!:vCMD
+
+v:vPREDICTION
+i!:{Computed Non-Linear Model: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+#non-linear prediction on the COMMAND LINE?
+l:lCLI_PREDICTION_NONLIN
+
+i!:{python3 -c "
+import numpy as np
+data = }
+x*!:vARRAY_SEQUENCE
+x!:{;}
+x!:{n = len(data); t = n + 1; x = np.arange(1, n+1); y = np.array(data); deg = 3; coeffs = np.polyfit(x, y, deg); pred = np.polyval(coeffs, t); y_pred = np.polyval(coeffs, x); r2 = 1 - np.sum((y - y_pred)**2) / np.sum((y - np.mean(y))**2); terms = [f'{a:.4f}*t^{deg-i}' if deg-i > 1 else (f'{a:.4f}*t' if deg-i == 1 else f'{a:.4f}') for i,a in enumerate(coeffs)]; print('y = ' + ' + '.join(terms)); print(f'The predicted value at t = {t} is {pred:.2f}, and so that, with a value of r2 = {r2:.4f}, this model explains ~{round(r2*100)}% of the data.');}
+x!:{"}
+v:vCMD | z*:vCMD
+
+v:vPREDICTION
+i!:{Computed Non-Linear Model: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+
+####| PREDICTIONS READY |#####
+
+l:lPREDICTION_READY
 
 #what did we do?
 v:vANALYSIS_MSG:{Finished extrapolating the data.}

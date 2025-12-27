@@ -1268,7 +1268,7 @@ m!:
 #(=987653210, VAULTS:{})
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA EXAMPLE: Computing Largest o-SSI}
+  \caption{TEA APPLICATION: Computing Largest o-SSI}
   \label{FIGB5}
 \end{figure}
 
@@ -1894,7 +1894,7 @@ i!:{===[Thanks for enjoying the N-SIGIL game and utility]===
  See u n:ext time!} | i: | i!:---[N-SIGIL v1.0.0 QUIT SUCCESSFULLY]--- | -#cheerio
    \end{lstlisting}
   \end{tcolorbox}
-  \captionof{figure}{TEA EXAMPLE: \textbf{N-SIGIL} Text-based Unique-Image Generator TEA Game}
+  \captionof{figure}{TEA APPLICATION: \textbf{N-SIGIL} Text-based Unique-Image Generator TEA Game}
   \label{FIGC7}
   %\caption{TEA EXAMPLE: \textbf{N-SIGIL} Text-based Unique-Image Generator TEA Game}
   \vspace{1cm}
@@ -2309,7 +2309,7 @@ r!:[^\d]:{ }
 r!:\W+:{ }
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: PHONE CONTACT Extractor}
+    \captionof{figure}{TEA APPLICATION: PHONE CONTACT Extractor}
   \label{FIGD}
 \end{figure}
 
@@ -3002,7 +3002,7 @@ r!:_:{
 }
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: The Injectable TEA VIRUS Program Minified and Sanitized}
+    \captionof{figure}{TEA APPLICATION: The Injectable TEA VIRUS Program Minified and Sanitized}
   \label{FIGE2}
 \end{figure}
 
@@ -3286,7 +3286,7 @@ l:lNoQA
 | j:lPROMPT # and loop
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: ZEE HACKER ASSISTANT v1.0.2}
+    \captionof{figure}{TEA APPLICATION: ZEE HACKER ASSISTANT v1.0.2}
   \label{FIGF}
   \vspace{1cm}
 
@@ -3500,7 +3500,7 @@ v:
 v!:
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: WORD COUNTER}
+    \captionof{figure}{TEA APPLICATION: WORD COUNTER}
   \label{FIGG1}
 \end{figure}
 
@@ -4268,7 +4268,7 @@ Thanks for Playing BOOBS N Traps!
 i: | y:vFIN_MSG | q!:
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: BOOBS `N' TRAPS v1.0.0.1}
+    \captionof{figure}{TEA APPLICATION: BOOBS `N' TRAPS v1.0.0.1}
   \label{FIGH}
   \vspace{1cm}
 
@@ -5716,7 +5716,7 @@ k!:^[ ]*$
    \end{lstlisting}
    
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.2}
+    \captionof{figure}{TEA APPLICATION: MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.2}
   \label{FIGJEXA}
   
   }
@@ -6090,7 +6090,7 @@ l:lFINISH
 y:vSKIRT | t.: 
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: SKIRT DESIGN IMAGE GENERATOR}
+    \captionof{figure}{TEA APPLICATION: SKIRT DESIGN IMAGE GENERATOR}
   \label{FIGKEX1}
   \vspace{1cm}
 
@@ -7282,7 +7282,7 @@ y:vDATA_OUTPUT | x:{[} | x!:{]} | v:vDATA_OUTPUT
 y:vDATA_OUTPUT #present final dataset and quit
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: Random Structured Data GENERATOR Based on TDT Templates}
+    \captionof{figure}{TEA APPLICATION: Random Structured Data GENERATOR Based on TDT Templates}
   \label{FIGNEX1}
   \vspace{1cm}
 
@@ -7475,7 +7475,12 @@ Which example template also makes clear the fact that TDT templates can be as le
  
 
 \subsection{EXAMPLE 2: \textbf{STATISTICAL ANALYSIS:} DESCRIPTIVE, EXPLORATORY and PREDICTIVE DATA ANALYZER}
-\label{SECEXAMP1N}
+\label{SECEXAMP2N}
+
+{
+\LARGE
+\hl{TODO: Shift this example to the Chapter on Z: or X: or V:}
+}
 
 
 The previous application especially focused on cases of generating random data --- especially so it can later be used in simulations, analysis or mathematical modeling as we saw in the various example scenarios. However, this next application is instead focused on what happens once we have the data. Specifically, we shall want to dive into the matter of objective analysis of a given dataset using the major baseline statistical measures (statistics) and some basic machine learning techniques relating to extrapolating datasets based on analysis of existing or training data.
@@ -8047,10 +8052,16 @@ Finished summarizing the data using measures and statistics.
  
 \vspace{2em}
 
-And finally, for Exploratory-Predictive analysis, we have the following output that mostly leverage basic probabilistic extrapolation of the given dataset assuming it is normally distributed, and thus merely use a basic predictor leveraging the dataset's mean and standard deviation as in the formulation\cite{copilot_assistant}...
+And finally, for Exploratory-Predictive analysis, we have the following theory and mathematical modeling --- one, using a probabilistic approach and treating of the data as a 1-dimensional dataset, while the other still treats of the same 1-dimensional dataset, however goes an extra step and treats of each element's position as an extra dimension (something like time for example), so that we can then apply multi-dimensional models such as linear regression.
+
+\vspace{2em}
 
 
-\subsubsection{Probabilistic Next-Value Estimation}
+
+
+\subsubsection{Probabilistic Next-Value Estimation (1-Dimensional Dataset)}
+
+In this method\cite{copilot_assistant}, we shall attempt a basic probabilistic extrapolation of the given dataset assuming it is normally distributed, and thus merely use a basic predictor leveraging the dataset's mean and standard deviation as in the formulation...
 
 Given a sequence of real numbers:
 \[
@@ -8083,17 +8094,776 @@ And so that, given our example dataset and this model, we can obtain the followi
  \begin{tcbverbatim}[title=Sample OUTPUT DATA ANALYSIS (Predictive) of Dataset of 20 Random Numbers (Ages)]
 The DATA ANALYSIS:
 ====================
-Assuming Normal Distribution, NEXT value past end of dataset: 28.27933103128229
+Assuming Normal Distribution, with Mean as 57.5 and Standard Deviation as 30.378446306550966
+The Potential NEXT value past end of dataset is 69.48005819102828.
 ====================
 The DATA:
 ====================
 12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
 ====================
-Finished extrapolating the data.   
+Finished extrapolating the data. 
   \end{tcbverbatim}
 
 
 \vspace{2em}
+
+
+\subsubsection{Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}
+
+For the case of using a linear regression method, we can summarize the underlying theory as such:
+
+\vspace{2em}
+
+Given a dataset of $n$ values $y_1, y_2, \dots, y_n$, we treat their positions $t = 1, 2, \dots, n$ as the independent variable (e.g., time). We then fit a linear model:
+
+\[
+y = mt + c
+\]
+
+That we can then later use to compute predictions. The necessary process is as such...
+
+\textbf{Step 1: Compute Means}
+\[
+\bar{t} = \frac{1 + 2 + \dots + n}{n} = \frac{n+1}{2}, \quad
+\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i
+\]
+
+\textbf{Step 2: Compute Slope and Intercept}
+\[
+m = \frac{\sum_{i=1}^n (t_i - \bar{t})(y_i - \bar{y})}{\sum_{i=1}^n (t_i - \bar{t})^2}, \quad
+c = \bar{y} - m\bar{t}
+\]
+
+\textbf{Step 3: Predict Next Value}
+To predict the value at $t = n+1$ --- essentially, this position is just 1 extra step past the length of the given dataset:
+\[
+y_{n+1} = m(n+1) + c
+\]
+
+\textbf{Step 4: Compute Coefficient of Determination ($R^2$)}
+\[
+SS_{\text{tot}} = \sum_{i=1}^n (y_i - \bar{y})^2, \quad
+SS_{\text{res}} = \sum_{i=1}^n (y_i - (mt_i + c))^2
+\]
+\[
+R^2 = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}}
+\]
+
+
+We then also compute a score to help evaluate how good or reliable our computed model is given the data, and so that one might decide if the prediction is good and trustworthy, or if it might be better to try another modeling method --- such as when we were trying to fit a linear model to a non-linear dataset, in which case the low $R^2$ score would hint to us that we had better try some other methods.
+
+
+\vspace{2em}
+
+
+With this model and technique then, and for the same dataset as we have considered in the other analyses, we would for example obtain something as such using this approach to make a prediction...
+
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT DATA ANALYSIS (Predictive Linear) of Dataset of 20 Random Numbers (Ages)]
+The DATA ANALYSIS:
+====================
+Computed Linear Model: y = 1.4t + 42.8 
+The NEXT value at t=21 is 72.19999999999999
+The R2 (coefficient of determination) 0.07061819363926958 means this model explains only ~8% of the data.
+====================
+The DATA:
+====================
+12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
+====================
+Finished extrapolating the data.
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+
+\subsubsection{Non-Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}
+
+For the case of using a non-linear regression method (such as trying to fit the data to a 2 or 3 degree polynomial), we can summarize the underlying theory as such\cite{copilot_assistant}
+
+\vspace{2em}
+
+Given a one-dimensional dataset:
+\[
+y = [y_1, y_2, \dots, y_n]
+\]
+we treat the index positions as a proxy for time:
+\[
+t = [1, 2, \dots, n]
+\]
+Our goal is to fit a polynomial function of degree \( d \) to the data:
+\[
+\hat{y}(t) = a_0 + a_1 t + a_2 t^2 + \dots + a_d t^d = \sum_{k=0}^{d} a_k t^k
+\]
+This model can then be used to predict the next value \( \hat{y}_{n+1} \) at \( t = n+1 \).
+
+\vspace{2em}
+
+\textbf{Constructing the Polynomial Model}
+
+To determine the coefficients \( a_0, a_1, \dots, a_d \), we use the method of least squares. We define the design matrix \( X \in \mathbb{R}^{n \times (d+1)} \) as:
+
+\[
+X = 
+\begin{bmatrix}
+1 & t_1 & t_1^2 & \dots & t_1^d \\
+1 & t_2 & t_2^2 & \dots & t_2^d \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & t_n & t_n^2 & \dots & t_n^d \\
+\end{bmatrix}
+\]
+
+Let \( \mathbf{y} = [y_1, y_2, \dots, y_n]^T \) be the column vector of observed values. The least squares solution minimizes the squared error:
+
+\[
+\min_{\mathbf{a}} \| X \mathbf{a} - \mathbf{y} \|^2
+\]
+
+The optimal coefficients \( \mathbf{a} = [a_0, a_1, \dots, a_d]^T \) are obtained by solving the normal equations:
+
+\[
+X^T X \mathbf{a} = X^T \mathbf{y}
+\]
+
+This is a linear system of \( d+1 \) equations, which can be solved using Gaussian elimination or matrix inversion (if \( X^T X \) is invertible):
+
+\[
+\mathbf{a} = (X^T X)^{-1} X^T \mathbf{y}
+\]
+
+\vspace{2em}
+
+\textbf{Prediction}
+
+Once the coefficients are known, the predicted value at \( t = n+1 \) is:
+
+\[
+\hat{y}_{n+1} = \sum_{k=0}^{d} a_k (n+1)^k
+\]
+
+
+\vspace{2em}
+
+\textbf{Model Evaluation: Coefficient of Determination \( R^2 \)}
+
+To assess how well the polynomial fits the data, we compute the coefficient of determination:
+
+\[
+R^2 = 1 - \frac{SS_{\text{res}}}{SS_{\text{tot}}}
+\]
+
+where:
+\begin{align*}
+SS_{\text{tot}} &= \sum_{i=1}^{n} (y_i - \bar{y})^2 \quad \text{(total variance)} \\
+SS_{\text{res}} &= \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 \quad \text{(residual variance)} \\
+\bar{y} &= \frac{1}{n} \sum_{i=1}^{n} y_i \\
+\hat{y}_i &= \sum_{k=0}^{d} a_k t_i^k
+\end{align*}
+
+The value of \( R^2 \) lies in the range \( (-\infty, 1] \). A value close to 1 indicates a good fit, while a value near 0 or negative suggests poor explanatory power.
+
+\vspace{2em}
+
+\textbf{In Brief:}
+
+This method allows us to model and extrapolate sequential data using polynomial regression\cite{draper1998applied}. By treating the index as a time-like variable, we can fit a curve that captures trends in the data and use it to predict future values\cite{nandi2020polynomial}. The \( R^2 \) score provides a quantitative measure of how well the model explains the observed variation.
+
+
+\vspace{2em}
+
+And so that, using this method, and the code we shall soon look at, we obtain the following example output for the case of the same dataset we have treated of before:
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT DATA ANALYSIS (Predictive Non-Linear) of Dataset of 20 Random Numbers (Ages)]
+The DATA ANALYSIS:
+====================
+Computed Non-Linear Model: y = 0.0183*t^3 + -0.7813*t^2 + 10.6603*t + 17.3179
+The predicted value at t = 21 is 66.17, and so that, with a value of r2 = 0.1185, this model explains ~12% of the data.
+====================
+The DATA:
+====================
+12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
+====================
+Finished extrapolating the data.
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+And indeed, as one can tell looking at the predictions we have conducted on this dataset using the three different methods, we find that this last one is possibly the best for the dataset at hand (given the high value of the $R^2$ score).
+
+\vspace{2em}
+
+\subsubsection{The Statistical Analysis Tool (SAT) TEA Program CODE}
+
+So, having gone through the necessary theorizing and plan for the tool, we have the final SAT application (as of \textbf{version 3}) as the following TEA code, which, for especially the mathematically-heavy bits (analysis and prediction) leverages the TEA \textbf{ZAP} facility to detect which platform the program is being run on (WEB or CLI) and run the necessary JavaScript or Python3 code so as to keep the overall program accurate, performant and cross-platform. The CODE as of this writing, in its unminified form is as such:
+
+
+\vspace{2em}
+
+
+%\begin{figure}[H]
+{
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Statistical Analysis Tool (SAT), breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#########################################
+# STATISTICAL ANALYSIS TOOL (SAT) v.3
+#---------------------------------------
+# An interactive program for analyzing
+# numeric data using 3 analysis modes:
+# descriptive/visual, exploratory and predictive.
+# #######################################
+# NOTE: for predictive analysis using
+# option(3) non-linear regression, our
+# implementation defaults to a model of 
+# 3 degree polynomials, however, this should
+# work well for quadratic polynomials too,
+# but a knowledgeable user can tweak the code
+# to model degree 2 explicitly.
+# And then, for users of SAT via CLI TEA
+# this option also requires the underyling
+# system to have Python3 NumPy library.
+#########################################
+
+#first, pick any user/externally provided data...
+v:vDATA
+
+i!:{#########################################
+STATISTICAL ANALYSIS TOOL (SAT)
+#########################################
+1. This tool works well on WEB and Commandline.
+2. Shall help you summarize your data visually.
+3. Shall help you analyze the data via standard statistics.
+4. Shall help you extrapolate/predict beyond your data.
+} | i*:
+
+
+#====| CONSTANTS |====
+v:vHLINE:{
+--------------------
+}
+v:vHHLINE:{
+====================
+}
+v:vPROMPT_METHOD:{Select Analysis Method: [1] Descriptive | [2] Exploratory | [3] Predictive
+}
+v:vPROMPT_METHOD_FORECAST:{Select Preferred Prediction Method: [1] Gaussian-Probabilistic | [2] Linear Regression | [3] Non-Linear Regression
+}
+v:vANALYSIS_MSG:{No Analysis Done Yet!} | y:vANALYSIS_MSG | v:vRESULT
+z.:PLATFORM | v:vPLATFORM #store underlying platform/environment...
+
+
+#====| START PROCESSING |====
+
+#in case no data was presented, use hardcoded dataset...
+y:vDATA
+i:{12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89} | v:vDATA
+j:lPREPROCESS_DATA
+
+#prompt for data...
+l:lPROMPT_FOR_DATA
+i!:{Please Enter [qQ] to Quit, otherwise a [space or] comma-delimited sequence of numbers:} | i*: | v:vDATA
+
+#----| should we quit? |---
+f:^[qQ]$:lQUIT
+
+#----| pre-process and clean data |---
+l:lPREPROCESS_DATA
+g: #eliminate white-space
+r:,]$:] #fix final comma from some TDT generators
+d!:[\d ,] #apply filter
+g:,:[ ] | r!:,,*:, #enforce strict , delimiter
+v:vDATA_CLEAN #for presentation
+x:,|x!:, #to ease lookups
+v:vDATA #override
+
+#----| ensure data conforms to structure required otherwise flag error |---
+f!:^,\d+(,\d+)*,$:lERROR_INVALID_DATA:lVALID_DATA
+
+l:lERROR_INVALID_DATA
+i!:{SORRY, but DATA entered was INVALID.} | i*:
+j:lPROMPT_FOR_DATA # [re-]prompt for correct data
+
+#we have proper data, might proceed...
+l:lVALID_DATA
+
+#----| present clean dataset and prompt for analysis method |---
+l:lANALYSIS_PROMPT
+y:vDATA_CLEAN | x*:vHHLINE | x:{The DATA:} |x*!:vHHLINE | x*!:vPROMPT_METHOD | v:vPROMPT | i*: | v:vANS
+
+
+#check if we got meaningful answer, otherwise re-prompt
+t!.: | f:^$:lANALYSIS_PROMPT | f!:^[123]$:lANALYSIS_PROMPT
+
+#process response then...
+f:1:lPROCESS_ANALYSIS_DESC | f:2:lPROCESS_ANALYSIS_EXPL | f:3:lPROCESS_ANALYSIS_PRED
+
+####| START PROCESSING ANALYTICS |####
+v:vANALYSIS_RESULT:{}
+
+
+#----| perform visual/descriptive analysis |---
+l:lPROCESS_ANALYSIS_DESC
+
+y:vDATA
+v:vSEQUENCE #stash comma-del sequence
+#count the values...
+d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
+
+#get the word MSS
+y:vSEQUENCE | h:, | d:, | u: | t.: | v:vSEQ_MSS
+#but we would rather present a graph with items sorted based on order
+#thus, override MSS with sorted one
+y:vSEQ_MSS | o: | v:vSEQ_MSS
+
+#initialize graph structure as empty graph
+v:vGRAPH:{}
+
+#-----| For each item in the MSS, obtain its frequency |---
+y:vSEQUENCE | r!:{,}:{,,} | v:vLOOKUP_SEQUENCE #for use in graph computations
+l:lBUILD_GRAPH
+y:vSEQ_MSS
+
+d:[ ].*$ | v:vITEM #first, get the item
+#build a lookup pattern (,|[^0-9])N(,|[^0-9])
+y:vITEM | x:{(,|[^0-9])} | x!:{(,|[^0-9])} | v:vITEM_REGEX
+#use it to reduce original sequence to only instances of item..
+y:vLOOKUP_SEQUENCE | d*!:vITEM_REGEX
+#remove extraneous commas
+r!:[,]+:, | d:^, | d:,$
+#count instances of item then..
+d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNITEM
+#build the visual for item for the graph structure
+#N:--...N-times
+v:vGRAPH_ELEMENT:{-}
+v:vGRAPH_ITEM:{} | x*!:vGRAPH_ITEM:vITEM | x!:{:} | v:vGRAPH_ITEM
+v:vN_ITEM_GRAPH_LEN:{0}
+l:lSTART_ITEM_GRAPH
+x*!:vGRAPH_ELEMENT:vGRAPH_ITEM | v:vGRAPH_ITEM
+y:vN_ITEM_GRAPH_LEN | x!:{+1} | r.: | v:vN_ITEM_GRAPH_LEN
+#build and run test...
+y:vN_ITEM_GRAPH_LEN | x!:{==} | x*!:vNITEM | r.: | f:true:lDONE_ITEM_GRAPH:lSTART_ITEM_GRAPH
+l:lDONE_ITEM_GRAPH
+#add item graph to main graph...
+y:vGRAPH | x!:{
+}|x*!:vGRAPH_ITEM | v:vGRAPH #update graph
+#remove this item from the MSS, and then loop...
+y:vSEQ_MSS
+d!:[ ].*$ | t!.: | v:vSEQ_MSS #first, get the item
+#if mss empty, finish, otherwise loop..
+f:^$:lGRAPH_READY:lBUILD_GRAPH
+l:lGRAPH_READY
+y:vGRAPH #present final graph :)
+#affix graph to result
+k!:^[ ]*$ #kick-out blank lines
+v:vANALYSIS_RESULT
+
+#what did we do?
+v:vANALYSIS_MSG:{Finished summarizing the data visually.}
+
+j:lDONE_PROCESSING #goto present results...
+
+
+#----| perform numerical/exploratory analysis |---
+l:lPROCESS_ANALYSIS_EXPL 
+v:vRANGE:{}
+v:vMODE:{}
+v:vMEDIAN:{}
+v:vMEAN:{}
+v:vVARIANCE:{}
+v:vSDEVIATION:{}
+v:vMSS:{}
+
+y:vDATA
+v:vSEQUENCE #stash comma-del sequence
+#count the values...
+d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
+
+#get the word MSS
+y:vSEQUENCE | h:, | d:, | u: | t.: | v:vSEQ_MSS | v:vMSS
+
+#store data sequence we'll use in external functions
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
+#compute the statistics...
+
+#===| compute RANGE |
+#get the word MSS sorted numerically
+y:vMSS | o: | v:vMSS_SORTED
+y:vMSS_SORTED | d:[ ].*$ 
+v:vITEM_MIN #store smallest value
+y:vMSS_SORTED | m: | d:[ ].*$  
+v:vITEM_MAX #store largest value
+y:vITEM_MIN | x!:{-} | x*!:vITEM_MAX | v:vRANGE
+
+#===| compute MODE|
+#get the normal word MSS
+y:vMSS | d:[ ].*$ 
+v:vMODE #store most frequent value
+
+#===| compute MEDIAN|
+y:vPLATFORM
+f:WEB:lWEB_MEDIAN:lCLI_MEDIAN
+l:lWEB_MEDIAN #to compute median via JavaScript
+y:vARRAY_SEQUENCE
+v:vCMD:{const median = arr => (sorted => (sorted[sorted.length >> 1] + sorted[(sorted.length - 1) >> 1]) / 2)([...arr].sort((a, b) => a - b));median(JSON.parse(AI));}
+z*!:vCMD
+j:lMEDIAN_READY
+
+l:lCLI_MEDIAN #to compute median via Python
+
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); print(sorted(a)[len(a)//2] if len(a)%2 else sum(sorted(a)[len(a)//2-1:len(a)//2+1])/2)"}
+v:vCMD | z*:vCMD
+j:lMEDIAN_READY
+
+l:lMEDIAN_READY
+v:vMEDIAN
+
+
+#===| compute MEAN|
+y:vPLATFORM
+f:WEB:lWEB_MEAN:lCLI_MEAN
+l:lWEB_MEAN #to compute mean via JavaScript
+y:vARRAY_SEQUENCE
+z:{const mean = arr => arr.reduce((sum, val) => sum + val, 0) / arr.length;
+mean(JSON.parse(AI));}
+j:lMEAN_READY
+
+l:lCLI_MEAN #to compute mean via Python
+
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); print(sum(a)/len(a))"}
+v:vCMD | z*:vCMD
+j:lMEAN_READY
+
+l:lMEAN_READY
+v:vMEAN
+
+
+#===| compute population VARIANCE|
+y:vPLATFORM
+f:WEB:lWEB_VARIANCE:lCLI_VARIANCE
+l:lWEB_VARIANCE #to compute variance via JavaScript
+y:vARRAY_SEQUENCE
+z:{const variance = arr => (m => arr.reduce((s, x) => s + (x - m) ** 2, 0) / arr.length)(arr.reduce((a, b) => a + b, 0) / arr.length);
+variance(JSON.parse(AI));}
+j:lVARIANCE_READY
+
+l:lCLI_VARIANCE #to compute variance via Python
+
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); m=sum(a)/len(a); print(sum((x - m)**2 for x in a)/len(a))"}
+v:vCMD | z*:vCMD
+j:lVARIANCE_READY
+
+l:lVARIANCE_READY
+v:vVARIANCE
+
+
+#===| compute STANDARD DEVIATION|
+y:vPLATFORM
+f:WEB:lWEB_SDEVIATION:lCLI_SDEVIATION
+l:lWEB_SDEVIATION #to compute standard deviation via JavaScript
+y:vVARIANCE
+z:{Math.sqrt(Number(AI));}
+j:lSDEVIATION_READY
+
+l:lCLI_SDEVIATION #to compute standard deviation via Python
+
+i!:{python3 -c "import math; print(math.sqrt(}
+x*!:vVARIANCE | t.:
+x!:{))"}
+v:vCMD | z*:vCMD
+j:lSDEVIATION_READY
+
+l:lSDEVIATION_READY
+v:vSDEVIATION
+
+
+i!:{RANGE:} | x*!:vRANGE | x!:{ | MODE:} | x*!:vMODE | x!:{ | MEDIAN:} | x*!:vMEDIAN | x!:{ | MEAN:} | x*!:vMEAN | x!:{ | VARIANCE:} | x*!:vVARIANCE | x!:{ | STANDARD DEVIATION:} | x*!:vSDEVIATION | x!:{ | MODAL SEQUENCE:} | x*!: vMSS   
+v:vANALYSIS_RESULT
+
+#what did we do?
+v:vANALYSIS_MSG:{Finished summarizing the data using measures and statistics.}
+j:lDONE_PROCESSING #goto present results...
+
+
+#----| perform numerical/predictive analysis |---
+l:lPROCESS_ANALYSIS_PRED
+
+y:vDATA
+v:vSEQUENCE #stash comma-del sequence
+
+
+#again, present the data, and prompt for prediction method to use...
+#----| present clean dataset and prompt for analysis method |---
+l:lANALYSIS_FORECAST_PROMPT
+y:vDATA_CLEAN | x*:vHHLINE | x:{The DATA:} |x*!:vHHLINE | x*!:vPROMPT_METHOD_FORECAST | v:vPROMPT | i*: | v:vANS
+
+#check if we got meaningful answer, otherwise re-prompt
+t!.: | f:^$:lANALYSIS_FORECAST_PROMPT | f!:^[123]$:lANALYSIS_FORECAST_PROMPT
+
+#process response then...
+f:1:lPROCESS_FORECAST_GAUSS | f:2:lPROCESS_FORECAST_LINEAR | f:3:lPROCESS_FORECAST_NONLINEAR 
+
+l:lPROCESS_FORECAST_GAUSS #proceed to compute prediction via Gaussian method
+
+#===| compute probabilistic extrapolation...|
+# in our list extrapolation methods here, we are going to
+#assume the dataset conforms to a normal distribution
+#and so we shall do basic probabilistic prediction of
+#the next value past the end of the dataset given 
+#the nature of the sample (its mean and standard deviation)
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
+y:vPLATFORM
+f:WEB:lWEB_PREDICTION:lCLI_PREDICTION
+l:lWEB_PREDICTION 
+y:vARRAY_SEQUENCE
+v:vCMD:"const nextProbable = arr => {
+  let m = arr.reduce((a, b) => a + b, 0) / arr.length;
+  let s = Math.sqrt(arr.reduce((a, x) => a + (x - m) ** 2, 0) / arr.length);
+  let nextValue = m + s * (Math.random() * 2 - 1);
+  return `with Mean as ${m} and Standard Deviation as ${s}\nThe Potential NEXT value past end of dataset is ${nextValue}.`};nextProbable(JSON.parse(AI));"
+z*!:vCMD
+
+v:vPREDICTION
+i!:{Assuming Normal Distribution, } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY
+
+l:lCLI_PREDICTION 
+i!:{python3 -c "import json, random, math; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{'; a=json.loads(AI); m=sum(a)/len(a); s=math.sqrt(sum((x-m)**2 for x in a)/len(a)); nextValue = m + s * (random.random()*2 - 1); print(f\"with Mean as {m} and Standard Deviation as {s}\nThe Potential NEXT value past end of dataset is {nextValue}.\")"}
+v:vCMD | z*:vCMD
+
+v:vPREDICTION
+i!:{Assuming Normal Distribution, } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY
+
+
+#####| Other Prediction Methods |#####
+
+#proceed to compute prediction via basic linear-regression method
+l:lPROCESS_FORECAST_LINEAR 
+
+#first, properly format the data
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
+y:vPLATFORM
+f:WEB:lWEB_PREDICTION_LIN:lCLI_PREDICTION_LIN
+l:lWEB_PREDICTION_LIN 
+y:vARRAY_SEQUENCE
+v:vCMD:"function predictNextLinear(data) {
+  const n = data.length; 
+  const t = n + 1;
+
+  // Compute means
+  const meanX = (n + 1) / 2;
+  const meanY = data.reduce((sum, y) => sum + y, 0) / n;
+
+  // Compute slope (m) and intercept (c)
+  let numerator = 0, denominator = 0;
+  for (let i = 0; i < n; i++) {
+    const xi = i + 1;
+    numerator += (xi - meanX) * (data[i] - meanY);
+    denominator += (xi - meanX) ** 2;}
+  const m = numerator / denominator;
+  const c = meanY - m * meanX;
+
+  // Predict next value
+  const nextValue = m * t + c;
+
+ // Compute R2 score (coefficient of determination)
+  let ssTot = 0, ssRes = 0;
+  for (let i = 0; i < n; i++) {
+    const xi = i + 1;
+    const yi = data[i];
+    const yPred = m * xi + c;
+    ssTot += (yi - meanY) ** 2;
+    ssRes += (yi - yPred) ** 2;
+  }
+  const r2 = 1 - (ssRes / ssTot);
+  const r2percent = Math.round(100*r2);
+
+  //return [m, c, t, nextValue, r2];
+  return `y = ${m}t + ${c} \nThe NEXT value at t=${t} is ${nextValue}\nThe R2 (coefficient of determination) ${r2} means this model explains only ~${r2percent}% of the data.`;
+}
+predictNextLinear(JSON.parse(AI));"
+z*!:vCMD
+
+v:vPREDICTION
+i!:{Computed Linear Model: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+#Linear Prediction on the COMMAND LINE?
+l:lCLI_PREDICTION_LIN
+i!:{python3 -c "import json; AI='}
+x*!:vARRAY_SEQUENCE
+x!:{';}
+x!:{data=json.loads(AI); n=len(data); t=n+1; meanX=(n+1)/2; meanY=sum(data)/n; \
+m=sum((i+1-meanX)*(y-meanY) for i,y in enumerate(data)) / sum((i+1-meanX)**2 for i in range(n)); \
+c=meanY - m*meanX; nextVal = m*t + c; \
+ssTot = sum((y - meanY)**2 for y in data); \
+ssRes = sum((y - (m*(i+1)+c))**2 for i,y in enumerate(data)); \
+r2 = 1 - ssRes/ssTot; r2p = round(r2*100); \
+print(f'y = {m:.4f}t + {c:.4f}\\nThe NEXT value at t={t} is {nextVal:.2f}\\nThe R2 (coefficient of determination) {r2:.4f} means this model explains only ~{r2p}% of the data.')}
+x!:{"}
+v:vCMD | z*:vCMD
+
+v:vPREDICTION
+i!:{Computed Linear Model: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+
+
+######| NON-LINEAR PREDICTIONS |####
+#proceed to compute prediction via basic linear-regression method
+L:lPROCESS_FORECAST_NONLINEAR 
+
+#first, properly format the data
+y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
+
+y:vPLATFORM
+f:WEB:lWEB_PREDICTION_NONLIN:lCLI_PREDICTION_NONLIN
+l:lWEB_PREDICTION_NONLIN 
+y:vARRAY_SEQUENCE
+v:vCMD:"function predictNextPolynomial(data, degree = 3) {
+  const n = data.length;
+  const t = n + 1;
+  const x = Array.from({ length: n }, (_, i) => i + 1);
+  const y = data;
+
+  // Build Vandermonde matrix X
+  const X = x.map(xi => Array.from({ length: degree + 1 }, (_, d) => xi ** d));
+
+  // Compute X^T * X
+  const XT_X = Array.from({ length: degree + 1 }, (_, i) =>
+    Array.from({ length: degree + 1 }, (_, j) =>
+      X.reduce((sum, row) => sum + row[i] * row[j], 0)
+    )
+  );
+
+  // Compute X^T * y
+  const XT_y = Array.from({ length: degree + 1 }, (_, i) =>
+    X.reduce((sum, row, k) => sum + row[i] * y[k], 0)
+  );
+
+  // Solve XT_X * coeffs = XT_y using Gaussian elimination
+  function gaussianElimination(A, b) {
+    const n = A.length;
+    for (let i = 0; i < n; i++) {
+      let maxRow = i;
+      for (let k = i + 1; k < n; k++) {
+        if (Math.abs(A[k][i]) > Math.abs(A[maxRow][i])) maxRow = k;
+      }
+      [A[i], A[maxRow]] = [A[maxRow], A[i]];
+      [b[i], b[maxRow]] = [b[maxRow], b[i]];
+      for (let k = i + 1; k < n; k++) {
+        const c = A[k][i] / A[i][i];
+        for (let j = i; j < n; j++) A[k][j] -= c * A[i][j];
+        b[k] -= c * b[i];
+      }
+    }
+    const x = Array(n).fill(0);
+    for (let i = n - 1; i >= 0; i--) {
+      x[i] = (b[i] - A[i].slice(i + 1).reduce((sum, aij, j) => sum + aij * x[i + 1 + j], 0)) / A[i][i];
+    }
+    return x;
+  }
+
+  const coeffs = gaussianElimination(XT_X, XT_y);
+
+  // Predict next value
+  const nextValue = coeffs.reduce((sum, a, i) => sum + a * t ** i, 0);
+
+  // Compute R2 score
+  const meanY = y.reduce((sum, yi) => sum + yi, 0) / n;
+  const ssTot = y.reduce((sum, yi) => sum + (yi - meanY) ** 2, 0);
+  const ssRes = x.reduce((sum, xi, i) => {
+    const yPred = coeffs.reduce((acc, a, d) => acc + a * xi ** d, 0);
+    return sum + (y[i] - yPred) ** 2;
+  }, 0);
+  const r2 = 1 - ssRes / ssTot;
+  const r2percent = Math.round(r2 * 100);
+
+  // Build polynomial string
+  const terms = coeffs.map((a, i) => {
+    const coeffStr = a.toFixed(4);
+    if (i === 0) return `${coeffStr}`;
+    if (i === 1) return `${coeffStr}*t`;
+    return `${coeffStr}*t^${i}`;
+  });
+  const equation = 'y = ' + terms.reverse().join(' + ');
+
+  return `${equation}\nThe predicted value at t = ${t} is ${nextValue.toFixed(2)}, and so that, with a value of r2 = ${r2.toFixed(4)}, this model explains ~${r2percent}% of the data.`;
+}
+predictNextPolynomial(JSON.parse(AI))"
+
+z*!:vCMD
+
+v:vPREDICTION
+i!:{Computed Non-Linear Model: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+#non-linear prediction on the COMMAND LINE?
+l:lCLI_PREDICTION_NONLIN
+
+i!:{python3 -c "
+import numpy as np
+data = }
+x*!:vARRAY_SEQUENCE
+x!:{;}
+x!:{n = len(data); t = n + 1; x = np.arange(1, n+1); y = np.array(data); deg = 3; coeffs = np.polyfit(x, y, deg); pred = np.polyval(coeffs, t); y_pred = np.polyval(coeffs, x); r2 = 1 - np.sum((y - y_pred)**2) / np.sum((y - np.mean(y))**2); terms = [f'{a:.4f}*t^{deg-i}' if deg-i > 1 else (f'{a:.4f}*t' if deg-i == 1 else f'{a:.4f}') for i,a in enumerate(coeffs)]; print('y = ' + ' + '.join(terms)); print(f'The predicted value at t = {t} is {pred:.2f}, and so that, with a value of r2 = {r2:.4f}, this model explains ~{round(r2*100)}% of the data.');}
+x!:{"}
+v:vCMD | z*:vCMD
+
+v:vPREDICTION
+i!:{Computed Non-Linear Model: } | x*!:vPREDICTION |
+v:vANALYSIS_RESULT
+
+j:lPREDICTION_READY #go to results...
+
+
+####| PREDICTIONS READY |#####
+
+l:lPREDICTION_READY
+
+#what did we do?
+v:vANALYSIS_MSG:{Finished extrapolating the data.}
+
+l:lDONE_PROCESSING
+#present results...
+y:vANALYSIS_RESULT |  x*!:vHHLINE | x!:{The DATA:} |  x*!:vHHLINE |
+x*!:vDATA_CLEAN | x*:vHHLINE | x:{The DATA ANALYSIS:} |x*!:vHHLINE | x*!:vANALYSIS_MSG | v:vPROMPT | v:vRESULT | i*: | j:lPROMPT_FOR_DATA #not yet finished ;)
+
+################################
+#Finally, Quit, gracefully...
+################################
+l:lQUIT
+y:vRESULT
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA APPLICATION: Statistical Analysis Tool (SAT) v3}
+  \label{FIGNEX2}
+  \vspace{1cm}
+ 
+
 
 For those interested, the complete code and live-testing of this program can be accessed via:
 
