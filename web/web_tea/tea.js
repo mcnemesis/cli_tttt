@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.5" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.2.6" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -1197,7 +1197,7 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
 
                 if (
@@ -1220,12 +1220,12 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
                 if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${fblock}]`)
                 }
 
                 if (
@@ -1265,7 +1265,7 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
 
                 if (
@@ -1289,12 +1289,12 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
                 if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${fblock}]`)
                 }
 
                 if (
@@ -1333,7 +1333,7 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
 
                 if (!(
@@ -1356,12 +1356,12 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
                 if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${fblock}]`)
                 }
 
                 if (!(
@@ -1402,7 +1402,7 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
 
                 if (!(
@@ -1426,12 +1426,12 @@ export class TEA_RunTime {
                 if (!this.LABELBLOCKS.hasOwnProperty(tblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${tblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${tblock}]`)
                 }
                 if (!this.LABELBLOCKS.hasOwnProperty(fblock)) {
                         this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${fblock}]`)
                         this.debug(`--- L-BLOCK STATE: \n\t${JSON.stringify(this.LABELBLOCKS)}`)
-                    throw new Error("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${fblock}]`)
                 }
 
                 if (!(
@@ -1709,7 +1709,7 @@ export class TEA_RunTime {
                 var jblock = tpe_str
                 if (!this.LABELBLOCKS.hasOwnProperty(jblock)) {
                     this.debug(`[ERROR] Instruction ${ti} trying to access Non-Existent Block [${jblock}]`)
-                    this.debug("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                    throw new Error(`[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [${jblock}]`)
                 }
                 _ATPI = this.LABELBLOCKS[jblock]
                 return [io,_ATPI]

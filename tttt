@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.2.4"
+VERSION = "1.2.6"
 TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
 
 #==================== CLI TTTT Design ================================
@@ -990,7 +990,7 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1004,12 +1004,12 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (fblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
                     if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1034,7 +1034,7 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1049,12 +1049,12 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (fblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
                     if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1077,7 +1077,7 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1091,12 +1091,12 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (fblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
                     if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1120,7 +1120,7 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1135,12 +1135,12 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (fblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
                     if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -1339,7 +1339,7 @@ class TEA_RunTime:
                     if not (jblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{jblock}]")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{jblock}]")
                     _ATPI = LABELBLOCKS[jblock]
                     return io,_ATPI
             if tc == "J!":
