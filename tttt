@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.2.7"
+VERSION = "1.2.9"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -326,7 +326,7 @@ class TEA_RunTime:
 
         def util_sort_words_smartly(val):
             import re; number_pattern = re.compile(r'^[+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?$')
-            parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val)
+            parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val.strip())
             sortNumeric = True
             for s in parts:
                 if not number_pattern.match(s):
@@ -849,10 +849,32 @@ class TEA_RunTime:
                     io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
             if tc == "D.":
                 if len(tpe_str) == 0:
-                    pass
+                    return io
                 else:
                     regex = tpe_str
                     io = re.sub(regex, TEA_RunTime.EMPTY_STR, io)
+            if tc == "D!.":
+                if len(tpe_str) == 0:
+                    return io
+                else:
+                    regex = tpe_str
+                    matches = re.findall(regex,io)
+                    io = TEA_RunTime.EMPTY_STR.join(matches)
+            if tc == "D*.":
+                if len(tpe_str) == 0:
+                    return io
+                else:
+                    vREGEX = tpe_str
+                    regex = vault_get(vREGEX) 
+                    io = re.sub(regex, TEA_RunTime.EMPTY_STR, io)
+            if tc == "D*!.":
+                if len(tpe_str) == 0:
+                    return io
+                else:
+                    vREGEX = tpe_str
+                    regex = vault_get(vREGEX) 
+                    matches = re.findall(regex,io)
+                    io = TEA_RunTime.EMPTY_STR.join(matches)
             if tc == "D!":
                 if len(tpe_str) == 0:
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, TEA_RunTime.EMPTY_STR, io)

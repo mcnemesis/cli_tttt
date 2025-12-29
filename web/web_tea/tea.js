@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.7" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.2.9" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -733,7 +733,7 @@ export class TEA_RunTime {
 
 	util_sort_words_smartly(val){
         const numberRegex = /^[+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?$/;
-		const parts = val.split(TEA_RunTime.RE_WHITE_SPACE);
+		const parts = val.trim().split(TEA_RunTime.RE_WHITE_SPACE);
         var sortNumeric = true
         for (let s of parts) {
             if(!numberRegex.test(s)){
@@ -1011,6 +1011,37 @@ export class TEA_RunTime {
             }else {
                 var regex = tpe_str
                 io = io.replace(new RegExp(regex, 'g'), TEA_RunTime.EMPTY_STR);
+            }
+        }
+        if(tc == "D!."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+            }else {
+                var regex = tpe_str
+                let matches = io.match(new RegExp(regex, 'g')) || [];
+                io = matches.join(TEA_RunTime.EMPTY_STR);
+            }
+        }
+        if(tc == "D*."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+            }else {
+                var vREGEX = tpe_str
+                var regex = this.vault_get(vREGEX) 
+                io = io.replace(new RegExp(regex, 'g'), TEA_RunTime.EMPTY_STR);
+            }
+        }
+        if(tc == "D*!."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+            }else {
+                var vREGEX = tpe_str
+                var regex = this.vault_get(vREGEX) 
+                let matches = io.match(new RegExp(regex, 'g')) || [];
+                io = matches.join(TEA_RunTime.EMPTY_STR);
             }
         }
         if(tc == "D!"){
