@@ -41,8 +41,8 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.6" // this is the version for the WEB TEA implementation
-        this.TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
+        this.VERSION = "1.2.7" // this is the version for the WEB TEA implementation
+        this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
         this.CODE = null; 
@@ -1168,8 +1168,8 @@ export class TEA_RunTime {
 		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
         tc = tc.toUpperCase()
         tpe = tpe.trim()
-        // extract the string parameter
-        var tpe_str = this.extract_str(tpe)
+        // first wait to extract the string parameter
+        var tpe_str = tpe
 
 
         if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA

@@ -28,8 +28,8 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.2.6"
-TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
+VERSION = "1.2.7"
+TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
 """
@@ -968,8 +968,8 @@ class TEA_RunTime:
             tc, tpe = ti.split(TEA_RunTime.TCD, maxsplit=1)
             tc = tc.upper()
             tpe = tpe.strip()
-            # extract the string parameter
-            tpe_str = self.extract_str(tpe)
+            # first wait to extract the string parameter
+            tpe_str = tpe
 
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
