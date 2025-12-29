@@ -2104,6 +2104,10 @@ d: & INERT\\
 \rowcolor{lightgray}\bfseries \makecell[l]{d:REGEX \\d:RX1:RX2:…:RXN} & Delete from AI all sections matching the single regular expression REGEX or any of the given regular expressions RX1, RX2,…, RXN\\
  
  d.:REGEX & \textbf{The Exceptional Delete Instruction} that deletes from AI all sections matching the single regular expression REGEX. It doesn't accept multiple parameters, and so, everything after the first ``:" is treated as part of the pattern. It is one of few TEA commands using the ``." Qualifier.\\
+ 
+\rowcolor{lightgray}\bfseries d.!:REGEX & Like \texttt{d.:REGEX}, but deletes what doesn't match the REGEX\\
+
+\makecell[l]{d*.:vREGEX\\d*!.:vREGEX} & Like their counterparts  \texttt{d.:REGEX} and  \texttt{d!.:REGEX}, but operating using the regular expression stored in the named vault vREGEX\\
 
 \rowcolor{lightgray}\bfseries d!: & Delete all white-space from the AI (same as g:)\\
  
@@ -7537,6 +7541,8 @@ After which, the program should be able to prompt the user for which kind of ana
 
 \vspace{2em}
 
+\subsubsection{A Data Graphing Component}
+
 \textbf{STEP 1: Develop How to Graph Data}. For this, we shall for example assume that we have a sequence such as just $\langle 12, 24, 95, 18, 85, 27, 97, 39, 80, 20, 65, 24, 93, 82, 85, 81, 52, 62, 20, 89 \rangle$, and so that, we for example just need a TEA program to compute and present its graph. For simplicity's sake, we shall first focus on a simple bar-chart, thus, the basic code for just this component would be something as...
 
 
@@ -7668,394 +7674,7 @@ Which, appears as it is because the widget being used here actually is not corre
 Thus, in the first case, it would help to express the analytical graph as a kind of distribution of the values by their relative frequency, perhaps useful in some contexts. Whereas, with the graph presented based on the numerically sorted underlying MSS, we then obtain a graph that depicts the relative distribution of terms in the dataset, somewhat reflecting their relative probability distribution too. With this later approach, and especially where the dataset is of significant size, this approach might even approach a kind of normal or Gaussian curve of the dataset.
 
 
-\vspace{2em}
-
-So anyways, after much experimentation and tweaking, we have the following cross-platform solution of a basic STATISTICAL ANALYSIS tool implemented using TEA. Note that, because of a preference to simplify mathematics-heavy tasks, the bits such as computing statistical measures and the bit about predicting the next value given a sample  dataset are implemented leveraging the TEA \textbf{ZAP} facility, with care taken so that the code has different implementations for when the program is run via WEB TEA or via command-line.
-
-\vspace{2em}
-
-
-%\begin{figure}[H]
-{
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: STATISTICAL ANALYSIS v.1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-#########################################
-# STATISTICAL ANALYSIS TOOL (SAT) v.2
-#---------------------------------------
-# An interactive program for analyzing
-# numeric data using 3 analysis modes:
-# descriptive/visual, exploratory and predictive.
-#########################################
-
-#first, pick any user/externally provided data...
-v:vDATA
-
-#====| CONSTANTS |====
-v:vHLINE:{
---------------------
-}
-v:vHHLINE:{
-====================
-}
-v:vPROMPT_METHOD:{Select Analysis Method: [1] Descriptive | [2] Exploratory | [3] Predictive
-}
-v:vANALYSIS_MSG:{No Analysis Done Yet!} | y:vANALYSIS_MSG | v:vRESULT
-z.:PLATFORM | v:vPLATFORM #store underlying platform/environment...
-
-#in case no data was presented, use hardcoded dataset...
-y:vDATA
-i:{12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89} | v:vDATA
-j:lPREPROCESS_DATA
-
-#prompt for data...
-l:lPROMPT_FOR_DATA
-i!:{Please Enter [qQ] to Quit, otherwise a [space or] comma-delimited sequence of numbers:} | i*: | v:vDATA
-
-#----| should we quit? |---
-f:^[qQ]$:lQUIT
-
-#----| pre-process and clean data |---
-l:lPREPROCESS_DATA
-g: #eliminate white-space
-r:,]$:] #fix final comma from some TDT generators
-d!:[\d ,] #apply filter
-g:,:[ ] | r!:,,*:, #enforce strict , delimiter
-v:vDATA_CLEAN #for presentation
-x:,|x!:, #to ease lookups
-v:vDATA #override
-
-#----| ensure data conforms to structure required otherwise flag error |---
-f!:^,\d+(,\d+)*,$:lERROR_INVALID_DATA:lVALID_DATA
-
-l:lERROR_INVALID_DATA
-i!:{SORRY, but DATA entered was INVALID.} | i*:
-j:lPROMPT_FOR_DATA # [re-]prompt for correct data
-
-#we have proper data, might proceed...
-l:lVALID_DATA
-
-#----| present clean dataset and prompt for analysis method |---
-l:lANALYSIS_PROMPT
-y:vDATA_CLEAN | x*:vHHLINE | x:{The DATA:} |x*!:vHHLINE | x*!:vPROMPT_METHOD | v:vPROMPT | i*: | v:vANS
-
-
-#check if we got meaningful answer, otherwise re-prompt
-t!.: | f:^$:lANALYSIS_PROMPT | f!:^[123]$:lANALYSIS_PROMPT
-
-#process response then...
-f:1:lPROCESS_ANALYSIS_DESC | f:2:lPROCESS_ANALYSIS_EXPL | f:3:lPROCESS_ANALYSIS_PRED
-
-####| START PROCESSING ANALYTICS |####
-v:vANALYSIS_RESULT:{}
-
-
-#----| perform visual/descriptive analysis |---
-l:lPROCESS_ANALYSIS_DESC
-
-y:vDATA
-v:vSEQUENCE #stash comma-del sequence
-#count the values...
-d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
-
-#get the word MSS
-y:vSEQUENCE | h:, | d:, | u: | t.: | v:vSEQ_MSS
-#but we would rather present a graph with items sorted based on order
-#thus, override MSS with sorted one
-y:vSEQ_MSS | o: | v:vSEQ_MSS
-
-#initialize graph structure as empty graph
-v:vGRAPH:{}
-
-#-----| For each item in the MSS, obtain its frequency |---
-y:vSEQUENCE | r!:{,}:{,,} | v:vLOOKUP_SEQUENCE #for use in graph computations
-l:lBUILD_GRAPH
-y:vSEQ_MSS
-
-d:[ ].*$ | v:vITEM #first, get the item
-#build a lookup pattern (,|[^0-9])N(,|[^0-9])
-y:vITEM | x:{(,|[^0-9])} | x!:{(,|[^0-9])} | v:vITEM_REGEX
-#use it to reduce original sequence to only instances of item..
-y:vLOOKUP_SEQUENCE | d*!:vITEM_REGEX
-#remove extraneous commas
-r!:[,]+:, | d:^, | d:,$
-#count instances of item then..
-d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNITEM
-#build the visual for item for the graph structure
-#N:--...N-times
-v:vGRAPH_ELEMENT:{-}
-v:vGRAPH_ITEM:{} | x*!:vGRAPH_ITEM:vITEM | x!:{:} | v:vGRAPH_ITEM
-v:vN_ITEM_GRAPH_LEN:{0}
-l:lSTART_ITEM_GRAPH
-x*!:vGRAPH_ELEMENT:vGRAPH_ITEM | v:vGRAPH_ITEM
-y:vN_ITEM_GRAPH_LEN | x!:{+1} | r.: | v:vN_ITEM_GRAPH_LEN
-#build and run test...
-y:vN_ITEM_GRAPH_LEN | x!:{==} | x*!:vNITEM | r.: | f:true:lDONE_ITEM_GRAPH:lSTART_ITEM_GRAPH
-l:lDONE_ITEM_GRAPH
-#add item graph to main graph...
-y:vGRAPH | x!:{
-}|x*!:vGRAPH_ITEM | v:vGRAPH #update graph
-#remove this item from the MSS, and then loop...
-y:vSEQ_MSS
-d!:[ ].*$ | t!.: | v:vSEQ_MSS #first, get the item
-#if mss empty, finish, otherwise loop..
-f:^$:lGRAPH_READY:lBUILD_GRAPH
-l:lGRAPH_READY
-y:vGRAPH #present final graph :)
-#affix graph to result
-k!:^[ ]*$ #kick-out blank lines
-v:vANALYSIS_RESULT
-
-#what did we do?
-v:vANALYSIS_MSG:{Finished summarizing the data visually.}
-
-j:lDONE_PROCESSING #goto present results...
-
-
-#----| perform numerical/exploratory analysis |---
-l:lPROCESS_ANALYSIS_EXPL 
-v:vRANGE:{}
-v:vMODE:{}
-v:vMEDIAN:{}
-v:vMEAN:{}
-v:vVARIANCE:{}
-v:vSDEVIATION:{}
-v:vMSS:{}
-
-y:vDATA
-v:vSEQUENCE #stash comma-del sequence
-#count the values...
-d:[ ] | d!:{,}| v: | v!: | x!:{+1} | r.: | v:vNSEQ
-
-#get the word MSS
-y:vSEQUENCE | h:, | d:, | u: | t.: | v:vSEQ_MSS | v:vMSS
-
-#store data sequence we'll use in external functions
-y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
-
-#compute the statistics...
-
-#===| compute RANGE |
-#get the word MSS sorted numerically
-y:vMSS | o: | v:vMSS_SORTED
-y:vMSS_SORTED | d:[ ].*$ 
-v:vITEM_MIN #store smallest value
-y:vMSS_SORTED | m: | d:[ ].*$  
-v:vITEM_MAX #store largest value
-y:vITEM_MIN | x!:{-} | x*!:vITEM_MAX | v:vRANGE
-
-#===| compute MODE|
-#get the normal word MSS
-y:vMSS | d:[ ].*$ 
-v:vMODE #store most frequent value
-
-#===| compute MEDIAN|
-y:vPLATFORM
-f:WEB:lWEB_MEDIAN:lCLI_MEDIAN
-l:lWEB_MEDIAN #to compute median via JavaScript
-y:vARRAY_SEQUENCE
-v:vCMD:{const median = arr => (sorted => (sorted[sorted.length >> 1] + sorted[(sorted.length - 1) >> 1]) / 2)([...arr].sort((a, b) => a - b));median(JSON.parse(AI));}
-z*!:vCMD
-j:lMEDIAN_READY
-
-l:lCLI_MEDIAN #to compute median via Python
-
-i!:{python3 -c "import json; AI='}
-x*!:vARRAY_SEQUENCE
-x!:{'; a=json.loads(AI); print(sorted(a)[len(a)//2] if len(a)%2 else sum(sorted(a)[len(a)//2-1:len(a)//2+1])/2)"}
-v:vCMD | z*:vCMD
-j:lMEDIAN_READY
-
-l:lMEDIAN_READY
-v:vMEDIAN
-
-
-#===| compute MEAN|
-y:vPLATFORM
-f:WEB:lWEB_MEAN:lCLI_MEAN
-l:lWEB_MEAN #to compute mean via JavaScript
-y:vARRAY_SEQUENCE
-z:{const mean = arr => arr.reduce((sum, val) => sum + val, 0) / arr.length;
-mean(JSON.parse(AI));}
-j:lMEAN_READY
-
-l:lCLI_MEAN #to compute mean via Python
-
-i!:{python3 -c "import json; AI='}
-x*!:vARRAY_SEQUENCE
-x!:{'; a=json.loads(AI); print(sum(a)/len(a))"}
-v:vCMD | z*:vCMD
-j:lMEAN_READY
-
-l:lMEAN_READY
-v:vMEAN
-
-
-#===| compute population VARIANCE|
-y:vPLATFORM
-f:WEB:lWEB_VARIANCE:lCLI_VARIANCE
-l:lWEB_VARIANCE #to compute variance via JavaScript
-y:vARRAY_SEQUENCE
-z:{const variance = arr => (m => arr.reduce((s, x) => s + (x - m) ** 2, 0) / arr.length)(arr.reduce((a, b) => a + b, 0) / arr.length);
-variance(JSON.parse(AI));}
-j:lVARIANCE_READY
-
-l:lCLI_VARIANCE #to compute variance via Python
-
-i!:{python3 -c "import json; AI='}
-x*!:vARRAY_SEQUENCE
-x!:{'; a=json.loads(AI); m=sum(a)/len(a); print(sum((x - m)**2 for x in a)/len(a))"}
-v:vCMD | z*:vCMD
-j:lVARIANCE_READY
-
-l:lVARIANCE_READY
-v:vVARIANCE
-
-
-#===| compute STANDARD DEVIATION|
-y:vPLATFORM
-f:WEB:lWEB_SDEVIATION:lCLI_SDEVIATION
-l:lWEB_SDEVIATION #to compute standard deviation via JavaScript
-y:vVARIANCE
-z:{Math.sqrt(Number(AI));}
-j:lSDEVIATION_READY
-
-l:lCLI_SDEVIATION #to compute standard deviation via Python
-
-i!:{python3 -c "import math; print(math.sqrt(}
-x*!:vVARIANCE | t.:
-x!:{))"}
-v:vCMD | z*:vCMD
-j:lSDEVIATION_READY
-
-l:lSDEVIATION_READY
-v:vSDEVIATION
-
-
-i!:{RANGE:} | x*!:vRANGE | x!:{ | MODE:} | x*!:vMODE | x!:{ | MEDIAN:} | x*!:vMEDIAN | x!:{ | MEAN:} | x*!:vMEAN | x!:{ | VARIANCE:} | x*!:vVARIANCE | x!:{ | STANDARD DEVIATION:} | x*!:vSDEVIATION | x!:{ | MODAL SEQUENCE:} | x*!: vMSS   
-v:vANALYSIS_RESULT
-
-#what did we do?
-v:vANALYSIS_MSG:{Finished summarizing the data using measures and statistics.}
-j:lDONE_PROCESSING #goto present results...
-
-
-#----| perform numerical/predictive analysis |---
-l:lPROCESS_ANALYSIS_PRED
-
-y:vDATA
-v:vSEQUENCE #stash comma-del sequence
-
-#===| compute probabilistic extrapolation...|
-# in our list extrapolation methods here, we are going to
-#assume the dataset conforms to a normal distribution
-#and so we shall do basic probabilistic prediction of
-#the next value past the end of the dataset given 
-#the nature of the sample (its mean and standard deviation)
-y:vSEQUENCE | d:^,:,$ | x:[ | x!:] | v:vARRAY_SEQUENCE
-
-y:vPLATFORM
-f:WEB:lWEB_PREDICTION:lCLI_PREDICTION
-l:lWEB_PREDICTION 
-y:vARRAY_SEQUENCE
-v:vCMD:{const nextProbable = arr => {
-  let m = arr.reduce((a, b) => a + b, 0) / arr.length;
-  let s = Math.sqrt(arr.reduce((a, x) => a + (x - m) ** 2, 0) / arr.length);
-  return m + s * (Math.random() * 2 - 1);
-};nextProbable(JSON.parse(AI));}
-z*!:vCMD
-j:lPREDICTION_READY
-
-l:lCLI_PREDICTION 
-i!:{python3 -c "import json, random, math; AI='}
-x*!:vARRAY_SEQUENCE
-x!:{'; a=json.loads(AI); m=sum(a)/len(a); s=math.sqrt(sum((x-m)**2 for x in a)/len(a)); print(m + s * (random.random()*2 - 1))"}
-v:vCMD | z*:vCMD
-j:lPREDICTION_READY
-
-l:lPREDICTION_READY
-v:vPREDICTION
-
-i!:{Assuming Normal Distribution, NEXT value past end of dataset: } | x*!:vPREDICTION |
-v:vANALYSIS_RESULT
-
-#what did we do?
-v:vANALYSIS_MSG:{Finished extrapolating the data.}
-
-l:lDONE_PROCESSING
-#present results...
-y:vANALYSIS_RESULT |  x*!:vHHLINE | x!:{The DATA:} |  x*!:vHHLINE |
-x*!:vDATA_CLEAN | x*:vHHLINE | x:{The DATA ANALYSIS:} |x*!:vHHLINE | x*!:vANALYSIS_MSG | v:vPROMPT | v:vRESULT | i*: | j:lPROMPT_FOR_DATA #not yet finished ;)
-
-################################
-#Finally, Quit, gracefully...
-################################
-l:lQUIT
-y:vRESULT
-   \end{lstlisting}
-  \end{tcolorbox}
-    \captionof{figure}{TEA EXAMPLE: STATISTICAL ANALYSIS Tool}
-  \label{FIGNEX2}
-  \vspace{1cm}
-
-
-\vspace{2em}
-
-And so, with that program, and the sample dataset of the ages of 20 random people in a given sample, we have the case of performing descriptive and visual analysis give us a result such as the following:
-
-
- \begin{tcbverbatim}[title=Sample OUTPUT DATA ANALYSIS (Descriptive) of Dataset of 20 Random Numbers (Ages)]
-The DATA ANALYSIS:
-====================
-12:-
-18:-
-20:--
-24:--
-27:-
-39:-
-52:-
-62:-
-65:-
-80:-
-81:-
-82:-
-85:--
-89:-
-93:-
-95:-
-97:-
-====================
-The DATA:
-====================
-12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
-====================
-Finished summarizing the data visually.  
-  \end{tcbverbatim}
-
-
-\vspace{2em}
-
-And as for exploratory analysis, we have the following...
-
-
- \begin{tcbverbatim}[title=Sample OUTPUT DATA ANALYSIS (Summary) of Dataset of 20 Random Numbers (Ages)]
-The DATA ANALYSIS:
-====================
-RANGE:12-97 | MODE:24 | MEDIAN: | MEAN:57.5 | VARIANCE:922.85 | STANDARD DEVIATION:30.378446306550966 | MODAL SEQUENCE:24 85 20 12 95 18 27 97 39 80 65 93 82 81 52 62 89
-====================
-The DATA:
-====================
-12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
-====================
-Finished summarizing the data using measures and statistics. 
-  \end{tcbverbatim}
-
- 
-\vspace{2em}
-
-And finally, for Exploratory-Predictive analysis, we have the following theory and mathematical modeling --- one, using a probabilistic approach and treating of the data as a 1-dimensional dataset, while the other still treats of the same 1-dimensional dataset, however goes an extra step and treats of each element's position as an extra dimension (something like time for example), so that we can then apply multi-dimensional models such as linear regression.
-
-\vspace{2em}
-
+And as for Exploratory-Predictive analysis, we have the following theory and mathematical modeling --- one, using a probabilistic approach and treating of the data as a 1-dimensional dataset, while the other still treats of the same 1-dimensional dataset, however goes an extra step and treats of each element's position as an extra dimension (something like time for example), so that we can then apply multi-dimensional models such as linear regression. And lastly, an approach that would allow us to fit the data to a non-linear model, and so be able to use that to make some predictions/extrapolations...
 
 
 
@@ -8862,6 +8481,71 @@ y:vRESULT
     \captionof{figure}{TEA APPLICATION: Statistical Analysis Tool (SAT) v3}
   \label{FIGNEX2}
   \vspace{1cm}
+  
+  \vspace{2em}
+
+Note that, because of a preference to simplify mathematics-heavy tasks, the bits such as computing statistical measures and the bit about predicting the next value given a sample  dataset are implemented leveraging the TEA \textbf{ZAP} facility, with care taken so that the code has different implementations for when the program is run via WEB TEA or via command-line.
+
+\vspace{2em}
+
+
+And so, with that program, and the sample dataset of the ages of 20 random people in a given sample, we have the case of performing descriptive and visual analysis give us a result such as the following:
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT DATA ANALYSIS (Descriptive) of Dataset of 20 Random Numbers (Ages)]
+The DATA ANALYSIS:
+====================
+12:-
+18:-
+20:--
+24:--
+27:-
+39:-
+52:-
+62:-
+65:-
+80:-
+81:-
+82:-
+85:--
+89:-
+93:-
+95:-
+97:-
+====================
+The DATA:
+====================
+12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
+====================
+Finished summarizing the data visually.  
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+And as for exploratory analysis, we have the following...
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT DATA ANALYSIS (Summary) of Dataset of 20 Random Numbers (Ages)]
+The DATA ANALYSIS:
+====================
+RANGE:12-97 | MODE:24 | MEDIAN: | MEAN:57.5 | VARIANCE:922.85 | STANDARD DEVIATION:30.378446306550966 | MODAL SEQUENCE:24 85 20 12 95 18 27 97 39 80 65 93 82 81 52 62 89
+====================
+The DATA:
+====================
+12,24,95,18,85,27,97,39,80,20,65,24,93,82,85,81,52,62,20,89
+====================
+Finished summarizing the data using measures and statistics. 
+  \end{tcbverbatim}
+
+ 
+\vspace{2em}
+
+
+
+\vspace{2em}
+
+
  
 
 
@@ -8874,6 +8558,733 @@ For those interested, the complete code and live-testing of this program can be 
  \url{https://tea.nuchwezi.com/?i=[1,2,3,3,2,4,5]&fc=https://gist.githubusercontent.com/mcnemesis/33d11fc7c00b148a388b0ef98e849041/raw/statistical_analyst.tea}
 
 \vspace{1em} 
+
+OR
+
+\vspace{1em} 
+
+ \url{https://bit.ly/teasatapp}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: O
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{O: ORDER}
+\label{SECO}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{ORDER}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Sort SPACE-DELIMITED ITEMS
+	\item Order, or rather, Smartly Sort things.
+	\item Sort Numbers by Quantity.
+	\item Sort Words Lexically (by Alphabetical Order)
+	\item Sort Sequences by Lexical Order of Characters
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{O:}}
+  \label{TABTAZO}
+\end{table}
+
+
+\section{SEMANTICS of O:}
+\label{SECSEMO}
+
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+o: & Return the AI sorted in ascending numerical order by words it contains if AI consists of words made of only valid number expressions, otherwise sort lexically in ascending order.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{o:VALUE} & \makecell[l]{Same as o:, but using VALUE instead of AI}\\
+
+o!: & Return the AI sorted alphabetically by characters it contains.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{o!:VALUE} & Same as o!:, but using VALUE instead of AI\\
+
+
+\makecell[l]{o*:vNAME\\o*!:vNAME} & Same as o:VALUE and o!:VALUE respectively, but using  the string stored in the vault with the name vNAME  as the VALUE\\
+
+ 
+ \hline
+\end{tabular}
+\caption{The Semantics of O:}
+\label{TABSEMO}
+\end{table}
+
+
+\section{NOTES about O:}
+\label{SECNOTEO}
+
+
+Being able to order things at will is such a formidable power, it can’t be underestimated that it is built into the TEA language as a primitive. Ordering makes design possible, prevents or limits chaos and randomness, and allows structure to be created or imposed on things. For TEA, the O: command space offers several utilities for performing ordering operations on strings directly in the program, user-provided or those stored in memory.
+
+\vspace{2em}
+
+A basic illustration of this power can be demonstrated by the following example TEA program that returns the alphabetically sorted initials of a person's name: 
+
+
+\vspace{2em}
+
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 1: Compute Sorted Initials of A Name, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# following URL is hypothetical, but expected to 
+# return the full, undecorated name of someone
+W!: https://mit.edu/vc/name.txt 
+f:ERROR:lEXPLICIT:lPROCESS
+l:lEXPLICIT
+#alternatively..
+i!:{Terence L. Epstein Von Zalta}
+l:lPROCESS
+D!:^.: [a-zA-Z]
+# (="T L E V Z")
+G:
+# (="TLEVZ")
+O!:
+# (="ELTVZ")
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+
+\vspace{2em}
+
+Another example:
+
+\vspace{2em}
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 2: Sort a list of words, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{mice ice best acts zap} #specify the list of words, delimited by space
+o: #invoke smart-lexical sorting on them
+#should sort input by lexical order of words and then return...
+#=acts best ice mice zap
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{2em}
+
+However, if we instead use \texttt{O!:} in the above example, we instead produce something unlike a list of sorted words as can be seen in the example below...
+
+
+\vspace{2em}
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 3: Sort a list of words by character, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{mice ice best acts zap}|o!:
+#should sort input by lexical order of letters, and thus return:
+#=    aabccceeeiimpssttz
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{2em}
+
+
+The output thus produced ``    aabccceeeiimpssttz" shows that in this mode, characters have their natural order based on alphabetical position, however, also non-letter symbols such as space, punctuation and numbers are given special treatment as we might tell in the next example:
+
+
+\vspace{2em}
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 4: Sort a list of words by character, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{1 Mice, 2 Ice, 3 Best, 4 Acts & 2 Zap!}|o!:
+#sorts by lexical order of characters and returns:
+#=          !&,,,12234ABIMZaccceeeipsstt
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{2em}
+
+
+Thus we see that white space has higher precedence, followed by punctuation marks, then digits, then upper-case letters and finally lower-case letters.
+
+
+\vspace{2em}
+
+
+However, \textbf{ORDER} is not limited only lexical sorting, as we can tell in the next example involving \textbf{space delimited number expressions}:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 5: Quantitatively Sort a list of number expressions, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{208919 919 1 211993   0 1 2 1e3 3 -10  5 19 .20 -1 -5e-3}|o:
+#sorts by quantitative order of words and returns:
+#=-10 -1 -5e-3 0 .20 1 1 2 3 5 19 919 1e3 208919 211993
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{1em}
+
+In this case, among the most important things to note is that the expressions need to be legitimate number expressions --- this can be any expression that conforms to one of the following categories:
+
+\begin{enumerate}
+\item \textbf{Whole Numbers}: such as 1, 2, 301 or 100
+\item \textbf{Fractional Numbers}: such as 0.1, 0.0, 999.99901 or even just .005
+\item \textbf{Exponential Form Numbers}: such as 1e2 ($1 \times 10^2$), 2.501e6 ($2.501 \times 10^6$), 5e-3 ($5 \times \frac{1}{10^3}$), etc.
+\item \textbf{Signed Numbers}: such as -1, +4, -0.0002, or even -5e-3
+\end{enumerate}
+
+\vspace{1em}
+
+Further, for this numeric or quantitative sorting to take effect, \textbf{there must not be any other delimiters between the number expressions except just white space}. Thus, the following slightly modified version would produce an entirely different result, simply because the system detects there to be some non-numerical expressions in the input, and thus, decides to use lexical sorting instead:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 6: Invalid Number Expressions result in Lexical Sorting, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{208919 919 1 211993  ,   0 1 2 1e3 3 -10 5 19 .20 -1 -5e-3}|o:
+#sorts by quantitative order of words and returns:
+#=, -1 -10 -5e-3 .20 0 1 1 19 1e3 2 208919 211993 3 5 919
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{2em}
+
+Whereas, in case we take that last example and instead apply the \textbf{character-sorting} command \texttt{o!:}, we instead end up with:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 7: Character-level Lexical Sorting of Number Expressions?, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{208919 919 1 211993  ,   0 1 2 1e3 3 -10 5 19 .20 -1 -5e-3}|o:
+#sorts by quantitative order of words and returns:
+#=                  ,----.00001111111111222233335589999999ee
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{1em}
+
+
+That said, note that as with other TEA commands that allow \textbf{vault-mode}, the \texttt{o*:} and \texttt{o*!:} work as expected as shown in the following combined basic examples:
+
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 8: All Kinds of Sorting for Data in Vaults, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vNUMBERS:{1 414 2.0 135 6 23 7 -3.1}
+v:vLETTERS:{a Dad Be ME for BC Got Cool Aid!}
+o*:vNUMBERS | v:vNUM_SORTED
+o*:vLETTERS | v:vLET_SORTED
+o*!:vNUMBERS | v:vNUM_SORTED_X
+o*!:vLETTERS | v:vLET_SORTED_X
+
+#present results...
+i!:{For the Numbers:
+} | x*!:vNUMBERS | x!:{
+SORTED Quantitatively:
+}| x*!:vNUM_SORTED | x!:{
+And Sorted Lexically By Character:
+} | x*!:vNUM_SORTED_X
+
+#also for the letters...
+
+x!:{
+-------------------
+And for the Words:
+}| x*!:vLETTERS | x!:{
+SORTED Lexically By Word:
+}| x*!:vLET_SORTED | x!:{
+And Sorted Lexically By Character:
+} | x*!:vLET_SORTED_X
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{2em}
+
+
+Which shall produce the enlightening output...
+
+
+  \begin{tcbverbatim}[title=Output from Example 8]
+For the Numbers:
+1 414 2.0 135 6 23 7 -3.1
+SORTED Quantitatively:
+-3.1 1 2.0 6 7 23 135 414
+And Sorted Lexically By Character:
+       -..011112233344567
+-------------------
+And for the Words:
+a Dad Be ME for BC Got Cool Aid!
+SORTED Lexically By Word:
+Aid! BC Be Cool Dad Got ME a for
+And Sorted Lexically By Character:
+        !ABBCCDEGMaaddefiloooort
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+As a final note concerning how TEA's \textbf{ORDER} works, it is important to keep in mind the first item listed in the table of purposes --- \textbf{\hyperref[TABTAZO]{Table \ref{TABTAZO}}} --- in particular, that \textbf{sorting is applied to SPACE-DELIMITED items}. Thus, when one would attempt to sort a list of numbers in ascending order (the natural case with this command), and they run the following code:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 9: Sorting Numbers BUT with INVALID FORMATTING, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{2, 24, 4, 1, 00, -1, 1e3}
+o:
+#result: -1, 00, 1, 1e3 2, 24, 4,
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{1em}
+
+
+
+They shall get the somewhat misleading result ``-1, 00, 1, 1e3 2, 24, 4," --- which, for \textbf{lexical ordering} is correct, but is wrong for \textit{quantitative ordering}. Thus, to fix this problem, the code needs to ensure that the list items are space-delimited before applying the \textbf{ORDER} instruction. Thus, the following would do the right thing:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 10: Sorting Numbers BUT with VALID FORMATTING, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{2, 24, 4, 1, 00, -1, 1e3}
+r!:,:{ } #enforce space delimiters
+o:
+#result: -1 00 1 2 4 24 1e3
+   \end{lstlisting}
+  \end{tcolorbox}
+
+
+\vspace{1em}
+
+
+
+\section{EXAMPLE APPLICATIONS of O:}
+\label{SECEXAMPO}
+
+  
+There is not much to say concerning the applications of \textbf{ORDER} outside of the various scenarios we have encountered in the notes above. Especially when we realize that this operation mostly comes up in situations where either analysis or meaningful presentation of information necessitates the re-formatting of data based on some ordering criteria inherent in the data or some standard criteria such as lexical or quantitative ordering.
+
+\vspace{2em}
+
+Thus, the example application we are going to look at, only offers this idea a somewhat more general treatment, by allowing us to have an application that can do some basic ranking and sorting given arbitrary numerical data in a few standard forms.
+
+
+
+\subsection{EXAMPLE 1: The RANKING UTILITY (RU)}
+\label{SECEXAMP1O}
+
+
+This application, which we shall call \textbf{RU} --- the \textbf{Ranking Utility}, is meant to help a user take some sequence of numeric data, perhaps labeled or annotated, and then sort it in descending order of the numeric quantity of the items it contains. The application offers 3 use-cases:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item Sorting a list of numbers expressions in descending order.
+\item Sorting a list of labeled number expressions (in the format \texttt{LABEL1:N1, LABEL_2:N2, ..., LABEL:N,... etc.} ) in descending order of their associated numbers, but ensuring that the labels are left intact in the final sorted list.
+\item Sorting a list of labeled numeric expressions as above, but also further annotating these sorted items with their corresponding positions in the final sorted list so that we have a final list formatted as \texttt{1st=LABELMAX:NMAX, 2nd=LABEL:N2, ... etc. nth=LABELN:NN,...}
+\end{enumerate}
+
+\vspace{2em}
+
+Such a generic program might come in handy in situations where one has some data collected indicating some classes or categories and their corresponding \textbf{overall} scores --- we say overall, because in the current version, the program doesn't try to aggregate disparate tallies or scores for the same label, and thus, one would want to ensure that where summing is required, they further improve this program or perhaps first tally the counts for each duplicated label.
+
+
+\vspace{2em}
+
+Otherwise, the program as of \textbf{version 2} is as such...
+
+
+\vspace{2em}
+
+
+%\begin{figure}[H]
+{
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Ranking Utility v.2, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+######################################
+# RU: Ranking Utility v2
+######################################
+# This tool is meant to help
+# organize well formatted lists of data
+# by user-specified criteria.
+#######################################
+
+#if no externally provided data, use defaults...
+i:{E:45, A:3.2121 LABEL_1:1,C:-5, 88:5,  TEST_ty:2, A:5}
+
+v:vDATA | v:vRAW_DATA #store externally provided data
+
+#----| CONSTANTS |----
+v:vDELIM:{
+----------***----------
+}
+v:vWELCOME:{----------***----------
+RU: RANKING UTILITY
+----------***----------
+Welcome to RU! 
+This program helps you sort and rank numeric data by some criteria}
+v:vMENU:{----------***----------
+RU: TASK MENU
+----------***----------
+Pick a task by specifying its index:
+[1] SORT RAW NUMERIC DATA: quantitatively in descending order
+[2] SORT LABELLED NUMERIC DATA
+[3] POSITIONIFY LABELLED NUMERIC DATA
+[e] ENTER NEW NUMERIC DATA
+[q] QUIT}
+v:vPROMPT_DATA_1:{----------***----------
+RU: Get RAW DATA
+----------***----------
+INSTRUCTIONS: Enter or paste one or more lines of raw numeric data delimited by space or commas, such as:
+D1 D2 D3 D4... DN
+R1,R2,R3,...,RN,etc.}
+v:vPROMPT_DATA_2:{----------***----------
+RU: Get LABELLED DATA
+----------***----------
+INSTRUCTIONS: Enter or paste one or more lines of labelled numeric data delimited by space or commas, such as:
+LABEL1:D1 LABEL2:D2 LABEL3:D3 LABEL4:D4... LABELN:DN
+LABEL2:R1,LABEL1:R2,LABELK:R3,...,LABELN:RN,etc.
+----------***----------
+NOTE: The label_s should not have spaces in them, but otherwise can be duplicated across the dataset.}
+v:vPROMPT_INVALID_DATA:{----------***----------
+RU: Got INVALID DATA
+----------***----------
+ERROR: Note that the data you entered does not conform to the accepted format for the chosen analysis and ranking criteria. 
+Cross-check and re-try!}
+
+#----| VARIABLES |----
+v:vRESULTS:{RESULT: No Processing Done}
+
+#----| WELCOME |----
+y:vWELCOME | i*:
+l:lPROMPT_MENU
+#What to do?
+y:vMENU | i*:
+v:vMENU_OPT #store user selected task index
+f:^[qQ]$:lQUIT #finish, do nothing else...
+f:^[eE]$:lPROMPT_DATA #get new data...
+f!:[123]:lPROMPT_MENU #if not correct, re-prompt
+
+#store last data-processing option
+v:vMENU_OPT_DATA 
+
+#----| WHICH DATA? |----
+#check if we have data, otherwise prompt for data
+y:vDATA | t.: | f:^$:lPROMPT_DATA:lVERIFY_DATA
+
+l:lPROMPT_DATA
+y:vMENU_OPT # retrieve user option
+
+f:[eE]:lFIX_OPT:lOPT_FINE #if not meaningful, use-last choice
+l:lFIX_OPT
+y:vMENU_OPT_DATA | v:vMENU_OPT
+
+l:lOPT_FINE 
+f:1:lPROMPT_DATA_CASE1 | f:2:lPROMPT_DATA_CASE2 | f:3:lPROMPT_DATA_CASE2
+#------
+l:lPROMPT_DATA_CASE1 # get raw data..
+y:vPROMPT_DATA_1 | i*: | v:vDATA | v:vRAW_DATA
+j:lVERIFY_DATA #then go to verification
+#------
+l:lPROMPT_DATA_CASE2 # get labelled data..
+y:vPROMPT_DATA_2 | i*: | v:vDATA | v:vRAW_DATA
+j:lVERIFY_DATA #then go to verification
+
+#----| VERIFY DATA |----
+l:lVERIFY_DATA
+y:vDATA #retrieve data
+#pre-process data..
+t.: #trim trailing white-space
+v:vDATA
+#check if we have any data, otherwise [re]prompt for data
+y:vDATA | f:^$:lPROMPT_DATA
+
+#pre-process based on case...
+y:vMENU_OPT # retrieve user option
+f:1:lVERIFY_DATA_CASE1 | f:2:lVERIFY_DATA_CASE2 | f:3:lVERIFY_DATA_CASE2
+#------
+l:lVERIFY_DATA_CASE1 # validate raw data..
+y:vDATA | g.:, #replace new-lines with comma
+r!:{ }:{,} | r!:[,]+:, #fix commas
+#verify formatting...
+f!:{^(([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
+v:vDATA #override data with updated version
+j:lPROCESS_DATA #then go to process
+#------
+l:lVERIFY_DATA_CASE2 # validate labelled data..
+y:vDATA | g.:, #replace new-lines with comma
+r!:[ ]+:{,} | r!:[,]+:, #fix commas
+#verify formatting...
+f!:{^((\w+:)([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
+v:vDATA #override data with updated version
+j:lPROCESS_DATA #then go to process
+
+#----| IN-CASE INVALID DATA |----
+l:lFLAG_INVALID_DATA
+y:vPROMPT_INVALID_DATA | x*!:vDELIM | x*!:vRAW_DATA | i*:
+j:lPROMPT_DATA #re-prompt for data
+
+#----| PROCESS DATA |----
+l:lPROCESS_DATA 
+#process based on case...
+y:vMENU_OPT # retrieve user option
+f:1:lPROCESS_DATA_CASE1 | f:2:lPROCESS_DATA_CASE2 | f:3:lPROCESS_DATA_CASE3
+#------
+l:lPROCESS_DATA_CASE1 # sort raw data..
+#--|start algorithm|------------
+v:vSORTED_LIST:{} #initially empty..
+y:vDATA #fetch raw data
+r!:,:{ } #enforce space delimiters
+o: #sort in ascending order
+m: #transform to descending order
+r!:[ ]+:, #swap space with commas
+r!:[,]+:, #fix extraneous commas
+r!:[,]:{, } #space items
+v:vSORTED_LIST #store sorted list
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+#------
+l:lPROCESS_DATA_CASE2  # sort labelled data..
+y:vDATA 
+#--|start algorithm|------------
+v:vLIST_ORIG #stash original dataset
+v:vSORTED_LIST:{} #to hold sorted dataset
+
+l:lPROCESS_NEXT_ITEM
+y:vLIST_ORIG # let's process the original dataset then...
+#eliminate labels
+r!:{(\w+:)}:{ } #better approach
+#swap commas for space
+r!:,:{ } | r!:[ ]+:{ }
+#sort in descending order
+o: | m: 
+
+#retain only largest number
+t.: | d:[ ].*$ |v:vNMAX 
+#obtain [the first] labelled item corresponding to this number in the original dataset
+x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
+
+#store that as the next item in the sorted labelled list
+x*:vSORTED_LIST:vLABELLED_MAX | v:vSORTED_LIST
+#take the original dataset and eliminate [only] this labelled item then
+y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
+#clean out trailing commas
+d:^,
+v:vLIST_ORIG | update/override original dataset 
+#if empty, return sorted list, otherwise iterate...
+t.: | f:^$:lRETURN_SORTED:lPROCESS_NEXT_ITEM
+
+l:lRETURN_SORTED
+y:vSORTED_LIST 
+#clean out trailing commas and space
+d:[,\s]*$
+r!:[,]:{, } #space items
+v:vSORTED_LIST #override, we have final sorted labelled dataset
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED LABELLED-DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+
+#------
+l:lPROCESS_DATA_CASE3 # sort and positionify labelled data..
+y:vDATA 
+#--|start algorithm|------------
+v:vLIST_ORIG #stash original dataset
+v:vSORTED_LIST:{} #to hold sorted dataset
+v:vPOSITION:{1} #to hold positions
+v:vPOSDELIM:{=} #to separate position from item
+
+l:l3PROCESS_NEXT_ITEM
+y:vLIST_ORIG # let's process the original dataset then...
+#eliminate labels
+r!:{(\w+:)}:{ }
+#swap commas for space
+r!:,:{ } | r!:[ ]+:{ }
+#sort in descending order
+o: | m: 
+
+#retain only largest number
+t.: | d:[ ].*$ |v:vNMAX 
+#obtain [the first] labelled item corresponding to this number in the original dataset
+x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
+
+#should we process this?
+d:, | t.: | f:^$:lFINISHED_POSITIONING
+
+#process its position
+y:vPOSITION
+f:1$:lST:lNST
+l:lST
+x!:{st} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNST
+y:vPOSITION
+f:2$:lSND:lNSND
+l:lSND
+x!:{nd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNSND
+y:vPOSITION
+f:3$:lRD:lTH
+l:lRD
+x!:{rd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lTH
+y:vPOSITION
+x!:{th} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lADDPOSITION
+g*:{}:vPOSLABEL:vPOSDELIM:vLABELLED_MAX | v:vLABELLED_MAX_POS 
+y:vPOSITION | x!:{+1} | r.: | v:vPOSITION
+
+l:lFINISHED_POSITIONING
+
+#store that as the next item in the sorted labelled list
+x*:vSORTED_LIST:vLABELLED_MAX_POS | v:vSORTED_LIST
+
+#take the original dataset and eliminate [only] this labelled item then
+y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
+#clean out trailing commas
+d:^,
+
+v:vLIST_ORIG | update/override original dataset 
+#if empty, return sorted list, otherwise iterate...
+t.: | f:^$:l3RETURN_SORTED:l3PROCESS_NEXT_ITEM
+
+l:l3RETURN_SORTED
+y:vSORTED_LIST 
+#clean out trailing commas and space
+d:[,\s]*$
+r!:[,]:{, } #space items
+v:vSORTED_LIST #override, we have final sorted labelled dataset
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED and POSITIONIFIED LABELLED-DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+
+#----| PRESENT RESULTS |----
+l:lRESULTS
+y:vRESULTS | i*:
+j:lPROMPT_MENU #iterate!
+
+
+l:lQUIT #quit program gracefully...
+
+i!:{ORIGINAL DATA:
+}  | x*!:vDATA | x*:vDELIM | x*!:vDELIM | x!: {RU Processing Results:} | x*!:vDELIM | x*!:vRESULTS
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{TEA APPLICATION: Ranking Utility (RU) v2}
+  \label{FIGOEX2}
+  \vspace{1cm}
+  
+
+\vspace{2em}
+
+So, to appreciate this tool, we can for example assume we have the following small, but somewhat representative and quirky datatset conforming to the constraints we laid out in the specification:
+
+  
+ 
+  \begin{tcolorbox}[title=Sample Well-formatted INPUT Dataset of 7 Labeled Numerical Expressions,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+E:5, A:3.2121 LABEL_1:1,C:-5, 88:5,  TEST_ty:2, A:5
+  \end{tcolorbox}
+ 
+
+\vspace{2em}
+
+And so, if we select the RU Function 2: sorting numerical labeled data in descending order, we would obtain results such as:
+
+
+  \begin{tcolorbox}[title=Sample Well-formatted OUTPUT from Task 2 of RU,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+
+----------***----------
+ORIGINAL DATA:
+E:5,A:3.2121,LABEL_1:1,C:-5,88:5,TEST_ty:2,A:5
+----------***----------
+RU Processing Results:
+----------***----------
+DESC-SORTED LABELLED-DATA: 
+E:5, 88:5, A:5, A:3.2121, TEST_ty:2, LABEL_1:1, C:-5
+  \end{tcolorbox}
+ 
+ 
+ \vspace{2em}
+ 
+ 
+ While, if we use Task 3: \textbf{sorting and positionifying} labeled numeric data, against the same dataset, we would obtain...
+ 
+ 
+ 
+  \begin{tcolorbox}[title=Sample Well-formatted OUTPUT from Task 3 of RU,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+----------***----------
+ORIGINAL DATA:
+E:5,A:3.2121,LABEL_1:1,C:-5,88:5,TEST_ty:2,A:5
+----------***----------
+RU Processing Results:
+----------***----------
+DESC-SORTED and POSITIONIFIED LABELLED-DATA: 
+1st=E:5, 2nd=88:5, 3rd=A:5, 4th=A:3.2121, 5th=TEST_ty:2, 6th=LABEL_1:1, 7th=C:-5
+  \end{tcolorbox}
+ 
+ 
+
+And as for Task 1: merely sorting a list of numeric expressions in descending order, we would have something like:
+
+
+ 
+  \begin{tcolorbox}[title=Sample Well-formatted OUTPUT from Task 1 of RU,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+----------***----------
+ORIGINAL DATA:
+5,3.2121,1,-5,5,2,5,00,-1.0,2e-5
+----------***----------
+RU Processing Results:
+----------***----------
+DESC-SORTED DATA: 
+5, 5, 5, 3.2121, 2, 1, 2e-5, 00, -1.0, -5
+  \end{tcolorbox}
+ 
+
+\vspace{2em}
+
+
+It should be worth noting that, as with all the other TEA application examples we have looked at thus far, this one too, works the same way anywhere TEA works, and also that, it has no non-TEA functions such as those relying on ZAP, and thus, should be expected to stay very portable and stable for as long as the TEA standard it is based on remains supported. 
 
 
 

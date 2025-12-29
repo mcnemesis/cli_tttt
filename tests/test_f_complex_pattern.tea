@@ -1,0 +1,14 @@
+#given label:number expression formatted data...
+i:{A:3.2121,LABEL:1,C:-5}
+
+#versions that should not pass this test...
+#i:{A3.2121,LABEL1,C-5}
+#i:{3.2121,1,-5}
+
+#verify that the data is properly formatted..
+f!:{^((\w+:)([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lINVALID:lVALID
+l:lVALID
+Q!: #return data if it is okay..
+l:lINVALID
+i!:Data Invalid 
+q!: #show error message if not okay

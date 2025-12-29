@@ -1,0 +1,283 @@
+######################################
+# RU: Ranking Utility v2
+######################################
+# This tool is meant to help
+# organize well formatted lists of data
+# by user-specified criteria.
+#######################################
+
+#if no externally provided data, use defaults...
+i:{E:45, A:3.2121 LABEL_1:1,C:-5, 88:5,  TEST_ty:2, A:5}
+
+v:vDATA | v:vRAW_DATA #store externally provided data
+
+#----| CONSTANTS |----
+v:vDELIM:{
+----------***----------
+}
+v:vWELCOME:{----------***----------
+RU: RANKING UTILITY
+----------***----------
+Welcome to RU! 
+This program helps you sort and rank numeric data by some criteria}
+v:vMENU:{----------***----------
+RU: TASK MENU
+----------***----------
+Pick a task by specifying its index:
+[1] SORT RAW NUMERIC DATA: quantitatively in descending order
+[2] SORT LABELLED NUMERIC DATA
+[3] POSITIONIFY LABELLED NUMERIC DATA
+[e] ENTER NEW NUMERIC DATA
+[q] QUIT}
+v:vPROMPT_DATA_1:{----------***----------
+RU: Get RAW DATA
+----------***----------
+INSTRUCTIONS: Enter or paste one or more lines of raw numeric data delimited by space or commas, such as:
+D1 D2 D3 D4... DN
+R1,R2,R3,...,RN,etc.}
+v:vPROMPT_DATA_2:{----------***----------
+RU: Get LABELLED DATA
+----------***----------
+INSTRUCTIONS: Enter or paste one or more lines of labelled numeric data delimited by space or commas, such as:
+LABEL1:D1 LABEL2:D2 LABEL3:D3 LABEL4:D4... LABELN:DN
+LABEL2:R1,LABEL1:R2,LABELK:R3,...,LABELN:RN,etc.
+----------***----------
+NOTE: The label_s should not have spaces in them, but otherwise can be duplicated across the dataset.}
+v:vPROMPT_INVALID_DATA:{----------***----------
+RU: Got INVALID DATA
+----------***----------
+ERROR: Note that the data you entered does not conform to the accepted format for the chosen analysis and ranking criteria. 
+Cross-check and re-try!}
+
+#----| VARIABLES |----
+v:vRESULTS:{RESULT: No Processing Done}
+
+#----| WELCOME |----
+y:vWELCOME | i*:
+l:lPROMPT_MENU
+#What to do?
+y:vMENU | i*:
+v:vMENU_OPT #store user selected task index
+f:^[qQ]$:lQUIT #finish, do nothing else...
+f:^[eE]$:lPROMPT_DATA #get new data...
+f!:[123]:lPROMPT_MENU #if not correct, re-prompt
+
+#store last data-processing option
+v:vMENU_OPT_DATA 
+
+#----| WHICH DATA? |----
+#check if we have data, otherwise prompt for data
+y:vDATA | t.: | f:^$:lPROMPT_DATA:lVERIFY_DATA
+
+l:lPROMPT_DATA
+y:vMENU_OPT # retrieve user option
+
+f:[eE]:lFIX_OPT:lOPT_FINE #if not meaningful, use-last choice
+l:lFIX_OPT
+y:vMENU_OPT_DATA | v:vMENU_OPT
+
+l:lOPT_FINE 
+f:1:lPROMPT_DATA_CASE1 | f:2:lPROMPT_DATA_CASE2 | f:3:lPROMPT_DATA_CASE2
+#------
+l:lPROMPT_DATA_CASE1 # get raw data..
+y:vPROMPT_DATA_1 | i*: | v:vDATA | v:vRAW_DATA
+j:lVERIFY_DATA #then go to verification
+#------
+l:lPROMPT_DATA_CASE2 # get labelled data..
+y:vPROMPT_DATA_2 | i*: | v:vDATA | v:vRAW_DATA
+j:lVERIFY_DATA #then go to verification
+
+#----| VERIFY DATA |----
+l:lVERIFY_DATA
+y:vDATA #retrieve data
+#pre-process data..
+t.: #trim trailing white-space
+v:vDATA
+#check if we have any data, otherwise [re]prompt for data
+y:vDATA | f:^$:lPROMPT_DATA
+
+#pre-process based on case...
+y:vMENU_OPT # retrieve user option
+f:1:lVERIFY_DATA_CASE1 | f:2:lVERIFY_DATA_CASE2 | f:3:lVERIFY_DATA_CASE2
+#------
+l:lVERIFY_DATA_CASE1 # validate raw data..
+y:vDATA | g.:, #replace new-lines with comma
+r!:{ }:{,} | r!:[,]+:, #fix commas
+#verify formatting...
+f!:{^(([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
+v:vDATA #override data with updated version
+j:lPROCESS_DATA #then go to process
+#------
+l:lVERIFY_DATA_CASE2 # validate labelled data..
+y:vDATA | g.:, #replace new-lines with comma
+r!:[ ]+:{,} | r!:[,]+:, #fix commas
+#verify formatting...
+f!:{^((\w+:)([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
+v:vDATA #override data with updated version
+j:lPROCESS_DATA #then go to process
+
+#----| IN-CASE INVALID DATA |----
+l:lFLAG_INVALID_DATA
+y:vPROMPT_INVALID_DATA | x*!:vDELIM | x*!:vRAW_DATA | i*:
+j:lPROMPT_DATA #re-prompt for data
+
+#----| PROCESS DATA |----
+l:lPROCESS_DATA 
+#process based on case...
+y:vMENU_OPT # retrieve user option
+f:1:lPROCESS_DATA_CASE1 | f:2:lPROCESS_DATA_CASE2 | f:3:lPROCESS_DATA_CASE3
+#------
+l:lPROCESS_DATA_CASE1 # sort raw data..
+#--|start algorithm|------------
+v:vSORTED_LIST:{} #initially empty..
+y:vDATA #fetch raw data
+r!:,:{ } #enforce space delimiters
+o: #sort in ascending order
+m: #transform to descending order
+r!:[ ]+:, #swap space with commas
+r!:[,]+:, #fix extraneous commas
+r!:[,]:{, } #space items
+v:vSORTED_LIST #store sorted list
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+#------
+l:lPROCESS_DATA_CASE2  # sort labelled data..
+y:vDATA 
+#--|start algorithm|------------
+v:vLIST_ORIG #stash original dataset
+v:vSORTED_LIST:{} #to hold sorted dataset
+
+l:lPROCESS_NEXT_ITEM
+y:vLIST_ORIG # let's process the original dataset then...
+#eliminate labels
+r!:{(\w+:)}:{ } #better approach
+#swap commas for space
+r!:,:{ } | r!:[ ]+:{ }
+#sort in descending order
+o: | m: 
+
+#retain only largest number
+t.: | d:[ ].*$ |v:vNMAX 
+#obtain [the first] labelled item corresponding to this number in the original dataset
+x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
+
+#store that as the next item in the sorted labelled list
+x*:vSORTED_LIST:vLABELLED_MAX | v:vSORTED_LIST
+#take the original dataset and eliminate [only] this labelled item then
+y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
+#clean out trailing commas
+d:^,
+v:vLIST_ORIG | update/override original dataset 
+#if empty, return sorted list, otherwise iterate...
+t.: | f:^$:lRETURN_SORTED:lPROCESS_NEXT_ITEM
+
+l:lRETURN_SORTED
+y:vSORTED_LIST 
+#clean out trailing commas and space
+d:[,\s]*$
+r!:[,]:{, } #space items
+v:vSORTED_LIST #override, we have final sorted labelled dataset
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED LABELLED-DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+
+#------
+l:lPROCESS_DATA_CASE3 # sort and positionify labelled data..
+y:vDATA 
+#--|start algorithm|------------
+v:vLIST_ORIG #stash original dataset
+v:vSORTED_LIST:{} #to hold sorted dataset
+v:vPOSITION:{1} #to hold positions
+v:vPOSDELIM:{=} #to separate position from item
+
+l:l3PROCESS_NEXT_ITEM
+y:vLIST_ORIG # let's process the original dataset then...
+#eliminate labels
+r!:{(\w+:)}:{ }
+#swap commas for space
+r!:,:{ } | r!:[ ]+:{ }
+#sort in descending order
+o: | m: 
+
+#retain only largest number
+t.: | d:[ ].*$ |v:vNMAX 
+#obtain [the first] labelled item corresponding to this number in the original dataset
+x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
+
+#should we process this?
+d:, | t.: | f:^$:lFINISHED_POSITIONING
+
+#process its position
+y:vPOSITION
+f:1$:lST:lNST
+l:lST
+x!:{st} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNST
+y:vPOSITION
+f:2$:lSND:lNSND
+l:lSND
+x!:{nd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNSND
+y:vPOSITION
+f:3$:lRD:lTH
+l:lRD
+x!:{rd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lTH
+y:vPOSITION
+x!:{th} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lADDPOSITION
+g*:{}:vPOSLABEL:vPOSDELIM:vLABELLED_MAX | v:vLABELLED_MAX_POS 
+y:vPOSITION | x!:{+1} | r.: | v:vPOSITION
+
+l:lFINISHED_POSITIONING
+
+#store that as the next item in the sorted labelled list
+x*:vSORTED_LIST:vLABELLED_MAX_POS | v:vSORTED_LIST
+
+#take the original dataset and eliminate [only] this labelled item then
+y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
+#clean out trailing commas
+d:^,
+
+v:vLIST_ORIG | update/override original dataset 
+#if empty, return sorted list, otherwise iterate...
+t.: | f:^$:l3RETURN_SORTED:l3PROCESS_NEXT_ITEM
+
+l:l3RETURN_SORTED
+y:vSORTED_LIST 
+#clean out trailing commas and space
+d:[,\s]*$
+r!:[,]:{, } #space items
+v:vSORTED_LIST #override, we have final sorted labelled dataset
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED and POSITIONIFIED LABELLED-DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+
+#----| PRESENT RESULTS |----
+l:lRESULTS
+y:vRESULTS | i*:
+j:lPROMPT_MENU #iterate!
+
+
+l:lQUIT #quit program gracefully...
+
+i!:{ORIGINAL DATA:
+}  | x*!:vDATA | x*:vDELIM | x*!:vDELIM | x!: {RU Processing Results:} | x*!:vDELIM | x*!:vRESULTS
