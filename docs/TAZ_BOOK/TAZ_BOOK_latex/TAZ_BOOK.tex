@@ -8905,7 +8905,7 @@ This application, which we shall call \textbf{RU} --- the \textbf{Ranking Utilit
 
 \begin{enumerate}
 \item Sorting a list of numbers expressions in descending order.
-\item Sorting a list of labeled number expressions (in the format \texttt{LABEL1:N1, LABEL_2:N2, ..., LABEL:N,... etc.} ) in descending order of their associated numbers, but ensuring that the labels are left intact in the final sorted list.
+\item Sorting a list of labeled number expressions (in the format \texttt{LABEL1:N1, LABEL\_2:N2, ..., LABEL:N,... etc.} ) in descending order of their associated numbers, but ensuring that the labels are left intact in the final sorted list.
 \item Sorting a list of labeled numeric expressions as above, but also further annotating these sorted items with their corresponding positions in the final sorted list so that we have a final list formatted as \texttt{1st=LABELMAX:NMAX, 2nd=LABEL:N2, ... etc. nth=LABELN:NN,...}
 \end{enumerate}
 
@@ -8916,7 +8916,7 @@ Such a generic program might come in handy in situations where one has some data
 
 \vspace{2em}
 
-Otherwise, the program as of \textbf{version 2} is as such...
+Otherwise, the program as of \textbf{version 3} is as such...
 
 
 \vspace{2em}
@@ -8924,10 +8924,10 @@ Otherwise, the program as of \textbf{version 2} is as such...
 
 %\begin{figure}[H]
 {
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Ranking Utility v.2, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Ranking Utility v.3, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 ######################################
-# RU: Ranking Utility v2
+# RU: Ranking Utility v3
 ######################################
 # This tool is meant to help
 # organize well formatted lists of data
@@ -8935,6 +8935,7 @@ Otherwise, the program as of \textbf{version 2} is as such...
 #######################################
 
 #if no externally provided data, use defaults...
+#i:{5,3.2121,1,-5,5,2,5,00,-1.0,2e-5} #for un-labeled tasks
 i:{E:45, A:3.2121 LABEL_1:1,C:-5, 88:5,  TEST_ty:2, A:5}
 
 v:vDATA | v:vRAW_DATA #store externally provided data
@@ -8944,7 +8945,7 @@ v:vDELIM:{
 ----------***----------
 }
 v:vWELCOME:{----------***----------
-RU: RANKING UTILITY
+RU: RANKING UTILITY v3
 ----------***----------
 Welcome to RU! 
 This program helps you sort and rank numeric data by some criteria}
@@ -9020,6 +9021,12 @@ l:lVERIFY_DATA
 y:vDATA #retrieve data
 #pre-process data..
 t.: #trim trailing white-space
+
+#special pre-process esp for TDT generated datasets
+g.:, #enforce one liner with comma delimiters
+d.:^\s+\[ | d.:\]$ #eliminate [] enclosures 
+d:^[\s,]+:[\s,]+$ #trim trailing commas N space
+
 v:vDATA
 #check if we have any data, otherwise [re]prompt for data
 y:vDATA | f:^$:lPROMPT_DATA
@@ -9211,7 +9218,7 @@ i!:{ORIGINAL DATA:
 }  | x*!:vDATA | x*:vDELIM | x*!:vDELIM | x!: {RU Processing Results:} | x*!:vDELIM | x*!:vRESULTS
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA APPLICATION: Ranking Utility (RU) v2}
+    \captionof{figure}{TEA APPLICATION: Ranking Utility (RU) v3}
   \label{FIGOEX2}
   \vspace{1cm}
   
@@ -9220,20 +9227,19 @@ i!:{ORIGINAL DATA:
 
 So, to appreciate this tool, we can for example assume we have the following small, but somewhat representative and quirky datatset conforming to the constraints we laid out in the specification:
 
+  \vspace{2em}
   
- 
-  \begin{tcolorbox}[title=Sample Well-formatted INPUT Dataset of 7 Labeled Numerical Expressions,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+       \begin{tcbverbatim}[title=Sample Well-formatted INPUT Dataset of 7 Labeled Numerical Expressions]
 E:5, A:3.2121 LABEL_1:1,C:-5, 88:5,  TEST_ty:2, A:5
-  \end{tcolorbox}
+  \end{tcbverbatim}
  
 
 \vspace{2em}
 
 And so, if we select the RU Function 2: sorting numerical labeled data in descending order, we would obtain results such as:
 
-
-  \begin{tcolorbox}[title=Sample Well-formatted OUTPUT from Task 2 of RU,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
-
+    
+     \begin{tcbverbatim}[title=Sample Well-formatted OUTPUT from Task 2 of RU]
 ----------***----------
 ORIGINAL DATA:
 E:5,A:3.2121,LABEL_1:1,C:-5,88:5,TEST_ty:2,A:5
@@ -9242,7 +9248,7 @@ RU Processing Results:
 ----------***----------
 DESC-SORTED LABELLED-DATA: 
 E:5, 88:5, A:5, A:3.2121, TEST_ty:2, LABEL_1:1, C:-5
-  \end{tcolorbox}
+  \end{tcbverbatim}
  
  
  \vspace{2em}
@@ -9250,9 +9256,10 @@ E:5, 88:5, A:5, A:3.2121, TEST_ty:2, LABEL_1:1, C:-5
  
  While, if we use Task 3: \textbf{sorting and positionifying} labeled numeric data, against the same dataset, we would obtain...
  
+ \vspace{2em}
  
- 
-  \begin{tcolorbox}[title=Sample Well-formatted OUTPUT from Task 3 of RU,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+  
+     \begin{tcbverbatim}[title=Sample Well-formatted OUTPUT from Task 3 of RU]
 ----------***----------
 ORIGINAL DATA:
 E:5,A:3.2121,LABEL_1:1,C:-5,88:5,TEST_ty:2,A:5
@@ -9261,15 +9268,16 @@ RU Processing Results:
 ----------***----------
 DESC-SORTED and POSITIONIFIED LABELLED-DATA: 
 1st=E:5, 2nd=88:5, 3rd=A:5, 4th=A:3.2121, 5th=TEST_ty:2, 6th=LABEL_1:1, 7th=C:-5
-  \end{tcolorbox}
+  \end{tcbverbatim}
  
+ \vspace{2em}
  
 
 And as for Task 1: merely sorting a list of numeric expressions in descending order, we would have something like:
 
-
- 
-  \begin{tcolorbox}[title=Sample Well-formatted OUTPUT from Task 1 of RU,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
+\vspace{2em}
+  
+   \begin{tcbverbatim}[title=Sample Well-formatted OUTPUT from Task 1 of RU]
 ----------***----------
 ORIGINAL DATA:
 5,3.2121,1,-5,5,2,5,00,-1.0,2e-5
@@ -9277,8 +9285,8 @@ ORIGINAL DATA:
 RU Processing Results:
 ----------***----------
 DESC-SORTED DATA: 
-5, 5, 5, 3.2121, 2, 1, 2e-5, 00, -1.0, -5
-  \end{tcolorbox}
+5, 5, 5, 3.2121, 2, 1, 2e-5, 00, -1.0, -5 
+  \end{tcbverbatim}
  
 
 \vspace{2em}
