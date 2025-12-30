@@ -1,0 +1,22 @@
+#############################################
+# VOWEL HYMN GENERATOR v1
+#############################################
+# Though legit vowel hymns ought be generated
+# based on transforming the text of legit hymns
+# or words, this generator instead generates 
+#such hymns based on nothing really, but the
+# outputs shall read and feel like legitimate
+#vowel hymns nonetheless.
+#-------------------------------------------
+# For Theory: https://bit.ly/grimoirelumtauto
+# For Example: https://www.youtube.com/watch?v=p_THWo4MjIU
+##############################################
+v:vLINES:5 | v:vI:0 | v:vHYMN:{}
+v:vLIMIT:10 | v:vGLUE:{ } | v:vALPHABET:{aeiou }
+l:LOOP
+p*!:vLIMIT:vGLUE:vALPHABET | v:vLINE #generate and store random string
+g*:{
+}:vHYMN:vLINE | v:vHYMN #add it to the hymn
+y:vI | x!:{+1} | r.: | v:vI 
+y:vI | x!:{>} | x*!:vLINES | r.: | f:^true$:FIN:LOOP #test if we must finish
+l:FIN | y:vHYMN | k!:^$ #return clean hymn

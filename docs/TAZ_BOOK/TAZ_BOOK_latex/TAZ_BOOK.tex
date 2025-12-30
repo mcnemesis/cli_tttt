@@ -8567,8 +8567,6 @@ OR
 
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TAZ SECTION: O
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9293,6 +9291,287 @@ DESC-SORTED DATA:
 
 
 It should be worth noting that, as with all the other TEA application examples we have looked at thus far, this one too, works the same way anywhere TEA works, and also that, it has no non-TEA functions such as those relying on ZAP, and thus, should be expected to stay very portable and stable for as long as the TEA standard it is based on remains supported. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: P
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{P: PERMUTATE}
+\label{SECP}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{PERMUTATE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Generate unique permutations of Strings
+	\item Generate Random Strings
+	\item Generate Strings of a Particular Structure and Alphabet
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{P:}}
+  \label{TABTAZP}
+\end{table}
+
+
+\section{SEMANTICS of P:}
+\label{SECSEMP}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+p: & Return the AI expanded to utmost 100 unique
+permutations of its elements (which essentially means returning anagrams of the AI), glued together.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{p:VALUE\\p:VALUE:GLUE\\p:VALUE:GLUE:LIMIT\\p:VALUE:GLUE:LIMIT:LLIMIT} & Same as p: but using VALUE instead of AI. Also, if the second argument is also provided, it becomes the GLUE string used for joining the permutations generated when constructing the IO. The default or if GLUE isn't specified, is the SINGLE SPACE CHARACTER. The last argument is expected to be a number LIMIT, to limit how many permutations to return at most. If LLIMIT is provided, then exactly restrict the output to between LLIMIT as lower limit and LIMIT as upper. If LLIMIT = LIMIT, return exactly LIMIT permutations if they can be generated.\\
+
+p!: & Return a random string of utmost 100 characters.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{p!:SIZE\\p!:SIZE:GLUE\\p!:SIZE:GLUE:ALPHABET} & Return a random string of exactly SIZE characters.  GLUE serves to join the generated word-strings if provided, otherwise is the default (SINGLE SPACE CHAR). If the third parameter, the string ALPHABET, is provided, then use only the characters in the provided string for generating the random words, otherwise, will use the full Latin alphabet extended with the SINGLE SPACE CHAR.\\
+
+
+\makecell[l]{p*:vVALUE\\p*:vVALUE:vGLUE\\p*:vVALUE:vGLUE:vLIMIT:vLLIMIT} & Permutates provided string. Same as  p:VALUE:GLUE:LIMIT , but using  the string parameters stored in the vaults with the specified names, vVALUE  as the VALUE, vGLUE as glue, vLIMIT as limit. Only the first, parameter is mandatory.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{p*!:vSIZE\\p*!:vSIZE:vGLUE\\p*!:vSIZE:vGLUE:vALPHABET} & Same as  p!:SIZE:GLUE:ALPHABET  but operating on values stored in vaults.\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of P:}
+\label{TABSEMP}
+\end{table}
+
+
+\section{NOTES about P:}
+\label{SECNOTEP}
+
+
+A basic illustration of this P: power can be demonstrated by the following example TEA program that returns all possible unique combinations of the first 3 English alphabet letters: 
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 1: Compute Permutations of "ABC", breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+I!:{abc} | v:vA | v:vGLUE:- | p*:vA:vGLUE 
+# (="abc-acb-bac-bca-cab-cba")
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Perhaps, it is important to stress that since mathematically it is known that a string of N characters has at most N! (N-factorial) possible permutations or rather anagrams, then, without enforcing a hard limit such as the default 100, it can become very expensive to run the p: command especially on large values. Thus, where necessary, ensure to specify the LIMIT parameter when invoking p: commands.
+
+\vspace{2em}
+
+
+\texttt{P:} maps a string to a set of its anagrams. This also means, one could do what the \texttt{P:} command does, with creative use of the other TEA fundamental anagram command ``a!:". This interesting fact is illustrated by the following application of TEA:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[myterminalstyle, title=Simulating P:ABC using AWK and A:]
+  \begin{lstlisting}[breaklines=true]
+EXPERIMENTS|< 13:35:35 $>* awk -e "BEGIN{do{n++; system(\"tttt -i abc -c a!:\");}while(n<=100)}" | sort | uniq
+  \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+And that commandline AWK+TEA combo returns:
+
+\vspace{2em}
+
+
+\begin{verbatim}
+abc
+acb
+bac
+bca
+cab
+cba
+\end{verbatim}
+
+\vspace{2em}
+
+
+It produces similar output an invocation of \texttt{p:} would have given for the same input ``abc", however, it merely leverages the minimalist TEA program \texttt{a!:} and some clever use of the Awk programming language.
+
+
+\vspace{2em}
+
+
+\textbf{NOTE:} The \texttt{P!:} command space is the only utility in TEA, with which one might elegantly generate random text. This is the equivalent of generating random numbers, for words. A utility many, if not most programming languages never provide a primitive solution for.
+
+\vspace{2em}
+
+The most basic \textbf{Random String Generator} (RSG) possible, is simply implemented using the following minimalist TEA program:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 2: Most Basic Random String Generator in TEA, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+P!:
+# could return "fnudgzwhh ztnttwhehb iptkerl chwuljtiw"
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Note that, as indicate in \textbf{\hyperref[TABSEMP]{Table \ref{TABSEMP}}}, invoking \texttt{p!:} without any arguments shall always generate a string of \textbf{utmost 100 characters long}. This means, it might be as short as just 1 or a few characters, but also that, it would never exceed 100 characters. However, and when required, one can tightly control exactly how many and even what kind of strings this command can generate as we see next...
+
+\vspace{2em}
+
+The following basic TEA program for example, is guaranteed to generate useful random strings of exactly 10 characters spanning the Latin Alphabet:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 3: A Constrained RSG in TEA, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+P!:10
+# could return "ssrmykqzyz", "dfooctwrid", "gdo yoqqlt", etc
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Finally, note that, despite using different approaches, both \texttt{P:} --- a permutation generator, and \texttt{P!:} --- a random string generator, generate random strings. The key difference between them is that the first takes a starter string (such as AI or the argument it is given) and randomizes it without omitting any character from it --- thus ``anagrams". While the other either uses the standard Latin Alphabet ($\psi_{az}$) or some starter ``seed" string it is given or a specified ``alphabet", and generates random strings of arbitrary or specified length merely by sampling or choosing elements from the given seed. Thus, though they might be in similar contexts, the two generators are fundamentally different and each might be suited for specific purposes the other isn't.
+
+
+\vspace{2em}
+
+Concerning parametric use of the permutation command, the following example demonstrates how to generate so-called ``Vowel Hymns" or ``Vowel Mantras"\cite{lutalo_2025_grimlumtauto} based on chaining anagrams of the vowel set: 
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 4: A Constrained Permutation Generator in TEA that generates ``Vowel Mantras", breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vLIMIT:10|v:vLLIMIT:4|v:vALPH:{aeiou}|v:vGLUE:-|p*:vALPH:vGLUE:vLIMIT:vLLIMIT
+#equivalent to just
+#p:aeiou:-:10:4
+#returns strings such as:
+#oueai-iaeou-ueoia-eiuoa-oiuea-eoaui-uieoa-aeuoi
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+That example attempts to demonstrate how to leverage all the parameters that the \texttt{p*:} command accepts. However, for the case of generating beautiful vowel hymns, perhaps the version using the RSG command and which is depicted in the first example application of \textbf{P:} shall be more convincing...
+
+
+
+
+
+\section{EXAMPLE APPLICATIONS of P:}
+\label{SECEXAMPP}
+
+  
+As we have seen in the introductions, the \textbf{PERMUTATE} command is great for generating random strings or creating random variants of specified strings. And so, with regards to the kinds of applications we can envision leveraging this utility and the most of the \texttt{P:} command space, we shall explore applications that involve or require working with random strings mostly.
+
+
+\subsection{EXAMPLE 1: A Random VOWEL HYMN Generator}
+\label{SECEXAMP1P}
+
+
+For those new to the idea of ``vowel hymns"\cite{lutalo_2025_grimlumtauto}, note that these are exemplified in the performance by the Ugandan Melodic Metal band \textbf{MAZERA}, on their 2025 \textbf{XMas Metal} album as the song ``Vowel Hymns" --- see: [audio] \url{https://t.me/mazeraworks/1152} and [audio-video] \url{https://www.youtube.com/watch?v=p_THWo4MjIU}
+
+
+
+\vspace{2em}
+
+
+ \begin{figure}[H]
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Random VOWEL HYMN Generator]
+    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#############################################
+# VOWEL HYMN GENERATOR v1
+#############################################
+# Though legit vowel hymns ought be generated
+# based on transforming the text of legit hymns
+# or words, this generator instead generates 
+#such hymns based on nothing really, but the
+# outputs shall read and feel like legitimate
+#vowel hymns nonetheless.
+#-------------------------------------------
+# For Theory: https://bit.ly/grimoirelumtauto
+# For Example: https://www.youtube.com/watch?v=p_THWo4MjIU
+##############################################
+v:vLINES:5 | v:vI:0 | v:vHYMN:{}
+v:vLIMIT:10 | v:vGLUE:{ } | v:vALPHABET:{aeiou }
+l:LOOP
+p*!:vLIMIT:vGLUE:vALPHABET | v:vLINE #generate and store random string
+g*:{
+}:vHYMN:vLINE | v:vHYMN #add it to the hymn
+y:vI | x!:{+1} | r.: | v:vI 
+y:vI | x!:{>} | x*!:vLINES | r.: | f:^true$:FIN:LOOP #test if we must finish
+l:FIN | y:vHYMN | k!:^$ #return clean hymn
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: Random VOWEL HYMN Generator}
+  \label{FIGP1}
+\end{figure}
+
+
+\vspace{2em}
+
+So, that short but generic program shall generate interesting vowel hymns such as:
+
+
+\vspace{2em}
+  
+   \begin{tcbverbatim}[title=Sample Vowel Hymn OUTPUT]
+aai iu oo
+uouieae ai
+uuiue e 
+ eu uo iu
+eiaioauooe
+e iouieeai
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
+
+  
+   \begin{tcbverbatim}[title=Sample Vowel Hymn OUTPUT]
+iai ua uee
+ee ouaoiei
+ii aaeii e
+oia uaoueo
+a a ua u
+ oeoouoiiu
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
+
+
+\vspace{2em}
+
+  
+   \begin{tcbverbatim}[title=Sample Vowel Hymn OUTPUT]
+aeieo uoou
+aua ei i 
+iioe ii i 
+ea oi iu 
+eoeeeaeea 
+eua oiiu 
+  \end{tcbverbatim}
 
 
 
