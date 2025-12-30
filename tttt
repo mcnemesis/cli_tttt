@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.2.9"
+VERSION = "1.3.0"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -359,16 +359,16 @@ class TEA_RunTime:
                     permutations.append(vAnagram)
             return glue.join(permutations)
 
-
         def util_gen_rand_string(size=None,  glue=TEA_RunTime.EMPTY_STR, alphabet=TEA_RunTime.EXTENDED_ALPHABET):
             instance_limit = util_gen_rand(int(size) if size is not None else 100,ll=1)
             if size is not None:
                 instance_limit = size
             if glue:
-                return glue.join(random.choice(alphabet) for _ in range(instance_limit))
+                rand_str = TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
+                rand_str = re.sub(TEA_RunTime.RE_WHITE_SPACE, glue, rand_str)
+                return rand_str
             else:
                 return TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
-
 
         def util_smart_replace(pattern, replacement, value):
             '''Replace pattern with replacement in value just once. First, via naive replacement, and if not effective, via regex'''

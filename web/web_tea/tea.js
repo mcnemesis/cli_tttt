@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.2.9" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.3.0" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -789,11 +789,12 @@ export class TEA_RunTime {
 			const randomChar = alphabet[Math.floor(Math.random() * alphabet.length)];
 			result.push(randomChar);
 		}
+        result = result.join(TEA_RunTime.EMPTY_STR); // string from list
         if(!TEA_RunTime.is_empty(glue)){
-            return result.join(glue)
+            return result.replace(new RegExp(TEA_RunTime.RE_WHITE_SPACE, 'g'), glue);
         }
         else{
-            return result.join(TEA_RunTime.EMPTY_STR);
+            return result;
         }
     }
 
