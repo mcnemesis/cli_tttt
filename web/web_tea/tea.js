@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.3.0" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.3.1" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "Currently with ENTIRE A: to Z: or basically a: b: c: d: e: f: g: h: i: j: k: l: m: n: o: p: q: r: s: t: u: v: w: x: y: and z: implemented and tested! TEA is Turing Complete! TEA Standard being reviewed right now.";
         this.DEBUG = false; 
@@ -841,6 +841,8 @@ export class TEA_RunTime {
         this.debug(`[INFO] TEA INJECTION:\n\tTSRC: [${tsrc}]\n\t@ATPI: [${injection_position}]\n`)
 
         var e_runtime = new TEA_RunTime()
+        e_runtime.DEBUG = this.DEBUG;
+        e_runtime.DEBUG_FN = this.DEBUG_FN;
         var e_otil = e_runtime._parse_tea_code(tsrc)
         // update instructions list
 		var e_otil = [
@@ -1143,7 +1145,7 @@ export class TEA_RunTime {
                 return [e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS]
             }
             else {
-                var e_Tsrc = tpe_str
+                var e_Tsrc = this.extract_str(tpe_str) // just in case
                 var e_ai = io
                 var [e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi] = this.util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 

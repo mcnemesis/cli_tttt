@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.0"
+VERSION = "1.3.1"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -946,7 +946,7 @@ class TEA_RunTime:
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
                 else:
-                    e_Tsrc = tpe_str
+                    e_Tsrc = self.extract_str(tpe_str) # just in case
                     e_ai = io
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
