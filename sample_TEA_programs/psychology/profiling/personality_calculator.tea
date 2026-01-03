@@ -1,0 +1,243 @@
+#+++++++++++++++++++++++++++++++++++++++++++++++++
+#+ PERSONALITY CALCULATOR (PC) v3
+#-------------------------------------------------
+#+ This program is based on western astrology
+#+ And is meant to help predict or compute a
+#+ person's personality trait and character 
+#+ based on just their Bithdate information.
+#+ THEORY: Gary et. al (1994):
+#+ https://openlibrary.org/books/OL1102071M/The_Secret_Language_of_Birthdays
+#+++++++++++++++++++++++++++++++++++++++++++++++++
+# Program Architect: Fut. Prof. JWL (NES)
+#-------------------------------------------------
+
+#---[ CONSTANTS ]
+v:vDELIM:{
+~~~~~~~~~~~~|~~~~~~~~~~~~
+}
+v:vDELIM_CREDIT:{
+~~~[CREDIT: PC v3@ tea.nuchwezi.com ]~~~
+}
+v:vAPPNAME:{PERSONALITY CALCULATOR v3}
+v:vPURPOSE:{Using ancient science and principles, PC can tell you a person's traits and character based on just their date of birth.}
+v:vGUIDE:{To use, simply specify the person's birth Month and Day. | [qQ] to QUIT.}
+v:vMENU_MONTHS:{Select Month: 
+1:JAN | 2:FEB | 3:MAR | 4:APR | 5:MAY | 6:JUN
+7:JUL | 8:AUG | 9:SEP | 10:OCT | 11:NOV | 12:DEC
+}
+v:vMENU_DAY:{Specify DAY of Birth: }
+
+#for checking Month-Day bounds using a single test...
+z.:PLATFORM | v:vPLATFORM
+y:vPLATFORM | f:WEB:lTESTER_WEB:lTESTER_CLI
+l:lTESTER_WEB
+v:vTESTER:{(LM*100+LD) <= (@*100+.) && (@*100+.) <= (UM*100+UD)} 
+j:lSKIP_CLI_TESTER
+l:lTESTER_CLI
+v:vTESTER:{(LM*100+LD) <= (@*100+.) & (@*100+.) <= (UM*100+UD)} 
+l:lSKIP_CLI_TESTER
+
+v:vPAT_DAY:{.}
+v:vPAT_MON:{@}
+v:vTEMP_PROF:{Born on DD MM (SS)} | v:vT_DD:{DD} | v:vT_MM:{MM} | v:vT_SS:{SS}
+v:vPROFILE:{No Processing Done Yet.}
+
+#---[ INTRODUCTIONS ]
+g*:{}:vDELIM:vAPPNAME:vDELIM:vPURPOSE | k!:^[ ]*$ | v:vWELCOME
+g*:{}:vDELIM:vAPPNAME:vDELIM:vGUIDE | k!:^[ ]*$ | v:vINSTRUCTIONS
+
+#present intro interface...
+l:lSTART
+y:vWELCOME | i*: | y:vINSTRUCTIONS | i*:
+
+#should we quit?
+t.:| f:^[qQ]$:lQUIT
+
+#prompt for month
+l:lPROMPT_MON
+y:vMENU_MONTHS | i*: | v:OPT
+#verify choice or loop...
+t.: | f!:{^(([1-9])|(1[012]))$}:lPROMPT_MON:lPROCESS_MONTH
+l:lPROCESS_MONTH
+v:vN_MON #store month
+
+
+#prompt for day
+l:lPROMPT_DAY
+y:vMENU_DAY | i*: | v:OPT
+#verify choice or loop...
+t.: | f!:{^(([1-9])|([12][0-9])|(3[01]))$}:lPROMPT_DAY:lPROCESS_DAY
+l:lPROCESS_DAY
+v:vN_DAY #store day
+
+#-----------
+#process day position
+y:vN_DAY
+f:1$:lST:lNST
+l:lST
+x!:{st} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNST
+y:vN_DAY
+f:2$:lSND:lNSND
+l:lSND
+x!:{nd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNSND
+y:vN_DAY
+f:3$:lRD:lTH
+l:lRD
+x!:{rd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lTH
+y:vN_DAY
+x!:{th} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lADDPOSITION
+y:vPOSLABEL | v:vDAY
+#-----------
+
+#-----------
+#process month name
+v:vMNAMES:{JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC}
+v:vN_MI:{0}
+l:lSEEKMON
+y:vN_MI | x!:{+1} | r.: | v:vN_MI
+y:vMNAMES | d:[ ].*$ | v:vMON
+y:vMNAMES | d!:[ ].*$ | t.: | v:vMNAMES 
+y:vN_MON | x!:{==} | x*!:vN_MI | r.: | f:^true$:lFINMON:lSEEKMON
+l:lFINMON
+#-----------
+
+#---[ COMPUTE PROFILE ]
+# Our Method is to Limit Profiling to 4 Seasons of Birth
+
+#==[ SPRING: MAR 21-JUN 21]
+#build the test...
+y:vTESTER | r!:LM:3 | r!:UM:6 | r!:LD:21 | r!:UD:21 | v:vTEST 
+r*!:vTEST:vPAT_DAY:vN_DAY | v:vTEST
+r*!:vTEST:vPAT_MON:vN_MON | v:vTEST
+y:vTEST | r.: | f!:^true$:lNOTSPRING 
+#build profile...
+v:vSEASON:{SPRING}
+
+#fill-in profile...
+r*!:vTEMP_PROF:vT_DD:vDAY | v:vPROFILE
+r*!:vPROFILE:vT_MM:vMON | v:vPROFILE
+r*!:vPROFILE:vT_SS:vSEASON | v:vPROFILE
+
+x*!:vDELIM 
+x!:{SIGNS: Aries, Taurus, Gemini
+RULERS: Mars, Venus, Mercury
+SYMBOLS: Ram, Bull, Twins
+ELEMENTS: Fire, Earth, Air
+MOTTOS: I Am, I Have, I Communicate
+DOMINANT FACULTY: Intuition}
+
+x*!:vDELIM 
+x!:{Enthusiast for life. Enjoys initiating [new] projects. More extroverted than introverted. Likes to share results. Child-like. Innocent, Spontaneous, and Impulsive. Generally Positive Minded.}
+
+v:vPROFILE #store complete profile
+
+j:lFINISH #we got profile complete...
+
+l:lNOTSPRING #it wasn't spring..
+#==[ SUMMER: JUN 22-SEP 23]
+#build the test...
+y:vTESTER | r!:LM:6 | r!:UM:9 | r!:LD:22 | r!:UD:23 | v:vTEST 
+r*!:vTEST:vPAT_DAY:vN_DAY | v:vTEST
+r*!:vTEST:vPAT_MON:vN_MON | v:vTEST
+y:vTEST | r.: | f!:^true$:lNOTSUMMER 
+#build profile...
+v:vSEASON:{SUMMER}
+
+#fill-in profile...
+r*!:vTEMP_PROF:vT_DD:vDAY | v:vPROFILE
+r*!:vPROFILE:vT_MM:vMON | v:vPROFILE
+r*!:vPROFILE:vT_SS:vSEASON | v:vPROFILE
+
+x*!:vDELIM 
+x!:{SIGNS: Cancer, Leo, Virgo
+RULERS: Moon, Sun, Mercury
+SYMBOLS: Crab, Lion, Virgin
+ELEMENTS: Water, Fire, Earth
+MOTTOS: I Feel, I Create, I Serve
+DOMINANT FACULTY: Feeling}
+
+x*!:vDELIM 
+x!:{Very critical about life. Enjoys completing [existing] projects. Mixed between extroverted than introverted based on feelings. Emotionally attached to people, work and environment. Not eager to shine in the world. Often willing to serve others. Need to be needed.}
+
+v:vPROFILE #store complete profile
+
+j:lFINISH #we got profile complete...
+
+l:lNOTSUMMER #it wasn't summer..
+#==[ FALL: SEP 24-DEC 21]
+#build the test...
+y:vTESTER | r!:LM:9 | r!:UM:12 | r!:LD:24 | r!:UD:21 | v:vTEST 
+r*!:vTEST:vPAT_DAY:vN_DAY | v:vTEST
+r*!:vTEST:vPAT_MON:vN_MON | v:vTEST
+y:vTEST | r.: | f!:^true$:lNOTFALL 
+#build profile...
+v:vSEASON:{FALL}
+
+#fill-in profile...
+r*!:vTEMP_PROF:vT_DD:vDAY | v:vPROFILE
+r*!:vPROFILE:vT_MM:vMON | v:vPROFILE
+r*!:vPROFILE:vT_SS:vSEASON | v:vPROFILE
+
+x*!:vDELIM 
+x!:{SIGNS: Libra, Scorpio, Sagittarius
+RULERS: Venus, Pluto, Jupiter
+SYMBOLS: Scales, Scorpion, Archer
+ELEMENTS: Air, Water, Fire
+MOTTOS: I Weigh, I Control, I Philosophize
+DOMINANT FACULTY: Sensation}
+
+x*!:vDELIM 
+x!:{Like to be in control of their life. Often very selective and critical. Like to maintain rather than initiate or change projects. Typically more introverted than not. Keep feelings and emotions under strict control. Have strong urge to participate in serious relationships. Often very conscious of what is going on in society.}
+
+v:vPROFILE #store complete profile
+
+j:lFINISH #we got profile complete...
+
+l:lNOTFALL  #it wasn't fall..
+#==[ WINTER: DEC 22-MAR 21]
+#no need to test.. 
+#build profile...
+v:vSEASON:{WINTER}
+
+#fill-in profile...
+r*!:vTEMP_PROF:vT_DD:vDAY | v:vPROFILE
+r*!:vPROFILE:vT_MM:vMON | v:vPROFILE
+r*!:vPROFILE:vT_SS:vSEASON | v:vPROFILE
+
+x*!:vDELIM 
+x!:{SIGNS: Capricorn, Aquarius, Pisces
+RULERS: Saturn, Uranus, Neptune
+SYMBOLS: Goat, Water Bearer, Fish
+ELEMENTS: Earth, Air, Water
+MOTTOS: I Matter, I Universalize, I Believe
+DOMINANT FACULTY: Thought}
+
+x*!:vDELIM 
+x!:{More concerned with larger picture of life. Often rulers and dominant. Often the most flexible, sensitive, accepting, and spiritual. Typically quiet, mostly expressing themselves through their work and ideas. Readily distinguished by their active imagination and fantasies. Can objectify fantasies and imaginations. Very idealistic and utopian.}
+
+v:vPROFILE #store complete profile
+
+j:lFINISH #we got profile complete...
+
+#---[ FINISH ]
+l:lFINISH
+
+#present completed profile if any, then loop...
+y:vPROFILE | i*: | j:lSTART
+
+l:lQUIT
+# otherwise, let's quit gracefully..
+y:vPROFILE | x*!:vDELIM_CREDIT
+Q!: #well, quit

@@ -1,0 +1,16 @@
+i!:{Hello World} #we start by setting the message "hello world"
+v: # we then store than into default vault
+#q*!: # should quit if default vault (with name "") is blank
+a!: #otherwise anagrammatize AI
+v:vANA #store that into a vault
+#q*: #quit in case default vault is blank
+i!: # clear AI
+v: # store that into default vault
+y:vANA # set AI to contents of vault "vANA"
+#q*!: # quit in case default vault is blank
+#otherwise return some random number prefixing anagrammatized original message
+v:vCMD:"v:A|n:|x!:{:}|x*!:A" 
+e*!:vCMD
+#e!:"v:A|n:|x!:{:}|x*!:A" #with explicit cmd string
+#e!:{v:A|n:|x!:{:}|x*!:A} #with PROBLEMATIC explicit cmd string --- because of embedded inner {}
+#e:"v:A|n:|x!:{:}|x*!:A"  #should work same even without injection
