@@ -10098,7 +10098,573 @@ OR
 \vspace{1em} 
 
  \url{https://bit.ly/personalityapp}
+ 
+ 
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: R
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{R: REPLACE}
+\label{SECR}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{REPLACE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Replace things with other things
+	\item Perform \textbf{Text Substitution}
+	\item Automate Text Editing using Pattern Matching
+	\item \textbf{Replace Mathematical Expressions with Simple Terminal Values:} pure or fractional numbers or boolean values. Only TEA command designed for this.
+	\item Facilitate \textbf{Processing of Invisible Text!}
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{R:}}
+  \label{TABTAZR}
+\end{table}
+
+
+\section{SEMANTICS of R:}
+\label{SECSEMR}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+r: & Replaces all visible characters in AI with the SINGLE WHITESPACE, and all whitespace other than the NEW LINE character in AI with the FULL-STOP character.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{r:REGEX:SUBSTR} & Return AI with the first section matching REGEX replaced by SUBSTR\\
+
+r!: & The Extreme Case of \texttt{r:} --- replaces all visible characters in AI with the EMPTY STRING and any whitespace except the NEW LINE character with the FULL-STOP character.\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{r!:REGEX:SUBSTR} & Return AI with ALL sections matching REGEX replaced by SUBSTR\\
+
+
+\makecell[l]{r*:} & INERT\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{r*:vNAME:vREGEX:vSUBSTR} & Same as r:REGEX:SUBSTR,but operating on the string stored in the vault with the name vNAME  instead of AI.\\
+
+\makecell[l]{r*:vNAME} & With only vNAME, like \texttt{r:}, but operating on string in the named vault, vNAME instead of AI. Result becomes AI.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{r*!:vNAME} & Same as \texttt{r!:}, but operating on the string stored in the vault with the name vNAME  instead of AI.\\
+
+\makecell[l]{r*!:vNAME:vREGEX:vSUBSTR} & Same as \texttt{r!:REGEX:SUBSTR}, but operating on the strings stored in the specified vaults\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{r.:\\r.:EXPR} & Replace AI with the result of evaluating it as a pure arithmetic expression. With EXPR, instead operate on the explicit string EXPR. In all cases, result becomes AI, and in case the expression can’t be processed, AI is set to EMPTY SPACE. This is the only way to process basic explicit mathematics in TEA without using Z:\\
+
+\makecell[l]{r*.:vEXPR} & Like r.:EXPR, but instead processing the string stored in vault vEXPR.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{r*.:} & INERT\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of R:}
+\label{TABSEMR}
+\end{table}
+
+
+\section{NOTES about R:}
+\label{SECNOTER}
   
+
+String substitution as a core operation in most text processing, finds its main mechanics implemented using the R-command space in TEA. However, it should be noted that r: primitives aren’t the only kind that can perform string substitution in TEA. Some kinds of text replacement operations are possible using other TEA primitives such as g: that replaces whitespace with empty space, but also does some automatic replacements on punctuation with the g! variant.
+
+\vspace{2em}
+
+\textbf{IMPORTANT:} It shall be worth noting that with the REPLACE command in TEA, there are two modes of performing substitutions in all cases. NAÏVE mode: in which, the pattern or regex in the command signature is treated as a literal pattern search string. This mode is very useful in situations where the search pattern might contain special characters that would otherwise be hard to correctly express via a regular expression. However, in case such case, if the replace command finds that the substitution cannot be done or that it effects no change, then it resorts to the regular expression (REGEX) mode. Thus, when in doubt, you can rest-assured that as long as the search pattern exists literally in the target string, it shall be replaced correctly with either r: or r!: or r*: or r*!:. However, when needed, know that the REGEX mode shall likewise work as expected, using the same exact command signature! Thus, the REPLACE TEA instruction somewhat performs smart substitution, and one can tell which mode was used, by running their commands using DEBUG MODE. 
+
+\vspace{2em}
+
+For example, when one has a text such as
+
+\vspace{2em}
+
+\begin{verbatim}
+{
+"Name": "<p!:8|t.:|z*:>",
+"Age": "<n:26:8>"
+"Description": "<p!:|s:|s:|z:>"
+}
+\end{verbatim}
+
+\vspace{2em}
+
+And one wishes to replace the substring ``<p!:8|t.:|z*:>", you shall notice that, if we were to merely write a replace call such as:
+  
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 1: Using R*:, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+r*:vSCHEMA_TEMPLATE:vTEA_EXP:vTEA_EXP_VAL
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+Assuming \texttt{vSCHEMA\_TEMPLATE} contains the text to be processed,  \texttt{vTEA\_EXP} contains the pattern to use to search for what to replace, and  \texttt{vTEA\_EXP\_VAL} contains the substitution value e.g ``John Doe". Then, if we run this command when the vault \texttt{vTEA\_EXP} contains the literal string ``<p!:8|t.:|z*:>", then the substitution shall operate as expected via \textbf{naive mode}. However, if we instead have that vault containing the regular expression ``\verb|<[^"]*>|" such as via the operation:
+
+
+\vspace{2em}
+
+\begin{verbatim}
+v:vTEA_EXP:{<[^"]*>}
+\end{verbatim}
+
+\vspace{2em}
+
+We shall then correctly find (in either case), that the result we obtain is the text:
+
+
+\begin{verbatim}
+{
+"Name": "John Doe",
+"Age": "<n:26:8>"
+"Description": "<p!:|s:|s:|z:>"
+}
+\end{verbatim}
+
+
+\vspace{2em}
+
+
+Concerning controlling what to replace in a string, note that \texttt{r:REGEX:STR} replaces only the FIRST occurrence of REGEX in what is being processed with STR, but \texttt{r!:REGEX:STR} replaces ALL occurrences of the pattern (REGEX) in (STR) what is being processed. We see this by the following two examples:
+
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 2, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:I like this|r:[aeiou]:_: 
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+returns ``\verb|I l_:ke this|", while 
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 3, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:I like this|r!:[aeiou]:_:  
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+returns ``\verb|I l_:k_: th_:s|". Basically, the \texttt{R!:} form performs multiple substitutions, while \texttt{R:} only replaces the first occurrence of the target pattern.
+
+
+\vspace{2em}
+
+
+\subsection{The Peculiar Side of R: --- Using R: without explicit arguments}
+
+
+Note that the \texttt{r:} and \texttt{r!:} primitives --- in their \textbf{argumentless-signatures} --- offer distinct, but related \textbf{cryptographic utilities} for \textbf{using white-space as information} in machine-readable cryptograms. Essentially, they offer a strange but useful means to read ``words between lines" so to say; systematically \textbf{converting usual writing using visible text to a kind of invisible but readable writing system} --- writing using whitespace, an important primitive capability for some families of cryptography as we are about to see. 
+
+
+\vspace{2em}
+
+
+Also, note that \texttt{r:} and \texttt{r!:} work very differently, though somewhat similarly. The first recognizes visible characters (replacing them with white space in the result) and new lines, and otherwise simplifies reading original white-space, while \texttt{r!:} only recognizes original white-space, eliminating originally visible characters (replacing them with empty space in the result) and thus only recognizes spaces and tabs (replacing them with "." in the result) and new lines. Some examples shall help drive these points home...
+
+
+\vspace{2em}
+
+Assuming we have the following simple text as the input:
+
+
+   \begin{tcbverbatim}[title=Sample Text Input]
+Myself should tell 
+You O my Lord.
+I trust You Know Me.
+  \end{tcbverbatim}
+  
+  
+  \vspace{2em}
+  
+  
+We can then appreciate the ``Braillish" --- meaning, like \textbf{Braille} --- projections of it with \texttt{r:} and \texttt{r!:} as seen hereafter. First, assume we the \texttt{r:} instruction to that text as such:
+
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 4, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{Myself should tell 
+You O my Lord.
+I trust You Know Me.} | r:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+We would then obtain the following kind of output..
+
+
+   \begin{tcbverbatim}[title=Sample Text OUTPUT from Example 4]
+      .      .    .
+   . .  .     
+ .     .   .    .   
+  \end{tcbverbatim}
+
+
+\vspace{1em}
+
+While, if we instead apply \texttt{r!:} to the same text, as such:
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 5, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{Myself should tell 
+You O my Lord.
+I trust You Know Me.} | r!:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+We would then obtain the following kind of output..
+
+
+   \begin{tcbverbatim}[title=Sample Text OUTPUT from Example 5]
+...
+...
+....   
+  \end{tcbverbatim}
+
+
+\vspace{1em}
+
+
+More specifically, note that, if we had some basic text such as ``Hello World", and then applied \texttt{r:} to it, we would obtain the peculiar ``     .     ". This, because, \textbf{R:} would override every originally visible character with a SINGLE SPACE character, and then replace all originally invisible text (essentially white-space) \textbf{except the new-line character} with a FULLSTOP ``.". 
+
+\vspace{2em}
+
+While, applying just \texttt{r!:} to ``Hello World" would result in just ``." --- so that, we see that all originally visible text is eliminated (essentially, each originally visible character was replaced by an EMPTY SPACE), while all originally invisible text (apart from the new line character) is replaced by a single FULLSTOP at every occurrence; so, ``Hello  World", with two spaces between the words would result in ``     ..      " when \texttt{r:} is applied to it, however, it would result in the more compact ``.." when \texttt{r!:} is the one applied to it.
+
+
+\vspace{2em}
+
+
+These two instructions were definitely inspired by braille --- a system of reading and writing that is conducive to blind people --- however, they aren't exactly like braille; in the sense that, these commands do not try to encode visible text using braille-like code or characters, but instead would serve purposes more inclined towards developing codes and forms of cryptographic writing that can leverage ``hiding messages" in normal text using white-space or otherwise leveraging the length of words to encode messages instead of their literal contents, etc. This line of work is still under active research\footnote{\textbf{NOTE:} This line of inquiry was originally kick-started at Nuchwezi Research as early as 2020, via projects such as \textbf{Ghost Messages} --- \url{https://ghost.nuchwezi.com} also check \url{https://codepen.io/mcnemesis/pen/zqBmdL}}. Clearly, we see that these two primitives serve a role very hard to replace with anything else!
+  
+  
+\section{EXAMPLE APPLICATIONS of R:}
+\label{SECEXAMPR}
+
+  
+In exploring how to leverage the \textbf{REPLACE} TEA command space, note that there are indeed many many ways this facility can be utilized, many of which are already demonstrated in several of the applications we have already covered --- such as in \textbf{Word Counter} (\textbf{\hyperref[SECEXAMP1G]{Section \ref{SECEXAMP1G}}}), \textbf{Boobs 'N' Traps} game (\textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}}), \textbf{Mental Health Profiler} utility (\textbf{\hyperref[SECEXAMP1J]{Section \ref{SECEXAMP1J}}}) and others! However, in this section, we shall endavour to explore one obvious application of the text-substitution transformer --- in the form of a text-compressor, and then two non-obvious applications; one as a mathematics calculator, the other as a cryptography utility.
+
+
+\subsection{EXAMPLE 1: SMS and TEXT Minifier Program }
+\label{SECEXAMP1R}
+
+
+Realize that much can be accomplished with mere text substitution operations. The application we are going to look into next, is one basic solution to the problem of compressing messages meant for SMS (Short Messages), especially so as to keep the texts short, still meaningful, and thus save on SMS/data charges. Moreover, and as one shall notice, the minifier somewhat makes the texts even more interesting to read, and especially among young people and especially internet users such as those that like to hold long conversations via instant messaging and chatting apps, this solution shall offer a compelling means to take long texts and compress them in an agreeably creative, but still meaningful way.
+
+\vspace{2em}
+
+
+ \begin{figure}[H]
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  TEXT MINIFIER v1]
+    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#====================================
+# TEXT MINIFIER v1
+#----|what it is|-------------------
+# A bsc TXT/SMS mnifyr
+#====================================
+v:vMSG
+
+#----|THE CONSTANTS|-------------------
+v:vDELIM:{
+***********************
+}
+
+t.: | f!:^$:lPROCESS:lPROMPT
+l:lPROMPT | 
+i!:{Welcome to TEXT MINIFIER v1} | x*!:vDELIM 
+x!:{Enter a text message that you want minified:}
+i*: | t.: | f!:^$:lPROCESS:lPROMPT
+
+l:lPROCESS
+v:vMSG | v:vMSG_ORIG #store original message
+z: #convert all text to lower-case first
+
+#----|THE COMPRESSORS|-------------------
+#first, eliminate redudancy
+r!:a+:a|r!:b+:b|r!:c+:c|r!:d+:d|r!:e+:e|r!:f+:f|
+r!:g+:g|r!:h+:h|r!:i+:i|r!:j+:j|r!:k+:k|r!:l+:l|
+r!:m+:m|r!:n+:n|r!:o+:o|r!:p+:p|r!:q+:q|r!:r+:r|
+r!:s+:s|r!:t+:t|r!:u+:u|r!:v+:v|r!:w+:w|r!:x+:x|
+r!:y+:y|r!:z+:z|r!:\s+:{ }|r!:\.+:.|r!:,+:,
+r!:\?+:?|r!:\!+:!|r!:{\:+}:{:}|r!:{;+}:;
+
+#then perform smart/creative replacements...
+r!:wh:w|r!:ing:in|r!:and:n
+r!:{it is}:tis|r!:you:{u}|r!:the:d
+r!:to:2|r!:for:4|r!:how:hw|r!:ed:d
+r!:[ ]*are[ ]:{ r }|r!:why:y|r!:ou:u
+r!:[ ]be[ ]:{ b }|r!:your:yo|r!:right:8t
+r!:phone:4ne|r!:ike:yk|r!:day:dy|r!:now:nw
+r!:can:cn|r!:be:b|r!:love:lv
+# and more as time shall inspire...
+
+#----|PRESENT|-------------------
+v:vMSG #store final compressed version
+#compute compression analytics...
+y!:vMSG | v:vN_MSG
+y!:vMSG_ORIG | v:vN_MSG_ORIG
+v:vMEASURE_EXPR:{((I-O)/(1.0*I)) * 100}
+v:vI:I | v:vO:O
+r*!:vMEASURE_EXPR:vI:vN_MSG_ORIG | v:vMEASURE_RESULT
+r*!:vMEASURE_RESULT:vO:vN_MSG | v:vMEASURE_RESULT
+r*.:vMEASURE_RESULT | d!:^.*\... | v:vMEASURE_RESULT
+
+#Present compressed message and analytics
+i!:{ORIGINAL MESSAGE:} | x*!:vDELIM | x*!:vMSG_ORIG | x*!:vDELIM 
+x!:{COMPRESSED [by } | x*!:vMEASURE_RESULT | x!:{%]:} | x*!:vDELIM 
+x*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: SMS/TEXT MINIFIER v1}
+  \label{FIGR1}
+\end{figure}
+
+
+\vspace{2em}
+
+
+So that, with that program and some sample texts, we can obtain results such as:
+
+
+   \begin{tcbverbatim}[title=Sample OUTPUT 1 from TEXT MINIFIER]
+ORIGINAL MESSAGE:
+***********************
+ORIGINAL MESSAGE:
+***********************
+Hello  World. Do you realize that the world can be made simpler than it actually is?? And, concerning ways how we might go about making this happen, well, perhaps we can start by writing less! What do you think?
+***********************
+COMPRESSED [by 11.37%]:
+***********************
+helo world. do u realize that d world cn b made simpler than it actualy is? n, concernin ways hw we might go abut makin this hapen, wel, perhaps we cn start by writin les! wat do u think?
+  \end{tcbverbatim}
+  
+  
+  Another, better compressed example...
+  
+  
+     \begin{tcbverbatim}[title=Sample OUTPUT 2 from TEXT MINIFIER]
+ORIGINAL MESSAGE:
+***********************
+Hi there darling. What is the date you said you wish that we meet? I'll be in town till like Friday. Do let me know if we can meet on any of the evenings before then. Cheers! Love. ~ZEN
+***********************
+COMPRESSED [by 16.75%]:
+***********************
+hi dre darlin. wat is d date u said u wish that we met? i'l b in 2wn til lyk fridy. do let me knw if we cn met on any of d evenins b4e dn. chers! lv. ~zen
+  \end{tcbverbatim}
+
+
+And for a very basic case such as just the phrase "Hello World" which has some redundancy, we still get some meaningful compression nonetheless...
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 3 from TEXT MINIFIER]
+ORIGINAL MESSAGE:
+***********************
+Hello World
+***********************
+COMPRESSED [by 9.09%]:
+***********************
+helo world
+  \end{tcbverbatim}
+  
+  
+Thus, this program can surely be quite useful in the hands of almost anyone engaging in regular but costly text-based informal chatting and messaging as we can see in the above examples. Of course, one should note that this program returns both the original and compressed message as it is. However, we can also have a version that only returns the compressed message when needed, and such would be as such:
+
+
+\vspace{2em}
+
+
+ \begin{figure}[H]
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SMS-TEXT MINIFIER v3]
+    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#====================================
+# SMS-TEXT MINIFIER v3
+#----|what it is|-------------------
+# A bsc TXT/SMS mnifyr
+#====================================
+v:vMSG | v:vMSG_ORIG
+
+#----|THE CONSTANTS|-------------------
+v:vDELIM:{
+***********************
+}
+
+f!:^$:lPROCESS:lPROMPT
+l:lPROMPT | 
+i!:{Welcome to TEXT MINIFIER v3} | x*!:vDELIM 
+x!:{Enter a text message that you want minified:}
+i*: | f!:^$:lPROCESS:lPROMPT
+
+l:lPROCESS
+v:vMSG | v:vMSG_ORIG #store original message
+z: #convert all text to lower-case first
+t.: #truncate trailing white-space
+
+#----|THE COMPRESSORS|-------------------
+#first, eliminate redudancy
+r!:a+:a|r!:b+:b|r!:c+:c|r!:d+:d|r!:e+:e|r!:f+:f|
+r!:g+:g|r!:h+:h|r!:i+:i|r!:j+:j|r!:k+:k|r!:l+:l|
+r!:m+:m|r!:n+:n|r!:o+:o|r!:p+:p|r!:q+:q|r!:r+:r|
+r!:s+:s|r!:t+:t|r!:u+:u|r!:v+:v|r!:w+:w|r!:x+:x|
+r!:y+:y|r!:z+:z|r!:\s+:{ }|r!:\.+:.|r!:,+:,
+r!:\?+:?|r!:\!+:!|r!:{\:+}:{:}|r!:{;+}:;
+
+#numbers in words with digits
+r!:one:1|r!:two:2|r!:three:3|r!:four:4
+r!:five:5|r!:six:6|r!:seven:7|r!:eight:8
+r!:nine:9|r!:ten:10|r!:zero:0
+
+#then perform smart/creative replacements...
+r!:wh:w|r!:ing:in|r!:and:n
+r!:{it is}:tis|r!:you:{u}|r!:the:d
+r!:to:2|r!:for:4|r!:how:hw|r!:ed:d
+r!:[ ]*are[ ]:{ r }|r!:why:y|r!:ou:u
+r!:[ ]be[ ]:{ b }|r!:your:yo|r!:right:8t
+r!:phone:4ne|r!:ike:yk|r!:day:dy|r!:now:nw
+r!:can:cn|r!:be:b|r!:love:lv|r!:ight:8
+# and more as time shall inspire...
+
+#----|PRESENT|-------------------
+v:vMSG #store final compressed version
+#compute compression analytics...
+y!:vMSG | v:vN_MSG
+y!:vMSG_ORIG | v:vN_MSG_ORIG
+v:vMEASURE_EXPR:{((I-O)/(1.0*I)) * 100}
+v:vI:I | v:vO:O
+r*!:vMEASURE_EXPR:vI:vN_MSG_ORIG | v:vMEASURE_RESULT
+r*!:vMEASURE_RESULT:vO:vN_MSG | v:vMEASURE_RESULT
+r*.:vMEASURE_RESULT | 
+f!:\.:lNOTRUNC
+d!:^.*\...
+l:lNOTRUNC
+v:vMEASURE_RESULT
+
+#Present compressed message and analytics
+i!:{ORIGINAL MESSAGE:} | x*!:vDELIM | x*!:vMSG_ORIG | x*!:vDELIM 
+x!:{COMPRESSED [by } | x*!:vMEASURE_RESULT | x!:{%]:} | x*!:vDELIM 
+x*!:vMSG | v:vFIN_MSG_WITH_ANALYTICS
+
+i!:{TEXT MINIFIER: processing message is complete | Choose what to do:
+[1] Return Final Message Only | [else] RESULTS + Analysis} | i*: | t.:
+f:^1$:lNOANALYSIS
+
+y:vFIN_MSG_WITH_ANALYTICS | q!: #show original msg+analysis+final message
+
+l:lNOANALYSIS #only show final compressed message
+y:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: SMS/TEXT MINIFIER v3}
+  \label{FIGR2}
+\end{figure}
+
+
+\vspace{2em}
+
+When used in the original mode, it would produce results such as:
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 4 from TEXT MINIFIER v3]
+ORIGINAL MESSAGE:
+***********************
+this is the rhythm of the night
+***********************
+COMPRESSED [by 22.58%]:
+***********************
+this is d rhythm of d n8
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 4 from TEXT MINIFIER v3]
+ORIGINAL MESSAGE:
+***********************
+    T
+***********************
+COMPRESSED [by 80%]:
+***********************
+t
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+
+While, when used in the ``result-only" mode, it would produce output such as just
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 4 from TEXT MINIFIER]
+this is d oficial web integratd development environment 4 d trans4min executable alphabt computer programin language.
+  \end{tcbverbatim}
+  
+  
+ \vspace{2em}
+ 
+ 
+ Thus, this simple application can really come in handy, and can be used both via the web, but also in pure offline mode via the commandline. Note that, for quick testing, access it via the TEA standard programs, or via the links:
+ 
+ https://gist.githubusercontent.com/mcnemesis/648d348ce61eb5765421e8fb434c1b19/raw/sms_text_minifier.tea
+ 
+ \vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=your+text+message+here&fc=https://gist.githubusercontent.com/mcnemesis/648d348ce61eb5765421e8fb434c1b19/raw/sms_text_minifier.tea}
+
+\vspace{1em} 
+
+OR
+
+\vspace{1em} 
+
+ \url{https://bit.ly/text2minisms}
+
+
+\subsection{EXAMPLE 2: BASIC MATHEMATICS CALCULATOR}
+\label{SECEXAMP2R}
+
+
+blah blah..
+
+
+
+\subsection{EXAMPLE 3: INVISIBLE TEXT DECODER }
+\label{SECEXAMP3R}
+
+
+blah blah...
+
+
+
+
+
 
 
 

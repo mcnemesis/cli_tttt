@@ -1,0 +1,75 @@
+#====================================
+# SMS-TEXT MINIFIER v3
+#----|what it is|-------------------
+# A bsc TXT/SMS mnifyr
+#====================================
+v:vMSG | v:vMSG_ORIG
+
+#----|THE CONSTANTS|-------------------
+v:vDELIM:{
+***********************
+}
+
+f!:^$:lPROCESS:lPROMPT
+l:lPROMPT | 
+i!:{Welcome to TEXT MINIFIER v3} | x*!:vDELIM 
+x!:{Enter a text message that you want minified:}
+i*: | f!:^$:lPROCESS:lPROMPT
+
+l:lPROCESS
+v:vMSG | v:vMSG_ORIG #store original message
+z: #convert all text to lower-case first
+t.: #truncate trailing white-space
+
+#----|THE COMPRESSORS|-------------------
+#first, eliminate redudancy
+r!:a+:a|r!:b+:b|r!:c+:c|r!:d+:d|r!:e+:e|r!:f+:f|
+r!:g+:g|r!:h+:h|r!:i+:i|r!:j+:j|r!:k+:k|r!:l+:l|
+r!:m+:m|r!:n+:n|r!:o+:o|r!:p+:p|r!:q+:q|r!:r+:r|
+r!:s+:s|r!:t+:t|r!:u+:u|r!:v+:v|r!:w+:w|r!:x+:x|
+r!:y+:y|r!:z+:z|r!:\s+:{ }|r!:\.+:.|r!:,+:,
+r!:\?+:?|r!:\!+:!|r!:{\:+}:{:}|r!:{;+}:;
+
+#numbers in words with digits
+r!:one:1|r!:two:2|r!:three:3|r!:four:4
+r!:five:5|r!:six:6|r!:seven:7|r!:eight:8
+r!:nine:9|r!:ten:10|r!:zero:0
+
+#then perform smart/creative replacements...
+r!:wh:w|r!:ing:in|r!:and:n
+r!:{it is}:tis|r!:you:{u}|r!:the:d
+r!:to:2|r!:for:4|r!:how:hw|r!:ed:d
+r!:[ ]*are[ ]:{ r }|r!:why:y|r!:ou:u
+r!:[ ]be[ ]:{ b }|r!:your:yo|r!:right:8t
+r!:phone:4ne|r!:ike:yk|r!:day:dy|r!:now:nw
+r!:can:cn|r!:be:b|r!:love:lv|r!:ight:8
+# and more as time shall inspire...
+
+#----|PRESENT|-------------------
+v:vMSG #store final compressed version
+#compute compression analytics...
+y!:vMSG | v:vN_MSG
+y!:vMSG_ORIG | v:vN_MSG_ORIG
+v:vMEASURE_EXPR:{((I-O)/(1.0*I)) * 100}
+v:vI:I | v:vO:O
+r*!:vMEASURE_EXPR:vI:vN_MSG_ORIG | v:vMEASURE_RESULT
+r*!:vMEASURE_RESULT:vO:vN_MSG | v:vMEASURE_RESULT
+r*.:vMEASURE_RESULT | 
+f!:\.:lNOTRUNC
+d!:^.*\...
+l:lNOTRUNC
+v:vMEASURE_RESULT
+
+#Present compressed message and analytics
+i!:{ORIGINAL MESSAGE:} | x*!:vDELIM | x*!:vMSG_ORIG | x*!:vDELIM 
+x!:{COMPRESSED [by } | x*!:vMEASURE_RESULT | x!:{%]:} | x*!:vDELIM 
+x*!:vMSG | v:vFIN_MSG_WITH_ANALYTICS
+
+i!:{TEXT MINIFIER: processing message is complete | Choose what to do:
+[1] Return Final Message Only | [else] RESULTS + Analysis} | i*: | t.:
+f:^1$:lNOANALYSIS
+
+y:vFIN_MSG_WITH_ANALYTICS | q!: #show original msg+analysis+final message
+
+l:lNOANALYSIS #only show final compressed message
+y:vMSG
