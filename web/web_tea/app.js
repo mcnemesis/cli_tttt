@@ -18,7 +18,7 @@ var DARK_UI_CLASS = "dark";
 var THEME_DARK = "dark";
 var THEME_LIGHT = "light";
 var ACTIVE_THEME = THEME_LIGHT;
-var IDE_status_message = "IDE in a usable state. Also with dark and light mode. One can save and reload TEA programs. Complete IDE documentation available. WEB IDE REST API working, and more! WEB IDE now usable in PWA mode (Progressive Web App), so, should work well in offline, and can install on devices as an app. Work still on-going... | UPDATE: users of TEA and TEA WEB IDE can leave public comments or messages via the COMMUNITY section.";
+var IDE_status_message = "TEA can be used from anywhere, however, especially for new users and those who wish to develop new TEA programs from a TEA-conducive environment, this is the recommended interface for that purpose.";
 var SETTING_THEME = 'UI_MODE';
 var SETTING_PROGRAMS = 'TEA_PROGRAMS';
 var SETTING_STANDARD_PROGRAMS = 'STANDARD_TEA_PROGRAMS';
@@ -289,7 +289,7 @@ U.ready(function () {
         + 'You are using v'+ TEART.get_version() +' of WEB TEA.</li><li>' 
         + TEART.get_status_message() +'</li><li>' 
         + IDE_status_message +'</li></ul>'
-        + 'The TEA IDE is ready. You can proceed...'
+        + 'The TEA IDE is ready. You may proceed...'
         , null, true);
 });
 
