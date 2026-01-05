@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.3.1" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.3.2" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -2483,7 +2483,7 @@ export class TEA_RunTime {
 
         if(tc == "R"){
             if(TEA_RunTime.is_empty(tpe_str)){
-                io = TEA_RunTime.util_braille_projection1(io)
+                io = TEA_RunTime.util_braille_projection2(io)
             }
             else {
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 1)
@@ -2501,7 +2501,7 @@ export class TEA_RunTime {
 
         if(tc == "R!"){
             if(TEA_RunTime.is_empty(tpe_str)){
-                io = TEA_RunTime.util_braille_projection2(io)
+                io = TEA_RunTime.util_braille_projection1(io)
             }
             else{
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 1)
@@ -2534,7 +2534,7 @@ export class TEA_RunTime {
                     if(params.length == 1){
                         var vault = params[0]
                         var input_str = this.vault_get(vault)
-                        io = TEA_RunTime.util_braille_projection1(input_str)
+                        io = TEA_RunTime.util_braille_projection2(input_str)
                     }
                     else{
                         var vname = params[0]
@@ -2565,7 +2565,7 @@ export class TEA_RunTime {
                     if(params.length == 1){
                         var vault = params[0]
                         var input_str = this.vault_get(vault)
-                        io = TEA_RunTime.util_braille_projection2(input_str)
+                        io = TEA_RunTime.util_braille_projection1(input_str)
                     }
                     else{
 

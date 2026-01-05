@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.1"
+VERSION = "1.3.2"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -1902,7 +1902,7 @@ class TEA_RunTime:
 
             if tc == "R":
                 if len(tpe_str) == 0:
-                    io = util_braille_projection1(io)
+                    io = util_braille_projection2(io)
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=1)
                     if len(params) != 2:
@@ -1916,7 +1916,7 @@ class TEA_RunTime:
 
             if tc == "R!":
                 if len(tpe_str) == 0:
-                    io = util_braille_projection2(io)
+                    io = util_braille_projection1(io)
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=1)
                     if len(params) != 2:
@@ -1944,7 +1944,7 @@ class TEA_RunTime:
                         if len(params) == 1:
                             vault = params[0]
                             input_str = vault_get(vault)
-                            io = util_braille_projection1(input_str)
+                            io = util_braille_projection2(input_str)
                         else:
                             vname = params[0]
                             vregex = params[1]
@@ -1969,7 +1969,7 @@ class TEA_RunTime:
                         if len(params) == 1:
                             vault = params[0]
                             input_str = vault_get(vault)
-                            io = util_braille_projection2(input_str)
+                            io = util_braille_projection1(input_str)
                         else:
                             vname = params[0]
                             vregex = params[1]
