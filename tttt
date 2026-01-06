@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.2"
+VERSION = "1.3.3"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -421,6 +421,9 @@ class TEA_RunTime:
             # Use host-language mathematics
             if TEA_RunTime.DEBUG:
                 print(f"***Evaluating MATHEMATICS EXPRESSION: [{val}]")
+            # fix case where boolean literals are passed with unsuported case...
+            val = util_smart_replace_all('true','True',val)
+            val = util_smart_replace_all('false','False',val)
             val = str(eval(val))
             if val in ['True', 'False']: #massage booleans to match WEB TEA
                 return val.lower()
