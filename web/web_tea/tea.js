@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.3.3" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.3.4" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -639,7 +639,12 @@ export class TEA_RunTime {
         val = this.util_smart_replace_all('False', 'false', val);
         // Use host-language mathematics
         this.debug(`***Evaluating MATHEMATICS EXPRESSION: [${val}]`)
-        return String(eval(val))
+        try{
+            return String(eval(val))
+		} catch (error) {
+            this.debug(`***[TEA MATHEMATICS EVALUATION ERROR]: ${error}`)
+            return TEA_RunTime.EMPTY_STR
+        }
 
     }
 

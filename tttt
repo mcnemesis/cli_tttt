@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.3"
+VERSION = "1.3.4"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -424,11 +424,15 @@ class TEA_RunTime:
             # fix case where boolean literals are passed with unsuported case...
             val = util_smart_replace_all('true','True',val)
             val = util_smart_replace_all('false','False',val)
-            val = str(eval(val))
-            if val in ['True', 'False']: #massage booleans to match WEB TEA
-                return val.lower()
-            else:
-                return val
+            try:
+                val = str(eval(val))
+                if val in ['True', 'False']: #massage booleans to match WEB TEA
+                    return val.lower()
+                else:
+                    return val
+            except BaseException as e:
+                self.debug(f"***[TEA MATHEMATICS EVALUATION ERROR]: {e}")
+                return TEA_RunTime.EMPTY_STR # in case of error, return empty space
 
         def util_salt_string(val, salt, injection_limit = None, llimit=None):
             l_val = len(val)
