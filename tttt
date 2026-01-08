@@ -424,6 +424,8 @@ class TEA_RunTime:
             # fix case where boolean literals are passed with unsuported case...
             val = util_smart_replace_all('true','True',val)
             val = util_smart_replace_all('false','False',val)
+            val = util_smart_replace_all(r'\|\|','|',val)
+            val = util_smart_replace_all('&&','&',val)
             try:
                 val = str(eval(val))
                 if val in ['True', 'False']: #massage booleans to match WEB TEA
