@@ -10766,7 +10766,7 @@ OR
 \label{SECEXAMP2R}
 
 
-Having looked at what kinds of mathematics we can accomplish using TEA's mathematical \textbf{REWRITE} instruction, \texttt{r.:} --- refer to \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we can then proceed to look at a basic general-purpose application that can help anyone quickly evaluate basic to advanced mathematical expressions in a very simple and direct way, via an interactive interface. We shall refer to this program as the \textbf{Advanced Mathematics Computer} (AMC), and the version 1 of this utility is as presented hereafter...
+Having looked at what kinds of mathematics we can accomplish using TEA's mathematical \textbf{REWRITE} instruction, \texttt{r.:} --- refer to \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we can then proceed to look at a basic general-purpose application that can help anyone quickly evaluate basic to advanced mathematical expressions in a very simple and direct way, via an interactive interface. We shall refer to this program as the \textbf{Advanced Mathematics Computer} (AMC), and the version 3 of this utility is as presented hereafter...
 
 
 
@@ -10775,24 +10775,24 @@ Having looked at what kinds of mathematics we can accomplish using TEA's mathema
 
 {
  \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Advanced Mathematics Computer v2, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Advanced Mathematics Computer v3, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:vDESCRIPTION:{
-###########################################
-# ADVANCED MATHEMATICS COMPUTER: AMC v2
-###########################################
+#####################
+# ADVANCED MATHEMATICS COMPUTER: AMC v3
+#####################
 This program is meant to help you quickly reduce mathematical expressions to their numerical or boolean values. You might also think of it as a simple advanced calculator.}
 
 #------[ DEFINE CONSTANTS ]
 v:vDELIM:{
-##########################
+#####################
 }
 v:vPROMPT:{INPUT: [Q] QUIT | [H] HELP | Mathematical Expression for AMC to compute:}
 v:vEXP_PREFIX:{You entered:}
 v:vEXP_SUFFIX:{AMC Evaluated it as: }
 v:vTEA_MATH_EXPRESSIONS:{
 AMC expects and correctly evaluates ONLY legitimate TEA Mathematical Expressions:
-###########################################
+#####################
 -> Numbers: 0,1,2,...,9,... including fractions and signed numbers
 -> Scientific Notation Numbers: such as 1e3 (1000), .314e1 (3.14), 1e-3 (0.001), etc.
 -> Arithmetic Operators: + (Addition), - (Subtraction), * (Multiplication), / (Division), ,  ** (Exponentiation), % (Modulus)
@@ -10801,7 +10801,7 @@ AMC expects and correctly evaluates ONLY legitimate TEA Mathematical Expressions
 -> Other Operators: ^ (Bitwise XOR), _ (Number Concatenation)
 -> Boolean Literals: true, false
 -> Parentheses: ( and )
-###########################################
+#####################
 If you know what you are doing, you can use those operators and numbers to evaluate basic and complex mathematical expressions of many kinds, via AMC.
 }
 
@@ -10837,7 +10837,7 @@ l:lFINISH
 y:vREPORT # show last report and quit
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA APPLICATION: Advanced Mathematics Computer v2}
+  \caption{TEA APPLICATION: Advanced Mathematics Computer v3}
   \label{FIGR3}
 }
 
@@ -10846,7 +10846,7 @@ And so that, having that program and some tricky mathematical expressions that o
 
 \vspace{2em}
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 1 from AMC v2]
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from AMC v3]
 You entered:
 ##########################
 3.1415*(101)**2
@@ -10861,7 +10861,7 @@ Where that example shows us how to correctly compute the area of a circle whose 
 
 \vspace{2em}
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 2 from AMC v2]
+     \begin{tcbverbatim}[title=Sample OUTPUT 2 from AMC v3]
 You entered:
 ##########################
 0.5*(1 + 5**(1/2))
@@ -10878,7 +10878,7 @@ That last output shows that we can use AMC to compute \textbf{square-roots} or n
 
 \vspace{2em}
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 3 from AMC v2]
+     \begin{tcbverbatim}[title=Sample OUTPUT 3 from AMC v3]
 You entered:
 ##########################
 (5-2)*(5+3)
@@ -10890,7 +10890,7 @@ AMC Evaluated it as: 24
 \vspace{1em}
 
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 4 from AMC v2]
+     \begin{tcbverbatim}[title=Sample OUTPUT 4 from AMC v3]
 You entered:
 ##########################
 (5-2)*5+3
@@ -10904,7 +10904,7 @@ AMC Evaluated it as: 18
 \vspace{1em}
 
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 5 from AMC v2]
+     \begin{tcbverbatim}[title=Sample OUTPUT 5 from AMC v3]
 You entered:
 ##########################
 5-2*5+3
@@ -10925,7 +10925,7 @@ The last example output we shall share, concerns using TEA and particularly, thi
 \vspace{2em}
 
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 6 from AMC v2]
+     \begin{tcbverbatim}[title=Sample OUTPUT 6 from AMC v3]
 You entered:
 ##########################
 5==(5e-1 * 100/10.0)
