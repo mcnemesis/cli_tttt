@@ -1,0 +1,58 @@
+v:vDESCRIPTION:{
+###########################################
+# ADVANCED MATHEMATICS COMPUTER: AMC v1
+###########################################
+This program is meant to help you quickly reduce mathematical expressions to their numerical or boolean values. You might also think of it as a simple advanced calculator.}
+
+#------[ DEFINE CONSTANTS ]
+v:vDELIM:{
+###########################################
+}
+v:vPROMPT:{INPUT: [Q] QUIT | [H] HELP | Mathematical Expression for AMC to compute:}
+v:vEXP_PREFIX:{You entered:}
+v:vEXP_SUFFIX:{AMC Evaluated it as: }
+v:vTEA_MATH_EXPRESSIONS:{
+AMC expects and correctly evaluates ONLY legitimate TEA Mathematical Expressions:
+###########################################
+-> Numbers: 0,1,2,...,9,... including fractions and signed numbers
+-> Scientific Notation Numbers: such as 1e3 (1000), .314e1 (3.14), 1e-3 (0.001), etc.
+-> Arithmetic Operators: + (Addition), - (Subtraction), * (Multiplication), / (Division), ,  ** (Exponentiation), % (Modulus)
+-> Comparison Operators: > (Greater than), < (Less than), >= (Greater or Equal), <= (Less or Equal), == (Equivalent), != (Not Equivalent)
+-> Logical Operators: && (And), || (Or)
+-> Other Operators: ^ (Bitwise XOR), _ (Number Concatenation)
+-> Boolean Literals: true, false
+-> Parentheses: ( and )
+###########################################
+If you know what you are doing, you can use those operators and numbers to evaluate basic and complex mathematical expressions of many kinds, via AMC.
+}
+
+#------[ DEFINE VARIABLES ]
+v:vREPORT:{AMC Evaluated Nothing}
+
+#------[ Get Input ]
+v:vINPUT #store any external input originally provided
+# show the welcome message
+y:vDESCRIPTION | i*:
+# then prompt for input if blank...
+y:vINPUT | t.: | v:vINPUT | f:^$:lPROMPT:lCOMPUTE
+
+l:lHELP
+y:vTEA_MATH_EXPRESSIONS | i*: #show AMC TME expression guidelines..
+
+l:lPROMPT
+y:vPROMPT | i*: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
+
+l:lCOMPUTE
+f:^[qQ]$:lFINISH
+f:^[hH]$:lHELP
+y:vINPUT | r.: | v:vANSWER #evaluate TME and store answer
+
+#------[ Present Results ]
+y:vEXP_PREFIX | x*!:vDELIM | x*!:vINPUT | x*!:vDELIM | x*!:vEXP_SUFFIX | x*!:vANSWER | v:vREPORT | i*:
+
+# done processing, prompt for next task...
+j:lPROMPT
+
+#------[ QUIT ]
+l:lFINISH
+y:vREPORT # show last report and quit

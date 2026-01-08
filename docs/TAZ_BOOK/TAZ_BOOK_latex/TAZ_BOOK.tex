@@ -357,6 +357,8 @@ I:\{\textbf{Dedicate this book to Dr. Marriette of Makerere University, CoCIS gr
 
 \textbf{TIPED} & TEA Instruction Parameter Expression Delimiter\\
 
+\textbf{TME} & TEA Mathematical Expressions\\
+
 \textbf{TOE} & TEA Opaque Expression\\
 
 \textbf{TPC} & TEA Primitive Command\\
@@ -8893,7 +8895,7 @@ Thus, the example application we are going to look at, only offers this idea a s
 
 
 
-\subsection{EXAMPLE 1: The RANKING UTILITY (RU)}
+\subsection{EXAMPLE 1: STATISTICAL ANALYSIS: The RANKING UTILITY (RU)}
 \label{SECEXAMP1O}
 
 
@@ -9484,7 +9486,7 @@ That example attempts to demonstrate how to leverage all the parameters that the
 As we have seen in the introductions, the \textbf{PERMUTATE} command is great for generating random strings or creating random variants of specified strings. And so, with regards to the kinds of applications we can envision leveraging this utility and the most of the \texttt{P:} command space, we shall explore applications that involve or require working with random strings mostly.
 
 
-\subsection{EXAMPLE 1: A Random VOWEL HYMN Generator}
+\subsection{EXAMPLE 1: MUSIC \& POETRY: A Random VOWEL HYMN Generator}
 \label{SECEXAMP1P}
 
 
@@ -9753,7 +9755,7 @@ As is, the program shall return ``Hello World" shuffled. Note that only the fina
 Especially because we can use \textbf{Q:} commands for control flow in a TEA program with either complex or non-linear program logic, the example application we shall explore shall especially hinge on this --- using quit patterns to decide when to stop processing and quit or return processing results especially.
 
 
-\subsection{EXAMPLE 1: PERSONALITY CALCULATOR  }
+\subsection{EXAMPLE 1: PSYCHOLOGY \& ASTROLOGY: PERSONALITY CALCULATOR  }
 \label{SECEXAMP1Q}
 
 
@@ -10274,6 +10276,7 @@ returns ``\verb|I l_:k_: th_:s|". Basically, the \texttt{R!:} form performs mult
 
 \subsection{The Peculiar Side of R: --- Using R: without explicit arguments}
 
+\subsubsection{The Braillish Transforms: r: and r!:}
 
 Note that the \texttt{r:} and \texttt{r!:} primitives --- in their \textbf{argumentless-signatures} --- offer distinct, but related \textbf{cryptographic utilities} for \textbf{using white-space as information} in machine-readable cryptograms. Essentially, they offer a strange but useful means to read ``words between lines" so to say; systematically \textbf{converting usual writing using visible text to a kind of invisible but readable writing system} --- writing using whitespace, an important primitive capability for some families of cryptography as we are about to see. 
 
@@ -10362,7 +10365,120 @@ While, applying just \texttt{r!:} to ``Hello World" would result in just ``." --
 
 
 These two instructions were definitely inspired by braille --- a system of reading and writing that is conducive to blind people --- however, they aren't exactly like braille; in the sense that, these commands do not try to encode visible text using braille-like code or characters, but instead would serve purposes more inclined towards developing codes and forms of cryptographic writing that can leverage ``hiding messages" in normal text using white-space or otherwise leveraging the length of words to encode messages instead of their literal contents, etc. This line of work is still under active research\footnote{\textbf{NOTE:} This line of inquiry was originally kick-started at Nuchwezi Research as early as 2020, via projects such as \textbf{Ghost Messages} --- \url{https://ghost.nuchwezi.com} also check \url{https://codepen.io/mcnemesis/pen/zqBmdL}}. Clearly, we see that these two primitives serve a role very hard to replace with anything else!
-  
+
+
+\subsubsection{TEA Mathematical Expressions and The Mathematics Re-Write Transform: r.:}
+\label{SECTME}
+
+It should first of all be worth noting that in fact, the TEA \textbf{R} command space should have originally been named \textbf{REWRITE} and not \textbf{REPLACE} --- especially because of how several classical and popular terminologies for re-write systems in both computer science and software engineering are named or how they operate; e.g the fact that the fundamental concept behind much if not all of how software language engineering (the stuff that makes all programming languages possible) is based on the theories and formalisms of re-write systems such as BNF and generally, production rules that essentially reduce any or most programming language implementations to just a series of re-writing mechanism that take formal expressions in one system or language, and then re-write them in another --- compilers and interpreters, all the way from first-generation low-level languages, to fourth+ generation high-level languages such as C++, Java and even this TEA language all are fundamentally based on \textbf{re-write systems}. And that, \textbf{replacing} or rather \textit{substitution} and \textbf{rewriting} are conceptually equivalent: terms or expressions in one formal system or language getting replaced by those in another --- such as when identifiers (variable names, function names, function arguments, etc) are replaced by their literal values (or perhaps addresses to the literal values) in the translation (for compilers) or evaluation (for interpreters) of expressions in a language like C or Python respectively.
+
+\vspace{2em}
+
+In TEA though, we especially encounter the notion of a re-write system via command spaces such as \textbf{ZAP} --- which knows to take command expressions targeting the external/non-TEA environment (such as Windows or Linux system/shell for CLI TEA or JavaScript for WEB TEA) and return their equivalent expression after their evaluation. And then the TEA \textbf{EVALUATE} command space (see \textbf{\hyperref[CHAPE]{Chapter \ref{CHAPE}}}), that accepts any valid TEA expression and returns/rewrites it with the result of its evaluation.
+
+\vspace{2em}
+
+However, and especially because at core, and originally, TEA was meant or designed to be a purely TEXT-PROCESSING oriented language --- essentially, such that even [usually] basic things such as evaluating mathematical expressions were meant to be implemented via mere text-processing that is devoid of any notions of type-systems --- especially since, for TEA, everything is just text or string irrespective of how it is expressed, we later found, after especially intensive practical explorations of how the TEA language might be utilized in real-life (such as most of the work in the present manual, the TAZ, has laid down in the many chapters and practical examples and applications encountered in each of the chapters), that it shall be \textbf{essential to not overly complicate} the work of TEA programmers by not providing a basic mathematics or at least arithmetic evaluation facility as a first-level facility within the language. This, especially after studying the designs and implementations of several other general-purpose programming languages --- such as C, C++, Haskell, JavaScript, Python, Erlang, Go, Ruby, Lisp, etc. and finding that, even where no external libraries are loaded or required, a good and practically useful [programming] language generally must be able to at least readily allow for basic arithmetic expressions such as ``2+1", ``4/5" or even the non-trivial BODMAS\footnote{Brackets, Of, Division, Multiplication and Subtraction} expressions such as ``((2+1)*(100-1/2)*(0--1))", etc. to be reducible to their corresponding correct, terminal [numeric] expressions --- such as ``298.5" in that last case.
+
+\vspace{2em}
+
+It was then decided to leverage the \textbf{R} command space to make this possible --- especially because, it was necessary to ensure that such a facility ought not depend on where one is using TEA from (such as is the case with some aspects of \textbf{ZAP}), and that, the way we evaluate a mathematical expression in a TEA program needs be consistent and work the same way irrespective of where TEA is being used from (unlike what some \textit{ZAP expressions} might be like). A decision then, was made (late 2025), to use the \textbf{R.:} signature to expose a mathematical expression re-write facility to all TEA programs. 
+
+
+\vspace{2em}
+
+Also, note that, because of how many other GPLs work, it was decided that this same facility would be how we handle or evaluate boolean arithmetic or boolean algebra in TEA --- essentially, evaluating basic logical expressions such as ``$2 > 1$", ``$(1+6) == 10 - 3$", ``\verb|0 != 1-1|", etc. And concerning the case of boolean arithmetic, the results extending to re-writing expressions as either ``true" or ``false" depending on the evaluation of a pure-numeric expression\footnote{Since TEA has no usual/C-like concept of evaluating arithmetic nor boolean algebra expressions that mix literals such as numbers with variables --- that is to say, we cannot readily evaluate an expression such ``$1 + a$" or ``$1 + a == vNA$" where both ``a" and ``vNA" are some variables or in the case of TEA, perhaps names of TEA vaults.}.
+
+
+\vspace{2em}
+
+And so, we can formally specify the mathematical language that the \textbf{R.:} command space --- which we shall call the \textbf{TEA Mathematics RE-WRITE command} --- as such follows:
+
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+{
+\normalsize
+
+\textbf{TEA Mathematical Expressions: Introduction}
+
+Arithmetic, comparison, and logical expressions form the core of many programming languages, including C, Python, JavaScript and now they are also to be found in TEA. These expressions are traditionally defined using formal grammars and lexical rules, enabling precise parsing and evaluation. In TEA, which is an interpreted language, it is useful for the programmer, the user of the language, to understand what is possible and how when using this language feature then.
+
+\vspace{1em}
+
+So, in this brief diversion, we present a formal specification of \textbf{TEA Mathematical Expressions} (TME) using regular expressions, context-free grammars (CFGs), and automata theory, with evaluation semantics grounded in Boolean logic \cite{aho2006compilers,scott2021pragmatics,felleisen2001semantics}.
+
+\vspace{1em}
+
+\textbf{TEA Mathematical Expressions: Lexical Specification (Regular Expressions)}
+
+\begin{itemize}
+  \item \textbf{Number}: \texttt{[0-9]+(\textbackslash.[0-9]+)?}
+  \item \textbf{Scientific Notation Number}: such as \texttt{1e3} (1000), \texttt{.314e1} (3.14), \texttt{1.0e-3} (0.001), etc.
+  \item \textbf{Arithmetic operators}: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/},   \texttt{**}
+  \item \textbf{Comparison operators}: \texttt{>}, \texttt{<}, \texttt{>=}, \texttt{<=}, \texttt{==}, \texttt{!=}
+  \item \textbf{Logical operators}: \texttt{\&\&}, \texttt{||}
+  \item \textbf{Other operators}: \texttt{\^} (Bitwise XOR), \texttt{\_} (String concatenation)\footnote{Only valid between digits such as ``2\_1" evaluating as ``21".}
+  \item \textbf{Boolean literals}: \texttt{true}, \texttt{false}
+  \item \textbf{Parentheses}: \texttt{(}, \texttt{)}
+\end{itemize}
+
+\vspace{1em}
+
+\textbf{TEA Mathematical Expressions: Syntactic Specification (Context-Free Grammar)}
+
+\begin{align*}
+\text{Expr} &\rightarrow \text{LogicExpr} \\
+\text{LogicExpr} &\rightarrow \text{LogicExpr} \; \texttt{||} \; \text{LogicTerm} \mid \text{LogicTerm} \\
+\text{LogicTerm} &\rightarrow \text{LogicTerm} \; \texttt{\&\&} \; \text{LogicFactor} \mid \text{LogicFactor} \\
+\text{LogicFactor} &\rightarrow \texttt{!} \; \text{LogicFactor} \mid \text{Comparison} \\
+\text{Comparison} &\rightarrow \text{ArithExpr} \; \text{CompOp} \; \text{ArithExpr} \mid \text{BoolLiteral}\\
+\text{ArithExpr} &\rightarrow \text{Term} \; \{(+ \mid -) \; \text{Term}\}^* \\
+\text{Term} &\rightarrow \text{Factor} \; \{(* \mid /) \; \text{Factor}\}^* \\
+\text{Factor} &\rightarrow \text{Power} \; [\text{\^{}} \; \text{Factor}] \\
+\text{Power} &\rightarrow \text{Number} \mid ( \text{Expr} ) \\
+\text{CompOp} &\rightarrow > \mid < \mid >= \mid <= \mid == \\
+\text{BoolLiteral} &\rightarrow \texttt{true} \mid \texttt{false}
+\end{align*}
+
+This grammar supports:
+\begin{itemize}
+\item Arithmetic expressions: \texttt{3 + 4 * 2}
+\item Comparisons: \texttt{(1 + 2)\^{}3 == 27}
+\item Logical combinations: \texttt{(x > 5) \&\& !(y < 3 || false)}
+\end{itemize}
+
+\vspace{1em}
+
+\textbf{TEA Mathematical Expressions: Semantics}
+
+\begin{itemize}
+  \item Arithmetic expressions evaluate to numeric values.
+  \item Comparison expressions evaluate to Boolean values (\texttt{true} or \texttt{false}).
+  \item Logical expressions operate on Boolean values using short-circuit semantics.
+\end{itemize}
+
+This layered grammar also reflects the operator precedence and associativity rules found in many programming languages \cite{grune2007parsing}.
+
+\vspace{1em}
+
+\textbf{TEA Mathematical Expressions: Automata Perspective}
+
+Lexical tokens are recognized by finite state machines (FSMs), while the nested structure of expressions requires a pushdown automaton (PDA) \cite{sipser2012theory}. And then, logical connectives and Boolean literals are treated as terminals and integrated into the PDA’s parsing logic. In the current TEA reference implementations though (WEB TEA: based on JavaScript and CLI TEA: based on Python3), we worry less about these technicalities since the underlying (host language) takes care of the technicalities and we only extra TME and pass these to the relevant \texttt{eval(...)} facility of the underlying host language\footnote{Unless in the future we decide or reach a point where TEA must be implemented as a direct platform on-top of say Assembly or the processor/Machine Code --- which is very unlikely, given where we envision TEA to be most useful, and given many other robust GPLs such as C\# and Ruby are themselves designed atop other language platforms, etc. --- we shall keep relying on the time-proven and stable low-level mathematics processing facilities of our host languages.}. 
+
+\vspace{1em}
+
+\textbf{TEA Mathematical Expressions: Conclusion}
+
+By combining regular expressions, context-free grammars, and automata theory, we can formally specify and reason about the structure and evaluation of arithmetic, comparison, and logical expressions in TMEs, and so that, someone already familiar with how mathematical expressions work in other GPLs --- especially C-family languages (since both Python and JavaScript are somewhat C-related) shall readily be able to transfer their knowledge and experience to how TEA arithmetic and logical expressions work.
+
+}
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+As for where we have applied the \textbf{TMEs} via \texttt{R.:}, refer to examples such as \textbf{Personality Calculator} (\textbf{\hyperref[SECEXAMP1Q]{Section \ref{SECEXAMP1Q}}}), \textbf{Statistical Analysis Tool} (\textbf{\hyperref[SECEXAMP2N]{Section \ref{SECEXAMP2N}}}) and several other examples and applications including the one we cover in this chapter --- the \textbf{Advanced Mathematics Calculator} (\textbf{\hyperref[SECEXAMP2R]{Section \ref{SECEXAMP2R}}}).
+
+ 
   
 \section{EXAMPLE APPLICATIONS of R:}
 \label{SECEXAMPR}
@@ -10371,7 +10487,7 @@ These two instructions were definitely inspired by braille --- a system of readi
 In exploring how to leverage the \textbf{REPLACE} TEA command space, note that there are indeed many many ways this facility can be utilized, many of which are already demonstrated in several of the applications we have already covered --- such as in \textbf{Word Counter} (\textbf{\hyperref[SECEXAMP1G]{Section \ref{SECEXAMP1G}}}), \textbf{Boobs 'N' Traps} game (\textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}}), \textbf{Mental Health Profiler} utility (\textbf{\hyperref[SECEXAMP1J]{Section \ref{SECEXAMP1J}}}) and others! However, in this section, we shall endavour to explore one obvious application of the text-substitution transformer --- in the form of a text-compressor, and then two non-obvious applications; one as a mathematics calculator, the other as a cryptography utility.
 
 
-\subsection{EXAMPLE 1: SMS and TEXT Minifier Program }
+\subsection{EXAMPLE 1: HUMAN SUPPORT: SMS and TEXT Minifier Program }
 \label{SECEXAMP1R}
 
 
@@ -10500,10 +10616,10 @@ Thus, this program can surely be quite useful in the hands of almost anyone enga
 \vspace{2em}
 
 
- \begin{figure}[H]
+{
  \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SMS-TEXT MINIFIER v3]
-    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SMS-TEXT MINIFIER v3, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 #====================================
 # SMS-TEXT MINIFIER v3
 #----|what it is|-------------------
@@ -10583,7 +10699,7 @@ y:vMSG
   \end{tcolorbox}
   \caption{TEA APPLICATION: SMS/TEXT MINIFIER v3}
   \label{FIGR2}
-\end{figure}
+}
 
 
 \vspace{2em}
@@ -10632,7 +10748,6 @@ this is d oficial web integratd development environment 4 d trans4min executable
  
  Thus, this simple application can really come in handy, and can be used both via the web, but also in pure offline mode via the commandline. Note that, for quick testing, access it via the TEA standard programs, or via the links:
  
- https://gist.githubusercontent.com/mcnemesis/648d348ce61eb5765421e8fb434c1b19/raw/sms_text_minifier.tea
  
  \vspace{1em}
 
@@ -10647,15 +10762,201 @@ OR
  \url{https://bit.ly/text2minisms}
 
 
-\subsection{EXAMPLE 2: BASIC MATHEMATICS CALCULATOR}
+\subsection{EXAMPLE 2: MATHEMATICS: ADVANCED MATHEMATICS COMPUTER}
 \label{SECEXAMP2R}
 
 
-blah blah..
+Having looked at what kinds of mathematics we can accomplish using TEA's mathematical \textbf{REWRITE} instruction, \texttt{r.:} --- refer to \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we can then proceed to look at a basic general-purpose application that can help anyone quickly evaluate basic to advanced mathematical expressions in a very simple and direct way, via an interactive interface. We shall refer to this program as the \textbf{Advanced Mathematics Computer} (AMC), and the version 1 of this utility is as presented hereafter...
 
 
 
-\subsection{EXAMPLE 3: INVISIBLE TEXT DECODER }
+\vspace{2em}
+
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Advanced Mathematics Computer v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vDESCRIPTION:{
+###########################################
+# ADVANCED MATHEMATICS COMPUTER: AMC v1
+###########################################
+This program is meant to help you quickly reduce mathematical expressions to their numerical or boolean values. You might also think of it as a simple advanced calculator.}
+
+#------[ DEFINE CONSTANTS ]
+v:vDELIM:{
+###########################################
+}
+v:vPROMPT:{INPUT: [Q] QUIT | [H] HELP | Mathematical Expression for AMC to compute:}
+v:vEXP_PREFIX:{You entered:}
+v:vEXP_SUFFIX:{AMC Evaluated it as: }
+v:vTEA_MATH_EXPRESSIONS:{
+AMC expects and correctly evaluates ONLY legitimate TEA Mathematical Expressions:
+###########################################
+-> Numbers: 0,1,2,...,9,... including fractions and signed numbers
+-> Scientific Notation Numbers: such as 1e3 (1000), .314e1 (3.14), 1e-3 (0.001), etc.
+-> Arithmetic Operators: + (Addition), - (Subtraction), * (Multiplication), / (Division), ,  ** (Exponentiation), % (Modulus)
+-> Comparison Operators: > (Greater than), < (Less than), >= (Greater or Equal), <= (Less or Equal), == (Equivalent), != (Not Equivalent)
+-> Logical Operators: && (And), || (Or)
+-> Other Operators: ^ (Bitwise XOR), _ (Number Concatenation)
+-> Boolean Literals: true, false
+-> Parentheses: ( and )
+###########################################
+If you know what you are doing, you can use those operators and numbers to evaluate basic and complex mathematical expressions of many kinds, via AMC.
+}
+
+#------[ DEFINE VARIABLES ]
+v:vREPORT:{AMC Evaluated Nothing}
+
+#------[ Get Input ]
+v:vINPUT #store any external input originally provided
+# show the welcome message
+y:vDESCRIPTION | i*:
+# then prompt for input if blank...
+y:vINPUT | t.: | v:vINPUT | f:^$:lPROMPT:lCOMPUTE
+
+l:lHELP
+y:vTEA_MATH_EXPRESSIONS | i*: #show AMC TME expression guidelines..
+
+l:lPROMPT
+y:vPROMPT | i*: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
+
+l:lCOMPUTE
+f:^[qQ]$:lFINISH
+f:^[hH]$:lHELP
+y:vINPUT | r.: | v:vANSWER #evaluate TME and store answer
+
+#------[ Present Results ]
+y:vEXP_PREFIX | x*!:vDELIM | x*!:vINPUT | x*!:vDELIM | x*!:vEXP_SUFFIX | x*!:vANSWER | v:vREPORT | i*:
+
+# done processing, prompt for next task...
+j:lPROMPT
+
+#------[ QUIT ]
+l:lFINISH
+y:vREPORT # show last report and quit
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: Advanced Mathematics Computer v1}
+  \label{FIGR3}
+}
+
+
+And so that, having that program and some tricky mathematical expressions that one needs to evalute, there shall be no need to guess or waste time, but instead just load AMC and compute their corresponding values as shown in the following examples:
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from AMC v1]
+You entered:
+###########################################
+3.1415*(101)**2
+###########################################
+AMC Evaluated it as: 32046.4415
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+Where that example shows us how to correctly compute the area of a circle whose radius is \texttt{101}. More examples shall help us appreciate this facility even more...
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 2 from AMC v1]
+You entered:
+###########################################
+0.5*(1 + 5**(1/2))
+###########################################
+AMC Evaluated it as: 1.618033988749895
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+
+That last output shows that we can use AMC to compute \textbf{square-roots} or n-th roots even though we don't have a square-root operation supported, simply by using the idea of $\sqrt{5} = 5^\frac{1}{2}$ for example. And so, we see here that AMC can correctly compute the value of the \textbf{golden ratio} using the expression we have provided as shown above, and that is is \textbf{correct to 14 decimal places!}
+
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 3 from AMC v1]
+You entered:
+###########################################
+(5-2)*(5+3)
+###########################################
+AMC Evaluated it as: 24
+  \end{tcbverbatim}
+
+
+\vspace{1em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 4 from AMC v1]
+You entered:
+###########################################
+(5-2)*5+3
+###########################################
+AMC Evaluated it as: 18
+  \end{tcbverbatim}
+
+
+\vspace{1em}
+
+\vspace{1em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 5 from AMC v1]
+You entered:
+###########################################
+5-2*5+3
+###########################################
+AMC Evaluated it as: -2
+  \end{tcbverbatim}
+
+And then those last three outputs should help to demonstrate that indeed, we can trust AMC to be doing the right thing when we use complex expressions --- such as when we either use expressions containing terms in brackets Vs expressions without brackets. AMC respects standard mathematical operator precedence such as \textbf{BODMAS}, and shall correctly compute the legitimate value as we see in the three variations of trying to compute the \textbf{y-axis} value for a quadratic function with the equation $y = (x -2)(x+3) = x^2 + x - 6$, and so that, as we see in the first case, when $x=5$, and we try to evaluate the expression having substituted ``5" for $x$, we would correctly get the $y$ value as \texttt{24}. However, in the other two expressions omitting some or all of the brackets, the expression would indeed be wrong, and so the values AMC gives us, despite being correct for the given expressions, might not be what the person wanted. 
+
+\vspace{2em}
+
+And so, for someone that knows what they are doing, we see that TEA's mathematical evaluation instruction \textbf{R.:EXPR} shall always get us the legitimate answers in simplified for, for any arguments (\texttt{EXPR}), that we pass it as long as they are the correct expressions we intend to evaluate, and if they adhere to the expected TEA Mathematical Expression syntax.
+
+\vspace{2em}
+
+The last example output we shall share, concerns using TEA and particularly, this AMC application, to evaluate the correctness of logical comparisons or logical expressions --- which we expect to evaluate not to numbers as would be the case for arithmetic expressions, but instead to evaluate to boolean values. The following example demonstrate this facility, when we try to test whether one non-trivial arithmetic expression correctly reduces to the number ``5".
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 6 from AMC v1]
+You entered:
+###########################################
+5==(5e-1 * 100/10.0)
+###########################################
+AMC Evaluated it as: true
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+And so, as we can indeed tell from that evaluation result, AMC is doing just the right thing!
+
+\vspace{2em}
+
+So, this program might be studied further, enhanced or applied by those interested, via the following links:
+
+
+ \vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=1\%2B1&fc=https://gist.githubusercontent.com/mcnemesis/0ae84d3bcb5a427dea869395a1278984/raw/advanced\_mathematics\_computer.tea}
+
+\vspace{1em} 
+
+OR
+
+\vspace{1em} 
+
+ \url{https://bit.ly/amathcomputer}
+
+
+
+\subsection{EXAMPLE 3: CRYPTOGRAPHY: INVISIBLE TEXT DECODER }
 \label{SECEXAMP3R}
 
 
