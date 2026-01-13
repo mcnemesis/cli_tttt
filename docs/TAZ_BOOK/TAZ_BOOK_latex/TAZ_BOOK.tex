@@ -10766,7 +10766,7 @@ OR
 \label{SECEXAMP2R}
 
 
-Having looked at what kinds of mathematics we can accomplish using TEA's mathematical \textbf{REWRITE} instruction, \texttt{r.:} --- refer to \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we can then proceed to look at a basic general-purpose application that can help anyone quickly evaluate basic to advanced mathematical expressions in a very simple and direct way, via an interactive interface. We shall refer to this program as the \textbf{Advanced Mathematics Computer} (AMC), and the version 3 of this utility is as presented hereafter...
+Having looked at what kinds of mathematics we can accomplish using TEA's mathematical \textbf{REWRITE} instruction, \texttt{r.:} --- refer to \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we can then proceed to look at a basic general-purpose application that can help anyone quickly evaluate basic to advanced mathematical expressions in a very simple and direct way, via an interactive interface. We shall refer to this program as the \textbf{Advanced Mathematics Computer} (AMC), and the version 3.1 of this utility is as presented hereafter...
 
 
 
@@ -10775,12 +10775,12 @@ Having looked at what kinds of mathematics we can accomplish using TEA's mathema
 
 {
  \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Advanced Mathematics Computer v3, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Advanced Mathematics Computer v3.1, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:vDESCRIPTION:{
 ###############################
 # ADVANCED MATHEMATICS COMPUTER: 
-# AMC v3
+# AMC v3.1
 ###############################
 This program is meant to help you quickly reduce mathematical expressions to their numerical or boolean values. You might also think of it as a simple advanced calculator.}
 
@@ -10802,12 +10802,17 @@ AMC expects and correctly evaluates ONLY legitimate TEA Mathematical Expressions
 -> Other Operators: ^ (Bitwise XOR), _ (Number Concatenation)
 -> Boolean Literals: true, false
 -> Parentheses: ( and )
+-> Last Answer Variables: answer, ans, a (such as answer+1)
 #####################
 If you know what you are doing, you can use those operators and numbers to evaluate basic and complex mathematical expressions of many kinds, via AMC.
 }
+v:vNL:{
+}
+v:vREGEX_ANS:{answer|ans|a} #to match answer variable in TMEs
 
 #------[ DEFINE VARIABLES ]
-v:vREPORT:{AMC Evaluated Nothing}
+v:vREPORT:{-|AMC Evaluated Nothing Yet|-}
+v:vANSWER_ORIG:{0} # hold last evaluated answer value
 
 #------[ Get Input ]
 v:vINPUT #store any external input originally provided
@@ -10820,12 +10825,14 @@ l:lHELP
 y:vTEA_MATH_EXPRESSIONS | i*: #show AMC TME expression guidelines..
 
 l:lPROMPT
-y:vPROMPT | i*: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
+y:vPROMPT | x*:vNL | x*:vDELIM | x*:vREPORT | i*: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
 
 l:lCOMPUTE
 f:^[qQ]$:lFINISH
 f:^[hH]$:lHELP
-y:vINPUT | r.: | v:vANSWER #evaluate TME and store answer
+y:vINPUT 
+r*!:vINPUT:vREGEX_ANS:vANSWER_ORIG #overwrite answer variable
+r.: | v:vANSWER | v:vANSWER_ORIG #evaluate TME and store answer
 
 #------[ Present Results ]
 y:vEXP_PREFIX | x*!:vDELIM | x*!:vINPUT | x*!:vDELIM | x*!:vEXP_SUFFIX | x*!:vANSWER | v:vREPORT | i*:
@@ -10838,7 +10845,7 @@ l:lFINISH
 y:vREPORT # show last report and quit
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA APPLICATION: Advanced Mathematics Computer v3}
+  \caption{TEA APPLICATION: Advanced Mathematics Computer v3.1}
   \label{FIGR3}
 }
 
@@ -10847,7 +10854,7 @@ And so that, having that program and some tricky mathematical expressions that o
 
 \vspace{2em}
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 1 from AMC v3]
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from AMC v3.1]
 You entered:
 ##########################
 3.1415*(101)**2
@@ -10862,7 +10869,7 @@ Where that example shows us how to correctly compute the area of a circle whose 
 
 \vspace{2em}
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 2 from AMC v3]
+     \begin{tcbverbatim}[title=Sample OUTPUT 2 from AMC v3.1]
 You entered:
 ##########################
 0.5*(1 + 5**(1/2))
@@ -10879,7 +10886,7 @@ That last output shows that we can use AMC to compute \textbf{square-roots} or n
 
 \vspace{2em}
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 3 from AMC v3]
+     \begin{tcbverbatim}[title=Sample OUTPUT 3 from AMC v3.1]
 You entered:
 ##########################
 (5-2)*(5+3)
@@ -10891,7 +10898,7 @@ AMC Evaluated it as: 24
 \vspace{1em}
 
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 4 from AMC v3]
+     \begin{tcbverbatim}[title=Sample OUTPUT 4 from AMC v3.1]
 You entered:
 ##########################
 (5-2)*5+3
@@ -10905,7 +10912,7 @@ AMC Evaluated it as: 18
 \vspace{1em}
 
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 5 from AMC v3]
+     \begin{tcbverbatim}[title=Sample OUTPUT 5 from AMC v3.1]
 You entered:
 ##########################
 5-2*5+3
@@ -10926,7 +10933,7 @@ The last example output we shall share, concerns using TEA and particularly, thi
 \vspace{2em}
 
 
-     \begin{tcbverbatim}[title=Sample OUTPUT 6 from AMC v3]
+     \begin{tcbverbatim}[title=Sample OUTPUT 6 from AMC v3.1]
 You entered:
 ##########################
 5==(5e-1 * 100/10.0)
@@ -10939,6 +10946,24 @@ AMC Evaluated it as: true
 And so, as we can indeed tell from that evaluation result, AMC is doing just the right thing!
 
 \vspace{2em}
+
+
+As a final illustration of the powers of this mathematics calculator, note that AMC also presents a feature typically found in all advanced programmable calculators: \textbf{allowing the result of the last computation to be used in the new/next expression via a variable name}. For AMC, this is via any of the variable names: \texttt{answer}, \texttt{ans} or \texttt{a}. So that, if one started out by evaluating the expression \texttt{300+10**2} --- which would result in \texttt{400}, and then for the immediate next expression, they type in an expression such as \texttt{answer * (1 - 0.5)}, then the result would indeed correctly evaluate as though the expression \texttt{400 * (1 - 0.5)} was the one evaluated, as you can tell from the following final AMC dump:
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 7 from AMC v3.1]
+You entered:
+#####################
+answer * (1 - 0.5)
+#####################
+AMC Evaluated it as: 200
+  \end{tcbverbatim}
+
+\vspace{1em}
+
 
 So, this program might be studied further, enhanced or applied by those interested, via the following links:
 
@@ -10964,7 +10989,12 @@ OR
 blah blah...
 
 
+{
+\LARGE
 
+\hl{TODO: complete this example application...}
+
+}
 
 
 

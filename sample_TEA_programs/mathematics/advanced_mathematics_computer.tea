@@ -1,7 +1,7 @@
 v:vDESCRIPTION:{
 ###############################
 # ADVANCED MATHEMATICS COMPUTER: 
-# AMC v3
+# AMC v3.1
 ###############################
 This program is meant to help you quickly reduce mathematical expressions to their numerical or boolean values. You might also think of it as a simple advanced calculator.}
 
@@ -23,12 +23,17 @@ AMC expects and correctly evaluates ONLY legitimate TEA Mathematical Expressions
 -> Other Operators: ^ (Bitwise XOR), _ (Number Concatenation)
 -> Boolean Literals: true, false
 -> Parentheses: ( and )
+-> Last Answer Variables: answer, ans, a (such as answer+1)
 #####################
 If you know what you are doing, you can use those operators and numbers to evaluate basic and complex mathematical expressions of many kinds, via AMC.
 }
+v:vNL:{
+}
+v:vREGEX_ANS:{answer|ans|a} #to match answer variable in TMEs
 
 #------[ DEFINE VARIABLES ]
-v:vREPORT:{AMC Evaluated Nothing}
+v:vREPORT:{-|AMC Evaluated Nothing Yet|-}
+v:vANSWER_ORIG:{0} # hold last evaluated answer value
 
 #------[ Get Input ]
 v:vINPUT #store any external input originally provided
@@ -41,12 +46,14 @@ l:lHELP
 y:vTEA_MATH_EXPRESSIONS | i*: #show AMC TME expression guidelines..
 
 l:lPROMPT
-y:vPROMPT | i*: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
+y:vPROMPT | x*:vNL | x*:vDELIM | x*:vREPORT | i*: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
 
 l:lCOMPUTE
 f:^[qQ]$:lFINISH
 f:^[hH]$:lHELP
-y:vINPUT | r.: | v:vANSWER #evaluate TME and store answer
+y:vINPUT 
+r*!:vINPUT:vREGEX_ANS:vANSWER_ORIG #overwrite answer variable
+r.: | v:vANSWER | v:vANSWER_ORIG #evaluate TME and store answer
 
 #------[ Present Results ]
 y:vEXP_PREFIX | x*!:vDELIM | x*!:vINPUT | x*!:vDELIM | x*!:vEXP_SUFFIX | x*!:vANSWER | v:vREPORT | i*:
