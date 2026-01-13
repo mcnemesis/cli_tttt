@@ -96,7 +96,8 @@ textarea {
 
 .btn-warning
  {
-    --bs-btn-color: #fff;
+    color: #000;
+    --bs-btn-color: #000;
     --bs-btn-bg: #31eb39;
     --bs-btn-border-color: #00ff92;
     --bs-btn-hover-color: #fff;
@@ -113,8 +114,10 @@ textarea {
 }
 .btn-warning:active:hover, .btn-warning:hover {
     background-color: #4caf50;
+    color: #fff;
 }
 .btn-warning:focus {
+    color: #fff;
     background-color: #4caf50;
     box-shadow: 0 0 0 2px rgba(204, 204, 204, .5);
 }
