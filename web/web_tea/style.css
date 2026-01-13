@@ -111,3 +111,10 @@ textarea {
     --bs-btn-disabled-bg: #00ff44;
     --bs-btn-disabled-border-color: #00ff08;
 }
+.btn-warning:active:hover, .btn-warning:hover {
+    background-color: #4caf50;
+}
+.btn-warning:focus {
+    background-color: #4caf50;
+    box-shadow: 0 0 0 2px rgba(204, 204, 204, .5);
+}
