@@ -71,7 +71,7 @@ l:lREPORT
 #build report...
 y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
 
-#compute error rate
+#compute error/success rate?
 v:vEVALUATOR:{((..)/__)*100}|
 r*!:vEVALUATOR:vP1:vMOVES|v:vEVALUATOR
 r*!:vEVALUATOR:vP2:vSCORE|v:vEVALUATOR
