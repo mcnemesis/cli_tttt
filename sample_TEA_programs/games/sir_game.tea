@@ -75,7 +75,9 @@ y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
 v:vEVALUATOR:{((..)/__)*100}|
 r*!:vEVALUATOR:vP1:vMOVES|v:vEVALUATOR
 r*!:vEVALUATOR:vP2:vSCORE|v:vEVALUATOR
-y:vEVALUATOR | r.: | d!:{^.*\...} | v:vRATING 
+y:vEVALUATOR | r.: | v:vRATING 
+f!:\.:lRATEFINE
+d!:{^.*\...} | v:vRATING | l:lRATEFINE
 
 v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
 TOTAL SCORE: } | v:v5:{ @MOVES: } | v:v6:{ | RATING: } | v:v7:{%}

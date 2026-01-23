@@ -8926,296 +8926,100 @@ Otherwise, the program as of \textbf{version 3} is as such...
 {
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Ranking Utility v.3, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-######################################
-# RU: Ranking Utility v3
-######################################
-# This tool is meant to help
-# organize well formatted lists of data
-# by user-specified criteria.
-#######################################
+v:vDESCRIPTION:{
+###############################
+# [new] SIR GAME v3: 
+# by Fut. Prof. JWL @ Nuchwezi Research
+###############################
+WELCOME to a simple game fit for kids, and those learning spelling in English. THE RULES: playing is simple: 
+You shall see a word with a MISSING lett?r, and if you guess it right, you score. You can also quit the game anytime if you like.}
 
-#if no externally provided data, use defaults...
-#i:{5,3.2121,1,-5,5,2,5,00,-1.0,2e-5} #for un-labeled tasks
-i:{E:45, A:3.2121 LABEL_1:1,C:-5, 88:5,  TEST_ty:2, A:5}
-
-v:vDATA | v:vRAW_DATA #store externally provided data
-
-#----| CONSTANTS |----
+#------[ DEFINE CONSTANTS ]
 v:vDELIM:{
-----------***----------
+#####################
 }
-v:vWELCOME:{----------***----------
-RU: RANKING UTILITY v3
-----------***----------
-Welcome to RU! 
-This program helps you sort and rank numeric data by some criteria}
-v:vMENU:{----------***----------
-RU: TASK MENU
-----------***----------
-Pick a task by specifying its index:
-[1] SORT RAW NUMERIC DATA: quantitatively in descending order
-[2] SORT LABELLED NUMERIC DATA
-[3] POSITIONIFY LABELLED NUMERIC DATA
-[e] ENTER NEW NUMERIC DATA
-[q] QUIT}
-v:vPROMPT_DATA_1:{----------***----------
-RU: Get RAW DATA
-----------***----------
-INSTRUCTIONS: Enter or paste one or more lines of raw numeric data delimited by space or commas, such as:
-D1 D2 D3 D4... DN
-R1,R2,R3,...,RN,etc.}
-v:vPROMPT_DATA_2:{----------***----------
-RU: Get LABELLED DATA
-----------***----------
-INSTRUCTIONS: Enter or paste one or more lines of labelled numeric data delimited by space or commas, such as:
-LABEL1:D1 LABEL2:D2 LABEL3:D3 LABEL4:D4... LABELN:DN
-LABEL2:R1,LABEL1:R2,LABELK:R3,...,LABELN:RN,etc.
-----------***----------
-NOTE: The label_s should not have spaces in them, but otherwise can be duplicated across the dataset.}
-v:vPROMPT_INVALID_DATA:{----------***----------
-RU: Got INVALID DATA
-----------***----------
-ERROR: Note that the data you entered does not conform to the accepted format for the chosen analysis and ranking criteria. 
-Cross-check and re-try!}
+v:vMAINPROMPT:{
+NEXT: [Q] QUIT | OR continue playing...}
+v:vTHANKS:{Thanks for playing THE SIR GAME!}
 
-#----| VARIABLES |----
-v:vRESULTS:{RESULT: No Processing Done}
+#------[ DEFINE VARIABLES ]
+v:vREPORT:{-|HAVE NOT PLAYED the SIR GAME yet|-}
+v:vSCORE:{0} # hold current score
+v:vMOVES:{0} # hold current moves
 
-#----| WELCOME |----
-y:vWELCOME | i*:
-l:lPROMPT_MENU
-#What to do?
-y:vMENU | i*:
-v:vMENU_OPT #store user selected task index
-f:^[qQ]$:lQUIT #finish, do nothing else...
-f:^[eE]$:lPROMPT_DATA #get new data...
-f!:[123]:lPROMPT_MENU #if not correct, re-prompt
+#------[ WELCOME MESSAGE ]
+# show the welcome message
+y:vDESCRIPTION | i*:
+# then start game
+j:lPLAY
 
-#store last data-processing option
-v:vMENU_OPT_DATA 
+#------[ THE GAME PLAY ]
+l:lPLAYNEXT
+y:vPROMPT | i*: | f:^[qQ]$:lFINISH
 
-#----| WHICH DATA? |----
-#check if we have data, otherwise prompt for data
-y:vDATA | t.: | f:^$:lPROMPT_DATA:lVERIFY_DATA
+l:lPLAY #into the game...
 
-l:lPROMPT_DATA
-y:vMENU_OPT # retrieve user option
+# randomly pick a word from the given list
+I!:{HONEY TRICK WINDS GAMES MONEY GRASS BABIES WATER BALLS PHONE INTERNET MUMMY HOUSE RAIN SHORTS KITTEN COLOUR MILK SHOES CUPS FORK EATING TABLE CHAIR WINDOW DOG RICE PLAY DIG WALLS TALK WALK FIND PHOTO WRITE KITE NUMBER LETTER PAPER CUTS GATES BANANA ICE PRICE HAND SING RING PIG PIN PEN HEN COW BIRD BAD SMILE HILL MEAL MEAT MEAN UGANDA CLASS TEACH APPLE STORY} 
+| a: | d:[ ].*$ 
+v:vWORD #store selected word
+v!:vWORD | x!:{-1} | r.: | v:vNWORD #get its length-1
+# randomly inject "-" b4 Nth pstn 
+v:vSALT:{-}
+S*:vWORD:vSALT:vNWORD | 
+#(="TR-ICK") for example
+R:.[-]:? | R:[-].:? | # returns "TR?CK"
+v:vQUIZ
 
-f:[eE]:lFIX_OPT:lOPT_FINE #if not meaningful, use-last choice
-l:lFIX_OPT
-y:vMENU_OPT_DATA | v:vMENU_OPT
+#------[ the QUIZ ]
+l:lQUIZ 
 
-l:lOPT_FINE 
-f:1:lPROMPT_DATA_CASE1 | f:2:lPROMPT_DATA_CASE2 | f:3:lPROMPT_DATA_CASE2
-#------
-l:lPROMPT_DATA_CASE1 # get raw data..
-y:vPROMPT_DATA_1 | i*: | v:vDATA | v:vRAW_DATA
-j:lVERIFY_DATA #then go to verification
-#------
-l:lPROMPT_DATA_CASE2 # get labelled data..
-y:vPROMPT_DATA_2 | i*: | v:vDATA | v:vRAW_DATA
-j:lVERIFY_DATA #then go to verification
+y:vQUIZ | i*: | v:vANS # prompt and store response
 
-#----| VERIFY DATA |----
-l:lVERIFY_DATA
-y:vDATA #retrieve data
-#pre-process data..
-t.: #trim trailing white-space
+#------[ the SCORING ]
+#swap answer into quiz
+v:vPATTERN:{?}
+r*:vQUIZ:vPATTERN:vANS
+z!: #capitalize result
+v:vANSWORD #store
+#compare...
+v:vTESTER:{"__"==".."}|v:vP1:{__}|v:vP2:{..}
+r*!:vTESTER:vP1:vWORD|v:vTESTER
+r*!:vTESTER:vP2:vANSWORD|v:vTESTER
+y:vTESTER | r.: | f:^true$:lWIN:lLOSS
+l:lWIN # we won, update score +1
+y:vANS | x!:{ (CORRECT)} | v:vANS
+y:vSCORE | x!:{+1} | r.: | v:vSCORE | j:lREPORT 
+l:lLOSS # we lost, update score -2
+y:vANS | x!:{ (WRONG)} | v:vANS
+y:vSCORE | x!:{-2} | r.: | v:vSCORE | j:lREPORT 
 
-#special pre-process esp for TDT generated datasets
-g.:, #enforce one liner with comma delimiters
-d.:^\s+\[ | d.:\]$ #eliminate [] enclosures 
-d:^[\s,]+:[\s,]+$ #trim trailing commas N space
+#------[ the REPORTING ]
+l:lREPORT
+#build report...
+y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
 
-v:vDATA
-#check if we have any data, otherwise [re]prompt for data
-y:vDATA | f:^$:lPROMPT_DATA
+#compute error rate
+v:vEVALUATOR:{((..)/__)*100}|
+r*!:vEVALUATOR:vP1:vMOVES|v:vEVALUATOR
+r*!:vEVALUATOR:vP2:vSCORE|v:vEVALUATOR
+y:vEVALUATOR | r.: | v:vRATING 
+f!:\.:lRATEFINE
+d!:{^.*\...} | v:vRATING | l:lRATEFINE
 
-#pre-process based on case...
-y:vMENU_OPT # retrieve user option
-f:1:lVERIFY_DATA_CASE1 | f:2:lVERIFY_DATA_CASE2 | f:3:lVERIFY_DATA_CASE2
-#------
-l:lVERIFY_DATA_CASE1 # validate raw data..
-y:vDATA | g.:, #replace new-lines with comma
-r!:{ }:{,} | r!:[,]+:, #fix commas
-#verify formatting...
-f!:{^(([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
-v:vDATA #override data with updated version
-j:lPROCESS_DATA #then go to process
-#------
-l:lVERIFY_DATA_CASE2 # validate labelled data..
-y:vDATA | g.:, #replace new-lines with comma
-r!:[ ]+:{,} | r!:[,]+:, #fix commas
-#verify formatting...
-f!:{^((\w+:)([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
-v:vDATA #override data with updated version
-j:lPROCESS_DATA #then go to process
+v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
+TOTAL SCORE: } | v:v5:{ @MOVES: } | v:v6:{ | RATING: } | v:v7:{%}
+g*:{}:v1:vWORD:v2:vQUIZ:v3:vANS:v4:vSCORE:v5:vMOVES | v:vREPORT
 
-#----| IN-CASE INVALID DATA |----
-l:lFLAG_INVALID_DATA
-y:vPROMPT_INVALID_DATA | x*!:vDELIM | x*!:vRAW_DATA | i*:
-j:lPROMPT_DATA #re-prompt for data
+x*!:vMAINPROMPT | v:vPROMPT
 
-#----| PROCESS DATA |----
-l:lPROCESS_DATA 
-#process based on case...
-y:vMENU_OPT # retrieve user option
-f:1:lPROCESS_DATA_CASE1 | f:2:lPROCESS_DATA_CASE2 | f:3:lPROCESS_DATA_CASE3
-#------
-l:lPROCESS_DATA_CASE1 # sort raw data..
-#--|start algorithm|------------
-v:vSORTED_LIST:{} #initially empty..
-y:vDATA #fetch raw data
-r!:,:{ } #enforce space delimiters
-o: #sort in ascending order
-m: #transform to descending order
-r!:[ ]+:, #swap space with commas
-r!:[,]+:, #fix extraneous commas
-r!:[,]:{, } #space items
-v:vSORTED_LIST #store sorted list
-#--|end algorithm|------------
-v:vRESULTS | x:{DESC-SORTED DATA: 
-} | v:vRESULTS
-#go present results...
-j:lRESULTS
-
-#------
-l:lPROCESS_DATA_CASE2  # sort labelled data..
-y:vDATA 
-#--|start algorithm|------------
-v:vLIST_ORIG #stash original dataset
-v:vSORTED_LIST:{} #to hold sorted dataset
-
-l:lPROCESS_NEXT_ITEM
-y:vLIST_ORIG # let's process the original dataset then...
-#eliminate labels
-r!:{(\w+:)}:{ } #better approach
-#swap commas for space
-r!:,:{ } | r!:[ ]+:{ }
-#sort in descending order
-o: | m: 
-
-#retain only largest number
-t.: | d:[ ].*$ |v:vNMAX 
-#obtain [the first] labelled item corresponding to this number in the original dataset
-x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
-
-#store that as the next item in the sorted labelled list
-x*:vSORTED_LIST:vLABELLED_MAX | v:vSORTED_LIST
-#take the original dataset and eliminate [only] this labelled item then
-y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
-#clean out trailing commas
-d:^,
-v:vLIST_ORIG | update/override original dataset 
-#if empty, return sorted list, otherwise iterate...
-t.: | f:^$:lRETURN_SORTED:lPROCESS_NEXT_ITEM
-
-l:lRETURN_SORTED
-y:vSORTED_LIST 
-#clean out trailing commas and space
-d:[,\s]*$
-r!:[,]:{, } #space items
-v:vSORTED_LIST #override, we have final sorted labelled dataset
-#--|end algorithm|------------
-v:vRESULTS | x:{DESC-SORTED LABELLED-DATA: 
-} | v:vRESULTS
-#go present results...
-j:lRESULTS
+j:lPLAYNEXT # iterate...
 
 
-#------
-l:lPROCESS_DATA_CASE3 # sort and positionify labelled data..
-y:vDATA 
-#--|start algorithm|------------
-v:vLIST_ORIG #stash original dataset
-v:vSORTED_LIST:{} #to hold sorted dataset
-v:vPOSITION:{1} #to hold positions
-v:vPOSDELIM:{=} #to separate position from item
-
-l:l3PROCESS_NEXT_ITEM
-y:vLIST_ORIG # let's process the original dataset then...
-#eliminate labels
-r!:{(\w+:)}:{ }
-#swap commas for space
-r!:,:{ } | r!:[ ]+:{ }
-#sort in descending order
-o: | m: 
-
-#retain only largest number
-t.: | d:[ ].*$ |v:vNMAX 
-#obtain [the first] labelled item corresponding to this number in the original dataset
-x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
-
-#should we process this?
-d:, | t.: | f:^$:lFINISHED_POSITIONING
-
-#process its position
-y:vPOSITION
-f:1$:lST:lNST
-l:lST
-x!:{st} | v:vPOSLABEL
-j:lADDPOSITION
-
-l:lNST
-y:vPOSITION
-f:2$:lSND:lNSND
-l:lSND
-x!:{nd} | v:vPOSLABEL
-j:lADDPOSITION
-
-l:lNSND
-y:vPOSITION
-f:3$:lRD:lTH
-l:lRD
-x!:{rd} | v:vPOSLABEL
-j:lADDPOSITION
-
-l:lTH
-y:vPOSITION
-x!:{th} | v:vPOSLABEL
-j:lADDPOSITION
-
-l:lADDPOSITION
-g*:{}:vPOSLABEL:vPOSDELIM:vLABELLED_MAX | v:vLABELLED_MAX_POS 
-y:vPOSITION | x!:{+1} | r.: | v:vPOSITION
-
-l:lFINISHED_POSITIONING
-
-#store that as the next item in the sorted labelled list
-x*:vSORTED_LIST:vLABELLED_MAX_POS | v:vSORTED_LIST
-
-#take the original dataset and eliminate [only] this labelled item then
-y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
-#clean out trailing commas
-d:^,
-
-v:vLIST_ORIG | update/override original dataset 
-#if empty, return sorted list, otherwise iterate...
-t.: | f:^$:l3RETURN_SORTED:l3PROCESS_NEXT_ITEM
-
-l:l3RETURN_SORTED
-y:vSORTED_LIST 
-#clean out trailing commas and space
-d:[,\s]*$
-r!:[,]:{, } #space items
-v:vSORTED_LIST #override, we have final sorted labelled dataset
-#--|end algorithm|------------
-v:vRESULTS | x:{DESC-SORTED and POSITIONIFIED LABELLED-DATA: 
-} | v:vRESULTS
-#go present results...
-j:lRESULTS
-
-
-#----| PRESENT RESULTS |----
-l:lRESULTS
-y:vRESULTS | i*:
-j:lPROMPT_MENU #iterate!
-
-
-l:lQUIT #quit program gracefully...
-
-i!:{ORIGINAL DATA:
-}  | x*!:vDATA | x*:vDELIM | x*!:vDELIM | x!: {RU Processing Results:} | x*!:vDELIM | x*!:vRESULTS
+#------[ QUIT ]
+l:lFINISH
+g*:{}:vREPORT:v6:vRATING:v7 | v:vREPORT #update report with rating info
+y:vREPORT |  | x*!:vDELIM | x*!:vTHANKS # show last report and quit
    \end{lstlisting}
   \end{tcolorbox}
     \captionof{figure}{TEA APPLICATION: Ranking Utility (RU) v3}
@@ -11482,11 +11286,13 @@ l:lREPORT
 #build report...
 y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
 
-#compute error/success rate?
+#compute error rate
 v:vEVALUATOR:{((..)/__)*100}|
 r*!:vEVALUATOR:vP1:vMOVES|v:vEVALUATOR
 r*!:vEVALUATOR:vP2:vSCORE|v:vEVALUATOR
-y:vEVALUATOR | r.: | d!:{^.*\...} | v:vRATING 
+y:vEVALUATOR | r.: | v:vRATING 
+f!:\.:lRATEFINE
+d!:{^.*\...} | v:vRATING | l:lRATEFINE
 
 v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
 TOTAL SCORE: } | v:v5:{ @MOVES: } | v:v6:{ | RATING: } | v:v7:{%}
@@ -11514,8 +11320,8 @@ And so that, it would produce more useful reports such as:
 
 
      \begin{tcbverbatim}[title=Sample OUTPUT 1 from SIR GAME v2]
-The WORD: TALK | QUIZ: T?LK | Your Answer:  (WRONG)
-TOTAL SCORE: 11 @MOVES: 14 | RATING: 78.57%
+The WORD: KITE | QUIZ: K?TE | Your Answer:  (WRONG)
+TOTAL SCORE: 17 @MOVES: 20 | RATING: 85%
 #####################
 Thanks for playing THE SIR GAME!
   \end{tcbverbatim}
