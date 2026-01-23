@@ -1,0 +1,85 @@
+v:vDESCRIPTION:{
+###############################
+# [new] SIR GAME v2: 
+# by Fut. Prof. JWL @ Nuchwezi Research
+###############################
+WELCOME to a simple game fit for kids, and those learning spelling in English. THE RULES: playing is simple: 
+You shall see a word with a MISSING lett?r, and if you guess it right, you score. You can also quit the game anytime if you like.}
+
+#------[ DEFINE CONSTANTS ]
+v:vDELIM:{
+#####################
+}
+v:vMAINPROMPT:{
+NEXT: [Q] QUIT | OR continue playing...}
+v:vTHANKS:{Thanks for playing THE SIR GAME!}
+
+#------[ DEFINE VARIABLES ]
+v:vREPORT:{-|HAVE NOT PLAYED the SIR GAME yet|-}
+v:vSCORE:{0} # hold current score
+v:vMOVES:{0} # hold current moves
+
+#------[ WELCOME MESSAGE ]
+# show the welcome message
+y:vDESCRIPTION | i*:
+# then start game
+j:lPLAY
+
+#------[ THE GAME PLAY ]
+l:lPLAYNEXT
+y:vPROMPT | i*: | f:^[qQ]$:lFINISH
+
+l:lPLAY #into the game...
+
+# randomly pick a word from the given list
+I!:{HONEY TRICK WINDS GAMES MONEY GRASS BABIES WATER BALLS PHONE INTERNET MUMMY HOUSE RAIN SHORTS KITTEN COLOUR MILK SHOES CUPS FORK EATING TABLE CHAIR WINDOW DOG RICE PLAY DIG WALLS TALK WALK FIND PHOTO WRITE KITE NUMBER LETTER PAPER CUTS GATES BANANA ICE PRICE HAND SING RING PIG PIN PEN HEN COW BIRD BAD SMILE HILL MEAL MEAT MEAN UGANDA CLASS TEACH APPLE STORY} 
+| a: | d:[ ].*$ 
+v:vWORD #store selected word
+v!:vWORD | x!:{-1} | r.: | v:vNWORD #get its length-1
+# randomly inject "-" b4 Nth pstn 
+v:vSALT:{-}
+S*:vWORD:vSALT:vNWORD | 
+#(="TR-ICK") for example
+R:.[-]:? | R:[-].:? | # returns "TR?CK"
+v:vQUIZ
+
+#------[ the QUIZ ]
+l:lQUIZ 
+
+y:vQUIZ | i*: | v:vANS # prompt and store response
+
+#------[ the SCORING ]
+#swap answer into quiz
+v:vPATTERN:{?}
+r*:vQUIZ:vPATTERN:vANS
+z!: #capitalize result
+v:vANSWORD #store
+#compare...
+v:vTESTER:{"__"==".."}|v:vP1:{__}|v:vP2:{..}
+r*!:vTESTER:vP1:vWORD|v:vTESTER
+r*!:vTESTER:vP2:vANSWORD|v:vTESTER
+y:vTESTER | r.: | f:^true$:lWIN:lLOSS
+l:lWIN # we won, update score +1
+y:vANS | x!:{ (CORRECT)} | v:vANS
+y:vSCORE | x!:{+1} | r.: | v:vSCORE | j:lREPORT 
+l:lLOSS # we lost, update score -2
+y:vANS | x!:{ (WRONG)} | v:vANS
+y:vSCORE | x!:{-2} | r.: | v:vSCORE | j:lREPORT 
+
+#------[ the REPORTING ]
+l:lREPORT
+#build report...
+y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
+
+v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
+TOTAL SCORE: } | v:v5:{ @MOVES: }
+g*:{}:v1:vWORD:v2:vQUIZ:v3:vANS:v4:vSCORE:v5:vMOVES | v:vREPORT
+
+x*!:vMAINPROMPT | v:vPROMPT
+
+j:lPLAYNEXT # iterate...
+
+
+#------[ QUIT ]
+l:lFINISH
+y:vREPORT | x*!:vDELIM | x*!:vTHANKS # show last report and quit

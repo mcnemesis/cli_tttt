@@ -10970,7 +10970,7 @@ So, this program might be studied further, enhanced or applied by those interest
 
  \vspace{1em}
 
- \url{https://tea.nuchwezi.com/?i=1\%2B1&fc=https://gist.githubusercontent.com/mcnemesis/0ae84d3bcb5a427dea869395a1278984/raw/advanced\_mathematics\_computer.tea}
+ \url{https://tea.nuchwezi.com/?i=2**5&fc=https://gist.githubusercontent.com/mcnemesis/0ae84d3bcb5a427dea869395a1278984/raw/advanced_mathematics_computer.tea}
 
 \vspace{1em} 
 
@@ -10978,7 +10978,7 @@ OR
 
 \vspace{1em} 
 
- \url{https://bit.ly/amathcomputer}
+ \url{https://bit.ly/amcomputer}
 
 
 
@@ -10997,6 +10997,403 @@ blah blah...
 }
 
 
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: S
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{S: SALT}
+\label{SECS}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{SALT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Randomly Inject Space into strings
+	\item Randomly Delete Characters from strings
+	\item Randomly Injecting some Text into a string
+	\item Randomly Deleting some Pattern from a string
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{S:}}
+  \label{TABTAZS}
+\end{table}
+
+
+\section{SEMANTICS of S:}
+\label{SECSEMS}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+s: & Inject a SINGLE SPACE CHARACTER into AI at a random position. Salting the AI.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{s:SALT:N:N2\\s:SALT:LIMIT:LLIMIT} & Return AI with the string SALT injected into it at some random Position. With N specified, injects at an index position (from 0) not greater than $N$ within SALT, injecting anywhere if $N > |AI|$. To precisely control where to operate, use $N2$, as a number to control the lower limit for the index search, so that, when $N = N2$, it basically means to precisely operate at index $N$, otherwise one can control the operating space more literally. Thus $N$ and $N2$ should be picked such that $N2 \leq N$.\\
+
+s!: & Delete a SINGLE CHARACTER from AI at a random position. Unsalting AI.\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{s!:REGEX:N:N2} & Randomly select one of the sections in AI matching REGEX, and delete it. With $N$ specified, only deletes an occurrence not later than the $N$th-occurrence of REGEX within AI, with $N2$, operates on the range between $N2$ and $N$, operating on exactly the Nth occurrence if $N=N2$. Thus $N$ and $N2$ should be picked such that $N2 \leq N$.\\
+
+
+\makecell[l]{s*:vNAME:vSALT:vN:vN2} & Same as s:SALT:N:N2, but operating on the string stored in the vault with the name vNAME  instead of AI, and using string stored in vSALT as the salt. All parameters are read from vaults with the specified names.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{s*!:vNAME:vREGEX:vN:vN2} & Same as s!:REGEX:N:N2, but operating on the string stored in the vault with the name vNAME  instead of AI.  All parameters are read from vaults with the specified names.\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of S:}
+\label{TABSEMS}
+\end{table}
+
+
+\section{NOTES about S:}
+\label{SECNOTES}
+  
+First, note that salting strings is not the same as substitution. In salting, the original string contents remain, but new content is injected at random (default) or at specified positions within the string. Unsalting on the other hand, leaves the original string with some sections of it randomly deleted. 
+
+
+\vspace{2em}
+
+
+Some examples follow. The first example demonstrates using salting without any parameters or arguments. Essentially, given some input, \texttt{s:} shall merely inject the single space at some point within, before or after the string. For illustration, we shall just use the basic string ``TEST".
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 1: Salting using S:, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:TEST|s: # shall sometimes return "TE ST", " TEST", "T EST", etc.
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+The next example still demonstrates salting, but involves passing some argument to the salt command, as in \texttt{s:SALT}, so that the explicit string ``SALT" is injected into a random position in the AI --- and in the example, we still set the AI as ``TEST", and so that, where we were injecting the space character in the first example, now we shall inject something the command is invoked with as the parameter...
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 2: Salting using S:SALT, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:TEST|s:__ # shall sometimes return "TE__ST", "__TEST", "T__EST", etc.
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+Note that, using this second approach, but wanting to modify the default case --- where we inject white-space, so that for example, instead of injecting a single white space we perhaps inject a new-line character, then we would adapt the second example above as such:
+
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 3: Salting using S:SALT, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:TEST|s:{
+}
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+Running that shall produce outputs such as ...
+
+
+  \begin{tcbverbatim}[title=Output from Example 3]
+TE
+ST
+  \end{tcbverbatim}
+  
+    \begin{tcbverbatim}[title=Output from Example 3]
+TES
+T
+  \end{tcbverbatim}
+
+
+    \begin{tcbverbatim}[title=Output from Example 3]
+
+TEST
+  \end{tcbverbatim}
+  
+  
+  \vspace{2em}
+  
+  On the other hand, if we were to test the unsalting command \texttt{s!:}, and still using the input ``TEST", we would have our code as such:
+  
+  
+  \vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 4: Unsalting using S!:, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:TEST|s!: # might sometimes return "TET", "EST", "TES", etc. Basically, unsalting
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+  
+  
+  
+\section{EXAMPLE APPLICATIONS of S:}
+\label{SECEXAMPS}
+
+  
+Randomly modifying text or data is among the hallmarks of the \textbf{SALT} command, and so, our example applications shall attempt to especially leverage or demonstrate that.
+
+
+
+\subsection{EXAMPLE 1: CHILD EDUCATION: The SIR GAME}
+\label{SECEXAMP1S}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/sir_game_play_scenario1.jpg}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/sir_game_play_scenario3.jpg}
+  \end{subfigure}
+  \caption{\textbf{SIR GAME Scenarios} showing TEACHERS using the game to evaluate and entertain their young learners}
+  \label{FIGSIRGAME}
+\end{figure}
+
+  
+This application --- also a contribution to TEA programs suitable for children or learners of basic English literacy, is called the ``SIR Game" --- perhaps, because of the TEA primitives it employed in its original form (the first TEA program listing shared below). This program uses salting to create a simple child's game where they are tasked with filling-in the gap for a letter missing in a given 5-letter word, which is then marked by a ``?". 
+
+\vspace{2em}
+
+The original TEA code for this program was as such\footnote{This program was among the first shared TEA standard programs also part of the TEA example test applications collection: \url{https://github.com/mcnemesis/cli_tttt/tests/}}  
+  
+    \vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: The SIR GAME, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# randomly pick a word from the given list
+I!:{HONEY TRICK WINDS GAMES} | a: | d:[ ].*$ 
+# (="TRICK") for example
+S:-:4 | # randomly inject "-" b4 4th pstn 
+#(="TR-ICK") for example
+R:.[-]:? | R:[-].:? | q!: | # returns "TR?CK"
+   \end{lstlisting}
+  \end{tcolorbox}
+      \captionof{figure}{The Original SIR GAME TEA source-code}
+  \label{FIGTEASIRGAMEORIG}
+
+\vspace{1em}
+  
+  However, now improved with both interactivity, scoring and a large set of words to pick from, the new version is as such:
+  
+  
+  
+  \vspace{2em}
+
+
+ \begin{figure}[H]
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SIR GAME v2]
+    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vDESCRIPTION:{
+###############################
+# [new] SIR GAME v2: 
+# by Fut. Prof. JWL @ Nuchwezi Research
+###############################
+WELCOME to a simple game fit for kids, and those learning spelling in English. THE RULES: playing is simple: 
+You shall see a word with a MISSING lett?r, and if you guess it right, you score. You can also quit the game anytime if you like.}
+
+#------[ DEFINE CONSTANTS ]
+v:vDELIM:{
+#####################
+}
+v:vMAINPROMPT:{
+NEXT: [Q] QUIT | OR continue playing...}
+v:vTHANKS:{Thanks for playing THE SIR GAME!}
+
+#------[ DEFINE VARIABLES ]
+v:vREPORT:{-|HAVE NOT PLAYED the SIR GAME yet|-}
+v:vSCORE:{0} # hold current score
+v:vMOVES:{0} # hold current moves
+
+#------[ WELCOME MESSAGE ]
+# show the welcome message
+y:vDESCRIPTION | i*:
+# then start game
+j:lPLAY
+
+#------[ THE GAME PLAY ]
+l:lPLAYNEXT
+y:vPROMPT | i*: | f:^[qQ]$:lFINISH
+
+l:lPLAY #into the game...
+
+# randomly pick a word from the given list
+I!:{HONEY TRICK WINDS GAMES MONEY GRASS BABIES WATER BALLS PHONE INTERNET MUMMY HOUSE RAIN SHORTS KITTEN COLOUR MILK SHOES CUPS FORK EATING TABLE CHAIR WINDOW DOG RICE PLAY DIG WALLS TALK WALK FIND PHOTO WRITE KITE NUMBER LETTER PAPER CUTS GATES BANANA ICE PRICE HAND SING RING PIG PIN PEN HEN COW BIRD BAD SMILE HILL MEAL MEAT MEAN UGANDA CLASS TEACH APPLE STORY} 
+| a: | d:[ ].*$ 
+v:vWORD #store selected word
+v!:vWORD | x!:{-1} | r.: | v:vNWORD #get its length-1
+# randomly inject "-" b4 Nth pstn 
+v:vSALT:{-}
+S*:vWORD:vSALT:vNWORD | 
+#(="TR-ICK") for example
+R:.[-]:? | R:[-].:? | # returns "TR?CK"
+v:vQUIZ
+
+#------[ the QUIZ ]
+l:lQUIZ 
+
+y:vQUIZ | i*: | v:vANS # prompt and store response
+
+#------[ the SCORING ]
+#swap answer into quiz
+v:vPATTERN:{?}
+r*:vQUIZ:vPATTERN:vANS
+z!: #capitalize result
+v:vANSWORD #store
+#compare...
+v:vTESTER:{"__"==".."}|v:vP1:{__}|v:vP2:{..}
+r*!:vTESTER:vP1:vWORD|v:vTESTER
+r*!:vTESTER:vP2:vANSWORD|v:vTESTER
+y:vTESTER | r.: | f:^true$:lWIN:lLOSS
+l:lWIN # we won, update score +1
+y:vANS | x!:{ (CORRECT)} | v:vANS
+y:vSCORE | x!:{+1} | r.: | v:vSCORE | j:lREPORT 
+l:lLOSS # we lost, update score -2
+y:vANS | x!:{ (WRONG)} | v:vANS
+y:vSCORE | x!:{-2} | r.: | v:vSCORE | j:lREPORT 
+
+#------[ the REPORTING ]
+l:lREPORT
+#build report...
+y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
+
+v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
+TOTAL SCORE: } | v:v5:{ @MOVES: }
+g*:{}:v1:vWORD:v2:vQUIZ:v3:vANS:v4:vSCORE:v5:vMOVES | v:vREPORT
+
+x*!:vMAINPROMPT | v:vPROMPT
+
+j:lPLAYNEXT # iterate...
+
+
+#------[ QUIT ]
+l:lFINISH
+y:vREPORT | x*!:vDELIM | x*!:vTHANKS # show last report and quit
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: SIR GAME v2}
+  \label{FIGR1}
+\end{figure}
+
+
+\vspace{2em}
+
+When it is run on the command line, it shall still present a GUI interface --- unless all instances of \texttt{i*:} are replaced with just \texttt{i:} in that program's code. And so that, we can see how it feels to play the game via the screenshots below...
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/sir_game_welcome_screen.png}\\
+   \caption{SIR GAME landing screen}
+  \label{FIGSIRGAME1}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/sir_game_quiz_screen.png}\\
+   \caption{SIR GAME quiz screen}
+  \label{FIGSIRGAME2}
+  \end{center}
+\end{figure}
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[]{resources/images/sir_game_report_screen.png}\\
+   \caption{SIR GAME report screen}
+  \label{FIGSIRGAME3}
+  \end{center}
+\end{figure}
+
+
+\vspace{2em}
+
+So that, with that program and after some fun game play, we obtain results such as:
+
+
+   \begin{tcbverbatim}[title=Sample OUTPUT 1 from SIR GAME v2]
+The WORD: CHAIR | QUIZ: ?HAIR | Your Answer: s (WRONG)
+TOTAL SCORE: 9 @MOVES: 15
+#####################
+Thanks for playing THE SIR GAME!
+  \end{tcbverbatim}
+  
+  
+  
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from SIR GAME v2]
+The WORD: MEAN | QUIZ: MEA? | Your Answer: t (WRONG)
+TOTAL SCORE: 1 @MOVES: 4
+#####################
+Thanks for playing THE SIR GAME!
+  \end{tcbverbatim}
+  
+  
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from SIR GAME v2]
+The WORD: MEAN | QUIZ: ME?N | Your Answer: a (CORRECT)
+
+TOTAL SCORE: 4 @MOVES: 16
+
+#####################
+
+Thanks for playing THE SIR GAME!
+  \end{tcbverbatim}
+  
+  
+\vspace{2em}
+
+
+Thus, as you can tell from those game-play reports, this game can truly be rewarding --- both the player, but also their friends, and especially teachers or for the case of kids, their parents --- especially given that they can use it to evaluate the performance and progress or spelling skills of their learners. Also, because adding to the list of test words isn't hard, teachers can modify this program to help teach and test learners about tricky words in almost any language!
+  
+  
+  
+  \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/sir_game_play_scenario2}\\
+   \caption{Especially the \textbf{WEB TEA SIR GAME} as an alternative to expensive and sometimes buggy child games.}
+  \label{FIGSIRGAME2}
+  \end{center}
+\end{figure}
+  
+  
+  
+  
+  So, this program might be studied further, enhanced or applied by those interested, via the following links:
+
+
+ \vspace{1em}
+
+ \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/64f435e0805f9f3bcfbaed2ec9ef50e5/raw/the_sir_game.tea}
+
+\vspace{1em} 
+
+OR
+
+\vspace{1em} 
+
+ \url{https://bit.ly/sirgame}
+  
 
 
 
