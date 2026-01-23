@@ -11199,10 +11199,10 @@ R:.[-]:? | R:[-].:? | q!: | # returns "TR?CK"
   \vspace{2em}
 
 
- \begin{figure}[H]
+{
  \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SIR GAME v2]
-    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SIR GAME v2, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:vDESCRIPTION:{
 ###############################
 # [new] SIR GAME v2: 
@@ -11291,8 +11291,8 @@ y:vREPORT | x*!:vDELIM | x*!:vTHANKS # show last report and quit
    \end{lstlisting}
   \end{tcolorbox}
   \caption{TEA APPLICATION: SIR GAME v2}
-  \label{FIGR1}
-\end{figure}
+  \label{FIGS1}
+}
 
 
 \vspace{2em}
@@ -11302,7 +11302,7 @@ When it is run on the command line, it shall still present a GUI interface --- u
 
 \begin{figure}[H]
   \begin{center}
-   \includegraphics[]{resources/images/sir_game_welcome_screen.png}\\
+   \includegraphics[width=\textwidth]{resources/images/sir_game_welcome_screen.png}\\
    \caption{SIR GAME landing screen}
   \label{FIGSIRGAME1}
   \end{center}
@@ -11311,7 +11311,7 @@ When it is run on the command line, it shall still present a GUI interface --- u
 
 \begin{figure}[H]
   \begin{center}
-   \includegraphics[]{resources/images/sir_game_quiz_screen.png}\\
+   \includegraphics[width=\textwidth]{resources/images/sir_game_quiz_screen.png}\\
    \caption{SIR GAME quiz screen}
   \label{FIGSIRGAME2}
   \end{center}
@@ -11321,7 +11321,7 @@ When it is run on the command line, it shall still present a GUI interface --- u
 
 \begin{figure}[H]
   \begin{center}
-   \includegraphics[]{resources/images/sir_game_report_screen.png}\\
+   \includegraphics[width=\textwidth]{resources/images/sir_game_report_screen.png}\\
    \caption{SIR GAME report screen}
   \label{FIGSIRGAME3}
   \end{center}
@@ -11359,6 +11359,7 @@ TOTAL SCORE: 4 @MOVES: 16
 
 Thanks for playing THE SIR GAME!
   \end{tcbverbatim}
+
   
   
 \vspace{2em}
@@ -11384,7 +11385,7 @@ Thus, as you can tell from those game-play reports, this game can truly be rewar
 
  \vspace{1em}
 
- \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/64f435e0805f9f3bcfbaed2ec9ef50e5/raw/the_sir_game.tea}
+ \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/64f435e0805f9f3bcfbaed2ec9ef50e5/raw/}
 
 \vspace{1em} 
 
@@ -11392,9 +11393,135 @@ OR
 
 \vspace{1em} 
 
- \url{https://bit.ly/sirgame}
+ \url{https://bit.ly/thesirgame}
   
 
+\vspace{2em}
+
+Finally, after realizing that the reports the program produces perhaps are even more important than the playing itself --- especially for the teachers, parents and evaluators, we then have the following version that also includes a computing of the rating of the player at the end of the game (only). 
+
+
+  
+  \vspace{2em}
+
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SIR GAME v3, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vDESCRIPTION:{
+###############################
+# [new] SIR GAME v3: 
+# by Fut. Prof. JWL @ Nuchwezi Research
+###############################
+WELCOME to a simple game fit for kids, and those learning spelling in English. THE RULES: playing is simple: 
+You shall see a word with a MISSING lett?r, and if you guess it right, you score. You can also quit the game anytime if you like.}
+
+#------[ DEFINE CONSTANTS ]
+v:vDELIM:{
+#####################
+}
+v:vMAINPROMPT:{
+NEXT: [Q] QUIT | OR continue playing...}
+v:vTHANKS:{Thanks for playing THE SIR GAME!}
+
+#------[ DEFINE VARIABLES ]
+v:vREPORT:{-|HAVE NOT PLAYED the SIR GAME yet|-}
+v:vSCORE:{0} # hold current score
+v:vMOVES:{0} # hold current moves
+
+#------[ WELCOME MESSAGE ]
+# show the welcome message
+y:vDESCRIPTION | i*:
+# then start game
+j:lPLAY
+
+#------[ THE GAME PLAY ]
+l:lPLAYNEXT
+y:vPROMPT | i*: | f:^[qQ]$:lFINISH
+
+l:lPLAY #into the game...
+
+# randomly pick a word from the given list
+I!:{HONEY TRICK WINDS GAMES MONEY GRASS BABIES WATER BALLS PHONE INTERNET MUMMY HOUSE RAIN SHORTS KITTEN COLOUR MILK SHOES CUPS FORK EATING TABLE CHAIR WINDOW DOG RICE PLAY DIG WALLS TALK WALK FIND PHOTO WRITE KITE NUMBER LETTER PAPER CUTS GATES BANANA ICE PRICE HAND SING RING PIG PIN PEN HEN COW BIRD BAD SMILE HILL MEAL MEAT MEAN UGANDA CLASS TEACH APPLE STORY} 
+| a: | d:[ ].*$ 
+v:vWORD #store selected word
+v!:vWORD | x!:{-1} | r.: | v:vNWORD #get its length-1
+# randomly inject "-" b4 Nth pstn 
+v:vSALT:{-}
+S*:vWORD:vSALT:vNWORD | 
+#(="TR-ICK") for example
+R:.[-]:? | R:[-].:? | # returns "TR?CK"
+v:vQUIZ
+
+#------[ the QUIZ ]
+l:lQUIZ 
+
+y:vQUIZ | i*: | v:vANS # prompt and store response
+
+#------[ the SCORING ]
+#swap answer into quiz
+v:vPATTERN:{?}
+r*:vQUIZ:vPATTERN:vANS
+z!: #capitalize result
+v:vANSWORD #store
+#compare...
+v:vTESTER:{"__"==".."}|v:vP1:{__}|v:vP2:{..}
+r*!:vTESTER:vP1:vWORD|v:vTESTER
+r*!:vTESTER:vP2:vANSWORD|v:vTESTER
+y:vTESTER | r.: | f:^true$:lWIN:lLOSS
+l:lWIN # we won, update score +1
+y:vANS | x!:{ (CORRECT)} | v:vANS
+y:vSCORE | x!:{+1} | r.: | v:vSCORE | j:lREPORT 
+l:lLOSS # we lost, update score -2
+y:vANS | x!:{ (WRONG)} | v:vANS
+y:vSCORE | x!:{-2} | r.: | v:vSCORE | j:lREPORT 
+
+#------[ the REPORTING ]
+l:lREPORT
+#build report...
+y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
+
+#compute error/success rate?
+v:vEVALUATOR:{((..)/__)*100}|
+r*!:vEVALUATOR:vP1:vMOVES|v:vEVALUATOR
+r*!:vEVALUATOR:vP2:vSCORE|v:vEVALUATOR
+y:vEVALUATOR | r.: | d!:{^.*\...} | v:vRATING 
+
+v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
+TOTAL SCORE: } | v:v5:{ @MOVES: } | v:v6:{ | RATING: } | v:v7:{%}
+g*:{}:v1:vWORD:v2:vQUIZ:v3:vANS:v4:vSCORE:v5:vMOVES | v:vREPORT
+
+x*!:vMAINPROMPT | v:vPROMPT
+
+j:lPLAYNEXT # iterate...
+
+
+#------[ QUIT ]
+l:lFINISH
+g*:{}:vREPORT:v6:vRATING:v7 | v:vREPORT #update report with rating info
+y:vREPORT |  | x*!:vDELIM | x*!:vTHANKS # show last report and quit
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: SIR GAME v3}
+  \label{FIGS2}
+}
+
+
+And so that, it would produce more useful reports such as:
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from SIR GAME v2]
+The WORD: TALK | QUIZ: T?LK | Your Answer:  (WRONG)
+TOTAL SCORE: 11 @MOVES: 14 | RATING: 78.57%
+#####################
+Thanks for playing THE SIR GAME!
+  \end{tcbverbatim}
+
+  
+ 
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%

@@ -1,6 +1,6 @@
 v:vDESCRIPTION:{
 ###############################
-# [new] SIR GAME v2: 
+# [new] SIR GAME v3: 
 # by Fut. Prof. JWL @ Nuchwezi Research
 ###############################
 WELCOME to a simple game fit for kids, and those learning spelling in English. THE RULES: playing is simple: 
@@ -71,8 +71,14 @@ l:lREPORT
 #build report...
 y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
 
+#compute error rate
+v:vEVALUATOR:{((..)/__)*100}|
+r*!:vEVALUATOR:vP1:vMOVES|v:vEVALUATOR
+r*!:vEVALUATOR:vP2:vSCORE|v:vEVALUATOR
+y:vEVALUATOR | r.: | d!:{^.*\...} | v:vRATING 
+
 v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
-TOTAL SCORE: } | v:v5:{ @MOVES: }
+TOTAL SCORE: } | v:v5:{ @MOVES: } | v:v6:{ | RATING: } | v:v7:{%}
 g*:{}:v1:vWORD:v2:vQUIZ:v3:vANS:v4:vSCORE:v5:vMOVES | v:vREPORT
 
 x*!:vMAINPROMPT | v:vPROMPT
@@ -82,4 +88,5 @@ j:lPLAYNEXT # iterate...
 
 #------[ QUIT ]
 l:lFINISH
-y:vREPORT | x*!:vDELIM | x*!:vTHANKS # show last report and quit
+g*:{}:vREPORT:v6:vRATING:v7 | v:vREPORT #update report with rating info
+y:vREPORT |  | x*!:vDELIM | x*!:vTHANKS # show last report and quit
