@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.3.4" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.3.5" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -1534,7 +1534,20 @@ export class TEA_RunTime {
                 io = io.replace(new RegExp(TEA_RunTime.NL,'g'), TEA_RunTime.EMPTY_STR);
             }
             else{
-                var glue = this.extract_str(tpe_str)
+                var glue = tpe_str
+                io = io.replace(new RegExp(TEA_RunTime.NL, 'g'), glue);
+            }
+        }
+
+        if(tc == "G*."){
+            if(tpe_str.length == 0){
+                // INERT: do nothing
+                // INERT
+                this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
+            }
+            else{
+                var vglue = tpe_str
+                var glue = this.vault_get(vglue)
                 io = io.replace(new RegExp(TEA_RunTime.NL, 'g'), glue);
             }
         }
