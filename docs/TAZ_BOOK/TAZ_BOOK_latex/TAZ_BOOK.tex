@@ -3,7 +3,7 @@
 %---|TITLE: TEA TAZ – Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION
 %---|EDITOR:Prof. Joseph Willrich Lutalo, Oxford
 %---[MANUSCRIPT-ORIGINAL-VERSION:24SEPT2025]
-%---[MANUSCRIPT-LATEST-VERSION:18DEC2025]
+%---[MANUSCRIPT-LATEST-VERSION:28JAN2026]
 %----------------------------------------------------------------|
 %\documentclass[a4paper, 18pt]{article} % A4 paper, readable font size
 \documentclass[a4paper, 18pt]{book} % A4 book-layout, readable font size
@@ -3385,6 +3385,11 @@ g!: & INERT\\
   
   
    \rowcolor{lightgray}\bfseries \makecell[l]{g*!:vGLUE:v1:v2\\g*!:vGLUE:v1:v2:v3:…:vN} & Set IO to the result of joining the string stored in the vaults with the given names, using the glue stored in vault vGLUE. With only vGLUE, operate on AI like g:GLUE\\
+   
+     \makecell[l]{g*.:} & INERT\\
+     
+       \rowcolor{lightgray}\bfseries \makecell[l]{g*.:vGLUE} & Same as \texttt{g.:GLUE} but using string held in vGLUE\\
+     
  
  \hline
 \end{tabular}
@@ -11328,6 +11333,489 @@ Thanks for playing THE SIR GAME!
 
   
  
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: T
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{T: TRANSFORM}
+\label{SECT}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{TRANSFORM}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Transform strings using certain [specific] methods.
+	\item Strip leading white space from a string.
+	\item Align [center or else] a multi-line text.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{T:}}
+  \label{TABTAZT}
+\end{table}
+
+
+\section{SEMANTICS of T:}
+\label{SECSEMT}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+\makecell[l]{t:\\t:STR}
+ & Apply the rightmost triangulation transform to AI. With STR specified, instead operate on the given literal string STR.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{t!:\\t!:STR} & Apply the leftmost triangulation transform to AI. With STR specified, instead operate on the given literal string STR.\\
+
+t*:vNAME & Same as t:, but operating on the string stored in the vault with the name vNAME\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{t*!:vNAME} & Same as t!:, but operating on the string stored in the vault with the name vNAME\\
+
+
+\makecell[l]{t.:\\t.:STR\\t*.:vNAME} & Return the AI aligned in the center based on the longest line it contains. With STR, instead operate on literal string STR. The t.*:vNAME operates on string in vault vNAME. Result becomes AI\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{t!.:\\t!.:STR\\t*!.:vNAME} & Return the AI left-aligned or rather, with all lines having no leading, nor trailing white-space. With STR, instead operate on literal string STR. The t.*!:vNAME operates on string in vault vNAME. Result becomes AI\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of T:}
+\label{TABSEMT}
+\end{table}
+
+
+\section{NOTES about T:}
+\label{SECNOTET} 
+ 
+Some string transformations are so important in TEA, it was decided to make them primitives in the language so as to utilize them as first-level citizens of the language. Currently, the T-command space mostly implements the so-called ``Cetamol Triangulation", ``Cetamol Vertical Inversion Transformer"\cite{lutalo2024tea} transform on AI or strings held in vaults. Perhaps other transforms might also get this privilege in future TEA, or not. Time will tell, however, the inventor of the language chose to implement T: this way, and he has respectable reasons why it must be that way.
+
+\vspace{2em}
+
+A basic demonstration of the T-transform is demonstrated below using a command line invocation of TTTT:
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=T: EXAMPLE 1: Triangular Reduction Transform on the Command-line]
+# implements the PARACETAMOL T-transform
+tttt -i PARACETAMOL -c t:
+PARACETAMOL
+ARACETAMOL
+RACETAMOL
+ACETAMOL
+CETAMOL
+ETAMOL
+TAMOL
+AMOL
+MOL
+OL
+L
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+
+Talking of different ways to transform inputs using TEA APIs, note that currently, TEA is on the WEB! Yes, so, the above example can also be run on any device, any operating system, without installing anything, simply by visiting the following URL in a modern web browser:
+
+\vspace{2em}
+
+\url{https://tea.nuchwezi.com?i=PARACETAMOL&c=t:&run}
+
+\vspace{2em}
+
+That shall effectively run the TEA program:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 2: Basic T-reduction program, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i:PARACETAMOL | t:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+And produce the same output as above.
+
+\vspace{2em}
+
+
+It should be interesting to note that this transform has potential roots in the literature and methods of Western Esotericism, in particular, in the occult science literature on crafting magic spells, such as in the work of Janet \& Farrar\cite{farrar1990spells}. We find several string transforms classified as ``pyramid-pattern" spells, some of which reduce a word one or two characters at a time, sometimes from the left, other times from the right. These ancient ideas have had use in creating potent incantations used in healing, blessing and protective magic in Europe and the Middle-East\cite{farrar1990spells}, and in TEA, the T-command space preserves this ancient, but useful class of word or phrase transformations, if for no other purpose, at least to curate this ancient wisdom for the modern explorer\footnote{Perhaps, and of interest to those who this useful, there are also many other ways that the TEA language has been applied to enabling and advancing work in esotericism --- refer to \cite{lutalo_2025_grimlumtauto} for more.}.
+
+\vspace{2em}
+
+
+Further, in an age where computer generated art such as with artificial intelligence is common-place, it feels that allowing for some means to create art even for a mere text processing language, using bare TEA primitives and no external libraries or power, would be worth exploring. The following example minimalist program generates some interesting art that looks like statistical graphs – bar charts, rendered without any special graphics facility but the text transformations possible with commands like \texttt{t:} and \texttt{r:}, and it bases on the same interesting sample input as the previous example---just the word ``PARACETAMOL".
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 3: Islamic ASCII-art Generator based T-reduction, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# an Islamic-art-generator twist of the PARACETAMOL Transform example
+i!:PARACETAMOL| t: | h: | a!: | r!: | v:vART
+v:vN:0|l:lS|y:vN|x!:{>5}|r.:|f:^true$:lF
+y:vART
+s:*|s:(|s:)
+v:vART
+y:vN|x!:{+1}|r.:|v:vN|j:lS
+l:lF | y:vART 
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+And that program shall produce example art pieces such as shown hereafter...
+
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=T: SAMPLE OUTPUT 1 from EXAMPLE 3]
+))..
+.(.........).(
+.*.(..(......................
+)
+..........*)(..........
+
+.
+...
+...*.*)...
+...(.*.*
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=T: SAMPLE OUTPUT 2 from EXAMPLE 3]
+..*)........
+)).)*..(....*...
+
+(........
+.).........
+....(..
+...(
+........
+.
+...(..)*.....*......
+(...*
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+
+
+     \begin{tcbverbatim}[title=T: SAMPLE OUTPUT 3 from EXAMPLE 3]
+..*.....
+)..(..
+....(..
+.*......(..*).*........(....(
+)........
+.
+..*..).....(
+
+........
+.......*.).
+.)
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+And as you can readily see and tell, those little artworks seem like they surely depict skylines in some hypothetical islamic city or township --- the stuff of \textbf{Aladdin} and ``1000 Arabian Nights!"
+
+\vspace{2em}
+
+And then we come to the \textbf{text-alignment} TEA transforms --- \texttt{t.:} and \texttt{t!.:} --- one for center alignment, the other for left-alignment. To demonstrate their use, we shall consider a simple out-of-alignment text such as this:
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=T: SAMPLE misaligned text]
+ 1. Hello World
+2. What is happening?
+        3. Where are you right now?
+      4. Okay!
+  \end{tcbverbatim}
+  
+  
+ \vspace{2em}
+ 
+ So, if we wish to align that text at the center, we shall use the following basic minimal program:
+ 
+  \vspace{2em}
+ 
+  \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 4: Basic Center-alignment Program, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+t.:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+Yup! It is that simple! The result, given the example input above, shall come out as such...
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=T: SAMPLE OUTPUT from EXAMPLE 4]
+      1. Hello World       
+   2. What is happening?   
+3. Where are you right now?
+         4. Okay!            
+  \end{tcbverbatim}
+  
+  
+ \vspace{2em}
+ 
+ And as you can tell, that essentially works by aligning all sentences at the center, based on the longest line in the text.
+ 
+ \vspace{2em}
+ 
+ On the other hand, in case we wanted to left-align the text --- also equivalent to stripping out all leading white-space from each sentence, we would then use the following basic program:
+ 
+ 
+   \vspace{2em}
+ 
+  \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 5: Basic Left-alignment Program, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+t!.:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+And the output shall come out as such...
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=T: SAMPLE OUTPUT from EXAMPLE 5]
+1. Hello World
+2. What is happening?
+3. Where are you right now?
+4. Okay!          
+  \end{tcbverbatim}
+  
+  
+ \vspace{2em}
+ 
+ 
+ But, if we instead wanted \textbf{right-alignment} --- which isn't as simple as using a single TEA command like the last two cases we saw, we would still be able to achieve that using a method such as the following \textbf{non-trivial} program:
+ 
+ 
+ 
+   \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 6: ROBUST Right-alignment Program, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{ 1. Hello World
+2. What is happening?
+        3. Where are you right now?
+      4. Okay!}
+t!.: | v:vLTEXT #store left-aligned text
+
+# constants
+v:vLGLUE:{=======} #newline delimiter
+v:vEMPTY:{}
+v:vPADCHAR:{ }
+#v:vPADCHAR:{-} #uncomment to see how the padding worked
+v:vNL:{
+}
+v:vSPACECHAR:{ }
+
+# variables
+v:vNLONGEST:{0} #store length of longest line
+v:vRALIGNED_TEXT:{} # to hold right-aligned text
+
+#--[begin processing..]
+g*.:vLGLUE | v:vFLATTEXT | v:vFLATTEXT_ORIG #store flattened text
+y:vLGLUE | x!:{.*$} | v:vLGLUE_EXT
+
+l:lPROCESS_LINE
+y:vFLATTEXT  | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE 
+
+y:vNLINE | x!:{>} | x*!:vNLONGEST | r.: | f:^true$:lSETMAX:lNEXTLINE
+l:lSETMAX
+y:vNLINE | v:vNLONGEST
+l:lNEXTLINE
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+
+f:^$:lPROCESS_ALIGN
+j:lPROCESS_LINE
+
+l:lPROCESS_ALIGN
+y:vNLONGEST 
+
+y:vFLATTEXT_ORIG | v:vFLATTEXT #restore..
+
+l:lPROCESS_LINE_ALIGN
+y:vFLATTEXT | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE
+y:vNLINE | x!:{<} | x*!:vNLONGEST | r.: | f:^true$:lADDPAD:lNEXTLINE_ALIGN
+l:lADDPAD
+#build pad...
+y:vNLONGEST | x!:{-} | x*!:vNLINE | r.: | v:vNPAD_LEN_MAX
+v:vI:{0} | v:vPAD:{}
+l:lSTART_PAD
+g*:{}:vPAD:vPADCHAR | v:vPAD
+v*!:vPAD | v:vNPAD_LEN
+y:vNPAD_LEN | x!:{==} | x*!:vNPAD_LEN_MAX | r.: | f:^true$:lAPPLYPAD
+j:lSTART_PAD
+l:lAPPLYPAD
+g*:{}:vPAD:vLINE | v:vLINE_PADDED
+g*:{}:vRALIGNED_TEXT:vLINE_PADDED:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+j:lUPDATE_FLATTEXT
+
+l:lNEXTLINE_ALIGN
+g*:{}:vRALIGNED_TEXT:vLINE:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+l:lUPDATE_FLATTEXT
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+f:^$:lFIN_ALIGN
+j:lPROCESS_LINE_ALIGN
+
+l:lFIN_ALIGN
+r*!:vRALIGNED_TEXT:vLGLUE:vNL | v:vRALIGNED_TEXT
+y:vRALIGNED_TEXT #output result
+   \end{lstlisting}
+  \end{tcolorbox}
+ 
+ 
+\vspace{2em}
+
+Which, against the same sample input text as before, would produce the output:
+
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=T: SAMPLE OUTPUT from EXAMPLE 6]
+             1. Hello World
+      2. What is happening?
+3. Where are you right now?
+                   4. Okay!
+  \end{tcbverbatim}
+  
+  
+ \vspace{2em}
+ 
+ And if we wish to see how or if the padding indeed works as planned, we essentially uncomment that line overriding \texttt{vPADCHAR}, so that we then get the output as:
+ 
+ 
+ \vspace{2em}
+
+
+     \begin{tcbverbatim}[title=T: SAMPLE OUTPUT from EXAMPLE 6]
+-------------1. Hello World
+------2. What is happening?
+3. Where are you right now?
+-------------------4. Okay!
+  \end{tcbverbatim}
+  
+  
+ \vspace{2em}
+ 
+ So, that last example should indeed demonstrate and prove how vital and critically important such basic transforms as what we get with \texttt{t.:} and \texttt{t!.:} are! Perhaps, in the future, if there is demand, we shall also make the right-alignment text transform implemented in TEA in such a cumbersome way as we have seen in that program, as simple as a mere invocation of a basic TEA primitive.
+ 
+ 
+\vspace{2em}
+
+Also note that, oftentimes, one might get headaches over text processing not because their programs aren't doing the right thing, but merely because, the same --- correct text --- is displayed differently in different environments! For example, consider the above two last sample outputs --- one with the natural single space character, `` ", as the padding, and the other with the single dash, ``-", as the padding character. We see that even in our somewhat neutral verbatim text widgets they look different --- with the first output somewhat looking as though some of the lines were not properly right-aligned! And yet, when we paste the two versions of text output in a neutral standard text environment such as Microsoft's Notepad, we see that they both are similarly well right-aligned --- see in screenshot below. Thus, for such cases as these, one might want to instead work with the command-line TEA environment (see second screenshot), which also seems to be more compelling that the program does the right thing in both cases.
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[trim=0cm 1cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/images/notepad_right_align.png}\\
+   \caption{Two Samples of Text Right-Alignment resulting from a TEA program, as shown in Microsoft Notepad}
+  \label{FIGTEARIGHTALIGN1}
+  \end{center}
+\end{figure}
+
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[trim=0cm 1cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/images/tea_right_align_text_cli_case.png}\\
+   \caption{Two Samples of Text Right-Alignment resulting from a TEA program, as shown via the command-line}
+  \label{FIGTEARIGHTALIGN2}
+  \end{center}
+\end{figure}
+
+
+\vspace{2em}
+
+The two cases compared via the TEA WEB IDE are not as satisfactory despite using the same exact TEA code/solution and same exact sample inputs as all the above cases! So, as you see in the outputs below, somehow, one might have no option but to compare the text outputs via copying it out of the IDE and testing from elsewhere --- in this case, we tried to simplify the text-area widget's styling as much as possible, and especially enforced styling using the monospace font-family, but still, the differences one notices can make debugging via inspection of text output quite painful if one doesn't understand the cause of the differences!
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[trim=0cm 0cm 15cm 0cm, clip, width=0.9\textwidth,]{resources/images/tea_right_align_text_web_case.png}\\
+   \caption{Sample of Text Right-Alignment resulting from the TEA program, as shown via TEA WEB IDE}
+  \label{FIGTEARIGHTALIGN3}
+  \end{center}
+\end{figure}
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[trim=0cm 0cm 15cm 0cm, clip, width=0.9\textwidth,]{resources/images/tea_right_align_text_web_case2.png}\\
+   \caption{The other Sample of Text Right-Alignment resulting from same TEA program, as shown via TEA WEB IDE}
+  \label{FIGTEARIGHTALIGN4}
+  \end{center}
+\end{figure}
+
+
+\vspace{2em}
+
+
+ 
+\section{EXAMPLE APPLICATIONS of T:}
+\label{SECEXAMPT}
+
+  
+blah blah
+
+
+
+\subsection{EXAMPLE 1: ...}
+\label{SECEXAMP1T}
+
+
+
+
+blah blah
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%

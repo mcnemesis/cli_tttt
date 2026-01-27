@@ -1,0 +1,67 @@
+i!:{ 1. Hello World
+2. What is happening?
+        3. Where are you right now?
+      4. Okay!}
+t!.: | v:vLTEXT #store left-aligned text
+
+# constants
+v:vLGLUE:{=======} #newline delimiter
+v:vEMPTY:{}
+v:vPADCHAR:{ }
+v:vPADCHAR:{-} #uncomment to see how the padding worked
+v:vNL:{
+}
+v:vSPACECHAR:{ }
+
+# variables
+v:vNLONGEST:{0} #store length of longest line
+v:vRALIGNED_TEXT:{} # to hold right-aligned text
+
+#--[begin processing..]
+g*.:vLGLUE | v:vFLATTEXT | v:vFLATTEXT_ORIG #store flattened text
+y:vLGLUE | x!:{.*$} | v:vLGLUE_EXT
+
+l:lPROCESS_LINE
+y:vFLATTEXT  | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE 
+
+y:vNLINE | x!:{>} | x*!:vNLONGEST | r.: | f:^true$:lSETMAX:lNEXTLINE
+l:lSETMAX
+y:vNLINE | v:vNLONGEST
+l:lNEXTLINE
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+
+f:^$:lPROCESS_ALIGN
+j:lPROCESS_LINE
+
+l:lPROCESS_ALIGN
+y:vNLONGEST 
+
+y:vFLATTEXT_ORIG | v:vFLATTEXT #restore..
+
+l:lPROCESS_LINE_ALIGN
+y:vFLATTEXT | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE
+y:vNLINE | x!:{<} | x*!:vNLONGEST | r.: | f:^true$:lADDPAD:lNEXTLINE_ALIGN
+l:lADDPAD
+#build pad...
+y:vNLONGEST | x!:{-} | x*!:vNLINE | r.: | v:vNPAD_LEN_MAX
+v:vI:{0} | v:vPAD:{}
+l:lSTART_PAD
+g*:{}:vPAD:vPADCHAR | v:vPAD
+v*!:vPAD | v:vNPAD_LEN
+y:vNPAD_LEN | x!:{==} | x*!:vNPAD_LEN_MAX | r.: | f:^true$:lAPPLYPAD
+j:lSTART_PAD
+l:lAPPLYPAD
+g*:{}:vPAD:vLINE | v:vLINE_PADDED
+g*:{}:vRALIGNED_TEXT:vLINE_PADDED:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+j:lUPDATE_FLATTEXT
+
+l:lNEXTLINE_ALIGN
+g*:{}:vRALIGNED_TEXT:vLINE:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+l:lUPDATE_FLATTEXT
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+f:^$:lFIN_ALIGN
+j:lPROCESS_LINE_ALIGN
+
+l:lFIN_ALIGN
+r*!:vRALIGNED_TEXT:vLGLUE:vNL | v:vRALIGNED_TEXT
+y:vRALIGNED_TEXT #output result

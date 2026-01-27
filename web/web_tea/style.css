@@ -48,13 +48,24 @@ textarea {
 #txt_input {
   background: dimgray;
   color: white;
-  font-family: "Fira Code", monospace;
+  /*font-family: "Fira Code", monospace;*/
+  /*ensure we have no false/misleading styling: prefer note-pad-like defaults*/
+  font-family: monospace !important; 
+  font-size: 12pt !important;
+  font-weight: normal !important;
+  line-height: normal !important;
+
 }
 
 #txt_output {
   background: slategrey;
   color: white;
-  font-family: "Fira Code", monospace;
+  /*font-family: "Fira Code", monospace;*/
+  /*ensure we have no false/misleading styling: prefer note-pad-like defaults*/
+  font-family: monospace !important; 
+  font-size: 12pt !important;
+  font-weight: normal !important;
+  line-height: normal !important;
 }
 
 .header {
