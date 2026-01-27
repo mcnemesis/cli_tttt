@@ -226,13 +226,10 @@ class TEA_RunTime:
                 for lBlockName in params[1:]:
                     cleanlBlockName = lBlockName.strip()
                     if cleanlBlockName in labelblocks:
-                        if cleanlBlockName not in initial_labelblocks:
-                            if TEA_RunTime.DEBUG:
-                                print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{cleanlBlockName}]")
-                                print(f"[INFO] Current L-BLOCKS: \n{labelblocks}")
-                            raise ValueError("[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL")
-                        else:
-                            pass # allow to override
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{cleanlBlockName}]")
+                            print(f"[INFO] Current L-BLOCKS: \n{labelblocks}")
+                        raise ValueError(f"[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL: [{cleanlBlockName}]")
                     labelblocks[cleanlBlockName] = TI_index + 1 # so we ref next instruction in program, after the label
             TI_index += 1
 
@@ -1529,9 +1526,7 @@ class TEA_RunTime:
 # store current code position under given label block name
 # but most likely, has already been done during TSRC pre-processing/validation
                         LABELBLOCKS[lBlockName] = ATPI
-                    else: #raise exception on duplicate block names
-                        self.debug(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
-                        raise ValueError(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
+
             if tc == "L!":
                 if len(tpe_str) == 0:
                     # INERT
@@ -1543,9 +1538,7 @@ class TEA_RunTime:
                         # prevent duplication of block names
                         if not (lBlockName in LABELBLOCKS):
                             LABELBLOCKS[lBlockName] = ATPI
-                        else: #raise exception on duplicate block names
-                            self.debug(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
-                            raise ValueError(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
+
 
             return io
 

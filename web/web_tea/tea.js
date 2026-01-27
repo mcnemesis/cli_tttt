@@ -226,13 +226,9 @@ export class TEA_RunTime {
                 for(let lBlockName of params.slice(1)){
                     var cleanlBlockName = lBlockName.trim()
                     if (labelblocks.hasOwnProperty(cleanlBlockName)) {
-                        if (!initial_labelblocks.hasOwnProperty(cleanlBlockName)) {
-                                this.debug(`[ERROR] Instruction ${i} trying to duplicate an Existenting Block Name [${cleanlBlockName}]`)
-                                this.debug(`[INFO] Current L-BLOCKS: \n${JSON.stringify(labelblocks)}`)
-                                throw new Error("[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL")
-                        } else{
-                            // allow to override
-                        }
+                        this.debug(`[ERROR] Instruction ${i} trying to duplicate an Existenting Block Name [${cleanlBlockName}]`)
+                        this.debug(`[INFO] Current L-BLOCKS: \n${JSON.stringify(labelblocks)}`)
+                        throw new Error(`[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL: [${cleanlBlockName}]`)
                     }
                     labelblocks[cleanlBlockName] = TI_index + 1 // so we ref next instruction in program, after the label
                 }
@@ -1986,11 +1982,6 @@ export class TEA_RunTime {
                     // but most likely, has already been done during TSRC pre-processing/validation
                     this.LABELBLOCKS[lBlockName] = this.ATPI
                 } 
-                else {
-                       // raise exception on duplicate block names
-                        this.debug(`~~~[DUPLICATE LABEL-BLOCK FOUND: ${lBlockName}]`)
-                        throw new Error(`~~~[DUPLICATE LABEL-BLOCK FOUND: ${lBlockName}]`)
-                }
             }
         }
 
@@ -2007,11 +1998,6 @@ export class TEA_RunTime {
                     // prevent duplication of block names
                     if (!this.LABELBLOCKS.hasOwnProperty(lBlockName)) {
                         this.LABELBLOCKS[lBlockName] = this.ATPI
-                    }
-                    else {
-                           // raise exception on duplicate block names
-                            this.debug(`~~~[DUPLICATE LABEL-BLOCK FOUND: ${lBlockName}]`)
-                            throw new Error(`~~~[DUPLICATE LABEL-BLOCK FOUND: ${lBlockName}]`)
                     }
                 }
             }
