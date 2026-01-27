@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.5"
+VERSION = "1.3.6"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -1529,6 +1529,9 @@ class TEA_RunTime:
 # store current code position under given label block name
 # but most likely, has already been done during TSRC pre-processing/validation
                         LABELBLOCKS[lBlockName] = ATPI
+                    else: #raise exception on duplicate block names
+                        self.debug(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
+                        raise ValueError(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
             if tc == "L!":
                 if len(tpe_str) == 0:
                     # INERT
@@ -1540,6 +1543,9 @@ class TEA_RunTime:
                         # prevent duplication of block names
                         if not (lBlockName in LABELBLOCKS):
                             LABELBLOCKS[lBlockName] = ATPI
+                        else: #raise exception on duplicate block names
+                            self.debug(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
+                            raise ValueError(f"~~~[DUPLICATE LABEL-BLOCK FOUND: {lBlockName}]")
 
             return io
 
