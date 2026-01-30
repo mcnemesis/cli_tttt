@@ -7055,9 +7055,7 @@ n!: & Same as \texttt{n:}\\
 \rowcolor{lightgray}\bfseries \makecell[l]{n!:LIMIT} & Same as \texttt{n:LIMIT}\\
 
 
-\makecell[l]{n*:vNAME\\n*:vLIMIT:vLLIMIT:vSIZE:vGLUE} & Same as \texttt{n!:LIMIT} or the longer form,  \texttt{n:LIMIT:LLIMIT:SIZE:GLUE} but referencing values stored in vaults\\
-
-\rowcolor{lightgray}\bfseries \makecell[l]{m*!:vNAME} & Same as \texttt{m!:STR}, but using  the string stored in the vault with the name vNAME instead of AI. Without vNAME, operates on the default vault.\\
+\makecell[l]{n*:vNAME\\n*:vLIMIT:vLLIMIT:vSIZE:vGLUE\\n*!:vNAME\\n*:vLIMIT:vLLIMIT:vSIZE:vGLUE} & Same as \texttt{n!:LIMIT} or the longer form,  \texttt{n:LIMIT:LLIMIT:SIZE:GLUE} but referencing values stored in vaults\\
 
  
  \hline
@@ -11756,8 +11754,6 @@ Also note that, oftentimes, one might get headaches over text processing not bec
 \end{figure}
 
 
-\vspace{2em}
-
 The two cases compared via the TEA WEB IDE are not as satisfactory despite using the same exact TEA code/solution and same exact sample inputs as all the above cases! So, as you see in the outputs below, somehow, one might have no option but to compare the text outputs via copying it out of the IDE and testing from elsewhere --- in this case, we tried to simplify the text-area widget's styling as much as possible, and especially enforced styling using the monospace font-family, but still, the differences one notices can make debugging via inspection of text output quite painful if one doesn't understand the cause of the differences!
 
 
@@ -11779,43 +11775,737 @@ The two cases compared via the TEA WEB IDE are not as satisfactory despite using
   \end{center}
 \end{figure}
 
-
-\vspace{2em}
-
-
  
 \section{EXAMPLE APPLICATIONS of T:}
 \label{SECEXAMPT}
 
   
-blah blah
+As you might have noticed studying those examples covered in the last section, the \textbf{T-Command Space}, also merely called the ``TRANSFORM" commands, are very great when it comes to formatting text using TEA. Especially with regards to the artistic alignment instructions, one finds that \texttt{t:} can be very handy when there is need to come up with some artistic text based on just creative alignment, repetition, and careful processing of some basic starter text patterns --- and talking of which, our next application shall especially help draw the picture for you --- in fact, it is a great example for drawing abstract pictures using just Text Processing.
 
 
 
-\subsection{EXAMPLE 1: ...}
+\subsection{EXAMPLE 1: COMPUTATIONAL ART: Abstract Text-Art Generator}
 \label{SECEXAMP1T}
 
 
 
+This program is for \textbf{generating abstract art}. It basically builds upon ideas we have already encountered in earlier TEA examples such as in the generation of ``Islamic Skyline Art" --- see \textbf{Example 3} in \textbf{\hyperref[SECNOTET]{Section \ref{SECNOTET}}}, but also builds on the non-trivial TEA code we used to implement the text right-alignment output as shown in \textbf{Example 6} of that same section. 
 
-blah blah
+\vspace{2em}
 
-
-
-
-
+The emphasis is on abstract art, but first, to put things into perspective, we'll briefly look into what the authorities consider ``art" to be, and as such, shall want to keep some of these ideas from a work by \textbf{Robert Wilkinson}\cite{wilkinson1991theories} in mind:\\
 
 
 
 
+\noindent
+\begin{minipage}{1\textwidth}
+\vspace{1em}
+\begin{quotation}
+{\ttfamily
+
+What the nature of art is[?]... For most of the last two millennia it has been assumed that to answer this question is the same as to define the term `art', and it has been taken for granted that there will be a quality or set of qualities shared by all works of art, as a result of the possession of which we apply the term `art' to them. In other words, what makes something a work of art is that it possesses a quality or qualities which only works of art have. There has been a small number of answers to the question of what this defining quality or qualities might be...
+
+\vspace{1em}
+
+[For example] a very early answer, and the one that held the field for longest, is that \textit{the defining property of art is that it is an imitation of nature.}... found in Plato... generally held to be derivable from some remarks by Aristotle in his \textit{Poetics}
+
+\vspace{1em}
+
+A second candidate put forward as the defining property of art is expression... According to expression theories, what is distinctive about art is that it is an expression of the artist's emotion such that the artist's emotion is transmitted to others, it being assumed that the experience of emotion is one we desire and rightly value...
+
+\vspace{1em}
+
+Other thinkers have contented that the distinctive feature of art is to be found in the formal properties of a work of art...
+
+\vspace{1em}
+
+Formal qualities of works of art... `expressive qualities'.. are two types of aesthetic quality... of which the most important is beauty... that beauty consists in a harmonious, symmetrical and balanced arrangement of the parts of an object.
+
+}
+\hspace*{\fill} ---\textbf{Robert Wilkinson}, \textit{Theories of Art and Beauty}, 1991\cite{wilkinson1991theories}
+\end{quotation}
+\vspace{1em}
+\end{minipage}
 
 
 
+ \vspace{2em}
+ 
+ And because we wish to have a means to create art that is not just random (given that each other piece shall be created spontaneously and might never ever be repeated nor similar to any others), but also abstract(``pictures and sculptures which do not on the face appear to be imitations of anything"\cite{wilkinson1991theories}), but also beautiful --- concerning which aspect, despite our working in pure text, and only using basic motifs, shall undoubtedly attempt to preserve or enforce harmony, symmetry and balance so as to create aesthetically pleasing works, with or without explicit meaning.
+
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ABSTRACT ASCII-ART GENERATOR v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+########################################
+# ABSTRACT ASCII-ART GENERATOR v1
+########################################
+# Based off the TEA right-align transform code,
+# This program is meant to create beautiful
+# Abstract Art using basic text symbols
+# and just two basic ideas; triangles 
+# and rectangles. 
+#----------------------------------------
+# Copyright: Fut. Prof. J. Willrich Lutalo
+# in Computational Art: https://t.me/jwlart
+#########################################
+
+#---[ FIRSt, BUILD TRIANGULAR ART PIECE ]
+v:vPalette:{=-=|=-=|=-=|=-=|=-=}
+a*!:vPalette # create random baseline pattern
+t: #apply triangulation transform
+
+#store starter text pattern
+v:vLTEXT
+
+#---[ THEN TRANSFORM INTO RECTANGULAR ART PIECE ]
+# constants
+v:vLGLUE:{=======} #newline delimiter
+v:vEMPTY:{}
+v:vPADCHAR:{ }
+v:vPADCHAR:{-} #uncomment to see how the padding worked
+v:vNL:{
+}
+v:vSPACECHAR:{ }
+
+# variables
+v:vNLONGEST:{0} #store length of longest line
+v:vRALIGNED_TEXT:{} # to hold right-aligned text
+
+#--[begin processing..]
+g*.:vLGLUE | v:vFLATTEXT | v:vFLATTEXT_ORIG #store flattened text
+y:vLGLUE | x!:{.*$} | v:vLGLUE_EXT
+
+l:lPROCESS_LINE
+y:vFLATTEXT  | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE 
+
+y:vNLINE | x!:{>} | x*!:vNLONGEST | r.: | f:^true$:lSETMAX:lNEXTLINE
+l:lSETMAX
+y:vNLINE | v:vNLONGEST
+l:lNEXTLINE
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+
+f:^$:lPROCESS_ALIGN
+j:lPROCESS_LINE
+
+l:lPROCESS_ALIGN
+y:vNLONGEST 
+
+y:vFLATTEXT_ORIG | v:vFLATTEXT #restore..
+
+l:lPROCESS_LINE_ALIGN
+y:vFLATTEXT | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE
+y:vNLINE | x!:{<} | x*!:vNLONGEST | r.: | f:^true$:lADDPAD:lNEXTLINE_ALIGN
+l:lADDPAD
+#build pad...
+y:vNLONGEST | x!:{-} | x*!:vNLINE | r.: | v:vNPAD_LEN_MAX
+v:vI:{0} | v:vPAD:{}
+l:lSTART_PAD
+g*:{}:vPAD:vPADCHAR | v:vPAD
+v*!:vPAD | v:vNPAD_LEN
+y:vNPAD_LEN | x!:{==} | x*!:vNPAD_LEN_MAX | r.: | f:^true$:lAPPLYPAD
+j:lSTART_PAD
+l:lAPPLYPAD
+g*:{}:vPAD:vLINE | v:vLINE_PADDED
+g*:{}:vRALIGNED_TEXT:vLINE_PADDED:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+j:lUPDATE_FLATTEXT
+
+l:lNEXTLINE_ALIGN
+g*:{}:vRALIGNED_TEXT:vLINE:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+l:lUPDATE_FLATTEXT
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+f:^$:lFIN_ALIGN
+j:lPROCESS_LINE_ALIGN
+
+l:lFIN_ALIGN
+r*!:vRALIGNED_TEXT:vLGLUE:vNL | v:vRALIGNED_TEXT
+y:vRALIGNED_TEXT #output result
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: ABSTRACT ASCII-ART GENERATOR (AAAG) v1}
+  \label{FIGT1}
+}
+
+
+\vspace{2em}
+
+
+That program is intentionally non-interactive, and processes no external inputs/arguments. It merely creates a random piece of art and then returns it as the final output, after which it then quits.
+
+\vspace{2em}
+
+Some examples of the art it creates (AAAG v1) are as shown in the following sample outputs...
+
+
+\vspace{2em}
+
+\newpage
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from AAAG v1]
+=||-=--==-=|===|==-
+-||-=--==-=|===|==-
+--|-=--==-=|===|==-
+----=--==-=|===|==-
+----=--==-=|===|==-
+-------==-=|===|==-
+-------==-=|===|==-
+-------==-=|===|==-
+--------=-=|===|==-
+----------=|===|==-
+----------=|===|==-
+-----------|===|==-
+------------===|==-
+-------------==|==-
+--------------=|==-
+---------------|==-
+----------------==-
+-----------------=-
+-------------------
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+
+\newpage
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 2 from AAAG v1]
+---=-=-==-=||=|-|-
+====-=-==-=||=|-|-
+-=====-==-=||=|-|-
+--====-==-=||=|-|-
+---======-=||=|-|-
+----=====-=||=|-|-
+-----====-=||=|-|-
+------=====||=|-|-
+-------====||=|-|-
+--------====|=|-|-
+---------=====|-|-
+----------====|-|-
+-----------====-|-
+------------====|-
+-------------====-
+------------------
+------------------
+------------------
+------------------
+------------------
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+\newpage
+
+
+However, one shall quickly realize that AAAG v1 somewhat lacks variety, and that might also help if we had some way to decide which kind of patterns as well as styles to use for the generation of our art. Thus, the following enhanced version, also interactive, shall allow us to do the following at minimum:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item Decide what style of Abstract Art we wish to create --- \textbf{Basic}, \textbf{Mirrored} and \textbf{Chaos}.
+\item [only Chaos] Randomly decide which of several starter patterns/motifs to use for the seeding of our art-piece.
+\item [only Chaos] Randomly decide what extra patterns or symbols the generator might throw into the generation process.
+\item [only Chaos] Randomly decide if to shuffle the final art-piece or not.
+\item Assign the generated art-piece some automatic, but relevant name --- based on user-specified art style, date, time and some entropy.
+\end{enumerate}
+
+\vspace{2em}
+
+
+With that specification of an abstract art generator, and our original first implementation, we then come up with what we are referring to as \textbf{ABSTRACT TEXT-ART GENERATOR v2}, and whose TEA code  is as follows...
+
+
+\vspace{2em}
+
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ABSTRACT TEXT-ART GENERATOR v2, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vDESCRIPTION:{
+###############################
+# ABSTRACT TEXT-ART GENERATOR v2
+###############################
+ATAG was originally based off of the TEA right-align transform code. The program is meant to create beautiful abstract text-art using basic motifs and just two basic ideas; triangulation and rectangles. 
+###############################
+CREDITS: Fut. Prof. J. Willrich Lutalo 
+Computational Art: https://t.me/jwlart
+###############################}
+
+#---[ some variables ]
+v:vARTSEED:{}
+v:vARTWORK:{}
+z.:DATE | v:vARTNAME
+
+#---[ WELCOME MESSAGE ]
+y:vDESCRIPTION | i*:
+
+#---[ First, let's Build a PROMPT ]
+l:lPICKSTYLE
+v:vSTYLE_PROMPT:{Select TEXT-ART Style: | [a] Basic | [b] Mirror | [c] Chaos}
+y:vSTYLE_PROMPT | i*: | t.: | z: | v:vSTYLE | f!:^[abc]$:lPICKSTYLE
+
+#---[ Next, BUILD TRIANGULAR ART PIECE ]
+#VARIANT 0: Basic Pallete
+v:vPalette:{=-=|=-=|=-=|=-=|=-=} | y:vPalette | v:vARTSEED
+a*!:vARTSEED | v:vARTSEED # create random baseline pattern
+#VARIANT 1: rightmost triangulation
+t: | v:vARTSEED #apply right-most triangulation transform
+
+y:vSTYLE | f!:a:lSKIPBASIC
+j:lBASICBASEPALETTE
+
+l:lSKIPBASIC
+y:vSTYLE | f!:c:lSKIPCHAOS
+
+# chaos: should we tweak palette?
+n!:1:0 | v:vUSE_RANDOM_PALETTE
+y:vUSE_RANDOM_PALETTE| f:1:lTWEAK_PALETTE:lBASICBASEPALETTE
+l:lTWEAK_PALETTE
+
+# first, reset to basic palette mode...
+v:vPalette:{=-=|=-=|=-=|=-=|=-=} | y:vPalette | v:vARTSEED
+a*!:vARTSEED | v:vARTSEED # create random baseline pattern
+
+#decide which to use:
+n!:2:1 | v:vRANDOM_PALETTE_INDEX
+
+y:vRANDOM_PALETTE_INDEX | f:2:lUSE_PAL2:lSKIP_PAL2
+l:lUSE_PAL2
+#VARIANT 0a: Basic Pallete 2
+v:vPalette:{=*=|=-=|=*=|=-=|=*=} | y:vPalette | v:vARTSEED
+j:lPALETTE_FINISHED
+l:lSKIP_PAL2
+
+y:vRANDOM_PALETTE_INDEX | f:3:lUSE_PAL3:lSKIP_PAL3
+l:lUSE_PAL3
+#VARIANT 0b: Basic Pallete 3
+v:vPalette:{=*=|=-=+=*=+=-=|=*=} | y:vPalette | v:vARTSEED
+j:lPALETTE_FINISHED
+l:lSKIP_PAL3
+
+l:lPALETTE_FINISHED
+#make it fat or keep thin?
+n!:1:0 | v:vRANDOM_PALETTE_SIZE
+
+y:vRANDOM_PALETTE_SIZE | f:0:lSKIP_FATTENING
+#VARIANT 0c: Fat Basic Pallete
+v:vEXTRA_SYMBOLS:{#[]~:} | v:vGLUE:{} | v:vLLIMIT:{1}
+v*!:vPalette | v:vNPALSIZE | n*:vNPALSIZE:vLLIMIT | v:vNEXTENSION_SIZE
+p*!:vNEXTENSION_SIZE:vGLUE:vEXTRA_SYMBOLS | v:vEXTENSION
+g*:{}:vPalette:vEXTENSION | a!: | v:vARTSEED
+l:lSKIP_FATTENING
+
+l:lBASICBASEPALETTE
+
+y:vSTYLE | f:a:lPROCESSBASIC
+y:vUSE_RANDOM_PALETTE| f:0:lFINISHED_TRIANGULATION # so we don't apply triangulation twice!
+
+#use left or right triangulation?
+n!:1:0 | v:vRANDOM_TRIANGULATION
+y:vRANDOM_TRIANGULATION | f:0:lRIGHT_TRIANGULATION:lLEFT_TRIANGULATION
+l:lRIGHT_TRIANGULATION
+y:vARTSEED | t: | v:vARTSEED #apply right-most triangulation transform
+j:lFINISHED_TRIANGULATION
+
+l:lLEFT_TRIANGULATION
+#VARIANT 2: leftmost triangulation
+y:vARTSEED | t!: | v:vARTSEED #apply left-most triangulation transform
+
+l:lFINISHED_TRIANGULATION
+
+l:lSKIPCHAOS
+y:vSTYLE | f!:[bc]:lSKIPMIRROR
+f:b:lAPPLYMIRROR
+
+#apply mirror or not?
+n!:1:0 | v:vRANDOM_APPLY_MIRROR
+y:vRANDOM_APPLY_MIRROR | f:0:lSKIPMIRROR
+
+l:lAPPLYMIRROR
+#VARIANT 3: invert triangulation
+y:vARTSEED | m!: | v:vARTSEED
+
+l:lSKIPMIRROR
+
+l:lPROCESSBASIC
+y:vARTSEED
+#store starter text pattern
+v:vLTEXT
+
+#---[ THEN TRANSFORM INTO ART WORK]
+# constants
+v:vLGLUE:{=======} #newline delimiter
+v:vEMPTY:{}
+v:vPADCHAR:{ }
+v:vPADCHAR:{-} #uncomment to see how the padding worked
+v:vNL:{
+}
+v:vSPACECHAR:{ }
+
+# variables
+v:vNLONGEST:{0} #store length of longest line
+v:vRALIGNED_TEXT:{} # to hold right-aligned text
+
+#--[begin processing..]
+g*.:vLGLUE | v:vFLATTEXT | v:vFLATTEXT_ORIG #store flattened text
+y:vLGLUE | x!:{.*$} | v:vLGLUE_EXT
+
+l:lPROCESS_LINE
+y:vFLATTEXT  | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE 
+
+y:vNLINE | x!:{>} | x*!:vNLONGEST | r.: | f:^true$:lSETMAX:lNEXTLINE
+l:lSETMAX
+y:vNLINE | v:vNLONGEST
+l:lNEXTLINE
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+
+f:^$:lPROCESS_ALIGN
+j:lPROCESS_LINE
+
+l:lPROCESS_ALIGN
+y:vNLONGEST 
+
+y:vFLATTEXT_ORIG | v:vFLATTEXT #restore..
+
+l:lPROCESS_LINE_ALIGN
+y:vFLATTEXT | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE
+y:vNLINE | x!:{<} | x*!:vNLONGEST | r.: | f:^true$:lADDPAD:lNEXTLINE_ALIGN
+l:lADDPAD
+#build pad...
+y:vNLONGEST | x!:{-} | x*!:vNLINE | r.: | v:vNPAD_LEN_MAX
+v:vI:{0} | v:vPAD:{}
+l:lSTART_PAD
+g*:{}:vPAD:vPADCHAR | v:vPAD
+v*!:vPAD | v:vNPAD_LEN
+y:vNPAD_LEN | x!:{==} | x*!:vNPAD_LEN_MAX | r.: | f:^true$:lAPPLYPAD
+j:lSTART_PAD
+l:lAPPLYPAD
+g*:{}:vPAD:vLINE | v:vLINE_PADDED
+g*:{}:vRALIGNED_TEXT:vLINE_PADDED:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+j:lUPDATE_FLATTEXT
+
+l:lNEXTLINE_ALIGN
+g*:{}:vRALIGNED_TEXT:vLINE:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+l:lUPDATE_FLATTEXT
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+f:^$:lFIN_ALIGN
+j:lPROCESS_LINE_ALIGN
+
+l:lFIN_ALIGN
+r*!:vRALIGNED_TEXT:vLGLUE:vNL | v:vRALIGNED_TEXT
+y:vRALIGNED_TEXT #output result
+v:vARTWORK # store tentative final art piece
+
+#---[ Post-Processing! ]
+# shuffle output or not?
+y:vSTYLE | f!:c:lFINISH
+n!:1:0 | v:vRANDOM_SHUFFLE
+y:vRANDOM_SHUFFLE| f:0:lFINISH
+y:vARTWORK | a: | h!:{ } | r!:{ }:{}
+v:vARTWORK # store shuffled piece
+
+l:lFINISH
+# include name of art-work...
+y:vSTYLE | z!: | v:vSTYLE_LABEL
+z.:TIME | g!: | x:{-} | v:vTIME_LABEL
+p!:2:{}:{AEIOU} | v:vINSTANCE_LABEL
+y:vARTNAME | d!:{(^.|[ ].)|.$} | g!: | x*:vSTYLE_LABEL | x*!:vTIME_LABEL | x*!:vINSTANCE_LABEL | v:vARTNAME
+g*:{
+}:vARTNAME:vARTWORK #show final art
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: ABSTRACT TEXT-ART GENERATOR (ATAG) v2}
+  \label{FIGT2}
+}
+
+
+\vspace{2em}
+
+
+And so, to appreciate this art generator of ours, ATAG v2, check out some of the art works it outputs under the three categories/art-styles:
+
+\newpage
+
+\subsubsection{Basic Style}
+
+
+   \begin{tcbverbatim}[title=Sample OUTPUT 1 from ATAG v2]
+AF3J26-1736UI
+=--=|-=-||===-====|
+---=|-=-||===-====|
+---=|-=-||===-====|
+---=|-=-||===-====|
+----|-=-||===-====|
+------=-||===-====|
+------=-||===-====|
+--------||===-====|
+--------||===-====|
+---------|===-====|
+----------===-====|
+-----------==-====|
+------------=-====|
+--------------====|
+--------------====|
+---------------===|
+----------------==|
+-----------------=|
+------------------|
+  \end{tcbverbatim}
+  
+
+\newpage
 
 
 
+   \begin{tcbverbatim}[title=Sample OUTPUT 2 from ATAG v2]
+AF3J26-1746IE
+==-=||==-=---===|=|
+-=-=||==-=---===|=|
+---=||==-=---===|=|
+---=||==-=---===|=|
+----||==-=---===|=|
+-----|==-=---===|=|
+------==-=---===|=|
+-------=-=---===|=|
+---------=---===|=|
+---------=---===|=|
+-------------===|=|
+-------------===|=|
+-------------===|=|
+-------------===|=|
+--------------==|=|
+---------------=|=|
+----------------|=|
+-----------------=|
+------------------|
+  \end{tcbverbatim}
 
 
+\newpage
+
+
+\subsubsection{Mirrored Style}
+
+
+   \begin{tcbverbatim}[title=Sample OUTPUT 3 from ATAG v2]
+BF3J26-1747IO
+-------------------
+-------------------
+-----------------=-
+----------------==-
+-----------===-===|
+--------------===||
+-------------===|||
+-------------===|||
+---------=-===|||=-
+----------===|||=--
+----------===|||=--
+--------=-===|||=--
+----==-===|||=--==|
+-------===|||=--==|
+-----=-===|||=--==|
+-==-===|||=--==|==-
+----===|||=--==|==-
+=-===|||=--==|==-=-
+-===|||=--==|==-=-
+=
+  \end{tcbverbatim}
+  
+
+\newpage
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 4 from ATAG v2]
+BF3J26-1749OO
+---------|
+--------||
+--------||
+-------=||
+------==||
+-----===||
+----====||
+---=====||
+--======||
+----------
+--------||
+----------
+--------||
+----------
+--------||
+----------
+--------||
+----------
+--------||
+----------
+--------||
+---------|
+--------||
+---------|
+-------=||
+---------|
+------==||
+---------|
+-----===||
+-----|===|
+  \end{tcbverbatim}
+  
+
+\newpage
+
+
+\subsubsection{Chaos Style}
+
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 5 from ATAG v2]
+CF3J26-1752OU
+---------------==-#]=~-=|=-|~-#
+---------------------==-#]=~-=|
+---------------------------==-#
+----==-#]=~-=|=-|~-#[]=|=|==]=:
+----------------------------
+--------------==-#]=~-=|=-|~-#[
+------------------------==-#]=~
+---------==-#]=~-=|=-|~-#[]=|=|
+-----------------------==-#]=~-
+--------------------------==-#]
+------------------==-#]=~-=|=-|
+----------------==-#]=~-=|=-|~-
+--------------------===-#]=~-=|
+===
+==-#]=~-=|=-|~-#[]=|=|==]=:-:#:
+----------------------------==-
+------------===-#]=~-=|=-|~-#[]
+---==-#]=~-=|=-|~-#[]=|=|==]=:-
+--------===-#]=~-=|=-|~-#[]=|=|
+--==-#]=~-=|=-|~-#[]=|=|==]=:-:
+-------------------------===-#]
+-------====-#]=~-=|=-|~-#[]=|=|
+----------------------===-#]=~-
+----------===-#]=~-=|=-|~-#[]=|
+-------------------==-#]=~-=|=-
+-------------------------------
+-==-#]=~-=|=-|~-#[]=|=|==]=:-:#
+-----===-#]=~-=|=-|~-#[]=|=|==]
+------==-#]=~-=|=-|~-#[]=|=|==]
+-------------==-#]=~-=|=-|~-#[]
+-----------==-#]=~-=|=-|~-#[]=|
+-----------------==-#]=~-=|=-|~
+  \end{tcbverbatim}
+  
+
+\newpage
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 6 from ATAG v2]
+CF3J26-1753UA
+----|-|-=|=|
+------------
+------------
+-----=|-|-=|
+------------
+------------
+------------
+------|-|-=|
+------------
+------------
+
+------------
+------------
+------------
+------------
+------------
+------------
+------------
+---------|-|
+------------
+----------|-
+--|-|-=|=|--
+------------
+------------
+------------
+-=|-|-=|=|--
+------------
+---|-|-=|=|-
+-----------|
+------------
+------------
+------------
+--------|-|-
+-------=|-|-
+|-|-=|=|--=-
+  \end{tcbverbatim}
+  
+
+\newpage
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 7 from ATAG v2]
+CF3J26-1754AU
+=*=|=-=|=*=|=-=|=*
+=*=|=-=|=*=|=-=|=*
+-==|=-=|=*=|=-=|=*
+--=|=-=|=*=|=-=|=*
+---==-=|=*=|=-=|=*
+----=-=|=*=|=-=|=*
+-----==|=*=|=-=|=*
+------=|=*=|=-=|=*
+-------==*=|=-=|=*
+--------=*=|=-=|=*
+---------==|=-=|=*
+----------=|=-=|=*
+-----------==-=|=*
+------------=-=|=*
+-------------==|=*
+--------------=|=*
+---------------==*
+----------------=*
+----------------
+==
+  \end{tcbverbatim}
+  
+  
+ And so, as you can tell from those outputs, ATAG isn't a useless tool. A creative artisan could for example take those output works and further enhance them as such:
+ 
+ \begin{itemize}
+ \item The symbols could be colorized based on some special rules.
+ \item The common pattern of the padding dashes could be varied as per some hue gradient independently of and contrasting against the triangular pattern symbols.
+ \item Some creative substitution could be conducted in a richer editor so that some symbols are for example replaced by more appealing unicode characters, etc.
+ \end{itemize}
+ 
+ \subsubsection{MODIFIED ATAG Outputs}
+ 
+ Using the post-processing ideas/suggestions above, we for example might end up with art works such as the following, that are merely enhancements of the basic ATAG outputs we have already seen in the examples above...
+ 
+ 
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/pdfs/AF3J26-1736UI.pdf}\\
+   \caption{Enlarged and colorized \textbf{AF3J26-1736UI}}
+  \label{FIGSTEXAMPLEART1}
+  \end{center}
+\end{figure}
+ 
+ 
+ 
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/pdfs/BF3J26-1747IO.pdf}\\
+   \caption{Enlarged and colorized \textbf{BF3J26-1747IO}}
+  \label{FIGSTEXAMPLEART2}
+  \end{center}
+\end{figure}
+ 
+ 
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/pdfs/CF3J26-1752OU.pdf}\\
+   \caption{Enlarged and colorized \textbf{CF3J26-1752OU}}
+  \label{FIGSTEXAMPLEART3}
+  \end{center}
+\end{figure}
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%

@@ -1,0 +1,191 @@
+v:vDESCRIPTION:{
+###############################
+# ABSTRACT TEXT-ART GENERATOR v2
+###############################
+ATAG was originally based off of the TEA right-align transform code. The program is meant to create beautiful abstract text-art using basic motifs and just two basic ideas; triangulation and rectangles. 
+###############################
+CREDITS: Fut. Prof. J. Willrich Lutalo 
+Computational Art: https://t.me/jwlart
+###############################}
+
+#---[ some variables ]
+v:vARTSEED:{}
+v:vARTWORK:{}
+z.:DATE | v:vARTNAME
+
+#---[ WELCOME MESSAGE ]
+y:vDESCRIPTION | i*:
+
+#---[ First, let's Build a PROMPT ]
+l:lPICKSTYLE
+v:vSTYLE_PROMPT:{Select TEXT-ART Style: | [a] Basic | [b] Mirror | [c] Chaos}
+y:vSTYLE_PROMPT | i*: | t.: | z: | v:vSTYLE | f!:^[abc]$:lPICKSTYLE
+
+#---[ Next, BUILD TRIANGULAR ART PIECE ]
+#VARIANT 0: Basic Pallete
+v:vPalette:{=-=|=-=|=-=|=-=|=-=} | y:vPalette | v:vARTSEED
+a*!:vARTSEED | v:vARTSEED # create random baseline pattern
+#VARIANT 1: rightmost triangulation
+t: | v:vARTSEED #apply right-most triangulation transform
+
+y:vSTYLE | f!:a:lSKIPBASIC
+j:lBASICBASEPALETTE
+
+l:lSKIPBASIC
+y:vSTYLE | f!:c:lSKIPCHAOS
+
+# chaos: should we tweak palette?
+n!:1:0 | v:vUSE_RANDOM_PALETTE
+y:vUSE_RANDOM_PALETTE| f:1:lTWEAK_PALETTE:lBASICBASEPALETTE
+l:lTWEAK_PALETTE
+
+# first, reset to basic palette mode...
+v:vPalette:{=-=|=-=|=-=|=-=|=-=} | y:vPalette | v:vARTSEED
+a*!:vARTSEED | v:vARTSEED # create random baseline pattern
+
+#decide which to use:
+n!:2:1 | v:vRANDOM_PALETTE_INDEX
+
+y:vRANDOM_PALETTE_INDEX | f:2:lUSE_PAL2:lSKIP_PAL2
+l:lUSE_PAL2
+#VARIANT 0a: Basic Pallete 2
+v:vPalette:{=*=|=-=|=*=|=-=|=*=} | y:vPalette | v:vARTSEED
+j:lPALETTE_FINISHED
+l:lSKIP_PAL2
+
+y:vRANDOM_PALETTE_INDEX | f:3:lUSE_PAL3:lSKIP_PAL3
+l:lUSE_PAL3
+#VARIANT 0b: Basic Pallete 3
+v:vPalette:{=*=|=-=+=*=+=-=|=*=} | y:vPalette | v:vARTSEED
+j:lPALETTE_FINISHED
+l:lSKIP_PAL3
+
+l:lPALETTE_FINISHED
+#make it fat or keep thin?
+n!:1:0 | v:vRANDOM_PALETTE_SIZE
+
+y:vRANDOM_PALETTE_SIZE | f:0:lSKIP_FATTENING
+#VARIANT 0c: Fat Basic Pallete
+v:vEXTRA_SYMBOLS:{#[]~:} | v:vGLUE:{} | v:vLLIMIT:{1}
+v*!:vPalette | v:vNPALSIZE | n*:vNPALSIZE:vLLIMIT | v:vNEXTENSION_SIZE
+p*!:vNEXTENSION_SIZE:vGLUE:vEXTRA_SYMBOLS | v:vEXTENSION
+g*:{}:vPalette:vEXTENSION | a!: | v:vARTSEED
+l:lSKIP_FATTENING
+
+l:lBASICBASEPALETTE
+
+y:vSTYLE | f:a:lPROCESSBASIC
+y:vUSE_RANDOM_PALETTE| f:0:lFINISHED_TRIANGULATION # so we don't apply triangulation twice!
+
+#use left or right triangulation?
+n!:1:0 | v:vRANDOM_TRIANGULATION
+y:vRANDOM_TRIANGULATION | f:0:lRIGHT_TRIANGULATION:lLEFT_TRIANGULATION
+l:lRIGHT_TRIANGULATION
+y:vARTSEED | t: | v:vARTSEED #apply right-most triangulation transform
+j:lFINISHED_TRIANGULATION
+
+l:lLEFT_TRIANGULATION
+#VARIANT 2: leftmost triangulation
+y:vARTSEED | t!: | v:vARTSEED #apply left-most triangulation transform
+
+l:lFINISHED_TRIANGULATION
+
+l:lSKIPCHAOS
+y:vSTYLE | f!:[bc]:lSKIPMIRROR
+f:b:lAPPLYMIRROR
+
+#apply mirror or not?
+n!:1:0 | v:vRANDOM_APPLY_MIRROR
+y:vRANDOM_APPLY_MIRROR | f:0:lSKIPMIRROR
+
+l:lAPPLYMIRROR
+#VARIANT 3: invert triangulation
+y:vARTSEED | m!: | v:vARTSEED
+
+l:lSKIPMIRROR
+
+l:lPROCESSBASIC
+y:vARTSEED
+#store starter text pattern
+v:vLTEXT
+
+#---[ THEN TRANSFORM INTO ART WORK]
+# constants
+v:vLGLUE:{=======} #newline delimiter
+v:vEMPTY:{}
+v:vPADCHAR:{ }
+v:vPADCHAR:{-} #uncomment to see how the padding worked
+v:vNL:{
+}
+v:vSPACECHAR:{ }
+
+# variables
+v:vNLONGEST:{0} #store length of longest line
+v:vRALIGNED_TEXT:{} # to hold right-aligned text
+
+#--[begin processing..]
+g*.:vLGLUE | v:vFLATTEXT | v:vFLATTEXT_ORIG #store flattened text
+y:vLGLUE | x!:{.*$} | v:vLGLUE_EXT
+
+l:lPROCESS_LINE
+y:vFLATTEXT  | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE 
+
+y:vNLINE | x!:{>} | x*!:vNLONGEST | r.: | f:^true$:lSETMAX:lNEXTLINE
+l:lSETMAX
+y:vNLINE | v:vNLONGEST
+l:lNEXTLINE
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+
+f:^$:lPROCESS_ALIGN
+j:lPROCESS_LINE
+
+l:lPROCESS_ALIGN
+y:vNLONGEST 
+
+y:vFLATTEXT_ORIG | v:vFLATTEXT #restore..
+
+l:lPROCESS_LINE_ALIGN
+y:vFLATTEXT | d*:vLGLUE_EXT | v:vLINE | y*!:vLINE | v:vNLINE
+y:vNLINE | x!:{<} | x*!:vNLONGEST | r.: | f:^true$:lADDPAD:lNEXTLINE_ALIGN
+l:lADDPAD
+#build pad...
+y:vNLONGEST | x!:{-} | x*!:vNLINE | r.: | v:vNPAD_LEN_MAX
+v:vI:{0} | v:vPAD:{}
+l:lSTART_PAD
+g*:{}:vPAD:vPADCHAR | v:vPAD
+v*!:vPAD | v:vNPAD_LEN
+y:vNPAD_LEN | x!:{==} | x*!:vNPAD_LEN_MAX | r.: | f:^true$:lAPPLYPAD
+j:lSTART_PAD
+l:lAPPLYPAD
+g*:{}:vPAD:vLINE | v:vLINE_PADDED
+g*:{}:vRALIGNED_TEXT:vLINE_PADDED:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+j:lUPDATE_FLATTEXT
+
+l:lNEXTLINE_ALIGN
+g*:{}:vRALIGNED_TEXT:vLINE:vLGLUE | v:vRALIGNED_TEXT #add to aligned text...
+l:lUPDATE_FLATTEXT
+y:vFLATTEXT | d*!:vLGLUE_EXT | v:vFLATTEXT | r*:vFLATTEXT:vLGLUE:vEMPTY | v:vFLATTEXT
+f:^$:lFIN_ALIGN
+j:lPROCESS_LINE_ALIGN
+
+l:lFIN_ALIGN
+r*!:vRALIGNED_TEXT:vLGLUE:vNL | v:vRALIGNED_TEXT
+y:vRALIGNED_TEXT #output result
+v:vARTWORK # store tentative final art piece
+
+#---[ Post-Processing! ]
+# shuffle output or not?
+y:vSTYLE | f!:c:lFINISH
+n!:1:0 | v:vRANDOM_SHUFFLE
+y:vRANDOM_SHUFFLE| f:0:lFINISH
+y:vARTWORK | a: | h!:{ } | r!:{ }:{}
+v:vARTWORK # store shuffled piece
+
+l:lFINISH
+# include name of art-work...
+y:vSTYLE | z!: | v:vSTYLE_LABEL
+z.:TIME | g!: | x:{-} | v:vTIME_LABEL
+p!:2:{}:{AEIOU} | v:vINSTANCE_LABEL
+y:vARTNAME | d!:{(^.|[ ].)|.$} | g!: | x*:vSTYLE_LABEL | x*!:vTIME_LABEL | x*!:vINSTANCE_LABEL | v:vARTNAME
+g*:{
+}:vARTNAME:vARTWORK #show final art
