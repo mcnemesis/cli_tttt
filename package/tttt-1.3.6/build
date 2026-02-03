@@ -18,6 +18,11 @@ pandoc tttt.1.md -s -t man > tttt.1
 # make it executable
 #chmod a+x zha
 
+# fetch latest AMC (Advanced Mathematics Calculator)
+#cp ../../sample_TEA_programs/mathematics/advanced_mathematics_computer.tea amc
+# make it executable
+#chmod a+x amc
+
 # update package changelog
 # rm debian/changelog.dch
 #dch -i

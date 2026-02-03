@@ -28,8 +28,8 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.1.3"
-TEA_HOMEPAGE = "https://github.com/mcnemesis/cli_tttt"
+VERSION = "1.3.6"
+TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
 """
@@ -93,9 +93,9 @@ class TEA_RunTime:
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    RETEAPROGRAM = r'([a-zA-Z]\.?\*?!?:.*(:.*)*\|?)+(#.*)*'
+    RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*'
     #RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
-    RETI = r'^\s*[a-zA-Z](?:[.!*]|(?:\*!))?:.*$'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -226,13 +226,10 @@ class TEA_RunTime:
                 for lBlockName in params[1:]:
                     cleanlBlockName = lBlockName.strip()
                     if cleanlBlockName in labelblocks:
-                        if cleanlBlockName not in initial_labelblocks:
-                            if TEA_RunTime.DEBUG:
-                                print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{cleanlBlockName}]")
-                                print(f"[INFO] Current L-BLOCKS: \n{labelblocks}")
-                            raise ValueError("[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL")
-                        else:
-                            pass # allow to override
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{cleanlBlockName}]")
+                            print(f"[INFO] Current L-BLOCKS: \n{labelblocks}")
+                        raise ValueError(f"[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL: [{cleanlBlockName}]")
                     labelblocks[cleanlBlockName] = TI_index + 1 # so we ref next instruction in program, after the label
             TI_index += 1
 
@@ -324,9 +321,19 @@ class TEA_RunTime:
         def util_gen_rand(limit, ll=0):
             return limit if limit == ll else random.randint(int(ll), int(limit))
 
-        def util_sort_words(val):
-            parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val)
-            lparts = sorted(parts)
+        def util_sort_words_smartly(val):
+            import re; number_pattern = re.compile(r'^[+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?$')
+            parts = re.split(TEA_RunTime.RE_WHITE_SPACE, val.strip())
+            sortNumeric = True
+            for s in parts:
+                if not number_pattern.match(s):
+                    sortNumeric = False
+                    break
+            if sortNumeric:
+                self.debug("----[SMART Sort Words: Numerically]")
+            else:
+                self.debug("----[SMART Sort Words: Lexically]")
+            lparts = sorted(parts, key=float) if sortNumeric else sorted(parts)
             return TEA_RunTime.GLUE.join(lparts)
 
         def util_sort_chars(val):
@@ -349,15 +356,41 @@ class TEA_RunTime:
                     permutations.append(vAnagram)
             return glue.join(permutations)
 
-
-        def util_gen_rand_string(size=None, alphabet=TEA_RunTime.EXTENDED_ALPHABET, glue=TEA_RunTime.EMPTY_STR):
+        def util_gen_rand_string(size=None,  glue=TEA_RunTime.EMPTY_STR, alphabet=TEA_RunTime.EXTENDED_ALPHABET):
             instance_limit = util_gen_rand(int(size) if size is not None else 100,ll=1)
             if size is not None:
                 instance_limit = size
             if glue:
-                return glue.join(random.choice(alphabet) for _ in range(instance_limit))
+                rand_str = TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
+                rand_str = re.sub(TEA_RunTime.RE_WHITE_SPACE, glue, rand_str)
+                return rand_str
             else:
                 return TEA_RunTime.EMPTY_STR.join(random.choice(alphabet) for _ in range(instance_limit))
+
+        def util_smart_replace(pattern, replacement, value):
+            '''Replace pattern with replacement in value just once. First, via naive replacement, and if not effective, via regex'''
+            result = value.replace(pattern, replacement, 1)
+            #return if different, otherwise try regex
+            if result != value:
+                self.debug("----[SMART single-REPLACE VIA NAIVE]")
+                return result
+            else:
+                self.debug("----[SMART single-REPLACE VIA REGEX]")
+                result = re.sub(pattern, replacement, value, count=1)
+                return result
+
+        def util_smart_replace_all(pattern, replacement, value):
+            '''Replace pattern with replacement in value just once. First, via naive replacement, and if not effective, via regex'''
+            result = value.replace(pattern, replacement)
+            #return if different, otherwise try regex
+            if result != value:
+                self.debug("----[SMART all-REPLACE VIA NAIVE]")
+                return result
+            else:
+                self.debug("----[SMART all-REPLACE VIA REGEX]")
+                result = re.sub(pattern, replacement, value)
+                return result
+
 
         def util_braille_projection1(val):
             # Define the pattern for non-whitespace characters
@@ -380,6 +413,25 @@ class TEA_RunTime:
             val = re.sub(rWhiteSpace, '.', val)
             val = val.replace('#', TEA_RunTime.SINGLE_SPACE_CHAR)
             return val
+
+        def util_eval_mathematics(val):
+            # Use host-language mathematics
+            if TEA_RunTime.DEBUG:
+                print(f"***Evaluating MATHEMATICS EXPRESSION: [{val}]")
+            # fix case where boolean literals are passed with unsuported case...
+            val = util_smart_replace_all('true','True',val)
+            val = util_smart_replace_all('false','False',val)
+            val = util_smart_replace_all(r'\|\|','|',val)
+            val = util_smart_replace_all('&&','&',val)
+            try:
+                val = str(eval(val))
+                if val in ['True', 'False']: #massage booleans to match WEB TEA
+                    return val.lower()
+                else:
+                    return val
+            except BaseException as e:
+                self.debug(f"***[TEA MATHEMATICS EVALUATION ERROR]: {e}")
+                return TEA_RunTime.EMPTY_STR # in case of error, return empty space
 
         def util_salt_string(val, salt, injection_limit = None, llimit=None):
             l_val = len(val)
@@ -416,6 +468,56 @@ class TEA_RunTime:
                 unsalted_val = val[:start] + val[end:]
                 return unsalted_val
 
+        def util_str_align_center(val):
+            """
+            Centers each line in a multi-line string based on the longest line,
+            padding both left and right so all lines have equal width.
+            This mimics Microsoft Word's center alignment behavior.
+
+            Parameters:
+                val (str): A string that may contain multiple lines.
+
+            Returns:
+                str: A new string with each line centered and padded to equal width.
+            """
+            if TEA_RunTime.DEBUG:
+                print(f"--[util]-| Applying Transform: CENTER ALIGN to [{val}]")
+
+            if not isinstance(val, str):
+                return ""
+
+            lines = val.splitlines()
+            if not lines:
+                return ""
+
+            trimmed_lines = [line.strip() for line in lines]
+            max_width = max(len(line) for line in trimmed_lines)
+
+            centered_lines = []
+            for line in trimmed_lines:
+                total_padding = max_width - len(line)
+                left_padding = total_padding // 2
+                right_padding = total_padding - left_padding
+                centered_line = ' ' * left_padding + line + ' ' * right_padding
+                centered_lines.append(centered_line)
+
+            return TEA_RunTime.NL.join(centered_lines)
+
+
+        def util_str_trim(val):
+            if TEA_RunTime.DEBUG:
+                print(f"--[util]-| Applying Transform: TRIM+LEFT ALIGN to [{val}]")
+
+            if not isinstance(val, str):
+                return ""
+
+            lines = val.splitlines()
+            if not lines:
+                return ""
+
+            trimmed_lines = [line.strip() for line in lines]
+            return TEA_RunTime.NL.join(trimmed_lines)
+
 # TEA triangular reduction
         def util_triangular_reduction(val):
             if TEA_RunTime.DEBUG:
@@ -436,38 +538,63 @@ class TEA_RunTime:
             return TEA_RunTime.NL.join(lines)
 
         # return unique words in val, sorted most frequent first, first occurrence first
-        def util_unique_projection_words(val):
+        def util_unique_projection_word_modal_sequences(val, use_pmss=False):
+            mode = "PMSS" if use_pmss else "MSS"
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Computing Unique Word Projection for [{val}]")
+                print(f"--[util]-| Computing Unique Word Projection ({mode} modal sequence statistic) for [{val}]")
             words = val.split(TEA_RunTime.SINGLE_SPACE_CHAR)
             l_words = len(words)
             if l_words <= 1:
                 return val
+
             #unique_words = list(set(words)) # wasn't preserving order of first occurrence
-            unique_words = list(dict.fromkeys(words))
-            tally = [(w,words.count(w)) for w in unique_words]
-            tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
+            unspecific_symbolset = list(dict.fromkeys(words))
+            l_symbol_set = len(unspecific_symbolset)
+            # the tally is a computation of ranks as in PMSS:
+            # r_i = (cardinality of usymbolset - I(c_i,usymbolset)) * frequency of c_i in original sequence
+            tally = [{'w':w, 'f':words.count(w), 'i':unspecific_symbolset.index(w) +1, 'r':(l_symbol_set - (unspecific_symbolset.index(w) + 1))*words.count(w)} for w in unspecific_symbolset]
+            if use_pmss:
+                tally = sorted(tally,key=lambda data:-data['r']) # sort by PMSS single criteria: descending by rank
+            else:
+                tally = sorted(tally,key=lambda votes:(-votes['f'],votes['i'])) # we could sort using composite criteria as in original MSS
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Unique Word Tally [{tally}]")
-            return TEA_RunTime.GLUE.join([w[0] for w in tally])
+                print(f"--[util]-| {mode} Unique Word Tally [{tally}]")
+            return TEA_RunTime.GLUE.join([w['w'] for w in tally])
 
 
-        # return unique characters in val, sorted most frequent first, first occurrence first
-        def util_unique_projection_chars(val):
+        # return unique characters in val, sorted most frequent first, first occurrence first (for ties): PMSS method
+        def util_unique_projection_chars_modal_sequence(val, use_pmss=False):
+            mode = "PMSS" if use_pmss else "MSS"
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Computing Unique Character Projection for [{val}]")
+                print(f"--[util]-| Computing Unique Character Projection ({mode} modal sequence statistic) for [{val}]")
             chars = list(val)
             l_chars = len(chars)
             if l_chars <= 1:
                 return val
             #unique_chars = list(set(chars)) # wasn't preserving order of first occurrence
-            unique_chars = list(dict.fromkeys(chars))
-            tally = [(w,chars.count(w)) for w in unique_chars]
-            tally = sorted(tally,key=lambda votes:votes[1], reverse=True)
+            unspecific_symbolset = list(dict.fromkeys(chars))
+            l_symbol_set = len(unspecific_symbolset)
+            # the tally is a computation of ranks as in MSS:
+            # r_i = (cardinality of usymbolset - I(c_i,usymbolset)) * frequency of c_i in original sequence
+            tally = [{'c':w, 'f':chars.count(w), 'i':unspecific_symbolset.index(w) +1, 'r':(l_symbol_set - (unspecific_symbolset.index(w) + 1))*chars.count(w)} for w in unspecific_symbolset]
+            if use_pmss:
+                tally = sorted(tally,key=lambda data:-data['r']) # sort by PMSS single criteria
+            else:
+                tally = sorted(tally,key=lambda votes:(-votes['f'],votes['i'])) # we could sort using composite criteria as in original MSS
             if TEA_RunTime.DEBUG:
-                print(f"--[util]-| Unique Char Tally [{tally}]")
-            return TEA_RunTime.EMPTY_STR.join([w[0] for w in tally])
+                print(f"--[util]-| {mode} Unique Char Tally [{tally}]")
+            return TEA_RunTime.EMPTY_STR.join([w['c'] for w in tally])
 
+
+        def util_get_environment():
+            from datetime import datetime
+            config = {
+                    "PLATFORM": "CLI",
+                    "DATE": datetime.now().strftime("%A, %d %B %Y"),
+                    "TIME": datetime.now().strftime("%H:%M:%S")
+                    }
+
+            return config
 
         def util_system_b(cmd, cmdData, show_errors=False):
             result = None
@@ -567,7 +694,7 @@ class TEA_RunTime:
                 if isinstance(data, dict):
                     encoded_data = urllib.parse.urlencode(data).encode('utf-8')
                 else:
-                    encoded_data = data.encode('utf-8') if data else data
+                    encoded_data = data.encode('utf-8') if data else None
                     request = urllib.request.Request(url, data=encoded_data, method='POST')
                     # Set the appropriate header for form data
                     request.add_header('Content-Type', 'application/x-www-form-urlencoded')
@@ -728,10 +855,32 @@ class TEA_RunTime:
                     io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
             if tc == "D.":
                 if len(tpe_str) == 0:
-                    pass
+                    return io
                 else:
                     regex = tpe_str
                     io = re.sub(regex, TEA_RunTime.EMPTY_STR, io)
+            if tc == "D!.":
+                if len(tpe_str) == 0:
+                    return io
+                else:
+                    regex = tpe_str
+                    matches = re.findall(regex,io)
+                    io = TEA_RunTime.EMPTY_STR.join(matches)
+            if tc == "D*.":
+                if len(tpe_str) == 0:
+                    return io
+                else:
+                    vREGEX = tpe_str
+                    regex = vault_get(vREGEX) 
+                    io = re.sub(regex, TEA_RunTime.EMPTY_STR, io)
+            if tc == "D*!.":
+                if len(tpe_str) == 0:
+                    return io
+                else:
+                    vREGEX = tpe_str
+                    regex = vault_get(vREGEX) 
+                    matches = re.findall(regex,io)
+                    io = TEA_RunTime.EMPTY_STR.join(matches)
             if tc == "D!":
                 if len(tpe_str) == 0:
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, TEA_RunTime.EMPTY_STR, io)
@@ -803,7 +952,7 @@ class TEA_RunTime:
                     return e_ai,e_atpi,e_INSTRUCTIONS,e_LABELBLOCKS
 
                 else:
-                    e_Tsrc = tpe_str
+                    e_Tsrc = self.extract_str(tpe_str) # just in case
                     e_ai = io
                     e_INSTRUCTIONS, e_LABELBLOCKS, e_atpi = util_inject_tea(e_Tsrc, main_INSTRUCTIONS, main_ATPI, main_LABELBLOCKS)
 
@@ -847,8 +996,8 @@ class TEA_RunTime:
             tc, tpe = ti.split(TEA_RunTime.TCD, maxsplit=1)
             tc = tc.upper()
             tpe = tpe.strip()
-            # extract the string parameter
-            tpe_str = self.extract_str(tpe)
+            # first wait to extract the string parameter
+            tpe_str = tpe
 
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
@@ -869,7 +1018,7 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -883,17 +1032,63 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (fblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
                     if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
                         _ATPI = LABELBLOCKS[fblock]
                     return io,_ATPI
+
+
+            if tc == "F*":
+                params = tpe_str.split(TEA_RunTime.TIPED)
+                if len(params) == 0:
+                    return io,_ATPI
+                if len(params) == 1:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
+                        print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                    raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
+                if len(params) == 2:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
+                    tblock = params[1]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
+                    if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI += 1
+                    return io,_ATPI
+                else:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
+                    tblock = params[1]
+                    fblock = params[2]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
+                    if not (fblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
+                    if (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI = LABELBLOCKS[fblock]
+                    return io,_ATPI
+
 
             if tc == "F!":
                 params = tpe_str.split(TEA_RunTime.TIPED)
@@ -910,7 +1105,7 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -924,12 +1119,56 @@ class TEA_RunTime:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
                     if not (fblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
                             print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
+                    if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI = LABELBLOCKS[fblock]
+                    return io,_ATPI
+
+
+            if tc == "F*!":
+                params = tpe_str.split(TEA_RunTime.TIPED)
+                if len(params) == 0:
+                    return io,_ATPI
+                if len(params) == 1:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with No Labels!")
+                    raise ValueError(f"[ERROR] Fork Instruction {ti} Invoked with No Labels!")
+                if len(params) == 2:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
+                    tblock = params[1]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
+                    if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
+                        _ATPI = LABELBLOCKS[tblock]
+                    else:
+                        _ATPI += 1
+                    return io,_ATPI
+                else:
+                    vrtest = self.extract_str(params[0])
+                    rtest = vault_get(vrtest)
+                    tblock = params[1]
+                    fblock = params[2]
+                    if not (tblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{tblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{tblock}]")
+                    if not (fblock in LABELBLOCKS):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{fblock}]")
+                            print(f"--- L-BLOCK STATE: \n\t{LABELBLOCKS}")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{fblock}]")
                     if not (bool(re.search(rtest, io)) or (re.match(rtest, io)) or (rtest == io) or (rtest in io)):
                         _ATPI = LABELBLOCKS[tblock]
                     else:
@@ -969,10 +1208,18 @@ class TEA_RunTime:
                     glue = tpe_str
                     io = re.sub(TEA_RunTime.NL, glue, io)
 
+            if tc == "G*.":
+                if len(tpe_str) == 0:
+                    pass #INERT
+                else:
+                    vglue = tpe_str
+                    glue = vault_get(vglue)
+                    io = re.sub(TEA_RunTime.NL, glue, io)
+
             if tc == "G!":
                 params = tpe_str.split(TEA_RunTime.TIPED)
                 if len(params) == 0:
-                    pass
+                    pass #INERT
                 if len(params) == 1:
                     glue = self.extract_str(params[0])
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE_N_PUNCTUATION, glue, io)
@@ -989,15 +1236,20 @@ class TEA_RunTime:
                     io = glue.join(vals)
             if tc == "G*!":
                 params = tpe_str.split(TEA_RunTime.TIPED)
-                if len(params) < 3:
-                    pass
+                if len(params) == 1:
+                    vglue = self.extract_str(params[0])
+                    glue = vault_get(vglue)
+                    io = re.sub(TEA_RunTime.RE_WHITE_SPACE, glue, io)
                 else:
-                    glue = vault_get(self.extract_str(params[0]))
-                    vaults = params[1:]
-                    vals = []
-                    for v in vaults:
-                        vals.append(vault_get(v))
-                    io = glue.join(vals)
+                    if len(params) < 3:
+                        pass
+                    else:
+                        glue = vault_get(self.extract_str(params[0]))
+                        vaults = params[1:]
+                        vals = []
+                        for v in vaults:
+                            vals.append(vault_get(v))
+                        io = glue.join(vals)
             return io
 
 
@@ -1069,7 +1321,6 @@ class TEA_RunTime:
                     # implements interactivity in TEA: displays io as prompt, sets user-input as io
                     io = input(io) 
                 else:
-
                     if (io is None) or (len(io) == 0):
                         io = tpe_str
             if tc == "I!":
@@ -1077,6 +1328,30 @@ class TEA_RunTime:
                     io = TEA_RunTime.EMPTY_STR
                 else:
                     io = tpe_str
+
+            # BEGIN I*-TEA GUI extension: powered by Python/TK/TCL
+            if tc == "I*":
+                import tkinter as tk
+                from tkinter import simpledialog
+
+                if len(tpe_str) == 0:
+                    # implements interactivity in TEA: displays io as prompt, sets user-input as io
+                    io = simpledialog.askstring(" ", io) # we leave the window-title blank to reflect prompt() behavior in WEB TEA
+                else:
+                    if (io is None) or (len(io) == 0):
+                        # User parameter as prompt string..
+                        io = tpe_str
+                        io = simpledialog.askstring(" ", io)
+            if tc == "I*!":
+                import tkinter as tk
+                from tkinter import simpledialog
+                if len(tpe_str) == 0:
+                    io = simpledialog.askstring(" ", io)
+                else:
+                    vprompt = tpe_str
+                    prompt = vault_get(vprompt)
+                    io = simpledialog.askstring(" ", prompt)
+
             return io
 
 
@@ -1100,7 +1375,7 @@ class TEA_RunTime:
                     if not (jblock in LABELBLOCKS):
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} trying to access Non-Existent Block [{jblock}]")
-                        raise ValueError("[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK")
+                        raise ValueError(f"[CODE ERROR] ATTEMPT to ACCESS NON-EXISTENT BLOCK: [{jblock}]")
                     _ATPI = LABELBLOCKS[jblock]
                     return io,_ATPI
             if tc == "J!":
@@ -1251,6 +1526,7 @@ class TEA_RunTime:
 # store current code position under given label block name
 # but most likely, has already been done during TSRC pre-processing/validation
                         LABELBLOCKS[lBlockName] = ATPI
+
             if tc == "L!":
                 if len(tpe_str) == 0:
                     # INERT
@@ -1262,6 +1538,7 @@ class TEA_RunTime:
                         # prevent duplication of block names
                         if not (lBlockName in LABELBLOCKS):
                             LABELBLOCKS[lBlockName] = ATPI
+
 
             return io
 
@@ -1322,19 +1599,25 @@ class TEA_RunTime:
                 else:
                    params  = tpe_str.split(TEA_RunTime.TIPED)
                    if len(params) == 1:
-                       limit = params[0]
+                       limit = self.extract_str(params[0])
                        io = str(util_gen_rand(int(limit)))
                    if len(params) == 2:
-                       limit,llimit = params
+                       limit = self.extract_str(params[0])
+                       llimit = self.extract_str(params[1])
                        io = str(util_gen_rand(int(limit), ll=llimit))
                    if len(params) == 3:
-                       limit,llimit,size = params
+                       limit = self.extract_str(params[0])
+                       llimit = self.extract_str(params[1])
+                       size = self.extract_str(params[2])
                        nums = []
                        for i in range(int(size)):
                            nums.append(str(util_gen_rand(int(limit), ll=llimit)))
                        io = TEA_RunTime.GLUE.join(nums)
                    if len(params) == 4:
-                       limit,llimit,size,glue = params
+                       limit = self.extract_str(params[0])
+                       llimit = self.extract_str(params[1])
+                       size = self.extract_str(params[2])
+                       glue = self.extract_str(params[3])
                        nums = []
                        for i in range(int(size)):
                            nums.append(str(util_gen_rand(int(limit), ll=llimit)))
@@ -1347,29 +1630,27 @@ class TEA_RunTime:
                 else:
                    params  = tpe_str.split(TEA_RunTime.TIPED)
                    if len(params) == 1:
-                       vlimit = params[0]
+                       vlimit = self.extract_str(params[0])
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
                        io = str(util_gen_rand(int(limit)))
                    if len(params) == 2:
-                       limit,llimit = params
+                       vlimit = self.extract_str(params[0])
+                       vllimit = self.extract_str(params[1])
 
-                       vlimit = limit
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
 
-                       vllimit = llimit
                        llimit = vault_get(vllimit) if len(vllimit) > 0 else 0
 
                        io = str(util_gen_rand(int(limit), ll=llimit))
                    if len(params) == 3:
-                       limit,llimit,size = params
+                       vlimit = self.extract_str(params[0])
+                       vllimit = self.extract_str(params[1])
+                       vsize = self.extract_str(params[2])
 
-                       vlimit = limit
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
 
-                       vllimit = llimit
                        llimit = vault_get(vllimit) if len(vllimit) > 0 else 0
 
-                       vsize = size
                        size = vault_get(vsize) if len(vsize) > 0 else 1
 
                        nums = []
@@ -1377,18 +1658,17 @@ class TEA_RunTime:
                            nums.append(str(util_gen_rand(int(limit), ll=llimit)))
                        io = TEA_RunTime.GLUE.join(nums)
                    if len(params) == 4:
-                       limit,llimit,size,glue = params
+                       vlimit = self.extract_str(params[0])
+                       vllimit = self.extract_str(params[1])
+                       vsize = self.extract_str(params[2])
+                       vglue = self.extract_str(params[3])
 
-                       vlimit = limit
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
 
-                       vllimit = llimit
                        llimit = vault_get(vllimit) if len(vllimit) > 0 else 0
 
-                       vsize = size
                        size = vault_get(vsize) if len(vsize) > 0 else 1
 
-                       vglue = glue
                        glue = vault_get(vglue) if len(vglue) > 0 else TEA_RunTime.GLUE
 
                        nums = []
@@ -1412,13 +1692,13 @@ class TEA_RunTime:
 
             if tc == "O":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
-                io = util_sort_words(input_str)
+                io = util_sort_words_smartly(input_str)
             if tc == "O!":
                 input_str = tpe_str if len(tpe_str) > 0 else ai
                 io = util_sort_chars(input_str)
             if tc == "O*":
                 input_str = vault_get(tpe_str) if len(tpe_str) > 0 else ai
-                io = util_sort_words(input_str)
+                io = util_sort_words_smartly(input_str)
             if tc == "O*!":
                 input_str = vault_get(tpe_str) if len(tpe_str) > 0 else ai
                 io = util_sort_chars(input_str)
@@ -1473,12 +1753,12 @@ class TEA_RunTime:
                         io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
                         size = self.extract_str(params[0])
-                        alphabet = self.extract_str(params[1])
-                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
+                        glue = self.extract_str(params[1])
+                        io = util_gen_rand_string(size=int(size), glue=glue)
                     elif len(params) == 3:
                         size = self.extract_str(params[0])
-                        alphabet = self.extract_str(params[1])
-                        glue = self.extract_str(params[2])
+                        glue = self.extract_str(params[1])
+                        alphabet = self.extract_str(params[2])
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1530,14 +1810,14 @@ class TEA_RunTime:
                     if len(params) == 1:
                         io = util_gen_rand_string(size=int(size))
                     elif len(params) == 2:
-                        vALPHABET = self.extract_str(params[1])
-                        alphabet = vault_get(vALPHABET)
-                        io = util_gen_rand_string(size=int(size), alphabet=alphabet)
-                    elif len(params) == 3:
-                        vALPHABET = self.extract_str(params[1])
-                        alphabet = vault_get(vALPHABET)
-                        vGLUE = self.extract_str(params[2])
+                        vGLUE = self.extract_str(params[1])
                         glue = vault_get(vGLUE)
+                        io = util_gen_rand_string(size=int(size), glue=glue)
+                    elif len(params) == 3:
+                        vGLUE = self.extract_str(params[1])
+                        glue = vault_get(vGLUE)
+                        vALPHABET = self.extract_str(params[2])
+                        alphabet = vault_get(vALPHABET)
                         io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1636,25 +1916,7 @@ class TEA_RunTime:
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
-            if self.is_empty(io):
-                # INERT
-                self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
-                return io
-
             if tc == "R":
-                if len(tpe_str) == 0:
-                    io = util_braille_projection1(io)
-                else:
-                    params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=1)
-                    if len(params) != 2:
-                        if TEA_RunTime.DEBUG:
-                            print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
-                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
-                    else:
-                        regex = self.extract_str(params[0])
-                        replacement = self.extract_str(params[1])
-                        io = re.sub(regex, replacement, io, count=1)
-            if tc == "R!":
                 if len(tpe_str) == 0:
                     io = util_braille_projection2(io)
                 else:
@@ -1665,36 +1927,25 @@ class TEA_RunTime:
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
                         regex = self.extract_str(params[0])
-                        #print(f"--TEST[ regex: {regex} | param[0]: {params[0]} | tpe_str: {tpe_str} | tpe: {tpe}]")
                         replacement = self.extract_str(params[1])
-                        io = re.sub(regex, replacement, io)
+                        io = util_smart_replace(regex, replacement, io)
 
-            if tc == "R*":
-                if self.is_empty(tpe_str):
-                    # INERT
-                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
-                    return io
+            if tc == "R!":
+                if len(tpe_str) == 0:
+                    io = util_braille_projection1(io)
                 else:
-                    params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
-                    if (len(params) == 2) or (len(params) > 3):
+                    params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=1)
+                    if len(params) != 2:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
                         raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                     else:
-                        if len(params) == 1:
-                            vault = params[0]
-                            input_str = vault_get(vault)
-                            io = util_braille_projection1(input_str)
-                        else:
-                            vname = params[0]
-                            vregex = params[1]
-                            vsubstr = params[2]
-                            input_str = vault_get(vname)
-                            regex = self.extract_str(vault_get(vregex))
-                            replacement = self.extract_str(vault_get(vsubstr))
-                            io = re.sub(regex, replacement, input_str, count=1)
+                        regex = self.extract_str(params[0])
+                        #print(f"--TEST[ regex: {regex} | param[0]: {params[0]} | tpe_str: {tpe_str} | tpe: {tpe}]")
+                        replacement = self.extract_str(params[1])
+                        io = util_smart_replace_all(regex, replacement, io)
 
-            if tc == "R*!":
+            if tc == "R*":
                 if self.is_empty(tpe_str):
                     # INERT
                     self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
@@ -1717,7 +1968,46 @@ class TEA_RunTime:
                             input_str = vault_get(vname)
                             regex = self.extract_str(vault_get(vregex))
                             replacement = self.extract_str(vault_get(vsubstr))
-                            io = re.sub(regex, replacement, input_str)
+                            io = util_smart_replace(regex, replacement, input_str)
+
+            if tc == "R*!":
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
+                else:
+                    params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
+                    if (len(params) == 2) or (len(params) > 3):
+                        if TEA_RunTime.DEBUG:
+                            print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                    else:
+                        if len(params) == 1:
+                            vault = params[0]
+                            input_str = vault_get(vault)
+                            io = util_braille_projection1(input_str)
+                        else:
+                            vname = params[0]
+                            vregex = params[1]
+                            vsubstr = params[2]
+                            input_str = vault_get(vname)
+                            regex = self.extract_str(vault_get(vregex))
+                            replacement = self.extract_str(vault_get(vsubstr))
+                            io = util_smart_replace_all(regex, replacement, input_str)
+
+            if tc == "R.": #r.: | r.:EXPR | r.*:vEXPR | replace expression equivalent math evaluation
+                if len(tpe_str) == 0:
+                    io = util_eval_mathematics(io)
+                else:
+                    io = util_eval_mathematics(tpe_str)
+
+            if tc == "R*.": #r.: | r.:EXPR | r*.:vEXPR | replace expression equivalent math evaluation
+                if len(tpe_str) == 0:
+                    pass # INERT
+                else:
+                    vname = tpe_str
+                    input_str = vault_get(vname)
+                    io = util_eval_mathematics(input_str)
 
             return io
 
@@ -1813,16 +2103,22 @@ class TEA_RunTime:
                         return io
                     else:
                         if len(params) == 2:
-                            salt = self.extract_str(params[1])
+                            vsalt = self.extract_str(params[1])
+                            salt = vault_get(vsalt)
                             io = util_salt_string(io,salt)
                         elif len(params) == 3:
-                            salt = self.extract_str(params[1])
-                            i_limit = int(self.extract_str(params[2]))
+                            vsalt = self.extract_str(params[1])
+                            salt = vault_get(vsalt)
+                            vi_limit = self.extract_str(params[2])
+                            i_limit = int(vault_get(vi_limit))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 4:
-                            salt = self.extract_str(params[1])
-                            i_limit = int(self.extract_str(params[2]))
-                            l_limit = int(self.extract_str(params[3]))
+                            vsalt = self.extract_str(params[1])
+                            salt = vault_get(vsalt)
+                            vi_limit = self.extract_str(params[2])
+                            i_limit = int(vault_get(vi_limit))
+                            vl_limit = self.extract_str(params[3])
+                            l_limit = int(vault_get(vl_limit))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
 
             if tc == "S*!":
@@ -1845,16 +2141,22 @@ class TEA_RunTime:
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
                         if len(params) == 2:
-                            salt_regex = self.extract_str(params[1])
+                            vsalt_regex = self.extract_str(params[1])
+                            salt_regex = vault_get(vsalt_regex)
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 3:
-                            salt_regex = self.extract_str(params[1])
-                            d_limit = int(self.extract_str(params[2]))
+                            vsalt_regex = self.extract_str(params[1])
+                            salt_regex = vault_get(vsalt_regex)
+                            vd_limit = self.extract_str(params[2])
+                            d_limit = int(vault_get(vd_limit))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 4:
-                            salt_regex = self.extract_str(params[1])
-                            d_limit = int(self.extract_str(params[2]))
-                            l_limit = int(self.extract_str(params[3]))
+                            vsalt_regex = self.extract_str(params[1])
+                            salt_regex = vault_get(vsalt_regex)
+                            vd_limit = self.extract_str(params[2])
+                            d_limit = int(vault_get(vd_limit))
+                            vl_limit = self.extract_str(params[3])
+                            l_limit = int(vault_get(vl_limit))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             return io
@@ -1918,6 +2220,40 @@ class TEA_RunTime:
                     input_str = vault_get(vault)
                     return util_rightmost_triangular_reduction(input_str)
 
+            if tc == "T.":
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                    else:
+                        return util_str_align_center(io)
+                else:
+                        input_str = tpe_str
+                        return util_str_align_center(input_str)
+
+            if tc == "T!.":
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                    else:
+                        return util_str_trim(io)
+                else:
+                        input_str = tpe_str
+                        return util_str_trim(input_str)
+
+            if tc == "T*!.":
+                if self.is_empty(tpe_str):
+                    # INERT
+                    self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                    return io
+                else:
+                    vault = tpe_str
+                    input_str = vault_get(vault)
+                    return util_str_trim(input_str)
+
             return io
 
 
@@ -1942,10 +2278,10 @@ class TEA_RunTime:
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"Processing {tc} on AI=[{io}]")
-                        return util_unique_projection_words(io)
+                        return util_unique_projection_word_modal_sequences(io)
                 else:
                         input_str = tpe_str
-                        return util_unique_projection_words(input_str)
+                        return util_unique_projection_word_modal_sequences(input_str)
             if tc == "U!":
                 if self.is_empty(tpe_str):
                     if self.is_empty(io):
@@ -1953,10 +2289,10 @@ class TEA_RunTime:
                         self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
                         return io
                     else:
-                        return util_unique_projection_chars(io)
+                        return util_unique_projection_chars_modal_sequence(io) #should compute MSS: modal sequence statistic
                 else:
                         input_str = tpe_str
-                        return util_unique_projection_chars(input_str)
+                        return util_unique_projection_chars_modal_sequence(input_str)
             if tc == "U*":
                 if self.is_empty(tpe_str):
                         # INERT
@@ -1965,7 +2301,7 @@ class TEA_RunTime:
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
-                    return util_unique_projection_words(input_str)
+                    return util_unique_projection_word_modal_sequences(input_str)
 
             if tc == "U*!":
                 if self.is_empty(tpe_str):
@@ -1975,7 +2311,53 @@ class TEA_RunTime:
                 else:
                     vault = tpe_str
                     input_str = vault_get(vault)
-                    return util_unique_projection_chars(input_str)
+                    return util_unique_projection_chars_modal_sequence(input_str)
+
+            #----[ THE PMSS versions ]
+            if tc == "U.":
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        self.debug(f"[NOT]Processing {tc} on EMPTY AI [{io}]")
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                    else:
+                        if TEA_RunTime.DEBUG:
+                            print(f"Processing {tc} on AI=[{io}]")
+                        return util_unique_projection_word_modal_sequences(io, use_pmss=True)
+                else:
+                        input_str = tpe_str
+                        return util_unique_projection_word_modal_sequences(input_str, use_pmss=True)
+            if tc == "U!.":
+                if self.is_empty(tpe_str):
+                    if self.is_empty(io):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                    else:
+                        return util_unique_projection_chars_modal_sequence(io, use_pmss=True) #should compute MSS: modal sequence statistic
+                else:
+                        input_str = tpe_str
+                        return util_unique_projection_chars_modal_sequence(input_str, use_pmss=True)
+            if tc == "U*.":
+                if self.is_empty(tpe_str):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                else:
+                    vault = tpe_str
+                    input_str = vault_get(vault)
+                    return util_unique_projection_word_modal_sequences(input_str, use_pmss=True)
+
+            if tc == "U*!.":
+                if self.is_empty(tpe_str):
+                        # INERT
+                        self.debug(f"~~~[INERT TEA INSTRUCTION FOUND: {ti}]")
+                        return io
+                else:
+                    vault = tpe_str
+                    input_str = vault_get(vault)
+                    return util_unique_projection_chars_modal_sequence(input_str, use_pmss=True)
 
             return io
 
@@ -2345,6 +2727,28 @@ class TEA_RunTime:
                     cmdDATA = io
                     cmdRESULT = util_system(CMD,cmdDATA, show_errors=True)
                     return cmdRESULT if cmdRESULT is not None else TEA_RunTime.EMPTY_STR
+
+            if tc == "Z.":
+                    NAME = tpe_str
+                    environment_config = util_get_environment()
+
+                    if NAME in environment_config:
+                        return environment_config[NAME]
+                    else:
+                        return ";".join([f"{k}:{v}" for k,v in environment_config.items()])
+
+            if tc == "Z*.":
+                    vNAME = tpe_str
+                    NAME = vault_get(vNAME)
+
+                    environment_config = util_get_environment()
+
+                    if NAME in environment_config:
+                        return environment_config[NAME]
+                    else:
+                        return ";".join([f"{k}:{v}" for k,v in environment_config.items()])
+            return io
+
 
             return io
 
