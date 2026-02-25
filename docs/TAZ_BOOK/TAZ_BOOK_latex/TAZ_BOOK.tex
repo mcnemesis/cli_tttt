@@ -461,6 +461,40 @@ Which gives us \textbf{7 TCQ variants}, and thus a total of $52 \times 7 \righta
 Thus, without delving directly here into what each of those TEA Commands does, which ones are INERT and which are not, what \textbf{instruction signatures} each supports or allows\footnote{Some TC might accept just one parameter or argument, while others might allow two or more --- delimited by ``:".} etc --- stuff we are going to cover well once we dive into the breakdown of each TEA primitive command's specification and semantics (which is exactly what the TEA TAZ is about), we at least know, we have a total of 364 possible distinct TEA commands to explore! That alone, definitely justifies the need for this manual, and an insight into the details of each of the 26 TP, a: to z:\footnote{Of course, not to loose hope for those who wish to memorize the entire TEA instruction set or the TAZ --- especially because, unlike many other programming languages out there, for TEA, which has a fixed library/instruction set, it's possible, and we know that, since a: and A: are equivalent, or that any TC with some particular primitive say, K:, is equivalent to the variant with the same primitive just in a different case, thus, instead of a total of 364 commands, TEA essentially supports $26 \times 7 \rightarrow 182$ distinct commands.}
 
 
+\section{INSTALLATION and Basic USAGE Instructions}
+
+
+TEA as a language is designed to be usable from almost anywhere there is a computer capable of running the TEA language interpreter --- currently implemented for WEB (browser environments) using JavaScript, and for all other environments via Python3. However, to really get started using TEA, especially when one has a modern computer, a smartphone or some device capable of accessing the Internet and rendering web pages, one then need not install anything or download anything apart from merely visiting the following link:
+
+\vspace{2em}
+\textbf{TEA WEB IDE:} \url{https://tea.nuchwezi.com}
+\vspace{2em}
+
+So that, by visiting that page, one can readily access a usable basic and standard interface with which they can not only write, browse, read and run existing TEA programs --- especially those sample/example applications that are made available as part of the growing list of ``Standard TEA programs" --- but that they can also share the TEA program source code either using links, or copy-pasted codes. Using the WEB IDE is the simplest, best method for trying out TEA that is also beginner-friendly. Also, other than accessing the TEA programs and runtime, the IDE offers access to a TEA debugger for help with analyzing or troubleshooting problematic TEA programs, access to the TEA documentation, links to the TEA community, lecture notes and videos, etc.
+
+\vspace{2em}
+
+For those that need to use TEA from any other environment or platform other than the web --- such as in non-interactive server-side programs, in command-line scripts, in stand-alone desktop programs, etc. The following installation method is what is currently most recommended:
+
+\begin{enumerate}
+\item To INSTALL TTTT and the TEA language [\textit{plus some standard TEA programs packaged together with TTTT; ZHA and AMC}\footnote{Users of TEA via the WEB IDE automatically get access to all (30+) standard TEA programs/example applications, however, for users of TEA via the Debian package tttt, only a few of these applications are currently included/accessible via the default installation method --- \textbf{ZHA}; the ``Zee Hacker Assistant" and \textbf{AMC}; Advanced Mathematics Computer}.] on your system, run the following command in your terminal:
+
+    \begin{tcbverbatim}[title=UNIX/Linux TEA installation command]
+curl -Ls https://bit.ly/installtea | bash
+  \end{tcbverbatim}
+\end{enumerate}
+
+
+
+Once TEA is installed via the above command-line method, one can then readily view/browse the official documentation that comes along with that package via: 
+
+    \begin{tcbverbatim}[title=UNIX/Linux TEA documentation access command]
+ man tttt
+  \end{tcbverbatim}
+
+
+
+
 
 \chapter{THE TEA LANGUAGE DEFINITION}
 \label{SEC2}
