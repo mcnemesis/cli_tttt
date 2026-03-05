@@ -12849,24 +12849,263 @@ In essence, both \texttt{u:} and \texttt{u!:} compute the important, modal seque
 \label{SECEXAMPU}
 
   
-blah blah
+Especially because the \textbf{U}-command space is about statistical processing of sequences, we shall want to explore some applications that might leverage this. Particularly, reducing sequences to their unique projections based on some criteria such as with words or letters might find some applications in various problems, some of them perhaps merely of a creative kind, but nonetheless worth bringing up as we see in the following sections.
 
 
 
-\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL ART:} blah blah}
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL MYSTICISM:} MAGICAL VOWEL HYMN GENERATOR}
 \label{SECEXAMP1U}
 
 
-
-balh blah
-
+The following application is inspired by and intimately related to an idea first explored by Ugandan Metal Band \textbf{MAZERA} on their 2025 \textbf{XMas Metal} album. Particularly, that album featured a work known as ``Vowel Hymns" --- see: [audio] \url{https://t.me/mazeraworks/1152} and [audio-video] \url{https://www.youtube.com/watch?v=p_THWo4MjIU}, which among other exciting things involved a song made of only singing vowels! This idea is also somewhat related to the related idea of \textit{sigilization} as employed in and rigorously explored in \textbf{Grimoire Lumtauto}\cite{lutalo_2025_grimlumtauto}. Particularly, even though ``normal" sigils are meant for expression as pictures (such as heavily demonstrated in that book), there are some cases where a sigil is meant to be only expressed in other ways such as with sounds --- mantras, conjurations, \textit{aural sigils} etc. One such creative case then, is when a message is reduced not to its ``magical source" as is presented in that book, but is instead reduced to or mapped to alternate forms such as its ``vowel source" --- like the magical source, could be based on the message's MSS, and unlike traditional sigilization protocols (such as those of \textbf{Austin O. Spare}) that eliminate all vowels from a message meant to be sigilized, this approach does the reverse --- eliminates all consonants so that, the resulting message is merely a sequence of pure sounds --- results in so-called \textit{angelic mantras}. Such is the logic or theory underlying vowel hymns. 
 
 
+\vspace{2em}
+
+The following program then, is based on that idea of reducing an inpute sequence to just its ``vowel source" --- the result is a very tiny string because we operate on the MSS (itself already a reduction of the possibly verbose message to just its statistical summary).
+ 
+
+   \vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: MAGICAL VOWEL SOURCE GENERATOR, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+###| MAGICAL VOWEL SOURCE  |###
+#################################
+#Yes! Like Mantra/Aural-Sigils
+#Stuff you can sing or chant
+#Using only vowels, and which
+#can make magical things happen!
+#Examples in GRIMOIRE LUMTAUTO:
+#https://bit.ly/grimoirelumtauto
+#################################
+
+i:{***your message or lyrics should go here***}
+d!:[0-9a-z-A-z]
+r!:0:O | r!:1:I #replace some number with letters
+z: #loa
+u!.: #compute PMSS
+d!:[aeiou] #reduce to only vowels
+   \end{lstlisting}
+  \end{tcolorbox}
+      \captionof{figure}{The VOWEL SOURCE generator}
+  \label{FIGTEAVOWELSRC}
+
+\vspace{1em}
+  
+
+If we apply that program to a common hymn phrase such as the first line of the traditional Christmas Carol hymn ``Joy to the World" --- i.e. the line ``Joy to the world! the Lord is come!" --- we shall simply obtain the output ``oei"! 
+
+\vspace{2em}
+
+If we apply that program to the first line of the Uganda national anthem (reproduced in full in \textbf{Chapter 10} of \cite{lutalo2025rock}), we have the sentence ``Oh Uganda! May God uphold thee" reduced to just ``oaue"!
+
+\vspace{2em}
+
+So, clearly, it starts to look like, for the case actually generating a hymn (as opposed to say just an aural sigil or mantra), we might need to have a program capable of giving us a longer output --- because, well, who wants to just sing just 5 or less letters over and over again! And thus, first, we consider another vowel hymn generator program, also currently part of the TEA standard programs, that doesn't process any input sequences, but does produce compelling long pieces as we shall soon see. The essential code for this other vowel hymn program is as such:
+
+
+  \vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: RANDOM VOWEL HYMN GENERATOR v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#############################################
+# RANDOM VOWEL HYMN GENERATOR v1
+#############################################
+# Though legit vowel hymns ought be generated
+# based on transforming the text of legit hymns
+# or words, this generator instead generates 
+#such hymns based on nothing really, but the
+# outputs shall read and feel like legitimate
+#vowel hymns nonetheless.
+#-------------------------------------------
+# For Theory: https://bit.ly/grimoirelumtauto
+# For Example: https://www.youtube.com/watch?v=p_THWo4MjIU
+##############################################
+v:vLINES:5 | v:vI:0 | v:vHYMN:{}
+v:vLIMIT:10 | v:vGLUE:{ } | v:vALPHABET:{aeiou }
+l:LOOP
+p*!:vLIMIT:vGLUE:vALPHABET | v:vLINE #generate and store random string
+g*:{
+}:vHYMN:vLINE | v:vHYMN #add it to the hymn
+y:vI | x!:{+1} | r.: | v:vI 
+y:vI | x!:{>} | x*!:vLINES | r.: | f:^true$:FIN:LOOP #test if we must finish
+l:FIN | y:vHYMN | k!:^$ #return clean hymn
+   \end{lstlisting}
+  \end{tcolorbox}
+      \captionof{figure}{A RANDOM VOWEL HYMN GENERATOR v1}
+  \label{FIGTEAVOWELHYMNGEN}
+
+\vspace{1em}
+
+
+Note that the program is essentially what we already covered well in \textbf{\hyperref[SECEXAMP1P]{Section \ref{SECEXAMP1P}}}, and that we see several examples of what it can produce in that section too. However, for the case of generating vowel hymns based on some input text, we might instead want to consider a program such as:
+
+\vspace{2em}
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: A VOWEL RANDOM HYMN ENCODER v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#############################################
+# VOWEL RANDOM HYMN ENCODER v1
+#############################################
+# Shall generate a random vowel hymn based on 
+# transforming the input text.
+# outputs shall read and feel like 
+# legitimate vowel hymns.
+##############################################
+
+v:vINPUT #grab the input
+# generate vowel source from it..
+d!:[0-9a-z-A-z]
+r!:0:O | r!:1:I #replace some number with letters
+z: #loa
+u!.: #compute PMSS
+d!:[aeiou] #reduce to only vowels
+v:vVOWELSRC # store computed vowel source
+
+v:vLINES:5 | v:vI:0 | v:vHYMN:{}
+v:vLIMIT:10 | v:vGLUE:{ } | 
+
+# use existing vowel source as hymn alphabet...
+y:vVOWELSRC | v:vALPHABET
+# add a single space char to the alphabet though...
+y:vALPHABET | x!:{ } | v:vALPHABET
+
+# proceed to generate associated hymn
+l:LOOP
+p*!:vLIMIT:vGLUE:vALPHABET | v:vLINE #generate and store random string
+g*:{
+}:vHYMN:vLINE | v:vHYMN #add it to the hymn
+y:vI | x!:{+1} | r.: | v:vI 
+y:vI | x!:{>} | x*!:vLINES | r.: | f:^true$:FIN:LOOP #test if we must finish
+l:FIN | y:vHYMN | k!:^$ #return clean hymn
+   \end{lstlisting}
+  \end{tcolorbox}
+      \captionof{figure}{A VOWEL RANDOM HYMN ENCODER v1}
+  \label{FIGTEAVOWELHYMNENCODE}
+
+\vspace{1em}
+
+
+Interestingly, and perhaps making sense, that last program does combine the earlier two programs so that, given some input, it uses the input's corresponding vowel source to generate a random vowel hymn. Thus, for the earlier example of \textbf{processing just the first line Christmas Carol} ``Joy to The World", we would obtain vowel hymns such as the following:
+
+
+\vspace{2em}
+  
+   \begin{tcbverbatim}[title=Sample Vowel Hymn OUTPUT 1]
+ioieee o o
+ ii eoioe
+eeeei o ei
+ee ooii i 
+eoooieoeoo
+ iii oeeoi
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
+
+
+\vspace{2em}
+  
+   \begin{tcbverbatim}[title=Sample Vowel Hymn OUTPUT 2]
+eie eeo ii
+ oi eeoei
+io oee i e
+eiio e oi 
+oeeoe eoee
+ iei e oii
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
+
+
+And for the case of processing the first line of the Uganda national anthem, we would obtain hymns such as...
 
 
 
+\vspace{2em}
+  
+   \begin{tcbverbatim}[title=Sample Vowel Hymn OUTPUT 3]
+ue ao ee a
+oeueo e u
+ ueaa uae 
+eue auae e
+ueaauouuoa
+eoeeee auu
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
 
 
+\vspace{2em}
+  
+   \begin{tcbverbatim}[title=Sample Vowel Hymn OUTPUT 4]
+uouau u uo
+eo aouu
+ ooaeeoe 
+ o uueooo
+ oauueeoeo
+oo e aeo o
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
+
+Finally, note that unlike the above examples that somewhat operate on the statistical summary of the input --- essentially the MSS, that we might still be able to generate a vowel hymn from some input text, with just a very minimal TEA technique --- selective filtering. In this case for example, we might merely take the input sequence and kickout just the consonants such as we see in the following little program:
+
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: VOWEL HYMN TRANSFORMER v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#############################################
+# VOWEL HYMN TRANSFORMER v1
+#############################################
+# Shall generate a vowel hymn based on 
+# transforming the input text.
+# Outputs is a vowel hymn that reflects
+# the structure of the input text.
+# Example: try applying it to UGANDA anthem!
+##############################################
+
+d:[bBcCdDfFgGhHjJkKlLmMnNpPqQrRsStTvVwWxXyYzZ]
+   \end{lstlisting}
+  \end{tcolorbox}
+      \captionof{figure}{VOWEL HYMN TRANSFORMER v1}
+  \label{FIGTEAVOWELHYMNTRANS}
+
+\vspace{1em}
+
+
+Which, if we apply it to the complete Uganda national anthem, whose text is specified in \cite{lutalo2025rock}, we would obtain the following very interesting vowel hymn --- a \textbf{UGANDA National Anthem Vowel Hymn}!
+
+
+
+\vspace{2em}
+  
+   \begin{tcbverbatim}[title=UGANDA National Anthem Vowel Hymn]
+O Uaa! a o uo ee,
+e a ou uue i  a.
+Uie, ee,
+o ie
+oee e' aa a.
+
+O Uaa! e a o eeo,
+Ou oe a aou e ie.
+A i eiou a,
+A ou ou' a
+I eae a iei e' ie.
+
+O Uaa! e a a ee u,
+ u a eie oi o.
+o ou o ea a,
+e' aa a;
+e ea o Aia' o.
+  \end{tcbverbatim}
+ 
+
+\vspace{2em}
 
 
 
