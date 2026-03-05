@@ -193,6 +193,33 @@ moredelim=[s][\color{myorange}]{\{}{\}},
   },
 }
 
+% Define custom colors
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{1,1,1}
+
+
+% Global style for listings
+\lstset{
+  language=TEA,
+%  backgroundcolor=\color{backcolour},
+%  basicstyle=\ttfamily\footnotesize,
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+%  stepnumber=1,
+  numbersep=10pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+%  frame=single,
+  tabsize=4,
+%  captionpos=b,
+  breaklines=true,
+%  breakatwhitespace=true,
+%  escapeinside={(*@}{@*)}
+}
+
 
 % for maths
 \usepackage{amsmath}
@@ -8932,7 +8959,7 @@ Thus, the example application we are going to look at, only offers this idea a s
 
 
 
-\subsection{EXAMPLE 1: STATISTICAL ANALYSIS: The RANKING UTILITY (RU)}
+\subsection{EXAMPLE 1: \textbf{STATISTICAL ANALYSIS:} The RANKING UTILITY (RU)}
 \label{SECEXAMP1O}
 
 
@@ -9327,7 +9354,7 @@ That example attempts to demonstrate how to leverage all the parameters that the
 As we have seen in the introductions, the \textbf{PERMUTATE} command is great for generating random strings or creating random variants of specified strings. And so, with regards to the kinds of applications we can envision leveraging this utility and the most of the \texttt{P:} command space, we shall explore applications that involve or require working with random strings mostly.
 
 
-\subsection{EXAMPLE 1: MUSIC \& POETRY: A Random VOWEL HYMN Generator}
+\subsection{EXAMPLE 1: \textbf{MUSIC \& POETRY:} A Random VOWEL HYMN Generator}
 \label{SECEXAMP1P}
 
 
@@ -9596,7 +9623,7 @@ As is, the program shall return ``Hello World" shuffled. Note that only the fina
 Especially because we can use \textbf{Q:} commands for control flow in a TEA program with either complex or non-linear program logic, the example application we shall explore shall especially hinge on this --- using quit patterns to decide when to stop processing and quit or return processing results especially.
 
 
-\subsection{EXAMPLE 1: PSYCHOLOGY \& ASTROLOGY: PERSONALITY CALCULATOR  }
+\subsection{EXAMPLE 1: \textbf{PSYCHOLOGY \& ASTROLOGY:} PERSONALITY CALCULATOR  }
 \label{SECEXAMP1Q}
 
 
@@ -10328,7 +10355,7 @@ As for where we have applied the \textbf{TMEs} via \texttt{R.:}, refer to exampl
 In exploring how to leverage the \textbf{REPLACE} TEA command space, note that there are indeed many many ways this facility can be utilized, many of which are already demonstrated in several of the applications we have already covered --- such as in \textbf{Word Counter} (\textbf{\hyperref[SECEXAMP1G]{Section \ref{SECEXAMP1G}}}), \textbf{Boobs 'N' Traps} game (\textbf{\hyperref[SECEXAMP1H]{Section \ref{SECEXAMP1H}}}), \textbf{Mental Health Profiler} utility (\textbf{\hyperref[SECEXAMP1J]{Section \ref{SECEXAMP1J}}}) and others! However, in this section, we shall endavour to explore one obvious application of the text-substitution transformer --- in the form of a text-compressor, and then two non-obvious applications; one as a mathematics calculator, the other as a cryptography utility.
 
 
-\subsection{EXAMPLE 1: HUMAN SUPPORT: SMS and TEXT Minifier Program }
+\subsection{EXAMPLE 1: \textbf{HUMAN SUPPORT:} SMS and TEXT Minifier Program }
 \label{SECEXAMP1R}
 
 
@@ -10603,7 +10630,7 @@ OR
  \url{https://bit.ly/text2minisms}
 
 
-\subsection{EXAMPLE 2: MATHEMATICS: ADVANCED MATHEMATICS COMPUTER}
+\subsection{EXAMPLE 2: \textbf{MATHEMATICS:} ADVANCED MATHEMATICS COMPUTER}
 \label{SECEXAMP2R}
 
 
@@ -10824,7 +10851,7 @@ OR
 
 
 
-\subsection{EXAMPLE 3: CRYPTOGRAPHY: INVISIBLE TEXT DECODER }
+\subsection{EXAMPLE 3: \textbf{CRYPTOGRAPHY:} INVISIBLE TEXT DECODER }
 \label{SECEXAMP3R}
 
 
@@ -10994,7 +11021,7 @@ Randomly modifying text or data is among the hallmarks of the \textbf{SALT} comm
 
 
 
-\subsection{EXAMPLE 1: CHILD EDUCATION: The SIR GAME}
+\subsection{EXAMPLE 1: \textbf{CHILD EDUCATION:} The SIR GAME}
 \label{SECEXAMP1S}
 
 \begin{figure}[H]
@@ -11819,7 +11846,7 @@ As you might have noticed studying those examples covered in the last section, t
 
 
 
-\subsection{EXAMPLE 1: COMPUTATIONAL ART: Abstract Text-Art Generator}
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL ART:} Abstract Text-Art Generator}
 \label{SECEXAMP1T}
 
 
@@ -12039,9 +12066,9 @@ However, one shall quickly realize that AAAG v1 somewhat lacks variety, and that
 
 \begin{enumerate}
 \item Decide what style of Abstract Art we wish to create --- \textbf{Basic}, \textbf{Mirrored} and \textbf{Chaos}.
-\item [only Chaos] Randomly decide which of several starter patterns/motifs to use for the seeding of our art-piece.
-\item [only Chaos] Randomly decide what extra patterns or symbols the generator might throw into the generation process.
-\item [only Chaos] Randomly decide if to shuffle the final art-piece or not.
+\item (only Chaos) Randomly decide which of several starter patterns/motifs to use for the seeding of our art-piece.
+\item (only Chaos) Randomly decide what extra patterns or symbols the generator might throw into the generation process.
+\item (only Chaos) Randomly decide if to shuffle the final art-piece or not.
 \item Assign the generated art-piece some automatic, but relevant name --- based on user-specified art style, date, time and some entropy.
 \end{enumerate}
 
@@ -12541,6 +12568,307 @@ CF3J26-1754AU
   \label{FIGSTEXAMPLEART3}
   \end{center}
 \end{figure}
+
+
+
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: U
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{U: UNIQUEIFY}
+\label{SECU}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{UNIQUEIFY}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Compute the unique projection of things.
+	\item Compute the \textbf{modal sequence statistic} via two methods.
+	\item Extract symbol sets from arbitrary text.
+	\item Identify all the unique words in a text.
+	\item Sort items (symbols or words) by their relative highest frequency --- a voting primitive.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{U:}}
+  \label{TABTAZU}
+\end{table}
+
+
+\section{SEMANTICS of U:}
+\label{SECSEMU}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+\makecell[l]{u:\\u.:}
+ & Return AI reduced to only its UNIQUE WORDS, their order representing their relative frequency in AI, most frequent first, otherwise preserving order of first occurrence. With “.” Qualifier --- as in \texttt{u.:}, Uses the PMSS\cite{lutalo_2025_grimlumtauto} algorithm.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{u:STR\\u.:STR} & Same as \texttt{u:} and \texttt{u.:}, but operating on the given string STR\\
+
+\makecell[l]{u!:\\u!.:} & Return AI reduced to only its UNIQUE CHARACTERS, their order representing their relative frequency in AI, most frequent first, otherwise preserving order of first occurrence.\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{u!:STR\\u!.:STR} & Same as \texttt{u!:} and \texttt{u!.:}, but operating on the given string STR\\
+
+
+\makecell[l]{u*: vNAME\\u*.:vNAME} & Same as \texttt{u:}, but operating on the string stored in the vault with the name vNAME\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{u*!: vNAME\\u*!.:vNAME} & Same as \texttt{u!:} and \texttt{u!.:}, but operating on the string stored in the vault with the name vNAME\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of U:}
+\label{TABSEMU}
+\end{table}
+
+
+\section{NOTES about U:}
+\label{SECNOTEU} 
+ 
+ 
+ First, concerning the fact that the TEA \textbf{Uniqueify} command space especially helps us compute modal sequence statistics, one shall need to know not just what these are or why they are important, but also that essentially, there are two ways to compute the modal sequence statistic (MSS); the basic, originally specified method\cite{transformatics} (also later referred to as ``BMSS" in \cite{lutalo_2025_grimlumtauto}) and a later, alternative algorithm (``PMSS", positional MSS) first developed and presented in a book on the mathematics used by magicians --- see \textbf{Appendix A}, esp. \textbf{Section A.1} and \textbf{Section A.2} in \cite{lutalo_2025_grimlumtauto}.
+ 
+ 
+ \vspace{2em}
+ 
+ 
+ First presented in \cite{transformatics} (\textbf{Section 4.1}), the concept of the \textbf{modal sequence statistic} (MSS) is founded on the problem of wanting to determine which of the unique symbols or elements in a given sequence occur either the most frequently, or otherwise the earliest relative to the other distinct members of the same sequence. It is essentially a statistical measure somewhat generalizing the traditional measure of a \textbf{mode}, and a most recent evolution of its formal definition is presented in \cite{lutalo_2025_trans_genetics} as such:
+ 
+ \vspace{2em}
+ 
+\begin{defn}[The \textbf{Modal Sequence Statistic}, $\overset{>}{\Theta}$]
+\label{DEFMSSFINb}
+\index{definition!Modal Sequence Statistic}
+$ $\\
+\index{modal sequence statistic!definition}
+Given any sequence $\Theta$ that consists of well ordered finite collection of $n$ symbols, $\omega_i$, possibly with some being repeated --- essentially that we have the sequence $\Theta : \mathbb{N} \times \psi_{\omega} \quad \land \quad \invpi(\Theta) = n$, then the measure:
+
+\vspace{1em}
+\begin{equation}
+\label{EQMSS}
+\overset{>}{\Theta} = \langle \prod\limits_{\omega_i \in \psi_\omega} \omega_i \rangle 
+\end{equation}
+\vspace{1em}
+
+is the \textbf{modal sequence statistic} (MSS) of the given sequence, and that $\psi_\omega \cong \psi(\Theta)$, such that, we can produce or generate $\overset{>}{\Theta}$ from $\Theta$ via the following transformer:
+
+\vspace{1em}
+\begin{transf}[The MSS Generator, $O_{mss}(\Theta)$]
+\label{TRANSMSSGENb}
+$ $\\
+$\Theta \xrightarrow{O_{mss}(\Theta)} \overset{>}{\Theta} = \langle \prod\limits_{\omega_i \in \psi_\omega} \omega_i \rangle ;$\\
+$\forall \omega_i \in \Theta \quad \exists \omega_i \in \overset{>}{\Theta}$\\
+$\land \quad I(\omega_i,\overset{>}{\Theta}) < I(\omega_j,\overset{>}{\Theta})$\\ 
+$\quad \implies \quad \invpi(\omega_i \in \Theta) > \invpi(\omega_j \in \Theta) \quad \lor \quad I(\omega_i,\Theta) < I(\omega_j, \Theta) \quad \forall i,j \in \mathbb{N}$\\
+$\land \quad \psi_\omega \cong  \psi(\Theta) \cong \overset{>}{\Theta}$\\
+$\land \quad \invpi(\psi(\Theta)) = \invpi(\overset{>}{\Theta}) \leq \invpi(\Theta)$
+$\qed$
+\end{transf}
+\vspace{1em}
+
+
+\end{defn}
+\vspace{2em}
+ 
+ 
+The beauty of that definition is that it not only presents us with a formula for how the MSS is expressed (\textbf{\hyperref[EQMSS]{Equation \ref{EQMSS}}}) but also how we might go about implementing either algebraic functions or computer programs that actually implement the MSS or that can compute it given some sequence (see \textbf{\hyperref[TRANSMSSGENb]{Transformer \ref{TRANSMSSGENb}}}). As for the differences between BMSS and PMSS mentioned above, the key points are that after obtaining the unique terms ($\psi(\Theta)$) in any sequence $\Theta$ such that $\invpi(\psi(\Theta)) \leq \invpi(\Theta) > 1$ --- which means that if we have more than one item in the sequence, then it might be that there are also multiple distinct items we need to process so as to establish the most frequent in the sequence --- which is how we then arrive at the MSS as specified in  \textbf{\hyperref[TRANSMSSGENb]{Transformer \ref{TRANSMSSGENb}}}. The 2025 treatise on magick, \textbf{Grimoire Lumtauto}\cite{lutalo_2025_grimlumtauto}, did give the matter a fair treatment, and presents a method of reducing which item in $\psi(\Theta)$ must occur earliest in the MSS, via the computation of a measure called the ``MSS rank". It is this rank measure that makes the BSS somewhat different from the PMSS, and that, for these two approaches --- which might sometimes produce similar results, but not necessarily always the same (see \textbf{Section A.3} in \cite{lutalo_2025_grimlumtauto}) --- the computation of the Rank, $R_i$ corresponding to some term $\omega_i \in \Theta$, we have the following two methods, one for BMSS (which also is used in \texttt{u:} and \texttt{u!:}) and the other for the PMSS (used in \texttt{u.:} and \texttt{u!.:}):
+
+
+\vspace{2em}
+BMSS Rank Function:
+\vspace{1em}
+\begin{multline}
+\label{EQTNBMSSRANK}
+Rank(\theta_i \in \psi(\Theta): > f_i, < i^*) = R_i \implies R_i = -f_i + \epsilon \times i^*
+\end{multline}
+\vspace{1em}
+
+
+PMSS Rank Function:
+\vspace{1em}
+\begin{multline}
+\label{EQTNPMSSRANK}
+Rank(\theta_i \in \psi(\Theta): > f_i, < \breve{i}) = R_i \implies R_i = (\invpi(\psi(\Theta)) - \breve{i}) \times f_i
+\end{multline}
+\vspace{2em}
+
+
+So, that's about it for the underlying mathematical theories, and so, back to the computer science...
+
+\vspace{2em}
+
+Uniquefying things is critical and primitive in TEA. Outputs of the U-command space can help in making critical decisions about things just by looking at their ordered base elements. For example, it is a common fact that in the English language, the letter ``e" occurs the most across all words in a typical lexicon\footnote{In fact, it is very interesting to note that there is a general agreement about which letters occur the most frequent in most samples of English writing, and these typically are in the order $\langle E, T, A, O, I, N, S, R, H, D, ..., Q, J, Z\rangle$ with corresponding approximate frequencies (as percentages) as  respectively $\langle 13\%, 9\%, 8\%, 7.7\%, 7.3\%, 6.9\%, 6.3\%, 6\%, 5.9\%, 4.3\%, ..., 0.1\%, 0.5\%, 0.07\% \rangle$\cite{copilot_assistant}.}. Now, such interesting analysis can be done primitively in TEA using the U-commands---especially because they not only tell us what the unique elements in a string are, but also which ones are most common, which ones rarest. Very useful foundational statistical analysis for free and that so many kinds of statistical processing problems become simpler to reason about using TEA.
+
+
+\vspace{2em}
+
+\fbox{\begin{minipage}{\textwidth}
+
+\textbf{IMPORTANT:}\\
+
+Note that, while working on the TAZ, a parallel and important project emerged, concerning exploring applications of Transformatics (the mathematics underlying the TEA language) in Esoteric Science, and it was discovered, there is a genuine need for an alternative way to compute the MSS. Thus, the extra variations in this command, that use the PMSS algorithm that relies on computing a rank/weight for each symbol instead of just relying on their frequency and order of first-occurrence as the original U: commands behave. There are some useful applications for this alternative as demonstrated in \cite{lutalo_2025_grimlumtauto}. 
+
+\end{minipage}}
+\vspace{2em}
+
+
+A basic example of how to use \texttt{U:} is the problem of determining the winner at an election given the votes data. In this example TEA program, we assume a vote for candidate represented by letter A, appears as just the letter ``A" in the list of votes, for candidate B, by ``B", and so on. Thus, a list of votes from a polling station, for 3 candidates W, C and A can be represented by the string ``AWCCAWAWAAAAACCWACCCCWCACCA". The following TEA program then, would help automatically rank the candidates by their votes, with the winner appearing first in the result. 
+
+
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=U: EXAMPLE 1: Tallying Votes (Democratic Sorting), breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+I!:{AWCCAWAWAAAAACCWACCCCWCACCA} | u!:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+Should return exactly ``ACW" and not ``CAW" because although A and C each have 11 votes and W has only 5, A occurs before C in the input. Essentially computes the modal sequence statistic of the input. A proof demonstration of this TEA program can be obtained using the ``-d" DEBUG flag to the TEA interpreter TTTT when being invoked with the TEA program as shown in the screenshot below:
+
+\vspace{2em}
+
+\begin{figure}[H]
+  \begin{tcolorbox}[myterminalstyle, title=TEA Applied to Tallying Votes]
+  \begin{lstlisting}
+ 
+EXPERIMENTS|< 13:56:15 $>* tttt -c "I!:{AWCCAWAWAAAAACCWACCCCWCACCA} | u!:"
+ACW
+EXPERIMENTS|< 13:56:21 $>* tttt -c "I!:{AWCCAWAWAAAAACCWACCCCWCACCA} | u!:" -d
+No explicit INPUT found, using STDIN!
+INPUT:
+ None
+CODE:
+ I!:{AWCCAWAWAAAAACCWACCCCWCACCA} | u!:
+---------[ IN TEA RUNTIME ]
+
+#2 of ['I!:{AWCCAWAWAAAAACCWACCCCWCACCA} ', ' u!:']
+##2 of ['I!:{AWCCAWAWAAAAACCWACCCCWCACCA} ', 'u!:']
+CLEAN TEA CODE TO PROCESS:
+I!:{AWCCAWAWAAAAACCWACCCCWCACCA}
+u!:
+
+---<< EXTRACTED TEA LABEL BLOCKS:
+{}
+
+Executing Instruction#0 (out of 2)
+Processing Instruction: I!:{AWCCAWAWAAAAACCWACCCCWCACCA}
+PRIOR MEMORY STATE: (=, VAULTS:{})
+RESULTANT MEMORY STATE: (=AWCCAWAWAAAAACCWACCCCWCACCA, VAULTS:{})
+Executing Instruction#1 (out of 2)
+Processing Instruction: u!:
+PRIOR MEMORY STATE: (=AWCCAWAWAAAAACCWACCCCWCACCA, VAULTS:{})
+--[util]-| Computing Unique Character Projection for [AWCCAWAWAAAAACCWACCCCWCACCA]
+--[util]-| Unique Char Tally [[('A', 11), ('C', 11), ('W', 5)]]
+RESULTANT MEMORY STATE: (=ACW, VAULTS:{})
+ACW
+
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA EXAMPLE: demonstrating use of \texttt{U!:} for ``democratic sorting" on the command-line}
+\end{figure}
+
+
+Note that the example TEA program, because of its use of the special BASH character ``!" \cite{FSF2023Bash}, requires some clever treatment of the TEA source code when being used on the command-line. Thus, the actual command-line invocation of this example might sometimes call for use of the following modified TTTT invocation syntax:
+
+\vspace{2em}
+
+ \begin{tcolorbox}[myterminalstyle, title=TEA Applied to Tallying Votes (Alternative CLI Invocation Syntax)]
+  \begin{lstlisting}
+ 
+tttt -c "I!"":{AWCCAWAWAAAAACCWACCCCWCACCA}|u!":
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+Otherwise would raise Bash-runtime errors such as: \hl{-bash: ": unrecognized history modifier}
+
+\vspace{2em}
+
+The work-around is to first disable history modifier functionality by running command ``set +H", then the code can be entered normally as:
+
+
+\vspace{2em}
+
+ \begin{tcolorbox}[myterminalstyle, title=TEA Applied to Tallying Votes (Normal CLI Invocation Syntax)]
+  \begin{lstlisting}
+ 
+tttt -c "I!:{AWCCAWAWAAAAACCWACCCCWCACCA} | u!:"
+             
+  \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Otherwise, another great example is the following, this time demonstrating how u: can serve the useful purpose of computing a modal sequence statistic for a list of words.
+
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=U: EXAMPLE 2: Compute MSS for list of words, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#compute and return modal sequence statistic of the provided words list
+v:vI:{CAT DOG CAT FISH CAT COW COW FISH COW DUCK} | u*:vI
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+That program should return ``CAT COW FISH DOG DUCK", which helps us tell that the word ``CAT" occurs most frequent, or at least earliest in the provided list, while ``DUCK" occurs least number of times, or last in the original input.
+
+
+\vspace{2em}
+
+
+In essence, both \texttt{u:} and \texttt{u!:} compute the important, modal sequence statistic of the provided input. For those unfamiliar with the statistic or why it is important, consult Lutalo’s mathematical research paper\cite{transformatics} on transformatics and sequence statistics for details.
+
+ 
+\section{EXAMPLE APPLICATIONS of U:}
+\label{SECEXAMPU}
+
+  
+blah blah
+
+
+
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL ART:} blah blah}
+\label{SECEXAMP1U}
+
+
+
+balh blah
+
+
+
+
+
+
+
+
+
+
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
