@@ -464,6 +464,7 @@ are all defined, but \texttt{V:VAULT\_NAME:VAULT\_VALUE:OTHER\_ARGUMENT} isn't. 
 
 
 \subsection{TEA Command Variations and Qualifying TEA Commands Correctly}
+\label{SECQUALIFY}
 
 So, based on the grammar rules by which we can form valid TEA Instructions (see \textbf{\autoref{FIG1}}), we know that, in total, we can have \textbf{208 possible TEA Commands}. We arrive at that number as such:
 
@@ -10918,9 +10919,9 @@ s!: & Delete a SINGLE CHARACTER from AI at a random position. Unsalting AI.\\
 \rowcolor{lightgray}\bfseries \makecell[l]{s!:REGEX:N:N2} & Randomly select one of the sections in AI matching REGEX, and delete it. With $N$ specified, only deletes an occurrence not later than the $N$th-occurrence of REGEX within AI, with $N2$, operates on the range between $N2$ and $N$, operating on exactly the Nth occurrence if $N=N2$. Thus $N$ and $N2$ should be picked such that $N2 \leq N$.\\
 
 
-\makecell[l]{s*:vNAME:vSALT:vN:vN2} & Same as s:SALT:N:N2, but operating on the string stored in the vault with the name vNAME  instead of AI, and using string stored in vSALT as the salt. All parameters are read from vaults with the specified names.\\
+\makecell[l]{s*:vNAME:vSALT:vN:vN2} & Same as s:SALT:N:N2, but operating on the string stored in the vault with the name vNAME  instead of AI, and using string stored in vSALT as the salt. All parameters are read from vaults with the specified names. With only vNAME specified, operates like \texttt{s:} on \texttt{vNAME}.\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{s*!:vNAME:vREGEX:vN:vN2} & Same as s!:REGEX:N:N2, but operating on the string stored in the vault with the name vNAME  instead of AI.  All parameters are read from vaults with the specified names.\\
+\rowcolor{lightgray}\bfseries \makecell[l]{s*!:vNAME:vREGEX:vN:vN2} & Same as s!:REGEX:N:N2, but operating on the string stored in the vault with the name vNAME  instead of AI.  All parameters are read from vaults with the specified names. With only vNAME specified, operates like \texttt{s!:} on \texttt{vNAME}.\\
 
  \hline
 \end{tabular}
@@ -13084,7 +13085,7 @@ Which, if we apply it to the complete Uganda national anthem, whose text is spec
 
 \vspace{2em}
   
-   \begin{tcbverbatim}[title=UGANDA National Anthem Vowel Hymn]
+   \begin{tcbverbatim}[title=UGANDA National Vowel Anthem]
 O Uaa! a o uo ee,
 e a ou uue i  a.
 Uie, ee,
@@ -13106,6 +13107,283 @@ e ea o Aia' o.
  
 
 \vspace{2em}
+
+
+\fbox{
+\begin{minipage}{0.9\textwidth}
+\textbf{INTERNET Community Challenge:} \textit{Sing the UGANDA National Vowel Anthem!}\\
+
+Following the interesting discovery of this strange projection of the Uganda national anthem into a vowel hymn, a call was made on various ICs for especially Ugandan netizens to go explore and experience for themselves, what it feels like singing their national anthem as a vowel hymn. 
+
+
+In case you are likewise interested, go checkout the call talkshow via: \url{https://youtube.com/shorts/8yUa_oPgqfU} and for those that need an accompanying instrumental version of the anthem so they can sing their vowel version alongside the standard anthem tune, the links to the audio are 
+
+\begin{itemize}
+\item (YouTube: audio-video) \url{https://youtube.com/shorts/X025Pw6pDCs}
+\item (UIC: audio) \url{https://t.me/ugandanow/5665}
+\end{itemize}
+
+\end{minipage}}
+\\
+
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: V
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{V: VAULT}
+\label{SECV}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{VAULT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Store and enable operating on stored data.
+	\item The \textbf{variable facility for the TEA language} --- essentially, named storage access and writing.
+	\item Writing to anonymous (DEFAULT) storage 
+	\item Determining the size of stored items.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{V:}}
+  \label{TABTAZV}
+\end{table}
+
+
+\section{SEMANTICS of V:}
+\label{SECSEMV}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+v: & Store AI into the default vault (unnamed vault) – stores the EMPTY STRING (TEA Null/None value) if AI is not yet set. Returns AI\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{v:vNAME\\v:vNAME:vVALUE} & With only vNAME specified, store AI in a vault with that name. With vVALUE specified, store that instead of AI. Returns AI\\
+
+v!: & Return the length of what is stored in the default vault.\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{v!:STR} & Return the length of string STR\\
+
+
+\makecell[l]{v*:vNAME\\v*:vNAME:vVALUE} & Store value vVALUE in vault vNAME overriding where necessary. Returns AI\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{v*!: vNAME} & Return the length of what is stored in the vault vNAME. Without vNAME, is like v!:\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of V:}
+\label{TABSEMV}
+\end{table}
+
+
+\section{NOTES about V:}
+\label{SECNOTEV}
+
+
+Every useful programming language (but also any computing system for that matter) needs some simple way to not only store or perhaps temporarily hold many bits of data, but also, be able to access or reference them by name, as well as be able to operate on such data [at rest]. Before we proceed, it shall be worth bringing up some very illuminating ideas concerning memory management and design principles that a famous authority on computer architecture (which also impacts programming language design) did bring up --- the source is ``Advanced Computer Architecture"\cite{kain1999advanced} by \textbf{Richard Y. Kain}, and concerning memory, he opened his chapter on the topic with a very powerful quote attributed to famous 19th century philosopher, \textbf{Friedrich Nietzsche}:
+
+
+\begin{minipage}{1\textwidth}
+\vspace{1em}
+\begin{quotation}
+{\ttfamily
+
+The existence of forgetting has never been proved; we only know that some things do not come to mind when we want them.
+
+}
+\end{quotation}
+\vspace{1em}
+\end{minipage}
+
+
+Such an interesting thought... For programmers especially, we would be freaked out if for whatever reason, our computer programs couldn't reliably store and later retrieve user provided data. For example, in (\textbf{\hyperref[SECEXAMP1J]{Section \ref{SECEXAMP1J}}}) we present a critically useful medical support tool called the \textbf{Mental Health Profiler}. That program helps a person (possibly a doctor or counselor) conduct a rigorous interview or review of another person (perhaps a patient or client), via a series of well-categorized questions, for which answers must be solicited for, entered into the program and so that the program later can prepare a well formatted report of the session. It is one of those programs where the importance of having a well designed memory facility is critical in the program's design, and this case would surely be horrific if it were implemented using a language or mechanism that somehow allows certain bits of memory to be inaccessible when needed, and these are the kinds of problems that TEA's VAULT command space set out to address. Concerning this too, Kain does go on to inform us that...
+
+
+\begin{minipage}{1\textwidth}
+\vspace{1em}
+\begin{quotation}
+{\ttfamily
+
+Under the simple memory illusion we view the memory system as a set of places (which hold objects) coupled with a scheme for naming those places.
+
+}
+\end{quotation}
+\vspace{1em}
+\end{minipage}
+
+
+He goes on to classify or distinguish between four major kinds of memory operations any system might ever have to worry about:
+
+
+
+\begin{minipage}{1\textwidth}
+\vspace{1em}
+\begin{quotation}
+{\ttfamily
+
+There are four basic modes of access to an object within memory; Read (R), Execute (E), Write (W), and Read/Modify/Write (RMW).
+
+}
+\end{quotation}
+\vspace{1em}
+\end{minipage}
+
+
+In TEA, the V-command space makes this (or all of these) possible, and it is the closest facility in TEA, to what other languages offer as variables or \textbf{named memory access}. Because most TEA programs will be operating on AI --- the \textit{Active Input} most of the time, the v: and v!: primitives offer a means to easily store or tell the length of AI without explicitly referencing it by name --- so-called TEA DEFAULT storage\footnote{Also the vault whose name is the empty string, ``", since we access it as \texttt{y:} after having written to it with \texttt{v:}, where normal named storage would expect \texttt{y:NAME} and \texttt{v:NAME} respectively.}. However, generally, we use the following methods to operate on memory in any TEA program:
+
+\begin{enumerate}
+\item WRITE: to store a literal string \texttt{STR} inside a memory location named \texttt{NAME}\footnote{Note that, as a convention, and as a matter of style, in TEA, we especially prefer to precede all memory location names --- such as the names of vaults, with the lowercase letter ``v", so that, instead of referring to a vault with a name such as ``NAME", we instead write ``vNAME", instead of \texttt{v:AGE}, we prefer to write \texttt{v:vAGE},etc.}, we use the instruction: \texttt{v:NAME:STR}
+\item READ: to read a string from the memory location (vault) named ``vNAME", we merely write: \texttt{y:vNAME}
+\item EXECUTE: in TEA, we normally have many kinds of ways to operate on data stored in a named memory location (such as when we stored it using \texttt{v:vNAME}), and these are typically easy to tell-apart by the special signature any such commands use --- essentially, and as introduced in \textbf{\hyperref[SECQUALIFY]{Section \ref{SECQUALIFY}}}, when we encounter the TEA command qualifier ``*", such as in \texttt{a*:vNAME}, \texttt{d*:vREGEX}, \texttt{c*:vNAME:vAGE:vDESC}, etc. that any such command is actually doing something related to data stored in memory, and particularly, that held in a vault with the corresponding name or names. Generally though, any such commands will not modify what is stored at the specified vault\footnote{Exceptions being memory altering commands such as \texttt{c*:vNAME...} that clears memory, or \texttt{v:vNAME...} that writes to or overwrites memory.} but shall instead operate on a copy of the data held at that memory location, and then return the [modified] result --- such as when \texttt{s*:vWORD} randomly injects a single space in the string held in \texttt{vWORD} --- the original contents held in vault \texttt{vWORD} remain unchanged, but the AI after executing that salt command contains the modified version of what was originally held in the named vault. Also commands such as \texttt{v!:vWORD} that would return the length of what is held in the named vault behave similarly. As for explicit execution of what is stored in a vault, there is the command \texttt{e*:vCODE} or \texttt{e*!:vCODE} explained in \textbf{\hyperref[CHAPE]{Chapter \ref{CHAPE}}}.
+\end{enumerate}
+
+The case Kain clasifies as RMW might be likened to scenarios where an existing memory location is read, modified, then the update written back to the same location such as with a chaining of instructions such as in...
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 1: Vault RMW, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vWORD:{hello} | s*:vWORD | v:vWORD
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Which, as you can tell from the following TEA DEBUG output, reads out the value originally saved in the vault \texttt{vWORD}, modifies it by having a salt operation applied to it --- which randomly injects a single white space character in this case, at a random location within, before or after the string contents, and then we take that output (then in AI), and write it back into the original vault --- so that, without that last step, the original vault would have remained unmodified. See below for details...
+
+
+\vspace{2em}
+  \begin{tcolorbox}[myterminalstyle, title=DEBUGGING a TEA memory RMW scenario]
+  \begin{lstlisting}
+CLITTTT|< 16:26:11 $>* ./tttt -c "v:vWORD:{hello} | s*:vWORD | v:vWORD" -d
+No explicit INPUT found, using STDIN!
+INPUT:
+ None
+CODE:
+ v:vWORD:{hello} | s*:vWORD | v:vWORD
+---------[ IN TEA RUNTIME ]
+
++++[NO TEA CODE ERRORS FOUND YET]
+CLEAN TEA CODE TO PROCESS:
+v:vWORD:{hello}
+s*:vWORD
+v:vWORD
+--[#3 TEA INSTRUCTIONS FOUND]---
+
+---<< EXTRACTED TEA LABEL BLOCKS:
+{}
+
+Executing Instruction#0 (out of 3)
+Processing Instruction: v:vWORD:{hello}
+PRIOR MEMORY STATE: (=, VAULTS:{})
+-- [INFO] Wrote VAULT[vWORD = [hello]]
+RESULTANT MEMORY STATE: (=, VAULTS:{'vWORD': 'hello'})
+Executing Instruction#1 (out of 3)
+Processing Instruction: s*:vWORD
+PRIOR MEMORY STATE: (=, VAULTS:{'vWORD': 'hello'})
+-- [INFO] Reading VAULT[vWORD]
+Salting hello of len[5] at index[1]--> h +   + ello
+RESULTANT MEMORY STATE: (=h ello, VAULTS:{'vWORD': 'hello'})
+Executing Instruction#2 (out of 3)
+Processing Instruction: v:vWORD
+PRIOR MEMORY STATE: (=h ello, VAULTS:{'vWORD': 'hello'})
+-- [INFO] Wrote VAULT[vWORD = [h ello]]
+RESULTANT MEMORY STATE: (=h ello, VAULTS:{'vWORD': 'h ello'})
+h ello                
+  \end{lstlisting}
+  \end{tcolorbox}
+  %\caption{TEA DEBUGGER: Debugging a TEA program involving Memory Read-Modify-Write operations}
+\vspace{2em}
+
+
+The \texttt{v!:} and \texttt{v*!:} primitives offer the only straightforward way to determine the size of things in TEA\footnote{As all things being processed in TEA are strings, it comes in very handy for controlling certain operations based on size of memory contents or counts (when such lengths are combined with other measures).}\footnote{But, yes, there is also the related instruction for this task --- \texttt{y!:vNAME} and \texttt{y!:} for a named vault and the other for the DEFAULT vault respectively.}.
+
+
+\vspace{2em}
+
+
+The most basic example for how to return the length of any input is the following simple TEA program:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 2: Length of a String, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:ABC|v:|v!:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+It should return just ``3" for this example string ``ABC".
+
+
+\vspace{2em}
+
+For more involved applications, see the following program that will help generate an 8-character password from any given non-empty initial string:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 3: 8-letter Password Generator, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# given some initial/external seed...
+I:{SOMEVALUE} # if none, then use this as default seed
+G!:|A!: # glue and anagrammatize seed
+V:vSRC|V*!:vSRC # store it in vault and return length
+Q:^0$ # quit if seed was empty
+V:vPWD:{} #init password with empty string
+L:lTEST
+V*!:vPWD # get current length of password
+F!:8:lPRODUCE:lRETURN # produce if not yet 8-chars long otherwise return
+L:lPRODUCE
+Y:vSRC #fetch the seed
+A!:|D!:^. # shuffle seed and pick only first character
+V:vCHOSEN # store picked letter in a vault
+G*:{}:vPWD:vCHOSEN # append it to current password
+V:vPWD | V*!:vPWD # override password and return its length
+J:lTEST # return to the password length test
+L:lRETURN
+Y:vPWD # return final password
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+That TEA program, without any other external input (the \textit{initial seed}) shall generate passwords like ``LEEOSVVM", ``SSAMLUVE", ``UAEEMOLL" etc. And if we pass in some external seed such as ``hello" (which is just 5 characters long), shall intelligently return passwords such as ``oleolole", ``lhhlhole", ``llllohhe", etc.
+
+
+Of course, that program can be improved upon so as to create more cryptic passwords given some initial seed (or none), and this we shall cover among the example applications in the next section.
+
+
+
+ 
+\section{EXAMPLE APPLICATIONS of V:}
+\label{SECEXAMPV}
+
+  
+In exploring the applications of the VAULT command space, we are without doubt going to be free to almost source ideas from any of the other programs and applications covered in this book thus far, especially because most TEA programs shall at minimum involve some sort of use of vaults for reading or writing data into memory.
+
+
+
+\subsection{EXAMPLE 1: \textbf{INFORMATION SECURITY:} SECURE Password Generator}
+\label{SECEXAMP1V}
+
+
+blah blah...
 
 
 
