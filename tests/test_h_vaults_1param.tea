@@ -1,0 +1,13 @@
+# this case helps appreciate when we hew a string in a vault
+
+# HEW with SPACE...
+v:vWORD:{hello} | h*:vWORD # returns "h e l l o"
+
+# HEW with New Lines...
+v:vWORD:{hello} | h*!:vWORD 
+# returns  
+# h
+# e
+# l
+# l
+# o

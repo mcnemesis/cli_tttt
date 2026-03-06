@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.7"
+VERSION = "1.3.8"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -1280,8 +1280,12 @@ class TEA_RunTime:
                     io = TEA_RunTime.NL.join(parts)
             if tc == "H*":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
-                if len(params) < 2:
+                if len(params) < 1:
                     pass
+                elif len(params) == 1:
+                    vault = params[0]
+                    io = vault_get(vault)
+                    io = TEA_RunTime.SINGLE_SPACE_CHAR.join(list(io))
                 else:
                     vault = params[0]
                     vregex = params[1]
@@ -1292,8 +1296,12 @@ class TEA_RunTime:
                     io = TEA_RunTime.SINGLE_SPACE_CHAR.join(parts)
             if tc == "H*!":
                 params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=2)
-                if len(params) < 2:
+                if len(params) < 1:
                     pass
+                elif len(params) == 1:
+                    vault = params[0]
+                    io = vault_get(vault)
+                    io = TEA_RunTime.NL.join(list(io))
                 else:
                     vault = params[0]
                     vregex = params[1]
