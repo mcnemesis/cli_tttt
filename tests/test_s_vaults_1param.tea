@@ -1,0 +1,8 @@
+# this case helps appreciate when we salt or unsault a string in a vault
+# using the default salt or no custom regex (in the unsalt case)
+
+# SALTING...
+v:vWORD:{hello} | s*:vWORD # might return " hello", "he llo", "hell o", etc. 
+
+# UNSALTING...
+v:vWORD:{hello} | s*!:vWORD # might return "hell", "ello", "hllo", etc. 

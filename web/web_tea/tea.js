@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.3.6" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.3.7" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -2725,8 +2725,8 @@ export class TEA_RunTime {
             }
             else {
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
-                var vault = this.extract_str(params[0])
-                var input_str = this.vault_get(vault)
+                var vname = this.extract_str(params[0])
+                var input_str = this.vault_get(vname)
                 io = input_str
 
                 if(TEA_RunTime.is_empty(io)){
@@ -2736,7 +2736,10 @@ export class TEA_RunTime {
                     return io
                 }
                 else {
-                    if(params.length == 2){
+                    if(params.length == 1){
+                        io = this.util_salt_string(io, salt)
+                    }
+                    else if(params.length == 2){
                         var vsalt = this.extract_str(params[1])
                         var salt = this.vault_get(vsalt)
                         io = this.util_salt_string(io,salt)
@@ -2769,8 +2772,8 @@ export class TEA_RunTime {
             }
             else {
                 var params = TEA_RunTime.splitWithLimit(tpe_str,TEA_RunTime.TIPED, 3)
-                var vault = this.extract_str(params[0])
-                var input_str = this.vault_get(vault)
+                var vname = this.extract_str(params[0])
+                var input_str = this.vault_get(vname)
                 io = input_str
 
                 if(TEA_RunTime.is_empty(io)){
@@ -2780,7 +2783,10 @@ export class TEA_RunTime {
                     return io
                 }
                 else {
-                    if(params.length == 2){
+                    if(params.length == 1){
+                        io = this.util_unsalt_string(io)
+                    }
+                    else if(params.length == 2){
                         var vsalt_regex = this.extract_str(params[1])
                         var salt_regex = this.vault_get(vsalt_regex)
                         io = this.util_unsalt_string(io,salt_regex)

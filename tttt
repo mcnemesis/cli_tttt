@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.6"
+VERSION = "1.3.7"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -2092,8 +2092,8 @@ class TEA_RunTime:
                     return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = self.extract_str(params[0])
-                    input_str = vault_get(vault)
+                    vname = self.extract_str(params[0])
+                    input_str = vault_get(vname)
                     io = input_str
 
                     if self.is_empty(io):
@@ -2102,7 +2102,9 @@ class TEA_RunTime:
                         # can't salt without input
                         return io
                     else:
-                        if len(params) == 2:
+                        if len(params) == 1:
+                            io = util_salt_string(io,salt)
+                        elif len(params) == 2:
                             vsalt = self.extract_str(params[1])
                             salt = vault_get(vsalt)
                             io = util_salt_string(io,salt)
@@ -2129,8 +2131,8 @@ class TEA_RunTime:
                     return io
                 else:
                     params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                    vault = self.extract_str(params[0])
-                    input_str = vault_get(vault)
+                    vname = self.extract_str(params[0])
+                    input_str = vault_get(vname)
                     io = input_str
 
                     if self.is_empty(io):
@@ -2140,7 +2142,9 @@ class TEA_RunTime:
                         return io
                     else:
                         params = tpe_str.split(TEA_RunTime.TIPED, maxsplit=3)
-                        if len(params) == 2:
+                        if len(params) == 1:
+                            io = util_unsalt_string(io)
+                        elif len(params) == 2:
                             vsalt_regex = self.extract_str(params[1])
                             salt_regex = vault_get(vsalt_regex)
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
