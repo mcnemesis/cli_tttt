@@ -12,7 +12,7 @@ import { TEA_RunTime as TEA } from './tea.js';
 
 console.log(U.test());
 
-var IDE_VERSION = '2.1';
+var IDE_VERSION = '2.3';
 var DEBUG = false;
 var DARK_UI = false;
 var DARK_UI_CLASS = "dark";
