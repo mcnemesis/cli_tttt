@@ -12,6 +12,7 @@ import { TEA_RunTime as TEA } from './tea.js';
 
 console.log(U.test());
 
+var IDE_VERSION = '2.1';
 var DEBUG = false;
 var DARK_UI = false;
 var DARK_UI_CLASS = "dark";
@@ -169,7 +170,7 @@ function reloadSTOREDPROGRAMS(){
 
 // make text editors sticky...
 U.makeStickyEditor('txt_input');
-U.makeStickyEditor('txt_code');
+U.makeStickyEditor('txt_code', true); // also pass flag to enable undo mechanism
 U.makeStickyEditor('txt_output');
 U.makeStickyEditor('txt_prog_name');
 
@@ -287,6 +288,7 @@ U.ready(function () {
     // load status message from tool developers...
     U.status('<b>UPDATES:<b/><br/><ul><li>' 
         + 'You are using v'+ TEART.get_version() +' of WEB TEA.</li><li>' 
+        + 'The WEB TEA IDE in use is v'+ IDE_VERSION +'</li><li>' 
         + TEART.get_status_message() +'</li><li>' 
         + IDE_status_message +'</li></ul>'
         + 'The TEA IDE is ready. You may proceed...'
@@ -399,7 +401,6 @@ function debug_writer(txt){
 
 // Clear out currently loaded TEA program code
 U.click("btn_clear_prog", function() {
-    U.updateElement('txt_code','');
     U.updateElement('txt_code','');
     U.status_success("TEA Code Editor Reset...");
 });
@@ -608,6 +609,13 @@ U.click("btn_paste_prog", function() {
             U.status_error("Failed loading code from clipboard.");
         }
     });
+});
+
+
+// UNDO program last program code change in editor
+U.click("btn_undo_prog", function() {
+    U.undoElement('txt_code');
+    U.status_success("Restored code before last change.");
 });
 
 // Analyze program and present results

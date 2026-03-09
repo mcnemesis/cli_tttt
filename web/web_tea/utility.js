@@ -90,7 +90,7 @@ export class Utility {
 	}
 
     // make some text editor have sticky content
-	static makeStickyEditor(id){
+	static makeStickyEditor(id,saveUndoBuffer=false){
 		this.ready(() => {
 		  const el = this.get(id);
 		  const storageKey = "sticky_editor_key_" + id;
@@ -101,10 +101,36 @@ export class Utility {
 
 		  // Save on input
 		  el.addEventListener("input", () => {
+              if(saveUndoBuffer){
+                  const last_saved = localStorage.getItem(storageKey);
+                  const undo_storageKey = "undo_sticky_editor_key_" + id;
+                  if (last_saved !== null) localStorage.setItem(undo_storageKey, last_saved);
+              }
 			localStorage.setItem(storageKey, el.value);
 		  });
 
 		});
+	}
+
+
+	//---[ UTILITY: UNDO ELEMENT changes ]
+	static undoElement(id) {
+	  const element = this.get(id);
+      const undo_storageKey = "undo_sticky_editor_key_" + id;
+
+	  if (element) {
+        const last_savedText = localStorage.getItem(undo_storageKey);
+          if(last_savedText != null){
+            element.textContent = last_savedText; // Sets the visible text
+            element.value = last_savedText; // Also Sets the value text
+            // esp. for text areas and editors, want to trigger change
+            this.trigger(element,'input');
+          } else {
+            console.warn(`Element with id "${id}" had NO-UNDO history found.`);
+          }
+	  } else {
+		console.warn(`Element with id "${id}" not found.`);
+	  }
 	}
 
     // return a humane time stamp string
