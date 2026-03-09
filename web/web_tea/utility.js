@@ -179,12 +179,15 @@ export class Utility {
 	static status(message, type, htmlON) {
 	  if (type) {
 		this.updateElement("txt_status", message, type);
+		this.updateElement("txt_status_mob", message, type);
 	  } else {
 		this.updateElement("txt_status", message, "alert alert-info");
+		this.updateElement("txt_status_mob", message, "alert alert-info");
 	  }
 
         if(htmlON){
             this.get("txt_status").innerHTML = message;
+            this.get("txt_status_mob").innerHTML = message;
         }
 	}
 

@@ -12,7 +12,7 @@ import { TEA_RunTime as TEA } from './tea.js';
 
 console.log(U.test());
 
-var IDE_VERSION = '2.3';
+var IDE_VERSION = '2.1.2';
 var DEBUG = false;
 var DARK_UI = false;
 var DARK_UI_CLASS = "dark";
@@ -181,6 +181,7 @@ U.ready(function () {
     // display version of WEB TEA in use..
     var TEART = new TEA();
     U.updateElement('webTEAVersion', TEART.get_version());
+    U.updateElement('TEAIDEVersion', IDE_VERSION);
 
     // load last user-configured theme and settings
 	const last_mode = DATABASE.get(SETTING_THEME);
