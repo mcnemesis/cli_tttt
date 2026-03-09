@@ -7223,10 +7223,10 @@ Give some schema of a kind we shall refer to as \textbf{TEA DATA TEMPLATE}(TDT),
   \end{tcbverbatim}
 
 
-In which, the core per-record template is placed inside the initial "[" and "]", and for which dynamic sections are specified using literal TEA "mini-programs" --- somewhat reminiscent of what we can accomplish using TEA programs held in literal strings (refer to \textbf{\hyperref[CHAPE]{Chapter \ref{CHAPE}}}). And for which we also specify how many records are to be generated as such:
+In which, the core per-record template is placed inside the initial ``[" and ``]", and for which dynamic sections are specified using literal TEA "mini-programs" --- somewhat reminiscent of what we can accomplish using TEA programs held in literal strings (refer to \textbf{\hyperref[CHAPE]{Chapter \ref{CHAPE}}}). And for which we also specify how many records are to be generated as such:
 
 
-First example, in the above TDT snippet, we are required to generate a list of 10 well-structured records conforming to the schema held inside the initial two square-brackets, ``[" and ``]" --- in this case, meaning the data somewhat is formatted like a JSON object whose fields bare the names specified in the double quotation marks as usual JSON-syntax requires, and which expressions shall be left-as-is in the final output but whose values --- held both inside of double-quotation marks but also inside of an opening angled-bracket ``<" and a closing one, ``>", so that, any such expressions held between ``<" and ``>" anywhere within the first ``[" and first ``]" are then treated as literal \textbf{embedded TEA programs}, which are to be evaluated for each of the 20 instances to be generated, and so that, the final dataset has something like...
+First example, in the above TDT snippet, we are required to generate a list of 10 well-structured records conforming to the schema held inside the initial two square-brackets, ``[" and ``]" --- in this case, meaning the data somewhat is formatted like a JSON object whose fields bare the names specified in the double quotation marks as usual JSON-syntax requires, and which expressions shall be left-as-is in the final output but whose values --- held both inside of double-quotation marks but also inside of an opening angled-bracket ``$<$" and a closing one, ``$>$", so that, any such expressions held between ``$<$" and ``$>$" anywhere within the first ``[" and first ``]" are then treated as literal \textbf{embedded TEA programs}, which are to be evaluated for each of the 20 instances to be generated, and so that, the final dataset has something like...
 
 
   \begin{tcbverbatim}[title=Sample Output Data Format Expected]
@@ -13379,11 +13379,112 @@ In exploring the applications of the VAULT command space, we are without doubt g
 
 
 
-\subsection{EXAMPLE 1: \textbf{INFORMATION SECURITY:} SECURE Password Generator}
+\subsection{EXAMPLE 1: \textbf{INFORMATION SECURITY:} SECURE Password Generator (SPG)}
 \label{SECEXAMP1V}
 
 
-blah blah...
+In approaching our secure password generator (SPG) system, first, we shall want to agree on a minimal specification upon which the system should be based. For starters, it shall be worth having in mind some of the state-of-the-art theory and standard recommendations regarding password design and usage best-practices. A quick consultation\cite{copilot_assistant} and some background research surface some of the following useful guidelines...
+
+\vspace{2em}
+
+
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+
+\textbf{Practices for Password Design}
+
+Strong password design emphasizes length, uniqueness, and usability, backed by multi-factor authentication. Industry standards (like NIST guidelines) now prioritize long passphrases over complex but short strings, while theoretical best practices stress entropy, resistance to brute force, and minimizing human error.
+
+\vspace{1em}
+
+\textbf{Industry Recommendations}
+\begin{enumerate}
+  \item Length over complexity: Use at least 12--16 characters; longer passphrases are preferred \cite{NIST2017}.
+  \item Avoid mandatory composition rules: Forcing symbols or uppercase letters often reduces usability without significantly improving security \cite{NIST2017}.
+  \item No reuse: Each account must have a unique password to prevent credential stuffing \cite{NIST2017}.
+  \item Multi-factor authentication (MFA): Combine passwords with tokens or biometrics for defense in depth \cite{NIST2017}.
+  \item Password managers: Employ trusted managers to generate and store strong, unique credentials \cite{NIST2017}.
+  \item Breach screening: Systems should check new passwords against known compromised lists \cite{NIST2017}.
+  \item Secure storage: Hash passwords with modern algorithms (Argon2, bcrypt, scrypt) and salt them \cite{NIST2017}.
+\end{enumerate}
+
+\vspace{1em}
+
+\textbf{Theoretical Recommendations}
+\begin{enumerate}
+  \item Entropy as a measure of strength: Passwords should maximize unpredictability; entropy grows with length and randomness \cite{Chowdhury2023}.
+  \item Combinatorial models: Research shows entropy-based metrics better predict resistance to brute-force attacks than simple complexity rules \cite{Chowdhury2023}.
+  \item Resistance to offline attacks: Passwords must withstand large-scale cracking attempts; longer passphrases exponentially increase the search space \cite{Chowdhury2023}.
+  \item Balance usability and security: Overly complex rules lead to insecure workarounds; entropy-based approaches allow memorable but strong passphrases \cite{Chowdhury2023}.
+  \item Assurance levels: Password strength should match the risk profile of the system (financial, reputational, or safety consequences) \cite{Burr2003}.
+\end{enumerate}
+
+\vspace{1em}
+
+\textbf{Comparison}
+%\begin{tabular}{|l|l|l|}
+\begin{table}[H]
+\normalsize
+\centering
+\begin{tabular}{| m{0.2\linewidth} | m{0.2\linewidth}| m{0.3\linewidth}|} % 3 columns, 
+\hline
+\textbf{Approach} & \textbf{Industry View} (NIST) \cite{NIST2017} & \textbf{Theoretical View} \cite{Chowdhury2023,Burr2003} \\
+\hline
+Short complex passwords & Discouraged & Low entropy, easily brute-forced \\
+\hline
+Long passphrases & Recommended & High entropy, strong resistance \\
+\hline
+Composition rules & Optional, not required & Adds little entropy if length is short \\
+\hline
+MFA & Strongly recommended & Adds assurance beyond entropy \\
+\hline
+Password managers & Encouraged & Supports entropy maximization \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{1em}
+
+\textbf{Key Takeaways}
+\begin{itemize}
+  \item Use long, unique passphrases ($\geq$12 characters).
+  \item Always enable multi-factor authentication.
+  \item Employ password managers to avoid reuse.
+  \item Measure strength by entropy, not arbitrary complexity rules.
+  \item Match password policies to system risk levels.
+\end{itemize}
+
+
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{2em}
+
+
+Thus, with those guiding principles out of the way, we shall want to come up with a SPG that conforms to the following minimal specification:
+
+\vspace{2em}
+
+\textbf{System Specification: Secure Password Generator}
+
+\begin{enumerate}
+\item{ The SPG shall offer three modes for password generation:
+\begin{enumerate}
+\item \textbf{complex}: short (10-12 characters), random composition of symbols, letters and numbers. \textit{[hard to memorize, difficult to guess]}
+\item \textbf{humane}: short (10-12 characters), random composition of words and symbols. \textit{[easy to memorize, theoretically hard to crack]}
+\item \textbf{advanced}: long (12-20 characters), random words, numbers, symbols and [internal] white-space. \textit{[easy to memorize, hard to crack, provably secure]}
+\end{enumerate}
+}
+\item For the case of complex mode, the user shall have the option of specifying their own symbol alphabet. (Defaults: \textbf{!@\#\$\%\^{}*()-=\_})
+\item For the case of humane mode, the user shall have the option of specifying their own symbol alphabet to use to punctuate the word tokens. (Defaults: \textbf{+-=})
+\item For the case of advanced mode, the user shall have the option of specifying their preferred minimum password length. (Default: 16)
+\item For all the three modes, the SPG shall offer the user the option to present just the password, or the password and its security properties (length/sequence-cardinality(SC), sequence entropy (SE) and symbol set cardinality (SSC)).
+\end{enumerate}
+
+\vspace{2em}
+
+With that well-founded and articulate system specification, we then have the following password generation system architecture:
 
 
 
