@@ -40,6 +40,10 @@
 % throw in page-top header
 \fancyhead[L]{TEA TAZ – Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION}
 
+% Define inverted Delta symbol...
+\newcommand{\invdel}[1]{\mathop{\rotatebox[origin=c]{180}{$\Delta$}}#1}
+
+
 % for graphics
 \usepackage{graphicx}
 \usepackage{caption}
@@ -482,7 +486,7 @@ So, based on the grammar rules by which we can form valid TEA Instructions (see 
 \item \texttt{*!} --- essentially, if TC is ``A", we get ``A*!:", if ``B", then ``B*!:" etc.
 \end{enumerate}
 
-Which gives us \textbf{7 TCQ variants}, and thus a total of $52 \times 7 \rightarrow 364$ TEA Command Variations.
+Which gives us \textbf{7 TCQ variants}\footnote{Well, \textit{not exactly} 7, because there are some exceptions, such as when we have \texttt{u*!.:vNAME} introduced in \textbf{\hyperref[TABSEMU]{Table \ref{TABSEMU}}} --- when we actually combine all 3 TCQ elements in one signature!}, and thus a total of $52 \times 7 \rightarrow 364$ TEA Command Variations.
 }
 \end{enumerate}
 
@@ -573,7 +577,7 @@ Essentially, in \textbf{\autoref{FIG1}}, we see the final, most generic lexical 
 
 \begin{enumerate}
 \item \textbf{The instruction starts with a single letter from Latin alphabet} --- $\psi_{az} = \langle a, b, c, ..., y, z \rangle$, and that the case of the letter doesn't matter. This letter is what is called a \textbf{TEA Primitive Command} (TPC).
-\item \textbf{After the TPC, we might optionally have} a dot (.), an exclamation mark (!), an asterisk (*) or an ordered pairwise combination of them; (.!) or (.*) or (*!) but not (.*!). These are refered to as \textbf{TEA Command Qualifiers} (TCQ), and nothing else after the TPC and TCQ except the full colon (:)---a \textbf{TEA Command Delimiter} (TCD). When the TPC is followed by TCQ we then call that command the \textbf{Inverse} or \textbf{Alternate} form of the TPC.
+\item \textbf{After the TPC, we might optionally have} a dot (.), an exclamation mark (!), an asterisk (*) or sometimes, an ordered pairwise combination of them; (.!) or (*.) or (*!) and only in rare cases, a triplet qualifier such as (*!.), but not\footnote{There are legitimate cases where we might use all 3 qualifiers in a single signature, such as for \texttt{u*!.:vNAME} or \texttt{t*!.:vNAME}, however, the ordering does matter. So, a serious TEA programmer should be aware of these quirks, and always consult this manual or the TEA standard reference implementation\cite{cli_tttt} when in doubt.} (.*!) nor (!.*), etc. These are refered to as \textbf{TEA Command Qualifiers} (TCQ), and nothing else after the TPC and TCQ except the full colon (:)---a \textbf{TEA Command Delimiter} (TCD). When the TPC is followed by TCQ we then call that command the \textbf{Inverse} or \textbf{Alternate} form of the TPC.
 \item After the TCD, everything that follows until the end of the line or until the vertical bar character (\verb!|!)---the \textit{TI Delimiter} (TID)\footnote{Concerning the TID, earlier ideas had included the possibility of delimiting multiple TI expressions, possibly on the same line, using either the (;) or (,) characters.} is a \textbf{TI Parameter Expression} (TIPE).
 \item TIPE consists of one or more characters excluding the \textbf{TIPE Delimiter} (TIPED) symbol--- also called ``\textbf{TEA Parameter Expression Delimiter}", which is the full colon, ``:", just like the TCD, followed by one or more TIPE.
 \item After the TID, and on the same line, everything that follows is either another TI or is something essentially treated as either whitespace or a comment---thus a \textbf{TEA Opaque Expression} (TOE).
@@ -1013,6 +1017,910 @@ If you have come across the new/emerging mathematical theory of Transformatics\c
 \vspace{1em}
 
 In \cite{cli_tttt} is covered well, the matter of the TEA language and its relation to the traditional UNIX/Linux philosophy; of well-designed basic tools such as text processing tools or data transformation utilities, and how they might be composed via ``piping", to help compose complex logical, computational and/or automation solutions to arbitrary problems. \textbf{The mathematics of Transformatics is what really helps generalize these ideas well enough into a logical framework, system or theory devoid of any dependence on particular technologies or applications, and instead focusing on the ideas of sequences, sequence-transformers and their composition and/or application in the perspective of pure and applied mathematics somewhat reminiscent of linear-algebra.}
+
+\vspace{2em}
+
+Before we conclude this diversion, and for completeness's sake, we shall reproduce here, the verbatim copy of the essential foundational paper on \textbf{the new mathematics of Transformatics} --- the manuscript\cite{Lutalo2025_transformatics_thesis} known as the ``\textbf{Transformatics 101 - explained}" mini-thesis. 
+
+%%%%%%%%%%%%%%%| TRANSFORMATICS 101 - explained mini-booklet as an appendix chapter |%%%%%%%%%
+
+
+% insert [front] cover --- could just be a PNG or PDF
+\includepdf[pages=1]{resources/pdfs/trans_front_cover.pdf}
+
+
+\chapter{TRANSFORMATICS 101 - explained:\\\small{A rigorous, succinct introduction to all the essential foundations and proposed theory of Transformatics}}
+\label{CHAPTRANS}
+
+\section*{ABSTRACT\footnote{Note that this chapter attempts to present \cite{Lutalo2025_transformatics_thesis} verbatim, with the only major difference being the numbering of citations and references, which are co-shared with the main manuscript.}:}
+%\Large
+In only \textbf{10 general foundational results}\cite{lutalo_2025_trans101_1page} --- all \textbf{based on earlier mathematical research} by the author, as well as \textbf{10 extra abstractions} spanning \textbf{how transformatics might be leveraged} as \textbf{a basis mathematics} \texttt{for problems} in; \texttt{number theory} and \texttt{cryptography} (o-SSIs); \texttt{mathematical statistics} (ADM, TCR, PCR, MSS, SC, PC); \texttt{linear algebra} (super sequences); \texttt{computer science} (TEA language, transformer-chains or sequence-transformers) and \texttt{information theory} (entropy of a sequence) among others, we distill and establish, in a summarized form, the \textbf{core foundations of Transformatics}\cite{transformatics} as its own mathematical theory, branch, or \textbf{discipline}. In this \textbf{mini-thesis}. Each foundational result presented is likewise accompanied by one or \textbf{more references} to some earlier work where the idea or presented concept was first developed, presented, or applied by the author during their research. \textbf{Useful notes and commentary} are also included where necessary, and in the extension decade of \textbf{proposed abstractions}, also commentary about how the proposals relate to the decade of foundational results likewise is catered for.\index{transformatics!foundations}
+ \newline\newline
+     \textbf{Keywords}: Foundations, Transformatics, Sequence Analysis,  Sequence Transformers, Thesis
+%\end{abstract}
+
+\section{Foundations of a New Mathematics of Sequences}
+\label{SECFOUND}
+
+\subsection{Result 1: The Empty Sequence\cite{lnspaper}}
+\label{RES1}
+
+$\Theta = \langle \rangle \implies |\Theta| = 0 \quad \land \quad \Theta \equiv \emptyset$
+
+\subsection{Result 2: A Symbol Set\cite{Lutalo2024gtnc}}
+
+$\psi_\beta^n = \langle \beta_{i \in [1,n]} \rangle : n \in \mathbb{N} : \invpi(\beta_i \in \psi_\beta) = 1 \quad \forall \beta_i \in \psi_\beta$
+
+\subsection{Result 3: A Sequence\cite{lnspaper}}
+\label{RES3}
+
+$\Theta^n = \langle \theta_{i \in [1,n]} \rangle : \mathbb{N} \times \psi_\beta : n \geq 1$
+
+\subsection{Result 4: Sequence Cardinality\cite{adtpaper}\cite{Lutalo2024gtnc}}
+\label{RES4}
+
+$\forall \Theta^n = \langle \theta_{i \in [1,n]} \rangle : \mathbb{N} \times \psi_\beta \quad \implies \quad \invpi(\Theta^n) = |\Theta^n| = n \in \mathbb{N}$ 
+
+
+
+\subsection{Result 5: A Sequence Symbol Set\cite{ossipaper}\cite{Lutalo2024gtnc}}
+\label{RES5}
+
+$\psi(\Theta^n) = \langle \theta_{i \in [1,k]} \rangle : k,n \in \mathbb{N} \land k \geq 1 : \invpi(\theta_i \in \psi(\Theta^n)) = 1 \quad \forall \theta_i \in \Theta^n : k \leq n : \invpi(\psi(\Theta^n)) = k$
+
+
+\subsection{Result 6: A Sequence Transformation\cite{transformatics}\cite{lnspaper}}
+
+\index{transformation}\index{sequence transformation}
+$\Theta^n = \langle \theta_{i \in [1,n]} \rangle : \mathbb{N} \times \psi_\beta \rightarrow \Theta^* = \langle \theta^*_{i \in [1,k]} \rangle : \mathbb{N} \times \psi_* : \psi_\beta \neq \psi_{*} \lor \psi(\Theta^n) \neq \psi(\Theta^*) \lor \overset{>}{\psi}(\Theta^n) \neq \overset{>}{\psi}(\Theta^*)$
+
+
+\subsection{Result 7: A Sequence Transformer\cite{Lutalo2025transpsy}\cite{transformatics}}
+\label{RES7}
+
+$\Theta^n = \langle \theta_{i \in [1,n]} \rangle : \mathbb{N} \times \psi_\beta \xrightarrow{f(\Theta)=\Theta^*} \Theta^* = \langle \theta^*_{i \in [1,k]} \rangle: \mathbb{N} \times \psi_* 
+; \quad \psi_\beta \neq \psi_{*} \lor \psi(\Theta^n) \neq \psi(\Theta^*) \lor \overset{>}{\psi_\beta} \neq \overset{>}{\psi_*}$
+
+\subsection{Result 8: A Sequence Filter\cite{transformatics}}
+\label{RES8}
+
+$\Theta^n = \langle \theta_{i \in [1,n]} \rangle : \mathbb{N} \times \psi_\beta \xrightarrow{f(\Theta,\psi_{\beta^*})=\Theta^*} \Theta^* = \langle \theta^*_{i \in [1,k]} \rangle : \mathbb{N} \times \psi_{\beta^*} ;\\ k \in \mathbb{N} : \psi_{\beta^*} \subseteq \psi_\beta \implies \invpi(\psi_{\beta^*}) = k \leq \invpi(\psi_\beta) \implies \invpi(\Theta^*) \leq \invpi(\Theta^n) $
+
+\subsection{Result 9: A Sequence Generator\cite{transformatics}\cite{lutalo2025transformatic}}
+\label{RES9}
+
+$\Theta^n | \emptyset \xrightarrow{f(\psi_\beta,k))=\Theta^*} \Theta^k = \langle \beta^*_{i \in [1,k]} \rangle : \mathbb{N} \times \psi_{\beta} : k \in \mathbb{N} : \forall \beta_i \in \Theta^k \implies  k \geq 1 \quad \land \quad \beta_i \in \psi_\beta = \Psi^\infty \cup \Theta^n$
+
+\subsection{Result 10: A Sequence Sampler\cite{lutalo_2025_trans_genetics}}
+
+$\Theta^n \xrightarrow{f(\Theta^n,k))=\Theta^k} \Theta^k = \langle \theta_{i \in [1,k]} \rangle : \mathbb{N} \times \psi(\Theta^n) : k,n \in \mathbb{N} \land k \geq 1$
+
+
+%%%---------[ EXTENSION ]-----------%%%
+
+{
+\noindent\rule{\linewidth}{0.4pt}
+
+\textbf{NOTES:}
+
+\begin{enumerate}
+\item \textbf{Result 1}: Apart from the concept of the set, that of the \textbf{empty set} underlies all of transformatics --- it is the ideological basis of all kinds of sequence generation, in particular, when projected unto the \textbf{empty sequence}. It allows us to codify states such as emptiness, non-emptiness, equality, identity, \textbf{zero} etc. 
+\item \textbf{Result 2}: The \textbf{symbol set} underlies of all formulations in need of a way to speak of or quantify the \textbf{identity composition} of any sequence.
+\item \textbf{Result 3}: The \textbf{sequence} is the basis concept in transformatics when applied to sequences, or rather, the \textbf{algebra of sequences}\cite{treealgebras_review}.
+\item \textbf{Result 4}: \textbf{Sequence cardinality} allows us to quantify various measures about a sequence relative to the size of its membership at rest. These might for example be measures such as the entropy of the sequence (\textbf{\hyperref[PROPTOE]{Proposal 10}}).
+\item \textbf{Result 5}: The \textbf{sequence symbol set} is an application of the symbol set concept to any particular sequence as opposed to say, talking of the symbol set of a language --- an alphabet like $\psi_{az}$ or $\psi_{0-9}$ for example Also, when applied to a particular sequence, such a ordered set might also reflect the order of members in the concerned sequence --- somewhat similar to the MSS (\textbf{\hyperref[PROP5]{Proposal 5}}) then, but not the same.
+\item \textbf{Result 6}: Underlying all notions of one sequence being \textit{different} from any other sequence is that of \textbf{sequence transformations}. Any operation that can alter either the composition or member-ordering of a sequence is essentially a sequence transformer. And when we talk of any two or more sequences in terms of how they differ from each other irrespective of the process or operation that maps them between each other, we then speak of a \textbf{sequence transformation}. In the latest (1$^{st}$ November 2025) update to these foundations, we have also introduced use of the concept of the \textbf{modal sequence statistic} in some of the specifications such as for the definition of sequence transformation as a concept. This, especially so we can enhance or make more robust, the foundational result. Otherwise, we formally [re-]introduce the concept of the MSS in \textbf{\hyperref[PROP5]{Proposal 5}}.
+\item \textbf{Result 7}: The \textbf{sequence transformer} concept concretizes the notion of a transformer operation underlying or betwixt any two sequences involved in a sequence transformation. Such transformers might be operations such as those specified on structures such as matrices in linear algebra, or might be as the structure-preserving sequence altering functions as the catamorphisms that Gibbons mentions in relation to transformations on trees\cite{treealgebras_review}\index{trees}. Also realize that in the current formulation of \textbf{Result 7}, we employ the concept of the MSS in specifying the final potential kind of sequence transformation possible --- where the composition and cardinality of a sequence pre and post transform might stay preserved, but not the relative order of terms within the sequence --- a concept also precisely analyzable using mathematics and measures such as the \textbf{anagram distance measure} (\textbf{\hyperref[PROP2]{Proposal 2}}).
+\item \textbf{Result 8}: \textbf{Sequence filters} allow us to specify or treat of scenarios in which one sequence is reduced to a smaller, perhaps more useful sequence --- such as the generation of an MSS or any symbol set for that matter, from any arbitrary sequence. Note that since the 8$^{th}$ October first edition of these foundations, \textbf{Result 8} has since been fixed/corrected, so that the current transformer specification for a generic sequence filter is the correct one --- also more specific than originally.
+\item \textbf{Result 9}: Underlying any concept of \textit{creation} is that of bringing things to life.. (\textit{ex nihilo or not}) especially relative to some pattern or specification (such as the generation of words in some specified language or number system or alphabet, etc.), but also, generation of structures or objects of a particular kind or type. Concerning the current general specification of a [sequence] generator, note that first of all, any sequence generator is essentially a sequence transformer to begin with. Moreover, for the fact that the generated sequence might sometimes span an alphabet, type or symbol-set different or larger than that of the source or original reference sequence --- such as a seed-symbol-set $\psi_\beta$ in the presented general case --- we also could have expressed the final specification as either $\beta_i \in \psi(\Theta^n) \cup \psi^\infty$ or perhaps $\psi_\beta := \psi_\beta | \psi_\beta \cup \psi(\Theta^n) \cup \psi^\infty | \psi^\infty$ and where we know that $\psi(\Theta^n) \subseteq \Theta^n$.
+\item \textbf{Result 10}: Being able to \textbf{choose} is a fundamental concept in mathematics such as probability theory but also much of statistical experiments\cite{lutalo2025rng} or intelligent behavior\cite{Lutalo2025transpsy} for example. We might liken a \textbf{sequence sampler} to a sequence filter (\textbf{Result 8}), but they are not the same thing; they approach the same concept differently; a filter  might be the source sequence minus everything not matching a pattern, while the sampler could be modeled as the source sequence minus everything matching a pattern or vice-versa.
+
+\end{enumerate} 
+
+}
+\noindent\rule{\linewidth}{0.4pt}
+
+
+\section{Proposed Abstractions Leveraging Transformatics}
+\label{SECPROP}
+
+Before we kick-off, note that, as in many previous works on transformatics since \cite{transformatics}, when we have any sequence $\Theta^n : \forall i \in [1,n] : \exists \theta_i \in \Theta^n$, then, when we wish to talk of the \textbf{position index} of some member element or symbol $\theta_i$ in $\Theta^n$, such that we mean the member in that sequence that is located or positioned at exactly index $i$ in the range $[1,n]$, then we shall, as introduced and elaborated upon in the introduction section of \cite{transformatics}, merely use the notation:
+
+\vspace{1em}
+\begin{equation}
+I(\theta_i, \Theta^n) = i \quad \forall \theta_i \in \Theta^n
+\end{equation}
+\vspace{1em}
+
+Further, if we have any two elements from the sequence (whether or not they are equal: $\theta_i = \theta_j$ or not: $\theta_i \neq \theta_j$), and yet, if $i \neq j$, then $I(\theta_i, \Theta^n) \neq I(\theta_j, \Theta^n)$, and if $i \leq j$, then $I(\theta_i, \Theta^n) \leq I(\theta_j, \Theta^n)$. 
+
+As you shall come to appreciate when studying formulations and expressions in transformatics, the position operator or measure, $I(\cdot, \cdot)$ is very fundamental, useful and indispensable especially when treating of (sic) \textbf{ordered sequences} or of order in any sequence\index{transformatics!proposed applications}.
+
+\subsection{Proposal 1: The o-SSI Sequence from any Sequence\cite{ossipaper}}
+\label{PROP1}
+
+Assume we consider the sequence $\Theta: \mathbb{N} \times \psi_*$ of any length and spanning an arbitrary symbol set $\psi_*$. Then, in case we wish to reduce $\Theta$ to a representative sequence $\Theta_{ossi}$ that only contains elements of $\Theta$ spanning the symbol set, $\psi_\beta$, of some particular base, $\beta$; in which case, $\Theta_{ossi}$ would be an \textbf{orthogonal symbol set identity} (o-SSI)\index{orthogonal symbol set identity} sequence under base-$\beta$, then, the following o-SSI-generator --- also \textbf{an extractor}\footnote{In the sense that, where a sequence already contains the essential symbols spanning some particular symbol set, and even though they might be scattered about or `buried' around in the sequence surrounded by `noise', the function would merely extract those essential symbols [only,] from that sequence in their natural order of first occurrence.} and \textbf{a reducer} transformer, defined using the calculus and semantics of transformatics, would suffice\footnote{Say, and as almost all transformatics might be in practice --- consists of a clear, succinct and complete specification that can readily be translatable into a working or equivalent computer program based on or defined using the chaining of sequence transformers such as in a language as TEA\cite{cli_tttt}.}:
+
+\vspace{1em}
+\begin{transf}[The \textbf{o-SSI Extractor}]
+\label{TRANSFOSSIb}
+$\Theta \langle \theta_{i \in [1,n]} \rangle: \mathbb{N} \times \psi_*  \xrightarrow{O_{filter}(\Theta,\psi_\beta)} \Theta^k \langle \theta_i \rangle : \mathbb{N} \times \psi_\beta = \Theta_{ossi};\\ 0 \leq k \leq \invpi(\psi_\beta) \leq \invpi(\Theta) = n \in \mathbb{N} : \forall \theta_i \in \Theta^k \implies \exists \theta_i \in \psi_\beta \quad\\
+\land \quad \forall i,j \in \mathbb{N} \land \theta_i, \theta_j \in \Theta^k: I(\theta_i,\Theta) \leq I(\theta_j,\Theta) \implies I(\theta_i,\Theta^k) \leq I(\theta_j,\Theta^k) $
+\end{transf}
+\vspace{1em}
+
+
+First, realize that \textbf{\hyperref[TRANSFOSSIb]{Transformer \ref{TRANSFOSSIb}}} leverages the concept of a sequence filter as first introduced in \textbf{\hyperref[RES8]{Foundational Result 8}}. Also, note that, the \textbf{o-SSI Sequence}, $\Theta_{ossi}$, of any sequence $\Theta$ under $\beta$ would likewise be related to the concept of the \textbf{Specific Symbol Set}\footnote{Refer to \textbf{Definition 3} in \cite{ossipaper}}, $\hat{\psi}_\beta(\Theta)$, of that sequence, in the sense that, at most, $\Theta_{ossi}$ is equivalent to $\hat{\psi}_\beta(\Theta)$  or that their cardinalities and memberships are related as:
+
+\vspace{1em}
+\begin{equation}
+\invpi(\Theta_{ossi}) \leq  \invpi(\hat{\psi}_\beta(\Theta)) \leq \invpi(\psi_\beta) \leq  \invpi(\Theta)
+\end{equation}
+\vspace{1em}
+
+and as for membership:
+
+\vspace{1em}
+\begin{equation}
+\psi(\Theta_{ossi}) \subseteq  \hat{\psi}_\beta(\Theta) \subseteq \psi_\beta \subseteq  \Theta
+\end{equation}
+\vspace{1em}
+
+
+\subsection{Proposal 2: The Anagram Distance Between Any Two Sequences\cite{adtpaper}}
+\label{PROP2}
+
+Occasionally, one shall find that they need to quantify how different some two or more sequences are. In the simplest case, we might merely sort a collection of sequence by the relative size of each sequence, and thus differentiate them by their sequence cardinality for example --- $\invpi(\Theta)$ Vs $\invpi(\Theta^*)$ for some two sequences involved in a general transformation such as:
+
+\vspace{1em}
+\begin{trans}
+\label{TRANS1b}
+$\Theta \rightarrow \Theta^* \quad \implies \quad \invdel_{\Theta,\Theta^*} = (\invpi(\Theta) - \invpi(\Theta^*));\\
+\invdel_{\Theta,\Theta^*} = \begin{cases}
+> 0 & \text{compression}\\
+ 0 & \text{conservation}\\
+ < 0 & \text{protraction}
+ \end{cases}
+$
+\end{trans}
+\vspace{1em}
+
+or if we only wish to care about absolute distance..
+
+\vspace{1em}
+\begin{trans}
+\label{TRANS1Ab}
+$\Theta \rightarrow \Theta^* \quad \implies \quad |\invdel|_{\Theta,\Theta^*} = |\invpi(\Theta) - \invpi(\Theta^*)|;\\
+|\invdel|_{\Theta,\Theta^*} = \begin{cases}
+> 0 & \text{different}\\
+ 0 & \text{similar}\\
+ \end{cases}
+$
+\end{trans}
+\vspace{1em}
+
+However \textbf{\hyperref[TRANS1b]{Transformation \ref{TRANS1b}}} and \textbf{\hyperref[TRANS1Ab]{Transformation \ref{TRANS1Ab}}} only cater for comparisons or analysis relative to size of the sequences being compared. And such that $\invdel_{\Theta,\Theta^*}$ or $|\invdel|_{\Theta,\Theta^*}$ shall work just fine where the purpose of the sequence analysis is just concerned with the relative sizes of the sequences. But, and as we established in the \textbf{Anagram Distance Theory}(ADT) paper\cite{adtpaper}\index{Anagram Distance Measure!the theory}, there are many important cases when it is necessary to compare two or more sequences \textbf{based on the relative ordering of members in them and not just by their member composition or frequencies}. Thus the \textbf{Anagram Distance Measure}(ADM)\index{ADM}\index{sequence analysis!anagram distance}, and which, for any two sequences as presented above, the essential measure would be\index{sequence transformation!anagram distance}:
+
+\vspace{1em}
+\begin{equation}
+\tilde{A}(\Theta \rightarrow \Theta^*) = \frac{1}{\invpi(\Theta)} \times \sum\limits_{\forall \theta_i \ \in \Theta}^{\invpi(\Theta)} | I(\theta_i,\Theta) - I(\theta_i,\Theta^*)|
+\end{equation} 
+\vspace{1em}
+
+Which, as we saw in \cite{adtpaper}, has the interesting interpretation as:
+
+\vspace{1em}
+\begin{equation}
+\label{EQTHETb}
+\tilde{A}(\Theta \rightarrow \Theta^*) = \begin{cases}
+0, & \Theta = \Theta^*, \\
+\leq 1, & \Theta \approx \Theta^*, \\
+> 1, & \Theta \ll \Theta^*.
+\end{cases}
+\end{equation}
+\vspace{1em}
+
+And otherwise a more elaborate analysis as worked out in \textbf{\hyperref[SECSCENA]{Section \ref{SECSCENA}}} of \cite{lutalo_2025_trans_genetics}: 
+
+\vspace{1em}
+\begin{equation}
+\label{EQINTADMTHESb}
+\tilde{A}(\Theta \rightarrow \Theta^*) = \begin{cases}
+0, & \Theta = \Theta^*,  \text{no differences}\\
+< 1, & \Theta \approx \Theta^*, \text{different in at minimum two positions}\\
+= 1, & \Theta \neq \Theta^*, \text{all members shifted by exactly 1 position}\\
+> 1, & \Theta \ll \Theta^*, \text{potential indication there is chaos.}
+\end{cases}
+\end{equation}
+\vspace{1em}
+
+And thus can help us observe/compute, quantify and [objectively] appreciate, the \textbf{relative disorder} resulting from one sequence being transformed into another (of potentially similar cardinality and member composition/distribution). In earlier work, we have already demonstrated and argued that the \textbf{ADM} is a very important formalism in mathematical statistics and statistical analysis, especially in cases dealing with \textbf{measures of variability} (MoVs) where traditional measures such as the range, mean deviation, variance and standard deviation statistics cannot (\textbf{or fail to}) catch any actual differences between two or more sequences as we quantifiably/provably demonstrated in \cite{transformatics}, but also where simpler difference measures such as just differences in cardinality (such as in \textbf{\hyperref[TRANS1b]{Transformation \ref{TRANS1b}}}) aren't sufficient or conclusive enough for the special cases that the ADM caters for; more about this topic has also been covered well in earlier work\cite{lutalo_2025_trans_genetics}.
+
+
+\subsection{Proposal 3: The Transformer Compression Ratio of any Sequence Transformation\cite{transformatics}}
+\label{PROP3}
+
+In  \textbf{\hyperref[TRANS1b]{Transformation \ref{TRANS1b}}} we have seen that there might be cases in which a transformation results in a sequence that is observably larger or smaller than the source sequence; \textbf{protraction} or \textbf{compression} respectively. And as was laid down in \cite{transformatics} --- refer to \textbf{Section 4.3} of \cite{transformatics} --- we can measure the \textit{overall} effect of a transform on the \textit{entire} sequence merely by comparing the sequence cardinalities of the source and resultant sequence as such\index{sequence transformation!transformer compression ratio (TCR)}:
+
+\vspace{1em}
+\begin{equation}
+\label{EQTCRb}
+\xi(\Theta \rightarrow \Theta^*) = \frac{\invpi(\Theta^*)}{\invpi(\Theta)}
+\end{equation}
+\vspace{1em}
+
+
+ The measure, $\xi(\Theta \rightarrow \Theta^*)$ is called the \textbf{Transformer Compression Ratio} (TCR), and when compared against $\invdel_{\Theta,\Theta^*}$, note that TCR is always positive, whereas the later, as we saw in  \textbf{\hyperref[TRANS1b]{Transformation \ref{TRANS1b}}}, might be negative too; this, because, well, TCR and $\invdel_{\Theta,\Theta^*}$ or even $|\invdel|_{\Theta,\Theta^*}$ all are based on comparing the cardinalities of the source and resultant sequences involved in a transformation, however, unlike them, TCR is computed via a division operation (thus ratio), while the others are based on a subtraction operation. In fact, TCR spans $\mathbb{R^+}$ as was laid out in \cite{transformatics}, and as we saw in that work, given $\invpi(\Theta) \geq 0$ for any sequence $\Theta$, and if $\invpi(\Theta) \geq 1$ for any \textbf{meaningful transformation}\footnote{Well, this is somewhat murky ground, because, in fact, it can make sense for the source sequence to have 0 cardinality such as in a transform as $\Theta \xrightarrow{f(\cdot)} \Theta^*$ where for example $f(\cdot)$ is an operator that can output a non-empty sequence even when given an empty input --- such as the case of a \textbf{\hyperref[RES9]{sequence generator}}!}, can be interpreted as such:
+ 
+ \vspace{1em}
+ \begin{equation}
+\label{EQTCRCASESb}
+\xi(\Theta \rightarrow \Theta^*) = \begin{cases}
+1, & \text{the size of }\Theta \text{ was preserved},\\
+0, & \Theta \text{ was reduced to nothing},\\
+> 1, & \Theta \text{ was extended/protracted},\\
+< 1, & \Theta \text{ was reduced/compressed}.
+\end{cases}
+\end{equation}
+\vspace{1em}
+
+
+\subsection{Proposal 4: The Piecemeal Compression Ratio of Any Sequence Transformation\cite{transformatics}}
+
+Further, with regards to how we might quantify the effects of some sequence transformation, note that, in cases such as:
+
+\vspace{1em}
+\begin{trans}
+\label{TRANSPCRb}
+$\Theta: \mathbb{N} \times \psi_\beta \rightarrow \Omega: \mathbb{N} \times \psi_\alpha;\\
+\psi_\beta \neq \psi_\alpha \quad \lor \quad \exists \omega \in \Omega: \omega \notin \Theta$
+\end{trans}
+\vspace{1em}
+
+As explained in \cite{transformatics} --- refer to \textbf{Section 4.3} of \cite{transformatics} --- when the source and resultant sequence do not share any members in common, \textbf{and yet we wish to evaluate the deformation aspects of the transform}, then we can only compare them using a measure such as \textbf{TCR} --- it only cares about sizes and not membership. However, in case they \textbf{at least} share 1 member in common, then, we can restrict our comparison to only their common aspects --- i.e $\psi(\Theta) \cap \psi(\Theta^*)$, and thus, as laid out in \textbf{Definition 3} in \cite{transformatics}, we can compute a special measure called the \textbf{Piecemeal Compression Ratio}(PCR) as such\index{sequence transformation!piecemeal compression ratio(PCR)}:
+
+\vspace{1em}
+\begin{equation}
+\label{EQPCRb}
+\Psi(\Theta \rightarrow \Theta^*) = \frac{1}{\invpi(\psi_\Theta \cap \psi_{\Theta^*})} \times \sum\limits_{\forall x \in (\psi_\Theta \cap \psi_{\Theta^*})} \frac{\invpi(x \in \Theta^*) - \invpi(x \in \Theta)}{\invpi(x \in \Theta)}
+\end{equation}
+\vspace{1em}
+
+And for the case of \textbf{\hyperref[TRANSPCRb]{Transformation \ref{TRANSPCRb}}}, can be re-written as:
+
+\vspace{1em}
+\begin{equation}
+\label{EQPCR2b}
+\Psi(\Theta \rightarrow \Theta^*) = \frac{1}{\invpi(\psi_\beta \cap \psi_\alpha)} \times \sum\limits_{\forall x \in (\psi_\beta \cap \psi_\alpha)} \frac{\invpi(x \in \Theta^*) - \invpi(x \in \Theta)}{\invpi(x \in \Theta)}
+\end{equation}
+\vspace{1em}
+
+And as was laid out in that foundational paper on transformatics\cite{transformatics}, we can interpret \textbf{PCR} values as such\footnote{More research needed, with regards to this matter though.}
+
+\vspace{1em}
+\begin{equation}
+\label{EQPCRCASESb}
+\Psi(\Theta,\Theta^*) = \begin{cases}
+undefined, & \psi_\Theta \cap \psi_{\Theta^*} = \emptyset \implies \text{no members in common},\\
+0, & \invpi(x \in \Theta) = \invpi(x \in \Theta^*) \forall x \in \psi_\Theta \cap \psi_{\Theta^*} \implies \text{conservation},\\
+> 0, & \exists x \in \psi_\Theta \cap \psi_{\Theta^*}: \invpi(x \in \Theta^*) > \invpi(x \in \Theta) \implies \text{protraction},\\
+< 0, & \exists x \in \psi_\Theta \cap \psi_{\Theta^*}: \invpi(x \in \Theta^*) < \invpi(x \in \Theta) \implies \text{compression}.
+\end{cases}
+\end{equation}
+\vspace{1em}
+
+
+Finally, note that, like $\invdel_{\Theta,\Theta^*}$ and $|\invdel|_{\Theta,\Theta^*}$ that we saw in \textbf{\hyperref[PROP2]{Proposal 2}}, \textbf{PCR} is based on a subtraction operation, however, and in addition to that, like both ADM and TCR, it also has division operations in it that makes it take on fractional number\cite{Lutalo2024gtnc} values too. In fact, $\Psi(\Theta,\Theta^*) \in \mathbb{R}$ or equivalently  $-\infty \leq \Psi(\Theta,\Theta^*) \leq \infty$, unlike ADM that only spans $\mathbb{R^+}$, and thus, is great for evaluating deformations involving either growth or contraction as we have seen. 
+
+
+\subsection{Proposal 5: The Modal Sequence Statistic of Any Sequence\cite{transformatics}}
+\label{PROP5}
+
+
+For especially situations when we are not interested in comparing one sequence to another, but when we merely wish to better understand some particular sequence --- like say, not just its size as could be told by computing the \textbf{\hyperref[RES4]{sequence cardinality}}, nor about its membership as we might tell using the \textbf{\hyperref[RES5]{sequence symbol set}}, there might be a case when we want to combine those two concepts into one; such as when we wish to \textbf{compare the relative frequency of members in a particular sequence}. Essentially, we might be faced with the problem:
+
+\vspace{1em}
+\begin{prob}
+\label{PROB1b}
+Given\\ $\Theta^n : \mathbb{N} \times \psi_\beta : \theta_i, \theta_j \in \Theta^n : \theta_i \neq \theta_j  \quad \land \quad i,j \in [1,n] : n \in \mathbb{N}: 1 \leq \invpi(\theta_i \in \Theta^n) < n$,\\ is it true that $\invpi(\theta_i \in \Theta^n) \geq \invpi(\theta_j \in \Theta^n)$?
+\end{prob}
+\vspace{1em}
+
+So, as laid out in \textbf{Section 4.1} of \cite{transformatics}, we can approach a solution to \textbf{\hyperref[PROB1b]{Problem \ref{PROB1b}}} by leveraging the concept of the \textbf{modal sequence statistic} (MSS). Essentially, we would compute $\overset{>}{\Theta^n}$, which, by \textbf{Definition 1} in that foundation paper on transformatics\cite{transformatics}, would give us a resultant sequence based on/derived from the source sequence $\Theta^n$, such that the elements/members of the former exactly span the symbol set of the later/source sequence --- i.e. $\psi(\Theta^n)$, and yet, there are not only no duplicates, but that the elements are sorted such that the member/symbol that occurs the most (with highest frequency) in $\Theta^n$, occurs earliest in  $\overset{>}{\Theta^n}$ than any other element, or at least (such as where any two elements have the same relative frequency in $\Theta^n$), they occur in their natural order of first-occurrence.
+
+Thus, if we compute a MSS for the sequence specified in \textbf{\hyperref[PROB1b]{Problem \ref{PROB1b}}} as such:
+
+\vspace{1em}
+\begin{trans}
+$\Theta^n \xrightarrow{O_{mss}(\Theta^n)} \overset{>}{\Theta^n}$
+\end{trans}
+\vspace{1em}
+
+Then, we can solve the problem thus:
+
+\vspace{1em}
+\begin{soln}
+\label{SOLN1b}
+$\invpi(\theta_i \in \Theta^n) \geq \invpi(\theta_j \in \Theta^n)$? = 
+$\begin{cases}
+true & I(\theta_i,\overset{>}{\Theta^n}) \leq I(\theta_j,\overset{>}{\Theta^n})\\
+false & otherwise
+\end{cases}$
+\end{soln}
+\vspace{1em}
+
+
+Not only shall we come to appreciate and love the MSS for being a statistical measure first introduced in a work on transformatics\cite{transformatics}, but that, like the traditional statistical measure it is inspired by --- the \textbf{mode} of any dataset/sequence --- it is indispensable as a summary statistic, and yet, unlike and though as powerful as the mode, gives us a whole collection of summary statistics in one measure (as a \textbf{sequence or vector of modes}, and not merely as a single scalar value which is all that the traditional mode is). 
+
+Also, we have argued in several works exploring and applying transformatics --- such as in \cite{transformatics}, \cite{adtpaper} and \cite{lutalo_2025_trans_genetics} --- that the modal sequence statistic can be more useful to compute than many traditional summary statistics, but also that, it can help us arrive at other, more useful statistics (such as the next two sections are going to tackle), and for domains or problems such as in \textbf{statistical artificial intelligence}, machine learning and data mining to name but a few, is one of few core measures that can \textbf{greatly simplify decision making problems in an autonomous way}.
+
+
+
+Finally, note that, as per the notation and arguments employed in \textbf{\hyperref[DEFSEQCHAR]{Definition \ref{DEFSEQCHAR}}} in \cite{lutalo_2025_trans_genetics} when defining and formalizing the related concept of the sequence characteristic, we can succinctly define the modal sequence statistic for any sequence $\Theta$, as such:
+
+\vspace{1em}
+\begin{defn}[The \textbf{Modal Sequence Statistic}, $\overset{>}{\Theta}$]
+\label{DEFMSSFINb}
+\index{definition!Modal Sequence Statistic}
+$ $\\
+\index{modal sequence statistic!definition}
+Given any sequence $\Theta$ that consists of well ordered finite collection of $n$ symbols, $\omega_i$, possibly with some being repeated --- essentially that we have the sequence $\Theta : \mathbb{N} \times \psi_{\omega} \quad \land \quad \invpi(\Theta) = n$, then the measure:
+
+\vspace{1em}
+\begin{equation}
+\overset{>}{\Theta} = \langle \prod\limits_{\omega_i \in \psi_\omega} \omega_i \rangle 
+\end{equation}
+\vspace{1em}
+
+is the \textbf{modal sequence statistic} (MSS) of the given sequence, and that $\psi_\omega \cong \psi(\Theta)$, such that, we can produce or generate $\overset{>}{\Theta}$ from $\Theta$ via the following transformer:
+
+\vspace{1em}
+\begin{transf}[The MSS Generator, $O_{mss}(\Theta)$]
+\label{TRANSMSSGENb}
+$ $\\
+$\Theta \xrightarrow{O_{mss}(\Theta)} \overset{>}{\Theta} = \langle \prod\limits_{\omega_i \in \psi_\omega} \omega_i \rangle ;$\\
+$\forall \omega_i \in \Theta \quad \exists \omega_i \in \overset{>}{\Theta}$\\
+$\land \quad I(\omega_i,\overset{>}{\Theta}) < I(\omega_j,\overset{>}{\Theta})$\\ 
+$\quad \implies \quad \invpi(\omega_i \in \Theta) > \invpi(\omega_j \in \Theta) \quad \lor \quad I(\omega_i,\Theta) < I(\omega_j, \Theta) \quad \forall i,j \in \mathbb{N}$\\
+$\land \quad \psi_\omega \cong  \psi(\Theta) \cong \overset{>}{\Theta}$\\
+$\land \quad \invpi(\psi(\Theta)) = \invpi(\overset{>}{\Theta}) \leq \invpi(\Theta)$
+$\qed$
+\end{transf}
+\vspace{1em}
+
+
+\end{defn}
+\vspace{1em}
+
+
+\subsection{Proposal 6: The Characteristic of Any Sequence\cite{lutalo_2025_trans_genetics}}
+\label{PROP6}
+
+In \textbf{\hyperref[PROP5]{Proposal 5}}, we have encountered the MSS, which is a neat summary statistic applicable to any sequence. However, and as you might notice when we are presented with a sequence such as:
+
+\vspace{1em}
+\begin{equation}
+\label{EQPROP6b}
+\text{golden ratio} = 1.618033988749895 \implies \Theta_{gr} = \langle 1, 6, 1, 8, 0, 3, 3, 9, 8, 8, 7, 4, 9, 8, 9, 5 \rangle 
+\end{equation}
+\vspace{1em}
+
+Which is essentially the golden ratio\footnote{Basically, $\frac{(1 + \sqrt{5})}{2}$} reduced to a sequence of just its first 16 significant digits, and which, if we must summarize it using say $\overset{>}{\Theta_{gr}}$ as such:
+
+\vspace{1em}
+\begin{trans}
+\label{TRANSMSS1b}
+$ \Theta_{gr} \xrightarrow{O_{mss}(\cdot)} \overset{>}{\Theta_{gr}} = \langle 8, 9, 1, 3, 6, 0, 7, 4, 5 \rangle$
+\end{trans}
+\vspace{1em}
+
+maps to a summary statistic, its modal sequence, of cardinality 9, and yet, if one wanted to solve the following problem:
+
+\vspace{1em}
+\begin{prob}
+\label{PROBSC1b}
+Given the sequence $\Theta_{gr}$ in \textbf{\hyperref[EQPROP6b]{Equation \ref{EQPROP6b}}}, how can we exactly tell if indeed $\invpi(3,\Theta_{gr}) > \invpi(6,\Theta_{gr})$, or if $\invpi(3,\Theta_{gr}) = \invpi(6,\Theta_{gr})$?
+\end{prob}
+\vspace{1em}
+
+
+Note that though we might attempt to solve \textbf{\hyperref[PROBSC1b]{Problem \ref{PROBSC1b}}} naively by merely counting the terms in the sequence under question, or by merely checking the relative positions of the involved terms in the computed MSS such as in \textbf{\hyperref[TRANSMSS1b]{Transformation \ref{TRANSMSS1b}}}, it is not the best way to arrive at a solution. Moreover, and as we have encountered in the previous proposal, and especially since we know that elements that tie on frequency shall occur adjacent to each other in the MSS of a sequence --- ignoring their order of first-occurrence --- and yet, without having a way to look at the frequencies of each element in the MSS, we might not correctly solve this problem \textit{elegantly} and/or optimally (for very large sequences such as the kind we saw when treating of genetic code sequences\cite{lutalo_2025_trans_genetics} that might span millions of terms). 
+
+And so, as laid out in a treatise on how transformatics might be applied in the sequence-heavy science of genetics\cite{lutalo_2025_trans_genetics}, in particular, \textbf{Section 6.4} of \cite{lutalo_2025_trans_genetics}, instead of just the MSS, we can instead compute the related \textbf{sequence characteristic} (SC) statistic, and which, as per \textbf{Definition 8} in that work, consists of both the same exact elements as in the MSS, but with each distinct symbol followed by/annotated by its relative frequency in the original/source sequence. Essentially, given some sequence $\Theta$, and given we know its modal sequence statistic is $\overset{>}{\Theta}$, the SC is as\index{sequence characteristic}:
+
+\vspace{1em}
+\begin{equation}
+\label{EQSECHARDEFb}
+ \hbar(\overset{>}{\Theta}) = \prod\limits_{\omega_i \in \psi(\Theta)} \omega_i\cdot f_i
+\end{equation}
+\vspace{1em}
+
+Which, if we apply \textbf{\hyperref[EQSECHARDEFb]{Equation \ref{EQSECHARDEFb}}} to our example sequence $\Theta_{gr}$, produces the corresponding sequence characteristic as such:
+
+\vspace{1em}
+\begin{trans}
+\label{TRANSSCGRb}
+$ \Theta_{gr} \xrightarrow{O_{mss}(\cdot)} \overset{>}{\Theta_{gr}}  \xrightarrow{O_{sc}(\cdot)} \hbar(\overset{>}{\Theta_{gr}}) \rightarrow 8_4.9_3.1_2.3_2.6_1.0_1.7_1.4_1.5_1 \\
+ \rightarrow \textbf{8}4.\textbf{9}3.\textbf{1}2.\textbf{3}2.\textbf{6}1.\textbf{0}1.\textbf{7}1.\textbf{4}1.\textbf{5}1 \rightarrow \textbf{8}4\textbf{9}3\textbf{1}2\textbf{3}2\textbf{6}1\textbf{0}1\textbf{7}1\textbf{4}1\textbf{5}1$
+\end{trans}
+\vspace{1em}
+
+Note that, in \textbf{\hyperref[TRANSSCGRb]{Transformation \ref{TRANSSCGRb}}}, we had the liberty to express the sequence characteristic in 3 different ways other than what was originally demonstrated in \cite{lutalo_2025_trans_genetics}. In particular, the alternative expressions for the SC thus shown, shall, such as in this case when we are dealing with a sequence made of entirely numbers/digits, help to make the SC more readable/understandable; instead of merely concatenating the computed frequency of each symbol to the associated symbol such as the basic definition for the SC calls for (see \textbf{Definition 8} in \cite{lutalo_2025_trans_genetics}), and yet, without loss of generality, we can redefine the SC as such:
+
+\vspace{1em}
+\begin{equation}
+\label{EQSECHARDEF2b}
+ \hbar(\overset{>}{\Theta}) = \prod\limits_{\omega_i \in \psi(\Theta)} {\omega_i}_{f_i}
+\end{equation}
+\vspace{1em}
+
+So that, as we have seen in the first SC expression in  \textbf{\hyperref[TRANSSCGRb]{Transformation \ref{TRANSSCGRb}}}, we can merely write the SC for $\Theta_{gr}$ as such:
+
+\vspace{1em}
+\begin{equation}
+\label{EQSCGR2b}
+ \hbar(\overset{>}{\Theta_{gr}}) = 8_4.9_3.1_2.3_2.6_1.0_1.7_1.4_1.5_1 \rightarrow 8_4 9_3 1_2 3_2 6_1 0_1 7_1 4_1 5_1
+\end{equation}
+\vspace{1em}
+
+The final form in \textbf{\hyperref[EQSCGR2b]{Equation \ref{EQSCGR2b}}} also kicking out the ``." symbols meant to show/imply that we are merely concatenating the terms to each other. In fact, the SC could be also expressed as a sequence of \textbf{2-grams}\footnote{In \textbf{Chapter 3} of \cite{lutalo_2025_trans_genetics} we already introduced \textbf{N-grams} or rather higher-order sequences, but shall revisit them again in \textbf{\hyperref[PROP8]{Proposal 8}}.}:
+
+\vspace{1em}
+\begin{equation}
+\label{EQSECHARDEF3b}
+ \hbar(\overset{>}{\Theta}) = \prod\limits_{\omega_i \in \psi(\Theta)} \langle \omega_i, f_i \rangle
+\end{equation}
+\vspace{1em}
+
+So that, we can again further express the sequence characteristic for the golden ratio as such\footnote{\textbf{FUTURE WORK:} feels like we might be able to visually/graphically express the sequence characteristic summary statistic! Especially for sequences of numeric data --- essentially, treating the SC in the form shown in \textbf{\hyperref[EQSECHARDEF3b]{Equation \ref{EQSECHARDEF3b}}} as coordinates in a Cartesian space!}
+
+\vspace{1em}
+\begin{equation}
+\label{EQSCGR3b}
+ \hbar(\overset{>}{\Theta_{gr}}) = \langle \langle 8, 4 \rangle, \langle 9, 3 \rangle, \langle 1, 2 \rangle, \langle 3, 2 \rangle, \langle 6, 1 \rangle, \langle 0, 1 \rangle, \langle 7, 1 \rangle, \langle 4, 1 \rangle, \langle 5, 1 \rangle \rangle 
+\end{equation}
+\vspace{1em}
+
+
+At this juncture, and returning to \textbf{\hyperref[PROBSC1b]{Problem \ref{PROBSC1b}}}:
+
+\vspace{1em}
+\begin{soln}
+Given $\Theta_{gr}$, we can merely compute its sequence characteristic as shown in \textbf{\hyperref[EQSCGR3b]{Equation \ref{EQSCGR3b}}}, and by inspecting the entries in that resulting SC for the two symbols under question --- `3' and `6', which are known to map to the entries: $\langle ... \langle 3, 2 \rangle, \langle 6, 1 \rangle ... \rangle$ in the SC, confirm that actually $\invpi(3 \in \Theta_{gr}) > \invpi(6 \in \Theta_{gr})$ since $(\invpi(3 \in \Theta_{gr})=2) > (\invpi(6 \in \Theta_{gr})=1)$
+$\qed$
+\end{soln}
+\vspace{1em}
+
+Before we move on, and as we shall come to appreciate when we come to \textbf{\hyperref[PROP9]{Proposal 9}}, we can solve many problems not only by leveraging the theory and mathematics of transformatics, but also by leveraging its philosophy, which, as one shall establish, underlies how the \textbf{TEA} computer programming language\cite{cli_tttt} works. Essentially, and with reference to the present proposal, note that we can readily and elegantly compute the sequence characteristic of any sequence\footnote{Sometimes though, only after slight modifications or clean-up/pre-processing of the input sequence expression such as we saw in \textbf{\hyperref[EQPROP6b]{Equation \ref{EQPROP6b}}}.} by leveraging \textbf{\hyperref[RES7]{sequence-transformers}} and sequence-processors as shown in the following TEA program that can compute the SC of any input sequence, and produce an SC expression similar to what we saw in \textbf{\hyperref[TRANSSCGRb]{Transformation \ref{TRANSSCGRb}}}:
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SC-Transformer, breakable]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
+#SC-Computer
+#i!:{1618033988749895} 
+v:vIN
+u!:|v:vMSS| v:vSC:{}
+l:lPROC
+y:vMSS|d!:^.|v:vW
+y:vMSS|d:^.|v:vMSS|y:vW
+f:^$:lEND
+y:vIN|d*!:vW|v:|v!:|v:vF|v:vD:_|g*:_:vW:vF:vD|v:vSC1 |
+g*:{}:vSC:vSC1| v:vSC| j:lPROC
+l:lEND
+y:vSC | r!:__:.|d:.$
+#(=8_4.9_3.1_2.3_2.6_1.0_1.7_1.4_1.5_1)
+   \end{lstlisting}
+  \end{tcolorbox}
+  \captionof{figure}{TEA EXAMPLE: \textbf{SC-Computer}: transforms any input sequence\index{sequence characteristic!TEA program} into its sequence characteristic!}
+  \label{LISTSC}
+  
+  \vspace{2em}
+
+In case you have a particular sequence of interest that you wish to analyze or for which you wish to compute the SC, then, based on the above theory and the sample TEA program we have just looked at, you can go to the \textbf{WEB TEA IDE} --- \url{https://tea.nuchwezi.com}, and paste in your sequence into the `TEA INPUT' section (for example paste in your long genetic code sequence, a text file, votes/elections tally data well-encoded etc.), and by running it against the SC-program --- which you might load as:\\
+
+\url{https://tea.nuchwezi.com/?fc=https://gist.githubusercontent.com/mcnemesis/b5b9957179a4a1d43b965959f9bb29fb/raw/sc_generator.tea}\\
+
+
+You shall then be able to replicate the results and analyses we have conducted in this proposal --- for example, applied to election/votes datum, can help readily identify the winner.
+
+
+\subsection{Proposal 7: The Population Characteristic of Any Collection of Sequences\cite{lutalo_2025_trans_genetics}}
+\label{PROP7}
+
+
+In \textbf{\hyperref[PROP6]{Proposal 6}}, we have dealt with the matter of applying transformatics towards extending as well as simplifying various important aspects of statistics --- statistical analysis in particular, and which work might also underlie both \textbf{descriptive statistics} (generation of graphs and visualizations summarizing or describing some dataset or sequence) and \textbf{computational statistics} (such as in modeling behavior or distributions or implementing statistical artificial intelligence programs that reason about the statistical patterns in a dataset, sequence or entire collections of them).\\
+
+
+In this section though, and building upon what we have already encountered, we are to re-iterate the concept of the \textbf{Population Characteristic} (PC), that was first presented in the earlier work about transformatics in GENETICS\cite{lutalo_2025_trans_genetics}. That book, in 	\textbf{Section 6.6}, presented a problem for which this proposed concept is [part of] the solution. More specifically, and without repeating what was already well discoursed then, we note that the PC has the following useful properties:
+
+\begin{enumerate}
+\item Given any \textbf{flat-structure}/first-order sequence, $\Theta$, the PC is essentially the same as its SC --- in terms of what its computation produces.
+\item In case two or more sequences are to be reduced to a single characteristic --- in which case it becomes the \textbf{population characteristic} for the combined set, the PC thus computed shall be equivalent to the SC of a sequence generated from flattening and combining all the involved sequences into a single sequence.
+\item Where two or more sequences are involved, and where the SC for each sequence is already known or computed, the PC for the entire collection can readily be derived from the SCs thus already computed as an optimal strategy.
+\end{enumerate}
+
+In summary though, and given a collection of $n$ sequences\footnote{Potentially of arbitrary length and composition.} --- basically a sequence of n-subsequences --- denoted $\Theta^n$, we then can compute the PC as such\index{population characteristic}:
+
+\vspace{1em}
+\begin{equation}
+\label{EQPOPCHARb}
+\hbar(\overset{>}{\Theta^n}) = \prod\limits_{\forall \omega_i \in \psi(\Theta^n)} \omega_i \cdot \invpi(\omega_i \in \Theta^n)
+\end{equation}
+\vspace{1em}
+
+Where $\forall \Theta_j \in \Theta^n$
+
+\vspace{1em}
+\begin{equation}
+\invpi(\omega_i \in \Theta^n) = \sum\limits_{\forall \hbar(\overset{>}{\Theta_j})} f_{\omega_i}
+\end{equation}
+\vspace{1em}
+
+And $\forall i, j \in \mathbb{N}: i < j \implies f_i \geq f_j$ for the frequency terms in $\hbar(\overset{>}{\Theta^n})$.\\
+
+
+Note that, as laid out in \cite{lutalo_2025_trans_genetics}, the PC can be very indispensable in problems \textbf{where we need to analyze multiple sequences in-groups or clusters} --- such as in classification problems, clustering as part of artificial intelligence systems performing tasks such as \textbf{self-modifying maps, unsupervised learning,} etc. All of which are critical matters in statistical artificial intelligence, but also which could be useful in many other areas of applied mathematics and computation.\\
+
+Before we conclude this section, note that, just like we did with and saw with the SC in \textbf{\hyperref[PROP6]{Proposal 6}}, we can use the TEA language to compute a population characteristic statistic for arbitrary sequences (after careful and proper pre-processing perhaps). But also, and concerning how we might express the final output/PC, we can chose from several meaningful expression forms as proposed for the SC in \textbf{\hyperref[PROP6]{Proposal 6}} and depending on where or how the PC expression or statistic thus generated is to be utilized.
+
+\subsection{Proposal 8: A Super Sequence from One or More Sequences\cite{lutalo_2025_trans_genetics}}
+\label{PROP8}
+
+The idea of treating of sequences in other than their flat-structure form was first presented as part of the discussion in how to apply transformatics in GENETICS\cite{lutalo_2025_trans_genetics}; refer to \textbf{Chapter 3} of \cite{lutalo_2025_trans_genetics}. In that work, we demonstrated how, for cases such as in dealing with problems where a sequence might need to be processed in ``chunks" of a fixed size --- also known as \textbf{n-grams}, we might want to introduce abstractions that can allow us to form smaller-sequences/sub-sequences within a larger/the original flat-structure sequence.\\
+
+For example, we saw that, in case we have some sequence of symbols $\Theta^n$ defined as such:
+
+\vspace{1em}
+\begin{equation}
+\label{EQSEQ1b}
+\Theta^n = \langle a_1, a_2,...,a_n\rangle
+\end{equation}
+\vspace{1em}
+
+And that if we wish to re-write the same sequence such that every $k$ terms are grouped in the same sub-sequence, we then can re-write $\Theta^n$ differently as such:
+
+\vspace{1em}
+\begin{equation}
+\label{EQSEQ2b}
+\Theta^n \rightarrow \Theta^* = \Theta_2(n,k) = \langle a_{11}, a_{12}, a_{13}, a_{1k}, a_{21}, a_{22},...,a_{(i)(k)},...,a_{(\frac{n}{k})(k-1)},a_{(\frac{n}{k})(k)}\rangle
+\end{equation}
+\vspace{1em}
+
+
+Further, and for any arbitrary sequences, we saw that we could leverage a special kind of transformer that can take a flat-structure or lower-order sequence and from it generate a similar, but higher-order sequence\footnote{Also which we might refer to as a ``super-sequence"\index{sequence!super-sequence}.} (also understood to mean, a sequence of some n-grams/k-grams such that $k > 1$), as such:
+
+\vspace{1em}
+\begin{transf}[The \textbf{k-GRAM Generator}]
+\label{TRANSFBUNDb}
+$\Theta^n = \langle a_1, a_2,...,a_n\rangle \quad \xrightarrow{O_{bundle-k}(\cdot)} \quad \Theta^* \quad;$\\
+$\Theta^* = \langle \langle a_1, a_2,..., a_k \rangle_1, \langle a_{k+1},...,a_{2k} \rangle_2,... , \langle a_{(n-k+1)},...,a_{(n-k+k-1)},a_{(n-k+k)}\rangle_{\frac{n}{k}} \rangle$\\
+$\forall a_i \in \Theta \quad \exists a_{ij} \in \Theta^*: a_i = a_{ij} \quad \land \quad j \in [1,k]$\\
+For some $n, k \in \mathbb{N}$, and that $\invpi(\Theta^*) = \frac{n}{k} = $ number of k-gram subsequences generated from $\Theta$. $\qed$
+\end{transf}
+\vspace{1em}
+
+For future purposes, and without deviating from the theory already presented in earlier works, we might also refer to such produced sequences as $\Theta^*$ in \textbf{\hyperref[TRANSFBUNDb]{Transformer \ref{TRANSFBUNDb}}} as a \textbf{Super Sequence}.\\
+
+We shall note that if $\Theta^*$ is a super-sequence\index{super-sequence} of/relative-to another sequence, such as the sub-sequence $\langle a_1, a_2,..., a_k \rangle_1$ in \textbf{\hyperref[TRANSFBUNDb]{Transformer \ref{TRANSFBUNDb}}}, and which we might denote as $\Theta_1$, then, we can correctly say that:
+
+\vspace{1em}
+\begin{equation}
+\Theta^* \supset \Theta_1 \quad \land \quad \psi(\Theta^*) \supset \psi(\Theta_1)
+\end{equation}
+\vspace{1em}
+
+And that generally,
+
+\vspace{1em}
+\begin{equation}
+\forall \Theta_i \in \Theta^* \quad \implies \quad \Theta^* \supset \Theta_i \quad \land \quad \psi(\Theta^*) \supset \psi(\Theta_i)
+\end{equation}
+\vspace{1em}
+
+Also, and as shown in \textbf{Section 6.6.1} of \cite{lutalo_2025_trans_genetics}, we might also treat of super-sequences as matrices\index{matrices}\index{sequence!as matrices} (in the sense of \textbf{linear algebra}). In particular, note that if we have a set of $n$ different sequences of arbitrary composition and lengths:
+
+\vspace{1em}
+\begin{equation}
+ \Omega^n = \langle \Omega1, \Omega2, \Omega3,..., \Omega n \rangle
+\end{equation}
+\vspace{1em}
+
+
+That we might also express them more elaborately via matrix form as\footnote{Notice how the structures in \textbf{\hyperref[EQMATRb]{Equation \ref{EQMATRb}}} look like \textit{column matrices}?}
+
+\vspace{1em}
+\begin{multline}
+\label{EQMATRb}
+ \Omega^n = 
+ \begin{bmatrix}
+ \Omega1 \langle \prod\limits_{i=1}^{\invpi(\Omega 1) = \alpha} a_{1i} \rangle,\\
+  \Omega2 \langle \prod\limits_{i=1}^{\beta} a_{2i} \rangle,\\
+   \Omega3 \langle \prod\limits_{i=1}^{\chi} a_{3i} \rangle,\\
+   \vdots \\
+   \Omega n \langle \prod\limits_{i=1}^{\zeta} a_{ni} \rangle,\\
+ \end{bmatrix} =
+ \begin{bmatrix}
+ \Omega1 \langle a_{11},a_{12},...,a_{1\alpha} \rangle,\\
+   \Omega2 \langle a_{21},a_{22},...a_{2(\beta-1)} ,a_{2\beta} \rangle,\\
+   \vdots \\
+     \Omega n \langle a_{n1},a_{n2},...,a_{n\zeta} \rangle\\
+ \end{bmatrix}
+\end{multline}
+\vspace{1em}
+
+
+So that, if we have the special case as what \textbf{\hyperref[TRANSFBUNDb]{Transformer \ref{TRANSFBUNDb}}} would produce if given the right kind of input sequence (particularly, that if $\Theta^n$ is to be split into k-grams, then, that it has the property that $\frac{n}{k} = m$ is a pure number\cite{Lutalo2024gtnc}, and so that, we can then map the flat-structure sequence $\Theta^n$ to a higher-order sequence\index{sequence!higher-order}, or super-sequence of \textbf{dimensions $k \times m$}, so that the resulting mathematical structure can be neatly expressed as a  $k \times m$ or $m \times k$ matrix as shown:
+
+\vspace{2em}
+\begin{trans}
+$\Theta^n = \langle \theta_1, \theta_2, ..., \theta_n \rangle \xrightarrow{O_{bundle-k}(\Theta^n)}
+ \begin{bmatrix}
+ \theta_{11}, \theta_{12} ,..., \theta_{1k},\\
+   \theta_{21}, \theta_{22} ,... , \theta_{2k},\\
+   \vdots \\
+     \theta_{m1}, \theta_{m2} ,..., \theta_{mk}\\
+ \end{bmatrix}$
+\end{trans}
+\vspace{2em}
+
+So that, if $m=k$, then we essentially have a super-sequence that can be expressed as a \textit{square-matrix} of dimensions $m \times m$. Talking of which, once we can or do express a sequence as a matrix\footnote{Even as a \textit{sparse matrix} such as in cases where a low-order sequence $\Theta^n$ needs be transformed into a super-sequence, but when either $\frac{n}{k}$ is not a pure number, or that there are some sub-sequences that might have empty positions.}, almost all of the mathematical theory of linear-algebra does readily apply on such sequences from transformatics! And thus we sum up our proposal on transformatics and super-sequences.
+
+\subsection{Proposal 9: Programs as Chains of Sequence Transformers (Transformer-Chains)\cite{lutalo_2025_trans_genetics}\cite{cli_tttt}}
+\label{PROP9}
+
+First, note that we already encountered an example of/application of this present proposal in the useful program we encountered at the end of \textbf{\hyperref[PROP6]{Proposal 6}}; in a program that basically computes the sequence characteristic of any input sequence, and which is essentially a \textit{higher-order transformer} that is composed as a chain of smaller sequence transformers  --- which is what all or most of \textbf{TEA primitive instructions}\cite{Lutalo2024TEATAZ} are), and which transformer then (as the ``SC-Generator") essentially reduces any input sequence to its summary statistic expression, particularly the sequence characteristic.\\
+
+Otherwise, note that; looking at a TEA program as depicted in \textbf{\hyperref[LISTSC]{Figure \ref{LISTSC}}} is helpful, since it reflects how the overall [higher-order] transformer program\index{TEA!as higher-order transformers} might be composed out of logically-meaningful sections\footnote{In TEA parlance and in relation to how most computer scientists might think of the matter of \textit{scoping}, \textit{code-blocks} or \textit{encapsulation}, for TEA, it is mostly all about \textbf{l-blocks} or \textit{label-blocks} --- also known as ``labeled blocks"\cite{Lutalo2024TEATAZ}.} as a software engineer or computer programmer already familiar with the TEA language might approach the SC problem. However, also note that; that same exact program is also equivalent to the following two versions --- both of which kick-out \textit{TEA comments}\footnote{In the example source-code we shall encounter in this work, but also typically, these are expressions in a TEA program that start with the `\#' character, and which makes them inert or non-executable lines/expressions in the program.}, and \textbf{only focus on the individual TEA instructions necessary to make the program work as desired, as well as how they ought be ordered within the program}, but where, the first (\textbf{\hyperref[LSTSCGEN]{Listing \ref{LSTSCGEN}}}) simplifies the code to just a sequence of TEA instructions one per line, while the second (\textbf{\hyperref[LSTSCGEN]{Listing \ref{LSTSCGENMINI}}}) shows the same exact program, in its \textbf{minified} form --- where, each instruction is delimited from the next by the standard TEA instruction delimiter `\verb!|!', and nothing else.
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SC-Generator, breakable]
+    %\begin{lstlisting}[language=TEA,breaklines=true]
+  \begin{lstlisting}[language=TEA, label={LSTSCGEN}, numbers=left]
+v:vIN
+u!:
+v:vMSS
+v:vSC:{}
+l:lPROC
+y:vMSS
+d!:^.
+v:vW
+y:vMSS
+d:^.
+v:vMSS
+y:vW
+f:^$:lEND
+y:vIN
+d*!:vW
+v:
+v!:
+v:vF
+v:vD:_
+g*:_:vW:vF:vD
+v:vSC1
+g*:{}:vSC:vSC1
+v:vSC
+j:lPROC
+l:lEND
+y:vSC
+r!:__:.
+d:.$
+   \end{lstlisting}
+  \end{tcolorbox}
+  %\captionof{figure}{TEA EXAMPLE: \textbf{SC-Computer}: transforms any input sequence into its sequence characteristic!}
+  %\label{LISTSC}
+  \vspace{2em}
+
+
+And the same program in its minified form is as:
+
+\vspace{2em}
+
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SC-Generator Minified, breakable]
+  \begin{lstlisting}[language=TEA, label={LSTSCGENMINI}, breaklines=true]
+v:vIN|u!:|v:vMSS|v:vSC:{}|l:lPROC|y:vMSS|d!:^.|v:vW|y:vMSS|d:^.|v:vMSS|y:vW|f:^$:lEND|y:vIN|d*!:vW|v:|v!:|v:vF|v:vD:_|g*:_:vW:vF:vD|v:vSC1|g*:{}:vSC:vSC1|v:vSC|j:lPROC|l:lEND|y:vSC|r!:__:.|d:.$
+  \end{lstlisting}
+  \end{tcolorbox}
+
+  
+ 
+ As one shall establish while studying \textbf{the 26 TEA primitives A: to Z:}\cite{Lutalo2024TEATAZ}, or if they dive deeper into the potential \textbf{182 distinct TEA commands}\cite{Lutalo2024TEATAZ}; apart from branching commands such as \textbf{F:} (the ``Fork") and \textbf{Q:} (the ``Quit") and commands such as \textbf{L:} (the ``Label") that don't modify or alter the \textbf{Active Input}(AI)\cite{Lutalo2024TEATAZ} --- meaning, when they are encountered in a TEA program, they merely pass on  the current input to the next instruction unmodified, most, or all of the bulk of TEA programming consists of some sequence processing instruction that accepts some input [sequence], processes it or transforms it, and then returns the resultant [sequence] as the \textbf{Instruction Output}(IO).\\
+ 
+ Thus, and without loss of generality, we can \textbf{model or think of any program expressible in the TEA language as a computer program, abstract machine or automaton, expressible as or reducible to just an ordered chain of sequence transformers.}\index{program!as higher-order transformer} A good demonstration of this is the following basic program, which, when presented with any input text (a sequence of characters), reduces or transforms it into a resultant sequence of characters, preserving their original order, but with the transformation resulting in only UPPER-CASE CONSONANTS [derived from the source/input sequence].\\
+
+\vspace{2em} 
+ 
+  %\begin{figure}[H]
+  %\centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: CONSONANT FILTER, breakable]
+    %\begin{lstlisting}[language=TEA, caption={SC-Generator Minified}, label={LSTSCGENMINI}, numbers=left]
+    \begin{lstlisting}[language=TEA,breaklines=true,label={LSTCONSFIL},caption=CF in TEA]
+i:{This is a TEST 123} | z!: | d:[AEIOU] | d!:[A-Z]
+   \end{lstlisting}
+  \end{tcolorbox}
+  %\captionof{figure}{TEA EXAMPLE: \textbf{SC-Computer}: transforms any input sequence into its sequence characteristic!}
+  %\label{LISTSC}
+  \vspace{2em}
+ 
+ Which program, when run as is, shall use the explicit hard-coded input it opens with --- ``This is a TEST 123", and shall return ``THSSTST". While, if presented with some other input such as ``hello world 123?", shall return ``HLLWRLD".\\
+ 
+The following transformation expression shall help illustrate exactly what is happening in that program, or how the different bits/chained sequence transformers\index{transformer chain} come together to compose the higher-order transformer that is what the entire TEA program is:
+ 
+ \vspace{1em}
+\begin{trans}
+$\emptyset \xrightarrow{i:\{\text{This is a TEST 123}\}} \langle \text{\textit{This is a TEST 123}} \rangle \xrightarrow{z!:} \langle \text{\textit{THIS IS A TEST 123}} \rangle \xrightarrow{d:[AEIOU]} \langle \text{\textit{THS S  TST 123}} \rangle \xrightarrow{d!:[A-Z]} \langle \text{\textit{THSSTST}} \rangle$\\
+\end{trans} 
+\vspace{1em}
+ 
+ 
+ and for the input ``hello world 123?":
+ 
+ \vspace{1em}
+ \begin{trans}
+ \label{TRANSTEAPROGb}
+$\langle \text{\textit{hello world 123?}} \rangle \xrightarrow{i:\{\text{This is a TEST 123}\}} \langle \text{\textit{hello world 123?}} \rangle \xrightarrow{z!:} \langle \text{\textit{HELLO WORLD 123?}} \rangle \xrightarrow{d:[AEIOU]} \langle \text{\textit{HLL WRLD 123?}} \rangle \xrightarrow{d!:[A-Z]} \langle \text{\textit{HLLWRLD}} \rangle$
+\end{trans} 
+\vspace{1em}
+ 
+ So, hopefully, after looking at those two example transformations, as well as the preceeding TEA source-code, you start to appreciate that TEA programs are indeed not only [higher-order] sequence transformers in the strict sense, but are likewise compositions of, chains of, sequence transformers.\\
+ 
+ Though the \textbf{TEA TAZ}\cite{Lutalo2024TEATAZ} is still being worked-on as of this writing, much of what is required to understand or write TEA programs is already covered well in that living document, and so, it must be consulted and utilized by those who wish to understand better, but also apply readily, many ideas encountered while working with or developing ideas using the mathematics of transformatics [in/with computing\footnote{Essentially, the TEA language brings to the world, \textbf{a new programming paradigm based on chaining sequence transformers}.}].
+
+
+\subsection{Proposal 10: Entropy of a Sequence\cite{lnspaper}}
+\label{PROPTOE}
+
+\textit{Information expressions} (IE)\cite{lnspaper} are a mathematical structure, $\Omega^{1,\infty} : \mathbb{N} \times \Psi^\infty$, to which \textbf{\hyperref[RES3]{Foundation Idea \ref{RES3}}} applies. The sequence $\Theta_{hw} = \langle \text{\texttt{hello world}} \rangle$ is one such example, with the properties:
+
+\vspace{1em}
+\begin{equation}
+\label{EQPROP10b}
+\Theta_{hw} \rightarrow \begin{cases}
+\invpi(\Theta_{hw}) \rightarrow \mathbb{N} & \text{bits in information}\\\\
+\invpi(\psi(\Theta_{hw})) \rightarrow \mathbb{N} & \text{cardinality of alphabet}\\\\
+\frac{\invpi(\psi(\Theta_{hw}))}{\invpi(\Theta_{hw})} \rightarrow \mathbb{R^+} & \text{sequence entropy}\\\\
+\psi(\Theta_{hw}) \times \psi(\Theta_{hw})^{[1,\invpi(\Theta_{hw})]} \quad\\ \lor \quad \psi(\Theta_{hw}) \times \psi(\Theta_{hw})^{[1,\infty]} \rightarrow \mathbb{N} \times \mathbb{N} & \text{derivative languages}\\
+\end{cases}
+\end{equation}
+\vspace{1em}
+
+
+Most important about what we can glean from \textbf{\hyperref[EQPROP10b]{Equation \ref{EQPROP10b}}} is the fact that we might be able to compute a kind of \textbf{information-content} measure for any arbitrary sequence, merely by looking at the length of the sequence Vs the length of the symbol set spanned by that sequence. Essentially, and as shown in that distillation, given any sequence $\Theta$, we could compute a \textbf{Sequence Entropy} for it --- $\Phi(\Theta)$ as such:
+
+\vspace{1em}
+\begin{defn}[The \textbf{Sequence Entropy}, $\Phi(\Theta)$\index{sequence entropy!definition}\index{entropy}\index{sequence!entropy}]
+\label{DEFENTROPYb}
+\index{definition!Sequence Entropy}
+Given any sequence $\Theta \langle \theta_{i \in [1,n]} \rangle : \mathbb{N} \times \psi_*$, we can compute a measure of how much information (\textbf{sequence entropy}) there is in the sequence, using the following measure:
+
+\vspace{1em}
+\begin{equation}
+\label{EQSEQENTROPY}
+\Phi(\Theta) = \frac{\invpi(\psi(\Theta))}{\invpi(\Theta)} = \frac{1}{n} \times \invpi(\psi(\Theta))
+\end{equation}
+\vspace{1em}
+
+and if we wish to compute the \textbf{relative sequence entropy} --- meaning, the amount of information the sequence contains relative to some particular symbol set/alphabet other than the symbol set spanned explicitly by the sequence --- such as using $\psi_*$ instead\footnote{For example, for the sequence ``hello world", we might wish to measure the entropy relative to the entire Latin Alphabet ($\psi_{az}$) instead of just the symbol set of the string ($\psi(\Theta_{hw}) = \{lohe wrd\}$.} of $\psi(\Theta)$, in which case, the associated measure would be: 
+
+\vspace{1em}
+\begin{equation}
+\Phi_{\psi_*}(\Theta) = \frac{\invpi(\psi_*)}{\invpi(\Theta)} = \frac{1}{n} \times \invpi(\psi_*)
+\end{equation}
+\end{defn}
+\vspace{1em}
+
+As far as how a measure such as the \textbf{sequence entropy} in  \textbf{\hyperref[DEFENTROPYb]{Definition \ref{DEFENTROPYb}}} might go, note that, for our example input sequence $\Theta_{hw}$, we can establish that the entropy is $0.727272\overline{72}$ as per:
+
+\vspace{1em}
+\begin{equation}
+\Phi(\Theta_{hw}) = \frac{\invpi(\psi(\Theta_{hw}))}{\invpi(\Theta_{hw})} = \frac{1}{n} \times \invpi(\psi(\Theta_{hw})) = \frac{1}{11} \times 8 = \frac{8}{11} = 0.727272\overline{72}
+\end{equation}
+\vspace{1em}
+
+Whereas, and as might be interesting to note given similar ideas such as the \textbf{Shannon Entropy}\cite{shannon1948mathematical}, realize that if we alter $\Theta_{hw}$ further, say, by introducing more redundancy or duplication of terms\footnote{Already, $\Theta_{hw}$ contains two instances of symbol `l", which thus reduces its \textit{unexpectedness} or \textit{surprise} value, and thus its entropy.}, such as in the string ``hello hello world", the new sequence entropy shall likewise go lower as shown:
+
+\vspace{1em}
+\begin{equation}
+\Phi(\langle \text{\textit{hello hello world}} \rangle) = \frac{1}{n} \times \invpi(\psi(\Theta)) = \frac{1}{17} \times 8 = \frac{8}{17} = 0.47058823529411764
+\end{equation}
+\vspace{1em}
+
+
+And so, and as expected, since in this last case we increased the length of the sequence, though, we did not introduce any new \textbf{distinct symbols} --- meaning, the sequence's symbol set or alphabet remained the same as before ($\invpi(\psi(\Theta)) = 8$), we then see that indeed, as we would expect of a good entropy measure, $\Phi(\Theta)$ did indeed decrease in value after this sequence transformation.
+
+Of course, if we were to use the \textbf{relative sequence entropy} instead, and for our example, using say the English/Latin alphabet ($\psi_{az}$) as the reference, the associated entropy measures for the two cases we have considered would be as such:
+
+\vspace{1em}
+\begin{equation}
+\Phi_{\psi_{az}}(\Theta_{hw}) = \frac{1}{n} \times \invpi(\psi_{az}) = \frac{1}{11} \times 26 = \frac{26}{11} = 2.36363636\overline{36}
+\end{equation}
+\vspace{1em}
+
+and for the transformed/modified sequence:
+
+\vspace{1em}
+ \begin{equation}
+\Phi_{\psi_{az}}(\langle \text{\textit{hello hello world}} \rangle) = \frac{1}{n} \times \invpi(\psi_{az}) = \frac{1}{17} \times 26 = \frac{26}{17} = 1.52941176470588235294
+\end{equation}
+\vspace{1em}
+
+For any particular sequence of interest, the following associated, and generic \textbf{WEB TEA} program can be used to compute the sequence entropy ($\Phi(\Theta)$):
+
+\vspace{2em}
+
+  %\begin{figure}[H]
+  %\centering
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Sequence Entropy Computer, breakable]
+    %\begin{lstlisting}[language=TEA, caption={SC-Generator Minified}, label={LSTSCGENMINI}, numbers=left]
+    \begin{lstlisting}[language=TEA,breaklines=true,label={LSTSEQENTROPY},caption=SEC in TEA]
+####################################
+# SEQUENCE ENTROPY COMPUTER v2
+#----------------------------------|
+# computes a measure of information
+# for any input based on new theory
+# by Fut. Prof. JWL 
+# (ref: "Transformatics 101 - Explained")
+#-----------------------------------|
+
+# e.g given input as `hello hello world'
+v:vIN|v*!:vIN|v:vLIN|y:vIN
+|u!:|v:vMSS|v*!:vMSS|v:vLMSS
+|g*:{/}:vLMSS:vLIN|v:vCMD|
+r.:
+# returns something like: 0.47058823529411764
+   \end{lstlisting}
+  \end{tcolorbox}
+  %\captionof{figure}{TEA EXAMPLE: \textbf{SC-Computer}: transforms any input sequence into its sequence characteristic!}
+  %\label{LISTSC}
+  \vspace{2em}
+
+
+In general, note that both measures ($\Phi(\Theta)$ and $\Phi_{\psi_*}(\Theta)$) shall always return a non-zero and non-negative value as long as they are applied to some sequence of non-zero length. However, how exactly our proposed entropy measure might relate to the more commonplace, standard information-theoretic Shannon Entropy measure shall be a matter of future research/evaluations\footnote{\textbf{FUTURE WORK:} Establish how the transformatic sequence entropy relates to Shannon's Entropy measure when applied to sequences of finite length relative to or not some reference alphabet/symbol set.}.\\
+
+
+\section{Conclusion}
+
+In summary, we have laid down the essential mathematical theory for how to treat of mathematical structures known as ``sequences" as formally defined in \textbf{\hyperref[RES3]{Foundation Idea \ref{RES3}}}. Via \textbf{\hyperref[SECPROP]{10 Proposals}}, we have seen that we can leverage a mathematical and philosophical abstraction such as the \textbf{\hyperref[RES3]{sequence}} and \textbf{\hyperref[RES7]{sequence-transformer}} (as especially a transformatics formalism), so that then, we can readily build pragmatic/empirical solutions to any problems for which a solution can be conceptualized, manifested and proven, based on some model of the problem that allows the problem space to be fully specifiable via the use of one or more sequences. That these sequences might also be treated as or considered to be \textbf{information expressions}\cite{lnspaper} --- essentially, \textit{arguments} or parameters --- that for example \textbf{encode} the character, name, dimensions etc. of the system in which the problem might be rendered tractable/decidable/computable/... so that, then, by applying some particular sequence transformer [program\footnote{For this case, also equivalently a \textbf{definition}, specification, symbol sequence, etc. applicable to \textbf{\hyperref[RES7]{transformers}}}] --- itself, an information expression, though, of \textbf{a different kind} than the data upon which it might be applied\footnote{Or, as is \textbf{the case} in \textbf{TEA}; where, as with the programs of a \textit{Von Neumann Architecture} machine, allows the language to allow for a systematic means in which a program can be expressed with explicit data it might process as a default, but also with the possibility of the program operating on information \textit{read} from the environment (when it is available/presented).} --- we can then manifest sequences that can modify or predictably operate on other sequences --- a mechanism and capability which, when well orchestrated and manifested as is the case of the \textbf{TEA computer programming language}\cite{Lutalo2024TEATAZ}, brings to life a highly robust and useful arcanum practicum in the form of a living, reusable, [technology] platform (both in theory/formalism) and experience(executable mathematics) that, at foundation, is beautifully based on and comprehensible via the theory of TRANSFORMATICS as laid out in the \textbf{\hyperref[SECFOUND]{10 Foundations}} and associated works.
+
+%\bibliographystyle{unsrt}
+%\bibliography{trans_references}
+
+
+\vspace{5cm}
+\fbox{
+\begin{minipage}{0.9\textwidth}
+\textbf{TO CITE:}\\
+
+Lutalo, Joseph Willrich (2025). \textbf{TRANSFORMATICS 101 - explained.} I*POW. Thesis. \url{https://www.academia.edu/144344109/}
+
+\end{minipage}}
+\\
+
+
+%%%%%[ END EXTRA NOTE concerning Transformatics 101 ]
+
+
+% insert [front] cover --- could just be a PNG or PDF
+\includepdf[pages=1]{resources/pdfs/trans_back_cover.pdf}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%[ END TRANSFORMATICS 101 ]%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%[ EXTRA NOTE concerning Transformatics 101 ]
+
+
+%draw horizontal line
+%\noindent\rule{\textwidth}{0.4pt}
+
+
+
+
+
+
+
 
 
 
@@ -2333,12 +3241,12 @@ As explained in the section highlighting the general purposes/use-cases of the \
 \label{SECEXAMP1D}
 
 
-The following example, is going to be tested against a sample text such as:
+The following example is going to be tested against a sample text such as:
 
 
 
-\begin{figure}[H]
-  \centering
+%\begin{figure}[H]
+%  \centering
   %\begin{tcolorbox}[title=Sample Text Containing Phone Contacts,  breakable,listing options={basicstyle=\ttfamily, breaklines=true, breakatwhitespace=true}]
   \begin{tcbverbatim}[title=Sample Input Text Containing Phone Contacts]
 ---[ TEA WEB IDE DOCS v1.1 ]---
@@ -2360,7 +3268,7 @@ Phone: 0772 609649 | 101
   \end{tcbverbatim}
   %\caption{The TEA Instruction Lexical Specification (regular language)}
   %\label{FIG1}
-\end{figure}
+%\end{figure}
 
 
 The essential TEA source for a program that we might use to extract all the phone numbers in that sample text is as such:
@@ -11445,9 +12353,9 @@ t*:vNAME & Same as t:, but operating on the string stored in the vault with the 
 \rowcolor{lightgray}\bfseries \makecell[l]{t*!:vNAME} & Same as t!:, but operating on the string stored in the vault with the name vNAME\\
 
 
-\makecell[l]{t.:\\t.:STR\\t*.:vNAME} & Return the AI aligned in the center based on the longest line it contains. With STR, instead operate on literal string STR. The t.*:vNAME operates on string in vault vNAME. Result becomes AI\\
+\makecell[l]{t.:\\t.:STR\\t*.:vNAME} & Return the AI aligned in the center based on the longest line it contains. With STR, instead operate on literal string STR. The t*.:vNAME operates on string in vault vNAME. Result becomes AI\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{t!.:\\t!.:STR\\t*!.:vNAME} & Return the AI left-aligned or rather, with all lines having no leading, nor trailing white-space. With STR, instead operate on literal string STR. The t.*!:vNAME operates on string in vault vNAME. Result becomes AI\\
+\rowcolor{lightgray}\bfseries \makecell[l]{t!.:\\t!.:STR\\t*!.:vNAME} & Return the AI left-aligned or rather, with all lines having no leading, nor trailing white-space. With STR, instead operate on literal string STR. The t*!.:vNAME operates on string in vault vNAME. Result becomes AI\\
 
  \hline
 \end{tabular}
@@ -12626,15 +13534,17 @@ CF3J26-1754AU
 \rowcolor{lightgray}\bfseries \makecell[l]{u!:STR\\u!.:STR} & Same as \texttt{u!:} and \texttt{u!.:}, but operating on the given string STR\\
 
 
-\makecell[l]{u*: vNAME\\u*.:vNAME} & Same as \texttt{u:}, but operating on the string stored in the vault with the name vNAME\\
+\makecell[l]{u*:vNAME\\u*.:vNAME} & Same as \texttt{u:}, but operating on the string stored in the vault with the name vNAME\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{u*!: vNAME\\u*!.:vNAME} & Same as \texttt{u!:} and \texttt{u!.:}, but operating on the string stored in the vault with the name vNAME\\
+\rowcolor{lightgray}\bfseries \makecell[l]{u*!:vNAME\\u*!.:vNAME} & Same as \texttt{u!:} and \texttt{u!.:}, but operating on the string stored in the vault with the name vNAME\\
 
  \hline
 \end{tabular}
 \caption{The Semantics of U:}
 \label{TABSEMU}
 \end{table}
+
+Concerning \textbf{\hyperref[TABSEMU]{Table \ref{TABSEMU}}}, note that there is one very vital feature related to modal sequences, that would be great to have in the TEA standard as a primitive just like we have done for the MSS --- this is the \textbf{sequence characteristic} measure (see \textbf{\hyperref[PROP6]{Proposal 6}}), and which perhaps might be made available with an extension of the U-command space with a qualifier such as ``?" --- so that we for example obtain the SC of AI using \texttt{u?:} by words, and with \texttt{u?!:} by characters, however, the risk here is that, this would introduce an extra symbol in the TEA command qualifier set (see \textbf{\hyperref[SECQUALIFY]{Section \ref{SECQUALIFY}}}), and this might somewhat pollute the otherwise already compact and minimal number of TEA command signatures possible (see \textbf{\hyperref[SECGRAM]{Section \ref{SECGRAM}}}). Thus, perhaps better we let go of this, and just settle with SC implementations such as shown in \textbf{\hyperref[LISTSC]{Figure \ref{LISTSC}}}.
 
 
 \section{NOTES about U:}
@@ -13471,21 +14381,544 @@ Thus, with those guiding principles out of the way, we shall want to come up wit
 \begin{enumerate}
 \item{ The SPG shall offer three modes for password generation:
 \begin{enumerate}
-\item \textbf{complex}: short (10-12 characters), random composition of symbols, letters and numbers. \textit{[hard to memorize, difficult to guess]}
-\item \textbf{humane}: short (10-12 characters), random composition of words and symbols. \textit{[easy to memorize, theoretically hard to crack]}
-\item \textbf{advanced}: long (12-20 characters), random words, numbers, symbols and [internal] white-space. \textit{[easy to memorize, hard to crack, provably secure]}
+\item \textbf{complex}: short and cryptic (10-16 characters), random composition of symbols, letters and numbers. \textit{[hard to memorize, difficult to guess]}
+\item \textbf{humane}: long but readable (20-30 characters), random composition of words, numbers and symbols. \textit{[easier to memorize, difficult to guess, theoretically harder to crack]}
+\item \textbf{advanced}: longer, readable, cryptic (20+ characters), random words, numbers, symbols and [internal] white-space. \textit{[somewhat memorizable, difficult to guess, provably hard to crack, provably very secure]}
 \end{enumerate}
 }
-\item For the case of complex mode, the user shall have the option of specifying their own symbol alphabet. (Defaults: \textbf{!@\#\$\%\^{}*()-=\_})
-\item For the case of humane mode, the user shall have the option of specifying their own symbol alphabet to use to punctuate the word tokens. (Defaults: \textbf{+-=})
-\item For the case of advanced mode, the user shall have the option of specifying their preferred minimum password length. (Default: 16)
-\item For all the three modes, the SPG shall offer the user the option to present just the password, or the password and its security properties (length/sequence-cardinality(SC), sequence entropy (SE) and symbol set cardinality (SSC)).
+\item For the case of complex mode, the user shall have the option of specifying their own symbol alphabet seed. (Defaults: \textbf{!@\#\$\%\^{}*()-=\_})
+\item For the case of humane mode, the user shall have the option of specifying their own symbol alphabet seed to use to punctuate the word tokens. (Defaults: \textbf{@\$\%+-=})
+\item For the case of advanced mode, the user shall have the option of specifying their preferred minimum password length. (Default: 20)
+\item For all the three modes, the SPG shall offer the user the option to present just the password, or the password and its security properties (length/cardinality(C), symbol set cardinality (SS-C) and sequence entropy\footnote{Each of these measures is actually well formalized or introduced in \textbf{\hyperref[CHAPTRANS]{Chapter \ref{CHAPTRANS}}}, and especially in \textbf{\hyperref[PROPTOE]{Proposal 10}}.} (SE)).
+\item{We shall also compute a password quality rating (PQR) measure for any password sequence we generate, $\Theta$, and whose symbol set is $\psi(\Theta)$, that is based on what we know of a good password's recommended minimum length (16) vis-a-vis that of the generated password, combined with knowledge of the computed password entropy, so that our rating is derived as such:
+
+
+
+\vspace{1em}
+\begin{equation}
+PQR = \frac{1}{2} \times \left[\frac{C}{16} + SE \right] \times 100 =  \left[\frac{\invpi(\Theta)}{16} + \Phi(\Theta) \right] \times 50
+\end{equation}
+\vspace{1em}
+
+Interestingly which, if we substitute the formula for a given sequence's entropy ($\Phi(\Theta)$) as laid down in \textbf{\hyperref[EQSEQENTROPY]{Equation \ref{EQSEQENTROPY}}}, we then see that the quality of a password merely depends on \textbf{how many distinct characters there are in the password}\footnote{Or rather, the size of the password's symbol set!} as shown when we simplify to:
+
+\vspace{1em}
+\begin{equation}
+PQR =  \left[\frac{\invpi(\Theta)}{16} + \frac{\invpi(\psi(\Theta))}{\invpi(\Theta)} \right] \times 50 =  \invpi(\psi(\Theta)) \times \frac{ 50}{16}
+\end{equation}
+\vspace{1em}
+
+
+And so that, the two fractional measures --- one ranking the password length, and the other its randomness are combined into a percentage measure and essentially only relies on the cardinality of $\psi(\Theta)$, and such that we can then interpret PQR as such:
+
+\vspace{1em}
+\begin{equation}
+PQR = \begin{cases}
+< 50\% & poor / bad\\
+[50\%,60\%) & fair \\
+[60\%,80\%) & good \\
+[80\%,100\%) & great\\
+100\%+ & superb!
+\end{cases}
+\end{equation}
+\vspace{1em}
+
+With the \textbf{superb quality password} case potentially only possible when we have a password that significantly exceeds the recommended minimal password length --- such as in the \textbf{advanced mode} of our RSPG.
+
+  }
 \end{enumerate}
 
 \vspace{2em}
 
+In fact, we could merely sum-up all the analysis we've done here, by merely saying that we have a \textit{standard} password quality measure merely based on the number of unique symbols in any password, that essentially boils down to:
+
+
+\vspace{1em}
+\begin{equation}
+PQR(\Theta) =  3 \times \invpi(\psi(\Theta))
+\end{equation}
+\vspace{1em}
+
+And that we can even stretch this to its logical conclusion with an information security law such as:
+
+\vspace{2em}
+\begin{law}[Law of \textbf{Password Quality}]
+Given a password sequence $\Theta$, its quality has nothing to do with the length of the password ($\invpi(\Theta)$), but only that of its symbol set ($\psi(\Theta)$), and that, for any case where $\invpi(\psi(\Theta)) < 10$, the password can be flagged as being of \textbf{provably low quality}.
+\end{law}
+\vspace{2em}
+
+Consequently too, we can say this about high-quality passwords...
+
+
+
+\vspace{2em}
+\begin{law}[\textbf{High Quality Passwords}]
+Given a password sequence $\Theta$, we can flag it as \textbf{provably high quality} iff $\invpi(\psi(\Theta)) \geq 20$.
+\end{law}
+\vspace{2em}
+
+
+
 With that well-founded and articulate system specification, we then have the following password generation system architecture:
 
+
+\begin{figure}[H]
+  \begin{center}
+     %\includegraphics[trim=LEFT BOTTOM RIGHT TOP, clip, width=0.9\textwidth,]{resources/pdfs/EXAPLATONICFORM-PFA.pdf}\\
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[trim=0cm 12cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/pdfs/RSPG_System_Arch.pdf}\\
+   \caption{RSPG System Architecture}
+  \label{FIGRSPGArch}
+  \end{center}
+\end{figure}
+
+
+\vspace{2em}
+And the associated source code for the reference implementation of the RSPG as realized using the TEA language, would be as the following program code depicts:
+
+\vspace{2em}
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Random Secure Password Generator v1.2, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#!/usr/bin/tttt -fc
+v:vABOUT:{
+#####--[ RSPG v1.2 ]--#####
+Random Secure Password Generator is a robust computer program 
+meant to facilitate the generation of high quality passwords 
+that are sometimes not only provably hard to crack, but which 
+are also quite easy for the human to memorize. The theory and 
+specifications underlying RSPG are in the TEA TAZ. 
+Copyright 2026 Fut. Prof. JWL (Nuchwezi Research)
+}
+
+#---[CONSTANTS]
+v:vMENU:{#####--[ RSPG MENU ]--#####
+RSPG offers three secure password generation modes. 
+Please specify your choice:
+------(pick by number)------
+1. Complex (default) | 2. Humane | 3. Advanced}
+
+#---[CONSTANTS]
+#for gluing...
+v:vCGLUE:{.} #letters
+v:vWGLUE:{-} #words
+#for salt when we need it
+v:vSALT:{=====}
+v:vSPACE:{ }
+v:vALPHABET:{abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPWRSTUVWXYZ}
+
+#---[Some VARIABLES]
+v:vPASSWORD:{}
+v:vMODE:{}
+
+#---[INITIALIZE]
+l:lSTART
+y:vABOUT | i*:
+y:vMENU | i*: | v:vOPT
+
+# process user option
+y:vOPT | f:^[123]$:lPROCESS_MENU
+#otherwise force to default..
+v:vOPT:1
+
+l:lPROCESS_MENU
+#v:vOPT:3 #force mode?
+
+#--[MODE:COMPLEX]
+v:vPROMPT:{#####--[ RSPG: Mode C ]--#####
+TIP ABOUT Complex Mode Passwords: they are short & cryptic;
+10-16; random; symbols, letters, numbers. Hard to memorize, 
+difficult to guess. Great for use with password manager tools. 
+ALSO: IN CASE you wish to customize symbols used 
+[defaults: !@#$%^()-=_], enter your own seed set here:}
+
+n!:16:10 | v:vNPASSLEN
+v:vALPH_SYM:{!@#$%^()-=_}
+v:vALPH_NUM:{8649137520} #b10 o-SSI 
+
+y:vOPT | f!:1:lNMODE1
+l:lMODE1
+
+#description & prompt..
+y:vPROMPT | i*: | v:vANS
+
+#trim & disregard if empty..
+t.: | f:^$:lCONSTRUCT_PC
+v:vALPH_SYM #override
+
+l:lCONSTRUCT_PC
+#let's construct...
+#first, pure ltrs passwd..
+p*!:vNPASSLEN:vCGLUE | v:vPASS_LTRS
+#then pure symbol passwd..
+p*!:vNPASSLEN:vCGLUE:vALPH_SYM | v:vPASS_SYM
+#then pure numbers passwd..
+p*!:vNPASSLEN:vCGLUE:vALPH_NUM | v:vPASS_NUM
+#then mix...
+g*!:vWGLUE:vPASS_SYM:vPASS_LTRS:vPASS_NUM | a!: | v:_vPASSWORD
+#then trim to size..
+#inject salt
+s*:_vPASSWORD:vSALT:vNPASSLEN:vNPASSLEN | v:_vPASSWORD
+#split at salt..
+h*!:_vPASSWORD:vSALT | v:_vPASSWORD
+#discard salted line..
+y:vSALT|x:{.*}|x!:{.*}|v:vSALT_REGEX
+k*!:vSALT_REGEX:_vPASSWORD |
+#flatten..
+g*.:vWGLUE 
+#store..
+v:_vPASSWORD
+
+#store generated password 
+v:vPASSWORD 
+
+#set mode..
+v:vMODE:complex
+ 
+j:lFinish
+
+# mode wasn't 1
+l:lNMODE1
+
+#--[MODE:HUMANE]
+v:vPROMPT:{#####--[ RSPG: Mode H ]--#####
+TIP ABOUT Humane Mode Passwords: they are long but legible; 
+20-30; random; words, numbers, symbols. Easier to memorize, 
+difficult to guess.  Theoretically harder to crack. ALSO: 
+IN CASE you wish to customize symbols used 
+[defaults: @$%+-=], enter your own seed set here:}
+
+n!:30:20 | v:vNPASSLEN
+v:vALPH_SYM:{@$%+-=}
+v:vALPH_NUM:{0123456789} #b10-SS
+
+y:vOPT | f!:2:lNMODE2
+
+#description & prompt..
+y:vPROMPT | i*: | v:vANS
+
+#trim & disregard if empty..
+t.: | f:^$:lCONSTRUCT_PC_H
+v:vALPH_SYM #override
+
+l:lCONSTRUCT_PC_H
+
+#randomly decide upon word source: heroku, kush, TEA
+n!:3:1 |
+#i!:3 #force src?
+v:vN_WSRC
+
+y:vN_WSRC | f:1:lWSRC1:lNWSRC1
+l:lWSRC1 #gen word list using heroku
+
+i!:{https://random-word-api.herokuapp.com/word?number=}
+|x*!:vNPASSLEN |v:vURL|w:
+
+#sanitize...
+d:[\[\]]|d:{["]}|r!:[,]:{ }|
+#sanitise even error cases!
+r!:[\W]:{ }
+#store words list...
+v:vWords
+
+#proceed..
+j:lProcessHUM 
+
+l:lNWSRC1
+y:vN_WSRC | f:2:lWSRC2:lNWSRC2
+l:lWSRC2 #gen word list using kush
+
+n!:10:3 | v:vNWLEN
+
+i!:{https://random-words-api.kushcreates.com/api?language=en&words=}
+|x*!:vNPASSLEN | x!:{&length=} | x*!:vNWLEN |v:vURL|w:
+
+#sanitize...
+d:[\[\]{}]|h!:,|k:word|h!:{:}|k!:word|d:{"}|g.:|r!:{:}:{ }|t.:
+#sanitise even error cases!
+r!:[\W]:{ }
+#store words list...
+v:vWords
+
+#proceed..
+j:lProcessHUM 
+
+l:lNWSRC2
+l:lWSRC3 #gen word list using TEA
+
+y:vNPASSLEN | v:vNMinWC
+v:vWords:{}
+v:vNC:0 #index
+v:vNWLEN:4
+l:lGEN
+y:vNWLEN|x!:*1.5|r.:|v:vNLIM|n*:vNLIM:vNWLEN|v:vNWL
+p*!:vNWL:vWGLUE | v:vW
+g*:{ }:vWords:vW | t.: | v:vWords 
+y:vNC|x!:+1|r.:|v:vNC
+g*:{<}:vNC:vNMinWC | 
+r.: 
+f:false:lFIN
+j:lGEN
+l:lFIN | y:vWords
+
+#Construct Humane Pass
+l:lProcessHUM
+
+#then append a list of numbers
+v:vNLIMIT:9999 | v:vNLLIMIT:10
+n*!:vNLIMIT:vNLLIMIT:vNPASSLEN:vSPACE
+t.: | v:vNUMS
+
+#mix letters in..
+p*!:vNPASSLEN:vSPACE:vALPHABET | h: | v:vLTRS
+
+g*:{}:vNUMS:vLTRS | a!: | v:vNUMS 
+
+g*:{ }:vWords:vNUMS | t.: | v:vWords
+
+#then append a list of symbol-words
+y:vNPASSLEN | v:vNMinWC
+v:vNC:0 #index
+v:vNWLEN:3
+v:vNLL:1
+l:lGEN3
+y:vNWLEN|x!:*1.5|r.:|v:vNLIM|n*:vNLIM:vNLL|v:vNWL
+p*!:vNWL:vSPACE:vALPH_SYM | v:vW
+g*:{ }:vWords:vW | t.: | v:vWords 
+y:vNC|x!:+1|r.:|v:vNC
+g*:{<}:vNC:vNMinWC | 
+r.: 
+f:false:lFIN3
+j:lGEN3
+l:lFIN3 | y:vWords
+
+#then shuffle thrice...
+y:vWords|a:|a:|a:
+
+# so that's tentative password..
+v:_vPASSWORD
+
+#then trim to size...
+
+s*:_vPASSWORD:vSALT:vNPASSLEN:vNPASSLEN | v:_vPASSWORD
+#split at salt..
+h*!:_vPASSWORD:vSALT | v:_vPASSWORD
+#discard salted line..
+y:vSALT|x:{.*}|x!:{.*}|v:vSALT_REGEX
+k*!:vSALT_REGEX:_vPASSWORD |
+#flatten..
+g*.:vWGLUE 
+#store..
+v:_vPASSWORD
+
+#store generated password 
+v:vPASSWORD 
+
+#check if we arrived here from advanced!
+#otherwise proceed to finish..
+y:vMODE | f!:advanced:lFinishHUM
+j:lCONSTRUCT_PC_A
+
+#finish gracefully...
+l:lFinishHUM 
+#set mode..
+v:vMODE:humane
+j:lFinish
+
+# mode wasn't 2
+l:lNMODE2
+
+#--[MODE:ADVANCED]
+y:vOPT | f!:3:lMODE1
+
+v:vPROMPT:{#####--[ RSPG: Mode A ]--#####
+TIP ABOUT Advanced Mode Passwords: they are longer but somewhat readable; 
+20+; random; cryptic words, numbers, symbols. Memorizable, hard to guess. 
+Provably hard to crack. Provably Very Secure! ALSO: 
+IN CASE you wish to force  a length lower limit [default: 20], 
+enter your own here (between 20-50):}
+
+n!:50:20 | v:vNPASSLEN
+v:vALPH_SYM:{@$%+-=}
+v:vALPH_NUM:{8649137520} #HFi-o-SSI
+
+#description & prompt..
+y:vPROMPT | i*: | t.: | v:vANS
+
+#disregard if nonsense
+f!:^[0-9]+$:lIGNORE_USRLL
+
+v:vNLOL|x!:%50|
+r.:|v:vNLOL
+
+#ensure not below 20
+x!:<20|r.:|f:false:lLOLOK
+y:vNLOL|x:(|x!:+20)|r.:|v:vNLOL
+
+l:lLOLOK 
+|v:vNULL:50
+n*!:vNULL:vNLOL | v:vNPASSLEN
+
+l:lIGNORE_USRLL
+
+y:vNPASSLEN
+
+#store mode flag...
+v:vMODE:advanced
+
+#momentarily, construct password using humane algorithm...
+j:lCONSTRUCT_PC_H
+
+#then after we have humane password, post-process for advanced...
+l:lCONSTRUCT_PC_A
+
+Y:vPASSWORD
+
+#some nifty transforms...
+r!:[eE]:5|r!:[iI]:1|r!:[oO]:0|r!:[sS]:$|t.:
+
+#store generated password 
+v:vPASSWORD 
+
+j:lFinish
+
+#---[PRESENT]
+l:lFinish
+
+#fetch final password 
+Y:vPASSWORD
+#compute some analysis..
+#length/Cardinality (C)
+v:|v!:|v:vN_SC
+#Symbol-set Cardinality (SS-C)
+Y:vPASSWORD|u!:|v:|v!:|v:vN_SSC
+#sequence entropy (SE)
+g*:{/}:vN_SSC:vN_SC | r.: | v:vN_SE
+#password quality rank (PQR)
+y:vN_SSC | x!:{*3} | r.: | v:vN_PQR #alrdy percentage 
+
+#determine PQR class
+v:vPQR_class:{error}
+
+y:vN_PQR | x!:{<50} | r.: | f!:true:lnPQR1
+v:vPQR_class:{poor/bad}
+j:lFIN_PQR
+l:lnPQR1
+
+y:vN_PQR | x!:{<60} | r.: | f!:true:lnPQR2
+v:vPQR_class:{fair}
+j:lFIN_PQR
+l:lnPQR2
+
+y:vN_PQR | x!:{<80} | r.: | f!:true:lnPQR3
+v:vPQR_class:{good}
+j:lFIN_PQR
+l:lnPQR3
+
+y:vN_PQR | x!:{<100} | r.: | f!:true:lnPQR4
+v:vPQR_class:{great}
+j:lFIN_PQR
+l:lnPQR4
+
+y:vN_PQR | x!:{>=100} | r.: | f!:true:lnPQR5
+v:vPQR_class:{superb}
+j:lFIN_PQR
+l:lnPQR5
+
+l:lFIN_PQR
+#what to present..
+i!:{Your [}|x*!:vMODE|x!:{] Password: 
+} | x*!:vPASSWORD | x!:{
+--[RSPG Analysis]
+C: } | x*!:vN_SC | 
+x!:{ | SS-C: } | x*!:vN_SSC |x!:{ | SE (entropy): } 
+| x*!:vN_SE | x!:{
+PQR (rank): } | x*!:vN_PQR | x!:{% [} | x*!:vPQR_class | x!:]      
+v:vRESULTS
+
+#ask what to return...
+i!:{#####--[ RSPG: Results ]--#####
+} | x*!:vRESULTS | x!:{
+############################
+Please specify NEXT STEP:
+------(pick by number)------
+1. Return Password and Quit 
+2. Return Password + Analysis (security properties) 
+3. Generate New Password (default) } | v:vPROMPT 
+
+i*: | t.: | v:vANS | f:^1$:lFIN_RETURN:lFIN_ANALYSIS
+l:lFIN_RETURN
+
+y:vPASSWORD | q!: #quit
+
+l:lFIN_ANALYSIS
+f!:^2$:lFIN_DEFAULTS
+y:vRESULTS | q!: #quit
+
+l:lFIN_DEFAULTS
+j:lSTART #iterate..
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: Random Secure Password Generator (RSPG) v1.2}
+  \label{FIGVAPP1}
+}
+
+
+\vspace{2em}
+
+And with that program then, we can appreciate the way that implementation clearly reflects the underlying theory we have distilled and presented, by noticing how interesting the outputs of the \textbf{RSPG v1.2} are, across the three password generation modes as shown hereafter...
+
+\vspace{2em}
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from RSPG v1.2]
+Your [complex] Password: 
+
+0cro00zl3=a#-dv
+
+--[RSPG Analysis]
+C: 15
+SS-C: 13
+SE (entropy): 0.8666666666666667
+PQR (rank): 39% [poor/bad]
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+    \begin{tcbverbatim}[title=Sample OUTPUT 2 from RSPG v1.2]
+Your [humane] Password: 
+
++-- 91S 823 replication p 04
+
+--[RSPG Analysis]
+C: 28
+SS-C: 21
+SE (entropy): 0.75
+PQR (rank): 63% [good]
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+
+  \begin{tcbverbatim}[title=Sample OUTPUT 3 from RSPG v1.2]
+Your [advanced] Password: 
+
+myzq5 G +$-- qauxy 49 $= fgdgzr 78 V062
+
+--[RSPG Analysis]
+C: 39
+SS-C: 26
+SE (entropy): 0.6666666666666666
+PQR (rank): 78% [good]
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+Of course, not just that this system can generate secure passwords that are also human-friendly, however, also the reports it generates are truly helpful and enlightening --- for example, as one might notice from the literature we cited at the beginning, many security and cryptography analysts evaluating passwords seem to place much attention or focus on measures such as just the entropy\footnote{And caution is due here --- not all ``entropy" measures are the same meanwhile. In this work, our focus is on \textit{transformatic} sequence entropy first formalized and defined by Joseph Willrich Lutalo\cite{Lutalo2025_transformatics_thesis}. However, despite that measure being universally applicable to all kinds of information, just as the classical Shannon entropy measure was, they are neither quantifiably the same nor similar in their underlying conceptual basis. However, both are measures of randomness and information content.}, whereas, and as we see both in our new Password Quality Rank (PQR) theory and measure, but also in the empirical outputs resulting from evaluating various kinds of passwords using various measures including the entropy, sequence cardinality and PQR, that actually, the PQR is such a very useful and telling metric than many need become aware of!
 
 
 

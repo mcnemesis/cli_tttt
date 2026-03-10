@@ -1,0 +1,377 @@
+#!/usr/bin/tttt -fc
+v:vABOUT:{
+#####--[ RSPG v1.2 ]--#####
+Random Secure Password Generator is a robust computer program 
+meant to facilitate the generation of high quality passwords 
+that are sometimes not only provably hard to crack, but which 
+are also quite easy for the human to memorize. The theory and 
+specifications underlying RSPG are in the TEA TAZ. 
+Copyright 2026 Fut. Prof. JWL (Nuchwezi Research)
+}
+
+#---[CONSTANTS]
+v:vMENU:{#####--[ RSPG MENU ]--#####
+RSPG offers three secure password generation modes. 
+Please specify your choice:
+------(pick by number)------
+1. Complex (default) | 2. Humane | 3. Advanced}
+
+#---[CONSTANTS]
+#for gluing...
+v:vCGLUE:{.} #letters
+v:vWGLUE:{-} #words
+#for salt when we need it
+v:vSALT:{=====}
+v:vSPACE:{ }
+v:vALPHABET:{abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPWRSTUVWXYZ}
+
+#---[Some VARIABLES]
+v:vPASSWORD:{}
+v:vMODE:{}
+
+#---[INITIALIZE]
+l:lSTART
+y:vABOUT | i*:
+y:vMENU | i*: | v:vOPT
+
+# process user option
+y:vOPT | f:^[123]$:lPROCESS_MENU
+#otherwise force to default..
+v:vOPT:1
+
+l:lPROCESS_MENU
+#v:vOPT:3 #force mode?
+
+#--[MODE:COMPLEX]
+v:vPROMPT:{#####--[ RSPG: Mode C ]--#####
+TIP ABOUT Complex Mode Passwords: they are short & cryptic;
+10-16; random; symbols, letters, numbers. Hard to memorize, 
+difficult to guess. Great for use with password manager tools. 
+ALSO: IN CASE you wish to customize symbols used 
+[defaults: !@#$%^()-=_], enter your own seed set here:}
+
+n!:16:10 | v:vNPASSLEN
+v:vALPH_SYM:{!@#$%^()-=_}
+v:vALPH_NUM:{8649137520} #b10 o-SSI 
+
+y:vOPT | f!:1:lNMODE1
+l:lMODE1
+
+#description & prompt..
+y:vPROMPT | i*: | v:vANS
+
+#trim & disregard if empty..
+t.: | f:^$:lCONSTRUCT_PC
+v:vALPH_SYM #override
+
+l:lCONSTRUCT_PC
+#let's construct...
+#first, pure ltrs passwd..
+p*!:vNPASSLEN:vCGLUE | v:vPASS_LTRS
+#then pure symbol passwd..
+p*!:vNPASSLEN:vCGLUE:vALPH_SYM | v:vPASS_SYM
+#then pure numbers passwd..
+p*!:vNPASSLEN:vCGLUE:vALPH_NUM | v:vPASS_NUM
+#then mix...
+g*!:vWGLUE:vPASS_SYM:vPASS_LTRS:vPASS_NUM | a!: | v:_vPASSWORD
+#then trim to size..
+#inject salt
+s*:_vPASSWORD:vSALT:vNPASSLEN:vNPASSLEN | v:_vPASSWORD
+#split at salt..
+h*!:_vPASSWORD:vSALT | v:_vPASSWORD
+#discard salted line..
+y:vSALT|x:{.*}|x!:{.*}|v:vSALT_REGEX
+k*!:vSALT_REGEX:_vPASSWORD |
+#flatten..
+g*.:vWGLUE 
+#store..
+v:_vPASSWORD
+
+#store generated password 
+v:vPASSWORD 
+
+#set mode..
+v:vMODE:complex
+ 
+j:lFinish
+
+# mode wasn't 1
+l:lNMODE1
+
+#--[MODE:HUMANE]
+v:vPROMPT:{#####--[ RSPG: Mode H ]--#####
+TIP ABOUT Humane Mode Passwords: they are long but legible; 
+20-30; random; words, numbers, symbols. Easier to memorize, 
+difficult to guess.  Theoretically harder to crack. ALSO: 
+IN CASE you wish to customize symbols used 
+[defaults: @$%+-=], enter your own seed set here:}
+
+n!:30:20 | v:vNPASSLEN
+v:vALPH_SYM:{@$%+-=}
+v:vALPH_NUM:{0123456789} #b10-SS
+
+y:vOPT | f!:2:lNMODE2
+
+#description & prompt..
+y:vPROMPT | i*: | v:vANS
+
+#trim & disregard if empty..
+t.: | f:^$:lCONSTRUCT_PC_H
+v:vALPH_SYM #override
+
+l:lCONSTRUCT_PC_H
+
+#randomly decide upon word source: heroku, kush, TEA
+n!:3:1 |
+#i!:3 #force src?
+v:vN_WSRC
+
+y:vN_WSRC | f:1:lWSRC1:lNWSRC1
+l:lWSRC1 #gen word list using heroku
+
+i!:{https://random-word-api.herokuapp.com/word?number=}
+|x*!:vNPASSLEN |v:vURL|w:
+
+#sanitize...
+d:[\[\]]|d:{["]}|r!:[,]:{ }|
+#sanitise even error cases!
+r!:[\W]:{ }
+#store words list...
+v:vWords
+
+#proceed..
+j:lProcessHUM 
+
+l:lNWSRC1
+y:vN_WSRC | f:2:lWSRC2:lNWSRC2
+l:lWSRC2 #gen word list using kush
+
+n!:10:3 | v:vNWLEN
+
+i!:{https://random-words-api.kushcreates.com/api?language=en&words=}
+|x*!:vNPASSLEN | x!:{&length=} | x*!:vNWLEN |v:vURL|w:
+
+#sanitize...
+d:[\[\]{}]|h!:,|k:word|h!:{:}|k!:word|d:{"}|g.:|r!:{:}:{ }|t.:
+#sanitise even error cases!
+r!:[\W]:{ }
+#store words list...
+v:vWords
+
+#proceed..
+j:lProcessHUM 
+
+l:lNWSRC2
+l:lWSRC3 #gen word list using TEA
+
+y:vNPASSLEN | v:vNMinWC
+v:vWords:{}
+v:vNC:0 #index
+v:vNWLEN:4
+l:lGEN
+y:vNWLEN|x!:*1.5|r.:|v:vNLIM|n*:vNLIM:vNWLEN|v:vNWL
+p*!:vNWL:vWGLUE | v:vW
+g*:{ }:vWords:vW | t.: | v:vWords 
+y:vNC|x!:+1|r.:|v:vNC
+g*:{<}:vNC:vNMinWC | 
+r.: 
+f:false:lFIN
+j:lGEN
+l:lFIN | y:vWords
+
+#Construct Humane Pass
+l:lProcessHUM
+
+#then append a list of numbers
+v:vNLIMIT:9999 | v:vNLLIMIT:10
+n*!:vNLIMIT:vNLLIMIT:vNPASSLEN:vSPACE
+t.: | v:vNUMS
+
+#mix letters in..
+p*!:vNPASSLEN:vSPACE:vALPHABET | h: | v:vLTRS
+
+g*:{}:vNUMS:vLTRS | a!: | v:vNUMS 
+
+g*:{ }:vWords:vNUMS | t.: | v:vWords
+
+#then append a list of symbol-words
+y:vNPASSLEN | v:vNMinWC
+v:vNC:0 #index
+v:vNWLEN:3
+v:vNLL:1
+l:lGEN3
+y:vNWLEN|x!:*1.5|r.:|v:vNLIM|n*:vNLIM:vNLL|v:vNWL
+p*!:vNWL:vSPACE:vALPH_SYM | v:vW
+g*:{ }:vWords:vW | t.: | v:vWords 
+y:vNC|x!:+1|r.:|v:vNC
+g*:{<}:vNC:vNMinWC | 
+r.: 
+f:false:lFIN3
+j:lGEN3
+l:lFIN3 | y:vWords
+
+#then shuffle thrice...
+y:vWords|a:|a:|a:
+
+# so that's tentative password..
+v:_vPASSWORD
+
+#then trim to size...
+
+s*:_vPASSWORD:vSALT:vNPASSLEN:vNPASSLEN | v:_vPASSWORD
+#split at salt..
+h*!:_vPASSWORD:vSALT | v:_vPASSWORD
+#discard salted line..
+y:vSALT|x:{.*}|x!:{.*}|v:vSALT_REGEX
+k*!:vSALT_REGEX:_vPASSWORD |
+#flatten..
+g*.:vWGLUE 
+#store..
+v:_vPASSWORD
+
+#store generated password 
+v:vPASSWORD 
+
+#check if we arrived here from advanced!
+#otherwise proceed to finish..
+y:vMODE | f!:advanced:lFinishHUM
+j:lCONSTRUCT_PC_A
+
+#finish gracefully...
+l:lFinishHUM 
+#set mode..
+v:vMODE:humane
+j:lFinish
+
+# mode wasn't 2
+l:lNMODE2
+
+#--[MODE:ADVANCED]
+y:vOPT | f!:3:lMODE1
+
+v:vPROMPT:{#####--[ RSPG: Mode A ]--#####
+TIP ABOUT Advanced Mode Passwords: they are longer but somewhat readable; 
+20+; random; cryptic words, numbers, symbols. Memorizable, hard to guess. 
+Provably hard to crack. Provably Very Secure! ALSO: 
+IN CASE you wish to force  a length lower limit [default: 20], 
+enter your own here (between 20-50):}
+
+n!:50:20 | v:vNPASSLEN
+v:vALPH_SYM:{@$%+-=}
+v:vALPH_NUM:{8649137520} #HFi-o-SSI
+
+#description & prompt..
+y:vPROMPT | i*: | t.: | v:vANS
+
+#disregard if nonsense
+f!:^[0-9]+$:lIGNORE_USRLL
+
+v:vNLOL|x!:%50|
+r.:|v:vNLOL
+
+#ensure not below 20
+x!:<20|r.:|f:false:lLOLOK
+y:vNLOL|x:(|x!:+20)|r.:|v:vNLOL
+
+l:lLOLOK 
+|v:vNULL:50
+n*!:vNULL:vNLOL | v:vNPASSLEN
+
+l:lIGNORE_USRLL
+
+y:vNPASSLEN
+
+#store mode flag...
+v:vMODE:advanced
+
+#momentarily, construct password using humane algorithm...
+j:lCONSTRUCT_PC_H
+
+#then after we have humane password, post-process for advanced...
+l:lCONSTRUCT_PC_A
+
+Y:vPASSWORD
+
+#some nifty transforms...
+r!:[eE]:5|r!:[iI]:1|r!:[oO]:0|r!:[sS]:$|t.:
+
+#store generated password 
+v:vPASSWORD 
+
+j:lFinish
+
+#---[PRESENT]
+l:lFinish
+
+#fetch final password 
+Y:vPASSWORD
+#compute some analysis..
+#length/Cardinality (C)
+v:|v!:|v:vN_SC
+#Symbol-set Cardinality (SS-C)
+Y:vPASSWORD|u!:|v:|v!:|v:vN_SSC
+#sequence entropy (SE)
+g*:{/}:vN_SSC:vN_SC | r.: | v:vN_SE
+#password quality rank (PQR)
+y:vN_SSC | x!:{*3} | r.: | v:vN_PQR #alrdy percentage 
+
+#determine PQR class
+v:vPQR_class:{error}
+
+y:vN_PQR | x!:{<50} | r.: | f!:true:lnPQR1
+v:vPQR_class:{poor/bad}
+j:lFIN_PQR
+l:lnPQR1
+
+y:vN_PQR | x!:{<60} | r.: | f!:true:lnPQR2
+v:vPQR_class:{fair}
+j:lFIN_PQR
+l:lnPQR2
+
+y:vN_PQR | x!:{<80} | r.: | f!:true:lnPQR3
+v:vPQR_class:{good}
+j:lFIN_PQR
+l:lnPQR3
+
+y:vN_PQR | x!:{<100} | r.: | f!:true:lnPQR4
+v:vPQR_class:{great}
+j:lFIN_PQR
+l:lnPQR4
+
+y:vN_PQR | x!:{>=100} | r.: | f!:true:lnPQR5
+v:vPQR_class:{superb}
+j:lFIN_PQR
+l:lnPQR5
+
+l:lFIN_PQR
+#what to present..
+i!:{Your [}|x*!:vMODE|x!:{] Password: 
+} | x*!:vPASSWORD | x!:{
+--[RSPG Analysis]
+C: } | x*!:vN_SC | 
+x!:{ | SS-C: } | x*!:vN_SSC |x!:{ | SE (entropy): } 
+| x*!:vN_SE | x!:{
+PQR (rank): } | x*!:vN_PQR | x!:{% [} | x*!:vPQR_class | x!:]      
+v:vRESULTS
+
+#ask what to return...
+i!:{#####--[ RSPG: Results ]--#####
+} | x*!:vRESULTS | x!:{
+############################
+Please specify NEXT STEP:
+------(pick by number)------
+1. Return Password and Quit 
+2. Return Password + Analysis (security properties) 
+3. Generate New Password (default) } | v:vPROMPT 
+
+i*: | t.: | v:vANS | f:^1$:lFIN_RETURN:lFIN_ANALYSIS
+l:lFIN_RETURN
+
+y:vPASSWORD | q!: #quit
+
+l:lFIN_ANALYSIS
+f!:^2$:lFIN_DEFAULTS
+y:vRESULTS | q!: #quit
+
+l:lFIN_DEFAULTS
+j:lSTART #iterate..
