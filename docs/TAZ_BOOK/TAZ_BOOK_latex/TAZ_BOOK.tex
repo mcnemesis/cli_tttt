@@ -14918,7 +14918,76 @@ PQR (rank): 78% [good]
 
 \vspace{2em}
 
+Moreover, it should be worth noting that, in practice, and despite having implemented our algorithms as best as possible, and yet, there shall be occasions when the RSPG returns a password that isn't as good as what the mode the user selected promises to deliver. For example consider the following two cases, in which we see the advanced mode password being ranked almost as low as the complex or humane mode passwords:
+
+\vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 4 from RSPG v1.2]
+Your [advanced] Password: 
+$+%- = 08f909 03n f18
+--[RSPG Analysis]
+C: 21 | SS-C: 13 | SE (entropy): 0.6190476190476191
+PQR (rank): 39% [poor/bad]
+  \end{tcbverbatim}
+ \vspace{2em}
+
+\vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 5 from RSPG v1.2]
+Your [humane] Password: 
+$-== @=%$ malabo poland 3 7910
+--[RSPG Analysis]
+C: 30 | SS-C: 19 | SE (entropy): 0.6333333333333333
+PQR (rank): 57% [fair]
+  \end{tcbverbatim}
+ \vspace{2em}
+
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 5 from RSPG v1.2]
+Your [humane] Password: 
+$-== @=%$ malabo poland 3 7910
+--[RSPG Analysis]
+C: 30 | SS-C: 19 | SE (entropy): 0.6333333333333333
+PQR (rank): 57% [fair]
+  \end{tcbverbatim}
+ \vspace{2em}
+ 
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 5 from RSPG v1.2]
+ Your [complex] Password: 
+q-@pe54n$jr996l
+--[RSPG Analysis]
+C: 15 | SS-C: 14 | SE (entropy): 0.9333333333333333
+PQR (rank): 42% [poor/bad]
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+ 
+However, and especially because the PQR measure we are most interested in here is based on just the SC value, and so that, the advanced and humane mode passwords shall generally always outperform those generated using the complex mode in RSPG.
+
+\vspace{2em}
+
+
 Of course, not just that this system can generate secure passwords that are also human-friendly, however, also the reports it generates are truly helpful and enlightening --- for example, as one might notice from the literature we cited at the beginning, many security and cryptography analysts evaluating passwords seem to place much attention or focus on measures such as just the entropy\footnote{And caution is due here --- not all ``entropy" measures are the same meanwhile. In this work, our focus is on \textit{transformatic} sequence entropy first formalized and defined by Joseph Willrich Lutalo\cite{Lutalo2025_transformatics_thesis}. However, despite that measure being universally applicable to all kinds of information, just as the classical Shannon entropy measure was, they are neither quantifiably the same nor similar in their underlying conceptual basis. However, both are measures of randomness and information content.}, whereas, and as we see both in our new Password Quality Rank (PQR) theory and measure, but also in the empirical outputs resulting from evaluating various kinds of passwords using various measures including the entropy, sequence cardinality and PQR, that actually, the PQR is such a very useful and telling metric than many need become aware of!
+
+
+\vspace{2em}
+
+\textbf{How to Access and RUN RSPG:}
+
+\vspace{1em}
+
+To quickly load, share or run this RSPG implementation (or the latest), try using any of the following links:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item Find RSPG on the list of standard TEA programs via \url{https://tea.nuchwezi.com}
+\item Directly load and run RSPG via: \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/19e5ec10e7a4243c098cc35bb3fa1b89/raw/rspg.tea}
+\item Use the official shortened link to share or load RSPG: \url{https://bit.ly/tea_rspg}
+\end{enumerate}
+
+\vspace{2em}
+
+Please note that, just like with all other TEA applications we have encountered, the RSPG can be used as is from virtually anywhere TEA can run, but especially because it is interactive in the presented implementation, modifications would be necessary if the underling RSPG algorithm is meant to be used as such in some non-interactive scenarios such as in the generation of secure passwords inside of other programs or scripts --- such as in server-side environments.
 
 
 
