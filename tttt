@@ -1608,18 +1608,18 @@ class TEA_RunTime:
                    params  = tpe_str.split(TEA_RunTime.TIPED)
                    if len(params) == 1:
                        limit = self.extract_str(params[0])
-                       io = str(util_gen_rand(int(limit)))
+                       io = str(util_gen_rand(int(float(limit))))
                    if len(params) == 2:
                        limit = self.extract_str(params[0])
                        llimit = self.extract_str(params[1])
-                       io = str(util_gen_rand(int(limit), ll=llimit))
+                       io = str(util_gen_rand(int(float(limit)), ll=llimit))
                    if len(params) == 3:
                        limit = self.extract_str(params[0])
                        llimit = self.extract_str(params[1])
                        size = self.extract_str(params[2])
                        nums = []
-                       for i in range(int(size)):
-                           nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                       for i in range(int(float(size))):
+                           nums.append(str(util_gen_rand(int(float(limit)), ll=llimit)))
                        io = TEA_RunTime.GLUE.join(nums)
                    if len(params) == 4:
                        limit = self.extract_str(params[0])
@@ -1627,8 +1627,8 @@ class TEA_RunTime:
                        size = self.extract_str(params[2])
                        glue = self.extract_str(params[3])
                        nums = []
-                       for i in range(int(size)):
-                           nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                       for i in range(int(float(size))):
+                           nums.append(str(util_gen_rand(int(float(limit)), ll=llimit)))
                        io = glue.join(nums)
             if (tc == "N*") or (tc == "N*!"):
                 if self.is_empty(tpe_str):
@@ -1640,7 +1640,7 @@ class TEA_RunTime:
                    if len(params) == 1:
                        vlimit = self.extract_str(params[0])
                        limit = vault_get(vlimit) if len(vlimit) > 0 else 9
-                       io = str(util_gen_rand(int(limit)))
+                       io = str(util_gen_rand(int(float(limit))))
                    if len(params) == 2:
                        vlimit = self.extract_str(params[0])
                        vllimit = self.extract_str(params[1])
@@ -1649,7 +1649,7 @@ class TEA_RunTime:
 
                        llimit = vault_get(vllimit) if len(vllimit) > 0 else 0
 
-                       io = str(util_gen_rand(int(limit), ll=llimit))
+                       io = str(util_gen_rand(int(float(limit)), ll=int(float(llimit))))
                    if len(params) == 3:
                        vlimit = self.extract_str(params[0])
                        vllimit = self.extract_str(params[1])
@@ -1663,7 +1663,7 @@ class TEA_RunTime:
 
                        nums = []
                        for i in range(int(size)):
-                           nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                           nums.append(str(util_gen_rand(int(float(limit)), ll=int(float(llimit)))))
                        io = TEA_RunTime.GLUE.join(nums)
                    if len(params) == 4:
                        vlimit = self.extract_str(params[0])
@@ -1681,7 +1681,7 @@ class TEA_RunTime:
 
                        nums = []
                        for i in range(int(size)):
-                           nums.append(str(util_gen_rand(int(limit), ll=llimit)))
+                           nums.append(str(util_gen_rand(int(float(limit)), ll=int(float(llimit)))))
                        io = glue.join(nums)
 
             return io
@@ -1740,13 +1740,13 @@ class TEA_RunTime:
                         value = self.extract_str(params[0])
                         glue = self.extract_str(params[1])
                         limit = self.extract_str(params[2])
-                        io = util_gen_permutations(value, glue=glue, limit = int(limit))
+                        io = util_gen_permutations(value, glue=glue, limit = int(float(limit)))
                     elif len(params) == 4:
                         value = self.extract_str(params[0])
                         glue = self.extract_str(params[1])
                         limit = self.extract_str(params[2])
                         llimit = self.extract_str(params[3])
-                        io = util_gen_permutations(value, glue=glue, limit = int(limit), llimit=int(llimit))
+                        io = util_gen_permutations(value, glue=glue, limit = int(float(limit)), llimit=int(float(llimit)))
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
@@ -1758,16 +1758,16 @@ class TEA_RunTime:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
                         size = self.extract_str(params[0])
-                        io = util_gen_rand_string(size=int(size))
+                        io = util_gen_rand_string(size=int(float(size_)))
                     elif len(params) == 2:
                         size = self.extract_str(params[0])
                         glue = self.extract_str(params[1])
-                        io = util_gen_rand_string(size=int(size), glue=glue)
+                        io = util_gen_rand_string(size=int(float(size)), glue=glue)
                     elif len(params) == 3:
                         size = self.extract_str(params[0])
                         glue = self.extract_str(params[1])
                         alphabet = self.extract_str(params[2])
-                        io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
+                        io = util_gen_rand_string(size=int(float(size)), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
@@ -1791,15 +1791,15 @@ class TEA_RunTime:
                         vGlue = self.extract_str(params[1])
                         glue = vault_get(vGlue)
                         vLimit = self.extract_str(params[2])
-                        limit = int(vault_get(vLimit))
+                        limit = int(float(vault_get(vLimit)))
                         io = util_gen_permutations(input_str, glue=glue, limit = limit)
                     elif len(params) == 4:
                         vGlue = self.extract_str(params[1])
                         glue = vault_get(vGlue)
                         vLimit = self.extract_str(params[2])
-                        limit = int(vault_get(vLimit))
+                        limit = int(float(vault_get(vLimit)))
                         vLLimit = self.extract_str(params[3])
-                        llimit = int(vault_get(vLLimit))
+                        llimit = int(float(vault_get(vLLimit)))
                         io = util_gen_permutations(input_str, glue=glue, limit = limit, llimit=llimit)
                     else:
                         if TEA_RunTime.DEBUG:
@@ -1816,17 +1816,17 @@ class TEA_RunTime:
                     vSIZE = self.extract_str(params[0])
                     size = vault_get(vSIZE)
                     if len(params) == 1:
-                        io = util_gen_rand_string(size=int(size))
+                        io = util_gen_rand_string(size=int(float(size)))
                     elif len(params) == 2:
                         vGLUE = self.extract_str(params[1])
                         glue = vault_get(vGLUE)
-                        io = util_gen_rand_string(size=int(size), glue=glue)
+                        io = util_gen_rand_string(size=int(float(size)), glue=glue)
                     elif len(params) == 3:
                         vGLUE = self.extract_str(params[1])
                         glue = vault_get(vGLUE)
                         vALPHABET = self.extract_str(params[2])
                         alphabet = vault_get(vALPHABET)
-                        io = util_gen_rand_string(size=int(size), alphabet=alphabet, glue = glue)
+                        io = util_gen_rand_string(size=int(float(size)), alphabet=alphabet, glue = glue)
                     else:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
@@ -2055,12 +2055,12 @@ class TEA_RunTime:
                             io = util_salt_string(io,salt)
                         elif len(params) == 2:
                             salt = self.extract_str(params[0])
-                            i_limit = int(self.extract_str(params[1]))
+                            i_limit = int(float(self.extract_str(params[1])))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 3:
                             salt = self.extract_str(params[0])
-                            i_limit = int(self.extract_str(params[1]))
-                            l_limit = int(self.extract_str(params[2]))
+                            i_limit = int(float(self.extract_str(params[1])))
+                            l_limit = int(float(self.extract_str(params[2])))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
             if tc == "S!":
                 if self.is_empty(tpe_str):
@@ -2084,12 +2084,12 @@ class TEA_RunTime:
                             io = util_unsalt_string(io,salt_pattern=salt_regex)
                         elif len(params) == 2:
                             salt_regex = self.extract_str(params[0])
-                            d_limit = int(self.extract_str(params[1]))
+                            d_limit = int(float(self.extract_str(params[1])))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 3:
                             salt_regex = self.extract_str(params[0])
-                            d_limit = int(self.extract_str(params[1]))
-                            l_limit = int(self.extract_str(params[2]))
+                            d_limit = int(float(self.extract_str(params[1])))
+                            l_limit = int(float(self.extract_str(params[2])))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             if tc == "S*":
@@ -2120,15 +2120,15 @@ class TEA_RunTime:
                             vsalt = self.extract_str(params[1])
                             salt = vault_get(vsalt)
                             vi_limit = self.extract_str(params[2])
-                            i_limit = int(vault_get(vi_limit))
+                            i_limit = int(float(vault_get(vi_limit)))
                             io = util_salt_string(io,salt,injection_limit=i_limit)
                         elif len(params) == 4:
                             vsalt = self.extract_str(params[1])
                             salt = vault_get(vsalt)
                             vi_limit = self.extract_str(params[2])
-                            i_limit = int(vault_get(vi_limit))
+                            i_limit = int(float(vault_get(vi_limit)))
                             vl_limit = self.extract_str(params[3])
-                            l_limit = int(vault_get(vl_limit))
+                            l_limit = int(float(vault_get(vl_limit)))
                             io = util_salt_string(io,salt,injection_limit=i_limit, llimit=l_limit)
 
             if tc == "S*!":
@@ -2160,15 +2160,15 @@ class TEA_RunTime:
                             vsalt_regex = self.extract_str(params[1])
                             salt_regex = vault_get(vsalt_regex)
                             vd_limit = self.extract_str(params[2])
-                            d_limit = int(vault_get(vd_limit))
+                            d_limit = int(float(vault_get(vd_limit)))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit)
                         elif len(params) == 4:
                             vsalt_regex = self.extract_str(params[1])
                             salt_regex = vault_get(vsalt_regex)
                             vd_limit = self.extract_str(params[2])
-                            d_limit = int(vault_get(vd_limit))
+                            d_limit = int(float(vault_get(vd_limit)))
                             vl_limit = self.extract_str(params[3])
-                            l_limit = int(vault_get(vl_limit))
+                            l_limit = int(float(vault_get(vl_limit)))
                             io = util_unsalt_string(io,salt_pattern=salt_regex, deletion_limit=d_limit, llimit=l_limit)
 
             return io
