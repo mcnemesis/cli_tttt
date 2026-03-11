@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  10 MAR 2026 22:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  11 MAR 2026 09:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -5165,7 +5165,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [383]
-Overfull \hbox (3.13023pt too wide) in paragraph at lines 14510--14512
+Overfull \hbox (3.13023pt too wide) in paragraph at lines 14508--14510
 [][][][] 
  []
 
@@ -5194,12 +5194,15 @@ Overfull \hbox (3.13023pt too wide) in paragraph at lines 14510--14512
 [394]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 14864.
+(caption)                particular \caption on input line 14869.
 See the caption package documentation for explanation.
 
 \openout9 = `TAZ_BOOK.listing'.
 
 (TAZ_BOOK.listing)
+\openout9 = `TAZ_BOOK.listing'.
+
+ (TAZ_BOOK.listing)
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
@@ -5211,12 +5214,6 @@ See the caption package documentation for explanation.
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-\openout9 = `TAZ_BOOK.listing'.
-
- (TAZ_BOOK.listing)
-Underfull \vbox (badness 1117) has occurred while \output is active []
-
-
 
 [396]
 \openout9 = `TAZ_BOOK.listing'.
@@ -5247,7 +5244,7 @@ Chapter 29.
 [403]
 
 [404])
-Underfull \hbox (badness 10000) in paragraph at lines 15036--15036
+Underfull \hbox (badness 10000) in paragraph at lines 15041--15041
 
  []
 
@@ -5258,14 +5255,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 15036--15036
 [406
 
 ]
-<resources/pdfs/AboutAuthor.pdf, id=10800, 614.295pt x 794.97pt>
+<resources/pdfs/AboutAuthor.pdf, id=10805, 614.295pt x 794.97pt>
 File: resources/pdfs/AboutAuthor.pdf Graphic file (type pdf)
 <use resources/pdfs/AboutAuthor.pdf>
 Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 150
-55.
+60.
 (pdftex.def)             Requested size: 505.17802pt x 583.53377pt.
 
-Overfull \hbox (8.84879pt too wide) in paragraph at lines 15055--15055
+Overfull \hbox (8.84879pt too wide) in paragraph at lines 15060--15060
  [] 
  []
 
@@ -5283,10 +5280,10 @@ Overfull \vbox (19.80933pt too high) has occurred while \output is active []
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=10837, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=10842, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 15066.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 15071.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -5294,7 +5291,7 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
-Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 15066.
+Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 15071.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -5304,15 +5301,15 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=10840, page=1, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=10845, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15066
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15071
 .
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15066
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15071
 .
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
@@ -5320,19 +5317,19 @@ Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15066
 [409]
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15066
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15071
 .
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15066
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15071
 .
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 
 
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
-Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15066
+Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 15071
 .
 (pdftex.def)             Requested size: 597.71669pt x 845.69751pt.
 [410
@@ -5362,8 +5359,8 @@ Package rerunfilecheck Info: File `TAZ_BOOK.out' has not changed.
 ### simple group (level 1) entered at line 8901 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 45486 strings out of 473898
- 843721 string characters out of 5736297
+ 45491 strings out of 473898
+ 843811 string characters out of 5736297
  3578960 words of memory out of 5000000
  60290 multiletter control sequences out of 15000+600000
  582913 words of font info for 129 fonts, out of 8000000 for 9000
@@ -5412,9 +5409,9 @@ KTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Program Files/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmtt9.pfb><C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/ty
 pe1/public/cbgreek/gttn1000.pfb><C:/Program Files/MiKTeX/fonts/type1/public/ams
 fonts/symbols/msbm10.pfb>
-Output written on TAZ_BOOK.pdf (442 pages, 12906279 bytes).
+Output written on TAZ_BOOK.pdf (442 pages, 12907368 bytes).
 PDF statistics:
- 12501 PDF objects out of 12825 (max. 8388607)
- 7298 named destinations out of 7423 (max. 500000)
+ 12507 PDF objects out of 12825 (max. 8388607)
+ 7303 named destinations out of 7423 (max. 500000)
  1671 words of extra memory for PDF output out of 10000 (max. 10000000)
 

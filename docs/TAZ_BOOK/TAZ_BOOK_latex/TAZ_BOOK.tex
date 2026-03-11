@@ -14485,11 +14485,9 @@ And the associated source code for the reference implementation of the RSPG as r
 #!/usr/bin/tttt -fc
 v:vABOUT:{
 #####--[ RSPG v1.2 ]--#####
-Random Secure Password Generator is a robust computer program 
-meant to facilitate the generation of high quality passwords 
-that are sometimes not only provably hard to crack, but which 
-are also quite easy for the human to memorize. The theory and 
-specifications underlying RSPG are in the TEA TAZ. 
+Random Secure Password Generator is a robust computer algorithm meant to facilitate the generation of high quality passwords that are sometimes not only provably hard to crack, 
+but which are also quite easy for the human to memorize. 
+The theory (such as PQR Laws) and specifications underlying RSPG are in the TEA TAZ as well as the PQR Law paper. 
 Copyright 2026 Fut. Prof. JWL (Nuchwezi Research)
 }
 
@@ -14528,11 +14526,13 @@ l:lPROCESS_MENU
 
 #--[MODE:COMPLEX]
 v:vPROMPT:{#####--[ RSPG: Mode C ]--#####
-TIP ABOUT Complex Mode Passwords: they are short & cryptic;
-10-16; random; symbols, letters, numbers. Hard to memorize, 
-difficult to guess. Great for use with password manager tools. 
-ALSO: IN CASE you wish to customize symbols used 
-[defaults: !@#$%^()-=_], enter your own seed set here:}
+TIP ABOUT Complex Mode Passwords: 
+they are short & cryptic; 10-16; 
+random; symbols, letters, numbers. 
+Hard to memorize, difficult to guess. 
+Great for use with password manager tools. ALSO: IN CASE you wish to customize seed symbols used 
+[defaults: !@#$%^()-=_] 
+SPECIFY your own seed set here:}
 
 n!:16:10 | v:vNPASSLEN
 v:vALPH_SYM:{!@#$%^()-=_}
@@ -14584,11 +14584,13 @@ l:lNMODE1
 
 #--[MODE:HUMANE]
 v:vPROMPT:{#####--[ RSPG: Mode H ]--#####
-TIP ABOUT Humane Mode Passwords: they are long but legible; 
-20-30; random; words, numbers, symbols. Easier to memorize, 
-difficult to guess.  Theoretically harder to crack. ALSO: 
-IN CASE you wish to customize symbols used 
-[defaults: @$%+-=], enter your own seed set here:}
+TIP ABOUT Humane Mode Passwords: 
+they are long but legible; 
+20-30; random; words, numbers, symbols. 
+Easier to memorize, difficult to guess.
+Theoretically harder to crack. 
+ALSO: IN CASE you wish to customize seed symbols used [defaults: @$%+-=]
+SPECIFY your own seed set here:}
 
 n!:30:20 | v:vNPASSLEN
 v:vALPH_SYM:{@$%+-=}
@@ -14734,11 +14736,14 @@ l:lNMODE2
 y:vOPT | f!:3:lMODE1
 
 v:vPROMPT:{#####--[ RSPG: Mode A ]--#####
-TIP ABOUT Advanced Mode Passwords: they are longer but somewhat readable; 
-20+; random; cryptic words, numbers, symbols. Memorizable, hard to guess. 
-Provably hard to crack. Provably Very Secure! ALSO: 
-IN CASE you wish to force  a length lower limit [default: 20], 
-enter your own here (between 20-50):}
+TIP ABOUT Advanced Mode Passwords: 
+they are longer but somewhat readable; 20+; 
+random; cryptic words, numbers, symbols.
+Memorizable, hard to guess.
+Provably hard to crack. Provably Very Secure! 
+ALSO: IN CASE you wish to force  a LENGTH
+LOWER LIMIT [default: 20],
+SPECIFY your own here (between 20-50):}
 
 n!:50:20 | v:vNPASSLEN
 v:vALPH_SYM:{@$%+-=}
