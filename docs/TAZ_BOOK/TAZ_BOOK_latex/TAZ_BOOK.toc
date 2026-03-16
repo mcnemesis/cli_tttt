@@ -1,4 +1,7 @@
-\contentsline {chapter}{List of Abbreviations}{xxiii}{chapter*.6}%
+\contentsline {chapter}{Dedication}{iii}{chapter*.1}%
+\contentsline {chapter}{Preface}{v}{chapter*.3}%
+\contentsline {chapter}{List of ACRONYMS}{xxv}{chapter*.7}%
+\contentsline {chapter}{Abstract}{1}{chapter*.8}%
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Essential Nomenclature and Concepts}{3}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}TEA Command Variations and Qualifying TEA Commands Correctly}{6}{subsection.1.1.1}%
@@ -83,8 +86,8 @@
 \contentsline {section}{\numberline {15.3}EXAMPLE APPLICATIONS of I:}{144}{section.15.3}%
 \contentsline {subsection}{\numberline {15.3.1}EXAMPLE 1: \textbf {GRAPHICAL GAME PROGRAMMING:} [pure-GUI] TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite {lutalo_2025_rpg}}{145}{subsection.15.3.1}%
 \contentsline {subsection}{\numberline {15.3.2}EXAMPLE 2: \textbf {COMPUTATIONAL MYSTICISM:} The LUMTAUTO Occult Language Message Encoder}{147}{subsection.15.3.2}%
-\contentsline {subsubsection}{A Formal Definition of LUMTAUTO}{148}{section*.116}%
-\contentsline {subsubsection}{The LUMTAUTO Algorithm in TEA}{150}{section*.117}%
+\contentsline {subsubsection}{A Formal Definition of LUMTAUTO}{148}{section*.117}%
+\contentsline {subsubsection}{The LUMTAUTO Algorithm in TEA}{150}{section*.118}%
 \contentsline {chapter}{\numberline {16}J: JUMP}{155}{chapter.16}%
 \contentsline {section}{\numberline {16.1}SEMANTICS of J:}{156}{section.16.1}%
 \contentsline {section}{\numberline {16.2}NOTES about J:}{156}{section.16.2}%
@@ -111,11 +114,11 @@
 \contentsline {section}{\numberline {20.3}EXAMPLE APPLICATIONS of N:}{208}{section.20.3}%
 \contentsline {subsection}{\numberline {20.3.1}EXAMPLE 1: \textbf {DATA-ENGINEERING:} GENERATING RANDOM NUMERIC DATASETS or STRUCTURES CONFORMING TO SOME PATTERN SCHEMAS}{208}{subsection.20.3.1}%
 \contentsline {subsection}{\numberline {20.3.2}EXAMPLE 2: \textbf {STATISTICAL ANALYSIS:} DESCRIPTIVE, EXPLORATORY and PREDICTIVE DATA ANALYZER}{217}{subsection.20.3.2}%
-\contentsline {subsubsection}{A Data Graphing Component}{219}{section*.152}%
-\contentsline {subsubsection}{Probabilistic Next-Value Estimation (1-Dimensional Dataset)}{223}{section*.154}%
-\contentsline {subsubsection}{Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{224}{section*.155}%
-\contentsline {subsubsection}{Non-Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{225}{section*.156}%
-\contentsline {subsubsection}{The Statistical Analysis Tool (SAT) TEA Program CODE}{228}{section*.157}%
+\contentsline {subsubsection}{A Data Graphing Component}{219}{section*.153}%
+\contentsline {subsubsection}{Probabilistic Next-Value Estimation (1-Dimensional Dataset)}{223}{section*.155}%
+\contentsline {subsubsection}{Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{224}{section*.156}%
+\contentsline {subsubsection}{Non-Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{225}{section*.157}%
+\contentsline {subsubsection}{The Statistical Analysis Tool (SAT) TEA Program CODE}{228}{section*.158}%
 \contentsline {chapter}{\numberline {21}O: ORDER}{249}{chapter.21}%
 \contentsline {section}{\numberline {21.1}SEMANTICS of O:}{249}{section.21.1}%
 \contentsline {section}{\numberline {21.2}NOTES about O:}{250}{section.21.2}%
@@ -135,8 +138,8 @@
 \contentsline {section}{\numberline {24.1}SEMANTICS of R:}{284}{section.24.1}%
 \contentsline {section}{\numberline {24.2}NOTES about R:}{284}{section.24.2}%
 \contentsline {subsection}{\numberline {24.2.1}The Peculiar Side of R: --- Using R: without explicit arguments}{286}{subsection.24.2.1}%
-\contentsline {subsubsection}{The Braillish Transforms: r: and r!:}{286}{section*.167}%
-\contentsline {subsubsection}{TEA Mathematical Expressions and The Mathematics Re-Write Transform: r.:}{289}{section*.168}%
+\contentsline {subsubsection}{The Braillish Transforms: r: and r!:}{286}{section*.168}%
+\contentsline {subsubsection}{TEA Mathematical Expressions and The Mathematics Re-Write Transform: r.:}{289}{section*.169}%
 \contentsline {section}{\numberline {24.3}EXAMPLE APPLICATIONS of R:}{292}{section.24.3}%
 \contentsline {subsection}{\numberline {24.3.1}EXAMPLE 1: \textbf {HUMAN SUPPORT:} SMS and TEXT Minifier Program }{292}{subsection.24.3.1}%
 \contentsline {subsection}{\numberline {24.3.2}EXAMPLE 2: \textbf {MATHEMATICS:} ADVANCED MATHEMATICS COMPUTER}{298}{subsection.24.3.2}%
@@ -151,10 +154,10 @@
 \contentsline {section}{\numberline {26.2}NOTES about T:}{324}{section.26.2}%
 \contentsline {section}{\numberline {26.3}EXAMPLE APPLICATIONS of T:}{334}{section.26.3}%
 \contentsline {subsection}{\numberline {26.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL ART:} Abstract Text-Art Generator}{334}{subsection.26.3.1}%
-\contentsline {subsubsection}{Basic Style}{348}{section*.183}%
-\contentsline {subsubsection}{Mirrored Style}{350}{section*.184}%
-\contentsline {subsubsection}{Chaos Style}{352}{section*.185}%
-\contentsline {subsubsection}{MODIFIED ATAG Outputs}{354}{section*.186}%
+\contentsline {subsubsection}{Basic Style}{348}{section*.184}%
+\contentsline {subsubsection}{Mirrored Style}{350}{section*.185}%
+\contentsline {subsubsection}{Chaos Style}{352}{section*.186}%
+\contentsline {subsubsection}{MODIFIED ATAG Outputs}{354}{section*.187}%
 \contentsline {chapter}{\numberline {27}U: UNIQUEIFY}{359}{chapter.27}%
 \contentsline {section}{\numberline {27.1}SEMANTICS of U:}{360}{section.27.1}%
 \contentsline {section}{\numberline {27.2}NOTES about U:}{360}{section.27.2}%
@@ -166,4 +169,4 @@
 \contentsline {section}{\numberline {28.3}EXAMPLE APPLICATIONS of V:}{379}{section.28.3}%
 \contentsline {subsection}{\numberline {28.3.1}EXAMPLE 1: \textbf {INFORMATION SECURITY:} SECURE Password Generator (SPG)}{379}{subsection.28.3.1}%
 \contentsline {chapter}{\numberline {29}Conclusion}{399}{chapter.29}%
-\contentsline {chapter}{About the Inventor of TEA}{408}{appendix*.198}%
+\contentsline {chapter}{About the Inventor of TEA}{408}{appendix*.199}%
