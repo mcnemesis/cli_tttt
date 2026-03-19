@@ -14299,6 +14299,8 @@ Y:vPWD # return final password
 
 That TEA program, without any other external input (the \textit{initial seed}) shall generate passwords like ``LEEOSVVM", ``SSAMLUVE", ``UAEEMOLL" etc. And if we pass in some external seed such as ``hello" (which is just 5 characters long), shall intelligently return passwords such as ``oleolole", ``lhhlhole", ``llllohhe", etc.
 
+\vspace{2em}
+
 
 Of course, that program can be improved upon so as to create more cryptic passwords given some initial seed (or none), and this we shall cover among the example applications in the next section.
 
@@ -14311,13 +14313,17 @@ Of course, that program can be improved upon so as to create more cryptic passwo
   
 In exploring the applications of the VAULT command space, we are without doubt going to be free to almost source ideas from any of the other programs and applications covered in this book thus far, especially because most TEA programs shall at minimum involve some sort of use of vaults for reading or writing data into memory.
 
+\vspace{2em}
+
+In particular though, we are going to build upon the password generator concept we have seen in the examples covered in the previous section, and we shall especially be dealing with an attempt to realize a robust password generator that we shall refer to as the RSPG --- Random Secure Password Generator.
 
 
-\subsection{EXAMPLE 1: \textbf{INFORMATION SECURITY:} SECURE Password Generator (SPG)}
+
+\subsection{EXAMPLE 1: \textbf{INFORMATION SECURITY:} Random SECURE Password Generator (RSPG)}
 \label{SECEXAMP1V}
 
 
-In approaching our secure password generator (SPG) system, first, we shall want to agree on a minimal specification upon which the system should be based. For starters, it shall be worth having in mind some of the state-of-the-art theory and standard recommendations regarding password design and usage best-practices. A quick consultation\cite{copilot_assistant} and some background research surface some of the following useful guidelines...
+In approaching our random secure password generator (RSPG) system, first, we shall want to agree on a minimal specification upon which the system should be based. For starters, it shall be worth having in mind some of the state-of-the-art theory and standard recommendations regarding password design and usage best-practices. A quick consultation\cite{copilot_assistant} and some background research surface some of the following useful guidelines...
 
 \vspace{2em}
 
@@ -14895,6 +14901,71 @@ j:lSTART #iterate..
 }
 
 
+\subsubsection{Review and Preview of the RSPG implementation}
+
+
+The TEA source code for the RSPG as shared above is not only all that one needs to run the program, but that it shall work so well, and is so lightweight in web, mobile-web and desktop environments, but also that, even though the humane and advanced mode sometimes involve a step where the RSPG attempts to fetch random words from web-based APIs, that when it is used with Internet off or without data, the program still runs well, and does in fact also generate useful and robust passwords even with the network errors themselves\footnote{If you studied the RSPG TEA code, you shall have identified that it actually has 3 word generation options that it randomly selects when the password being generated is of mode ``humane" or ``advanced"; the \textbf{heroku} word api, the \textbf{kush} word api, and then an internal, TEA-based random word/string generation method leveraging the \textbf{Permutate}, \texttt{P:} command-space. In customizations or adaptations of our RSPG, other people might decide to entire entirely cut-out any dependencies on external word sources --- such as by forcing all word generation to leverage the internal TEA methods, or that they can point to other, alternative word generation APIs --- this later case of course with the necessary extra step that any other source might need some special TEA-based data-wrangling so as to produce a clean single-space delimited list of plain words as demonstrated in the current TEA source.}!
+
+Overall, some screenshots of what the current (v1.2) interactive RSPG looks like are as shown hereafter...
+
+
+\begin{figure}[H]
+  \centering
+  
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/rspg_landing_screen.png}
+    \caption{RSPG v1.2: Landing Screen (desktop-web)}
+    \label{FIGNSIGIL}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/rspg_menu.png}
+    \caption{RSPG: Password Generation Mode selection menu (desktop-cli)}
+    \label{FIGNSIGIL2}
+  \end{subfigure}
+  
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/rspg_menu_humane.png}
+    \caption{RSPG: Humane Password About (desktop-cli)}
+    \label{FIGNSIGIL3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/rspg_results_cli.png}
+    \caption{RSPG: Results Screen (desktop-cli)}
+    \label{FIGNSIGIL4}
+  \end{subfigure}
+  
+  \caption{Snapshots of RSPG in Action}
+  \label{FIGRSPG1}
+\end{figure}
+
+
+And with the case of using RSPG via mobile --- in fact, and perhaps surprising to some that might hear it, but the entire original RSPG was coded via the TEA WEB IDE (\url{https://tea.nuchwezi.com}) via a mobile phone!
+
+
+
+\begin{figure}[H]
+  \centering
+  
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/rspg_results_mobile.png}
+    \caption{RSPG v1.2: Results Screen (mobile-web)}
+    \label{FIGNSIGIL5}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/tea_web_ide_rspg_outputs.png}
+    \caption{TEA WEB IDE: Results/Output returned by the RSPG program when it returns a password + its analysis report (mobile-web)}
+    \label{FIGNSIGIL6}
+  \end{subfigure}
+ 
+  
+  \caption{Snapshots of RSPG in Action (on MOBILE)}
+  \label{FIGRSPG2}
+\end{figure}
+
+
 \vspace{2em}
 
 And with that program then, we can appreciate the way that implementation clearly reflects the underlying theory we have distilled and presented, by noticing how interesting the outputs of the \textbf{RSPG v1.2} are, across the three password generation modes as shown hereafter...
@@ -14982,12 +15053,13 @@ PQR (rank): 57% [fair]
 
  \begin{tcbverbatim}[title=Sample OUTPUT 5 from RSPG v1.2]
  Your [complex] Password: 
-q-@pe54n$jr996l
+q-@pe54n#jr996l
 --[RSPG Analysis]
 C: 15 | SS-C: 14 | SE (entropy): 0.9333333333333333
 PQR (rank): 42% [poor/bad]
   \end{tcbverbatim}
  \vspace{2em} 
+ 
  
  
 However, and especially because the PQR measure we are most interested in here is based on just the SC value, and so that, the advanced and humane mode passwords shall generally always outperform those generated using the complex mode in RSPG.
@@ -15000,23 +15072,477 @@ Of course, not just that this system can generate secure passwords that are also
 
 \vspace{2em}
 
-\textbf{How to Access and RUN RSPG:}
+\subsubsection{How to Access and RUN RSPG:}
 
 \vspace{1em}
 
-To quickly load, share or run this RSPG implementation (or the latest), try using any of the following links:
+The RSPG TEA source code has been placed in the public domain! To quickly load, share or run this RSPG implementation (or the latest --- in the future), try using any of the following links:
 
 \vspace{2em}
 
 \begin{enumerate}
-\item Find RSPG on the list of standard TEA programs via \url{https://tea.nuchwezi.com}
-\item Directly load and run RSPG via: \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/19e5ec10e7a4243c098cc35bb3fa1b89/raw/rspg.tea}
-\item Use the official shortened link to share or load RSPG: \url{https://bit.ly/tea_rspg}
+\item Find RSPG on the list of standard TEA programs via:\\ \url{https://tea.nuchwezi.com}
+\item Directly load and run RSPG via: {\normalsize \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/19e5ec10e7a4243c098cc35bb3fa1b89/raw/rspg.tea&run} }
+\item{Obtain the TEA RSPG source-code (and other related codes/programs) via the TEA GitHub Project:\\
+\url{https://github.com/mcnemesis/cli_tttt}}
+\item{ Find the RSPG code on GitHub Gists:\\
+\url{https://gist.github.com/mcnemesis/19e5ec10e7a4243c098cc35bb3fa1b89}}
+\item{ Or use the official shortened link to share or load RSPG:\\
+ \url{https://bit.ly/tea_rspg}
+ }
 \end{enumerate}
 
 \vspace{2em}
 
-Please note that, just like with all other TEA applications we have encountered, the RSPG can be used as is from virtually anywhere TEA can run, but especially because it is interactive in the presented implementation, modifications would be necessary if the underling RSPG algorithm is meant to be used as such in some non-interactive scenarios such as in the generation of secure passwords inside of other programs or scripts --- such as in server-side environments.
+Please note that, just like with all other TEA applications one shall encountered, the RSPG can be used as is from virtually anywhere TEA can run, but especially because it is interactive in the presented implementation, modifications would be necessary if the underling RSPG algorithm is meant to be used as is in some non-interactive scenarios such as in the generation of secure passwords inside of other programs or scripts --- such as in server-side environments.
+
+
+
+
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: W
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{W: WEBIFY}
+\label{SECW}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{WEBIFY}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Perform Network Input/Output
+	\item Write/Output Data via HTTP(S) POST
+	\item Read/Input Data via HTTP(S) GET
+	\item Persist Active Program's Memory to External Endpoint
+	\item Potential Alternative to File I/O in TEA
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{W:}}
+  \label{TABTAZW}
+\end{table}
+
+
+\section{SEMANTICS of W:}
+\label{SECSEMW}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+\makecell[l]{w:}
+ & Take current AI as a URL and read whatever is at specified network resource address with an HTTP GET request, then set the result as IO iff the command successfully executed, otherwise return EMPTY STRING\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{w:URL} & Read whatever is at specified network resource address URL and set the result as IO iff the command successfully executed, otherwise return EMPTY STRING\\
+
+w!: & Take current AI as a URL and read whatever is at specified network resource address with an HTTP POST request, then set the result as IO iff the command successfully executed, otherwise return EMPTY STRING\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{w!:URL} & Write or rather, POST whatever is in AI, to the specified network resource address URL as unnamed data and  set the result as IO iff the command successfully executed, otherwise return EMPTY STRING\\
+
+
+\makecell[l]{w*:\\w*:vURL\\w*:vURL:v1:v2:v:3..:vN} & Same as w!:URL but will execute an HTTP GET request on the URL held in vault vURL with each specified vault (as vNAME=vVALUE pairs) in the query string. With only vURL, posts everything currently in the vaults, using their name and values. With no parameters at all, treats AI as URL, then sends everything in the vaults in the query string.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{w*!:\\w*!:vURL\\w*!:vURL:v1:v2:v:3..:vN} & Same as W*:, but performs an HTTP POST request and posts the data as form encoded data\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of W:}
+\label{TABSEMW}
+\end{table}
+
+
+\section{NOTES about W:}
+\label{SECNOTEW} 
+
+TEA might not offer any usual means to read or write files such as many programming languages provide, however, it does offer a clean solution to reading and writing data to a network-accessible resource---which, given it can be purely offline or on-device, allows for a sort of File I/O in TEA via the W: command space.
+
+\vspace{2em}
+
+Perhaps to clarify things – when a TEA program reads using W:URL, it is expected that the body of the returned response – such as an HTML document for web requests, or perhaps a data dump in JSON, CSV or such, for an API call, is what is returned by W:. In cases where an error occurs or the resource doesn’t exist, W: just returns an empty string. 
+
+
+\subsection{HTTP POST Requests}
+
+
+For writing/posting data, W! and W*!: come in handy. The first version posts AI just as a mere untagged value – just like posting a string value to some API end-point for example. The vault-accessing method though, because it has access to both the names and values in the vaults, will compose a sane multi-part request, where each vault and its value (or the empty string if no value) gets posted to the specified URL. HTTP POST requests are the default for W!* because where HTTP GET is desired, the necessary URL with the necessary name-value pairs in a query-string can be composed using TEA, but is not encouraged because of its lack of security, and potential to construct illegal URLs given arbitrary data.
+
+\vspace{2em}
+
+
+The following example will fetch a person’s current account balance from a bank’s API given the account number and some special secret.  
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 1: A Simple HTTP POST - hypothetical - using dynamic URL, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#parameters needed
+v:vAC:{123456XXX} | v:vKEY:{001001} 
+# we shall build a dynamic url too using...
+v:vURL_TEMPLATE:{https://abc.bank/api/ac/#AC/bal/?cred=#KEY}
+v:vREGEX_AC:{#AC}|v:vREGEX_KEY:{#KEY}
+#okay, let's substitute for the account
+r*!:vURL_TEMPLATE:vREGEX_AC:vAC | v:vURL_TEMPLATE 
+# then substitute for access key
+r*!:vURL_TEMPLATE:vREGEX_KEY:vKEY | v:vURL_TEMPLATE 
+v:vURL # store url
+# make RESTful call to BANK WEB API...
+w*!:vURL 
+#what might we get if it were real?
+# (= "321,000,000,000")
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+Of course, that example assumes there is some actual Bank API that we can query as such to obtain a particular account's balance. However, much as it might help illustrate what could be possible using TEA's web-access functionality, and yet, all we might obtain by making that call is an error message such as:
+
+
+\vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 1 from EXAMPLE 1]
+[ERROR]: NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'https://abc.bank/api/ac/123456XXX/bal/?cred=001001'.
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+ 
+ And not just that! In case you cared to look at how the TEA web command-space signatures work (see \textbf{\hyperref[TABSEMW]{Table \ref{TABSEMW}}} ), then, you shall realize that the way we are making the HTTP POST call in that example (\texttt{w*!:vURL}) likewise posts everything currently stored in the active TEA program's memory! \textbf{That's not a bug, but a feature.} To see what this means, consider the following screenshot of what is being posted over the wire (as an HTTP payload) when that program is run as is --- this output is being reported by Google Chrome's Developer Console tools:
+ 
+ 
+ \vspace{2em}
+ 
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/debug_tea_web_functionality_case1.png}\\
+   \caption{Under-the-hood debugging of HTTP POST payloads from Example 1}
+  \label{FIGEXAWEB1}
+  \end{center}
+\end{figure}
+  
+ 
+  \vspace{2em}
+
+
+However, away from hypothetical bank APIs, the above example can be tested using the HTTP echo API service --- \textbf{httpbin.org} --- as such:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 2: A Simple HTTP POST - real - posting specified vaults, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# parameters we'll post 
+v:vAC:{123456XXX} | v:vKEY:{001001}
+# simple clean, non-parametric static url we'll use
+v:vURL:http://httpbin.org/post
+# then make HTTP POST, 
+# explicitly specifying url to use, and data to send..
+w*!:vURL:vAC:vKEY
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+With that modified example, we now see that first of all, the way we are making the HTTP call has changed (\texttt{w*!:vURL:vAC:vKEY}). In this example, we are not only telling the TEA WEBIFY/WEB command that the url to make the call to is held in \texttt{vURL}, but also that instead of attempting to post everything in the memory/vaults, that only those vaults whose names we have specified should be included in the post data. The results, as we can see from the helpful HTTP-echo service we are making the call against, is as such:
+
+
+\vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 2 from EXAMPLE 2]
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "vAC": "123456XXX", 
+    "vKEY": "001001"
+  }, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Content-Length": "25", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "Origin": "http://localhost", 
+    "Referer": "http://localhost/", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69bbf3a6-1c56ceca49ca1e0373b8c46c"
+  }, 
+  "json": null, 
+  "origin": "102.85.127.168", 
+  "url": "http://httpbin.org/post"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+
+That is quite powerful, and very useful a feature to have in the language! Notice that, with that alternate web call, the Google Chrome network monitor does indeed confirm that our code is doing the right thing even on the client-side:
+
+
+ \vspace{2em}
+ 
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/debug_tea_web_functionality_case2.png}\\
+   \caption{Under-the-hood debugging of HTTP POST payloads from Example 2}
+  \label{FIGEXAWEB2}
+  \end{center}
+\end{figure}
+  
+ 
+  \vspace{2em}
+  
+  
+  
+  A modified version that also doesn't specify the vault from which to read the URL to which to post to, shall help illustrate the fact that \texttt{W*!:} shall post everything in the vaults, while it shall use the current AI as the url to which to post. This can be appreciated from the following related TEA programs:
+  
+  
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 3: A Simple HTTP POST - real - with no explicit parameters, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# some data in the vaults
+v:vMessage:{Hello World} | v:vSecrets:{blah blah...}
+# and some bank-specific data...
+v:vAC:{123456XXX} | v:vKEY:{001001}
+# simple clean, non-parametric static url we'll use
+v:vURL:http://httpbin.org/post
+# let's make it the AI
+y:vURL
+# then make HTTP POST without any parameters specified..
+w*!:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+  
+  
+ When that program is executed, the output we get surely does stress all the points we have just made...
+ 
+ 
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 3 from EXAMPLE 3]
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "vAC": "123456XXX", 
+    "vKEY": "001001", 
+    "vMessage": "Hello World", 
+    "vSecrets": "blah blah...", 
+    "vURL": "http://httpbin.org/post"
+  }, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Content-Length": "105", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "Origin": "http://localhost", 
+    "Referer": "http://localhost/", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69bbf80d-146a76da72fc39de765f00a7"
+  }, 
+  "json": null, 
+  "origin": "102.85.127.168", 
+  "url": "http://httpbin.org/post"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+  
+ Moreover, and quite \textbf{IMPORTANT a DIFFERENCE} --- notice that \texttt{W*!:} and \texttt{W!:} both make HTTP POST calls, but the version that doesn't access vaults or memory --- that is \texttt{W!:} --- is in fact both less powerful, but also more secure (in some situations). For example, if we use it to replace the WEBIFY call in Example 3, then we have the following program:
+ 
+ 
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 4: A Simple HTTP POST - real - with no explicit parameters, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# some data in the vaults
+v:vMessage:{Hello World} | v:vSecrets:{blah blah...}
+# and some bank-specific data...
+v:vAC:{123456XXX} | v:vKEY:{001001}
+# simple clean, non-parametric static url we'll use
+v:vURL:http://httpbin.org/post
+# let's make it the AI
+y:vURL
+# then make HTTP POST without any parameters specified..
+w!:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+ 
+ Which, as you can tell from the output we get from the HTTP echo service, did post to the correct URL, but ignored or did not touch anything in the calling program's memory...
+ 
+ 
+  
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 4 from EXAMPLE 4]
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Content-Length": "0", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "Origin": "http://localhost", 
+    "Referer": "http://localhost/", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69bbf896-77cb45c54d9c33e877a8ed93"
+  }, 
+  "json": null, 
+  "origin": "102.85.127.168", 
+  "url": "http://httpbin.org/post"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+  
+ And the Google Chrome debugging tools likewise confirm this..
+ 
+ 
+ \vspace{2em}
+
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/debug_tea_web_functionality_case3.png}\\
+   \caption{Under-the-hood debugging of HTTP POST payloads from Example 4}
+  \label{FIGEXAWEB4}
+  \end{center}
+\end{figure}
+  
+ 
+  \vspace{2em}
+
+That's it with \texttt{W*!:} and \texttt{W!:} that enable HTTP POST operations such as sending data in vaults to a remote server or endpoint anywhere but in the URL.
+
+
+\subsection{HTTP GET Requests}
+
+Next, let us look at the TEA mechanisms for making \textbf{HTTP GET requests}. The following example demonstrates this facility using the interesting \texttt{W*:} that knows to post everything in the vaults via HTTP GET automatically!
+
+
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 5: A Simple HTTP GET - real - with no explicit parameters, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+Which shall return the following...
+
+
+  
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 5 from EXAMPLE 5]
+{
+  "args": {
+    "A": "123",
+    "vTest": "some value"
+  },
+  "headers": {
+    "Accept-Encoding": "identity",
+    "Host": "httpbin.org",
+    "User-Agent": "Python-urllib/3.10",
+    "X-Amzn-Trace-Id": "Root=1-66c83059-040326d238fdaff202c56b4c"
+  },
+  "origin": "41.210.147.213",
+  "url": "http://httpbin.org/get?A=123&vTest=some+value"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+Which should help to illustrate that with the TEA HTTP GET interface that reads vaults --- \texttt{W*:} --- that, even though the AI only contains the base url --- in this case just \texttt{http://httpbin.org/get}, and yet, the call builds a dynamic URL for the request using all available parameters in the calling program's memory!
+
+\vspace{2em}
+
+Of course, once the data-privacy concerns start to an issue, but also the fact that for TEA programs with very many or very long data in the vaults, the automatically constructed HTTP GET url could become unwieldy, and so that, the careful program should instead opt for versions such as \texttt{W*:vURL}, and especially use \texttt{W*:vURL:v1:v2:...:vLASTPARAM} so that only the specified vaults are used to construct the effective url's query parameters.
+
+\vspace{2em}
+
+And then, concerning the vault-less versions of WEBIFY, we shall only look at one example and then move on.
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 6: A Simple HTTP GET - vault-less calls, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:https://freeipapi.com/api/json/ | w:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+That TEA program essentially just takes the AI when W: is invoked, uses it as the URL and performs an HTTP GET to that endpoint, returning the result as IO. On the command-line/with CLI TEA/tttt, we see this work out as such:
+
+
+\vspace{2em}
+ \begin{tcbverbatim}[title=W: EXAMPLE 7: Testing WEB functionality on the Command-line]
+tttt -c "i!:https://freeipapi.com/api/json/|w:"
+{"ipVersion":4,"ipAddress":"41.210.143.35","latitude":-0.07722000000000001,"longitude":31.4567,"countryName":"Uganda","countryCode":"UG","capital":"Kampala","phoneCodes":[256],"timeZones":["Africa\/Kampala"],"zipCode":"-","cityName":"Sembabule","regionName":"Central Region","continent":"Africa","continentCode":"AF","currencies":["UGX"],"languages":["en","sw"],"asn":"20294","asnOrganization":"MTN Uganda","isProxy":false}
+  \end{tcbverbatim}
+\vspace{2em}
+
+
+However, and this is important to note concerning HTTP calls to various endpoints; sometimes, some endpoints either block some particular ORIGIN DOMAINs or CLIENTs. And thus, the same code above, when run on the WEB TEA instead results in the following error:
+
+
+  
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 6 from EXAMPLE 7]
+[ERROR]: NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'https://freeipapi.com/api/json/'.
+  \end{tcbverbatim}
+ \vspace{2em}
+
+
+Moreover, currently, TEA's WEB functions attempt to perform \textbf{synchronous HTTP calls} first of all, but also, TEA doesn't yet allow the user to modify or set any special HTTP request headers when using the W: utilities\footnote{\textbf{FUTURE WORK:} More research and experimentation is due concerning how best to implement/design this TEA instruction/command-space. Stay on the look-out for future advances...}. 
+
+ 
+\section{EXAMPLE APPLICATIONS of W:}
+\label{SECEXAMPW}
+
+  
+blah blah
+
+
+
+\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL ...:} ...}
+\label{SECEXAMP1W}
+
+
+
+blah blah
+
+
+
+
+
+
+
 
 
 
