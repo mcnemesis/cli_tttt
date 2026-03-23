@@ -1,0 +1,7 @@
+# this example sets all current vaults as custom headers 
+# then later deletes all of them... (turn on DEBUGGING to see/prove)
+v:vTEST:hello|v:Content-Type:text/plain|w*.:|w*!.:
+
+# the following, does the same, 
+# but only removes one particular header later
+v:vTEST:hello|v:Content-Type:text/plain|w*.:|w*!.:vTEST

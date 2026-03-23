@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.3.8" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.3.9" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -3230,6 +3230,9 @@ export class TEA_RunTime {
             this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
         }
 
+        // show current custom HTTP header state...
+        this.debug(`PRIOR CUSTOM HTTP HEADERS: ${JSON.stringify(this.HTTP_HEADERS)}`)
+
         if(tc == "W"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 var URL = io
@@ -3314,6 +3317,47 @@ export class TEA_RunTime {
                 var webRESULT = this.util_web_post(URL, data)
                 return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
             }
+        }
+
+
+        if(tc == "W*."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // set all current vaults as http headers..
+                for (let vNAME of Object.keys(this.VAULTS)) {
+                    this.HTTP_HEADERS[vNAME] = this.VAULTS[vNAME]
+                }
+            }
+            else{
+                // set only specified vaults as http headers...
+                var params = tpe_str.split(TEA_RunTime.TIPED)
+                for (let i = 0; i < params.length; i++) {
+                    const vNAME = this.extract_str(params[i]);
+                    this.HTTP_HEADERS[vNAME] = this.vault_get(vNAME)
+                }
+
+            }
+
+            // show resultant custom HTTP header state...
+            this.debug(`UPDATED CUSTOM HTTP HEADERS: ${JSON.stringify(this.HTTP_HEADERS)}`)
+        }
+
+        if(tc == "W*!."){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                // delete all current http headers..
+                this.HTTP_HEADERS = {}
+            }
+            else{
+                // only delete specified http headers...
+                var params = tpe_str.split(TEA_RunTime.TIPED)
+                debugger
+                for (let i = 0; i < params.length; i++) {
+                    const vNAME = this.extract_str(params[i]);
+                    delete this.HTTP_HEADERS[vNAME];
+                }
+            }
+
+            // show resultant custom HTTP header state...
+            this.debug(`UPDATED CUSTOM HTTP HEADERS: ${JSON.stringify(this.HTTP_HEADERS)}`)
         }
 
         return io
@@ -3620,6 +3664,7 @@ export class TEA_RunTime {
         this.CODE = tsrc 
         this.STDIN_AS_CODE = false
         this.VAULTS = {}
+        this.HTTP_HEADERS = {} // to hold custom http headers
 
         // we shall store label block pointers as such:
         //    label_name: label_position + 1
