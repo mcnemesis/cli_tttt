@@ -1,0 +1,9 @@
+# first, set some vaults and use them to set custom http headers
+v:vTEST:hello
+v:Content-Type:text/plain
+v:Authorization:{Bearer 12345APIKEYblablah...}
+
+# only sets specified vaults as custom headers to future http calls
+w*.:Authorization:vTEST 
+
+v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:

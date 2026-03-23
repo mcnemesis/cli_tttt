@@ -41,7 +41,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.3.9" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.0" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -395,6 +395,12 @@ export class TEA_RunTime {
 	synchronousHTTPGET(full_url) {
 		const xhr = new XMLHttpRequest();
 		xhr.open('GET', full_url, false); // false makes it synchronous
+
+        // in case there are custom http headers, also apply them
+        for (let hNAME of Object.keys(this.HTTP_HEADERS)) {
+            xhr.setRequestHeader(hNAME, this.HTTP_HEADERS[hNAME]);
+        }
+
 		xhr.send(null);
 
 		if (xhr.status === 200) {
@@ -456,6 +462,12 @@ export class TEA_RunTime {
 		const xhr = new XMLHttpRequest();
 		xhr.open('POST', url, false); // false = synchronous
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        // in case there are custom http headers, also apply them
+        for (let hNAME of Object.keys(this.HTTP_HEADERS)) {
+            xhr.setRequestHeader(hNAME, this.HTTP_HEADERS[hNAME]);
+        }
+
 		xhr.send(encoded_data); // might send data as null?
 
 		if (xhr.status === 200) {

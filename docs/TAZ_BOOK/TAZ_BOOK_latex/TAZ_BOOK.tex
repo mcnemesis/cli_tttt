@@ -15157,6 +15157,12 @@ w!: & Take current AI as a URL and read whatever is at specified network resourc
 
 \rowcolor{lightgray}\bfseries \makecell[l]{w*!:\\w*!:vURL\\w*!:vURL:v1:v2:v:3..:vN} & Same as W*:, but performs an HTTP POST request and posts the data as form encoded data\\
 
+
+\makecell[l]{w*.:\\w*.:vHEADER\\w*.:vH1:vH2:vH3:..:vHN} & \textbf{TEA Solution for setting CUSTOM HTTP Headers}, and which command one must call before using any of the above WEBIFY commands in case they wish to make an HTTP request with custom headers. Without any parameters, sets all current vaults as headers for any future http-calls, with each header specified using the vault parameters (i.e for vNAME=vVALUE, vNAME is header key, and vVALUE the value). With only vHEADER only set that specified vault as the custom header. With multiple vault names, set only those specified vaults as the custom headers. Otherwise, doesn't modify current AI and leaves it as is.\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{w*!.:\\w*!.:vHEADER\\w*!.::vH1:vH2:vH3:..:vHN} & Without parameters, \textbf{DELETES} all currently set custom HTTP headers. With only one or more [vault] parameters specified, only deletes those specified HTTP headers. Does nothing else but return AI.\\
+
  \hline
 \end{tabular}
 \caption{The Semantics of W:}
@@ -15433,6 +15439,225 @@ w!:
  
   \vspace{2em}
 
+
+\subsubsection{HTTP POST with CUSTOM HEADERS}
+\label{SECHTTPPOSTHEADERS}
+
+
+In case we have some custom headers to specify as part of the HTTP calls we wish to make, first, we need to know how to set or delete headers --- this applies to both HTTP GET and POST calls. The basic method can be illustrated by the following minimal example that sets all current vaults as custom http headers, and so that we see in the output against the httpbin.org call that indeed this is so:
+
+
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 5: A Simple HTTP POST - with custom headers, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# first, set some vaults and use them to set custom http headers
+v:vTEST:hello
+v:Content-Type:text/plain
+w*.: #sets all current vaults as headers to future http calls
+w*!.:vTEST # removes only the vTEST header
+
+# parameters we'll post 
+v:vAC:{123456XXX} | v:vKEY:{001001}
+# simple clean, non-parametric static url we'll use
+v:vURL:http://httpbin.org/post
+# then make HTTP POST, 
+# explicitly specifying url to use, and data to send..
+w*!:vURL:vAC:vKEY
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+  
+Which, when we run it, gives us the output as shown below...
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 5 from EXAMPLE 5]
+{
+  "args": {},
+  "data": "vAC=123456XXX&vKEY=001001",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept-Encoding": "identity",
+    "Authorization": "Bearer 12345APIKEYblablah...",
+    "Content-Length": "25",
+    "Content-Type": "text/plain",
+    "Host": "httpbin.org",
+    "User-Agent": "Python-urllib/3.10",
+    "X-Amzn-Trace-Id": "Root=1-69c1498a-2351556079fceb400a145a00"
+  },
+  "json": null,
+  "origin": "41.210.155.247",
+  "url": "http://httpbin.org/post"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+
+  
+Some important points to note concerning that output:
+
+\begin{itemize}
+\item First, realize that we set the http headers (\texttt{w*.:}) before setting the other vaults to be used as HTTP post-parameters. And thus, our custom headers only contain vault data set before we made any further vault-writing calls.
+\item Also, notice that after setting all custom headers using all vaults at that moment, we later deleted one particular vault (\texttt{w*!.:vTEST}). Thus, it doesn't appear in the custom headers we later see returned by the HTTP echo service.
+\item Notice how we didn't have to explicitly tell WEBIFY which headers to use for the HTTP POST when we called \texttt{w*!:vURL:vAC:vKEY}, because, the necessary steps had already been done earlier on.
+\item Moreover, and \textbf{IMPORTANT} to note; there is one http header that is explicitly set by TEA for any HTTP POST call --- that is the header ``Content-Type", which by default is set to ``application/x-www-form-urlencoded". So, unless one overrides that --- such as we do in this example, it shall always be the default.
+\end{itemize}
+
+The TEA DEBUG output corresponding to this example program is as follows, and shall reveal the steps setting the custom headers, as well as how we use them in the http calls...
+
+
+
+\vspace{2em}
+  \begin{tcolorbox}[myterminalstyle, title=DEBUGGING a TEA custom HTTP HEADERS with HTTP POST scenario, breakable]
+  \begin{lstlisting}[breaklines=true]
+Reading CODE from: tests/test_web_custom_headers_webapi.tea
+No explicit INPUT found, using STDIN!
+INPUT:
+ None
+CODE:
+ # first, set some vaults and use them to set custom http headers
+
+v:vTEST:hello
+
+v:Content-Type:text/plain
+
+v:Authorization:{Bearer 12345APIKEYblablah...}
+
+w*.: #sets all current vaults as headers to future http calls
+
+w*!.:vTEST # removes only the vTEST header
+
+
+
+# parameters we'll post 
+
+v:vAC:{123456XXX} | v:vKEY:{001001}
+
+# simple clean, non-parametric static url we'll use
+
+v:vURL:http://httpbin.org/post
+
+# then make HTTP POST, 
+
+# explicitly specifying url to use, and data to send..
+
+w*!:vURL:vAC:vKEY
+
+---------[ IN TEA RUNTIME ]
+
++++[NO TEA CODE ERRORS FOUND YET]
+CLEAN TEA CODE TO PROCESS:
+v:vTEST:hello
+v:Content-Type:text/plain
+v:Authorization:{Bearer 12345APIKEYblablah...}
+w*.: 
+w*!.:vTEST 
+v:vAC:{123456XXX} 
+v:vKEY:{001001}
+v:vURL:http://httpbin.org/post
+w*!:vURL:vAC:vKEY
+--[#9 TEA INSTRUCTIONS FOUND]---
+
+---<< EXTRACTED TEA LABEL BLOCKS:
+{}
+
+Executing Instruction#0 (out of 9)
+Processing Instruction: v:vTEST:hello
+PRIOR MEMORY STATE: (=, VAULTS:{})
+-- [INFO] Wrote VAULT[vTEST = [hello]]
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello'})
+Executing Instruction#1 (out of 9)
+Processing Instruction: v:Content-Type:text/plain
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello'})
+-- [INFO] Wrote VAULT[Content-Type = [text/plain]]
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain'})
+Executing Instruction#2 (out of 9)
+Processing Instruction: v:Authorization:{Bearer 12345APIKEYblablah...}
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain'})
+-- [INFO] Wrote VAULT[Authorization = [Bearer 12345APIKEYblablah...]]
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'})
+Executing Instruction#3 (out of 9)
+Processing Instruction: w*.: 
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'})
++++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: w*.: 
+PRIOR CUSTOM HTTP HEADERS: {}
+UPDATED CUSTOM HTTP HEADERS: {'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'}
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'})
+Executing Instruction#4 (out of 9)
+Processing Instruction: w*!.:vTEST 
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'})
+PRIOR CUSTOM HTTP HEADERS: {'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'}
+UPDATED CUSTOM HTTP HEADERS: {'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'}
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'})
+Executing Instruction#5 (out of 9)
+Processing Instruction: v:vAC:{123456XXX} 
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'})
+-- [INFO] Wrote VAULT[vAC = [123456XXX]]
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...', 'vAC': '123456XXX'})
+Executing Instruction#6 (out of 9)
+Processing Instruction: v:vKEY:{001001}
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...', 'vAC': '123456XXX'})
+-- [INFO] Wrote VAULT[vKEY = [001001]]
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...', 'vAC': '123456XXX', 'vKEY': '001001'})
+Executing Instruction#7 (out of 9)
+Processing Instruction: v:vURL:http://httpbin.org/post
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...', 'vAC': '123456XXX', 'vKEY': '001001'})
+-- [INFO] Wrote VAULT[vURL = [http://httpbin.org/post]]
+RESULTANT MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...', 'vAC': '123456XXX', 'vKEY': '001001', 'vURL': 'http://httpbin.org/post'})
+Executing Instruction#8 (out of 9)
+Processing Instruction: w*!:vURL:vAC:vKEY
+PRIOR MEMORY STATE: (=, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...', 'vAC': '123456XXX', 'vKEY': '001001', 'vURL': 'http://httpbin.org/post'})
+PRIOR CUSTOM HTTP HEADERS: {'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...'}
+-- [INFO] Reading VAULT[vURL]
+-- [INFO] Reading VAULT[vAC]
+-- [INFO] Reading VAULT[vKEY]
+RESULTANT MEMORY STATE: (={
+  "args": {}, 
+  "data": "vAC=123456XXX&vKEY=001001", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept-Encoding": "identity", 
+    "Authorization": "Bearer 12345APIKEYblablah...", 
+    "Content-Length": "25", 
+    "Content-Type": "text/plain", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Python-urllib/3.10", 
+    "X-Amzn-Trace-Id": "Root=1-69c14cac-658cc00c7bf0c20d258a1ba9"
+  }, 
+  "json": null, 
+  "origin": "41.210.155.247", 
+  "url": "http://httpbin.org/post"
+}
+, VAULTS:{'vTEST': 'hello', 'Content-Type': 'text/plain', 'Authorization': 'Bearer 12345APIKEYblablah...', 'vAC': '123456XXX', 'vKEY': '001001', 'vURL': 'http://httpbin.org/post'})
+{
+  "args": {}, 
+  "data": "vAC=123456XXX&vKEY=001001", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept-Encoding": "identity", 
+    "Authorization": "Bearer 12345APIKEYblablah...", 
+    "Content-Length": "25", 
+    "Content-Type": "text/plain", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Python-urllib/3.10", 
+    "X-Amzn-Trace-Id": "Root=1-69c14cac-658cc00c7bf0c20d258a1ba9"
+  }, 
+  "json": null, 
+  "origin": "41.210.155.247", 
+  "url": "http://httpbin.org/post"
+}
+  \end{lstlisting}
+  \end{tcolorbox}
+  %\caption{TEA DEBUGGER: Debugging a TEA program involving Memory Read-Modify-Write operations}
+\vspace{2em}
+
+
+
+  
+
 That's it with \texttt{W*!:} and \texttt{W!:} that enable HTTP POST operations such as sending data in vaults to a remote server or endpoint anywhere but in the URL.
 
 
@@ -15443,7 +15668,7 @@ Next, let us look at the TEA mechanisms for making \textbf{HTTP GET requests}. T
 
   \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 5: A Simple HTTP GET - real - with no explicit parameters, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 6: A Simple HTTP GET - real - with no explicit parameters, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:
    \end{lstlisting}
@@ -15457,7 +15682,7 @@ Which shall return the following...
 
   
  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 5 from EXAMPLE 5]
+ \begin{tcbverbatim}[title=Sample OUTPUT 6 from EXAMPLE 6]
 {
   "args": {
     "A": "123",
@@ -15488,7 +15713,7 @@ And then, concerning the vault-less versions of WEBIFY, we shall only look at on
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 6: A Simple HTTP GET - vault-less calls, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 7: A Simple HTTP GET - vault-less calls, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 i!:https://freeipapi.com/api/json/ | w:
    \end{lstlisting}
@@ -15501,7 +15726,7 @@ That TEA program essentially just takes the AI when W: is invoked, uses it as th
 
 
 \vspace{2em}
- \begin{tcbverbatim}[title=W: EXAMPLE 7: Testing WEB functionality on the Command-line]
+ \begin{tcbverbatim}[title=W: EXAMPLE 8: Testing WEB functionality on the Command-line]
 tttt -c "i!:https://freeipapi.com/api/json/|w:"
 {"ipVersion":4,"ipAddress":"41.210.143.35","latitude":-0.07722000000000001,"longitude":31.4567,"countryName":"Uganda","countryCode":"UG","capital":"Kampala","phoneCodes":[256],"timeZones":["Africa\/Kampala"],"zipCode":"-","cityName":"Sembabule","regionName":"Central Region","continent":"Africa","continentCode":"AF","currencies":["UGX"],"languages":["en","sw"],"asn":"20294","asnOrganization":"MTN Uganda","isProxy":false}
   \end{tcbverbatim}
@@ -15513,13 +15738,128 @@ However, and this is important to note concerning HTTP calls to various endpoint
 
   
  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 6 from EXAMPLE 7]
+ \begin{tcbverbatim}[title=Sample OUTPUT 7]
 [ERROR]: NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'https://freeipapi.com/api/json/'.
   \end{tcbverbatim}
  \vspace{2em}
 
 
 Moreover, currently, TEA's WEB functions attempt to perform \textbf{synchronous HTTP calls} first of all, but also, TEA doesn't yet allow the user to modify or set any special HTTP request headers when using the W: utilities\footnote{\textbf{FUTURE WORK:} More research and experimentation is due concerning how best to implement/design this TEA instruction/command-space. Stay on the look-out for future advances...}. 
+
+
+\subsubsection{HTTP GET with CUSTOM HEADERS}
+
+
+For the case of using custom headers with TEA HTTP calls, the method we have already encountered in \textbf{\hyperref[SECHTTPPOSTHEADERS]{Section \ref{SECHTTPPOSTHEADERS}}} still holds. However, we can readily tell how it would work, with the following basic example:
+
+
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 9: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# first, set some vaults and use them to set custom http headers
+v:vTEST:hello
+v:Content-Type:text/plain
+v:Authorization:{Bearer 12345APIKEYblablah...}
+
+# only sets specified vaults as custom headers to future http calls
+w*.:Authorization:vTEST 
+
+v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+Which, as you can tell from the following output, does exactly what the code wanted the program to do --- in this case, we ensure to only specify two particular custom headers.
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 8 from EXAMPLE 9]
+{
+  "args": {
+    "A": "123",
+    "Authorization": "Bearer 12345APIKEYblablah...",
+    "Content-Type": "text/plain",
+    "vTEST": "hello",
+    "vTest": "some value"
+  },
+  "headers": {
+    "Accept-Encoding": "identity",
+    "Authorization": "Bearer 12345APIKEYblablah...",
+    "Host": "httpbin.org",
+    "User-Agent": "Python-urllib/3.10",
+    "Vtest": "hello",
+    "X-Amzn-Trace-Id": "Root=1-69c1517e-0619c4e62c9286213dcbe5ad"
+  },
+  "origin": "41.210.155.247",
+  "url": "http://httpbin.org/get?vTEST=hello&Content-Type=text%2Fplain&Authorization=Bearer+12345APIKEYblablah...&A=123&vTest=some+value"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+
+Also, and worth noting here --- that, even though by normal convention, we typically write TEA VAULTS using the naming convention \textbf{vNAME}, such as we have done in this example for the custom header \texttt{vTEST}, however, when the vaults are to be used to specify HTTP headers, this convention needs be relaxed, so that we use the exact header name required --- such as when we set the API-authentication header via \texttt{v:Authorization:{Bearer 12345APIKEYblablah...}}.
+
+\vspace{2em}
+
+And then, finally, concerning the case when we had to set up custom headers such as in this example, but also the earlier one. Note that, when we use the WEBIFY methods that read all currently set vaults for the http call --- such as \texttt{w*:} in this case, that even the vaults that we had set for the custom headers shall get into the data processed by the call! This can be dangerous when the headers contained some sensitive data such as keys, etc. Thus, the following example would be safer..
+
+
+
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 10: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# first, set some vaults and use them to set custom http headers
+v:vTEST:hello
+v:Content-Type:text/plain
+v:Authorization:{Bearer 12345APIKEYblablah...}
+
+# only sets specified vaults as custom headers to future http calls
+w*.:Authorization:vTEST 
+
+v:A:123|v:vTest:{some value}|i:http://httpbin.org/get
+v:vURL
+
+# make HTTP GET call with explicitly specified parameters (safer)
+w*:vURL:A:vTest
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+Which for example prevents the custom headers from leaking into the HTTP query parameters as you can tell from the following output...
+
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 9 from EXAMPLE 10]
+{
+  "args": {
+    "A": "123", 
+    "vTest": "some value"
+  }, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Authorization": "Bearer 12345APIKEYblablah...", 
+    "Host": "httpbin.org", 
+    "Origin": "http://localhost", 
+    "Referer": "http://localhost/", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36", 
+    "Vtest": "hello", 
+    "X-Amzn-Trace-Id": "Root=1-69c15674-2589468b1d2a11cb0cefd952"
+  }, 
+  "origin": "41.210.155.247", 
+  "url": "http://httpbin.org/get?A=123&vTest=some+value"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+
 
  
 \section{EXAMPLE APPLICATIONS of W:}

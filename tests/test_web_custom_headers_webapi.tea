@@ -1,0 +1,14 @@
+# first, set some vaults and use them to set custom http headers
+v:vTEST:hello
+v:Content-Type:text/plain
+v:Authorization:{Bearer 12345APIKEYblablah...}
+w*.: #sets all current vaults as headers to future http calls
+w*!.:vTEST # removes only the vTEST header
+
+# parameters we'll post 
+v:vAC:{123456XXX} | v:vKEY:{001001}
+# simple clean, non-parametric static url we'll use
+v:vURL:http://httpbin.org/post
+# then make HTTP POST, 
+# explicitly specifying url to use, and data to send..
+w*!:vURL:vAC:vKEY
