@@ -18,9 +18,12 @@ export class TEA_RunTime {
         static OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
         static OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
         static OBSCURE_RC_STR_DEL1 = "=STR_DEL1=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL1="
+        static OBSCURE_RC_STR_DEL2 = "=STR_DEL2=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL2="
+        static OBSCURE_RC_STR_DEL3 = "=STR_DEL3=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL3="
         static STR_DEL1 = '"'
+        static STR_DEL2 = '{'
+        static STR_DEL3 = '}'
         static TID = "|"
-        //static NL = "\n"
         static NL = this.getPlatformLineSeparator()
         static COMH = "#"
         static TCD = ":"
@@ -28,7 +31,6 @@ export class TEA_RunTime {
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
         static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*/
-        //static RETI = /[ ]*?[a-zA-Z]\.?\*?!?:.*?/
         static RETI = /^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -41,7 +43,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.0" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.1" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -102,17 +104,21 @@ export class TEA_RunTime {
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM,'g'), TEA_RunTime.COMH)
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)
           .replace(new RegExp(TEA_RunTime.OBSCURE_RC_TIPED, 'g'), TEA_RunTime.TIPED)
-          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL1, 'g'), TEA_RunTime.STR_DEL1);
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL1, 'g'), TEA_RunTime.STR_DEL1)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL2, 'g'), TEA_RunTime.STR_DEL2)
+          .replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL3, 'g'), TEA_RunTime.STR_DEL3);
     }
 
 	// Extract a string from a TEA expression
 	extract_str(val){
         if (val.startsWith("{") && val.endsWith("}")) {
-            val = val.replace(/^\{/, "").replace(/\}$/, "");
+            val = val.slice(1)
+            val = val.slice(0,-1)
 			return this.unmask_str(val)
         }
         if (val.startsWith('"') && val.endsWith('"')) {
-            val = val.replace(/^"/, "").replace(/"$/, "");
+            val = val.slice(1)
+            val = val.slice(0,-1)
 			return this.unmask_str(val)
         }
 		return this.unmask_str(val)
@@ -126,12 +132,40 @@ export class TEA_RunTime {
 
     // Function to replace special symbols with OBSCURE Patterns
 	maskTEASTRING(matched) {
+        if (matched.startsWith("{") && matched.endsWith("}")) {
+            matched = matched.slice(1)
+            matched = matched.slice(0,-1)
+	        matched = matched
+            .replace(/"/g, TEA_RunTime.OBSCURE_RC_STR_DEL1)
+            .replace(/\{/g, TEA_RunTime.OBSCURE_RC_STR_DEL2)
+            .replace(/\}/g, TEA_RunTime.OBSCURE_RC_STR_DEL3)
+            .replace(/\n/g, TEA_RunTime.OBSCURE_RC_NL)
+            .replace(/#/g, TEA_RunTime.OBSCURE_RC_COM)
+            .replace(/\|/g, TEA_RunTime.OBSCURE_RC_TID)
+            .replace(/\:/g, TEA_RunTime.OBSCURE_RC_TIPED)
+			return "{" + matched + "}";
+        }
+        if (matched.startsWith('"') && matched.endsWith('"')) {
+            matched = matched.slice(1)
+            matched = matched.slice(0,-1)
+	        matched = matched
+            .replace(/"/g, TEA_RunTime.OBSCURE_RC_STR_DEL1)
+            .replace(/\{/g, TEA_RunTime.OBSCURE_RC_STR_DEL2)
+            .replace(/\}/g, TEA_RunTime.OBSCURE_RC_STR_DEL3)
+            .replace(/\n/g, TEA_RunTime.OBSCURE_RC_NL)
+            .replace(/#/g, TEA_RunTime.OBSCURE_RC_COM)
+            .replace(/\|/g, TEA_RunTime.OBSCURE_RC_TID)
+            .replace(/\:/g, TEA_RunTime.OBSCURE_RC_TIPED)
+			return '"' + matched + '"';
+        }
 	  return matched
 		.replace(/"/g, TEA_RunTime.OBSCURE_RC_STR_DEL1)
+		.replace(/\{/g, TEA_RunTime.OBSCURE_RC_STR_DEL2)
+		.replace(/\}/g, TEA_RunTime.OBSCURE_RC_STR_DEL3)
 		.replace(/\n/g, TEA_RunTime.OBSCURE_RC_NL)
 		.replace(/#/g, TEA_RunTime.OBSCURE_RC_COM)
 		.replace(/\|/g, TEA_RunTime.OBSCURE_RC_TID)
-		.replace(/\:/g, TEA_RunTime.OBSCURE_RC_TIPED);
+		.replace(/\:/g, TEA_RunTime.OBSCURE_RC_TIPED)
 	}
 
     // Clean TEA CODE:
@@ -178,6 +212,9 @@ export class TEA_RunTime {
             // reverse string masking...
 			const _tsrc_til_only_show = _tsrc_til_only.map(l =>
 			  l
+				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL1, 'g'), TEA_RunTime.STR_DEL1)
+				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL2, 'g'), TEA_RunTime.STR_DEL2)
+				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_STR_DEL3, 'g'), TEA_RunTime.STR_DEL3)
 				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_NL,'g'), TEA_RunTime.NL)
 				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_COM, 'g'), TEA_RunTime.COMH)
 				.replace(new RegExp(TEA_RunTime.OBSCURE_RC_TID, 'g'), TEA_RunTime.TID)

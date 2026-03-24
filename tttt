@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.4.0"
+VERSION = "1.4.1"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -84,9 +84,12 @@ class TEA_RunTime:
     OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
     OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
     OBSCURE_RC_STR_DEL1 = "=STR_DEL1=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL1="
+    OBSCURE_RC_STR_DEL2 = "=STR_DEL2=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL2="
+    OBSCURE_RC_STR_DEL3 = "=STR_DEL3=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL3="
     STR_DEL1 = '"'
+    STR_DEL2 = '{'
+    STR_DEL3 = '}'
     TID = "|"
-    #NL = "\n"
     NL = os.linesep
     COMH = "#"
     TCD = ":"
@@ -94,7 +97,6 @@ class TEA_RunTime:
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*'
-    #RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
     RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
@@ -111,7 +113,21 @@ class TEA_RunTime:
 
 # Function to replace newlines with OBSCURE Pattern
     def maskTEASTRING(self, mObj):
-        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1)
+        substr = mObj.group()
+        if substr.startswith("{") and substr.endswith("}"):
+            substr = substr[1:]
+            substr = substr[:-1]
+            substr = substr.replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1).replace('{',self.OBSCURE_RC_STR_DEL2).replace('}',self.OBSCURE_RC_STR_DEL3)
+            return "{" + substr + "}"
+        if substr.startswith("\"") and substr.endswith("\""):
+            substr = substr[1:]
+            substr = substr[:-1]
+            substr = substr.replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1).replace('{',self.OBSCURE_RC_STR_DEL2).replace('}',self.OBSCURE_RC_STR_DEL3)
+            return "\"" + substr + "\""
+        return substr.replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1).replace('{',self.OBSCURE_RC_STR_DEL2).replace('}',self.OBSCURE_RC_STR_DEL3)
+
+
+
 
 # Clean TEA CODE:
 # Essentially, eliminate all TEA Opaque Lines:
@@ -150,7 +166,10 @@ class TEA_RunTime:
         if TEA_RunTime.DEBUG:
             # reverse string masking...
             _tsrc_til_only_show = [l.
-                    replace(self.OBSCURE_RC_NL,self.NL)
+                    replace(self.OBSCURE_RC_STR_DEL1,self.STR_DEL1)
+                    .replace(self.OBSCURE_RC_STR_DEL2,self.STR_DEL2)
+                    .replace(self.OBSCURE_RC_STR_DEL3,self.STR_DEL3)
+                    .replace(self.OBSCURE_RC_NL,self.NL)
                     .replace(self.OBSCURE_RC_COM,self.COMH)
                     .replace(self.OBSCURE_RC_TID,self.TID) for l in _tsrc_til_only]
             #print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
@@ -164,15 +183,19 @@ class TEA_RunTime:
 
     # reverse TEA String Masking
     def unmask_str(self, val):
-        return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1)
+        return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1).replace(TEA_RunTime.OBSCURE_RC_STR_DEL2,TEA_RunTime.STR_DEL2).replace(TEA_RunTime.OBSCURE_RC_STR_DEL3,TEA_RunTime.STR_DEL3)
+
+
 
     # Extract a string from a TEA expression
     def extract_str(self, val):
         if val.startswith("{") and val.endswith("}"):
-            val = val.lstrip("{").rstrip("}")
+            val = val[1:]
+            val = val[:-1]
             return self.unmask_str(val)
         if val.startswith("\"") and val.endswith("\""):
-            val = val.lstrip("\"").rstrip("\"")
+            val = val[1:]
+            val = val[:-1]
             return self.unmask_str(val)
         return self.unmask_str(val)
 
