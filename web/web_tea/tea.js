@@ -30,8 +30,8 @@ export class TEA_RunTime {
         static TIPED = ":"
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
-        static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*/
-        static RETI = /^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
+        static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*/
+        static RETI = /^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -43,7 +43,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.1" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.2" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA consists of a total of just 26 basic primitive command spaces A:, B:,...., to Z: and each of those might have variants such as A!:, R.:, Z*: etc. that means the command is decorated with one or more of the standard 3 qualifiers: {!,*,.}. Details and how these commands work are in the official documentation for this programming language; the TEA TAZ.";
         this.DEBUG = false; 
@@ -487,6 +487,35 @@ export class TEA_RunTime {
 		);
 	}
 
+
+	synchronousHTTPPOSTData(url, data) {
+		let encoded_data = null;
+
+		if (typeof data === 'string') {
+			encoded_data = data;
+		} else {
+            this.debug(`[DATA ERROR] Expected String Data, Got ${data}`)
+            throw new Error(`[DATA ERROR] Expected String Data, Got ${data}`)
+        }
+
+		const xhr = new XMLHttpRequest();
+		xhr.open('POST', url, false); // false = synchronous
+		xhr.setRequestHeader('Content-Type', 'application/json');
+
+        // in case there are custom http headers, also apply them
+        for (let hNAME of Object.keys(this.HTTP_HEADERS)) {
+            xhr.setRequestHeader(hNAME, this.HTTP_HEADERS[hNAME]);
+        }
+
+		xhr.send(encoded_data); // might send data as null?
+
+		if (xhr.status === 200) {
+			return xhr.responseText; // UTF-8 decoded by default
+		} else {
+			throw new Error(`Request failed: ${xhr.statusText}`);
+		}
+	}
+
 	synchronousHTTPPOST(url, data) {
 		let encoded_data = null;
 
@@ -513,6 +542,29 @@ export class TEA_RunTime {
 			throw new Error(`Request failed: ${xhr.statusText}`);
 		}
 	}
+
+
+    util_web_post_data(url, data=null, no_recurse=false){
+        var result = null
+        try{
+            result = this.synchronousHTTPPOSTData(url, data) // io-blocking
+        }
+        catch(error){
+            var _result = null
+            if(!no_recurse){
+                _result = this.util_web_post_data(this.util_fix_url(url), data, true)
+            }
+
+            if(_result != null){
+                result = _result
+            }
+            else{
+                result = `[ERROR]: ${error}`
+            }
+        }
+
+        return result
+    }
 
     util_web_post(url, data=null, no_recurse=false){
         var result = null
@@ -3367,6 +3419,28 @@ export class TEA_RunTime {
                 return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
             }
         }
+
+        if(tc == "W*@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+            }
+            else{
+                var data = io
+                var params = tpe_str.split(TEA_RunTime.TIPED)
+                if(params.length == 1){
+                    URL = this.vault_get(this.extract_str(params[0]))
+                }
+                else{
+                    URL = this.vault_get(this.extract_str(params[0]))
+                    data = this.vault_get(this.extract_str(params[1]))
+                }
+
+                var webRESULT = this.util_web_post_data(URL, data)
+                return !TEA_RunTime.is_empty(webRESULT) ? webRESULT : TEA_RunTime.EMPTY_STR
+            }
+        }
+
 
 
         if(tc == "W*."){

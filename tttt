@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.4.1"
+VERSION = "1.4.2"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -96,8 +96,8 @@ class TEA_RunTime:
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
+    RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -707,6 +707,41 @@ class TEA_RunTime:
                 if not no_recurse:
                     _result = util_web_get(util_fix_url(url), data=data, no_recurse=True)
 
+                if _result is not None:
+                    result = _result
+                else:
+                    result = f"[ERROR]: {error}"
+            #return result.strip() if result is not None else result
+            return result
+
+
+        def util_web_post_data(url, data=None, no_recurse=False):
+            result = None
+            try:
+                request = None
+                encoded_data = None
+
+                if isinstance(data, str):
+                    encoded_data = data.encode("utf-8")
+                    request = urllib.request.Request(url, data=encoded_data, method='POST')
+                else:
+                    self.debug(f"[DATA ERROR] Expected String Data, Got {data}")
+                    raise ValueError(f"[DATA ERROR] Expected String Data, Got {data}")
+
+                request.add_header('Content-Type', 'application/json')
+
+                # in case there are custom http headers, also apply them
+                for hNAME in self.HTTP_HEADERS:
+                    request.add_header(hNAME, self.HTTP_HEADERS[hNAME])
+
+                with urllib.request.urlopen(request) as response:
+                    # Read the content and decode it to a string
+                    result = response.read().decode('utf-8')
+
+            except Exception as error:
+                _result = None
+                if not no_recurse:
+                    _result = util_web_post_data(util_fix_url(url), data=data, no_recurse=True)
                 if _result is not None:
                     result = _result
                 else:
@@ -2575,6 +2610,22 @@ class TEA_RunTime:
                         data = _vaultData
 
                     webRESULT = util_web_post(URL, data=data)
+                    return webRESULT if webRESULT is not None else TEA_RunTime.EMPTY_STR
+
+            if tc == "W*@":
+                if len(tpe_str) == 0:
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    data = io
+                    params = tpe_str.split(TEA_RunTime.TIPED)
+                    if len(params) == 1:
+                        URL = vault_get(self.extract_str(params[0]))
+                    else:
+                        URL = vault_get(self.extract_str(params[0]))
+                        data = vault_get(self.extract_str(params[1]))
+
+                    webRESULT = util_web_post_data(URL, data=data)
                     return webRESULT if webRESULT is not None else TEA_RunTime.EMPTY_STR
 
             if tc == "W*.":

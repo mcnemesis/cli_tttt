@@ -1,0 +1,15 @@
+# this use-case emulates curl to post raw JSON as data
+# and not as a usual http form.
+v:vJSON:{{"name":"Jo Ito","department":"InfoSec"}}
+v:vURL:https://httpbin.org/post
+
+# Note that there is no need to set custom content-type if the data
+# is already json... and we are posting using W*@:
+#v:Content-Type:application/json
+#w*.:Content-Type
+
+y:vJSON # for approach 1
+w*@:vURL
+
+# or 
+#w*@:vURL:vJSON #accepts only utmost, 2 parameters
