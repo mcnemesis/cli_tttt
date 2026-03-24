@@ -472,27 +472,29 @@ IO: Instruction Output --- This refers to the main output or data to be returned
 \textbf{WORD:} This refers to a sequence of non-whitespace characters.
 }
 \item{
-\textbf{TEA PRIMITIVE:} Also the same as “TEA Primitive Command” or “TEA Canonical Command”, is any one of the letters in the Latin Alphabet, a to z or A to Z, followed by a single colon “:” character, and the letter used determines what purpose a TEA instruction has in a program. Also, each primitive has unique semantics as defined in the TEA Command Space specification. It is important to note that in TEA, much as the standard style is to use lowercase letters for TEA primitives such as “a:” or “m:”, yet, case doesn’t matter, and “a:” and “A:” are basically equivalent, but “a:” and “A!:” aren’t, much as they reference the same basic TEA primitive “a”. In a TEA primitive such as “a:”, we may refer to the command letter “a” as the “Command Character”.
+\textbf{TEA PRIMITIVE:} Also the same as ``TEA Primitive Command" or ``TEA Canonical Command", is any one of the letters in the Latin Alphabet, a to z or A to Z, followed by a single colon ``:" character, and the letter used determines what purpose a TEA instruction has in a program. Also, each primitive has unique semantics as defined in the TEA Command Space specification. It is important to note that in TEA, much as the standard style is to use lowercase letters for TEA primitives such as ``a:" or ``m:", yet, case doesn’t matter, and ``a:" and ``A:" are basically equivalent, but ``a:" and ``A!:" aren't, much as they reference the same basic TEA primitive ``a". In a TEA primitive such as ``a:", we may refer to the command letter ``a" as the ``Command Character".
 }
 \item{
 
-\textbf{TEA INVERSE:} When any of the TEA primitives such as “a:” has the command character followed by a TEA Command Qualifier such as the exclamation mark “!” or star-character “*”, such as with “a!:” or “g*:”, it is then considered to be the inverse or alternate form of the implied primitive. So, “a!:” is the alternate form of the command “a:”, and unless where specified, typically the canonical form of a TEA primitive, such as “a:” has different effects and purpose from its inverse form “a!:”
+\textbf{TEA QUALIFIERS:} When any of the TEA primitives such as ``a:" has the command character followed by a TEA Command Qualifier such as the exclamation mark ``!" or star-character ``*", such as with ``a!:" or ``g*:", it is then considered to be [one of] the qualified or alternate forms of the implied primitive. So, ``a!:" is an alternate form of the command ``a:", and unless where specified, typically the canonical form of a TEA primitive, such as ``a:" has different effects and purpose from its alternate or qualified forms such as ``a!:" or ``a*!:vSTR",etc.
 }
 \item{
-\textbf{INERT or UNDEFINED TEA COMMAND:} When a TEA Command is flagged as or defined as “INERT” or “UNDEFINED” or “RESERVED”, it means that command or its implied form has no effect in a standard TEA program, and can be ignored by the TEA processor when the program is being executed. Typically, this occurs with the special treatment of Inverse forms of a TEA primitive, such as when “a:” is defined, but “a!:” is not or when “a:” is, but “a:WITH PARAMETERS” isn’t. Also, sometimes a command might have one of its parameterized forms (but not all of them) undefined or INERT. For example:
+\textbf{INERT or UNDEFINED TEA COMMAND:} When a TEA Command is flagged as or defined as ``INERT" or ``UNDEFINED" or ``RESERVED", it means that command or its implied form has no effect in a standard TEA program, and can be ignored by the TEA processor when the program is being executed. Typically, this occurs with the special treatment of Inverse forms of a TEA primitive, such as when ``a:" is defined, but ``a!:" is not or when ``a:" is, but ``a:WITH PARAMETERS" isn't. Also, sometimes a command might have one of its parameterized forms (but not all of them) undefined or INERT. For example:
 \begin{itemize}
 \item \texttt{V:}
 \item \texttt{V:VAULT\_NAME}
 \item \texttt{V:VAULT\_NAME:VAULT\_VALUE}
 \end{itemize}
 
-are all defined, but \texttt{V:VAULT\_NAME:VAULT\_VALUE:OTHER\_ARGUMENT} isn't. Typically, where for example a primitive such as “a:” is defined but its parameterized form isn’t, it could be safe to assume that “a:WITH PARAMETERS” shall simply be ignored and not have effect in the program, much as “a:” is defined and would cause an effect in the program. In an advanced TEA program environment, using or writing an INERT form of a TEA command should either be flagged or reported as an error. Otherwise, typically, the safe judgment to make concerning INERT commands is that they shouldn’t and won’t modify or affect the AI, and thus, should transparently return the AI as IO, and thus can be considered to be non-existent in a TEA program.
+are all defined, but \texttt{V:VAULT\_NAME:VAULT\_VALUE:OTHER\_ARGUMENT} isn't. Typically, where for example a primitive such as ``a:" is defined but its parameterized form isn't, it could be safe to assume that ``a:WITH PARAMETERS" shall simply be ignored and not have effect in the program, much as ``a:" is defined and would cause an effect in the program. In an advanced TEA program environment, using or writing an INERT form of a TEA command should either be flagged or reported as an error. Otherwise, typically, the safe judgment to make concerning INERT commands is that they shouldn't and won't modify or affect the AI, and thus, should transparently return the AI as IO, and thus can be considered to be non-existent in a TEA program.
 }
 \end{enumerate}
 
 
 \subsection{TEA Command Variations and Qualifying TEA Commands Correctly}
 \label{SECQUALIFY}
+
+\hl{TODO: Revise this Section}
 
 So, based on the grammar rules by which we can form valid TEA Instructions (see \textbf{\autoref{FIG1}}), we know that, in total, we can have \textbf{208 possible TEA Commands}. We arrive at that number as such:
 
@@ -589,7 +591,7 @@ And then, with simplification, all TEA Programs (containing one or more TILs, an
   \centering
   \begin{tcolorbox}[myterminalstyle, title=TEA Program (Regular Expression)]
   \begin{lstlisting}
-([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*
+([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*
   \end{lstlisting}
   \end{tcolorbox}
   \caption{The TEA Program Lexical Specification (regular language)}
@@ -601,7 +603,7 @@ Essentially, in \textbf{\autoref{FIG1}}, we see the final, most generic lexical 
 
 \begin{enumerate}
 \item \textbf{The instruction starts with a single letter from Latin alphabet} --- $\psi_{az} = \langle a, b, c, ..., y, z \rangle$, and that the case of the letter doesn't matter. This letter is what is called a \textbf{TEA Primitive Command} (TPC).
-\item \textbf{After the TPC, we might optionally have} a dot (.), an exclamation mark (!), an asterisk (*) or sometimes, an ordered pairwise combination of them; (.!) or (*.) or (*!) and only in rare cases, a triplet qualifier such as (*!.), but not\footnote{There are legitimate cases where we might use all 3 qualifiers in a single signature, such as for \texttt{u*!.:vNAME} or \texttt{t*!.:vNAME}, however, the ordering does matter. So, a serious TEA programmer should be aware of these quirks, and always consult this manual or the TEA standard reference implementation\cite{cli_tttt} when in doubt.} (.*!) nor (!.*), etc. These are refered to as \textbf{TEA Command Qualifiers} (TCQ), and nothing else after the TPC and TCQ except the full colon (:)---a \textbf{TEA Command Delimiter} (TCD). When the TPC is followed by TCQ we then call that command the \textbf{Inverse} or \textbf{Alternate} form of the TPC.
+\item \textbf{After the TPC, we might optionally have TEA COMMAND QUALIFIERS} such as a dot (.), an exclamation mark (!), an asterisk (*), an at symbol (@) or sometimes, an ordered pairwise combination of them; (.!) or (*.) or (*!) or (*@) and only in rare cases, a triplet qualifier such as (*!.), but not\footnote{There are legitimate cases where we might use all 3 qualifiers in a single signature, such as for \texttt{u*!.:vNAME} or \texttt{t*!.:vNAME}, however, the ordering does matter. So, a serious TEA programmer should be aware of these quirks, and always consult this manual or the TEA standard reference implementation\cite{cli_tttt} when in doubt.} (.*!) nor (!.*), etc. These are refered to as \textbf{TEA Command Qualifiers} (TCQ), and nothing else after the TPC and TCQ except the full colon (:)---a \textbf{TEA Command Delimiter} (TCD). When the TPC is followed by TCQ we then call that command the \textbf{Inverse} or \textbf{Alternate} form of the TPC.
 \item After the TCD, everything that follows until the end of the line or until the vertical bar character (\verb!|!)---the \textit{TI Delimiter} (TID)\footnote{Concerning the TID, earlier ideas had included the possibility of delimiting multiple TI expressions, possibly on the same line, using either the (;) or (,) characters.} is a \textbf{TI Parameter Expression} (TIPE).
 \item TIPE consists of one or more characters excluding the \textbf{TIPE Delimiter} (TIPED) symbol--- also called ``\textbf{TEA Parameter Expression Delimiter}", which is the full colon, ``:", just like the TCD, followed by one or more TIPE.
 \item After the TID, and on the same line, everything that follows is either another TI or is something essentially treated as either whitespace or a comment---thus a \textbf{TEA Opaque Expression} (TOE).
@@ -621,7 +623,7 @@ In summary, a TIL, and thus a TI, can be produced thus:
 	    TI := WS*•TC•TIPE•TID
 	    TC := TCP•TCQ•TCD
 	    TCP := [a-zA-Z]
-	    TCQ := . | ! | * | *!  
+	    TCQ := . | ! | * | @ | *! | *. | *@ | *!.  
 	    TCD := :
 	    TIPE := NTIPED•(TIPED•NTIPED*)*
 	    TIPED := :
@@ -658,7 +660,7 @@ For purists especially, the same can be rewritten in true/traditional Backus–N
 		
 		<TC> ::= <TCP> <TCQ> <TCD>
 		<TCP> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
-		<TCQ> ::= "." | "!" | "*" | "*!"
+		<TCQ> ::= "." | "!" | "*" |  "@" | "*!" | "*." | "*@" | "*!."  
 		<TCD> ::= ":"
 		
 		<TIPE> ::= <NTIPED> <TIPE_Tail>
@@ -15121,6 +15123,7 @@ Please note that, just like with all other TEA applications one shall encountere
 	\item Read/Input Data via HTTP(S) GET
 	\item Persist Active Program's Memory to External Endpoint
 	\item Potential Alternative to File I/O in TEA
+	\item Perform Complex Interactions with WEB APIs
 	\end{enumerate}\\
 	\hline
 	              
@@ -15162,6 +15165,11 @@ w!: & Take current AI as a URL and read whatever is at specified network resourc
 
 
 \rowcolor{lightgray}\bfseries \makecell[l]{w*!.:\\w*!.:vHEADER\\w*!.::vH1:vH2:vH3:..:vHN} & Without parameters, \textbf{DELETES} all currently set custom HTTP headers. With only one or more [vault] parameters specified, only deletes those specified HTTP headers. Does nothing else but return AI.\\
+
+
+\makecell[l]{w*@:vURL\\w*@:vURL:vDATA} & \textbf{A Special} HTTP call that will perform an HTTP POST request on the specified URL held in the vault \texttt{vURL}, and which sends the data not as form-encoded text, but as whatever is held in either AI (without \texttt{vDATA}) or \texttt{vDATA} --- verbatim. It is the way to send raw JSON to end-points expecting such special content-types.\\
+
+
 
  \hline
 \end{tabular}
@@ -15866,21 +15874,246 @@ Which for example prevents the custom headers from leaking into the HTTP query p
 \label{SECEXAMPW}
 
   
-blah blah
+Among very ancient (read \textit{older}) ideas and memes circulated around and begrudgingly curated by both hackers and general programmers in the computing and software development communities since the early days of the Internet and online communities is the following [generally unattributed] quote:
 
 
+\begin{minipage}{1\textwidth}
+\vspace{1em}
+\begin{quotation}
+{\ttfamily
 
-\subsection{EXAMPLE 1: \textbf{COMPUTATIONAL ...:} ...}
+The highest stage of any programming language or system is when it can send email.
+
+}
+\end{quotation}
+\vspace{1em}
+\end{minipage}
+
+It is believed\cite{copilot_assistant} that very likely, this quote first appeared somewhere on \textbf{Usenet} or some such related early core-mailing list. Sometimes it also is phrased as:
+
+
+\begin{minipage}{1\textwidth}
+\vspace{1em}
+\begin{quotation}
+{\ttfamily
+
+Every sufficiently advanced programming language eventually has an email library.
+
+}
+\end{quotation}
+\vspace{1em}
+\end{minipage}
+
+The essential idea here, and which is somewhat related to estimating or judging a system's --- especially a programming language such as TEA, C++, Python or Ruby --- maturity, is that, just like most such technology platforms must demonstrate their usability and practicability via a simple application such as the famous ``Hello World"\cite{lutalo2020dnap}, a program that merely show how to print a simple string and nothing else, for mature and advanced systems, the simple application that can send an email is the ultimate demonstration of the platform or system's power and readiness for real-world use.
+
+\vspace{2em}
+For the TEA language, we thus intend to demonstrate that all the bits necessary to make this happen, are essentially well catered for by a thoughtful use of the \textbf{WEBIFY} command space. Thus, we are going to go on a journey, an adventure in web programming and data communications, aimed at manifesting a minimal, but practically useful email client, that at minimum can allow us to compose and send an actual email message over the Internet, to any destination around the world.
+
+
+\subsection{EXAMPLE 1: \textbf{DATA COMMUNICATION:} EMAIL POSTING SERVICE}
 \label{SECEXAMP1W}
 
 
+We shall implement a TEA program that can allow us to send text that is specified as the input to the program (or otherwise user-specified text at run-time), to a custom email address and with a custom message subject and a sender email address --- the basic ingredients for any SMTP recipe and any basic email payload.
 
-blah blah
+\vspace{2em}
+
+Especially because in TEA we do not have room to deal with bloated low-level algorithms, networking primitives and direct interface to external libraries, the method we are about to demonstrate shall essentially utilize existing WEB APIs for sending Emails --- via \textbf{RESTful Application Programming Interfaces}. Also, because most such APIs are typically either restricted or protected via a need for access-credentials and origin white-listing, etc.\footnote{Especially, and given that without such defenses, email can readily be abused so that hackers and especially criminals (black-hats) might use the services to send either SPAM e-mails or to thwart security and send phishing attacks, click-bait, scams, etc.}, we shall also demonstrates how setting custom [security] HTTP headers in TEA can be useful...
 
 
+\vspace{2em}
+
+The basic application is going to be called \textbf{E-MAILER}, and the essential, fully-tested source-code for version 1 of our next standard TEA application is as such:
+
+\vspace{2em}
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#/usr/bin/env tttt -fc
+#######################################
+v:vABOUT:{@@@@@@| E-MAILER v1 |@@@@@@
+Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. Since 2026}
+#######################################
+# Copyright Fut. Prof. JWL, 
+# Nuchwezi Research
+#######################################
+
+#---[CONSTANTS]
+# first, store input user might have provided from outside this program
+y*: | v:vExternalText
+# basic menu/guide
+v:vPROMPTBody:{Copy and Paste (or type-in: single-line) THE MESSAGE to be sent:}
+v:vPROMPTSubject:{Copy and Paste (or type-in) THE SUBJECT for this email:}
+v:vPROMPTTo:{Specify THE DESTINATION address for this email:}
+v:vPROMPTFrom:{Specify THE ORIGIN/REPLY-to address for this email:}
+v:vDELIM:{
+#-------------------
+}
+v:vPATTERN:{==_==}
+v:vEMAIL_REGEX:{^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$}
+
+#---[VARIABLES]
+l:lRESET
+v:vMailBody:{}
+v:vMailSubject:{}
+v:vMailFrom:{}
+v:vMailTo:{}
+v:vACTIntercept:0
+
+#---[INTRODUCTIONS]
+l:lINTRO
+y:vABOUT|i*:
+
+#---[BUILD E-MAIL PAYLOAD]
+#check if we already have the email message, otherwise prompt..
+y:vExternalText|t.:|v:vMailBody
+
+l:lPROMPTBody
+y:vMailBody|t.:
+f!:^$:lHASBody
+y:vPROMPTBody | i*: | t.: | v:vMailBody 
+f:^$:lPROMPTBody:lHASBody
+
+#we got the message
+l:lHASBody
+X!:{
+
+@@@@@@[ sent using TEA E-Mailer ]@@@@@@}|v:vMailBody
+
+# prompt for the subject..
+l:lPROMPTSubject
+y:vMailSubject|t.:
+f!:^$:lHASSubject
+y:vPROMPTSubject | i*: | t.: | v:vMailSubject 
+f:^$:lPROMPTSubject:lHASSubject 
+
+#we got the subject
+l:lHASSubject 
+y:vMailSubject|t.:|z*:|v:vMailSubject
+
+# prompt for the destination..
+l:lPROMPTTo
+y:vMailTo|t.:
+f*:vEMAIL_REGEX:lHASTo
+y:vPROMPTTo | i*: | t.: | v:vMailTo 
+f*!:vEMAIL_REGEX:lPROMPTTo:lHASTo 
+
+#we got the destination address
+l:lHASTo 
+y:vMailTo|t.:|g:|v:vMailTo
+
+# prompt for the origin/from/reply-to..
+l:lPROMPTFrom
+y:vMailFrom|t.:
+f*:vEMAIL_REGEX:lHASFrom
+y:vPROMPTFrom | i*: | t.: | v:vMailFrom 
+f*!:vEMAIL_REGEX:lPROMPTFrom:lHASFrom 
+
+#we got the origin address
+l:lHASFrom 
+y:vMailFrom|t.:|g:|v:vMailFrom
+
+#---[PREVIEW E-MAIL PAYLOAD]
+# we shall join the bits so that we see 
+# what it all looks like before we send it out
+v:vS:{SUBJECT: }|v:vT:{TO: }|v:vF:{FROM: }|v:vNL:{
+}|v:vPREAMBLE:{Before Sending, Please CONFIRM:}
+v:vMENU_ACTION:{
+=------[ CHOSE NEXT ACTION ]------=
+1. EXIT/return payload
+2. SEND/returns payload + sends out e-email
+3. SEND+COMPOSE/sends e-mail + start next e-mail
+4. COMPOSE/discard + restart..}
+
+g*:{}:vS:vMailSubject:vDELIM:vT:vMailTo:vDELIM:vF:vMailFrom:vDELIM:vMailBody | v:vEMAILPreview
+
+g*!:vNL:vPREAMBLE:vEMAILPreview:vMENU_ACTION | v:vPREVIEW_PROMPT
+
+l:lPromptAction
+# present what we have...
+y:vPREVIEW_PROMPT| i*: | t.: | v:vOPT
+
+#---[PROCESS E-MAIL PAYLOAD]
+#process what action user-chose...
+y:vOPT | f!:^[1234]$:lPromptAction
+f!:1:lNACT1
+y:vEMAILPreview | q!:
+
+l:lNACT1
+y:vOPT | f!:2:lNACT2
+l:lSENDEMAIL
+# send out the email...
+# first, prepare essential parameters...
+v:vURL_MAILSERVICE:{https://api.ahasend.com/v2/accounts/==_==/messages}
+v:Authorization:{ Bearer ==_==}
+v:Content-Type:{application/json}
+###### CRED:
+v:vAHAAC:{acc4128b-3605-46a8-929d-b9a3f74ef428}
+v:vAHAKEY:{aha-sk-L4J3D3Y18cGNs7tMsS3Fw9Vz-8kmOY_KWAd5_KAK0gKNvusRtO0HNzkhH7RbZ43C}
+######
+r*:vURL_MAILSERVICE:vPATTERN:vAHAAC | v:vURL_MAILSERVICE
+r*:Authorization:vPATTERN:vAHAKEY | v:Authorization
+
+# build a JSON payload...
+i!:{{}
+
+#"from":{ "email":"hello@yourdomain.com"},
+x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
+# "recipients": [{"email": "user@example.com"}],
+x!:{"recipients": [{"email": "}| x*!:vMailTo | x!:{"}],}
+x!:{"subject":"}| x*!:vMailSubject | x!:{",}
+x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
+v:vJSON_EMAILPayload
+
+#q!: # inspect payload??
+
+# set http headers...
+w*.:Authorization:Content-Type
+# perform the http JSON data POST call...
+w*@:vURL_MAILSERVICE:vJSON_EMAILPayload
+
+#q!: # check what we got from api??
+
+# return email payload and quit?
+y:vACTIntercept | f:1:lNACT3
+y:vEMAILPreview | q!:
+
+l:lNACT2
+y:vOPT | f!:3:lNACT3
+v:vACTIntercept:1
+# go to send logic...
+j:lSENDEMAIL
+
+l:lNACT3
+# discard and restart e-mail composition...
+j:lRESET
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: E-MAILER v1 --- a basic E-Mail sending client in TEA}
+  \label{FIGWAPP1}
+}
 
 
+That program is currently part of the TEA standard programs, and shall build payloads using user-provided data, after careful validation and pre-processing as such:
 
+
+\vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT from EMAILER v1]
+SUBJECT: Hi There Buddy
+#-------------------
+TO: test@me.com
+#-------------------
+FROM: joe@nuchwezi.com
+#-------------------
+This is test
+
+@@@@@@[ sent using TEA E-Mailer ]@@@@@@
+  \end{tcbverbatim}
+\vspace{2em}
+
+Moreover, we are using a somewhat commercial and and still unfamiliar/under-development Email service for this --- \textbf{AHAsend.com} --- thus, user experiences might vary, and that perhaps we shall need more testing to see whether this is the correct WEB API for making our client work. Otherwise, further details shall come later...
 
 
 

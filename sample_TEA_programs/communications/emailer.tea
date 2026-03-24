@@ -1,0 +1,158 @@
+#/usr/bin/env tttt -fc
+#######################################
+v:vABOUT:{@@@@@@| E-MAILER v1 |@@@@@@
+Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. Since 2026}
+#######################################
+# Copyright Fut. Prof. JWL, 
+# Nuchwezi Research
+#######################################
+
+#---[CONSTANTS]
+# first, store input user might have provided from outside this program
+y*: | v:vExternalText
+# basic menu/guide
+v:vPROMPTBody:{Copy and Paste (or type-in: single-line) THE MESSAGE to be sent:}
+v:vPROMPTSubject:{Copy and Paste (or type-in) THE SUBJECT for this email:}
+v:vPROMPTTo:{Specify THE DESTINATION address for this email:}
+v:vPROMPTFrom:{Specify THE ORIGIN/REPLY-to address for this email:}
+v:vDELIM:{
+#-------------------
+}
+v:vPATTERN:{==_==}
+v:vEMAIL_REGEX:{^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$}
+
+#---[VARIABLES]
+l:lRESET
+v:vMailBody:{}
+v:vMailSubject:{}
+v:vMailFrom:{}
+v:vMailTo:{}
+v:vACTIntercept:0
+
+#---[INTRODUCTIONS]
+l:lINTRO
+y:vABOUT|i*:
+
+#---[BUILD E-MAIL PAYLOAD]
+#check if we already have the email message, otherwise prompt..
+y:vExternalText|t.:|v:vMailBody
+
+l:lPROMPTBody
+y:vMailBody|t.:
+f!:^$:lHASBody
+y:vPROMPTBody | i*: | t.: | v:vMailBody 
+f:^$:lPROMPTBody:lHASBody
+
+#we got the message
+l:lHASBody
+X!:{
+
+@@@@@@[ sent using TEA E-Mailer ]@@@@@@}|v:vMailBody
+
+# prompt for the subject..
+l:lPROMPTSubject
+y:vMailSubject|t.:
+f!:^$:lHASSubject
+y:vPROMPTSubject | i*: | t.: | v:vMailSubject 
+f:^$:lPROMPTSubject:lHASSubject 
+
+#we got the subject
+l:lHASSubject 
+y:vMailSubject|t.:|z*:|v:vMailSubject
+
+# prompt for the destination..
+l:lPROMPTTo
+y:vMailTo|t.:
+f*:vEMAIL_REGEX:lHASTo
+y:vPROMPTTo | i*: | t.: | v:vMailTo 
+f*!:vEMAIL_REGEX:lPROMPTTo:lHASTo 
+
+#we got the destination address
+l:lHASTo 
+y:vMailTo|t.:|g:|v:vMailTo
+
+# prompt for the origin/from/reply-to..
+l:lPROMPTFrom
+y:vMailFrom|t.:
+f*:vEMAIL_REGEX:lHASFrom
+y:vPROMPTFrom | i*: | t.: | v:vMailFrom 
+f*!:vEMAIL_REGEX:lPROMPTFrom:lHASFrom 
+
+#we got the origin address
+l:lHASFrom 
+y:vMailFrom|t.:|g:|v:vMailFrom
+
+#---[PREVIEW E-MAIL PAYLOAD]
+# we shall join the bits so that we see 
+# what it all looks like before we send it out
+v:vS:{SUBJECT: }|v:vT:{TO: }|v:vF:{FROM: }|v:vNL:{
+}|v:vPREAMBLE:{Before Sending, Please CONFIRM:}
+v:vMENU_ACTION:{
+=------[ CHOSE NEXT ACTION ]------=
+1. EXIT/return payload
+2. SEND/returns payload + sends out e-email
+3. SEND+COMPOSE/sends e-mail + start next e-mail
+4. COMPOSE/discard + restart..}
+
+g*:{}:vS:vMailSubject:vDELIM:vT:vMailTo:vDELIM:vF:vMailFrom:vDELIM:vMailBody | v:vEMAILPreview
+
+g*!:vNL:vPREAMBLE:vEMAILPreview:vMENU_ACTION | v:vPREVIEW_PROMPT
+
+l:lPromptAction
+# present what we have...
+y:vPREVIEW_PROMPT| i*: | t.: | v:vOPT
+
+#---[PROCESS E-MAIL PAYLOAD]
+#process what action user-chose...
+y:vOPT | f!:^[1234]$:lPromptAction
+f!:1:lNACT1
+y:vEMAILPreview | q!:
+
+l:lNACT1
+y:vOPT | f!:2:lNACT2
+l:lSENDEMAIL
+# send out the email...
+# first, prepare essential parameters...
+v:vURL_MAILSERVICE:{https://api.ahasend.com/v2/accounts/==_==/messages}
+v:Authorization:{ Bearer ==_==}
+v:Content-Type:{application/json}
+###### CRED:
+v:vAHAAC:{acc4128b-3605-46a8-929d-b9a3f74ef428}
+v:vAHAKEY:{aha-sk-L4J3D3Y18cGNs7tMsS3Fw9Vz-8kmOY_KWAd5_KAK0gKNvusRtO0HNzkhH7RbZ43C}
+######
+r*:vURL_MAILSERVICE:vPATTERN:vAHAAC | v:vURL_MAILSERVICE
+r*:Authorization:vPATTERN:vAHAKEY | v:Authorization
+
+# build a JSON payload...
+i!:{{}
+
+#"from":{ "email":"hello@yourdomain.com"},
+x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
+# "recipients": [{"email": "user@example.com"}],
+x!:{"recipients": [{"email": "}| x*!:vMailTo | x!:{"}],}
+x!:{"subject":"}| x*!:vMailSubject | x!:{",}
+x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
+v:vJSON_EMAILPayload
+
+#q!: # inspect payload??
+
+# set http headers...
+w*.:Authorization:Content-Type
+# perform the http JSON data POST call...
+w*@:vURL_MAILSERVICE:vJSON_EMAILPayload
+
+#q!: # check what we got from api??
+
+# return email payload and quit?
+y:vACTIntercept | f:1:lNACT3
+y:vEMAILPreview | q!:
+
+l:lNACT2
+y:vOPT | f!:3:lNACT3
+v:vACTIntercept:1
+# go to send logic...
+j:lSENDEMAIL
+
+l:lNACT3
+# discard and restart e-mail composition...
+j:lRESET

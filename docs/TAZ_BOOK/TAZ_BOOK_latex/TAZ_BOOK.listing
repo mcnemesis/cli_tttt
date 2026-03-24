@@ -1,20 +1,9 @@
-{
-  "args": {
-    "A": "123",
-    "vTest": "some value"
-  },
-  "headers": {
-    "Accept": "*/*",
-    "Accept-Encoding": "gzip, deflate",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Authorization": "Bearer 12345APIKEYblablah...",
-    "Host": "httpbin.org",
-    "Origin": "http://localhost",
-    "Referer": "http://localhost/",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
-    "Vtest": "hello",
-    "X-Amzn-Trace-Id": "Root=1-69c15674-2589468b1d2a11cb0cefd952"
-  },
-  "origin": "41.210.155.247",
-  "url": "http://httpbin.org/get?A=123&vTest=some+value"
-}
+SUBJECT: Hi There Buddy
+#-------------------
+TO: test@me.com
+#-------------------
+FROM: joe@nuchwezi.com
+#-------------------
+This is test
+
+@@@@@@[ sent using TEA E-Mailer ]@@@@@@
