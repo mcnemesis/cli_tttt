@@ -34,7 +34,7 @@ export class Utility {
     // for processing page url parameters
     static getURLFlag(param_name) {
       const value = new URLSearchParams(window.location.search).get(param_name);
-      return value && value.trim() !== "" ? value : null;
+      return value ? value : null;
     }
 
     // for checking presence of page url parameters
