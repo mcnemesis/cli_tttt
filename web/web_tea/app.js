@@ -12,7 +12,7 @@ import { TEA_RunTime as TEA } from './tea.js';
 
 console.log(U.test());
 
-var IDE_VERSION = '2.1.2';
+var IDE_VERSION = '2.1.3';
 var DEBUG = false;
 var DARK_UI = false;
 var DARK_UI_CLASS = "dark";
@@ -27,7 +27,7 @@ var SETTING_USE_STANDARD_PROGRAMS = "USE_STANDARD_PROGRAMS";
 var use_STANDARD_PROGRAMS = false;
 var stored_PROGRAMS_DICTIONARY = {};
 const DEFAULT_TEA_PROG_EXT = '.tea';
-const DEFAULT_TEA_PROGRAM_SAMPLES_URI = "https://raw.githubusercontent.com/mcnemesis/cli_tttt/refs/heads/master/sample_TEA_programs/tea_tttt_transformer_sets/Reference_TEA_TTTTT_TransformerConfigurationSet.json";
+const DEFAULT_TEA_PROGRAM_SAMPLES_URI = "resources/code/Reference_TEA_StandardPrograms_Set.json";
 const DEFAULT_WEB_IDE_FQDN = "tea.nuchwezi.com";
 const DEFAULT_WEB_IDE_FQDN_URL = "https://" + DEFAULT_WEB_IDE_FQDN;
 
@@ -359,7 +359,7 @@ U.click("trig_load_standard_programs", function(){
         reloadSTOREDPROGRAMS();
         U.status_success("STANDARD TEA Programs have been fetched and are now loaded.");
     }, (error)=>{
-        U.status("Failed to load STANDARD TEA programs. ERROR:<br/>" + "<i>" + error + "</i>", 'danger', true);
+        U.status("Failed to load STANDARD TEA programs. ERROR:<br/>" + "<i>" + error + "</i>", 'alert alert-danger', true);
     });
 });
 

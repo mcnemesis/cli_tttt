@@ -9,3 +9,17 @@ The new supported structure (esp. as per WEB TEA semantics) follows the followin
 	"PROGRAM NAME<>PROGRAM CODE",
 ...
 ]
+
+UPDATE: Because of HTTP errors (429 Too Many Requests) issued by GitHub concerning this mode of access to the file. We are shifting this configuration file into the WEB TEA directory, especially since the WEB IDE is the cannonical user/processor of that file.
+
+The new PATH is: 
+
+web/web_tea/resources/code/Reference_TEA_StandardPrograms_Set.json
+
+and via URLs:
+
+https://raw.githubusercontent.com/mcnemesis/cli_tttt/web/web_tea/resources/code/Reference_TEA_StandardPrograms_Set.json
+
+or (relative to WEB IDE root)
+
+resources/code/Reference_TEA_StandardPrograms_Set.json
