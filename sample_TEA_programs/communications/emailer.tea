@@ -1,7 +1,7 @@
 #/usr/bin/env tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1 |@@@@@@
-Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. Since 2026}
+v:vABOUT:{@@@@@@| E-MAILER v1.2 |@@@@@@
+Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf... Since 2026}
 #######################################
 # Copyright Fut. Prof. JWL, 
 # Nuchwezi Research
@@ -20,6 +20,7 @@ v:vDELIM:{
 }
 v:vPATTERN:{==_==}
 v:vEMAIL_REGEX:{^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$}
+v:vEMAILER_ADDRESS:{noreply@nuchwezi.com} # the actual sender
 
 #---[VARIABLES]
 l:lRESET
@@ -113,7 +114,7 @@ y:vOPT | f!:2:lNACT2
 l:lSENDEMAIL
 # send out the email...
 # first, prepare essential parameters...
-v:vURL_MAILSERVICE:{https://api.ahasend.com/v2/accounts/==_==/messages}
+v:vURL_MAILSERVICE:{https://api.ahasend.com/v2/accounts/==_==/messages/conversation}
 v:Authorization:{ Bearer ==_==}
 v:Content-Type:{application/json}
 ###### CRED:
@@ -127,11 +128,23 @@ r*:Authorization:vPATTERN:vAHAKEY | v:Authorization
 i!:{{}
 
 #"from":{ "email":"hello@yourdomain.com"},
-x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
+# BECAUSE of E-Mail Security, we shall offer
+# to send on user's behalf - via our own address
+x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
 # "recipients": [{"email": "user@example.com"}],
 x!:{"recipients": [{"email": "}| x*!:vMailTo | x!:{"}],}
+# As a feature, SENDER is included in CC
+# since we can't send as arbitrary
+# addresses (standard e-email security that is... )
+x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+# the rest of the parameters...
 x!:{"subject":"}| x*!:vMailSubject | x!:{",}
 x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
+v:vJSON_EMAILPayload
+
+# FIX: found that most JSON validators can't accept literal new-lines
+r!:{
+}:{\n}
 v:vJSON_EMAILPayload
 
 #q!: # inspect payload??
