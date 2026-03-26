@@ -20,9 +20,7 @@ A plan is currently underway, to see the TEA language become usable via the web 
   title        = {TEA RESEARCH: TEA ON THE WEB A High-Level Web Software Operating Environment Specification For The TEA Programming Language: Web TEA Architecture},
   year         = {2025},
   publisher    = {Nuchwezi Research},
-  doi          = {10.6084/M9.FIGSHARE.29591687},
-  url          = {https://doi.org/10.6084/M9.FIGSHARE.29591687},
-  note         = {Accessible via: \url{https://doi.org/10.6084/M9.FIGSHARE.29591687}}
+  howpublished = {\url{https://www.academia.edu/142944443/}}
 }
 ```
 
@@ -43,8 +41,7 @@ Details of the TEA Command Space, or rather, **TEA Instruction Set** can be foun
   title = {TEA TAZ - Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION},
   journal = {Nuchwezi},
   year = {2024},
-  doi = {10.6084/m9.figshare.26661328},
-  url = {https://www.academia.edu/122871672/TEA_TAZ_Transforming_Executable_Alphabet_A_to_Z_COMMAND_SPACE_SPECIFICATION}
+  url = {https://www.academia.edu/122871672/}
 }
 ```
 
@@ -63,7 +60,7 @@ Further, those interested, especially language researchers, software language en
 
 1. JWL Google Scholar page: https://scholar.google.com/citations?user=68FYSDcAAAAJ&hl=en
 2. JWL Academia Page: https://bit.ly/profjwl
-3. JWL Home Page: https://chwezi.tech
+3. JWL Home Page: https://nuchwezi.com
 
 Especially concerning the theory behind TEA as a programming language or rather, a Software Language, the most authoritative paper[4] on the design and theory behind the language is shared here as such:
 
@@ -136,9 +133,7 @@ If you have come across the new/emerging mathematical theory of Transformatics[5
   journal         = {Thesis},
   publisher  = {I*POW},
   pages        = {20},
-  doi          = {10.6084/m9.figshare.30305056},
-  url          = {https://figshare.com/articles/thesis/TRANSFORMATICS_101_-_explained/30305056},
-   note         = {\textit{Published by I*POW, the free electronic version is available online at FigShare. Recommended for foundational insights into the new mathematics of Transformatics:} \url{https://doi.org/10.6084/m9.figshare.30305056}}
+  note         = {Accessible via: \url{https://www.academia.edu/144344109/}}
 }
 ```
 
@@ -707,7 +702,7 @@ https://github.com/mcnemesis/cli_tttt/tree/master/tests/
 # REFERENCES
 
 1. Lutalo, J. (2025). Concerning a transformative power in certain symbols, letters and words. Preprints. https://doi.org/10.20944/preprints202502.1849.v1
-2. Joseph, W. Lutalo. (2025). Concerning Debugging in TEA and the TEA Software Operating Environment. Academia. https://www.academia.edu/127733090/Concerning_Debugging_in_TEA_and_the_TEA_Software_Operating_Environ
-3. Lutalo, Joseph Willrich. (2024). "TEA TAZ -Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION.". Nuchwezi. https://doi.org/10.6084/m9.figshare.26661328 
+2. Joseph, W. Lutalo. (2025). Concerning Debugging in TEA and the TEA Software Operating Environment. Academia. https://www.academia.edu/127733090/
+3. Lutalo, Joseph Willrich. (2024). "TEA TAZ -Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION.". Nuchwezi. https://www.academia.edu/122871672/
 4. Willrich Lutalo,  J. (2024). Software Language Engineering - Text Processing Language Design, Implementation, Evaluation Methods. Preprints. https://doi.org/10.20944/preprints202410.0636.v2
-5. Lutalo, J. W. (2025). TRANSFORMATICS 101 - explained. Thesis, 20. https://doi.org/10.6084/M9.FIGSHARE.30305056 
+5. Lutalo, J. W. (2025). TRANSFORMATICS 101 - explained. Thesis, 20. https://www.academia.edu/144344109/
