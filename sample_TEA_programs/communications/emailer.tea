@@ -1,6 +1,6 @@
 #/usr/bin/env tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1.3 |@@@@@@
+v:vABOUT:{@@@@@@| E-MAILER v1.4 |@@@@@@
 Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf... Since 2026}
 #######################################
 # Copyright Fut. Prof. JWL, 
@@ -52,7 +52,7 @@ f:^$:lPROMPTBody:lHASBody
 l:lHASBody
 X!:{
 
-@@@@@@[ Sent using TEA E-Mailer ]@@@@@@}|v:vMailBody
+@@@@@@[ Sent using TEA E-Mailer v1.4 ]@@@@@@}|v:vMailBody
 
 # prompt for the subject..
 l:lPROMPTSubject
@@ -127,13 +127,16 @@ i!:{{}
 #"from":{ "email":"hello@yourdomain.com"},
 # BECAUSE of E-Mail Security, we shall offer
 # to send on user's behalf - via our own address
-x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
+#x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
+# or explicitly send as user-set from?
+x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
 # "to": [{"email": "user@example.com"}],
 x!:{"to": [{"email": "}| x*!:vMailTo | x!:{"}],}
-# As a feature, SENDER is included in CC
-# since we can't send as arbitrary
-# addresses (standard e-email security that is... )
-x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+# As an Experimental feature, SENDER could be included in CC
+# We might also configure explicit reply-to address??
+# (exploring standard e-email security that is... )
+#x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+#x!:{"reply-to": [{"email": "}| x*!:vMailFrom | x!:{"}],}
 # the rest of the parameters...
 x!:{"subject":"}| x*!:vMailSubject | x!:{",}
 x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
