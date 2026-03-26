@@ -15923,18 +15923,21 @@ Especially because in TEA we do not have room to deal with bloated low-level alg
 
 \vspace{2em}
 
-The basic application is going to be called \textbf{E-MAILER}, and the essential, fully-tested source-code for version 1 of our next standard TEA application is as such:
+\subsubsection{TEA E-EMAILER Source Code}
+
+
+The basic application is going to be called \textbf{E-MAILER}, and the essential, fully-tested source-code for version 1.3 of our next standard TEA application is as such:
 
 \vspace{2em}
 
 {
  \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1.3, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 #/usr/bin/env tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1 |@@@@@@
-Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. Since 2026}
+v:vABOUT:{@@@@@@| E-MAILER v1.3 |@@@@@@
+Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf... Since 2026}
 #######################################
 # Copyright Fut. Prof. JWL, 
 # Nuchwezi Research
@@ -15953,10 +15956,15 @@ v:vDELIM:{
 }
 v:vPATTERN:{==_==}
 v:vEMAIL_REGEX:{^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$}
+v:vEMAILER_ADDRESS:{noreply@nuchwezi.com} # the actual sender
 
 #---[VARIABLES]
-l:lRESET
 v:vMailBody:{}
+# initially, we want to use external input 
+# as default email-body/message
+y:vExternalText|t.:|v:vMailBody
+
+l:lRESET
 v:vMailSubject:{}
 v:vMailFrom:{}
 v:vMailTo:{}
@@ -15968,7 +15976,7 @@ y:vABOUT|i*:
 
 #---[BUILD E-MAIL PAYLOAD]
 #check if we already have the email message, otherwise prompt..
-y:vExternalText|t.:|v:vMailBody
+
 
 l:lPROMPTBody
 y:vMailBody|t.:
@@ -15980,7 +15988,7 @@ f:^$:lPROMPTBody:lHASBody
 l:lHASBody
 X!:{
 
-@@@@@@[ sent using TEA E-Mailer ]@@@@@@}|v:vMailBody
+@@@@@@[ Sent using TEA E-Mailer ]@@@@@@}|v:vMailBody
 
 # prompt for the subject..
 l:lPROMPTSubject
@@ -16046,31 +16054,36 @@ y:vOPT | f!:2:lNACT2
 l:lSENDEMAIL
 # send out the email...
 # first, prepare essential parameters...
-v:vURL_MAILSERVICE:{https://api.ahasend.com/v2/accounts/==_==/messages}
-v:Authorization:{ Bearer ==_==}
+v:vURL_MAILSERVICE:{https://utility.nuchwezi.com/sendemail}
 v:Content-Type:{application/json}
-###### CRED:
-v:vAHAAC:{acc4128b-3605-46a8-929d-b9a3f74ef428}
-v:vAHAKEY:{aha-sk-L4J3D3Y18cGNs7tMsS3Fw9Vz-8kmOY_KWAd5_KAK0gKNvusRtO0HNzkhH7RbZ43C}
-######
-r*:vURL_MAILSERVICE:vPATTERN:vAHAAC | v:vURL_MAILSERVICE
-r*:Authorization:vPATTERN:vAHAKEY | v:Authorization
 
 # build a JSON payload...
 i!:{{}
 
 #"from":{ "email":"hello@yourdomain.com"},
-x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
-# "recipients": [{"email": "user@example.com"}],
-x!:{"recipients": [{"email": "}| x*!:vMailTo | x!:{"}],}
+# BECAUSE of E-Mail Security, we shall offer
+# to send on user's behalf - via our own address
+x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
+# "to": [{"email": "user@example.com"}],
+x!:{"to": [{"email": "}| x*!:vMailTo | x!:{"}],}
+# As a feature, SENDER is included in CC
+# since we can't send as arbitrary
+# addresses (standard e-email security that is... )
+x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+# the rest of the parameters...
 x!:{"subject":"}| x*!:vMailSubject | x!:{",}
 x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
+v:vJSON_EMAILPayload
+
+# FIX: found that most JSON validators can't accept literal new-lines
+r!:{
+}:{\n}
 v:vJSON_EMAILPayload
 
 #q!: # inspect payload??
 
 # set http headers...
-w*.:Authorization:Content-Type
+w*.:Content-Type
 # perform the http JSON data POST call...
 w*@:vURL_MAILSERVICE:vJSON_EMAILPayload
 
@@ -16088,10 +16101,11 @@ j:lSENDEMAIL
 
 l:lNACT3
 # discard and restart e-mail composition...
+v:vMailBody:{}
 j:lRESET
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA APPLICATION: E-MAILER v1 --- a basic E-Mail sending client in TEA}
+  \caption{TEA APPLICATION: E-MAILER v1.3 --- a basic E-Mail sending client in TEA}
   \label{FIGWAPP1}
 }
 
@@ -16100,7 +16114,7 @@ That program is currently part of the TEA standard programs, and shall build pay
 
 
 \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT from EMAILER v1]
+ \begin{tcbverbatim}[title=Sample OUTPUT from EMAILER v1.3]
 SUBJECT: Hi There Buddy
 #-------------------
 TO: test@me.com
@@ -16109,15 +16123,39 @@ FROM: joe@nuchwezi.com
 #-------------------
 This is test
 
-@@@@@@[ sent using TEA E-Mailer ]@@@@@@
+@@@@@@[ Sent using TEA E-Mailer ]@@@@@@
   \end{tcbverbatim}
 \vspace{2em}
 
-Moreover, we are using a somewhat commercial and and still unfamiliar/under-development Email service for this --- \textbf{AHAsend.com} --- thus, user experiences might vary, and that perhaps we shall need more testing to see whether this is the correct WEB API for making our client work. Otherwise, further details shall come later...
+Moreover, we are using a somewhat commercial and and still unfamiliar/under-development Email service for this --- \textbf{AHAsend.com} --- thus, user experiences might vary, and that perhaps we shall need more testing to see whether this is the correct WEB API for making our client work. Otherwise, and important to note concerning how we make this all work:
 
+\begin{enumerate}
+\item First, most standard E-Mail security protocols are strict about how SMTP services can be utilized; generally, sending emails via anonymous servers is restricted or flagged as SPAM, and most WEB APIs for email sending would not allow that.
+\item To work-around such restrictions, we implemented our own email sending endpoint via \texttt{https://utility.nuchwezi.com/sendemail} that somewhat accepts a payload aligned with AHASend's v2 payloads for the \textbf{conversational messaging} --- such that, instead of allowing our users to directly send as any email address they wish, we instead send on their behalf (as \texttt{noreply@nuchwezi.com}), and instead use their \textbf{TO} and \textbf{FROM} as the \textbf{to} and \textbf{cc} of our AHASend payload. Works pretty well, and is less likely to be abused or flagged as SPAM.
+\item The E-Mailer service then pretty-formats the out-going message, so that it contains some indication of where it was sent from.
+\end{enumerate}
 
+So, basically that's it! Tests we have done using the above email client app in TEA have already delivered actual emails into our in-boxes! So, cheers and Congs to TEA getting past the infancy phase, and into ready-for-production maturity!
 
+\vspace{2em}
 
+To access this service, use any of the options:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item Find Emailer on the list of standard TEA programs via:\\ \url{https://tea.nuchwezi.com}
+\item Directly load and run Emailer via: {\normalsize \url{https://tea.nuchwezi.com/?i=.&fc=https://gist.githubusercontent.com/mcnemesis/a084d7a413226f430113662c33964bea/raw/&run} }
+\item{Obtain the TEA Emailer source-code (and other related codes/programs) via the TEA GitHub Project:\\
+\url{https://github.com/mcnemesis/cli_tttt}}
+\item{ Find the Emailer code on GitHub Gists:\\
+\url{https://gist.github.com/mcnemesis/a084d7a413226f430113662c33964bea}}
+\item{ Or use the official shortened link to share or load RSPG:\\
+ \url{https://bit.ly/tea_emailer}
+ }
+\end{enumerate}
+
+\vspace{2em}
 
 
 

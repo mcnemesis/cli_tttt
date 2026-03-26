@@ -1,6 +1,6 @@
 #/usr/bin/env tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1.2 |@@@@@@
+v:vABOUT:{@@@@@@| E-MAILER v1.3 |@@@@@@
 Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf... Since 2026}
 #######################################
 # Copyright Fut. Prof. JWL, 
@@ -23,8 +23,12 @@ v:vEMAIL_REGEX:{^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$}
 v:vEMAILER_ADDRESS:{noreply@nuchwezi.com} # the actual sender
 
 #---[VARIABLES]
-l:lRESET
 v:vMailBody:{}
+# initially, we want to use external input 
+# as default email-body/message
+y:vExternalText|t.:|v:vMailBody
+
+l:lRESET
 v:vMailSubject:{}
 v:vMailFrom:{}
 v:vMailTo:{}
@@ -36,7 +40,7 @@ y:vABOUT|i*:
 
 #---[BUILD E-MAIL PAYLOAD]
 #check if we already have the email message, otherwise prompt..
-y:vExternalText|t.:|v:vMailBody
+
 
 l:lPROMPTBody
 y:vMailBody|t.:
@@ -48,7 +52,7 @@ f:^$:lPROMPTBody:lHASBody
 l:lHASBody
 X!:{
 
-@@@@@@[ sent using TEA E-Mailer ]@@@@@@}|v:vMailBody
+@@@@@@[ Sent using TEA E-Mailer ]@@@@@@}|v:vMailBody
 
 # prompt for the subject..
 l:lPROMPTSubject
@@ -114,15 +118,8 @@ y:vOPT | f!:2:lNACT2
 l:lSENDEMAIL
 # send out the email...
 # first, prepare essential parameters...
-v:vURL_MAILSERVICE:{https://api.ahasend.com/v2/accounts/==_==/messages/conversation}
-v:Authorization:{ Bearer ==_==}
+v:vURL_MAILSERVICE:{https://utility.nuchwezi.com/sendemail}
 v:Content-Type:{application/json}
-###### CRED:
-v:vAHAAC:{acc4128b-3605-46a8-929d-b9a3f74ef428}
-v:vAHAKEY:{aha-sk-L4J3D3Y18cGNs7tMsS3Fw9Vz-8kmOY_KWAd5_KAK0gKNvusRtO0HNzkhH7RbZ43C}
-######
-r*:vURL_MAILSERVICE:vPATTERN:vAHAAC | v:vURL_MAILSERVICE
-r*:Authorization:vPATTERN:vAHAKEY | v:Authorization
 
 # build a JSON payload...
 i!:{{}
@@ -131,8 +128,8 @@ i!:{{}
 # BECAUSE of E-Mail Security, we shall offer
 # to send on user's behalf - via our own address
 x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
-# "recipients": [{"email": "user@example.com"}],
-x!:{"recipients": [{"email": "}| x*!:vMailTo | x!:{"}],}
+# "to": [{"email": "user@example.com"}],
+x!:{"to": [{"email": "}| x*!:vMailTo | x!:{"}],}
 # As a feature, SENDER is included in CC
 # since we can't send as arbitrary
 # addresses (standard e-email security that is... )
@@ -150,7 +147,7 @@ v:vJSON_EMAILPayload
 #q!: # inspect payload??
 
 # set http headers...
-w*.:Authorization:Content-Type
+w*.:Content-Type
 # perform the http JSON data POST call...
 w*@:vURL_MAILSERVICE:vJSON_EMAILPayload
 
@@ -168,4 +165,5 @@ j:lSENDEMAIL
 
 l:lNACT3
 # discard and restart e-mail composition...
+v:vMailBody:{}
 j:lRESET
