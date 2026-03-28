@@ -1,20 +1,25 @@
 #/usr/bin/env tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1.4 |@@@@@@
-Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf... Since 2026}
+v:vABOUT:{@@@@@@| E-MAILER v1.5 |@@@@@@
+Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf, in collaboration with Austrian AHASend... Since 2026}
 #######################################
-# Copyright Fut. Prof. JWL, 
-# Nuchwezi Research
+# Copyright 2026 Fut. Prof. JWL, 
+# Nuchwezi Research: Internet Services
 #######################################
 
 #---[CONSTANTS]
+v:vEmailerFooter:{
+
+@@@@@@[
+ Sent using TEA E-Mailer v1.5 
+]@@@@@@}
 # first, store input user might have provided from outside this program
 y*: | v:vExternalText
 # basic menu/guide
 v:vPROMPTBody:{Copy and Paste (or type-in: single-line) THE MESSAGE to be sent:}
 v:vPROMPTSubject:{Copy and Paste (or type-in) THE SUBJECT for this email:}
 v:vPROMPTTo:{Specify THE DESTINATION address for this email:}
-v:vPROMPTFrom:{Specify THE ORIGIN/REPLY-to address for this email:}
+v:vPROMPTFrom:{Specify THE ORIGIN/REPLY-to/CC address for this email:}
 v:vDELIM:{
 #-------------------
 }
@@ -26,7 +31,7 @@ v:vEMAILER_ADDRESS:{noreply@nuchwezi.com} # the actual sender
 v:vMailBody:{}
 # initially, we want to use external input 
 # as default email-body/message
-y:vExternalText|t.:|v:vMailBody
+y:vExternalText|t!.:|v:vMailBody
 
 l:lRESET
 v:vMailSubject:{}
@@ -41,51 +46,48 @@ y:vABOUT|i*:
 #---[BUILD E-MAIL PAYLOAD]
 #check if we already have the email message, otherwise prompt..
 
-
 l:lPROMPTBody
-y:vMailBody|t.:
+y:vMailBody|t!.:
 f!:^$:lHASBody
-y:vPROMPTBody | i*: | t.: | v:vMailBody 
+y:vPROMPTBody | i*: | t!.: | v:vMailBody 
 f:^$:lPROMPTBody:lHASBody
 
 #we got the message
 l:lHASBody
-X!:{
-
-@@@@@@[ Sent using TEA E-Mailer v1.4 ]@@@@@@}|v:vMailBody
+y:vMailBody | x*!:vEmailerFooter | v:vMailBody
 
 # prompt for the subject..
 l:lPROMPTSubject
-y:vMailSubject|t.:
+y:vMailSubject|t!.:
 f!:^$:lHASSubject
-y:vPROMPTSubject | i*: | t.: | v:vMailSubject 
+y:vPROMPTSubject | i*: | t!.: | v:vMailSubject 
 f:^$:lPROMPTSubject:lHASSubject 
 
 #we got the subject
 l:lHASSubject 
-y:vMailSubject|t.:|z*:|v:vMailSubject
+y:vMailSubject|t!.:|z*:|v:vMailSubject
 
 # prompt for the destination..
 l:lPROMPTTo
-y:vMailTo|t.:
+y:vMailTo|t!.:
 f*:vEMAIL_REGEX:lHASTo
-y:vPROMPTTo | i*: | t.: | v:vMailTo 
+y:vPROMPTTo | i*: | t!.: | v:vMailTo 
 f*!:vEMAIL_REGEX:lPROMPTTo:lHASTo 
 
 #we got the destination address
 l:lHASTo 
-y:vMailTo|t.:|g:|v:vMailTo
+y:vMailTo|t!.:|g:|v:vMailTo
 
-# prompt for the origin/from/reply-to..
+# prompt for the origin/from/reply-to/cc..
 l:lPROMPTFrom
-y:vMailFrom|t.:
+y:vMailFrom|t!.:
 f*:vEMAIL_REGEX:lHASFrom
-y:vPROMPTFrom | i*: | t.: | v:vMailFrom 
+y:vPROMPTFrom | i*: | t!.: | v:vMailFrom 
 f*!:vEMAIL_REGEX:lPROMPTFrom:lHASFrom 
 
 #we got the origin address
 l:lHASFrom 
-y:vMailFrom|t.:|g:|v:vMailFrom
+y:vMailFrom|t!.:|g:|v:vMailFrom
 
 #---[PREVIEW E-MAIL PAYLOAD]
 # we shall join the bits so that we see 
@@ -105,7 +107,7 @@ g*!:vNL:vPREAMBLE:vEMAILPreview:vMENU_ACTION | v:vPREVIEW_PROMPT
 
 l:lPromptAction
 # present what we have...
-y:vPREVIEW_PROMPT| i*: | t.: | v:vOPT
+y:vPREVIEW_PROMPT| i*: | t!.: | v:vOPT
 
 #---[PROCESS E-MAIL PAYLOAD]
 #process what action user-chose...
@@ -124,19 +126,22 @@ v:Content-Type:{application/json}
 # build a JSON payload...
 i!:{{}
 
+# NOTE: AHAsend requires that people not be allowed to impersonate
+# arbitrary origin/from email addresses. Thus, we shall have to 
+# use ours as the sender --- until further notice!
 #"from":{ "email":"hello@yourdomain.com"},
 # BECAUSE of E-Mail Security, we shall offer
 # to send on user's behalf - via our own address
-#x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
+x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
 # or explicitly send as user-set from?
-x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
+#x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
 # "to": [{"email": "user@example.com"}],
 x!:{"to": [{"email": "}| x*!:vMailTo | x!:{"}],}
 # As an Experimental feature, SENDER could be included in CC
 # We might also configure explicit reply-to address??
-# (exploring standard e-email security that is... )
-#x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
-#x!:{"reply-to": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+# (exploring e-email routing options that is... )
+x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+x!:{"reply-to": [{"email": "}| x*!:vMailFrom | x!:{"}],}
 # the rest of the parameters...
 x!:{"subject":"}| x*!:vMailSubject | x!:{",}
 x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
