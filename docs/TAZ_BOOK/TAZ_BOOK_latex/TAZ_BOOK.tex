@@ -15860,7 +15860,7 @@ Next, let us look at the TEA mechanisms for making \textbf{HTTP GET requests}. T
 
   \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 6: A Simple HTTP GET - real - with no explicit parameters, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 9: A Simple HTTP GET - real - with no explicit parameters, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:
    \end{lstlisting}
@@ -15874,7 +15874,7 @@ Which shall return the following...
 
   
  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 6 from EXAMPLE 6]
+ \begin{tcbverbatim}[title=Sample OUTPUT 9 from EXAMPLE 9]
 {
   "args": {
     "A": "123",
@@ -15905,7 +15905,7 @@ And then, concerning the vault-less versions of WEBIFY, we shall only look at on
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 7: A Simple HTTP GET - vault-less calls, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 10: A Simple HTTP GET - vault-less calls, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 i!:https://freeipapi.com/api/json/ | w:
    \end{lstlisting}
@@ -15918,7 +15918,7 @@ That TEA program essentially just takes the AI when W: is invoked, uses it as th
 
 
 \vspace{2em}
- \begin{tcbverbatim}[title=W: EXAMPLE 8: Testing WEB functionality on the Command-line]
+ \begin{tcbverbatim}[title=W: EXAMPLE 11: Testing WEB functionality on the Command-line]
 tttt -c "i!:https://freeipapi.com/api/json/|w:"
 {"ipVersion":4,"ipAddress":"41.210.143.35","latitude":-0.07722000000000001,"longitude":31.4567,"countryName":"Uganda","countryCode":"UG","capital":"Kampala","phoneCodes":[256],"timeZones":["Africa\/Kampala"],"zipCode":"-","cityName":"Sembabule","regionName":"Central Region","continent":"Africa","continentCode":"AF","currencies":["UGX"],"languages":["en","sw"],"asn":"20294","asnOrganization":"MTN Uganda","isProxy":false}
   \end{tcbverbatim}
@@ -15930,7 +15930,7 @@ However, and this is important to note concerning HTTP calls to various endpoint
 
   
  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 7]
+ \begin{tcbverbatim}[title=Sample OUTPUT 11]
 [ERROR]: NetworkError: Failed to execute 'send' on 'XMLHttpRequest': Failed to load 'https://freeipapi.com/api/json/'.
   \end{tcbverbatim}
  \vspace{2em}
@@ -15947,7 +15947,7 @@ For the case of using custom headers with TEA HTTP calls, the method we have alr
 
   \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 9: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 12: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 # first, set some vaults and use them to set custom http headers
 v:vTEST:hello
@@ -15968,7 +15968,7 @@ Which, as you can tell from the following output, does exactly what the code wan
 
 
  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 8 from EXAMPLE 9]
+ \begin{tcbverbatim}[title=Sample OUTPUT 12 from EXAMPLE 12]
 {
   "args": {
     "A": "123",
@@ -16002,7 +16002,7 @@ And then, finally, concerning the case when we had to set up custom headers such
 
   \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 10: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 13: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 # first, set some vaults and use them to set custom http headers
 v:vTEST:hello
@@ -16027,7 +16027,7 @@ Which for example prevents the custom headers from leaking into the HTTP query p
 
 
  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 9 from EXAMPLE 10]
+ \begin{tcbverbatim}[title=Sample OUTPUT 13 from EXAMPLE 13]
 {
   "args": {
     "A": "123", 
@@ -16502,7 +16502,73 @@ x!: & Return Half of AI. Essentially, reducing AI, and somewhat reversing the ef
 \label{SECNOTEX}
   
 
-blah blah..
+\textbf{Xenografting is the only direct and simplest way to affix strings to other strings in TEA.} Of course, the Glue command (see \textbf{\hyperref[SECG]{Chapter \ref{SECG}}}) already allows some kind of xenografting especially with its \texttt{g*:} command space. For example, one could both prefix and suffix the string ``\verb!---!" to any other string, to easily turn it into a title in some text environments. The following example TEA program does this using pure X-primitives:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=X: EXAMPLE 1: Transforming Text into Special Formats using X:, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vHEADLINE:{Interoperability Is Possible} 
+v:vAFFIX:{---} 
+x*:vAFFIX:vHEADLINE 
+v:vHEADLINE 
+x*!:vAFFIX:vHEADLINE
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+While the following does the same, using pure G-primitives:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=X: EXAMPLE 2: Transforming Text into Special Formats using G:, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+v:vHEADLINE:{Interoperability Is Possible} 
+v:vAFFIX:{---} 
+g*:{}:vAFFIX:vHEADLINE:vAFFIX
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+Both programs should return the result 
+
+
+\vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 1 from EXAMPLE 1 and EXAMPLE 2]
+---Interoperability Is Possible---
+  \end{tcbverbatim}
+ \vspace{2em} 
+ 
+ 
+ Otherwise, simple demonstrations of what \textbf{X:} is all about include the following simple TEA programs...
+ 
+ 
+ \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=X: EXAMPLE 3: Several Mini-Programs Demonstrating Capabilities of X, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:World|x:{Hello } 
+#q!: # (=Hello World, VAULTS:{})
+i!:World|x!:{Hello } 
+#q!: # (=WorldHello , VAULTS:{})
+i!:Hello World|x: 
+#q!: # (=Hello WorldHello World, VAULTS:{}) doubles the input
+i!:Hello World|x!: 
+#q!: #(=Hello, VAULTS:{}) halves the input
+i!:TEST|v:vI:Hello World|x*:vI 
+#q!: #= Hello WorldTEST
+i!:TEST|v:vI:Hello World|x*!:vI 
+#= TESTHello World
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+In the above program, uncommenting any of the ``cut-point" lines shall let the program terminate after the last X-command instruction, and one should find that anywhere TEA works, the output shall be just as indicated in the comments showing the state of the TEA environment at the moment.
 
 
 
@@ -16510,17 +16576,413 @@ blah blah..
 \label{SECEXAMPX}
 
   
-blah blah
+In testing how to best apply the \textbf{XENOGRAFT} commands, definitely, applications such as \textbf{ZHA} --- the TEA powered chatbot (see \textbf{\hyperref[SECEXAMP1F]{Section \ref{SECEXAMP1F}}}) --- that we saw earlier readily comes to mind; mostly because, many text-based chatbots require or employ prompts and interfaces where user names or handles are affixed to messages. However, chatbots aren't the only legitimate case where we might apply xenografting as one might have noticed when studying many of the examples already encountered in earlier sections of this book.
 
 
-\subsection{EXAMPLE 1: \textbf{FIELD:} blah blah  }
+\vspace{2em}
+
+In the next section, we are going to explore an application that somewhat significantly utilizes this command. The application is a dictionary utility, and it essentially can allow one to build a list of definitions which can then be exported out of the app for purposes of using them elsewhere.
+
+
+\subsection{EXAMPLE 1: \textbf{E-LEARNING} FREE DICTIONARY | LEXICON  }
 \label{SECEXAMP1X}
 
 
-blah blah
+
+There is not much to say about the inspiration or design of this program. Basically, we wish to be able to do the following minimal tasks:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item When presented with a word or phrase, look-up its definition and present it to the user.
+\item In case the user wishes to have another query handled, simply keep track of the last definition and repeat the process.
+\item Finally, allow the user to either return the last query result or a list of all the definitions resolved thus far, and quit.
+\end{enumerate}
+
+\vspace{2em}
+
+For purposes of looking-up the definitions, we shall not have to worry about having to setup a custom database of terms and their definitions ourselves, because several services already exist out there, that one can interact with via the Internet, and luckily, we have already dealt with the intricacies of interacting with WEB APIs in \textbf{\hyperref[SECW]{Chapter \ref{SECW}}}. Thus, we shall simply focus on making the above specification come to life, and for now, shall focus on using a WEB API known as \textbf{Free Dictionary}\footnote{See \url{https://dictionaryapi.dev/}}.
 
 
+\vspace{2em}
 
+The essential source code of this TEA program is as such:
+
+   \vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: Free Dictionary | LEXICON v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#!/usr/bin/env tttt -fc
+v:vABOUT:{
+*****************************
+FREE LEXICON v1
+*****************************
+Use this app to simply look-up terms or build a list of definitions.
+It is based on Dictionary API that mostly focuses on standard terms, thus, some queries might have no resolutions. Feel free to proceed...}
+
+---[ CONSTANTS ]
+v:vFOOTER:{PROCESSED VIA FREE LEXICON @ tea.nuchwezi.com}
+v:vDELIM:*****************************
+v:vQUERY_PROMPT:{Enter Word or Phrase to Look-Up:}
+v:vNL:{
+}
+v:vPREFIX_QUERY:{QUERY: }
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+v:vMENU_NEXT:{PICK next ACTION > 
+1: Return last definition + Quit
+2: Return all definitions + Quit
+3: Process Next Query (default)}
+
+---[ VARIABLES ]
+v:vQUERY:{} # what to define
+v:vLIST_RESULTS:{}
+
+---[ INTRO ]
+y:vABOUT | i*:
+
+---[ MENU ]
+l:lQUERY_PROMPT
+y:vQUERY_PROMPT | i*: | t.!: | v:vQUERY
+
+---[ PROCESS ]
+y:vQUERY | f:^$:lQUERY_PROMPT
+
+x*:vPREFIX_QUERY:vQUERY
+v:vPRESENT_QUERY
+
+# dictionary api requires call of format:
+# https://api.dictionaryapi.dev/api/v2/entries/en/<term>
+v:vURL:https://api.dictionaryapi.dev/api/v2/entries/en/
+x*:vURL:vQUERY | v:vURL # update url
+
+# then make call..
+w*:vURL
+
+v:vAPI_RESULTS # store result from API
+
+h!:,
+k:definition
+h!::
+k!:{"definitions"|"definition"}
+r!:{:"}:{->}
+r!:{."}:{.}
+v:vDEFINITIONS
+
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+
+x*:vPREFIX_DEFINITIONS:vDEFINITIONS 
+v:vPRESENT_DEFINITION
+
+---[ PRESENT ]
+g*!:vNL:vDELIM:vPRESENT_QUERY:vPRESENT_DEFINITION
+v:vANSWER
+
+i*: # present current definition...
+
+g*!:vNL:vLIST_RESULTS:vANSWER | v:vLIST_RESULTS # store defn
+
+---[ FINISH ]
+g*!:vNL:vNL:vDELIM:vFOOTER | v:vUSE_FOOTER
+
+y:vMENU_NEXT | i*: | t.!: | v:vOPT
+f!:^[123]$:lQUERY_PROMPT
+
+f!:1:lNPROC1
+y:vANSWER | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC1
+f!:2:lNPROC2
+y:vLIST_RESULTS | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC2
+j:lQUERY_PROMPT
+   \end{lstlisting}
+  \end{tcolorbox}
+      \captionof{figure}{TEA Program Source-Code: Free Dictionary | LEXICON v1}
+  \label{FIGTEALEXICON}
+
+\vspace{1em}
+
+
+This program is indeed quite useful as one shall establish from the kinds of outputs it can present:
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 1 from LEXICON v1 --- a list of definitions]
+
+*****************************
+QUERY: wining
+
+DEFINITION(s):
+->To entertain with wine.
+->To drink wine.
+->A session of drinking wine socially.
+*****************************
+QUERY: hello world
+
+DEFINITION(s):
+
+*****************************
+QUERY: relax
+
+DEFINITION(s):
+->To calm down.
+->To make something loose.
+->To become loose.
+->To make something less severe or tense.
+->To become less severe or tense.
+->To make something (such as codes and regulations) more lenient.
+->(of codes and regulations) To become more lenient.
+->To relieve (something) from stress.
+->To relieve from constipation; to loosen; to open.
+*****************************
+QUERY: mates
+
+DEFINITION(s):
+->The conclusive victory in a game of chess that occurs when an opponent's king is threatened with unavoidable capture.
+->(by extension) Any losing situation with no escape; utter defeat.
+->To put the king of an opponent into checkmate.
+->(by extension) To place in a losing situation that has no escape.
+->A fellow
+->(especially of a non-human animal) A breeding partner.
+->A friend
+->Friendly term of address to a stranger
+->In naval ranks
+->A ship's officer
+->A first mate.
+->A technical assistant in certain trades (e.g. gasfitter's mate
+->The other member of a matched pair of objects.
+->A suitable companion; a match; an equal.
+->To match
+->To copulate.
+->To pair in order to raise offspring"
+->To arrange in matched pairs.
+->To introduce (animals) together for the purpose of breeding.
+->(of an animal) To copulate with.
+->To marry; to match (a person).
+->To match oneself against; to oppose as equal; to compete with.
+->To fit (objects) together without space between.
+->To move (a space shuttle orbiter) onto the back of an aircraft that can carry it.
+->To confuse; to confound.
+->The abovementioned plant; the leaves and shoots used for the tea"
+->Friendly; having a friendship (with).
+->An evergreen tree
+->A beverage
+->A cup of this drink.
+
+*****************************
+PROCESSED VIA FREE LEXICON @ tea.nuchwezi.com
+  \end{tcbverbatim}
+ \vspace{2em}
+ 
+ 
+ And when one opts to only have the program return just the last definition, the output is something like...
+ 
+ 
+  \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 2 from LEXICON v1 --- a single definition]
+*****************************
+QUERY: lexicon
+
+DEFINITION(s):
+->The vocabulary of a language.
+->A dictionary that includes or focuses on lexemes.
+->A dictionary of Classical Greek
+->The lexicology of a programming language. (Usually called lexical structure.)"
+->Any dictionary.
+->The vocabulary used by or known to an individual. (Also called lexical knowledge)"
+->A vocabulary specific to a certain subject.
+
+*****************************
+PROCESSED VIA FREE LEXICON @ tea.nuchwezi.com
+  \end{tcbverbatim}
+ \vspace{2em}
+
+
+\subsubsection{Lexicon V2: dealing with restrictions and glitches}
+
+While developing this application, a glitch we had never seen before manifested --- suddenly, the TEA code that previously worked unmodified on both WEB and CLI (such as the version 1 of this program shared in the last section) started to show strange behaviors on the commandline; 
+
+\vspace{2em}
+
+\begin{enumerate}
+\item For example, calls to the Dictionary API suddenly started to fail when made inside the TEA program, and yet they were working well on the commandline when conducted via the \texttt{curl} commandline tool.
+\item Then we noticed that the TEA \textbf{INTERACT} commands that present a GUI --- essentially \texttt{i*:} --- suddenly showed glitches on the input dialog either over the input box or entirely across the window widget!
+\end{enumerate}
+
+\vspace{2em}
+
+
+Those two anomalies, very telling and most likely originating outside of TEA or the TEA runtime, caused us to be concerned, and so, we have written another version of this application that works around those two errors. This version essentially keeps the same logic as the original, but does two other things:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item It prevents the usual TEA GUI from being presented when the program detects we are running TEA on the command-line. Essentially, all calls to \texttt{i*:} are merely swapped with calls to \texttt{i:}
+\item It forces all WEBIFY calls to be made using a different User-Agent than the default --- in this case, we detect if we are on the command-line, and then force HTTP calls to use the curl User-Agent header.
+\end{enumerate}
+
+\vspace{2em}
+
+With those changes made, the final program --- still able to work as is on both the WEB and CLI, and with the same original behavior on the WEB as version 1 was, but with no GUI prompts when used on the command-line, is as follows:
+
+\vspace{2em}
+
+   \vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: Free Dictionary | LEXICON v2, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#!/usr/bin/env tttt -fc
+v:vABOUT:{
+*****************************
+FREE LEXICON v2
+*****************************
+Use this app to simply look-up terms or build a list of definitions.
+It is based on Dictionary API that mostly focuses on standard terms, 
+thus, some queries might have no resolutions or there might be service outages.
+Sometimes try-again if a definition failed to load. Feel free to proceed...}
+
+# Windows/Microsoft could be under-attack (noticed while testing this app)
+# thus this [hack-proof] version
+# otherwise, original minimal version of TEA LEXICON v1 is at:
+# https://gist.github.com/mcnemesis/6bb975c3051bd0b9ebece8c5a73ce336
+
+---[ CONSTANTS ]
+v:vFOOTER:{PROCESSED VIA FREE LEXICON @ tea.nuchwezi.com}
+v:vDELIM:*****************************
+v:vQUERY_PROMPT:{Enter Word or Phrase to Look-Up:}
+v:vNL:{
+}
+v:vPREFIX_QUERY:{QUERY: }
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+v:vMENU_NEXT:{PICK next ACTION > 
+1: Return last definition + Quit
+2: Return all definitions + Quit
+3: Process Next Query (default)}
+# shall want to know where program is being run from
+z.:PLATFORM | v:vENVIRONMENT
+
+---[ VARIABLES ]
+v:vQUERY:{} # what to define
+v:vLIST_RESULTS:{}
+
+---[ INTRO ]
+# generally, use no gui-for CLI environments 
+# (noticed some issues with underlying Py/TK for CLI-TEA)
+y:vENVIRONMENT | f!:CLI:lNCLI1
+y:vABOUT | i: | j:lDONE1
+l:lNCLI1
+y:vABOUT | i*:
+l:lDONE1
+
+---[ MENU ]
+l:lQUERY_PROMPT
+
+y:vENVIRONMENT | f!:CLI:lNCLI2
+y:vQUERY_PROMPT | i: | t.!: | v:vQUERY | j:lDONE2
+l:lNCLI2
+y:vQUERY_PROMPT | i*: | t.!: | v:vQUERY 
+l:lDONE2
+
+---[ PROCESS ]
+y:vQUERY | f:^$:lQUERY_PROMPT
+
+x*:vPREFIX_QUERY:vQUERY
+v:vPRESENT_QUERY
+
+# dictionary api requires call of format:
+# https://api.dictionaryapi.dev/api/v2/entries/en/<term>
+v:vURL:https://api.dictionaryapi.dev/api/v2/entries/en/
+x*:vURL:vQUERY | v:vURL # update url
+
+# we shall want to pretend we are curl if in CLI-TEA
+y:vENVIRONMENT | f!:CLI:lNCLI
+v:User-Agent:curl/7.68.0
+w*.:User-Agent
+
+l:lNCLI
+# then make call..
+w*:vURL
+
+v:vAPI_RESULTS # store result from API
+
+# process api output...
+h!:,
+k:definition
+h!::
+k!:{"definitions"|"definition"}
+r!:{:"}:{->}
+r!:{."}:{.}
+v:vDEFINITIONS
+
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+
+x*:vPREFIX_DEFINITIONS:vDEFINITIONS 
+v:vPRESENT_DEFINITION
+
+---[ PRESENT ]
+g*!:vNL:vDELIM:vPRESENT_QUERY:vPRESENT_DEFINITION
+v:vANSWER
+
+y:vENVIRONMENT | f!:CLI:lNCLI3
+y:vANSWER | i: # present current definition... j:lDONE3
+l:lNCLI3
+y:vANSWER | i*:
+l:lDONE3
+
+
+g*!:vNL:vLIST_RESULTS:vANSWER | v:vLIST_RESULTS # store defn
+
+---[ FINISH ]
+g*!:vNL:vNL:vDELIM:vFOOTER | v:vUSE_FOOTER
+
+y:vMENU_NEXT | i: | t.!: | v:vOPT
+f!:^[123]$:lQUERY_PROMPT
+
+f!:1:lNPROC1
+y:vANSWER | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC1
+f!:2:lNPROC2
+y:vLIST_RESULTS | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC2
+j:lQUERY_PROMPT
+   \end{lstlisting}
+  \end{tcolorbox}
+      \captionof{figure}{TEA Program Source-Code: Free Dictionary | LEXICON v2 --- addressing noticed environment glitches for CLI}
+  \label{FIGTEALEXICONv2}
+
+\vspace{1em}
+
+
+\vspace{2em}
+
+To access this service, use any of the options:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item Find LEXICON on the list of standard TEA programs via:\\ \url{https://tea.nuchwezi.com}
+\item Directly load and run LEXICON via: {\normalsize \url{https://tea.nuchwezi.com/?fc=https://gist.githubusercontent.com/mcnemesis/e35820d78f71984d53ccb986c621665e/raw/free_lexicon_ng.tea&run} }
+\item{Obtain the TEA Emailer source-code (and other related codes/programs) via the TEA GitHub Project:\\
+\url{https://github.com/mcnemesis/cli_tttt}}
+\item{ Find the Emailer code on GitHub Gists:\\
+\url{https://gist.github.com/mcnemesis/e35820d78f71984d53ccb986c621665e}}
+\item{ Or use the official shortened link to share or load Emailer:\\
+ \url{https://bit.ly/free_lexicon}
+ }
+\end{enumerate}
+
+\vspace{2em}
 
 
 
