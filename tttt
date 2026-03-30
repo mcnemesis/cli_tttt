@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.4.2"
+VERSION = "1.4.3"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -728,11 +728,13 @@ class TEA_RunTime:
                     self.debug(f"[DATA ERROR] Expected String Data, Got {data}")
                     raise ValueError(f"[DATA ERROR] Expected String Data, Got {data}")
 
-                request.add_header('Content-Type', 'application/json')
-
                 # in case there are custom http headers, also apply them
                 for hNAME in self.HTTP_HEADERS:
                     request.add_header(hNAME, self.HTTP_HEADERS[hNAME])
+
+                # only set Explicity Content-Type iff it wasn't already included
+                if not ("Content-Type" in self.HTTP_HEADERS):
+                    request.add_header('Content-Type', 'application/json')
 
                 with urllib.request.urlopen(request) as response:
                     # Read the content and decode it to a string

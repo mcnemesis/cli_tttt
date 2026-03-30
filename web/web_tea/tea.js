@@ -43,7 +43,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.2" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.3" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -500,12 +500,17 @@ export class TEA_RunTime {
 
 		const xhr = new XMLHttpRequest();
 		xhr.open('POST', url, false); // false = synchronous
-		xhr.setRequestHeader('Content-Type', 'application/json');
 
         // in case there are custom http headers, also apply them
         for (let hNAME of Object.keys(this.HTTP_HEADERS)) {
             xhr.setRequestHeader(hNAME, this.HTTP_HEADERS[hNAME]);
         }
+
+		// Only set Explicity Content-Type iff it wasn't already included
+		if (!("Content-Type" in this.HTTP_HEADERS)) {
+			// Set a default Content-Type only once
+			xhr.setRequestHeader('Content-Type', 'application/json');
+		}
 
 		xhr.send(encoded_data); // might send data as null?
 
