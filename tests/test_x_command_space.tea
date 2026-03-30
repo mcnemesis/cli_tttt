@@ -1,0 +1,12 @@
+i!:World|x:{Hello } 
+#q!: # (=Hello World, VAULTS:{})
+i!:World|x!:{Hello } 
+#q!: # (=WorldHello , VAULTS:{})
+i!:Hello World|x: 
+#q!: # (=Hello WorldHello World, VAULTS:{}) doubles the input
+i!:Hello World|x!: 
+#q!: #(=Hello, VAULTS:{}) halves the input
+i!:TEST|v:vI:Hello World|x*:vI 
+#q!: #= Hello WorldTEST
+i!:TEST|v:vI:Hello World|x*!:vI 
+#= TESTHello World

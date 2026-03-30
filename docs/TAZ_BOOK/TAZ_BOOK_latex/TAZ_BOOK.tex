@@ -16451,11 +16451,11 @@ To access this service, use any of the options:
 	\textbf{NAME} & \texttt{XENOGRAFT}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
-	\item Quit a TEA program
-	\item Unconditionally quit a TEA program
-	\item Quit a TEA program upon some condition
-	\item Facilitate TEA program debugging and profiling --- via \textit{break-point}-like \textbf{cut-points}
-	\item Another logic and program control-flow mechanism in TEA programming.
+	\item Affix things to things
+	\item Adding an Explicit Prefix or Suffix to AI
+	\item Multiplying Text --- such as affixing a string to itself
+	\item Reducing a Text --- such as halving it 
+	\item Another way to dynamically build parametric Texts
 	\end{enumerate}\\
 	\hline
 	              
@@ -16477,20 +16477,19 @@ To access this service, use any of the options:
 \textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
 \hline
 
-q: & Quit the program if AI is currently empty. Returns Empty String\\
+x: & Return AI with AI affixed to itself. Essentially, multiplying AI\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{q:REGEX} & Return the current AI and Quit the program iff AI matches REGEX\\
+\rowcolor{lightgray}\bfseries \makecell[l]{x:PREFIX} & Prefix  PREFIX to AI. That becomes AI\\
 
-q!: & \textbf{Unconditionally quit} the TEA program returning the current AI\\
+x!: & Return Half of AI. Essentially, reducing AI, and somewhat reversing the effects of \texttt{x:}\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{q!:REGEX} & Return the current AI and Quit the program iff AI DOES NOT match REGEX\\
+\rowcolor{lightgray}\bfseries \makecell[l]{x!:SUFFIX} & Affix  SUFFIX to the end of AI\\
 
 
-\makecell[l]{q*:} & Quit the program if THERE ARE NO VAULTs set (doesn't quit if the DEFAULT VAULT was at least set)\\
+\makecell[l]{x*:vPREFIX\\x*:vPREFIX:vSTR} & Prefix the string in vault  vPREFIX to the string in vault  vSTR . That becomes AI. Without  vSTR , operates on AI\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{q*:vREGEX} & Like q:REGEX, but using pattern stored in vault vREGEX\\
+\rowcolor{lightgray}\bfseries \makecell[l]{x*!:vSUFFIX:vSTR} & Suffix the string in vault  vSUFFIX to the string in vault  vSTR. That becomes AI. Without  vSTR, operates on AI\\
 
-\makecell[l]{q*!:vREGEX} & Like q!:REGEX, but using pattern stored in vREGEX\\
 
  \hline
 \end{tabular}
