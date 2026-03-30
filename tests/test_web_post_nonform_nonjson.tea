@@ -1,0 +1,19 @@
+# this example serves to demonstrate how to use TEA to make an HTTP POST
+# in which both the data and content-type conform to some custom
+# or arbitrary type...
+
+# first, set data we'll post
+v:vDATA:{
+id, message
+101, hello world
+102, this is a test
+103, 
+110, final csv test
+}
+
+# make non-form-based http post of CSV data
+v:Content-Type:text/csv
+w*.:Content-Type #sets the type header..
+
+v:vURL:http://httpbin.org/post
+w*@:vURL:vDATA

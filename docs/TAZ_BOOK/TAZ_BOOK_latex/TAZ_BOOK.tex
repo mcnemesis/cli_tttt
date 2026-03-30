@@ -1,9 +1,10 @@
-%---[ TEMPLATE: BOOK | monograph | mini-treatise ]
+%\UseRawInputEncoding
+%---[ TEMPLATE: BOOK | monograph | mini-treatise | treatise ]
 %---|original-author:JWL|date:24SEPT2025|email:jwl@nuchwezi.com
 %---|TITLE: TEA TAZ – Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION
 %---|EDITOR:Prof. Joseph Willrich Lutalo, Oxford
 %---[MANUSCRIPT-ORIGINAL-VERSION:24SEPT2025]
-%---[MANUSCRIPT-LATEST-VERSION:3FEB2026]
+%---[MANUSCRIPT-LATEST-VERSION:30MAR2026]
 %----------------------------------------------------------------|
 %\documentclass[a4paper, 18pt]{article} % A4 paper, readable font size
 \documentclass[a4paper, 18pt]{book} % A4 book-layout, readable font size
@@ -18,6 +19,11 @@
 \geometry{top=0.8in, bottom=0.8in, left=0.8in, right=0.6in} 
 
 \usepackage[utf8]{inputenc}
+
+% also specify a custom font for the document, 
+% especially one capable of supporting rendering arbitrary unicode such as emoticons too
+%\usepackage{fontspec}
+%\setmainfont{Segoe UI Emoji} % or another emoji-capable font
 
 
 % packages we'll need...
@@ -15664,9 +15670,187 @@ RESULTANT MEMORY STATE: (={
 
 
 
+\subsubsection{HTTP POST with RAW/ARBITRARY non-FORM DATA}
+\label{SECHTTPPOSTDATA}
+
+
+In the previous sections, we have discussed and explored the typical HTTP POST scenarios --- particularly, when, either via literal HTML-based forms or via programmatic methods such as using either JavaScript, TEA or any language or tool (such as Linux/Unix command \texttt{curl}) with a web interaction interface, we use a non-interactive or non-graphical method to build a payload that we then forward to some resource over the network as an HTTP post message. In these cases, the conventional method is to structure any such message as a collection of one or more key-value parameters that are typically encoded as HTML form data --- using the special HTTP header \texttt{Content-Type:application/x-www-form-urlencoded}
+
+\vspace{2em}
+
+
+However, and as we have already encountered in some of the examples above, there are [genuine] situations when the programmer wishes to send data to some server, service or REST API endpoint as nothing but form-encoded data. In such cases, such as in the way data payloads meant to be processed by a web service such as AHAsend.com\footnote{A full example is included in \textbf{\hyperref[SECEXAMP1W]{Section \ref{SECEXAMP1W}}}.} (that allows programs to use its WEB APIs to send emails) must be sent with not only special HTTP headers such as for authorization, but that the way the data (such as the e-mail message package) to be processed by the service must be pre-formatted in a special/pre-defined way --- such as JSON, XML, CSV, etc. and that in many such cases, also the standard/conventional data-type header ``Content-Type" used when posting the data must be explicitly modified.
+
+\vspace{2em} 
+
+In such cases, TEA's \textbf{WEBIFY} command space has provided a special signature of the \texttt{W:} primitive that would allow TEA programs to make an HTTP POST in which the payload is sent as a verbatim/raw string/text as-is, and with the default content type set to ``application/json" given many such cases involve sending data to a WEB API processing JSON, but with the option to set custom content-type still available when required. As indicated in \textbf{\hyperref[TABSEMW]{Table \ref{TABSEMW}}}, the necessary signature for HTTP DATA POST is \texttt{w*@:vURL:vDATA}, and the following two examples --- one posting using normal method \texttt{W*!:}, and the other using this non-Form method should serve well to demonstrate the differences.
+
+
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 6: A Simple HTTP POST - using normal Form-based POSTING, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# first, set data we'll post
+v:vDATA:{{
+"message": "hello world",
+"id": 101
+}}
+
+# make normal form-based http post...
+v:vURL:http://httpbin.org/post
+w*!:vURL:vDATA
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+That example, as we see from the output of the useful echo output from HTTPBIN.org, proves that, even even though our data was a JSON payload for example, we have it posted as form-encoded data...
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 6 from EXAMPLE 6]
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "vDATA": "{\n\"message\": \"hello world\",\n\"id\": 101\n}"
+  }, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Content-Length": "73", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "Origin": "http://localhost", 
+    "Referer": "http://localhost/", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69ca5d70-2dc50bc12ba1de110950d5da"
+  }, 
+  "json": null, 
+  "origin": "102.85.239.169", 
+  "url": "http://httpbin.org/post"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+
+
+Whereas, if we switch to the raw-data/non-form http post method, we have the following slightly modified TEA program...
+
+
+
+  \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 7: A Simple HTTP POST - using non-Form-based POSTING, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# first, set data we'll post
+v:vDATA:{{
+"message": "hello world",
+"id": 101
+}}
+
+# make non-form-based http post...
+v:vURL:http://httpbin.org/post
+w*@:vURL:vDATA
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+And so that the output, still from the same HTTP echo service, is as ..
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 7 from EXAMPLE 7]
+{
+  "args": {}, 
+  "data": "{\n\"message\": \"hello world\",\n\"id\": 101\n}", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Content-Length": "39", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "Origin": "http://localhost", 
+    "Referer": "http://localhost/", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69ca5e92-5d8f23f025a8c3557429493d"
+  }, 
+  "json": {
+    "id": 101, 
+    "message": "hello world"
+  }, 
+  "origin": "102.85.239.169", 
+  "url": "http://httpbin.org/post"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+
+
+Thus, we see that, with \texttt{W*@:}, not only that the data payload is sent verbatim, but that even without having to explicitly set a custom HTTP header for content type, the TEA command defaults to a useful ``application/json". Moreover, in case the data we were sending was of some other type other than JSON --- such as plain text or perhaps CSV, we can likewise add the necessary header and still use the non-form WEBIFY as such:
+
+
+ \vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 8: A Simple HTTP POST - using non-Form-based POSTING, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# first, set data we'll post
+v:vDATA:{
+id, message
+101, hello world
+102, this is a test
+103, 
+110, final csv test
+}
+
+# make non-form-based http post of CSV data
+v:Content-Type:text/csv
+w*.:Content-Type #sets the type header..
+
+v:vURL:http://httpbin.org/post
+w*@:vURL:vDATA
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+And so that the output, still from the same HTTP echo service, is as ..
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 8 from EXAMPLE 8]
+{
+  "args": {}, 
+  "data": "\nid, message\n101, hello world\n102, this is a test\n103, \n110, final csv test\n", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept": "*/*", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "en-US,en;q=0.9", 
+    "Content-Length": "76", 
+    "Content-Type": "text/csv", 
+    "Host": "httpbin.org", 
+    "Origin": "http://localhost", 
+    "Referer": "http://localhost/", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69ca64c9-4efab8b4797d7bc175c4966b"
+  }, 
+  "json": null, 
+  "origin": "102.85.239.169", 
+  "url": "http://httpbin.org/post"
+}
+  \end{tcbverbatim}
+ \vspace{2em} 
+
   
 
-That's it with \texttt{W*!:} and \texttt{W!:} that enable HTTP POST operations such as sending data in vaults to a remote server or endpoint anywhere but in the URL.
+And with that final example, we thus wrap-ip our discussions concerning TEA WEBIFY POST commands... \texttt{W!:}, \texttt{W*!:}, and \texttt{W*@:} that enable HTTP POST operations such as sending data in vaults to a remote server or endpoint via anywhere but in the URL --- this later case being what the following section then covers.
 
 
 \subsection{HTTP GET Requests}
@@ -15918,7 +16102,7 @@ We shall implement a TEA program that can allow us to send text that is specifie
 
 \vspace{2em}
 
-Especially because in TEA we do not have room to deal with bloated low-level algorithms, networking primitives and direct interface to external libraries, the method we are about to demonstrate shall essentially utilize existing WEB APIs for sending Emails --- via \textbf{RESTful Application Programming Interfaces}. Also, because most such APIs are typically either restricted or protected via a need for access-credentials and origin white-listing, etc.\footnote{Especially, and given that without such defenses, email can readily be abused so that hackers and especially criminals (black-hats) might use the services to send either SPAM e-mails or to thwart security and send phishing attacks, click-bait, scams, etc.}, we shall also demonstrates how setting custom [security] HTTP headers in TEA can be useful...
+Especially because in TEA we do not have room to deal with bloated low-level algorithms, networking primitives and direct interface to external libraries, the method we are about to demonstrate shall essentially utilize existing WEB APIs for sending Emails --- via \textbf{RESTful}\footnote{A ``RESTful" API is one that follows the principles of REST (Representational State Transfer), an architectural style introduced by Roy Fielding in 2000 \cite{copilot_assistant}. It uses standard web protocols like HTTP, is stateless, and is designed to be simple, scalable, and efficient.} \textbf{Application Programming Interfaces}. Also, because most such APIs are typically either restricted or protected via a need for access-credentials and origin white-listing, etc.\footnote{Especially, and given that without such defenses, email can readily be abused so that hackers and especially criminals (black-hats) might use the services to send either SPAM e-mails or to thwart security and send phishing attacks, click-bait, scams, etc.}, we shall also demonstrates how setting custom [security] HTTP headers in TEA can be useful...
 
 
 \vspace{2em}
@@ -15926,31 +16110,36 @@ Especially because in TEA we do not have room to deal with bloated low-level alg
 \subsubsection{TEA E-EMAILER Source Code}
 
 
-The basic application is going to be called \textbf{E-MAILER}, and the essential, fully-tested source-code for version 1.4 of our next standard TEA application is as such:
+The basic application is going to be called \textbf{E-MAILER}, and the essential, fully-tested source-code for version 1.5 of our next standard TEA application is as such:
 
 \vspace{2em}
 
 {
  \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1.4, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1.5, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 #/usr/bin/env tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1.4 |@@@@@@
-Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf... Since 2026}
+v:vABOUT:{@@@@@@| E-MAILER v1.5 |@@@@@@
+Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf, in collaboration with Austrian AHASend... Since 2026}
 #######################################
-# Copyright Fut. Prof. JWL, 
-# Nuchwezi Research
+# Copyright 2026 Fut. Prof. JWL, 
+# Nuchwezi Research: Internet Services
 #######################################
 
 #---[CONSTANTS]
+v:vEmailerFooter:{
+
+@@@@@@[
+ Sent using TEA E-Mailer v1.5 
+]@@@@@@}
 # first, store input user might have provided from outside this program
 y*: | v:vExternalText
 # basic menu/guide
 v:vPROMPTBody:{Copy and Paste (or type-in: single-line) THE MESSAGE to be sent:}
 v:vPROMPTSubject:{Copy and Paste (or type-in) THE SUBJECT for this email:}
 v:vPROMPTTo:{Specify THE DESTINATION address for this email:}
-v:vPROMPTFrom:{Specify THE ORIGIN/REPLY-to address for this email:}
+v:vPROMPTFrom:{Specify THE ORIGIN/REPLY-to/CC address for this email:}
 v:vDELIM:{
 #-------------------
 }
@@ -15962,7 +16151,7 @@ v:vEMAILER_ADDRESS:{noreply@nuchwezi.com} # the actual sender
 v:vMailBody:{}
 # initially, we want to use external input 
 # as default email-body/message
-y:vExternalText|t.:|v:vMailBody
+y:vExternalText|t!.:|v:vMailBody
 
 l:lRESET
 v:vMailSubject:{}
@@ -15977,51 +16166,48 @@ y:vABOUT|i*:
 #---[BUILD E-MAIL PAYLOAD]
 #check if we already have the email message, otherwise prompt..
 
-
 l:lPROMPTBody
-y:vMailBody|t.:
+y:vMailBody|t!.:
 f!:^$:lHASBody
-y:vPROMPTBody | i*: | t.: | v:vMailBody 
+y:vPROMPTBody | i*: | t!.: | v:vMailBody 
 f:^$:lPROMPTBody:lHASBody
 
 #we got the message
 l:lHASBody
-X!:{
-
-@@@@@@[ Sent using TEA E-Mailer 1.4 ]@@@@@@}|v:vMailBody
+y:vMailBody | x*!:vEmailerFooter | v:vMailBody
 
 # prompt for the subject..
 l:lPROMPTSubject
-y:vMailSubject|t.:
+y:vMailSubject|t!.:
 f!:^$:lHASSubject
-y:vPROMPTSubject | i*: | t.: | v:vMailSubject 
+y:vPROMPTSubject | i*: | t!.: | v:vMailSubject 
 f:^$:lPROMPTSubject:lHASSubject 
 
 #we got the subject
 l:lHASSubject 
-y:vMailSubject|t.:|z*:|v:vMailSubject
+y:vMailSubject|t!.:|z*:|v:vMailSubject
 
 # prompt for the destination..
 l:lPROMPTTo
-y:vMailTo|t.:
+y:vMailTo|t!.:
 f*:vEMAIL_REGEX:lHASTo
-y:vPROMPTTo | i*: | t.: | v:vMailTo 
+y:vPROMPTTo | i*: | t!.: | v:vMailTo 
 f*!:vEMAIL_REGEX:lPROMPTTo:lHASTo 
 
 #we got the destination address
 l:lHASTo 
-y:vMailTo|t.:|g:|v:vMailTo
+y:vMailTo|t!.:|g:|v:vMailTo
 
-# prompt for the origin/from/reply-to..
+# prompt for the origin/from/reply-to/cc..
 l:lPROMPTFrom
-y:vMailFrom|t.:
+y:vMailFrom|t!.:
 f*:vEMAIL_REGEX:lHASFrom
-y:vPROMPTFrom | i*: | t.: | v:vMailFrom 
+y:vPROMPTFrom | i*: | t!.: | v:vMailFrom 
 f*!:vEMAIL_REGEX:lPROMPTFrom:lHASFrom 
 
 #we got the origin address
 l:lHASFrom 
-y:vMailFrom|t.:|g:|v:vMailFrom
+y:vMailFrom|t!.:|g:|v:vMailFrom
 
 #---[PREVIEW E-MAIL PAYLOAD]
 # we shall join the bits so that we see 
@@ -16041,7 +16227,7 @@ g*!:vNL:vPREAMBLE:vEMAILPreview:vMENU_ACTION | v:vPREVIEW_PROMPT
 
 l:lPromptAction
 # present what we have...
-y:vPREVIEW_PROMPT| i*: | t.: | v:vOPT
+y:vPREVIEW_PROMPT| i*: | t!.: | v:vOPT
 
 #---[PROCESS E-MAIL PAYLOAD]
 #process what action user-chose...
@@ -16060,19 +16246,22 @@ v:Content-Type:{application/json}
 # build a JSON payload...
 i!:{{}
 
+# NOTE: AHAsend requires that people not be allowed to impersonate
+# arbitrary origin/from email addresses. Thus, we shall have to 
+# use ours as the sender --- until further notice!
 #"from":{ "email":"hello@yourdomain.com"},
 # BECAUSE of E-Mail Security, we shall offer
 # to send on user's behalf - via our own address
-#x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
+x!:{"from":{ "email":"}| x*!:vEMAILER_ADDRESS| x!:{"},}
 # or explicitly send as user-set from?
-x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
+#x!:{"from":{ "email":"}| x*!:vMailFrom | x!:{"},}
 # "to": [{"email": "user@example.com"}],
 x!:{"to": [{"email": "}| x*!:vMailTo | x!:{"}],}
 # As an Experimental feature, SENDER could be included in CC
 # We might also configure explicit reply-to address??
-# (exploring standard e-email security that is... )
-#x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
-#x!:{"reply-to": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+# (exploring e-email routing options that is... )
+x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+x!:{"reply-to": [{"email": "}| x*!:vMailFrom | x!:{"}],}
 # the rest of the parameters...
 x!:{"subject":"}| x*!:vMailSubject | x!:{",}
 x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
@@ -16108,12 +16297,14 @@ v:vMailBody:{}
 j:lRESET
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA APPLICATION: E-MAILER v1.4 --- a basic E-Mail sending client in TEA}
+  \caption{TEA APPLICATION: E-MAILER v1.5 --- a simple and special E-Mail sending client written using the TEA language}
   \label{FIGWAPP1}
 }
 
 
-That program is currently part of the TEA standard programs, and shall build payloads using user-provided data, after careful validation and pre-processing as such:
+\subsubsection{TEA E-EMAILER In Action..}
+
+That program is currently part of the TEA standard programs, and shall build payloads using user-provided data, after careful validation and pre-processing as such (this output was actually from an earlier version):
 
 
 \vspace{2em}
@@ -16134,9 +16325,92 @@ Moreover, we are using a somewhat commercial and and still unfamiliar/under-deve
 
 \begin{enumerate}
 \item First, most standard E-Mail security protocols are strict about how SMTP services can be utilized; generally, sending emails via anonymous servers is restricted or flagged as SPAM, and most WEB APIs for email sending would not allow that.
-\item To work-around such restrictions, we implemented our own email sending endpoint via \texttt{https://utility.nuchwezi.com/sendemail} that somewhat accepts a payload aligned with AHASend's v2 payloads for the \textbf{conversational messaging} --- such that, instead of allowing our users to directly send as any email address they wish, we instead send on their behalf (as \texttt{noreply@nuchwezi.com}), and instead use their \textbf{TO} and \textbf{FROM} as the \textbf{to} and \textbf{cc} of our AHASend payload. Works pretty well, and is less likely to be abused or flagged as SPAM. \textbf{UPDATE:} \textit{In retrospect, we figured that this somewhat is an experimental security fall-back to option, and decided to instead go ahead and allow to set user provided FROM and TO parameters as is. Gives the best user-experience, but might be readily abused... we shall need to study use-case further.}
+\item To work-around such restrictions, we implemented our own email sending endpoint via \texttt{https://utility.nuchwezi.com/sendemail} that somewhat accepts a payload aligned with AHASend's v2 payloads for the \textbf{conversational messaging} --- such that, instead of allowing our users to directly send as any email address they wish, we instead send on their behalf (as \texttt{noreply@nuchwezi.com}), and instead use their \textbf{TO} and \textbf{FROM} as the \textbf{to} and \textbf{cc} of our AHASend payload. Works pretty well, and is less likely to be abused or flagged as SPAM.\footnote{In retrospect, we figured that this somewhat is an experimental security fall-back to option, and that in the future, we might  decide to instead go ahead and allow to set user provided FROM and TO parameters as is. Gives the best user-experience, but might be readily abused... we shall need to study use-case further. Also, this might call for a switch of the e-mail routing provider --- meaning, we either implement our own SMTP (\textbf{Simple Mail Transfer Protocol}) processors as part of say the utility.nuchwezi.com service, or perhaps use another provider other than the European/Austrian AhaSend.com}
 \item The E-Mailer service then pretty-formats the out-going message, so that it contains some indication of where (EMAILER-footer message) it was sent from.
 \end{enumerate}
+
+\vspace{2em}
+
+With the \textbf{Emailer v1.5} code as shared above (we all as in the links to be shared hereafter), an email sent using the service would look something like the following (stripped of the headers --- SUBJECT, TO and FROM, that actually don't appear as part of the email message itself):
+
+
+\vspace{2em}
+
+   \begin{figure}[H]
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=Sample OUTPUT from EMAILER v1.5]
+  \begin{verbatim}
+Dear Waltz,
+
+Your mail reached me in bits..
+
+TL;DR 
+
+I recommend bit.ly/run_emailer
+
+But FYI, here's an ACK;
+
+There used to be a time
+We passed time in rhyme..
+
+We mostly gathered around
+Scattered souls that ICs found
+And quizzed each other;
+Fantasies and phobias,
+Vocabs, trodden hoods and such. 
+
+Desmond from Rutgers Rite,
+Lenin Mackenzie, a sloth,
+Barbra Lee, she knew all the jokes,
+Catan Su a stunning poet
+and Jewels Poor, an overlord,
+And several other folks
+Previously amateurs on Discord.
+
+But the ICs have changed!
+Folks show up dressed in emoticons
+Such as one brute that goes by 
+A tranny 
+And this nagging handle...
+IA almost banned them from forum;
+..(@/?__+!;#£#@)(.,.)
+
+There's no transactions N'mo
+It's kkk.. C, I C, U K! LMO
+X-Twitter tweenz souls 
+N' overall unnecessary panic!
+
+Old sleuths still snail and verbose to make no point,
+But we cherish Plato,
+Miniature Michaelangelo's
+and despirited Miltons when they can fit
+Inside of a few MBs.
+
+This is The State of The @;
+
+@@@@@@[
+ Sent using TEA E-Mailer v1.5
+]@@@@@@
+  \end{verbatim}
+  \end{tcolorbox}
+  \caption{An [emoticon-free] version of a special e-mail (a poem?) titled ``Dear Waltz", that demonstrates how mails sent using TEA Emailer v1.5 would look like.}
+  \label{FIGWEXAv15}
+\end{figure}
+
+\vspace{2em}
+
+That example was chosen partly for its quirkiness too! The actual, verbatim and original version of that email message (originally written via a mobile/smart-phone\footnote{In preparing this book, bits of that email message, such as the lines containing the weird user names expressed using only emoticons, could not even be processed well in our book typesetting environments LaTex/XeLatex/LuaTex and neither could powerful and mature word processors such as Microsoft Word nor Google Docs render them! Thus, the other/alternative rendering shared as a screenshot hereafter, demonstrates how, even though the mail message were readily processed via TEA Emailer, and delivered, we had to taken a screenshot to do the original message justice --- via the Telegram app}) is as shown in the screen-shot below...
+
+
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[height=0.6\textheight,]{resources/images/emailer_1.5_example_dear_waltz}\\
+   \caption{``Dear Waltz" a poetic email formatted via Emailer 1.5}
+  \label{FIGWEXAv15b}
+  \end{center}
+\end{figure}
+
 
 So, basically that's it! Tests we have done using the above email client app in TEA have already delivered actual emails into our in-boxes! So, cheers and Congs to TEA getting past the infancy phase, and into ready-for-production maturity!
 
@@ -16159,6 +16433,95 @@ To access this service, use any of the options:
 \end{enumerate}
 
 \vspace{2em}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: X
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{X: XENOGRAFT}
+\label{SECX}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{XENOGRAFT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Quit a TEA program
+	\item Unconditionally quit a TEA program
+	\item Quit a TEA program upon some condition
+	\item Facilitate TEA program debugging and profiling --- via \textit{break-point}-like \textbf{cut-points}
+	\item Another logic and program control-flow mechanism in TEA programming.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{X:}}
+  \label{TABTAZX}
+\end{table}
+
+
+\section{SEMANTICS of X:}
+\label{SECSEMX}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+q: & Quit the program if AI is currently empty. Returns Empty String\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{q:REGEX} & Return the current AI and Quit the program iff AI matches REGEX\\
+
+q!: & \textbf{Unconditionally quit} the TEA program returning the current AI\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{q!:REGEX} & Return the current AI and Quit the program iff AI DOES NOT match REGEX\\
+
+
+\makecell[l]{q*:} & Quit the program if THERE ARE NO VAULTs set (doesn't quit if the DEFAULT VAULT was at least set)\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{q*:vREGEX} & Like q:REGEX, but using pattern stored in vault vREGEX\\
+
+\makecell[l]{q*!:vREGEX} & Like q!:REGEX, but using pattern stored in vREGEX\\
+
+ \hline
+\end{tabular}
+\caption{The Semantics of X:}
+\label{TABSEMX}
+\end{table}
+
+
+\section{NOTES about X:}
+\label{SECNOTEX}
+  
+
+blah blah..
+
+
+
+\section{EXAMPLE APPLICATIONS of X:}
+\label{SECEXAMPX}
+
+  
+blah blah
+
+
+\subsection{EXAMPLE 1: \textbf{FIELD:} blah blah  }
+\label{SECEXAMP1X}
+
+
+blah blah
+
+
+
 
 
 
