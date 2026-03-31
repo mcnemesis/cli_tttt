@@ -16986,6 +16986,124 @@ To access this service, use any of the options:
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: Y
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Y: YANK}
+\label{SECY}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{YANK}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Reading Memory
+	\item Returning Data previously stored in a Vault --- essentially \textbf{the companion commands to \texttt{V:*} command space}.
+	\item Accessing Initial External User Input from anywhere in a TEA program
+	\item Determining the Length of Data in Vaults
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{Y:}}
+  \label{TABTAZY}
+\end{table}
+
+
+\section{SEMANTICS of Y:}
+\label{SECSEMY}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+y: & Return whatever is currently stored in the default vault (the unnamed vault).
+\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{y:vNAME} & Return whatever is stored in vault with name vNAME\\
+
+y!: & Return the length of whatever is currently stored in the default vault (the unnamed vault).\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{y!:vNAME} & Return whatever is currently stored in vault vNAME\\
+
+
+\makecell[l]{y*:} & Return whatever was the external, user provided initial input to the TEA program – the initial AI\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{y*:vNAME} & Return whatever is currently stored in vault vNAME\\
+
+\makecell[l]{y*!:vNAME} & Return the length of whatever is currently stored in vault vNAME.\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{y*!:} & Return the length of whatever was the external, user provided initial input to the TEA program – the initial AI\\
+
+
+ \hline
+\end{tabular}
+\caption{The Semantics of Y:}
+\label{TABSEMY}
+\end{table}
+
+
+\section{NOTES about Y:}
+\label{SECNOTEY}
+
+
+Yanking is essentially the opposite operation of vaulting in TEA. Generally, the reason a program writes to memory --- such as via use of variables, pointers, files, etc. is so that later, such stored data can then be read-out/retrieved --- often via a mechanism that references a particular record in memory via the name or identifier that was used to save, store or write it. Thus, while the \textbf{VAULT} commands help create or write-to spaces in a program's memory (what in other programming languages might be referred to as registers, variables or cells) where we can store data or information, and yet, the vault-commands cannot be used to retrieve such data when required! Instead, data saved using V-commands must later be accessed using \textbf{YANK} commands.
+
+\vspace{2em}
+
+The Y-command also allows TEA programs to correctly reference original user-provided input anywhere in a TEA program via a special command\footnote{This command, unlike any other YANK command is special because, there is usually no way to yank something that hadn't been previously stored using a vault command --- even for the DEFAULT VAULT that has no name; to be able to call \texttt{y:}, \texttt{v:} should have been invoked earlier on. However, for the command \texttt{y*:}, it doesn't matter whether any VAULT command was used before, all that matters is that the TEA program was invoked, and that there is or wasn't any externally specified input to the program --- when none, it essentially just returns EMPTY SPACE, ``".} signature \texttt{y*:}. First, this helps to waive the idiomatic inclusion of default inputs or the initialization of AI/Active Input as part of common practice in TEA programming---such as with the use of \texttt{i!:}, \texttt{v:} and \texttt{w!:} commands early-on in the program source, by instead offering a direct means for the program to access the original, externally-specified user-provided input any time it is needed. 
+
+
+\vspace{2em}
+
+
+Also, the Y-inverse commands\footnote{So-called because originally, TEA only had ``!" as the only command qualifier, and that for any primitive such as \texttt{Y:}, the qualified version, \texttt{Y!:} would be referred to as ``the inverse" signature. However, later, more qualifiers arrived --- see \textbf{\hyperref[SECQUALIFY]{Section \ref{SECQUALIFY}}}, and so, this idea might sometimes be only used sparingly.}, just like \texttt{V!}, also allow for a straightforward way to determine the size of data in TEA --- for Y, only possible with strings already held inside of some vault --- such as via \texttt{Y!:vNAME}, while \texttt{v!:STR} also can help determine the length of explicit, inline string values\footnote{For example, \texttt{v!:"hello"} would return ``5", just like \texttt{v!:hello}. But to use Yank for that, one would need a program such as \texttt{v:vVAL:"hello"|y!:vVAL}}.
+
+
+\vspace{2em}
+
+
+A useful test of the Y: facility is the following program that should greet one with ``Hello X" if one responds to the associated prompt with the name ``X":
+
+
+\vspace{2em}
+  \begin{tcolorbox}[teaterminalstyle, title=Y: EXAMPLE 1: Custom Greeting or Hello World, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:What is your name?|i:|v:vNAME|v:vGREET:{Hello }|v:vG:{}|g*::vGREET:vNAME|v:vGRT|i:TEST|y:vGRT
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+
+
+
+\section{EXAMPLE APPLICATIONS of Y:}
+\label{SECEXAMPI}
+
+  
+blah blah..
+
+
+\subsection{EXAMPLE 1: \textbf{blah blah:} blah blah}
+\label{SECYEXAMP1}
+
+
+blah blah...
+
+
+
+
+
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
 
 \chapter{Conclusion}
