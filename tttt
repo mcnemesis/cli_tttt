@@ -1394,6 +1394,13 @@ class TEA_RunTime:
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
+            # FALLBACK to i: if NO_GUI flag was set.. (see above)
+            if TEA_RunTime.NO_GUI:
+                if tc == "I*":
+                    tc = "I"
+                elif tc == "I*!":
+                    tc = "I!"
+
             if tc == "I":
                 if len(tpe_str) == 0:
                     # implements interactivity in TEA: displays io as prompt, sets user-input as io
@@ -1408,6 +1415,7 @@ class TEA_RunTime:
                     io = tpe_str
 
             # BEGIN I*-TEA GUI extension: powered by Python/TK/TCL
+            # FALLBACK to i: if NO_GUI flag was set.. (see above)
             if tc == "I*":
                 import tkinter as tk
                 from tkinter import simpledialog
@@ -1828,7 +1836,7 @@ class TEA_RunTime:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
                         size = self.extract_str(params[0])
-                        io = util_gen_rand_string(size=int(float(size_)))
+                        io = util_gen_rand_string(size=int(float(size)))
                     elif len(params) == 2:
                         size = self.extract_str(params[0])
                         glue = self.extract_str(params[1])
@@ -2910,12 +2918,16 @@ class TEA_RunTime:
             group_c.add_argument("-c", "--code", type=str, help="use CODE as TEA program")
             group_c.add_argument("-fc", "--code-file", type=str, help="read TEA program from CODE_FILE")
 
+            parser.add_argument("-ng", "--no-gui", help="Force No-GUI in CLI-TEA", action="store_true")
+
             parser.add_argument("-v", "--version", help="Show current TEA/TTTT version", action="version",
                     version='%(prog)s '+ f"{VERSION} | TEA HOME: {TEA_HOMEPAGE}")
 
             args = parser.parse_args()
 
             TEA_RunTime.DEBUG = True if args.debug else False # allow user to toggle debugging
+
+            TEA_RunTime.NO_GUI = True if args.no_gui else False # allow to render Py/TK GUIs for CLI-TEA via i*:
 
             if args.code:
                 CODE = args.code
