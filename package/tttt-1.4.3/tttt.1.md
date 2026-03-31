@@ -6,7 +6,7 @@
 tttt - The TEA language interpreter
 
 # SYNOPSIS
-**tttt** [-h] [-d] [-i INPUT | -fi INPUT_FILE] [-c CODE | -fc CODE_FILE] [-v] 
+**tttt** [-h] [-d] [-ng] [-i INPUT | -fi INPUT_FILE] [-c CODE | -fc CODE_FILE] [-v] 
 
 # DESCRIPTION
 **tttt** accepts any valid TEA program or script, and runs it, leveraging standard input and output based on method of invocation.
@@ -63,6 +63,13 @@ In which case INPUT (or whatever it is that is piped to TTTT) shall get treated 
 2. CODE in case no explicit code was specified to TTTT (such as with -c or -fc arguments)
 
 And since TEA CODE can also carry its own data (as with the i:, w: and creative use of v:, x:, z: and other input containers or importing commands), this input could be either or both the DATA and CODE - note that with the e: command, data can become TEA code! When in doubt about what is going on in any of the above cases, or with any TTTT invocation, just pass the `-d` DEBUG flag to the TEA interpreter, and it shall display detailed, helpful information about what TTTT considers to be the TEA CODE, DATA, and the internal state of the run-time before during and after execution of each instruction in the TEA program. 
+
+### CLI with No-GUI?
+
+After noticing some unexplainable mysterious problems on systems like Windows when trying to work with the Py/TK GUI widgets that we leverage in CLI/Command-Line TEA, it was decided to add a means to help existing TEA GUI (i\*:) programs run normally as though the non-GUI INTERACT (i:) command was being utilized. Thus this addition of the `-ng` or `--no-gui` flag, which can be combined with any other flag and can work on any TEA program whether or not it was meant to use the gui features
+or not. Essentially, just add it to your CLI TEA invocation as such:
+
+> tttt -ng [other params...]
 
 
 Try tttt -h or man tttt for more, or go read the official TEA documentation manual: 

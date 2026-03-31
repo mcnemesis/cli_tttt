@@ -676,6 +676,13 @@ In which case whatever is passed to TTTT, such as the contents of FILE, is treat
 
 When in doubt about what is going on in any of the above cases, or with any TTTT invocation, just pass the `-d` DEBUG flag to the TEA interpreter, and it shall display detailed, helpful information about what TTTT considers to be the TEA CODE, DATA, and the internal state of the run-time before during and after execution of each instruction in the TEA program. An example debugging session in TEA is shown below...
 
+### CLI with No-GUI?
+
+After noticing some unexplainable mysterious problems on systems like Windows when trying to work with the Py/TK GUI widgets that we leverage in CLI/Command-Line TEA, it was decided to add a means to help existing TEA GUI (i\*:) programs run normally as though the non-GUI INTERACT (i:) command was being utilized. Thus this addition of the `-ng` or `--no-gui` flag, which can be combined with any other flag and can work on any TEA program whether or not it was meant to use the gui features
+or not. Essentially, just add it to your CLI TEA invocation as such:
+
+> tttt -ng [other params...]
+
 
 ![tea_dump](sample_TEA_programs/highlights/tea_test_dump.png)
 

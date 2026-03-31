@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.3.8"
+VERSION = "1.4.3"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -84,18 +84,20 @@ class TEA_RunTime:
     OBSCURE_RC_TID = "=TID=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TID="
     OBSCURE_RC_TIPED = "=TIPED=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=TIPED="
     OBSCURE_RC_STR_DEL1 = "=STR_DEL1=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL1="
+    OBSCURE_RC_STR_DEL2 = "=STR_DEL2=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL2="
+    OBSCURE_RC_STR_DEL3 = "=STR_DEL3=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=_=STR_DEL3="
     STR_DEL1 = '"'
+    STR_DEL2 = '{'
+    STR_DEL3 = '}'
     TID = "|"
-    #NL = "\n"
     NL = os.linesep
     COMH = "#"
     TCD = ":"
     TIPED = ":"
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
-    RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?:.*(:.*)*\|?)+(#.*)*'
-    #RETI = r'[ ]*?[a-zA-Z]\.?\*?!?:.*?'
-    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
+    RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -111,7 +113,21 @@ class TEA_RunTime:
 
 # Function to replace newlines with OBSCURE Pattern
     def maskTEASTRING(self, mObj):
-        return mObj.group().replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1)
+        substr = mObj.group()
+        if substr.startswith("{") and substr.endswith("}"):
+            substr = substr[1:]
+            substr = substr[:-1]
+            substr = substr.replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1).replace('{',self.OBSCURE_RC_STR_DEL2).replace('}',self.OBSCURE_RC_STR_DEL3)
+            return "{" + substr + "}"
+        if substr.startswith("\"") and substr.endswith("\""):
+            substr = substr[1:]
+            substr = substr[:-1]
+            substr = substr.replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1).replace('{',self.OBSCURE_RC_STR_DEL2).replace('}',self.OBSCURE_RC_STR_DEL3)
+            return "\"" + substr + "\""
+        return substr.replace('\n', self.OBSCURE_RC_NL).replace('#',self.OBSCURE_RC_COM).replace('|',self.OBSCURE_RC_TID) .replace(':',self.OBSCURE_RC_TIPED).replace('"',self.OBSCURE_RC_STR_DEL1).replace('{',self.OBSCURE_RC_STR_DEL2).replace('}',self.OBSCURE_RC_STR_DEL3)
+
+
+
 
 # Clean TEA CODE:
 # Essentially, eliminate all TEA Opaque Lines:
@@ -150,7 +166,10 @@ class TEA_RunTime:
         if TEA_RunTime.DEBUG:
             # reverse string masking...
             _tsrc_til_only_show = [l.
-                    replace(self.OBSCURE_RC_NL,self.NL)
+                    replace(self.OBSCURE_RC_STR_DEL1,self.STR_DEL1)
+                    .replace(self.OBSCURE_RC_STR_DEL2,self.STR_DEL2)
+                    .replace(self.OBSCURE_RC_STR_DEL3,self.STR_DEL3)
+                    .replace(self.OBSCURE_RC_NL,self.NL)
                     .replace(self.OBSCURE_RC_COM,self.COMH)
                     .replace(self.OBSCURE_RC_TID,self.TID) for l in _tsrc_til_only]
             #print(f"##{len(_tsrc_til_only_show)} of {(_tsrc_til_only_show)}")
@@ -164,15 +183,19 @@ class TEA_RunTime:
 
     # reverse TEA String Masking
     def unmask_str(self, val):
-        return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1)
+        return val.replace(TEA_RunTime.OBSCURE_RC_NL,TEA_RunTime.NL).replace(TEA_RunTime.OBSCURE_RC_COM,TEA_RunTime.COMH).replace(TEA_RunTime.OBSCURE_RC_TID,TEA_RunTime.TID).replace(TEA_RunTime.OBSCURE_RC_TIPED,TEA_RunTime.TIPED).replace(TEA_RunTime.OBSCURE_RC_STR_DEL1,TEA_RunTime.STR_DEL1).replace(TEA_RunTime.OBSCURE_RC_STR_DEL2,TEA_RunTime.STR_DEL2).replace(TEA_RunTime.OBSCURE_RC_STR_DEL3,TEA_RunTime.STR_DEL3)
+
+
 
     # Extract a string from a TEA expression
     def extract_str(self, val):
         if val.startswith("{") and val.endswith("}"):
-            val = val.lstrip("{").rstrip("}")
+            val = val[1:]
+            val = val[:-1]
             return self.unmask_str(val)
         if val.startswith("\"") and val.endswith("\""):
-            val = val.lstrip("\"").rstrip("\"")
+            val = val[1:]
+            val = val[:-1]
             return self.unmask_str(val)
         return self.unmask_str(val)
 
@@ -249,6 +272,7 @@ class TEA_RunTime:
         STDINPUT = None
         STDIN_AS_CODE = False
         VAULTS = {}
+        self.HTTP_HEADERS = {} # to hold custom http headers
         # we shall store label block pointers as such:
         #    label_name: label_position + 1
         #    such that, jumping to label_name allows us to
@@ -669,7 +693,13 @@ class TEA_RunTime:
                         query_string = urllib.parse.urlencode(data)
                         full_url = f"{url}?{query_string}"
 
-                with urllib.request.urlopen(full_url) as response:
+                request = urllib.request.Request(full_url, method='GET')
+
+                # in case there are custom http headers, also apply them
+                for hNAME in self.HTTP_HEADERS:
+                    request.add_header(hNAME, self.HTTP_HEADERS[hNAME])
+
+                with urllib.request.urlopen(request) as response:
                     # Read the content and decode it to a string
                     result = response.read().decode('utf-8')
             except Exception as error:
@@ -677,6 +707,43 @@ class TEA_RunTime:
                 if not no_recurse:
                     _result = util_web_get(util_fix_url(url), data=data, no_recurse=True)
 
+                if _result is not None:
+                    result = _result
+                else:
+                    result = f"[ERROR]: {error}"
+            #return result.strip() if result is not None else result
+            return result
+
+
+        def util_web_post_data(url, data=None, no_recurse=False):
+            result = None
+            try:
+                request = None
+                encoded_data = None
+
+                if isinstance(data, str):
+                    encoded_data = data.encode("utf-8")
+                    request = urllib.request.Request(url, data=encoded_data, method='POST')
+                else:
+                    self.debug(f"[DATA ERROR] Expected String Data, Got {data}")
+                    raise ValueError(f"[DATA ERROR] Expected String Data, Got {data}")
+
+                # in case there are custom http headers, also apply them
+                for hNAME in self.HTTP_HEADERS:
+                    request.add_header(hNAME, self.HTTP_HEADERS[hNAME])
+
+                # only set Explicity Content-Type iff it wasn't already included
+                if not ("Content-Type" in self.HTTP_HEADERS):
+                    request.add_header('Content-Type', 'application/json')
+
+                with urllib.request.urlopen(request) as response:
+                    # Read the content and decode it to a string
+                    result = response.read().decode('utf-8')
+
+            except Exception as error:
+                _result = None
+                if not no_recurse:
+                    _result = util_web_post_data(util_fix_url(url), data=data, no_recurse=True)
                 if _result is not None:
                     result = _result
                 else:
@@ -693,13 +760,16 @@ class TEA_RunTime:
 
                 if isinstance(data, dict):
                     encoded_data = urllib.parse.urlencode(data).encode('utf-8')
+                    request = urllib.request.Request(url, data=encoded_data, method='POST')
                 else:
                     encoded_data = data.encode('utf-8') if data else None
                     request = urllib.request.Request(url, data=encoded_data, method='POST')
                     # Set the appropriate header for form data
                     request.add_header('Content-Type', 'application/x-www-form-urlencoded')
 
-                request = urllib.request.Request(url, data=encoded_data)
+                # in case there are custom http headers, also apply them
+                for hNAME in self.HTTP_HEADERS:
+                    request.add_header(hNAME, self.HTTP_HEADERS[hNAME])
 
                 with urllib.request.urlopen(request) as response:
                     # Read the content and decode it to a string
@@ -1324,6 +1394,13 @@ class TEA_RunTime:
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
+            # FALLBACK to i: if NO_GUI flag was set.. (see above)
+            if TEA_RunTime.NO_GUI:
+                if tc == "I*":
+                    tc = "I"
+                elif tc == "I*!":
+                    tc = "I!"
+
             if tc == "I":
                 if len(tpe_str) == 0:
                     # implements interactivity in TEA: displays io as prompt, sets user-input as io
@@ -1338,6 +1415,7 @@ class TEA_RunTime:
                     io = tpe_str
 
             # BEGIN I*-TEA GUI extension: powered by Python/TK/TCL
+            # FALLBACK to i: if NO_GUI flag was set.. (see above)
             if tc == "I*":
                 import tkinter as tk
                 from tkinter import simpledialog
@@ -1758,7 +1836,7 @@ class TEA_RunTime:
                     params = tpe_str.split(TEA_RunTime.TIPED)
                     if len(params) == 1:
                         size = self.extract_str(params[0])
-                        io = util_gen_rand_string(size=int(float(size_)))
+                        io = util_gen_rand_string(size=int(float(size)))
                     elif len(params) == 2:
                         size = self.extract_str(params[0])
                         glue = self.extract_str(params[1])
@@ -2475,6 +2553,9 @@ class TEA_RunTime:
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
+            # show current custom HTTP header state...
+            self.debug(f"PRIOR CUSTOM HTTP HEADERS: {self.HTTP_HEADERS}")
+
             if tc == "W":
                 if len(tpe_str) == 0:
                     URL = io
@@ -2540,6 +2621,49 @@ class TEA_RunTime:
 
                     webRESULT = util_web_post(URL, data=data)
                     return webRESULT if webRESULT is not None else TEA_RunTime.EMPTY_STR
+
+            if tc == "W*@":
+                if len(tpe_str) == 0:
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                else:
+                    data = io
+                    params = tpe_str.split(TEA_RunTime.TIPED)
+                    if len(params) == 1:
+                        URL = vault_get(self.extract_str(params[0]))
+                    else:
+                        URL = vault_get(self.extract_str(params[0]))
+                        data = vault_get(self.extract_str(params[1]))
+
+                    webRESULT = util_web_post_data(URL, data=data)
+                    return webRESULT if webRESULT is not None else TEA_RunTime.EMPTY_STR
+
+            if tc == "W*.":
+                if len(tpe_str) == 0:
+                    # set all current vaults as http headers..
+                    for vNAME in VAULTS:
+                        self.HTTP_HEADERS[vNAME] = VAULTS[vNAME]
+                else:
+                    # set only specified vaults as http headers...
+                    params = tpe_str.split(TEA_RunTime.TIPED)
+                    for vNAME in params:
+                        self.HTTP_HEADERS[vNAME] = vault_get(self.extract_str(vNAME))
+
+                # show resultant custom HTTP header state...
+                self.debug(f"UPDATED CUSTOM HTTP HEADERS: {self.HTTP_HEADERS}")
+
+            if tc == "W*!.":
+                if len(tpe_str) == 0:
+                    # delete all current http headers..
+                    self.HTTP_HEADERS = {}
+                else:
+                    # only delete specified http headers...
+                    params = tpe_str.split(TEA_RunTime.TIPED)
+                    for vNAME in params:
+                        self.HTTP_HEADERS.pop(self.extract_str(vNAME), None) #safe deletion
+
+                # show resultant custom HTTP header state...
+                self.debug(f"UPDATED CUSTOM HTTP HEADERS: {self.HTTP_HEADERS}")
 
             return io
 
@@ -2794,12 +2918,16 @@ class TEA_RunTime:
             group_c.add_argument("-c", "--code", type=str, help="use CODE as TEA program")
             group_c.add_argument("-fc", "--code-file", type=str, help="read TEA program from CODE_FILE")
 
+            parser.add_argument("-ng", "--no-gui", help="Force No-GUI in CLI-TEA", action="store_true")
+
             parser.add_argument("-v", "--version", help="Show current TEA/TTTT version", action="version",
                     version='%(prog)s '+ f"{VERSION} | TEA HOME: {TEA_HOMEPAGE}")
 
             args = parser.parse_args()
 
             TEA_RunTime.DEBUG = True if args.debug else False # allow user to toggle debugging
+
+            TEA_RunTime.NO_GUI = True if args.no_gui else False # allow to render Py/TK GUIs for CLI-TEA via i*:
 
             if args.code:
                 CODE = args.code

@@ -7,8 +7,8 @@
 tttt - The TEA language interpreter
 .SH SYNOPSIS
 .PP
-\f[B]tttt\f[R] [-h] [-d] [-i INPUT | -fi INPUT_FILE] [-c CODE | -fc
-CODE_FILE] [-v]
+\f[B]tttt\f[R] [-h] [-d] [-ng] [-i INPUT | -fi INPUT_FILE] [-c CODE |
+-fc CODE_FILE] [-v]
 .SH DESCRIPTION
 .PP
 \f[B]tttt\f[R] accepts any valid TEA program or script, and runs it,
@@ -103,6 +103,21 @@ just pass the \f[C]-d\f[R] DEBUG flag to the TEA interpreter, and it
 shall display detailed, helpful information about what TTTT considers to
 be the TEA CODE, DATA, and the internal state of the run-time before
 during and after execution of each instruction in the TEA program.
+.SS CLI with No-GUI?
+.PP
+After noticing some unexplainable mysterious problems on systems like
+Windows when trying to work with the Py/TK GUI widgets that we leverage
+in CLI/Command-Line TEA, it was decided to add a means to help existing
+TEA GUI (i*:) programs run normally as though the non-GUI INTERACT (i:)
+command was being utilized.
+Thus this addition of the \f[C]-ng\f[R] or \f[C]--no-gui\f[R] flag,
+which can be combined with any other flag and can work on any TEA
+program whether or not it was meant to use the gui features or not.
+Essentially, just add it to your CLI TEA invocation as such:
+.RS
+.PP
+tttt -ng [other params\&...]
+.RE
 .PP
 Try tttt -h or man tttt for more, or go read the official TEA
 documentation manual:
