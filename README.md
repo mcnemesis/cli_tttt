@@ -147,12 +147,12 @@ Let us quickly look at some interesting highlights of TEA programming...
 - **Hello World in TEA?**
 
 ```python
-i:Hello World
+i!:Hello World
 ```
 A more involved Hello World, that for example greets someone with the user-provided name is written as such:
 
 ```python
-i:{What is your name please? }|i:|x:{Hello }
+i!:{What is your name please? }|i:|x:{Hello }
 ```
 
 ![tea hw](sample_TEA_programs/highlights/tea_hw.png)
@@ -160,7 +160,7 @@ i:{What is your name please? }|i:|x:{Hello }
 To learn more about the TEA syntax and the semantics of each of the 26 TEA A: to Z: primitives, definitely checkout [**The TAZ**](docs/). We might for example re-write the above program as such:
 
 ```python
-i:{What is your name please? }
+i!:{What is your name please? }
 i:
 x:{Hello }
 ```
@@ -180,7 +180,7 @@ Some sample outputs...
 - **Implementing ART in TEA:** [rCHURCHY City SKYLINE Example](sample_TEA_programs/rchurchy_city_skyline_generator.tea)
 
 ```python
-i:123456789 0
+i!:123456789 0 #s-set
 a!:
 r:[2357]:0 987654321
 a!:
@@ -244,7 +244,7 @@ This example not only demonstrates all the tricky aspects of a TEA program, howe
 # Example Web API Client program in TEA
 # simply performs HTTP post of all data in 
 # vaults to specified URL endpoint..
-v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:
+v:A:123|v:vTest:{some value}|i:https://httpbin.org/get|w*:
 ```
 
 That simple example returns the following:
@@ -274,7 +274,8 @@ f!:^$:lPROCESS # don't prompt if there's already some input
 i!:Enter some text: |i:
 l:lPROCESS
 v:vIN
-r*!:vIN:.:-
+v:vP:.|v:vS:-
+r*!:vIN:vP:vS
 x:--|x!:--
 v:vBTOP
 v:vSTART:
@@ -471,7 +472,7 @@ The only simple way to come to appreciate TEA and ZHA, one of the best examples 
 
 **UPDATE:**
 
-So, due to popular demand, ZHA has already seen a terrific improvement since it was first released! We now have **ZHA v1.0.1**, and we can see its improved output in the screenshot below, in which session a one hacker not belonging to the famous 'LulzSec' holds a conversation with a PRESIDENT concerning a central bank that was hacked not so far back! Hahaha... check it out, and the code for the new ZHA as well!
+So, due to popular demand, ZHA has already seen a terrific improvement since it was first released! We now have **ZHA v1.0.3**, and we can see its improved output in the screenshot below, in which session a one hacker not belonging to the famous 'LulzSec' holds a conversation with a PRESIDENT concerning a central bank that was hacked not so far back! Hahaha... check it out, and the code for the new ZHA as well!
 
 
 ![zha sample 3](sample_TEA_programs/highlights/zha3.png)
@@ -480,7 +481,7 @@ So, due to popular demand, ZHA has already seen a terrific improvement since it 
 ```python
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
-# ZHA: Zee Hacker Assistant (v.1.0.1) | MAR,'25
+# ZHA: Zee Hacker Assistant (v.1.0.3) | MAR,'26
 #----------------------------------------------|
 # based off of TEAPAT: TEA Personal AssistanT:
 # ref: https://doi.org/10.20944/preprints202502.1849.v1
@@ -493,12 +494,12 @@ So, due to popular demand, ZHA has already seen a terrific improvement since it 
 ###############################################|
 
 #show welcome message
-v:vORIN
-v:vWELCOME:{■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-■■■■■ *:{~} ZHA v1.0.1 ■■■■■■■-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-welcome to the future of chat_-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■--}
-h*!:vWELCOME:-
+v:vWELCOME:{■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-■■■■■ *:{~} ZHA v1.0.3 ■■■■■■■-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-welcome to the future of chat_-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■--}
+v:vREG:-|h*!:vWELCOME:vREG
 d:-|i:
 
-y:vORIN # continue...
+# use externally set name?
+y*: | t!.:
 
 # set entity name
 v:vPANAME:{ZHA}
