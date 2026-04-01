@@ -4168,12 +4168,12 @@ For those familiar with how the idea of intelligence might be approached in matt
  %\begin{figure}[H]
  {
  \small
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZEE HACKER ASSISTANT v1.0.2, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZEE HACKER ASSISTANT v1.0.3, breakable]
   %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
   \begin{lstlisting}[language=TEA,breaklines=true]
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
-# ZHA: Zee Hacker Assistant (v.1.0.2) | SEPT,'25
+# ZHA: Zee Hacker Assistant (v.1.0.3) | MAR,'26
 #----------------------------------------------|
 # based off of TEAPAT: TEA Personal AssistanT:
 # ref: https://doi.org/10.20944/preprints202502.1849.v1
@@ -4186,12 +4186,17 @@ For those familiar with how the idea of intelligence might be approached in matt
 ###############################################|
 
 #show welcome message
-v:vORIN
-v:vWELCOME:"##############################-##### *:{~} ZHA v1.0.2 #######-##############################-welcome to the future of chat_-##############################--"
-v:vREG:-|h*!:vWELCOME:vREG
-d:-|i:
+v:vWELCOME:"##############################
+##### *:{~} ZHA v1.0.3 #######
+##############################
+welcome to the future of chat_
+u'll specify who to talk to
+or default input shall be used.
+##############################"
+y:vWELCOME | i:
 
-y:vORIN # continue...
+# use externally set name?
+y*: | t!.:
 
 # set entity name
 v:vPANAME:{ZHA}
@@ -4294,7 +4299,7 @@ l:lNoQA
 | j:lPROMPT # and loop
    \end{lstlisting}
   \end{tcolorbox}
-    \captionof{figure}{TEA APPLICATION: ZEE HACKER ASSISTANT v1.0.2}
+    \captionof{figure}{TEA APPLICATION: ZEE HACKER ASSISTANT v1.0.3}
   \label{FIGF}
   \vspace{1cm}
 
@@ -4304,7 +4309,7 @@ l:lNoQA
  \raggedright %force normal/left-alignment  
   
  
- \textbf{\hyperref[FIGF]{Figure \ref{FIGF}}} covers what \textbf{ZHA v1.0.2} is, and an interested person could go read the code, modify or run it directly and live via:
+ \textbf{\hyperref[FIGF]{Figure \ref{FIGF}}} covers what \textbf{ZHA v1.0.3} is, and an interested person could go read the code, modify or run it directly and live via:
   
   
 \vspace{1em}
@@ -16110,17 +16115,17 @@ Especially because in TEA we do not have room to deal with bloated low-level alg
 \subsubsection{TEA E-EMAILER Source Code}
 
 
-The basic application is going to be called \textbf{E-MAILER}, and the essential, fully-tested source-code for version 1.5 of our next standard TEA application is as such:
+The basic application is going to be called \textbf{E-MAILER}, and the essential, fully-tested source-code for version 1.6 of our next standard TEA application is as such:
 
 \vspace{2em}
 
 {
  \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1.5, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1.6, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-#/usr/bin/env tttt -fc
+#!/usr/bin/tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1.5 |@@@@@@
+v:vABOUT:{@@@@@@| E-MAILER v1.6 |@@@@@@
 Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf, in collaboration with Austrian AHASend... Since 2026}
 #######################################
 # Copyright 2026 Fut. Prof. JWL, 
@@ -16131,7 +16136,7 @@ Is a basic solution that enables you to readily send an email over the Internet 
 v:vEmailerFooter:{
 
 @@@@@@[
- Sent using TEA E-Mailer v1.5 
+ Sent using TEA E-Mailer v1.6 
 ]@@@@@@}
 # first, store input user might have provided from outside this program
 y*: | v:vExternalText
@@ -16167,8 +16172,9 @@ y:vABOUT|i*:
 #check if we already have the email message, otherwise prompt..
 
 l:lPROMPTBody
-y:vMailBody|t!.:
-f!:^$:lHASBody
+# test for body using cardinality [regex] test instead of regex on potentially problematic text..
+y:vMailBody|t!.:|v:|y!:
+f!:^0$:lHASBody
 y:vPROMPTBody | i*: | t!.: | v:vMailBody 
 f:^$:lPROMPTBody:lHASBody
 
@@ -16223,7 +16229,7 @@ v:vMENU_ACTION:{
 
 g*:{}:vS:vMailSubject:vDELIM:vT:vMailTo:vDELIM:vF:vMailFrom:vDELIM:vMailBody | v:vEMAILPreview
 
-g*!:vNL:vPREAMBLE:vEMAILPreview:vMENU_ACTION | v:vPREVIEW_PROMPT
+g*!:vNL:vMENU_ACTION:vDELIM:vPREAMBLE:vDELIM:vEMAILPreview | v:vPREVIEW_PROMPT
 
 l:lPromptAction
 # present what we have...
@@ -16261,10 +16267,24 @@ x!:{"to": [{"email": "}| x*!:vMailTo | x!:{"}],}
 # We might also configure explicit reply-to address??
 # (exploring e-email routing options that is... )
 x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
-x!:{"reply-to": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+x!:{"reply_to": {"email": "}| x*!:vMailFrom | x!:{"},}
 # the rest of the parameters...
 x!:{"subject":"}| x*!:vMailSubject | x!:{",}
-x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
+x!:{"text_content":"}|
+
+#we shall want to ensure we string-escape this value first..
+
+v: #store current Payload in default vault
+
+y:vMailBody | r!:{"}:{\"} | v:vMailBody_esc
+
+# continue building payload...
+
+y:
+
+x*!:vMailBody_esc 
+
+| x!:{"} | x!:"}"
 v:vJSON_EMAILPayload
 
 # FIX: found that most JSON validators can't accept literal new-lines
@@ -16297,7 +16317,7 @@ v:vMailBody:{}
 j:lRESET
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA APPLICATION: E-MAILER v1.5 --- a simple and special E-Mail sending client written using the TEA language}
+  \caption{TEA APPLICATION: E-MAILER v1.6 --- a simple and special E-Mail sending client written using the TEA language}
   \label{FIGWAPP1}
 }
 
@@ -16325,7 +16345,7 @@ Moreover, we are using a somewhat commercial and and still unfamiliar/under-deve
 
 \begin{enumerate}
 \item First, most standard E-Mail security protocols are strict about how SMTP services can be utilized; generally, sending emails via anonymous servers is restricted or flagged as SPAM, and most WEB APIs for email sending would not allow that.
-\item To work-around such restrictions, we implemented our own email sending endpoint via \texttt{https://utility.nuchwezi.com/sendemail} that somewhat accepts a payload aligned with AHASend's v2 payloads for the \textbf{conversational messaging} --- such that, instead of allowing our users to directly send as any email address they wish, we instead send on their behalf (as \texttt{noreply@nuchwezi.com}), and instead use their \textbf{TO} and \textbf{FROM} as the \textbf{to} and \textbf{cc} of our AHASend payload. Works pretty well, and is less likely to be abused or flagged as SPAM.\footnote{In retrospect, we figured that this somewhat is an experimental security fall-back to option, and that in the future, we might  decide to instead go ahead and allow to set user provided FROM and TO parameters as is. Gives the best user-experience, but might be readily abused... we shall need to study use-case further. Also, this might call for a switch of the e-mail routing provider --- meaning, we either implement our own SMTP (\textbf{Simple Mail Transfer Protocol}) processors as part of say the utility.nuchwezi.com service, or perhaps use another provider other than the European/Austrian AhaSend.com}
+\item To work-around such restrictions, we implemented our own email sending endpoint via \texttt{https://utility.nuchwezi.com/sendemail} that somewhat accepts a payload aligned with AHASend's v2 payloads for the \textbf{conversational messaging} --- such that, instead of allowing our users to directly send as any email address they wish, we instead send on their behalf (as \texttt{noreply@nuchwezi.com}), and instead use their \textbf{TO} and \textbf{FROM} as the \textbf{to} and \textbf{cc} of our AHASend payload. Also, starting with Emailer v1.6, we use the AhaSend v2 API parameter ``reply\_to", to use the user's FROM address as the \textbf{REPLY-TO} for the email we send, so that, even though we actually use our \texttt{noreply@nuchwezi.com} to send the email, the recipient can readily click ``Reply" in their email client, and it will work just as usual --- the response shall directly address the correct destination address and not our service address. Overall works pretty well, and is less likely to be abused or flagged as SPAM.\footnote{Tests have proven that this service is quite reliable, and that we might never need to implement our own SMTP (\textbf{Simple Mail Transfer Protocol}) processors as part of say the utility.nuchwezi.com service, nor switch to another provider other than the European/Austrian AhaSend.com}
 \item The E-Mailer service then pretty-formats the out-going message, so that it contains some indication of where (EMAILER-footer message) it was sent from.
 \end{enumerate}
 
@@ -16612,7 +16632,7 @@ The essential source code of this TEA program is as such:
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: Free Dictionary | LEXICON v1, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-#!/usr/bin/env tttt -fc
+#!/usr/bin/tttt -fc
 v:vABOUT:{
 *****************************
 FREE LEXICON v1
@@ -16822,7 +16842,7 @@ Those two anomalies, very telling and most likely originating outside of TEA or 
 \vspace{2em}
 
 \begin{enumerate}
-\item It prevents the usual TEA GUI from being presented when the program detects we are running TEA on the command-line. Essentially, all calls to \texttt{i*:} are merely swapped with calls to \texttt{i:}
+\item It prevents the usual TEA GUI from being presented when the program is being on the command-line. Essentially, all calls to \texttt{i*:} are merely swapped with calls to \texttt{i:}
 \item It forces all WEBIFY calls to be made using a different User-Agent than the default --- in this case, we detect if we are on the command-line, and then force HTTP calls to use the curl User-Agent header.
 \end{enumerate}
 
@@ -16834,21 +16854,21 @@ With those changes made, the final program --- still able to work as is on both 
 
    \vspace{1em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: Free Dictionary | LEXICON v2, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Application: Free Dictionary | LEXICON v3, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-#!/usr/bin/env tttt -fc
+#!/usr/bin/tttt -fc
 v:vABOUT:{
 *****************************
-FREE LEXICON v2
+FREE LEXICON v3
 *****************************
 Use this app to simply look-up terms or build a list of definitions.
-It is based on Dictionary API that mostly focuses on standard terms, 
-thus, some queries might have no resolutions or there might be service outages.
-Sometimes try-again if a definition failed to load. Feel free to proceed...}
+It is based on Dictionary API that mostly focuses on standard terms, thus, some queries might have no resolutions. Feel free to proceed...}
 
 # Windows/Microsoft could be under-attack (noticed while testing this app)
-# thus this [hack-proof] version
-# otherwise, original minimal version of TEA LEXICON v1 is at:
+# thus this [hack-proof] version that forces all interact commands to use 
+# i: and not i*: so that for command-line TEA, we need not use any GUI 
+# (thus no Py/Tk widgets)
+# otherwise, original version of TEA LEXICON v1 is at:
 # https://gist.github.com/mcnemesis/6bb975c3051bd0b9ebece8c5a73ce336
 
 ---[ CONSTANTS ]
@@ -16873,22 +16893,11 @@ v:vQUERY:{} # what to define
 v:vLIST_RESULTS:{}
 
 ---[ INTRO ]
-# generally, use no gui-for CLI environments 
-# (noticed some issues with underlying Py/TK for CLI-TEA)
-y:vENVIRONMENT | f!:CLI:lNCLI1
-y:vABOUT | i: | j:lDONE1
-l:lNCLI1
-y:vABOUT | i*:
-l:lDONE1
+y:vABOUT | i:
 
 ---[ MENU ]
 l:lQUERY_PROMPT
-
-y:vENVIRONMENT | f!:CLI:lNCLI2
-y:vQUERY_PROMPT | i: | t.!: | v:vQUERY | j:lDONE2
-l:lNCLI2
-y:vQUERY_PROMPT | i*: | t.!: | v:vQUERY 
-l:lDONE2
+y:vQUERY_PROMPT | i: | t.!: | v:vQUERY
 
 ---[ PROCESS ]
 y:vQUERY | f:^$:lQUERY_PROMPT
@@ -16907,12 +16916,12 @@ v:User-Agent:curl/7.68.0
 w*.:User-Agent
 
 l:lNCLI
+
 # then make call..
 w*:vURL
 
 v:vAPI_RESULTS # store result from API
 
-# process api output...
 h!:,
 k:definition
 h!::
@@ -16932,12 +16941,7 @@ v:vPRESENT_DEFINITION
 g*!:vNL:vDELIM:vPRESENT_QUERY:vPRESENT_DEFINITION
 v:vANSWER
 
-y:vENVIRONMENT | f!:CLI:lNCLI3
-y:vANSWER | i: # present current definition... j:lDONE3
-l:lNCLI3
-y:vANSWER | i*:
-l:lDONE3
-
+i: # present current definition...
 
 g*!:vNL:vLIST_RESULTS:vANSWER | v:vLIST_RESULTS # store defn
 
@@ -16958,7 +16962,7 @@ l:lNPROC2
 j:lQUERY_PROMPT
    \end{lstlisting}
   \end{tcolorbox}
-      \captionof{figure}{TEA Program Source-Code: Free Dictionary | LEXICON v2 --- addressing noticed environment glitches for CLI}
+      \captionof{figure}{TEA Program Source-Code: Free Dictionary | LEXICON v3 --- addressing noticed environment glitches for CLI}
   \label{FIGTEALEXICONv2}
 
 \vspace{1em}

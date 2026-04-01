@@ -1,0 +1,88 @@
+#!/usr/bin/env tttt -fc
+v:vABOUT:{
+*****************************
+FREE LEXICON v1
+*****************************
+Use this app to simply look-up terms or build a list of definitions.
+It is based on Dictionary API that mostly focuses on standard terms, thus, some queries might have no resolutions. Feel free to proceed...}
+
+---[ CONSTANTS ]
+v:vFOOTER:{PROCESSED VIA FREE LEXICON @ tea.nuchwezi.com}
+v:vDELIM:*****************************
+v:vQUERY_PROMPT:{Enter Word or Phrase to Look-Up:}
+v:vNL:{
+}
+v:vPREFIX_QUERY:{QUERY: }
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+v:vMENU_NEXT:{PICK next ACTION > 
+1: Return last definition + Quit
+2: Return all definitions + Quit
+3: Process Next Query (default)}
+
+---[ VARIABLES ]
+v:vQUERY:{} # what to define
+v:vLIST_RESULTS:{}
+
+---[ INTRO ]
+y:vABOUT | i*:
+
+---[ MENU ]
+l:lQUERY_PROMPT
+y:vQUERY_PROMPT | i*: | t.!: | v:vQUERY
+
+---[ PROCESS ]
+y:vQUERY | f:^$:lQUERY_PROMPT
+
+x*:vPREFIX_QUERY:vQUERY
+v:vPRESENT_QUERY
+
+# dictionary api requires call of format:
+# https://api.dictionaryapi.dev/api/v2/entries/en/<term>
+v:vURL:https://api.dictionaryapi.dev/api/v2/entries/en/
+x*:vURL:vQUERY | v:vURL # update url
+
+# then make call..
+w*:vURL
+
+v:vAPI_RESULTS # store result from API
+
+h!:,
+k:definition
+h!::
+k!:{"definitions"|"definition"}
+r!:{:"}:{->}
+r!:{."}:{.}
+v:vDEFINITIONS
+
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+
+x*:vPREFIX_DEFINITIONS:vDEFINITIONS 
+v:vPRESENT_DEFINITION
+
+---[ PRESENT ]
+g*!:vNL:vDELIM:vPRESENT_QUERY:vPRESENT_DEFINITION
+v:vANSWER
+
+i*: # present current definition...
+
+g*!:vNL:vLIST_RESULTS:vANSWER | v:vLIST_RESULTS # store defn
+
+---[ FINISH ]
+g*!:vNL:vNL:vDELIM:vFOOTER | v:vUSE_FOOTER
+
+y:vMENU_NEXT | i*: | t.!: | v:vOPT
+f!:^[123]$:lQUERY_PROMPT
+
+f!:1:lNPROC1
+y:vANSWER | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC1
+f!:2:lNPROC2
+y:vLIST_RESULTS | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC2
+j:lQUERY_PROMPT

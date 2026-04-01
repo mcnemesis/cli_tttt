@@ -1,0 +1,120 @@
+#!/usr/bin/env tttt -fc
+v:vABOUT:{
+*****************************
+FREE LEXICON v2
+*****************************
+Use this app to simply look-up terms or build a list of definitions.
+It is based on Dictionary API that mostly focuses on standard terms, 
+thus, some queries might have no resolutions or there might be service outages.
+Sometimes try-again if a definition failed to load. Feel free to proceed...}
+
+---[ CONSTANTS ]
+v:vFOOTER:{PROCESSED VIA FREE LEXICON @ tea.nuchwezi.com}
+v:vDELIM:*****************************
+v:vQUERY_PROMPT:{Enter Word or Phrase to Look-Up:}
+v:vNL:{
+}
+v:vPREFIX_QUERY:{QUERY: }
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+v:vMENU_NEXT:{PICK next ACTION > 
+1: Return last definition + Quit
+2: Return all definitions + Quit
+3: Process Next Query (default)}
+# shall want to know where program is being run from
+z.:PLATFORM | v:vENVIRONMENT
+
+---[ VARIABLES ]
+v:vQUERY:{} # what to define
+v:vLIST_RESULTS:{}
+
+---[ INTRO ]
+# generally, use no gui-for CLI environments 
+# (noticed some issues with underlying Py/TK for CLI-TEA)
+y:vENVIRONMENT | f!:CLI:lNCLI1
+y:vABOUT | i: | j:lDONE1
+l:lNCLI1
+y:vABOUT | i*:
+l:lDONE1
+
+---[ MENU ]
+l:lQUERY_PROMPT
+
+y:vENVIRONMENT | f!:CLI:lNCLI2
+y:vQUERY_PROMPT | i: | t.!: | v:vQUERY | j:lDONE2
+l:lNCLI2
+y:vQUERY_PROMPT | i*: | t.!: | v:vQUERY 
+l:lDONE2
+
+---[ PROCESS ]
+y:vQUERY | f:^$:lQUERY_PROMPT
+
+x*:vPREFIX_QUERY:vQUERY
+v:vPRESENT_QUERY
+
+# dictionary api requires call of format:
+# https://api.dictionaryapi.dev/api/v2/entries/en/<term>
+v:vURL:https://api.dictionaryapi.dev/api/v2/entries/en/
+x*:vURL:vQUERY | v:vURL # update url
+
+# we shall want to pretend we are curl if in CLI-TEA
+y:vENVIRONMENT | f!:CLI:lNCLI
+v:User-Agent:curl/7.68.0
+w*.:User-Agent
+
+l:lNCLI
+# then make call..
+w*:vURL
+
+v:vAPI_RESULTS # store result from API
+
+# process api output...
+h!:,
+k:definition
+h!::
+k!:{"definitions"|"definition"}
+r!:{:"}:{->}
+r!:{."}:{.}
+v:vDEFINITIONS
+
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+
+x*:vPREFIX_DEFINITIONS:vDEFINITIONS 
+v:vPRESENT_DEFINITION
+
+---[ PRESENT ]
+g*!:vNL:vDELIM:vPRESENT_QUERY:vPRESENT_DEFINITION
+v:vANSWER
+
+y:vENVIRONMENT | f!:CLI:lNCLI3
+y:vANSWER | i: | j:lDONE3 # present current definition... 
+l:lNCLI3
+y:vANSWER | i*:
+l:lDONE3
+
+
+g*!:vNL:vLIST_RESULTS:vANSWER | v:vLIST_RESULTS # store defn
+
+---[ FINISH ]
+g*!:vNL:vNL:vDELIM:vFOOTER | v:vUSE_FOOTER
+
+y:vENVIRONMENT | f!:CLI:lNCLI4
+y:vMENU_NEXT | i: | t.!: | v:vOPT | j:lDONE4 
+l:lNCLI4
+y:vMENU_NEXT | i*: | t.!: | v:vOPT
+l:lDONE4
+
+f!:^[123]$:lQUERY_PROMPT
+
+f!:1:lNPROC1
+y:vANSWER | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC1
+f!:2:lNPROC2
+y:vLIST_RESULTS | x*!:vUSE_FOOTER | q!:
+
+l:lNPROC2
+j:lQUERY_PROMPT

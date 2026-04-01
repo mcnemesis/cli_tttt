@@ -1,6 +1,6 @@
-#/usr/bin/env tttt -fc
+#!/usr/bin/tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1.5 |@@@@@@
+v:vABOUT:{@@@@@@| E-MAILER v1.6 |@@@@@@
 Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf, in collaboration with Austrian AHASend... Since 2026}
 #######################################
 # Copyright 2026 Fut. Prof. JWL, 
@@ -11,7 +11,7 @@ Is a basic solution that enables you to readily send an email over the Internet 
 v:vEmailerFooter:{
 
 @@@@@@[
- Sent using TEA E-Mailer v1.5 
+ Sent using TEA E-Mailer v1.6 
 ]@@@@@@}
 # first, store input user might have provided from outside this program
 y*: | v:vExternalText
@@ -47,8 +47,9 @@ y:vABOUT|i*:
 #check if we already have the email message, otherwise prompt..
 
 l:lPROMPTBody
-y:vMailBody|t!.:
-f!:^$:lHASBody
+# test for body using cardinality [regex] test instead of regex on potentially problematic text..
+y:vMailBody|t!.:|v:|y!:
+f!:^0$:lHASBody
 y:vPROMPTBody | i*: | t!.: | v:vMailBody 
 f:^$:lPROMPTBody:lHASBody
 
@@ -103,7 +104,7 @@ v:vMENU_ACTION:{
 
 g*:{}:vS:vMailSubject:vDELIM:vT:vMailTo:vDELIM:vF:vMailFrom:vDELIM:vMailBody | v:vEMAILPreview
 
-g*!:vNL:vPREAMBLE:vEMAILPreview:vMENU_ACTION | v:vPREVIEW_PROMPT
+g*!:vNL:vMENU_ACTION:vDELIM:vPREAMBLE:vDELIM:vEMAILPreview | v:vPREVIEW_PROMPT
 
 l:lPromptAction
 # present what we have...
@@ -141,10 +142,24 @@ x!:{"to": [{"email": "}| x*!:vMailTo | x!:{"}],}
 # We might also configure explicit reply-to address??
 # (exploring e-email routing options that is... )
 x!:{"cc": [{"email": "}| x*!:vMailFrom | x!:{"}],}
-x!:{"reply-to": [{"email": "}| x*!:vMailFrom | x!:{"}],}
+x!:{"reply_to": {"email": "}| x*!:vMailFrom | x!:{"},}
 # the rest of the parameters...
 x!:{"subject":"}| x*!:vMailSubject | x!:{",}
-x!:{"text_content":"}| x*!:vMailBody | x!:{"} | x!:"}"
+x!:{"text_content":"}|
+
+#we shall want to ensure we string-escape this value first..
+
+v: #store current Payload in default vault
+
+y:vMailBody | r!:{"}:{\"} | v:vMailBody_esc
+
+# continue building payload...
+
+y:
+
+x*!:vMailBody_esc 
+
+| x!:{"} | x!:"}"
 v:vJSON_EMAILPayload
 
 # FIX: found that most JSON validators can't accept literal new-lines
