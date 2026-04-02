@@ -17095,16 +17095,539 @@ i!:What is your name?|i:|v:vNAME|v:vGREET:{Hello }|v:vG:{}|g*::vGREET:vNAME|v:vG
 \label{SECEXAMPI}
 
   
-blah blah..
+There is not much to explore concerning YANK that we have not already encountered in the other earlier examples and [standard] applications, however, and for purposes of wanting to demonstrate what Yank can readily make possible, we shall take one existing example from the current TEA demonstration programs --- particularly, the case of a \textbf{Textbox Drawing} TEA program, and adapt it into a more robust, and mature TEA standard utility.
+
+\vspace{2em}
+
+Essentially, we want to take the following basic TEA program:
+
+\vspace{2em}
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Sample Program: Draw Text Box, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# Given some text, shall return a text box drawn around it
+f!:^$:lPROCESS # don't prompt if there's already some input
+i!:Enter some text: |i:
+l:lPROCESS
+v:vIN
+v:vP:.|v:vS:-
+r*!:vIN:vP:vS
+x:--|x!:--
+v:vBTOP
+v:vSTART:
+v:vBLR:{|}
+g*:{ }:vBLR:vIN:vBLR
+v:vIN
+g*:{_ }:vSTART:vBTOP:vIN:vBTOP
+h!:_
+r!:_:|
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+Which produces outputs such as the following...
 
 
-\subsection{EXAMPLE 1: \textbf{blah blah:} blah blah}
+  \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 1 from Basic Text-Box Drawing TEA Program]
+ ---------------
+ | hello world |
+ ---------------
+  \end{tcbverbatim}
+  
+  \vspace{2em}
+ 
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 2 from Basic Text-Box Drawing TEA Program]
+ --------------------------------------
+ | hello world, this is a longer text |
+ --------------------------------------
+  \end{tcbverbatim}
+
+
+  \vspace{2em}
+ 
+ 
+ But which program, when presented with say text spanning multiple lines or very long text, might otherwise present some chaotic stuff such as we see in the next output...
+ 
+ 
+   \vspace{2em}
+ 
+
+ \begin{tcbverbatim}[title=Sample OUTPUT 3 from Basic Text-Box Drawing TEA Program]
+  ---------------
+---------------------
+----------------
+ | hello world, 
+this is a longer text
+on three lines |
+ ---------------
+---------------------
+----------------
+  \end{tcbverbatim}
+ \vspace{2em}
+ 
+
+And so, we shall use the idea (but not the exact code\footnote{For example, and interesting to note concerning that text-box drawing TEA program; much as it contains some memory-writing and reading instructions, such as keeping some variables in vaults via use of the \texttt{v:*} commands, and yet, because there are many ways TEA allows most instructions to access data in vaults without having to first directly/manually yank it using \texttt{y:*} commands, one finds that the program surprisingly contains no trace or need of the YANK command-space!}) to implement a TEA program capable of accepting arbitrary text, and presenting it inside of beautiful text boxes. This might have applications related to crafting payloads for sharing with friends via social media, in fancy emails, or as Text-Art or even beautiful poetry among others!
+
+
+\subsection{EXAMPLE 1: \textbf{CALLIGRAPHY:} Text Beautifier}
 \label{SECYEXAMP1}
 
 
-blah blah...
+In designing and implementing our application, which we are referring to as \textbf{TEXT Beautifier}, we want to ensure we address the following minimal specification:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item \textbf{PHASE 1:} The program either processes externally provided text input or otherwise prompts the user for text input to be processed.
+\item \textbf{PHASE 2:} The program starts by taking the given text and re-formating it into a beautiful block of text of a fixed maximum length (which user can optionally adjust to their liking).
+\item \textbf{PHASE 3:} The program then presents user with the option of return the final text immediately, or otherwise presenting it with a bounding text box drawn around it.
+\item \textbf{PHASE 4:} The program presents the formatted text with a basic text-box drawn around it. User can chose to immediately return that or further beautify the text.
+\item \textbf{PHASE 5:} The program then presents beautified text-box (with pretty corners for example), and asks the user if they wish to return that or otherwise customize the textbox with their own options.
+\item \textbf{PHASE 6:} In case user chose to customize the beautification, they have option to specify custom icon/symbol to be used to draw the corner, horizontal bar and vertical bars of the text box.
+\item Loop back to \textbf{PHASE 5:}   
+\end{enumerate}
+
+\vspace{2em}
 
 
+This program has been written!
+
+\vspace{2em}
+
+Essentially, v1 of the essential (and now standard) TEA program is as follows...
+
+\vspace{2em}
+
+\vspace{2em}
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TEXT BEAUTIFIER v1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#!/usr/bin/tttt -fc
+v:vABOUT:{
+++--------------------++
++ TEXT BEAUTIFIER v1 +
+++--------------------++
++ draws nice boxes 
++ around your text!
++----------------------+}
+##############################
+# Architect: Fut. Prof. JWL
+# https://bit.ly/profjwl
+##############################
+
++---[CONSTANTS]
+v:vPROMPT_TEXT:{Please Enter|Type|Paste the text to be processed:}
+v:vNL:{
+}
+
++---[VARIABLES]
+v:vIN:{} # to hold main raw text
+#v:vTEXT:{}
+v:vTEXTBOX:{}
+v:vCORNER:{+}
+v:vHBAR:{-}
+v:vVBAR:{|}
+v:vNMAXLINE_LEN:26
+v:vWRAPPED_TEXT:{}
+v:vIGNORE_EXTERNAL_TEXT:0 # effective if not 0
+
++---[PHASE 1: get text]
+l:lINTRO
+y:vABOUT | i:
+
+l:lPROMPT
+y:vIGNORE_EXTERNAL_TEXT | f!:0:lIGNORE_EXTERNAL_TEXT
+y*: | t!.: | v:vIN # external input text
+l:lIGNORE_EXTERNAL_TEXT
+# check if we already have text...
+y:vIN | f!:^$:lPROCESS_TEXT
+y:vPROMPT_TEXT | i: | t!.: | v:vIN
+f!:^$:lPROCESS_TEXT # re-check...
+j:lPROMPT
+
++---[PHASE 2: re-format text]
+l:lPROCESS_TEXT
+# ensure we are starting frm scratch
+v:vWRAPPED_TEXT:{} 
+
+y:vIN 
+g.:=% # first, mask all new lines..
+v:vIN 
+
+# check if text exceeds max line size..
+y!:vIN | v:vNTEXT_LEN
+g*:{>}:vNTEXT_LEN:vNMAXLINE_LEN | r.: 
+f:true:lWRAP_TEXT:lNO_TEXT_WRAP_NEEDED
+
+# wrap long texts...
+l:lWRAP_TEXT
+
+v:vINDEX_LINE:0
+y!:vIN | v:vIN_REMAINDER_LEN
+
+l:lSTART_WRAP
+
+# did we reach end of text yet?
+y:vIN_REMAINDER_LEN | x!:{<= 0} | r.: 
+f:true:lFINISHED_WRAP
+
+# did we reach end of line yet?
+# (nl>0) && (nl%maxl==0)?
+v:vBO:(|v:vBE:)
+v:vG:{>0)&&(}|v:vMOD:{%}|v:vTEST_SUF:{==0}
+g*:{}:vBO:vINDEX_LINE:vG:vINDEX_LINE:vMOD:vNMAXLINE_LEN:vTEST_SUF:vBE | r.: 
+f:true:lSTART_NEXT_LINE:lCONTINUE_LINE
+l:lSTART_NEXT_LINE
+g*:{}:vWRAPPED_TEXT:vNL | v:vWRAPPED_TEXT
+# advance indices...
+y:vINDEX_LINE | x!:{+1} | r.: | v:vINDEX_LINE
+
+l:lCONTINUE_LINE
+
+y:vIN | d!:^. | v:vCHAR # pop char
+y:vIN | r:.:{} | v:vIN # stash remainder..
+
+g*:{}:vWRAPPED_TEXT:vCHAR 
+#x:[|x!:]|q!:
+| v:vWRAPPED_TEXT
+
+# advance indices...
+y:vINDEX_LINE | x!:{+1} | r.: | v:vINDEX_LINE
+y!:vIN | v:vIN_REMAINDER_LEN
+
+# process next char...
+j:lSTART_WRAP
+
+i!: interlude | q!:
+
+l:lFINISHED_WRAP
+y:vWRAPPED_TEXT 
+# reverse new-line masking...
+r!:{=%|=[\n]%}:{
+}
+v:vWRAPPED_TEXT
+
+j:lPRESENT_TEXT
+
++---[PHASE 3: present text]
+l:lNO_TEXT_WRAP_NEEDED
+# using available text as is!
+# ensure we actually have text...
+y:vIN | f:^$:lPROMPT
+y:vIN | v:vWRAPPED_TEXT
+
+l:lPRESENT_TEXT
+
+# show what we have and decide next step...
+v:vPRESENT_PROMPT:{DECIDE NEXT STEP:
+1. Return Formatted Text as is
+2. Proceed to Draw Text Box (default)
++----------------------+
+Formatted Text Follows...
++----------------------+
+}
+
+y:vPRESENT_PROMPT | x*!:vWRAPPED_TEXT | i: | t!.: | v:vOPT
+f!:^[12]$:lDRAW_TEXTBOX
+f!:^1$:lDRAW_TEXTBOX
+
+y:vWRAPPED_TEXT | q!:
+
++---[PHASE 4: draw basic text-box]
+l:lDRAW_TEXTBOX
+
+#draw top and bottom border first...
+v:vBORDER_LINE:{}
+v:vNINDEX:0
+
+l:lSTART_DRAW_BORDER
+y:vBORDER_LINE | x*!:vHBAR | v:vBORDER_LINE 
+y:vNINDEX | x!:+1 | r. | v:vNINDEX
+y:vNINDEX | x!:> | x*!:vNMAXLINE_LEN | r.:
+f:true:lDONE_DRAW_BORDER
+j:lSTART_DRAW_BORDER
+l:lDONE_DRAW_BORDER
+
+y:vBORDER_LINE | v:vDECO_BORDER_LINE
+
+l:lPRESENT_BORDERED_TEXT
+# add it to the text...
+g*!:vNL:vDECO_BORDER_LINE:vWRAPPED_TEXT:vDECO_BORDER_LINE 
+v:vTEXTBOX # store current text box
+
+# show what we have and decide next step...
+v:vPRESENT_PROMPT:{DECIDE NEXT STEP:
+1. Return Text-Box as is
+2. Customize Border Line (CORNERS)
+3. Draw Complete Text Box (default)
+
+}
+
+y:vPRESENT_PROMPT | x*!:vTEXTBOX | i: | t!.: | v:vOPT
+f!:^[12]$:lDRAW_FULL_TEXTBOX
+f!:^1$:lCUSTOMIZE_BORDER
+
+y:vTEXTBOX | q!:
+
++---[PHASE 5: draw custom text-box]
+l:lCUSTOMIZE_BORDER
+
+g*:{}:vCORNER:vBORDER_LINE:vCORNER | v:vDECO_BORDER_LINE
+
+i!:{CUSTOMIZE CORNERS:
+Current is (}| x*!:vCORNER | x!:{) to produce:
+} | x*!:vDECO_BORDER_LINE 
+x!:{
+OPTIONS: 
+.LEAVE BLANK (preserves current corners)
+.ENTER VALUE (adopts your provided corner)
+} 
+| v:vPRESENT_PROMPT
+
+y:vPRESENT_PROMPT | i: | v:vOPT
+f:^$:lPRESERVE_CORNER
+y:vOPT 
+#| d!:^. #ensure we only keep 1 char for corner?
+| v:vCORNER
+
+g*:{}:vCORNER:vBORDER_LINE:vCORNER | v:vDECO_BORDER_LINE
+
+# first go see what it looks like
+j:lPRESENT_BORDERED_TEXT 
+
+l:lPRESERVE_CORNER
+# then return to next option...
+
+l:lDRAW_FULL_TEXTBOX
+
+# first, get formatted, unbounded text
+y:vWRAPPED_TEXT 
+
+# pad it as necessary?...
+#t.: | t.!: | v:vWRAPPED_TEXT 
+
+# mask all new lines..
+g.:=_=_=%_%_% # first, mask all new lines..
+v:vTEMP_WTEXT
+
+# inject line delimiters...
+v:vREGEX_HEND:{=_=_=}
+v:vREGEX_HSTART:{%_%_%}
+v:vREGEX_START:{^}
+v:vREGEX_END:{$}
+v:vEMPTY:{}
+
+r*:vTEMP_WTEXT:vREGEX_START:vVBAR | v:vTEMP_WTEXT
+r*:vTEMP_WTEXT:vREGEX_END:vEMPTY | v:vTEMP_WTEXT
+
+# split em up...
+h*!:vTEMP_WTEXT:vREGEX_HEND | v:vTEMP_WTEXT
+
+# swap em...
+r*!:vTEMP_WTEXT:vREGEX_HSTART:vVBAR | v:vTEMP_WTEXT
+# we could also draw right vertical border
+# but for now, shall merely relax it...
+r*!:vTEMP_WTEXT:vREGEX_HEND:vEMPTY | v:vTEMP_WTEXT
+
+# add decor borders to the text...
+g*!:vNL:vDECO_BORDER_LINE:vTEMP_WTEXT:vDECO_BORDER_LINE 
+v:vTEXTBOX # store current text box
+
++---[PHASE 6: user configurations]
+l:lCUSTOMIZE_BEAUTIFIED_BORDER
+
+# show what we have and decide next step...
+v:vPRESENT_PROMPT:{DECIDE NEXT STEP:
+1. Return Text-Box as is
+2. Make Further Customizations (default)
+
+}
+
+y:vPRESENT_PROMPT | x*!:vTEXTBOX | i: | t!.: | v:vOPT
+f!:^[1]$:lPROMPT_CUSTOMIZATION_HBAR
+
+y:vTEXTBOX | q!:
+
+l:lPROMPT_CUSTOMIZATION_HBAR
+
+# first, construct current horizontal border...
+g*:{}:vCORNER:vBORDER_LINE:vCORNER | v:vDECO_BORDER_LINE
+
+i!:{CUSTOMIZE H-BAR:
+Current is (}| x*!:vHBAR | x!:{) to produce:
+} | x*!:vDECO_BORDER_LINE 
+x!:{
+OPTIONS: 
+.LEAVE BLANK (preserves current h-bar)
+.ENTER VALUE (adopts your provided h-bar)
+} 
+| v:vPRESENT_PROMPT
+
+y:vPRESENT_PROMPT | i: | v:vOPT
+f:^$:lPRESERVE_HBAR
+y:vOPT 
+#| d!:^. #ensure we only keep 1 char for h-bar?
+| v:vHBAR_new
+
+# first integrate new customizations
+r*!:vBORDER_LINE:vHBAR:vHBAR_new | v:vBORDER_LINE
+# override old h-bar too
+y:vHBAR_new | v:vHBAR
+
+g*:{}:vCORNER:vBORDER_LINE:vCORNER | v:vDECO_BORDER_LINE
+
+l:lPRESERVE_HBAR
+# then go to next customization...
+
+l:lPROMPT_CUSTOMIZATION_VBAR
+
+# first, construct current vertical border...
+v:vTEMP_TEXT:{This is sample text...}
+g*:{}:vVBAR:vTEMP_TEXT | v:vDECO_SAMPLE_LINE
+
+i!:{CUSTOMIZE V-BAR:
+Current is (}| x*!:vVBAR | x!:{) to produce:
+
+} | x*!:vDECO_SAMPLE_LINE
+x!:{
+
+OPTIONS: 
+.LEAVE BLANK (preserves current v-bar)
+.ENTER VALUE (adopts your provided v-bar)
+} 
+| v:vPRESENT_PROMPT
+
+y:vPRESENT_PROMPT | i: | v:vOPT
+f:^$:lPRESERVE_VBAR
+y:vOPT 
+#| d!:^. #ensure we only keep 1 char for v-bar?
+| v:vVBAR_new
+
+# first integrate new customizations
+# override old v-bar too
+y:vVBAR_new | v:vVBAR
+
+l:lPRESERVE_VBAR
+# then go final presentations...
+
++---[FINAL CUSTOMIZATIONS:]
+
+# show what we have and decide next step...
+v:vPRESENT_PROMPT:{DECIDE NEXT STEP:
+1. Modify MAX Line Length
+2. CHANGE the TEXT
+3. Go Re-DRAW Text-Box (default)
+}
+
+y:vPRESENT_PROMPT | i: | t!.: | v:vOPT
+f!:^[12]$:lNO_FURTHER_CUSTOMIZATIONS
+
+y:vOPT | f!:^1$:lMODIFY_TEXT
+# customize max line length...
+l:lCUSTOMIZE_LINE_LENGTH
+
+i!:{CUSTOMIZE MAX LINE LEN:
+Current is (}| x*!:vNMAXLINE_LEN | x!:{) to produce:
+} | x*!:vBORDER_LINE
+x!:{
+OPTIONS: 
+.LEAVE BLANK (preserves current)
+.ENTER VALID NUMBER (adopts your provided)
+} 
+| v:vPRESENT_PROMPT
+
+y:vPRESENT_PROMPT | i: | v:vOPT
+f:^$:lNO_FURTHER_CUSTOMIZATIONS
+y:vOPT | t!.: | v:vOPT
+f!:^[1-9][0-9]*$:lCUSTOMIZE_LINE_LENGTH
+y:vOPT | v:vNMAXLINE_LEN 
+
+# return to processing text..
+j:lPROCESS_TEXT
+
+# modifying text...
+l:lMODIFY_TEXT
+y:vOPT | f!:^2$:lNO_FURTHER_CUSTOMIZATIONS
+
+v:vIGNORE_EXTERNAL_TEXT:1 # so we force prompt
+v:vIN:{} # reset current text record
+# return to text prompt...
+j:lPROMPT
+
+l:lNO_FURTHER_CUSTOMIZATIONS
+# go see what it looks like
+j:lPRESENT_BORDERED_TEXT
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: TEXT BEAUTIFIER --- a configurable and special text-box drawer implemented using TEA}
+  \label{FIGYAPP1}
+}
+
+
+\vspace{2em}
+
+
+The program does work just like we specified, and shall produced varied outputs depending on user configuration or the defaults. For example, the default maximum line length is set to 26 (so that we can always ensure we can produce a text-box containing a complete line of all the 26 letters of the alphabet. Otherwise, check out what some of the interesting outputs of this program are:
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 1 from TEXT BEAUTIFIER v1]
+---------------------------
+abcdefghijklmnopqrstuvwxyz
+0123456789
+---------------------------
+  \end{tcbverbatim}
+ \vspace{2em}
+
+
+
+ \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 2 from TEXT BEAUTIFIER v1]
+@+@---------------------------@+@
+| abcdefghijklmnopqrstuvwxyz
+| 0123456789
+@+@---------------------------@+@
+  \end{tcbverbatim}
+ \vspace{2em}
+ 
+ 
+  \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 3 from TEXT BEAUTIFIER v1]
+@@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@@
+# This is the day that the Lord 
+# has made!
+# We we rejoice! We 
+# will rejoice and be glad inde
+# ed!
+@@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@@
+  \end{tcbverbatim}
+ \vspace{2em}
+ 
+ 
+ And thus is the program quite useful! 
+ 
+ \vspace{2em}
+
+To access this service, use any of the options:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item Find Emailer on the list of standard TEA programs via:\\ \url{https://tea.nuchwezi.com}
+\item Directly load and run TEXT BEAUTIFIER via: {\normalsize \url{https://tea.nuchwezi.com/?i=\%20&fc=https://gist.githubusercontent.com/mcnemesis/6a53c63dc1159e14ad287a44a92341e3/raw/&run} }
+\item{Obtain the TEXT BEAUTIFIER source-code (and other related codes/programs) via the TEA GitHub Project:\\
+\url{https://github.com/mcnemesis/cli_tttt}}
+\item{ Find the TEXT BEAUTIFIER code on GitHub Gists:\\
+\url{https://gist.github.com/mcnemesis/6a53c63dc1159e14ad287a44a92341e3}}
+\item{ Or use the official shortened link to share or load TEXT BEAUTIFIER:\\
+ \url{https://bit.ly/draw_textbox}
+ }
+\end{enumerate}
+
+\vspace{2em}
 
 
 
