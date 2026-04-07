@@ -1,0 +1,12 @@
+y@:dNAME_USER_NAME | v:vUSERNAME # fetch from database and store in vault
+
+f!:^$:lGREET
+l:lPROMPT
+i!:What is your name?|i: | t!.:
+f:^$:lPROMPT
+
+v@:dNAME_USER_NAME # store name into database
+
+# use stored name to present custom greeting...
+l:lGREET
+i!:{Hello } | x*!:vUSERNAME | i:

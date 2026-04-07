@@ -29,7 +29,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.4.5"
+VERSION = "1.4.6"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -90,7 +90,10 @@ class TEADatabase:
         self.INDEX_NAME = "TEA_DATABASE_INDEX";
         # index is dictionary { "file/record/name": "DATE|TIME|TIMESTAMP",...}
         #self.INDEX = json.loads(self.getItem(self.INDEX)) || {};
-        self.INDEX = self.getItem(self.INDEX_NAME) or {};
+        try:
+            self.INDEX = self.getItem(self.INDEX_NAME) or {};
+        except:
+            self.INDEX = {}
 
     def updateIndex(self):
         #self.setItem(self.INDEX_NAME,json.dumps(self.INDEX));
@@ -114,11 +117,11 @@ class TEADatabase:
         self.runtime.debug(f"-- [INFO] Reading DATABASE[{key}]")
         #TEA_RunTime.debug(f"-- [INFO] Reading DATABASE[{key}]")
         with shelve.open(self.filename) as db:
-            return db.get(index_name, None)
+            return db.get(index_name, TEA_RunTime.EMPTY_STR)
 
     def getItemIndex(self, key):
         index_name = "TDB_" + key
-        return self.INDEX.get(index_name, None)
+        return self.INDEX.get(index_name, TEA_RunTime.EMPTY_STR)
 
     def removeItem(self, key):
         index_name = "TDB_" + key
@@ -2921,6 +2924,27 @@ class TEA_RunTime:
                     vVALUE = vault_get(vNAME)
                     if TEA_RunTime.DEBUG:
                         print(f"[INFO] Returning Length of string  in VAULT[{vNAME}]")
+                    return len(vVALUE)
+
+            if tc == "Y@":
+                if len(tpe_str) == 0:
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                else:
+                    vNAME = tpe_str
+                    vVALUE = self.DATABASE.getItem(vNAME)
+                    if TEA_RunTime.DEBUG:
+                        print(f"[INFO] Returning string in DATABASE [{vNAME}]")
+                    return vVALUE
+            if tc == "Y!@":
+                if len(tpe_str) == 0:
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                else:
+                    vNAME = tpe_str
+                    vVALUE = self.DATABASE.getItem(vNAME)
+                    if TEA_RunTime.DEBUG:
+                        print(f"[INFO] Returning Length of string in DATABASE [{vNAME}]")
                     return len(vVALUE)
 
             return io

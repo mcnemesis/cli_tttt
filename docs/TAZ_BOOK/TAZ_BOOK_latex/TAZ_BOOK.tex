@@ -2376,6 +2376,8 @@ Which then gives us the rankings, and from that we determine the solution to our
 	\item Reset AI
 	\item Guarantee subsequent instructions set memory independently of earlier instructions
 	\item Automagically create and initialize named vaults with the EMPTY STRING value.
+	\item Clear or Reset \textbf{TEA Database} values.
+	\item Delete TEA Database entries.
 	\end{enumerate}\\
 	\hline
 	              
@@ -2410,6 +2412,16 @@ currently active vaults (including the DEFAULT VAULT)\\
  c*: & INERT\\
  
  \rowcolor{lightgray}\bfseries \makecell[l]{c*:v1:v2:…:vN \\ c*!:v1:v2:…:vN}& \textbf{ONLY} clear/reset the vaults specified by the given vault names v1, v2,…, vN. Does NOT tamper with IO/AI. \textbf{INCASE} any of the specified vault names points to a vault that does not yet exist, then it shall be created, and automatically initialized with the EMPTY STRING.\\
+ 
+  c@: & INERT\\
+ 
+  
+  \rowcolor{lightgray}\bfseries  c@:dNAME & \textbf{CLEAR} or RESET the DATABASE record with the name dNAME --- essentially, set its value to the EMPTY STRING\\
+    
+       c@!: & \textbf{DELETE} all current TEA DATABASE records.\\
+    
+    
+      \rowcolor{lightgray}\bfseries c@!:dNAME & \textbf{DELETE} the DATABASE record with the name dNAME\\
  
  \hline
 \end{tabular}
@@ -14290,6 +14302,7 @@ In case you are likewise interested, go checkout the call talkshow via: \url{htt
 	\item The \textbf{variable facility for the TEA language} --- essentially, named storage access and writing.
 	\item Writing to anonymous (DEFAULT) storage 
 	\item Determining the size of stored items.
+	\item Performing Persistent (Database) Storage in TEA
 	\end{enumerate}\\
 	\hline
 	              
@@ -17243,6 +17256,7 @@ To access this service, use any of the options:
 	\item Returning Data previously stored in a Vault --- essentially \textbf{the companion commands to \texttt{V:*} command space}.
 	\item Accessing Initial External User Input from anywhere in a TEA program
 	\item Determining the Length of Data in Vaults
+	\item Reading Persistent (TEA Database) Storage.
 	\end{enumerate}\\
 	\hline
 	              
@@ -17281,6 +17295,10 @@ y!: & Return the length of whatever is currently stored in the default vault (th
 \makecell[l]{y*!:vNAME} & Return the length of whatever is currently stored in vault vNAME.\\
 
 \rowcolor{lightgray}\bfseries \makecell[l]{y*!:} & Return the length of whatever was the external, user provided initial input to the TEA program – the initial AI\\
+
+\makecell[l]{y@:NAME} & Return whatever is stored in \textbf{TEA DATABASE} with name NAME\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{y!@:NAME} & Return the length of whatever is currently stored in DATABASE record with name NAME.\\
 
 
  \hline
@@ -17321,6 +17339,66 @@ i!:What is your name?|i:|v:vNAME|v:vGREET:{Hello }|v:vG:{}|g*::vGREET:vNAME|v:vG
   \end{tcolorbox}
 \vspace{2em}
 
+
+\subsubsection{TEA DATABASE operations}
+
+
+Away from in-memory and temporal storage such as we find common in TEA when using basic vaults, there is the option to use persistent/long-term storage in TEA, and this, just like with the \texttt{V@:} commands in the VAULT command space, is likewise supported by the \texttt{Y@:} commands. These commands essentially allow the YANK instruction to allow us to read out values from the \textbf{TEA DATABASE} that were previously written using Vault commands.
+
+\vspace{2em}
+
+Of course, the cool, or rather, special feature of these DATABASE reading instructions is that, unlike vault commands, a TEA program might attempt to read a Database record it didn't create or which it isn't sure exists, without error. Essentially, one TEA program might store a record into the TEA database (which storage, as a rule, is tied to the current machine and user for CLI TEA, and otherwise to the current web browser for WEB TEA), and can be read out irrespective of which TEA program wrote it, as long as one knows the right database record.
+
+\vspace{2em}
+
+Thus, assuming we ran the following program earlier on...
+
+\vspace{2em}
+  \begin{tcolorbox}[teaterminalstyle, title=EXAMPLE 2: Saving a User's Name to the TEA DATABASE, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:What is your name?|i:|v@:dNAME_USER_NAME
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+
+We then can later run a different TEA program that fetches that stored user name and greets the user with it, otherwise re-prompting for a name if none was stored yet!
+
+\vspace{2em}
+  \begin{tcolorbox}[teaterminalstyle, title=Y: EXAMPLE 3: Retrieving a User's Name from the TEA DATABASE, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+y@:dNAME_USER_NAME | v:vUSERNAME # fetch from database and store in vault
+
+f!:^$:lGREET
+l:lPROMPT
+i!:What is your name?|i: | t!.:
+f:^$:lPROMPT
+
+v@:dNAME_USER_NAME # store name into database
+
+# use stored name to present custom greeting...
+l:lGREET
+i!:{Hello } | x*!:vUSERNAME | i:
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+
+And as with \texttt{V!@:dNAME}, we can use \texttt{Y!@:dNAME} to return the length of what is stored in the database record with name dNAME. Example is as such...
+
+
+\vspace{2em}
+  \begin{tcolorbox}[teaterminalstyle, title=Y: EXAMPLE 4: Retrieving a Record's Length from the TEA DATABASE, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# store value "this is a menu" under key "MENU" in the DB
+v@:MENU:{this is a menu}
+
+# check (even in a different program or after quiting)
+# how long a value in DB record "MENU" is
+Y!@:MENU # should return "14"
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
 
 
 
