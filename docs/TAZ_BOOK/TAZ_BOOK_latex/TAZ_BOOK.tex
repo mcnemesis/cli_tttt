@@ -580,7 +580,7 @@ Essentially, all TEA programs, in their simplest, unminified form\footnote{That 
   \centering
   \begin{tcolorbox}[myterminalstyle, title=TEA Instruction Line (Regular Expression)]
   \begin{lstlisting}
-^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$
+^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$
   \end{lstlisting}
   \end{tcolorbox}
   \caption{The TEA Instruction Lexical Specification (regular language)}
@@ -629,7 +629,7 @@ In summary, a TIL, and thus a TI, can be produced thus:
 	    TI := WS*•TC•TIPE•TID
 	    TC := TCP•TCQ•TCD
 	    TCP := [a-zA-Z]
-	    TCQ := . | ! | * | @ | *! | *. | *@ | *!.  
+	    TCQ := . | ! | * | @ | *! | !@ | *. | *@ | *!.  
 	    TCD := :
 	    TIPE := NTIPED•(TIPED•NTIPED*)*
 	    TIPED := :
@@ -666,7 +666,7 @@ For purists especially, the same can be rewritten in true/traditional Backus–N
 		
 		<TC> ::= <TCP> <TCQ> <TCD>
 		<TCP> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
-		<TCQ> ::= "." | "!" | "*" |  "@" | "*!" | "*." | "*@" | "*!."  
+		<TCQ> ::= "." | "!" | "*" |  "@" | "*!" |  "!@" | "*." | "*@" | "*!."  
 		<TCD> ::= ":"
 		
 		<TIPE> ::= <NTIPED> <TIPE_Tail>
@@ -14321,9 +14321,14 @@ v!: & Return the length of what is stored in the default vault.\\
 \rowcolor{lightgray}\bfseries \makecell[l]{v!:STR} & Return the length of string STR\\
 
 
-\makecell[l]{v*:vNAME\\v*:vNAME:vVALUE} & Store value vVALUE in vault vNAME overriding where necessary. Returns AI\\
+\makecell[l]{v*:vNAME\\v*:vNAME:vVALUE} & Store AI or value vVALUE in vault vNAME overriding where necessary. Returns AI\\
 
 \rowcolor{lightgray}\bfseries \makecell[l]{v*!: vNAME} & Return the length of what is stored in the vault vNAME. Without vNAME, is like v!:\\
+
+\makecell[l]{v@:vNAME\\v@:vNAME:vVALUE} & Store AI or value vVALUE in the \textbf{TEA DATABASE} --- a No-SQL/vault-like persistent storage, using key vNAME and overriding where necessary. Returns AI\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{v!@: vNAME} & Return the length of what is stored in the DATABASE with key vNAME.\\
 
  \hline
 \end{tabular}
@@ -18189,13 +18194,14 @@ Before closing the discussion notes about the ZAP command space, it shall be wor
 \item \texttt{Z.:VERSION} --- returns the current numerical version name of the TEA language being used to run the program. This value should likewise match what is seen as reported on the TEA WEB IDE when a TEA program is run via the online TEA IDE environment, or via the \texttt{tttt -v} result when invoked via the command-line. Examples are like ``1.4.4"
 \item \texttt{Z.:DATE} --- returns the current date formatted as ``Tuesday, 07 April 2026".
 \item \texttt{Z.:TIME} --- returns the current time formatted as ``16:21:50" (HH:MM:ss)
+\item \texttt{Z.:TIMESTAMP} --- returns the current time-stamp as seconds since epoch formatted as ``1775577265978"
 \item{ \texttt{Z.:} --- \textbf{return all platform/environment parameters}: without having to explicitly indicate which of the parameters to return, this command signature sets AI to all the current values for each of the parameter names indicated above, and in these, separated using a single semi-colon as such 
 
 \begin{figure}[H]
   \centering
   \begin{tcolorbox}[myterminalstyle, title=TEA Environment/Platform Parameters]
   \begin{lstlisting}
-PLATFORM:WEB;VERSION:1.4.4;DATE:Tuesday, 07 April 2026;TIME:16:23:39
+PLATFORM:WEB;VERSION:1.4.5;DATE:Tuesday, 07 April 2026;TIME:18:54:25;TIMESTAMP:1775577265978
   \end{lstlisting}
   \end{tcolorbox}
   \caption{The TEA Platform Parameters as returned by the \texttt{Z.:} instruction}

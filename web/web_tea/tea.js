@@ -20,8 +20,8 @@ export class TEA_RunTime {
             this.runtime = TEA_runtime;
             // to hold all record keys created via this interface
             this.INDEX_NAME = "TEA_DATABASE_INDEX";
-            // index is dictionary { "file/record/name": "DATE.TIME",...}
-            this.INDEX = JSON.parse(this.getItem(this.INDEX)) || {};
+            // index is dictionary { "file/record/name": "DATE|TIME|TIMESTAMP",...}
+            this.INDEX = JSON.parse(this.getItem(this.INDEX_NAME)) || {};
 		  }
 
           updateIndex(){
@@ -30,29 +30,32 @@ export class TEA_RunTime {
 
 		  setItem(key, value) {
             // create index entry first...
-            var index_name = key;
+            var index_name = "TDB_" + key;
             var env = this.runtime.util_get_environment()
-            var index_value = env["DATE"]+"."+env["TIME"];
+            var index_value = env["TIMESTAMP"]+"|"+env["DATE"]+"|"+env["TIME"];
             this.INDEX[index_name] = index_value;
             this.updateIndex();
             // then store item..
-			this.storage.setItem(key, value);
+			this.storage.setItem(index_name, value);
             this.runtime.debug(`--[INFO] Wrote DATABASE[${key} = [${value}]]`)
 		  }
 
 		  getItem(key) {
+            var index_name = "TDB_" + key;
             this.runtime.debug(`--[INFO] Reading DATABASE[${key}]`)
-			return this.storage.getItem(key);
+			return this.storage.getItem(index_name);
 		  }
 
 		  getItemIndex(key) {
-			return this.INDEX.getItem(key);
+            var index_name = "TDB_" + key;
+			return this.INDEX.getItem(index_name);
 		  }
 
 		  removeItem(key) {
-			this.storage.removeItem(key);
+            var index_name = "TDB_" + key;
+			this.storage.removeItem(index_name);
             // also update index 
-			this.INDEX.removeItem(key);
+			this.INDEX.removeItem(index_name);
             this.updateIndex();
             this.runtime.debug(`--[INFO] DELETED from DATABASE[${key}]`)
 		  }
@@ -91,7 +94,7 @@ export class TEA_RunTime {
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
         static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*/
-        static RETI = /^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
+        static RETI = /^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -3409,7 +3412,20 @@ export class TEA_RunTime {
             else {
                 var vNAME = tpe_str
                 var vVALUE = this.vault_get(vNAME)
-                this.debug(`[INFO] Returning Length of string  in VAULT[${vNAME} = [${vNAME}]]`)
+                this.debug(`[INFO] Returning Length of string  in VAULT[${vNAME}]`)
+                return vVALUE.length
+            }
+        }
+
+        if(tc == "V!@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error(`[SEMANTIC ERROR] Invalid Instruction Signature: ${ti}`)
+            }
+            else {
+                var vNAME = tpe_str
+                var vVALUE = this.DATABASE.getItem(vNAME)
+                this.debug(`[INFO] Returning Length of string  in DATABASE[${vNAME}]`)
                 return vVALUE.length
             }
         }
