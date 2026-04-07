@@ -26,9 +26,10 @@ import urllib.request, urllib.parse
 import re
 import random
 import argparse
+import shelve
 
 DEBUG = True
-VERSION = "1.4.4"
+VERSION = "1.4.5"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -74,6 +75,34 @@ Where INPUT is treated as data input file path and the TEA program is read from 
 In all situations, the TTTT interpreter executes the available TEA program on the available input data and outputs the final result via standard output, and does nothing else but quit.
 """
 
+# Since TEA v1.4.5: TEA persistent storage
+# aka: TEA Database
+class TEADatabase:
+    def __init__(self, filename=None):
+        # Always use the same file path on the machine
+        if filename is None:
+            # Place it in the user’s home directory for consistency
+            home = os.path.expanduser("~")
+            filename = os.path.join(home, ".localstorage_shelf")
+        self.filename = filename
+
+    def setItem(self, key, value):
+        with shelve.open(self.filename) as db:
+            db[key] = value
+
+    def getItem(self, key):
+        with shelve.open(self.filename) as db:
+            return db.get(key, None)
+
+    def removeItem(self, key):
+        with shelve.open(self.filename) as db:
+            if key in db:
+                del db[key]
+
+    def clear(self):
+        with shelve.open(self.filename) as db:
+            db.clear()
+
 class TEA_RunTime:
     #-------------------------------------
     # CONSTANTS
@@ -97,7 +126,7 @@ class TEA_RunTime:
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -106,6 +135,8 @@ class TEA_RunTime:
     GLUE = SINGLE_SPACE_CHAR
     EMPTY_STR = ""
     vDEFAULT_VAULT = EMPTY_STR
+
+    DATABASE = TEADatabase() # one global instance enough
 
     # one of most important utils..
     def is_empty(self, val):
@@ -616,7 +647,8 @@ class TEA_RunTime:
                     "PLATFORM": "CLI",
                     "VERSION": VERSION,
                     "DATE": datetime.now().strftime("%A, %d %B %Y"),
-                    "TIME": datetime.now().strftime("%H:%M:%S")
+                    "TIME": datetime.now().strftime("%H:%M:%S"),
+                    "TIMESTAMP": str(int(datetime.now().timestamp()))
                     }
 
             return config

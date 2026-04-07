@@ -9,6 +9,66 @@
 
 export class TEA_RunTime {
 
+		/*************************
+		 * since TEA v1.4.5: TEA Persistent Storage
+		 * aka: TEA Database
+		 * ***********************/
+		static TEADatabase = class {
+		  constructor(TEA_runtime) {
+			// Use the browser's built-in localStorage
+			this.storage = window.localStorage;
+            this.runtime = TEA_runtime;
+            // to hold all record keys created via this interface
+            this.INDEX_NAME = "TEA_DATABASE_INDEX";
+            // index is dictionary { "file/record/name": "DATE.TIME",...}
+            this.INDEX = JSON.parse(this.getItem(this.INDEX)) || {};
+		  }
+
+          updateIndex(){
+              this.storage.setItem(this.INDEX_NAME,JSON.stringify(this.INDEX));
+          }
+
+		  setItem(key, value) {
+            // create index entry first...
+            var index_name = key;
+            var env = this.runtime.util_get_environment()
+            var index_value = env["DATE"]+"."+env["TIME"];
+            this.INDEX[index_name] = index_value;
+            this.updateIndex();
+            // then store item..
+			this.storage.setItem(key, value);
+            this.runtime.debug(`--[INFO] Wrote DATABASE[${key} = [${value}]]`)
+		  }
+
+		  getItem(key) {
+            this.runtime.debug(`--[INFO] Reading DATABASE[${key}]`)
+			return this.storage.getItem(key);
+		  }
+
+		  getItemIndex(key) {
+			return this.INDEX.getItem(key);
+		  }
+
+		  removeItem(key) {
+			this.storage.removeItem(key);
+            // also update index 
+			this.INDEX.removeItem(key);
+            this.updateIndex();
+            this.runtime.debug(`--[INFO] DELETED from DATABASE[${key}]`)
+		  }
+
+		  clear() {
+            // first, clear from local storage
+            for (let key of Object.keys(this.INDEX)) {
+                this.storage.removeItem(key);
+            }
+            // then also clear index
+            this.INDEX = {}
+            this.updateIndex();
+            this.runtime.debug(`--[INFO] DELETED ALL from DATABASE`)
+		  }
+		}
+
         //-------------------------------------
         // CONSTANTS
         //-------------------------------------
@@ -31,7 +91,7 @@ export class TEA_RunTime {
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
         static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*/
-        static RETI = /^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
+        static RETI = /^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -40,16 +100,19 @@ export class TEA_RunTime {
         static GLUE = this.SINGLE_SPACE_CHAR
         static EMPTY_STR = ""
         static vDEFAULT_VAULT = this.EMPTY_STR
+        static DATABASE = null;
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.4" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.5" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
         this.CODE = null; 
         this.STDIN_AS_CODE = false;
         this.DEBUG_FN = (txt) => { console.log(`T: ${txt}`) } // just in case no debug info printer is provided
+        // init database...
+        this.DATABASE = new TEA_RunTime.TEADatabase(this) // one global instance enough
     }
 
     get_version(){
@@ -59,6 +122,7 @@ export class TEA_RunTime {
     get_status_message(){
         return this.status_MESSAGE;
     }
+
 
     static is_empty_dict(dict){
         if(Object.keys(dict).length == 0)
@@ -369,6 +433,7 @@ export class TEA_RunTime {
 		const hours = now.getHours().toString().padStart(2, '0');
 		const minutes = now.getMinutes().toString().padStart(2, '0');
 		const seconds = now.getSeconds().toString().padStart(2, '0');
+		const timestamp = now.getTime().toString().padStart(2, '0');
 
 		const dateStr = `${weekday}, ${day} ${month} ${year}`;
 		const timeStr = `${hours}:${minutes}:${seconds}`;
@@ -377,7 +442,8 @@ export class TEA_RunTime {
                 "PLATFORM": "WEB",
                 "VERSION": this.VERSION,
                 "DATE": dateStr,
-                "TIME": timeStr
+                "TIME": timeStr,
+                "TIMESTAMP": timestamp
                 }
 
         return config
@@ -3288,7 +3354,8 @@ export class TEA_RunTime {
                     }
                     else{
                         if(params.length == 2){
-                            [vNAME,vVALUE] = params
+                            var vNAME = params[0]
+                            var vVALUE = this.extract_str(params[1])
                             this.vault_store(vNAME,vVALUE)
                         }
                         else if(params.length == 1){
@@ -3299,6 +3366,34 @@ export class TEA_RunTime {
                     }
             }
         }
+
+        if(tc == "V@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error(`[SEMANTIC ERROR] Invalid Instruction Signature: ${ti}`)
+            }
+            else {
+                    var input_str = tpe_str
+                    var params = TEA_RunTime.splitWithLimit(input_str,TEA_RunTime.TIPED,1)
+                    if(params.length > 2){
+                        this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                        throw new Error(`[SEMANTIC ERROR] Invalid Instruction Signature: ${ti}`)
+                    }
+                    else{
+                        if(params.length == 2){
+                            var vNAME = params[0]
+                            var vVALUE = this.extract_str(params[1])
+                            this.DATABASE.setItem(vNAME,vVALUE)
+                        }
+                        else if(params.length == 1){
+                            var vNAME = params[0]
+                            var vVALUE = io
+                            this.DATABASE.setItem(vNAME,vVALUE)
+                        }
+                    }
+            }
+        }
+
 
         if(tc == "V*!"){
             if(TEA_RunTime.is_empty(tpe_str)){
@@ -3479,7 +3574,6 @@ export class TEA_RunTime {
             else{
                 // only delete specified http headers...
                 var params = tpe_str.split(TEA_RunTime.TIPED)
-                debugger
                 for (let i = 0; i < params.length; i++) {
                     const vNAME = this.extract_str(params[i]);
                     delete this.HTTP_HEADERS[vNAME];
