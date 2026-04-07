@@ -1,6 +1,6 @@
-#!/usr/bin/tttt -fc
+#/usr/bin/tttt -fc
 #######################################
-v:vABOUT:{@@@@@@| E-MAILER v1.6 |@@@@@@
+v:vABOUT:{@@@@@@| E-MAILER v1.7 |@@@@@@
 Is a basic solution that enables you to readily send an email over the Internet without requiring any other sophisticated email clients. It just works anywhere TEA works. However, we basically help send the email on your behalf, in collaboration with Austrian AHASend... Since 2026}
 #######################################
 # Copyright 2026 Fut. Prof. JWL, 
@@ -11,7 +11,7 @@ Is a basic solution that enables you to readily send an email over the Internet 
 v:vEmailerFooter:{
 
 @@@@@@[
- Sent using TEA E-Mailer v1.6 
+ Sent using TEA E-Mailer v1.7 
 ]@@@@@@}
 # first, store input user might have provided from outside this program
 y*: | v:vExternalText
@@ -89,6 +89,22 @@ f*!:vEMAIL_REGEX:lPROMPTFrom:lHASFrom
 #we got the origin address
 l:lHASFrom 
 y:vMailFrom|t!.:|g:|v:vMailFrom
+
+# cross-check if the TO==FROM by error...
+y:vMailFrom | x:{"}| x!:{"=="} | x*!:vMailTo | x!:{"}| r.:
+f:true:lCONFIRM_SAME_ADDRESS:lADDRESS_DIFFERENT
+l:lCONFIRM_SAME_ADDRESS
+i!:{Looks like your FROM [} | x*!:vMailFrom | x!:{] and TO [} | x*!:vMailTo | x!:{] are The SAME!! If this is a mistake and you need to correct that, ENTER:
+1. Go back and change addresses.
+2. No, it's okay. Proceed. (default)
+}
+
+i: | t!.: | v:vOPT | f!:^1$:lADDRESS_DIFFERENT
+# return to specify addresses...
+v:vMailTo:{} | v:vMailFrom:{}
+j:lPROMPTTo
+
+l:lADDRESS_DIFFERENT
 
 #---[PREVIEW E-MAIL PAYLOAD]
 # we shall join the bits so that we see 
