@@ -1,0 +1,12 @@
+# program converts provided word to a consistent number
+# -------------------------
+# NOTE: also accepts command-line parameters (just like any TEA script)
+# via -i "value" or -fi "input file path"
+# -------------------------
+i:test # interesting.. try "Jesus Christ" and see!
+g!: # first eliminate all whitespace
+z: # then turn everything to lowercase
+r!:[aeiou]:0 | r!:[bcdfghjklmnpqrstvwxyz]:1
+x:{ibase=2; } | x:{echo '} | x!:{' | bc}
+v:vCMD | c: | z*:vCMD
+# Magic!

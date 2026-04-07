@@ -1,0 +1,14 @@
+# essentially, generate random numbers
+# from words/alphabetical expressions...
+
+i:abcdefghijklmnopqrstuvwxy z
+a!:
+d:[ ].*$
+r!:[aeiou]:0
+r!:[bcdfghjklmnpqrstvwxyz]:1
+x:{ibase=2; }
+x:{echo '}
+x!:{' | bc}
+v:vCMD
+c:
+z*:vCMD

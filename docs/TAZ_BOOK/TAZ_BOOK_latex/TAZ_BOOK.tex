@@ -9936,100 +9936,296 @@ Otherwise, the program as of \textbf{version 3} is as such...
 {
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Ranking Utility v.3, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-v:vDESCRIPTION:{
-###############################
-# [new] SIR GAME v3: 
-# by Fut. Prof. JWL @ Nuchwezi Research
-###############################
-WELCOME to a simple game fit for kids, and those learning spelling in English. THE RULES: playing is simple: 
-You shall see a word with a MISSING lett?r, and if you guess it right, you score. You can also quit the game anytime if you like.}
+######################################
+# RU: Ranking Utility v3
+######################################
+# This tool is meant to help
+# organize well formatted lists of data
+# by user-specified criteria.
+#######################################
 
-#------[ DEFINE CONSTANTS ]
+#if no externally provided data, use defaults...
+#i:{5,3.2121,1,-5,5,2,5,00,-1.0,2e-5} #for un-labeled tasks
+i:{E:45, A:3.2121 LABEL_1:1,C:-5, 88:5,  TEST_ty:2, A:5}
+
+v:vDATA | v:vRAW_DATA #store externally provided data
+
+#----| CONSTANTS |----
 v:vDELIM:{
-#####################
+----------***----------
 }
-v:vMAINPROMPT:{
-NEXT: [Q] QUIT | OR continue playing...}
-v:vTHANKS:{Thanks for playing THE SIR GAME!}
+v:vWELCOME:{----------***----------
+RU: RANKING UTILITY v3
+----------***----------
+Welcome to RU! 
+This program helps you sort and rank numeric data by some criteria}
+v:vMENU:{----------***----------
+RU: TASK MENU
+----------***----------
+Pick a task by specifying its index:
+[1] SORT RAW NUMERIC DATA: quantitatively in descending order
+[2] SORT LABELLED NUMERIC DATA
+[3] POSITIONIFY LABELLED NUMERIC DATA
+[e] ENTER NEW NUMERIC DATA
+[q] QUIT}
+v:vPROMPT_DATA_1:{----------***----------
+RU: Get RAW DATA
+----------***----------
+INSTRUCTIONS: Enter or paste one or more lines of raw numeric data delimited by space or commas, such as:
+D1 D2 D3 D4... DN
+R1,R2,R3,...,RN,etc.}
+v:vPROMPT_DATA_2:{----------***----------
+RU: Get LABELLED DATA
+----------***----------
+INSTRUCTIONS: Enter or paste one or more lines of labelled numeric data delimited by space or commas, such as:
+LABEL1:D1 LABEL2:D2 LABEL3:D3 LABEL4:D4... LABELN:DN
+LABEL2:R1,LABEL1:R2,LABELK:R3,...,LABELN:RN,etc.
+----------***----------
+NOTE: The label_s should not have spaces in them, but otherwise can be duplicated across the dataset.}
+v:vPROMPT_INVALID_DATA:{----------***----------
+RU: Got INVALID DATA
+----------***----------
+ERROR: Note that the data you entered does not conform to the accepted format for the chosen analysis and ranking criteria. 
+Cross-check and re-try!}
 
-#------[ DEFINE VARIABLES ]
-v:vREPORT:{-|HAVE NOT PLAYED the SIR GAME yet|-}
-v:vSCORE:{0} # hold current score
-v:vMOVES:{0} # hold current moves
+#----| VARIABLES |----
+v:vRESULTS:{RESULT: No Processing Done}
 
-#------[ WELCOME MESSAGE ]
-# show the welcome message
-y:vDESCRIPTION | i*:
-# then start game
-j:lPLAY
+#----| WELCOME |----
+y:vWELCOME | i*:
+l:lPROMPT_MENU
+#What to do?
+y:vMENU | i*:
+v:vMENU_OPT #store user selected task index
+f:^[qQ]$:lQUIT #finish, do nothing else...
+f:^[eE]$:lPROMPT_DATA #get new data...
+f!:[123]:lPROMPT_MENU #if not correct, re-prompt
 
-#------[ THE GAME PLAY ]
-l:lPLAYNEXT
-y:vPROMPT | i*: | f:^[qQ]$:lFINISH
+#store last data-processing option
+v:vMENU_OPT_DATA 
 
-l:lPLAY #into the game...
+#----| WHICH DATA? |----
+#check if we have data, otherwise prompt for data
+y:vDATA | t.: | f:^$:lPROMPT_DATA:lVERIFY_DATA
 
-# randomly pick a word from the given list
-I!:{HONEY TRICK WINDS GAMES MONEY GRASS BABIES WATER BALLS PHONE INTERNET MUMMY HOUSE RAIN SHORTS KITTEN COLOUR MILK SHOES CUPS FORK EATING TABLE CHAIR WINDOW DOG RICE PLAY DIG WALLS TALK WALK FIND PHOTO WRITE KITE NUMBER LETTER PAPER CUTS GATES BANANA ICE PRICE HAND SING RING PIG PIN PEN HEN COW BIRD BAD SMILE HILL MEAL MEAT MEAN UGANDA CLASS TEACH APPLE STORY} 
-| a: | d:[ ].*$ 
-v:vWORD #store selected word
-v!:vWORD | x!:{-1} | r.: | v:vNWORD #get its length-1
-# randomly inject "-" b4 Nth pstn 
-v:vSALT:{-}
-S*:vWORD:vSALT:vNWORD | 
-#(="TR-ICK") for example
-R:.[-]:? | R:[-].:? | # returns "TR?CK"
-v:vQUIZ
+l:lPROMPT_DATA
+y:vMENU_OPT # retrieve user option
 
-#------[ the QUIZ ]
-l:lQUIZ 
+f:[eE]:lFIX_OPT:lOPT_FINE #if not meaningful, use-last choice
+l:lFIX_OPT
+y:vMENU_OPT_DATA | v:vMENU_OPT
 
-y:vQUIZ | i*: | v:vANS # prompt and store response
+l:lOPT_FINE 
+f:1:lPROMPT_DATA_CASE1 | f:2:lPROMPT_DATA_CASE2 | f:3:lPROMPT_DATA_CASE2
+#------
+l:lPROMPT_DATA_CASE1 # get raw data..
+y:vPROMPT_DATA_1 | i*: | v:vDATA | v:vRAW_DATA
+j:lVERIFY_DATA #then go to verification
+#------
+l:lPROMPT_DATA_CASE2 # get labelled data..
+y:vPROMPT_DATA_2 | i*: | v:vDATA | v:vRAW_DATA
+j:lVERIFY_DATA #then go to verification
 
-#------[ the SCORING ]
-#swap answer into quiz
-v:vPATTERN:{?}
-r*:vQUIZ:vPATTERN:vANS
-z!: #capitalize result
-v:vANSWORD #store
-#compare...
-v:vTESTER:{"__"==".."}|v:vP1:{__}|v:vP2:{..}
-r*!:vTESTER:vP1:vWORD|v:vTESTER
-r*!:vTESTER:vP2:vANSWORD|v:vTESTER
-y:vTESTER | r.: | f:^true$:lWIN:lLOSS
-l:lWIN # we won, update score +1
-y:vANS | x!:{ (CORRECT)} | v:vANS
-y:vSCORE | x!:{+1} | r.: | v:vSCORE | j:lREPORT 
-l:lLOSS # we lost, update score -2
-y:vANS | x!:{ (WRONG)} | v:vANS
-y:vSCORE | x!:{-2} | r.: | v:vSCORE | j:lREPORT 
+#----| VERIFY DATA |----
+l:lVERIFY_DATA
+y:vDATA #retrieve data
+#pre-process data..
+t.: #trim trailing white-space
 
-#------[ the REPORTING ]
-l:lREPORT
-#build report...
-y:vMOVES | x!:{+1} | r.: | v:vMOVES #first, update moves thus far
+#special pre-process esp for TDT generated datasets
+g.:, #enforce one liner with comma delimiters
+d.:^\s+\[ | d.:\]$ #eliminate [] enclosures 
+d:^[\s,]+:[\s,]+$ #trim trailing commas N space
 
-#compute error rate
-v:vEVALUATOR:{((..)/__)*100}|
-r*!:vEVALUATOR:vP1:vMOVES|v:vEVALUATOR
-r*!:vEVALUATOR:vP2:vSCORE|v:vEVALUATOR
-y:vEVALUATOR | r.: | v:vRATING 
-f!:\.:lRATEFINE
-d!:{^.*\...} | v:vRATING | l:lRATEFINE
+v:vDATA
+#check if we have any data, otherwise [re]prompt for data
+y:vDATA | f:^$:lPROMPT_DATA
 
-v:v1:{The WORD: } | v:v2:{ | QUIZ: } | v:v3:{ | Your Answer: } | v:v4:{
-TOTAL SCORE: } | v:v5:{ @MOVES: } | v:v6:{ | RATING: } | v:v7:{%}
-g*:{}:v1:vWORD:v2:vQUIZ:v3:vANS:v4:vSCORE:v5:vMOVES | v:vREPORT
+#pre-process based on case...
+y:vMENU_OPT # retrieve user option
+f:1:lVERIFY_DATA_CASE1 | f:2:lVERIFY_DATA_CASE2 | f:3:lVERIFY_DATA_CASE2
+#------
+l:lVERIFY_DATA_CASE1 # validate raw data..
+y:vDATA | g.:, #replace new-lines with comma
+r!:{ }:{,} | r!:[,]+:, #fix commas
+#verify formatting...
+f!:{^(([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
+v:vDATA #override data with updated version
+j:lPROCESS_DATA #then go to process
+#------
+l:lVERIFY_DATA_CASE2 # validate labelled data..
+y:vDATA | g.:, #replace new-lines with comma
+r!:[ ]+:{,} | r!:[,]+:, #fix commas
+#verify formatting...
+f!:{^((\w+:)([+-]?((\d+(\.\d*)?)|(\.\d+))([eE][+-]?\d+)?),?)+$}:lFLAG_INVALID_DATA
+v:vDATA #override data with updated version
+j:lPROCESS_DATA #then go to process
 
-x*!:vMAINPROMPT | v:vPROMPT
+#----| IN-CASE INVALID DATA |----
+l:lFLAG_INVALID_DATA
+y:vPROMPT_INVALID_DATA | x*!:vDELIM | x*!:vRAW_DATA | i*:
+j:lPROMPT_DATA #re-prompt for data
 
-j:lPLAYNEXT # iterate...
+#----| PROCESS DATA |----
+l:lPROCESS_DATA 
+#process based on case...
+y:vMENU_OPT # retrieve user option
+f:1:lPROCESS_DATA_CASE1 | f:2:lPROCESS_DATA_CASE2 | f:3:lPROCESS_DATA_CASE3
+#------
+l:lPROCESS_DATA_CASE1 # sort raw data..
+#--|start algorithm|------------
+v:vSORTED_LIST:{} #initially empty..
+y:vDATA #fetch raw data
+r!:,:{ } #enforce space delimiters
+o: #sort in ascending order
+m: #transform to descending order
+r!:[ ]+:, #swap space with commas
+r!:[,]+:, #fix extraneous commas
+r!:[,]:{, } #space items
+v:vSORTED_LIST #store sorted list
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+#------
+l:lPROCESS_DATA_CASE2  # sort labelled data..
+y:vDATA 
+#--|start algorithm|------------
+v:vLIST_ORIG #stash original dataset
+v:vSORTED_LIST:{} #to hold sorted dataset
+
+l:lPROCESS_NEXT_ITEM
+y:vLIST_ORIG # let's process the original dataset then...
+#eliminate labels
+r!:{(\w+:)}:{ } #better approach
+#swap commas for space
+r!:,:{ } | r!:[ ]+:{ }
+#sort in descending order
+o: | m: 
+
+#retain only largest number
+t.: | d:[ ].*$ |v:vNMAX 
+#obtain [the first] labelled item corresponding to this number in the original dataset
+x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
+
+#store that as the next item in the sorted labelled list
+x*:vSORTED_LIST:vLABELLED_MAX | v:vSORTED_LIST
+#take the original dataset and eliminate [only] this labelled item then
+y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
+#clean out trailing commas
+d:^,
+v:vLIST_ORIG | update/override original dataset 
+#if empty, return sorted list, otherwise iterate...
+t.: | f:^$:lRETURN_SORTED:lPROCESS_NEXT_ITEM
+
+l:lRETURN_SORTED
+y:vSORTED_LIST 
+#clean out trailing commas and space
+d:[,\s]*$
+r!:[,]:{, } #space items
+v:vSORTED_LIST #override, we have final sorted labelled dataset
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED LABELLED-DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
 
 
-#------[ QUIT ]
-l:lFINISH
-g*:{}:vREPORT:v6:vRATING:v7 | v:vREPORT #update report with rating info
-y:vREPORT |  | x*!:vDELIM | x*!:vTHANKS # show last report and quit
+#------
+l:lPROCESS_DATA_CASE3 # sort and positionify labelled data..
+y:vDATA 
+#--|start algorithm|------------
+v:vLIST_ORIG #stash original dataset
+v:vSORTED_LIST:{} #to hold sorted dataset
+v:vPOSITION:{1} #to hold positions
+v:vPOSDELIM:{=} #to separate position from item
+
+l:l3PROCESS_NEXT_ITEM
+y:vLIST_ORIG # let's process the original dataset then...
+#eliminate labels
+r!:{(\w+:)}:{ }
+#swap commas for space
+r!:,:{ } | r!:[ ]+:{ }
+#sort in descending order
+o: | m: 
+
+#retain only largest number
+t.: | d:[ ].*$ |v:vNMAX 
+#obtain [the first] labelled item corresponding to this number in the original dataset
+x:{\w+:} | x!:,? | v:vREGEX_MAX | y:vLIST_ORIG | d*!.:vREGEX_MAX | d:,.*$ | x!:{,} | v:vLABELLED_MAX 
+
+#should we process this?
+d:, | t.: | f:^$:lFINISHED_POSITIONING
+
+#process its position
+y:vPOSITION
+f:1$:lST:lNST
+l:lST
+x!:{st} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNST
+y:vPOSITION
+f:2$:lSND:lNSND
+l:lSND
+x!:{nd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lNSND
+y:vPOSITION
+f:3$:lRD:lTH
+l:lRD
+x!:{rd} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lTH
+y:vPOSITION
+x!:{th} | v:vPOSLABEL
+j:lADDPOSITION
+
+l:lADDPOSITION
+g*:{}:vPOSLABEL:vPOSDELIM:vLABELLED_MAX | v:vLABELLED_MAX_POS 
+y:vPOSITION | x!:{+1} | r.: | v:vPOSITION
+
+l:lFINISHED_POSITIONING
+
+#store that as the next item in the sorted labelled list
+x*:vSORTED_LIST:vLABELLED_MAX_POS | v:vSORTED_LIST
+
+#take the original dataset and eliminate [only] this labelled item then
+y:vLABELLED_MAX | x!:? | v:vREGEX_MAX | y:vLIST_ORIG | d*.:vREGEX_MAX
+#clean out trailing commas
+d:^,
+
+v:vLIST_ORIG | update/override original dataset 
+#if empty, return sorted list, otherwise iterate...
+t.: | f:^$:l3RETURN_SORTED:l3PROCESS_NEXT_ITEM
+
+l:l3RETURN_SORTED
+y:vSORTED_LIST 
+#clean out trailing commas and space
+d:[,\s]*$
+r!:[,]:{, } #space items
+v:vSORTED_LIST #override, we have final sorted labelled dataset
+#--|end algorithm|------------
+v:vRESULTS | x:{DESC-SORTED and POSITIONIFIED LABELLED-DATA: 
+} | v:vRESULTS
+#go present results...
+j:lRESULTS
+
+
+#----| PRESENT RESULTS |----
+l:lRESULTS
+y:vRESULTS | i*:
+j:lPROMPT_MENU #iterate!
+
+
+l:lQUIT #quit program gracefully...
+
+i!:{ORIGINAL DATA:
+}  | x*!:vDATA | x*:vDELIM | x*!:vDELIM | x!: {RU Processing Results:} | x*!:vDELIM | x*!:vRESULTS
    \end{lstlisting}
   \end{tcolorbox}
     \captionof{figure}{TEA APPLICATION: Ranking Utility (RU) v3}
@@ -17599,7 +17795,7 @@ abcdefghijklmnopqrstuvwxyz
 @@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@@
 # This is the day that the Lord 
 # has made!
-# We we rejoice! We 
+# We will rejoice! We 
 # will rejoice and be glad inde
 # ed!
 @@~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~@@
@@ -17616,7 +17812,7 @@ To access this service, use any of the options:
 \vspace{2em}
 
 \begin{enumerate}
-\item Find Emailer on the list of standard TEA programs via:\\ \url{https://tea.nuchwezi.com}
+\item Find TEXT BEAUTIFIER on the list of standard TEA programs via:\\ \url{https://tea.nuchwezi.com}
 \item Directly load and run TEXT BEAUTIFIER via: {\normalsize \url{https://tea.nuchwezi.com/?i=\%20&fc=https://gist.githubusercontent.com/mcnemesis/6a53c63dc1159e14ad287a44a92341e3/raw/&run} }
 \item{Obtain the TEXT BEAUTIFIER source-code (and other related codes/programs) via the TEA GitHub Project:\\
 \url{https://github.com/mcnemesis/cli_tttt}}
@@ -17628,6 +17824,439 @@ To access this service, use any of the options:
 \end{enumerate}
 
 \vspace{2em}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TAZ SECTION: Z
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Z: ZAP}
+\label{SECZ}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{ZAP}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Especially Do things in TEA using External Powers
+	\item The \textbf{Evaluate} command for non-TEA code
+	\item Case Transforms for Text
+	\item Introspect the TEA Environment
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{Z:}}
+  \label{TABTAZZ}
+\end{table}
+
+
+\section{SEMANTICS of Z:}
+\label{SECSEMZ}
+
+
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.3} % Optional: increases row height
+\rowcolors{1}{lightgray}{white}   % Alternating row colors
+\begin{tabular}{>{\bfseries}m{0.4\linewidth} | m{0.6\linewidth}} % 2 columns, 
+\rowcolor{white}
+\textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
+\hline
+
+\makecell[l]{z:}
+ & Return AI transformed to ALL \textbf{lowercase}\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{z:CMD} & \makecell[l]{
+Invoke the system command CMD passing AI as only input, set the\\
+result as IO iff the command successfully executed, otherwise\\
+return EMPTY STRING.\\\\
+On the WEB/WEB TEA, CMD is any valid code or string that can\\ 
+be evaluated in JavaScript using eval, and the AI is passed as\\
+  \texttt{var AI=`CURRENT\_AI'}}\\
+
+z!: & Return AI transformed to ALL \textbf{UPPERCASE}\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{z!:CMD} & Same as \texttt{z:CMD}, but will return an Error Message from the command execution if it didn't execute or if there were errors.\\
+
+
+\makecell[l]{z*:} & Return AI transformed to \textbf{Title Case}\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{z*:vCMD\\z*!:vCMD} & Same as \texttt{z:CMD} and \texttt{z!:CMD}, but using the command string stored in the vault with name vCMD\\
+
+
+\makecell[l]{z.:\\z.:NAME} & \makecell[l]{
+Return information about the TEA environment as values delimited\\
+by ``;" in the strict order:\\
+ PLATFORM:VALUE;VERSION:VALUE;DATE:VALUE;TIME:VALUE;\\
+If the parameter NAME is specified, returns the value corresponding\\
+ to the given environment parameter in case it matches, otherwise \\
+ just returns the entire set of environment parameters.\\\\
+For example, when TEA is running on the web, and \texttt{Z.:PLATFORM}\\
+ is invoked, just returns ``WEB" as the only value, \\
+ otherwise returns ``CLI".}\\
+
+
+\rowcolor{lightgray}\bfseries \makecell[l]{Z*.:vNAME} & Like \texttt{Z.:NAME}, but uses value in vault vNAME to determine the value for NAME.\\
+
+
+
+
+ \hline
+\end{tabular}
+\caption{The Semantics of Z:}
+\label{TABSEMZ}
+\end{table}
+
+
+\section{NOTES about Z:}
+\label{SECNOTEZ} 
+
+
+The Z-command space is for bringing external (think Unix, System or non-TEA) powers into a TEA program. But also, that means, much of its outputs and evaluation mechanics (when used in the forms \texttt{z:CMD}, \texttt{z!:CMD}, \texttt{z*:vCMD} and \texttt{z*!:vCMD}) are outside the direct control of TEA or the TEA runtime, and thus might sometimes be harder to predict or determine up-front, and yet, among the TEA primitives, it is one of the simplest to use --- for those coming to TEA from other languages or who have good knowledge of the underlying environments --- and is arguably one of the \textit{most magical} TEA commands!
+
+\vspace{2em}
+
+
+Also, because \textbf{ZAP} allows a TEA program to set the value of the ACTIVE input to whatever that command returns from executing an external command or code, it then becomes a potential way to read external values into the TEA program, and also might allow for writing the ACTIVE input to some external memory store\footnote{Think; since TEA doesn't natively support reading or writing to files, networks, databases, etc. A clever, and thoughtful use of ZAP could make all of these possible, when this power is placed in the hands of a seasoned or well-informed programmer or hacker.}. Other input commands such as \texttt{i:VAL} and \texttt{w:URL} can be likened to \texttt{z:CMD} in this regard, with the exception that any potential data or values that might be introduced into a TEA program using the \texttt{i:VAL} primitive are exactly what are explicitly stated in the TEA program code as the value \texttt{VAL}.
+
+\vspace{2em}
+
+
+The earlier sections of this specification already contain several example TEA programs using the Z-primitive. But, perhaps, it should be noted, that, just like the network accessing commands in the W-command space might not do what they are expected to do when the program is being run without access to a network --- such as when a program meant to post data to a server runs while the host device has no data connection, also, in some operating environments --- such as when a TEA program is being run in an environment that doesn't expose the underlying system shell --- such as trying to run CLI TEA on some un-rooted mobile devices --- in which case, even though the environment might be running on Linux underneath, but that space might not accessible to TEA programs by default or without special workarounds. While, in other environments such as Windows or desktop/server-side LINUX, such access is guaranteed to be possible most times. Thus, Z-primitives should be used cautiously --- with special care to distinguish between when ZAP is meant to be used in the context of WEB TEA vs CLI TEA\footnote{Something that, interestingly, the \texttt{Z.:PLATFORM} command was created for. For example, see the \textbf{Personality Calculator} program in \textbf{\hyperref[SECEXAMP1Q]{Section \ref{SECEXAMP1Q}}} that helps compute a person's astrological profile, but which leverages this \texttt{Z.:PLATFORM} command to cleverly craft useful tests that would make the computations simpler depending on the platform/environment under which the TEA program is being run. In this case, the environment introspection is being utilized to help run optimal TEA code, and not some external/non-TEA code!}, and perhaps only minimally or not at all\footnote{Earlier on, while TEA was still in its infancy, some times one found that they would need to fall-back to an external General-purpose programming language for some tricky computations such as non-trivial mathematical logic --- see for example the case of the \textbf{N-SIGIL} TEA application (\textbf{\hyperref[SECEXAMP1C]{Section \ref{SECEXAMP1C}}}) that significantly leverages JavaScript in computing special qr-code like graphics corresponding to numbers.} if possible, so as to ensure that one's TEA programs shall do what they are expected to do portably or across all environments. Z-command space (particularly the external command calls) should mostly be kept for advanced, non-trivial cases that are expected to only be required in special environments one is sure about.
+
+\vspace{2em}
+
+
+Z: basically makes it possible to perform some basic system programming in TEA. For a simple example demonstrating the power of the Zap facility, here is a program that would generate random numbers from words, and which would only work as desired in CLI TEA (basically, in Linux Environments):
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 1: Random Numbers from Words, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# essentially, generate random numbers
+# from words/alphabetical expressions...
+
+i:abcdefghijklmnopqrstuvwxy z
+a!:
+d:[ ].*$
+r!:[aeiou]:0
+r!:[bcdfghjklmnpqrstvwxyz]:1
+x:{ibase=2; }
+x:{echo '}
+x!:{' | bc}
+v:vCMD
+c:
+z*:vCMD
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Where we assume the system or shell command `bc' exists. Also, this example shows how we can use TEA to construct custom or special system commands, and then use them to solve problems based on user-provided data. For example this program constructs a call such as
+
+\vspace{2em}
+
+{
+\LARGE
+  \begin{tcolorbox}[myterminalstyle, title=Dynamically Constructed BC language Command]
+  \begin{lstlisting}
+echo 'ibase=2; 1100011011111101111' | bc             
+  \end{lstlisting}
+  \end{tcolorbox}
+}
+
+\vspace{2em}
+
+Which, when passed to the Z-command returns ``407535" on a system where the ``bc" command is accessible. The interestingly logic or trick here, when contrasting this method of generating random numbers to how TEA programs normally would generate random numbers (such as via use of the \textbf{NUMBER} command \texttt{n:} --- see \textbf{\hyperref[SECN]{Chapter \ref{SECN}}}), is that we take an expression, shuffle it, then map it to binary expression, and then use bc to convert from binary to decimal!
+
+\vspace{2em}
+
+A slightly modified version of this program is shown below, which would take any user input and return it as a number --- \textbf{not as a random number this time, but as the numeric equivalent of a given word or alphabetical expression}. It can for example show that the name ``Jesus Christ" is equal to the number 1403!
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 2: Numeric Expression Equivalent of Alphabetical Expressions, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# program converts provided word to a consistent number
+# -------------------------
+# NOTE: also accepts command-line parameters (just like any TEA script)
+# via -i "value" or -fi "input file path"
+# -------------------------
+i:test # interesting.. try "Jesus Christ" and see!
+g!: # first eliminate all whitespace
+z: # then turn everything to lowercase
+r!:[aeiou]:0 | r!:[bcdfghjklmnpqrstvwxyz]:1
+x:{ibase=2; } | x:{echo '} | x!:{' | bc}
+v:vCMD | c: | z*:vCMD
+# Magic!
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+An otherwise simple, and likely potentially widely supported system command is the ``pwd" command for returning the current working directory. We can see Z: working with an example invoking this command via TEA:
+
+
+\vspace{2em}
+
+{
+  \begin{tcolorbox}[myterminalstyle, title=Z: EXAMPLE 3: Calling System Commands from TEA on the CLI]
+  \begin{lstlisting}
+EXPERIMENTS|< 18:26:34 $>* pwd
+/mnt/e/LAB/EXPERIMENTS
+EXPERIMENTS|< 18:26:36 $>* tttt -c "z:pwd"
+/mnt/e/LAB/EXPERIMENTS
+EXPERIMENTS|< 18:26:50 $>*             
+  \end{lstlisting}
+  \end{tcolorbox}
+}
+
+\vspace{2em}
+
+
+Another useful demonstration is with combining use of TEA vaults with the Z-utility, such as in this example:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 4: Obtain Custom Formatted Date/Time-stamp in TEA on the CLI, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:{+'%A %d, %b %Y'}|v:vCMD:{date}|z*:vCMD
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Which should return something like  ``Friday 23, Aug 2024".
+
+
+\vspace{2em}
+
+
+For those testing Z: via TEA on the WEB (where we can't readily run the same stuff we can run via Z on the command-line TEA, since there is no bash, no Linux/Unix commands), examples for using Z: to run JavaScript from TEA are as follows:
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 5: Running JavaScript from TEA on the WEB, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:2|z:AI+3 
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+That shall return ``23" since, as we can see in the TEA debug output for this call, the system sets the internal variable AI to a string value ``2" based on the AI at the time Z: is called, and so, whatever we write in the CMD against AI refers to the string value, unless we marshal it manually. See the debug output below for illustration:
+
+
+\vspace{2em}
+
+{
+  \begin{tcolorbox}[myterminalstyle, title=Debugging WEB TEA (EXAMPLE 5)]
+  \begin{lstlisting}
+Processing Instruction: z:AI+3
+PRIOR MEMORY STATE: (=2, VAULTS:{})
+***[SYSTEM CMD]: EVALUATING via JavaScript:
+
+---[START CMD]---
+
+ const AI = "2"; AI+3 
+
+---[END CMD]---
+***[SYSTEM CMD RESULT]: 23
+RESULTANT MEMORY STATE: (=23, VAULTS:{})             
+  \end{lstlisting}
+  \end{tcolorbox}
+}
+
+\vspace{2em}
+
+
+So, to instead treat it as an integer and thus return say ``5", we should re-write that program as:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 6: Running JavaScript from TEA on the WEB, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:2|z:Number(AI)+3 #=5
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+The debug output shall enlighten us:
+
+
+
+\vspace{2em}
+
+{
+  \begin{tcolorbox}[myterminalstyle, title=Debugging WEB TEA (EXAMPLE 5)]
+  \begin{lstlisting}
+Processing Instruction: z:Number(AI)+3
+PRIOR MEMORY STATE: (=2, VAULTS:{})
+***[SYSTEM CMD]: EVALUATING via JavaScript:
+
+---[START CMD]---
+
+ const AI = "2"; Number(AI)+3 
+
+---[END CMD]---
+***[SYSTEM CMD RESULT]: 5
+RESULTANT MEMORY STATE: (=5, VAULTS:{})          
+  \end{lstlisting}
+  \end{tcolorbox}
+}
+
+\vspace{2em}
+
+
+Running invalid JavaScript or if any exception occurs during evaluation of that CMD, then with cases like \texttt{Z!:CMD}, we would get the result containing the error:
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 7: ZAP Calls Exposing External Evaluation Errors, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:2|z:Numbers(AI)+3 # (=, VAULTS:{})
+i!:2|z!:Numbers(AI)+3  # (=[ERROR]: ReferenceError: Numbers is not defined, VAULTS:{})
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+And for the case of commands held in vaults, we see the following as a good example:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 8: ZAP Calls Referencing Commands Held in Vaults, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:2|v:vCMD:Number(AI)+3|z*:vCMD #  (=5, VAULTS:{"vCMD":"Number(AI)+3"})
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+{\LARGE \textbf{WARNING:}} BE CAREFUL with the POWER of ZAP --- not just on WEB, but anywhere! Take for example the following simple program that, when run on the TEA WEB IDE, shall modify the WEB IDE itself! Yes, it shall insert the text ``Hello \textbf{World:5}" somewhere towards the bottom of the page in RED, and after that, unless you reload the page, most things will just stop working!
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 9: HACKING External Environment via TEA, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+i!:2|v:vCMD:{var R=Number(AI)+3;document.body.innerHTML += "<div style=\'color:red;\'>Hello <b>World:" + R +"</b></div>";R}|z*:vCMD
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+The effect of the above hack can be seen as shown in the following screenshot...
+
+\vspace{2em}
+
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[width=0.9\textwidth,]{resources/images/screenshot_hack_tea_web_ide_via_ZAP.png}\\
+   \caption{TEA WEB IDE hacked via a ZAP TEA program!}
+  \label{FIGTEAZEXA}
+  \end{center}
+\end{figure}
+
+
+ 
+\section{EXAMPLE APPLICATIONS of Z:}
+\label{SECEXAMPZ}
+
+  
+Having come to the final command space in the TEA instruction set, we must acknowledge that by this time, almost all of the intricacies of TEA programming have already been touched upon in the earlier chapters and examples leading up to this. However, and because ZAP is the TEA command especially related to or oriented towards enabling TEA programs to work with external powers and or facilities, in demonstrating the powers and standard applications of this command space, we shall embark on something truly ambitious; an attempt at \textbf{creating an Operating System in TEA!} This task, also somewhat related to reminiscent of fundamentals core-applications or projects in disciplines such Computer Architecture, Systems Programming and or Basic Software Engineering, shall likewise bring on the horizon the idea of \textbf{creating a new programming language using TEA!} Sounds crazy? Sounds exciting or impossible? Well, that's the stuff we are actually going to embark on in the rest of this chapter...
+
+\vspace{2em}
+
+Before we dive into this arcane task, it shall be worth bringing to mind one excerpt from my favorite reference book concerning hardcore classic Operating System basics and Computing Architecture concepts --- ``Advanced Computer Architecture: A Systems Design Approach" by \textbf{Richard Y. Kain}:
+
+
+
+
+\noindent
+\begin{minipage}{1\textwidth}
+\vspace{2em}
+\begin{quotation}
+{\ttfamily
+
+Computer systems are complex entities; their hardware and software are designed to support a few basic illusions that make them understandable to human beings. An important illusion is that a virtual machine provides functional behavior, conforming to all of the illusions it supports. But every virtual and real machine must have limits and boundaries. The methods by which these boundaries are enforced are very important.
+
+}
+\hspace*{\fill} ---\textbf{Richard Y. Kain}, \textit{Advanced Computer Architecture: A Systems Design Approach}, 1999\cite{kain1999advanced}
+\end{quotation}
+\vspace{2em}
+\end{minipage}
+
+
+and he surely wrote the kind of book that any serious, advanced engineer in computing would love to read and re-read especially when thinking about systems at a core, fundamental level. Moreover, and as we have decided to embark on the [daunting] task of creating an operating system, perhaps, it is worth mentioning another piece of wisdom that Kain shared in his book, but which he clearly attributes to classical philosopher \textbf{Rene Descartes}:
+
+
+\noindent
+\begin{minipage}{1\textwidth}
+\vspace{2em}
+\begin{quotation}
+{\ttfamily
+
+It is not enough to have a good mind. The main thing is to use it well.
+
+}
+\end{quotation}
+\vspace{2em}
+\end{minipage}
+
+
+\fbox{\begin{minipage}{\textwidth}
+\LARGE
+
+\textbf{In-BRIEF: Richard Yerkes Kain, a ``Grandfather" in Computer Architecture:}\\
+
+
+Richard Yerkes Kain is a computer scientist and author best known for his textbook \textit{Advanced Computer Architecture: A Systems Design Approach} (Prentice Hall, 1996)\cite{kain1999advanced}. He also wrote earlier works such as \textit{Automata Theory: Machines and Languages} (1972)\cite{kain1972automata}. Beyond his publications, little biographical information is publicly available, but records indicate he was affiliated with the University of Minnesota in Minneapolis, MN. He was born 
+in 1936, and his later life includes references to creative works such as photography (\textit{Ethiopia}) and travel books (\textit{Norway})\cite{copilot_assistant}.
+
+\textbf{Known Works}
+\begin{itemize}
+  \item \textbf{Advanced Computer Architecture: A Systems Design Approach} (1995/1996) \\
+  A comprehensive textbook covering instruction set design, memory organization, processor architecture, 
+  and the relationship between hardware and software. Widely used in graduate and advanced undergraduate 
+  courses in computer engineering.
+  
+  \item \textbf{Automata Theory: Machines and Languages} (1972) \\
+  Focused on formal languages, automata, and computational theory. One of the earlier texts bridging 
+  theoretical computer science and practical applications.
+\end{itemize}
+
+Active in academia during the 1970s--1990s, and contributing to both theoretical computer science and applied computer architecture, no current biography or institutional profile is available other than an IEEE author entry\footnote{See \url{https://ieeexplore.ieee.org/author/37270447800}}. His present status (alive or deceased) is likewise not publicly confirmed \cite{copilot_assistant}.
+
+\end{minipage}}
+\\
+
+
+
+
+\subsection{EXAMPLE 1: \textbf{COMPUTER ARCHITECTURE:} TEA Operating System (TOS)}
+\label{SECEXAMP1Z}
+
+
 
 
 
