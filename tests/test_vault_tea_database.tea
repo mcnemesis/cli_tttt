@@ -1,0 +1,14 @@
+# The following examples are for using the VAULT command space
+# to read and write to the TEA DATABASE (a persistent kind of vault storage)
+# NOTE: these functions should work as is for both WEB and CLI TEA
+
+# store value "this is a menu" under key "MENU" in the DB
+v@:MENU:{this is a menu}
+
+# check (even in a different program or after quiting)
+# how long a value in DB record "MENU" is
+v!@:MENU # should return "14"
+
+# store value in AI as some value in DB
+z.: # fetches current environment-platform params
+v@:MYPLATFORM # stores them in TDB under name "MYPLATFORM"

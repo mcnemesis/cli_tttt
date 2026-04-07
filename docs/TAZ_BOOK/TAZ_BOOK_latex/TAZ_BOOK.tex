@@ -14519,6 +14519,38 @@ That TEA program, without any other external input (the \textit{initial seed}) s
 Of course, that program can be improved upon so as to create more cryptic passwords given some initial seed (or none), and this we shall cover among the example applications in the next section.
 
 
+\subsection{VAULT with TEA DATABASE --- persistent storage in TEA}
+
+Since TEA \textbf{v1.4.5}, the idea of storage of a kind that can be relied upon even after the TEA program quits --- just like traditional storage using either files or databases would work --- was introduced into TEA. The functionality is somewhat closely related to how the TEA vault commands we have already encountered work, however, and as demonstrated in the syntax guidelines in \textbf{\hyperref[TABSEMV]{Table \ref{TABSEMV}}}, the instruction signatures when operating with the \textbf{TEA DATABASE} are slightly different.
+
+\vspace{2em}
+
+For starters, here is a basic example to show how to utilize VAULT commands to write data into the database.
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 4: Basic TEA Database Operations, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# The following examples are for using the VAULT command space
+# to read and write to the TEA DATABASE (a persistent kind of vault storage)
+# NOTE: these functions should work as is for both WEB and CLI TEA
+
+# store value "this is a menu" under key "MENU" in the DB
+v@:MENU:{this is a menu}
+
+# check (even in a different program or after quiting)
+# how long a value in DB record "MENU" is
+v!@:MENU # should return "14"
+
+# store value in AI as some value in DB
+z.: # fetches current environment-platform params
+v@:MYPLATFORM # stores them in TDB under name "MYPLATFORM"
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
 
  
 \section{EXAMPLE APPLICATIONS of V:}
