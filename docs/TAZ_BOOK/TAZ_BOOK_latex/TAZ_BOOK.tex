@@ -18178,6 +18178,35 @@ The effect of the above hack can be seen as shown in the following screenshot...
 \end{figure}
 
 
+\subsection{Environment and Platform Introspection using ZAP}
+
+Before closing the discussion notes about the ZAP command space, it shall be worth noting that we can use the \texttt{Z.:*} commands to find out about where and when a TEA program is being run. These commands are available and behave the same anywhere TEA runs, and have the following syntax and purposes:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item \texttt{Z.:PLATFORM} --- returns the [short] name of the particular [TEA] platform from which the current program is being run. The only two possible values for this are either ``WEB" or ``CLI", corresponding to either TEA being run in a Web Browser or via the command-line/desktop/etc. respectively.
+\item \texttt{Z.:VERSION} --- returns the current numerical version name of the TEA language being used to run the program. This value should likewise match what is seen as reported on the TEA WEB IDE when a TEA program is run via the online TEA IDE environment, or via the \texttt{tttt -v} result when invoked via the command-line. Examples are like ``1.4.4"
+\item \texttt{Z.:DATE} --- returns the current date formatted as ``Tuesday, 07 April 2026".
+\item \texttt{Z.:TIME} --- returns the current time formatted as ``16:21:50" (HH:MM:ss)
+\item{ \texttt{Z.:} --- \textbf{return all platform/environment parameters}: without having to explicitly indicate which of the parameters to return, this command signature sets AI to all the current values for each of the parameter names indicated above, and in these, separated using a single semi-colon as such 
+
+\begin{figure}[H]
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=TEA Environment/Platform Parameters]
+  \begin{lstlisting}
+PLATFORM:WEB;VERSION:1.4.4;DATE:Tuesday, 07 April 2026;TIME:16:23:39
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{The TEA Platform Parameters as returned by the \texttt{Z.:} instruction}
+  \label{FIGZPARAMS}
+\end{figure}
+
+}
+\end{enumerate}
+
+
+
  
 \section{EXAMPLE APPLICATIONS of Z:}
 \label{SECEXAMPZ}

@@ -43,7 +43,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.3" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.4" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -368,12 +368,14 @@ export class TEA_RunTime {
 		const year = now.getFullYear();
 		const hours = now.getHours().toString().padStart(2, '0');
 		const minutes = now.getMinutes().toString().padStart(2, '0');
+		const seconds = now.getSeconds().toString().padStart(2, '0');
 
 		const dateStr = `${weekday}, ${day} ${month} ${year}`;
-		const timeStr = `${hours}:${minutes}`;
+		const timeStr = `${hours}:${minutes}:${seconds}`;
 
         var config = {
                 "PLATFORM": "WEB",
+                "VERSION": this.VERSION,
                 "DATE": dateStr,
                 "TIME": timeStr
                 }

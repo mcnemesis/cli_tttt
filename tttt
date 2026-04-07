@@ -28,7 +28,7 @@ import random
 import argparse
 
 DEBUG = True
-VERSION = "1.4.3"
+VERSION = "1.4.4"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -614,6 +614,7 @@ class TEA_RunTime:
             from datetime import datetime
             config = {
                     "PLATFORM": "CLI",
+                    "VERSION": VERSION,
                     "DATE": datetime.now().strftime("%A, %d %B %Y"),
                     "TIME": datetime.now().strftime("%H:%M:%S")
                     }
