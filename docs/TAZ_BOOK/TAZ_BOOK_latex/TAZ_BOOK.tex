@@ -2416,12 +2416,12 @@ currently active vaults (including the DEFAULT VAULT)\\
   c@: & INERT\\
  
   
-  \rowcolor{lightgray}\bfseries  c@:dNAME & \textbf{CLEAR} or RESET the DATABASE record with the name dNAME --- essentially, set its value to the EMPTY STRING\\
+  \rowcolor{lightgray}\bfseries  \makecell[l]{c@:dNAME\\c@:d1:d2:d3:...:dn} & \textbf{CLEAR} or RESET the DATABASE record with the name dNAME --- essentially, set its value to the EMPTY STRING. With multiple record names, do the same for all specified records.\\
     
-       c@!: & \textbf{DELETE} all current TEA DATABASE records.\\
+       c!@: & \textbf{DELETE} all current TEA DATABASE records.\\
     
     
-      \rowcolor{lightgray}\bfseries c@!:dNAME & \textbf{DELETE} the DATABASE record with the name dNAME\\
+      \rowcolor{lightgray}\bfseries \makecell[l]{c!@:dNAME\\c!@:d1:d2:d3:...:dn} & \textbf{DELETE} the DATABASE record with the name dNAME. With multiple names, delete all associated records from TEA database.\\
  
  \hline
 \end{tabular}
@@ -2728,6 +2728,147 @@ RESULTANT MEMORY STATE: (=, VAULTS:{'vC': '', 'vF': 'TEST-F', 'vD': ''})
   \caption{TEA Debugger Output for Understanding Selective Processing of Vaults by \texttt{C*:} and \texttt{C*!:}}
   \label{FIGC7}
 \end{figure}
+
+
+\subsubsection{Database Storage Management using CLEAR Commands}
+
+It is without doubt necessary to dedicate this special section to just discussing what is possible to do concerning managing persistent memory (also what we might refer to as the ``TEA DATABASE") via thoughtful use of the CLEAR instructions as depicted in the final rows of \textbf{\hyperref[TABSEMC]{Table \ref{TABSEMC}}}.
+
+
+\vspace{2em}
+
+First of all, realize that, for vault storage which operates in the program's working memory, and so that, once the program exits or terminates (either intentionally or erroneously/unexpectedly), such data is automatically lost or cleared from storage. This means, many times, one might not need to manually manage such storage --- say, manually calling instructions like \texttt{c*:v1:v2:...}
+
+\vspace{2em}
+
+However, for the special storage type known as the \textbf{TEA DATABASE}, we find that once a value is stored --- such as via \texttt{v@:dNAME:{some value}}, then such data will remain stored on the system, and can be later read or accessed by other TEA programs even after the program that wrote it quits or is no-longer available! This facility is especially useful in creating programs that can load configurations created in the past, allowing users to continue work from where they last stopped, etc. And thus, because these are long-term storage facilities, sometimes it might be useful to be able to manually manage --- check what is stored, how large it is, remove or update values, find out what is out-dated, etc.
+
+\vspace{2em}
+
+Of course, on its own, the TEA CLEAR command-space alone cannot do all the necessary work required to manage or operationalize the TEA DATABASE\footnote{There are several important operations concerning managing a DATABASE, and these are handled by special instructions such as: \textbf{creating records} --- by Vault commands ( see \textbf{\hyperref[TABSEMV]{Table \ref{TABSEMV}}}); \textbf{reading records} --- by Yank commands (see \textbf{\hyperref[TABSEMY]{Table \ref{TABSEMY}}}) and then \textbf{clearing or deleting records} by Clear commands.}, however, in the following somewhat exhaustive TEST case, we shall attempt to demonstrate all the quirks concerning TEA database operations and management. The program can be run on either WEB or commandline, and the results or test-cases should work suitably anywhere TEA works, so that one can understand what is possible, what the different command signatures do, etc.
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=C: TEA DATABASE management TEST suite, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# These are tests to show how CLEAR can manipulate TEA DATABASE records
+# as these commands might affect data meant to be read by other
+# programs, please ensure to use this command with care!
+
+# before anything, let's start by seeing what's currently in the database..
+# let's confirm what's actually in the database...
+y@: | v:vRECORDS
+y!@: | v:vRecordsCount
+
+i!:{What's currently in the DATABASE:
+#Records: } | x*!:vRecordsCount | x!:{
+Record Names:
+}| x*!:vRECORDS | i:
+
+#first, clear everything in the database!
+# should we delete everything?
+i!:{Should we delete everything? 1:YES | else: NO} | i: | t!.: | v:vOPT
+f!:^1$:lDONTDELETE_ALL
+i!:{So we are going to delete all...} | i:
+# so we start from a clean slate...
+C!@:
+
+l:lDONTDELETE_ALL
+
+# let's confirm what's actually in the database...
+y@: | v:vRECORDS
+y!@: | v:vRecordsCount
+
+i!:{What's currently in the DATABASE:
+#Records: } | x*!:vRecordsCount | x!:{
+Record Names:
+}| x*!:vRECORDS | i:
+
+#first, let's see if we can clear a value we didn't store...
+C@:DATA_RECORD_DOESNOTEXIST # shall instead create record with blank value!
+
+#What of deleting what doesn't exist?
+C!@:DATA_RECORD_DOESNOTEXIST_2 # raises no errors if not exist..
+
+# let us create some records in the database...
+i!:{This is a test} | v@:dTEST_DATA
+
+z.:TIME | x:{The time is } | v@:dTIME
+
+z.:DATE | v:vDATE | x:{The Date is } | v@:dDATE
+
+i!:{We've written some data to the database, including dDATE with value:} | x*!:vDATE | i:
+
+i!:{Next, we'll delete some of those database records...} | i:
+
+# First, let's only delete two records...
+# including one that doesn't exist...
+C!@:DATA_RECORD_DOESNOTEXIST_2:dDATE
+
+# check if we can find it...
+
+y@:dDATE | v:vDATE 
+f:^$:lDATE_DELETED
+x:{The Date [} | x*!:vDATE | x!:{] was NOT DELETED} | i:
+j:lFIN_DATE_TEST
+
+l:lDATE_DELETED
+i!:{The Date was Deleted!} | i:
+
+l:lFIN_DATE_TEST
+
+# test clearing...
+Y!@:dTIME
+x:{The Time record has length:} | i:
+
+i!:{Now let's clear that and see...} | i:
+C@:dTIME # clears
+Y!@:dTIME # fetch length...
+x:{The Time record has length:} | i:
+
+# let's add some more records to the database...
+i!:{Write something to store under the name dRECORD:} | i: | v:vRECORD
+y:vRECORD | v@:dRECORD
+
+# let's see what's in the database...
+y.@: | x:{Current TEA DATABASE INDICES (before delete-ALL) are:
+} | i:
+
+
+y@: | x:{Current TEA DATABASE RECORD NAMES are:
+} | i:
+
+
+# should we delete everything?
+i!:{Should we delete everything? 1:YES | else: NO} | i: | t!.: | v:vOPT
+f!:^1$:lDONTDELETE_ALL2
+# now delete everything!
+i!:{OK, then let's delete everything...} | i:
+
+c!@:
+
+l:lDONTDELETE_ALL2
+
+# let's confirm what's actually in the database...
+y@: | v:vRECORDS
+y!@: | v:vRecordsCount
+
+i!:{What's currently in the DATABASE:
+#Records: } | x*!:vRecordsCount | x!:{
+Record Names:
+}| x*!:vRECORDS | i:
+
+y.@: | x:{
+    And Current TEA DATABASE RECORD INDICES are:
+} | i:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
 
 
 \section{EXAMPLE APPLICATIONS of C:}
@@ -17299,6 +17440,12 @@ y!: & Return the length of whatever is currently stored in the default vault (th
 \makecell[l]{y@:NAME} & Return whatever is stored in \textbf{TEA DATABASE} with name NAME\\
 
 \rowcolor{lightgray}\bfseries \makecell[l]{y!@:NAME} & Return the length of whatever is currently stored in DATABASE record with name NAME.\\
+
+\makecell[l]{y!@:} & Return How Many Records are Currently stored in \textbf{TEA DATABASE}\\
+
+\makecell[l]{y@:} & Return \textbf{RECORD NAMES} of all that is currently stored in \textbf{TEA DATABASE}\\
+
+\rowcolor{lightgray}\bfseries \makecell[l]{y.@:} & Return \textbf{RECORD INDICES} of all that is currently stored in \textbf{TEA DATABASE}\\
 
 
  \hline

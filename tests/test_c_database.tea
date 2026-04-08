@@ -1,0 +1,110 @@
+# These are tests to show how CLEAR can manipulate TEA DATABASE records
+# as these commands might affect data meant to be read by other
+# programs, please ensure to use this command with care!
+
+# before anything, let's start by seeing what's currently in the database..
+# let's confirm what's actually in the database...
+y@: | v:vRECORDS
+y!@: | v:vRecordsCount
+
+i!:{What's currently in the DATABASE:
+#Records: } | x*!:vRecordsCount | x!:{
+Record Names:
+}| x*!:vRECORDS | i:
+
+#first, clear everything in the database!
+# should we delete everything?
+i!:{Should we delete everything? 1:YES | else: NO} | i: | t!.: | v:vOPT
+f!:^1$:lDONTDELETE_ALL
+i!:{So we are going to delete all...} | i:
+# so we start from a clean slate...
+C!@:
+
+l:lDONTDELETE_ALL
+
+# let's confirm what's actually in the database...
+y@: | v:vRECORDS
+y!@: | v:vRecordsCount
+
+i!:{What's currently in the DATABASE:
+#Records: } | x*!:vRecordsCount | x!:{
+Record Names:
+}| x*!:vRECORDS | i:
+
+#first, let's see if we can clear a value we didn't store...
+C@:DATA_RECORD_DOESNOTEXIST # shall instead create record with blank value!
+
+#What of deleting what doesn't exist?
+C!@:DATA_RECORD_DOESNOTEXIST_2 # raises no errors if not exist..
+
+# let us create some records in the database...
+i!:{This is a test} | v@:dTEST_DATA
+
+z.:TIME | x:{The time is } | v@:dTIME
+
+z.:DATE | v:vDATE | x:{The Date is } | v@:dDATE
+
+i!:{We've written some data to the database, including dDATE with value:} | x*!:vDATE | i:
+
+i!:{Next, we'll delete some of those database records...} | i:
+
+# First, let's only delete two records...
+# including one that doesn't exist...
+C!@:DATA_RECORD_DOESNOTEXIST_2:dDATE
+
+# check if we can find it...
+
+y@:dDATE | v:vDATE 
+f:^$:lDATE_DELETED
+x:{The Date [} | x*!:vDATE | x!:{] was NOT DELETED} | i:
+j:lFIN_DATE_TEST
+
+l:lDATE_DELETED
+i!:{The Date was Deleted!} | i:
+
+l:lFIN_DATE_TEST
+
+# test clearing...
+Y!@:dTIME
+x:{The Time record has length:} | i:
+
+i!:{Now let's clear that and see...} | i:
+C@:dTIME # clears
+Y!@:dTIME # fetch length...
+x:{The Time record has length:} | i:
+
+# let's add some more records to the database...
+i!:{Write something to store under the name dRECORD:} | i: | v:vRECORD
+y:vRECORD | v@:dRECORD
+
+# let's see what's in the database...
+y.@: | x:{Current TEA DATABASE INDICES (before delete-ALL) are:
+} | i:
+
+
+y@: | x:{Current TEA DATABASE RECORD NAMES are:
+} | i:
+
+
+# should we delete everything?
+i!:{Should we delete everything? 1:YES | else: NO} | i: | t!.: | v:vOPT
+f!:^1$:lDONTDELETE_ALL2
+# now delete everything!
+i!:{OK, then let's delete everything...} | i:
+
+c!@:
+
+l:lDONTDELETE_ALL2
+
+# let's confirm what's actually in the database...
+y@: | v:vRECORDS
+y!@: | v:vRecordsCount
+
+i!:{What's currently in the DATABASE:
+#Records: } | x*!:vRecordsCount | x!:{
+Record Names:
+}| x*!:vRECORDS | i:
+
+y.@: | x:{
+    And Current TEA DATABASE RECORD INDICES are:
+} | i:

@@ -22,11 +22,16 @@ export class TEA_RunTime {
             this.INDEX_NAME = "TEA_DATABASE_INDEX";
             // index is dictionary { "file/record/name": "DATE|TIME|TIMESTAMP",...}
               try{
-                this.INDEX = JSON.parse(this.getItem(this.INDEX_NAME)) || {};
+                  this.loadIndex()
               }catch(error){
                 this.INDEX = {};
               }
 		  }
+
+          loadIndex(){
+            this.runtime.debug(`--[INFO] Loading DATABASE Index...`)
+            this.INDEX = JSON.parse(this.storage.getItem(this.INDEX_NAME) || "{}");
+          }
 
           updateIndex(){
               this.storage.setItem(this.INDEX_NAME,JSON.stringify(this.INDEX));
@@ -41,7 +46,7 @@ export class TEA_RunTime {
             this.updateIndex();
             // then store item..
 			this.storage.setItem(index_name, value);
-            this.runtime.debug(`--[INFO] Wrote DATABASE[${key} = [${value}]]`)
+            this.runtime.debug(`--[INFO] Wrote DATABASE[${key}] = [${value}]]`)
 		  }
 
 		  getItem(key) {
@@ -57,13 +62,31 @@ export class TEA_RunTime {
 			return value;
 		  }
 
+          getRecordNames(){
+              return Object.keys(this.INDEX).join(",")
+          }
+
+          getRecordsCount(){
+              var count = Object.keys(this.INDEX).length;
+              this.runtime.debug(`--[INFO] RETURNING DATABASE record count = [${count}]`);
+              return count;
+          }
+
+          printIndex(){
+              return JSON.stringify(this.INDEX)
+          }
+
 		  removeItem(key) {
             var index_name = "TDB_" + key;
-			this.storage.removeItem(index_name);
-            // also update index 
-			this.INDEX.removeItem(index_name);
-            this.updateIndex();
-            this.runtime.debug(`--[INFO] DELETED from DATABASE[${key}]`)
+              try{
+                this.storage.removeItem(index_name);
+                // also update index 
+                this.INDEX.removeItem(index_name);
+                this.updateIndex();
+                this.runtime.debug(`--[INFO] DELETED from DATABASE[${key}]`)
+              }catch(error){
+                this.runtime.debug(`--[ERROR] During attempt to DELETE [${key}] from DATABASE:\n${error}`)
+              }
 		  }
 
 		  clear() {
@@ -100,7 +123,7 @@ export class TEA_RunTime {
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
         static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*/
-        static RETI = /^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
+        static RETI = /^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -113,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.6" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.8" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -1144,6 +1167,7 @@ export class TEA_RunTime {
                 throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
             }
         }
+
         if(tc == "C!"){
             if(TEA_RunTime.is_empty(tpe_str)){
                 for (let vault of Object.keys(this.VAULTS)) {
@@ -1165,6 +1189,30 @@ export class TEA_RunTime {
                 var vaults = tpe_str.split(TEA_RunTime.TIPED)
                 for(let vault of vaults){
                     this.VAULTS[vault] = TEA_RunTime.EMPTY_STR
+                }
+            }
+        }
+
+        if(tc == "C@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+            }else{
+                let dKeys = tpe_str.split(TEA_RunTime.TIPED);
+                var dVALUE = TEA_RunTime.EMPTY_STR;
+                for (let dNAME of dKeys) {
+                    this.DATABASE.setItem(dNAME,dVALUE);
+                }
+            }
+        }
+
+        if(tc == "C!@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                this.DATABASE.clear();
+            }else{
+                let dKeys = tpe_str.split(TEA_RunTime.TIPED);
+                for (let dNAME of dKeys) {
+                    this.DATABASE.removeItem(dNAME);
                 }
             }
         }
@@ -3315,7 +3363,8 @@ export class TEA_RunTime {
                 var params = TEA_RunTime.splitWithLimit(input_str,TEA_RunTime.TIPED,1)
                 if(params.length > 2){
                     this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
-                    throw new Error("[SEMANTIC ERROR] Invalid Instruction Signature")
+                    throw new Error(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+
                 }
                 else{
                     if(params.length == 2){
@@ -3791,8 +3840,7 @@ export class TEA_RunTime {
 
         if(tc == "Y@"){
             if(TEA_RunTime.is_empty(tpe_str)){
-                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
-                throw new Error(`[SEMANTIC ERROR] Invalid Instruction Signature: ${ti}`)
+                return this.DATABASE.getRecordNames();
             } else {
                 var vNAME = tpe_str
                 var vVALUE = this.DATABASE.getItem(vNAME)
@@ -3803,13 +3851,21 @@ export class TEA_RunTime {
 
         if(tc == "Y!@"){
             if(TEA_RunTime.is_empty(tpe_str)){
-                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
-                throw new Error(`[SEMANTIC ERROR] Invalid Instruction Signature: ${ti}`)
+                return this.DATABASE.getRecordsCount();
             } else {
                 var vNAME = tpe_str
                 var vVALUE = this.DATABASE.getItem(vNAME)
                 this.debug(`[INFO] Returning Length of string  in DATABASE [${vNAME}]`)
                 return vVALUE.length
+            }
+        }
+
+        if(tc == "Y.@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return this.DATABASE.printIndex();
+            } else {
+                this.debug(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
+                throw new Error(`[ERROR] Instruction ${ti} Invoked with Invalid Signature`)
             }
         }
 

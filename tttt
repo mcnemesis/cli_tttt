@@ -29,7 +29,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.4.6"
+VERSION = "1.4.8"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -91,12 +91,16 @@ class TEADatabase:
         # index is dictionary { "file/record/name": "DATE|TIME|TIMESTAMP",...}
         #self.INDEX = json.loads(self.getItem(self.INDEX)) || {};
         try:
-            self.INDEX = self.getItem(self.INDEX_NAME) or {};
+            self.loadIndex()
         except:
             self.INDEX = {}
 
+    def loadIndex(self):
+        self.runtime.debug(f"-- [INFO] Loading DATABASE Index...")
+        with shelve.open(self.filename) as db:
+            self.INDEX =  db.get(self.INDEX_NAME, {})
+
     def updateIndex(self):
-        #self.setItem(self.INDEX_NAME,json.dumps(self.INDEX));
         with shelve.open(self.filename) as db:
             db[self.INDEX_NAME] = self.INDEX
 
@@ -110,7 +114,7 @@ class TEADatabase:
         # then store item..
         with shelve.open(self.filename) as db:
             db[index_name] = value
-        self.runtime.debug(f"-- [INFO] Wrote DATABASE[{key} = [{value}]]")
+        self.runtime.debug(f"-- [INFO] Wrote DATABASE[{key}] = [{value}]]")
 
     def getItem(self, key):
         index_name = "TDB_" + key
@@ -123,14 +127,32 @@ class TEADatabase:
         index_name = "TDB_" + key
         return self.INDEX.get(index_name, TEA_RunTime.EMPTY_STR)
 
+    def getRecordsCount(self):
+        count =  len(self.INDEX.keys())
+        self.runtime.debug(f"-- [INFO] RETURNING DATABASE record count = {count}")
+        return count
+
+    def getRecordNames(self):
+        self.runtime.debug(f"-- [INFO] RETURNING all DATABASE record names")
+        return ",".join(self.INDEX.keys())
+
+    def printIndex(self):
+        self.runtime.debug(f"-- [INFO] RETURNING full DATABASE index")
+        import json
+        return json.dumps(self.INDEX)
+
     def removeItem(self, key):
         index_name = "TDB_" + key
-        with shelve.open(self.filename) as db:
-            if index_name in db:
-                del db[index_name]
-        # also update index 
-        self.updateIndex()
-        self.runtime.debug(f"-- [INFO] DELETED from DATABASE[{key}]")
+        try:
+            with shelve.open(self.filename) as db:
+                if index_name in db:
+                    del db[index_name]
+                    del self.INDEX[index_name]
+            # also update index 
+            self.updateIndex()
+            self.runtime.debug(f"-- [INFO] DELETED from DATABASE[{key}]")
+        except:
+            self.runtime.debug(f"-- [ERROR] During attempt to DELETE [{key}] from DATABASE")
 
     def clear(self):
         with shelve.open(self.filename) as db:
@@ -162,7 +184,7 @@ class TEA_RunTime:
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -985,6 +1007,26 @@ class TEA_RunTime:
                     vaults = tpe_str.split(TEA_RunTime.TIPED)
                     for vault in vaults:
                         VAULTS[vault] = TEA_RunTime.EMPTY_STR
+
+            if tc == "C@":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                else:
+                    dKeys = tpe_str.split(TEA_RunTime.TIPED)
+                    dVALUE = TEA_RunTime.EMPTY_STR
+                    for dNAME in dKeys:
+                        self.DATABASE.setItem(dNAME,dVALUE)
+
+            if tc == "C!@":
+                if len(tpe_str) == 0:
+                    self.DATABASE.clear()
+                else:
+                    dKeys = tpe_str.split(TEA_RunTime.TIPED)
+                    for dNAME in dKeys:
+                        self.DATABASE.removeItem(dNAME)
+
             return io
 
 
@@ -2557,7 +2599,8 @@ class TEA_RunTime:
                     if len(params) > 2:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
-                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                        raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+
                     else:
                         if len(params) == 2:
                             vNAME,vVALUE = params[0], self.extract_str(params[1])
@@ -2928,8 +2971,7 @@ class TEA_RunTime:
 
             if tc == "Y@":
                 if len(tpe_str) == 0:
-                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
-                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    return self.DATABASE.getRecordNames()
                 else:
                     vNAME = tpe_str
                     vVALUE = self.DATABASE.getItem(vNAME)
@@ -2938,14 +2980,23 @@ class TEA_RunTime:
                     return vVALUE
             if tc == "Y!@":
                 if len(tpe_str) == 0:
-                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
-                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    if TEA_RunTime.DEBUG:
+                        print(f"[INFO] Returning Records Count in DATABASE")
+                    return self.DATABASE.getRecordsCount()
                 else:
                     vNAME = tpe_str
                     vVALUE = self.DATABASE.getItem(vNAME)
                     if TEA_RunTime.DEBUG:
                         print(f"[INFO] Returning Length of string in DATABASE [{vNAME}]")
                     return len(vVALUE)
+
+            if tc == "Y.@":
+                if len(tpe_str) == 0:
+                    return self.DATABASE.printIndex()
+                else:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
 
             return io
 
