@@ -26,9 +26,10 @@ import urllib.request, urllib.parse
 import re
 import random
 import argparse
+import shelve
 
-DEBUG = True
-VERSION = "1.4.3"
+DEBUG = False
+VERSION = "1.4.8"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -74,6 +75,92 @@ Where INPUT is treated as data input file path and the TEA program is read from 
 In all situations, the TTTT interpreter executes the available TEA program on the available input data and outputs the final result via standard output, and does nothing else but quit.
 """
 
+# Since TEA v1.4.5: TEA persistent storage
+# aka: TEA Database
+class TEADatabase:
+    def __init__(self, TEA_runtime, filename=None):
+        # Always use the same file path on the machine
+        if filename is None:
+            # Place it in the user’s home directory for consistency
+            home = os.path.expanduser("~")
+            filename = os.path.join(home, ".localstorage_shelf")
+        self.filename = filename
+        self.runtime = TEA_runtime
+        # to hold all record keys created via this interface
+        self.INDEX_NAME = "TEA_DATABASE_INDEX";
+        # index is dictionary { "file/record/name": "DATE|TIME|TIMESTAMP",...}
+        #self.INDEX = json.loads(self.getItem(self.INDEX)) || {};
+        try:
+            self.loadIndex()
+        except:
+            self.INDEX = {}
+
+    def loadIndex(self):
+        self.runtime.debug(f"-- [INFO] Loading DATABASE Index...")
+        with shelve.open(self.filename) as db:
+            self.INDEX =  db.get(self.INDEX_NAME, {})
+
+    def updateIndex(self):
+        with shelve.open(self.filename) as db:
+            db[self.INDEX_NAME] = self.INDEX
+
+    def setItem(self, key, value):
+        # first create index entry...
+        index_name = "TDB_" + key
+        env = self.runtime.util_get_environment()
+        index_value = env["TIMESTAMP"]+"|"+env["DATE"]+"|"+env["TIME"]
+        self.INDEX[index_name] = index_value
+        self.updateIndex()
+        # then store item..
+        with shelve.open(self.filename) as db:
+            db[index_name] = value
+        self.runtime.debug(f"-- [INFO] Wrote DATABASE[{key}] = [{value}]]")
+
+    def getItem(self, key):
+        index_name = "TDB_" + key
+        self.runtime.debug(f"-- [INFO] Reading DATABASE[{key}]")
+        #TEA_RunTime.debug(f"-- [INFO] Reading DATABASE[{key}]")
+        with shelve.open(self.filename) as db:
+            return db.get(index_name, TEA_RunTime.EMPTY_STR)
+
+    def getItemIndex(self, key):
+        index_name = "TDB_" + key
+        return self.INDEX.get(index_name, TEA_RunTime.EMPTY_STR)
+
+    def getRecordsCount(self):
+        count =  len(self.INDEX.keys())
+        self.runtime.debug(f"-- [INFO] RETURNING DATABASE record count = {count}")
+        return count
+
+    def getRecordNames(self):
+        self.runtime.debug(f"-- [INFO] RETURNING all DATABASE record names")
+        return ",".join(self.INDEX.keys())
+
+    def printIndex(self):
+        self.runtime.debug(f"-- [INFO] RETURNING full DATABASE index")
+        import json
+        return json.dumps(self.INDEX)
+
+    def removeItem(self, key):
+        index_name = "TDB_" + key
+        try:
+            with shelve.open(self.filename) as db:
+                if index_name in db:
+                    del db[index_name]
+                    del self.INDEX[index_name]
+            # also update index 
+            self.updateIndex()
+            self.runtime.debug(f"-- [INFO] DELETED from DATABASE[{key}]")
+        except:
+            self.runtime.debug(f"-- [ERROR] During attempt to DELETE [{key}] from DATABASE")
+
+    def clear(self):
+        with shelve.open(self.filename) as db:
+            db.clear()
+        self.INDEX = {}
+        self.updateIndex()
+        self.runtime.debug(f"-- [INFO] DELETED ALL from DATABASE")
+
 class TEA_RunTime:
     #-------------------------------------
     # CONSTANTS
@@ -97,7 +184,7 @@ class TEA_RunTime:
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'^\s*[a-zA-Z](?:[\.!\*]|(?:\*!)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -106,6 +193,9 @@ class TEA_RunTime:
     GLUE = SINGLE_SPACE_CHAR
     EMPTY_STR = ""
     vDEFAULT_VAULT = EMPTY_STR
+
+    DATABASE = None
+
 
     # one of most important utils..
     def is_empty(self, val):
@@ -177,8 +267,24 @@ class TEA_RunTime:
 
     # Conditionally print debug info...
     def debug(self, txt):
-        if TEA_RunTime.DEBUG:
-            print(txt)
+        try:
+            if TEA_RunTime.DEBUG:
+                print(txt)
+        except:
+            if self.DEBUG:
+                print(txt)
+
+    def util_get_environment(self):
+        from datetime import datetime
+        config = {
+                "PLATFORM": "CLI",
+                "VERSION": VERSION,
+                "DATE": datetime.now().strftime("%A, %d %B %Y"),
+                "TIME": datetime.now().strftime("%H:%M:%S"),
+                "TIMESTAMP": str(int(datetime.now().timestamp()))
+                }
+
+        return config
 
 
     # reverse TEA String Masking
@@ -264,7 +370,12 @@ class TEA_RunTime:
 
 
     def run_tttt(self, _process_cli = False, _tsrc=None, _ai=None, _debug=False):
+        def init_Database():
+            self.DATABASE = TEADatabase(self) # one global instance enough
+
         self.DEBUG = _debug
+
+        init_Database()
 
         INPUT = _ai #shall either be read from stdin or from the val to -i or -fi
         CODE = _tsrc #shall either be from INPUT or from the val to -c or -fc
@@ -610,15 +721,6 @@ class TEA_RunTime:
             return TEA_RunTime.EMPTY_STR.join([w['c'] for w in tally])
 
 
-        def util_get_environment():
-            from datetime import datetime
-            config = {
-                    "PLATFORM": "CLI",
-                    "DATE": datetime.now().strftime("%A, %d %B %Y"),
-                    "TIME": datetime.now().strftime("%H:%M:%S")
-                    }
-
-            return config
 
         def util_system_b(cmd, cmdData, show_errors=False):
             result = None
@@ -905,6 +1007,26 @@ class TEA_RunTime:
                     vaults = tpe_str.split(TEA_RunTime.TIPED)
                     for vault in vaults:
                         VAULTS[vault] = TEA_RunTime.EMPTY_STR
+
+            if tc == "C@":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                else:
+                    dKeys = tpe_str.split(TEA_RunTime.TIPED)
+                    dVALUE = TEA_RunTime.EMPTY_STR
+                    for dNAME in dKeys:
+                        self.DATABASE.setItem(dNAME,dVALUE)
+
+            if tc == "C!@":
+                if len(tpe_str) == 0:
+                    self.DATABASE.clear()
+                else:
+                    dKeys = tpe_str.split(TEA_RunTime.TIPED)
+                    for dNAME in dKeys:
+                        self.DATABASE.removeItem(dNAME)
+
             return io
 
 
@@ -2477,7 +2599,8 @@ class TEA_RunTime:
                     if len(params) > 2:
                         if TEA_RunTime.DEBUG:
                             print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
-                        raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
+                        raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+
                     else:
                         if len(params) == 2:
                             vNAME,vVALUE = params[0], self.extract_str(params[1])
@@ -2515,11 +2638,31 @@ class TEA_RunTime:
                             raise ValueError("[SEMANTIC ERROR] Invalid Instruction Signature")
                         else:
                             if len(params) == 2:
-                                vNAME,vVALUE = params
+                                vNAME,vVALUE = params[0], self.extract_str(params[1])
                                 vault_store(vNAME,vVALUE)
                             elif len(params) == 1:
                                 vNAME,vVALUE = params[0], io
                                 vault_store(vNAME,vVALUE)
+
+            if tc == "V@":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                else:
+                        input_str = tpe_str
+                        params = input_str.split(TEA_RunTime.TIPED, maxsplit=1)
+                        if len(params) > 2:
+                            if TEA_RunTime.DEBUG:
+                                print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                            raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                        else:
+                            if len(params) == 2:
+                                vNAME,vVALUE = params[0], self.extract_str(params[1])
+                                self.DATABASE.setItem(vNAME,vVALUE)
+                            elif len(params) == 1:
+                                vNAME,vVALUE = params[0], io
+                                self.DATABASE.setItem(vNAME,vVALUE)
 
             if tc == "V*!":
                 if len(tpe_str) == 0:
@@ -2535,7 +2678,18 @@ class TEA_RunTime:
                     vNAME = tpe_str
                     vVALUE = vault_get(vNAME)
                     if TEA_RunTime.DEBUG:
-                        print(f"[INFO] Returning Length of string  in VAULT[{vNAME} = [{vNAME}]]")
+                        print(f"[INFO] Returning Length of string  in VAULT[{vNAME}]")
+                    return len(vVALUE)
+
+            if tc == "V!@":
+                if len(tpe_str) == 0:
+                    self.debug(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                else:
+                    vNAME = tpe_str
+                    vVALUE = self.DATABASE.getItem(vNAME)
+                    if TEA_RunTime.DEBUG:
+                        print(f"[INFO] Returning Length of string  in DATABASE[{vNAME}]")
                     return len(vVALUE)
 
             return io
@@ -2815,6 +2969,35 @@ class TEA_RunTime:
                         print(f"[INFO] Returning Length of string  in VAULT[{vNAME}]")
                     return len(vVALUE)
 
+            if tc == "Y@":
+                if len(tpe_str) == 0:
+                    return self.DATABASE.getRecordNames()
+                else:
+                    vNAME = tpe_str
+                    vVALUE = self.DATABASE.getItem(vNAME)
+                    if TEA_RunTime.DEBUG:
+                        print(f"[INFO] Returning string in DATABASE [{vNAME}]")
+                    return vVALUE
+            if tc == "Y!@":
+                if len(tpe_str) == 0:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[INFO] Returning Records Count in DATABASE")
+                    return self.DATABASE.getRecordsCount()
+                else:
+                    vNAME = tpe_str
+                    vVALUE = self.DATABASE.getItem(vNAME)
+                    if TEA_RunTime.DEBUG:
+                        print(f"[INFO] Returning Length of string in DATABASE [{vNAME}]")
+                    return len(vVALUE)
+
+            if tc == "Y.@":
+                if len(tpe_str) == 0:
+                    return self.DATABASE.printIndex()
+                else:
+                    if TEA_RunTime.DEBUG:
+                        print(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+                    raise ValueError(f"[ERROR] Instruction {ti} Invoked with Invalid Signature")
+
             return io
 
 
@@ -2866,7 +3049,7 @@ class TEA_RunTime:
 
             if tc == "Z.":
                     NAME = tpe_str
-                    environment_config = util_get_environment()
+                    environment_config = self.util_get_environment()
 
                     if NAME in environment_config:
                         return environment_config[NAME]
@@ -2877,7 +3060,7 @@ class TEA_RunTime:
                     vNAME = tpe_str
                     NAME = vault_get(vNAME)
 
-                    environment_config = util_get_environment()
+                    environment_config = self.util_get_environment()
 
                     if NAME in environment_config:
                         return environment_config[NAME]

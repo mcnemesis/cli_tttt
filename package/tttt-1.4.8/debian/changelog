@@ -1,3 +1,10 @@
+tttt (1.4.8) trusty; urgency=medium
+
+  * TEA now at v1.4.8 and now with persistence storage features since v1.4.5
+    and with nearly complete instruction set documentation in the TEA TAZ.
+
+ -- Joseph W. Lutalo <jwl@nuchwezi.com>  Wed, 08 Apr 2026 11:29:29 +0300
+
 tttt (1.4.3) trusty; urgency=medium
 
   *  TTTT now at v1.4.3 in sync with WEB TEA standard. Also, for CLI TEA,
