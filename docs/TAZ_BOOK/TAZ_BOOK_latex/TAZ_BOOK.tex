@@ -450,10 +450,20 @@ This manuscript builds upon the earlier TEA (\textbf{T}ransforming \textbf{E}xec
 
 \newpage
 
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[height=0.9\textheight,]{resources/images/tea_cup_computer_promo.png}\\
+   \caption{The TEA Computer --- a concept of a computing machine modeled after a Tea Cup!}
+  \label{FIGTEACOMPUTER}
+  \end{center}
+\end{figure}
 
 
 \chapter{Introduction}
 \label{SEC1}
+
+
 
 Computers are abstractions that help humans solve problems via other abstractions known as software programs, which are implemented using other abstractions known as software languages. The Transforming Executable Alphabet (TEA) language, is a general-purpose computer programming language that is text-processing oriented, is currently implemented as an interpreted language for both the WEB (internet) and SYSTEM (as standalone or embeddable)\footnote{Though we shall cover more about this in a later section of the TAZ, note that the TEA language currently comes in two flavours --- two, because, even though the entire TEA instruction set A: to Z: is almost standard and works the same irrespective of platform where a TEA program is run, and yet, in practice, and particularly for programs using the \textbf{Z:} command space, there are unavoidable differences in the powers and capabilities one can access and or leverage from the external environment via the \textbf{ZAP} facility --- \texttt{z:CMD}, \texttt{z*:vCMD} and related \textit{external system command execution} variants of that TEA instruction that one might wish to use. In particular, the \textbf{WEB TEA}/TEA running in a web-browser programs can use external powers via JavaScript, but yet, commandline versions can mostly use the system/shell interface of the host system only. More about this when we come to \textbf{Z:} later.}. And in this manual, we shall understand its origins, purpose, design, implementation, applications [and applicability] as well as get glimpses of what its future is likely to be.
 
@@ -1965,7 +1975,22 @@ Lutalo, Joseph Willrich (2025). \textbf{TRANSFORMATICS 101 - explained.} I*POW. 
 \chapter{TEA A: TO Z: COMMAND SPACE SPECIFICATION (Introduction)}
 \label{SECTAZ}
 
-In the rest of this section, we shall look at the full formal specification as well as some explanatory and/or illustrative notes, as well as several example TEA programs, concerning each one of the 26 \textbf{A:} to \textbf{Z:} TEA primitives, one at a time. For historical purposes, the only other authoritative existing reference material in relation to the TAZ is in a couple of exploratory lectures\footnote{Find the \textbf{TEA: Transforming executable alphabet mini-lectures} series on YouTube: \url{https://youtube.com/playlist?list=PL9nqA7nxEPgulGKWw1L9xEyqgCdEezaKB&feature=shared}} that the language’s inventor gave mostly before this manuscript was originally prepared.
+
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[width=0.8\textwidth,]{resources/images/tea_cup_computer.jpg}\\
+   \caption{Welcome to TEA Computer Programming 101!}
+  \label{FIGTEACOMPUTER2}
+  \end{center}
+\end{figure}
+
+In the rest of this book, we shall look at the full formal specification as well as some explanatory and/or illustrative notes, as well as numerous basic, simple to advanced example TEA programs, concerning each one of the 26 \textbf{A:} to \textbf{Z:} TEA primitives (or ``command spaces"), one at a time. For historical purposes, the only other authoritative existing reference material in relation to the TAZ is in a couple of exploratory lectures\footnote{Find the \textbf{TEA: Transforming executable alphabet mini-lectures} series on YouTube: \url{https://youtube.com/playlist?list=PL9nqA7nxEPgulGKWw1L9xEyqgCdEezaKB&feature=shared}} that the language’s inventor gave mostly before this manuscript was originally prepared. So much has manifested since, including a possibly popular song\footnote{Titled ``TEA TAZ", and sung by \textbf{Mensa ICE} and Ugandan underground rapper, \textbf{Arch L}, the details+lyrics are on UIC: \url{https://t.me/ugandanow/5225}} about the TEA language and this TAZ manual --- see \url{https://youtu.be/yYRc9n6rx-k}
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TAZ SECTION: A
@@ -3578,7 +3603,7 @@ Many mature programming languages --- GPLs especially, do offer some mechanism b
 
 \vspace{1em}
 
-Such code might for example be functionality that was not originally designed into the main program, but which is later needed for some specific tasks to be supported --- in which case, the external program code might be thought of as a kind of \textit{plugin} or \textit{extension}\footnote{In the past for example, and before the inventor of TEA worked on the language, they had worked on another language known as \textbf{Cwa Script} that together with an embeddable/pluggable Software Operating Environment (SOE)  known as \textbf{DNAP}\cite{lutalo2020dnap}, that for either web or desktop or mobile apps [in virtually any language], would make it easy for existing software to be readily extended or evolved with new functionality originally not part of the main software in a sense similar to how an existing web-page might be extended by leveraging ``external functionality" loaded say via an I-frame.}. But also, many languages encourage or support a facility for composing a program from various, somewhat independent or semi-independent components in the form of say libraries (such as DLLs for the C/C++ language), modules and/or sub-modules (such as in Python or JavaScript), etc.  
+Such code might for example be functionality that was not originally designed into the main program, but which is later needed for some specific tasks to be supported --- in which case, the external program code might be thought of as a kind of \textit{plugin} or \textit{extension}\footnote{In the past for example, and before the inventor of TEA worked on the language, they had worked on another language known as \textbf{Cwa Script} that together with an embeddable/pluggable Software Operating Environment (SOE)  known as \textbf{DNAP}\cite{lutalo2023dnapsoe}, that for either web or desktop or mobile apps [in virtually any language], would make it easy for existing software to be readily extended or evolved with new functionality originally not part of the main software in a sense similar to how an existing web-page might be extended by leveraging ``external functionality" loaded say via an I-frame.}. But also, many languages encourage or support a facility for composing a program from various, somewhat independent or semi-independent components in the form of say libraries (such as DLLs for the C/C++ language), modules and/or sub-modules (such as in Python or JavaScript), etc.  
 
 \vspace{1em}
 
@@ -5635,7 +5660,7 @@ i:{PROMPT }|i: or i!:{PROMPT }|i:
   \end{tcolorbox}
 \end{figure}
 
-Thus for example, to write the \textbf{Minimum Basic Output Program} (LOCMBOP)\cite{lutalo2020dnap} in TEA, one just writes:
+Thus for example, to write the \textbf{Minimum Basic Output Program} (LOCMBOP)\cite{lutalo2023dnapsoe} in TEA, one just writes:
 
   
   \begin{figure}[H]
@@ -5678,7 +5703,7 @@ EXPERIMENTS|< 13:20:29 $>*
   \end{tcbverbatim}
 
 
-For TEA, then, the \textbf{Minimum Basic Input Program} (LOCMBIP)\cite{lutalo2020dnap} becomes the following program:
+For TEA, then, the \textbf{Minimum Basic Input Program} (LOCMBIP)\cite{lutalo2023dnapsoe} becomes the following program:
 
 
   
@@ -8092,7 +8117,7 @@ The \textbf{MYRRH Language} can take any ordinary word, phrase or text, and appl
 \vspace{2em}
 
 
-Take for example, a basic, very common phrase --- actually, perhaps one of the most \textit{religious test-cases} in Computer Science and Software Engineering ever\footnote{If for no other reason, because all students and initiates of computer programming must at some point have to test their teeth at a new or unfamiliar language, and most likely, their teacher or initiator shall task them to write the so-called ``Hello World Program". But also, it is one of the best test-cases for evaluating or comparing [computer] languages\cite{lutalo2020dnap}.} --- such as: 
+Take for example, a basic, very common phrase --- actually, perhaps one of the most \textit{religious test-cases} in Computer Science and Software Engineering ever\footnote{If for no other reason, because all students and initiates of computer programming must at some point have to test their teeth at a new or unfamiliar language, and most likely, their teacher or initiator shall task them to write the so-called ``Hello World Program". But also, it is one of the best test-cases for evaluating or comparing [computer] languages\cite{lutalo2023dnapsoe}.} --- such as: 
 
 \vspace{2em}
 
@@ -16480,7 +16505,7 @@ Every sufficiently advanced programming language eventually has an email library
 \vspace{1em}
 \end{minipage}
 
-The essential idea here, and which is somewhat related to estimating or judging a system's --- especially a programming language such as TEA, C++, Python or Ruby --- maturity, is that, just like most such technology platforms must demonstrate their usability and practicability via a simple application such as the famous ``Hello World"\cite{lutalo2020dnap}, a program that merely show how to print a simple string and nothing else, for mature and advanced systems, the simple application that can send an email is the ultimate demonstration of the platform or system's power and readiness for real-world use.
+The essential idea here, and which is somewhat related to estimating or judging a system's --- especially a programming language such as TEA, C++, Python or Ruby --- maturity, is that, just like most such technology platforms must demonstrate their usability and practicability via a simple application such as the famous ``Hello World"\cite{lutalo2023dnapsoe}, a program that merely show how to print a simple string and nothing else, for mature and advanced systems, the simple application that can send an email is the ultimate demonstration of the platform or system's power and readiness for real-world use.
 
 \vspace{2em}
 For the TEA language, we thus intend to demonstrate that all the bits necessary to make this happen, are essentially well catered for by a thoughtful use of the \textbf{WEBIFY} command space. Thus, we are going to go on a journey, an adventure in web programming and data communications, aimed at manifesting a minimal, but practically useful email client, that at minimum can allow us to compose and send an actual email message over the Internet, to any destination around the world.
@@ -18547,6 +18572,110 @@ Active in academia during the 1970s--1990s, and contributing to both theoretical
 
 \subsection{EXAMPLE 1: \textbf{COMPUTER ARCHITECTURE:} TEA Operating System (TOS)}
 \label{SECEXAMP1Z}
+
+
+
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[width=0.8\textwidth,]{resources/images/tea_cup_computer3.jpg}\\
+   \caption{Welcome to the TOS: \textbf{TEA Operating System}!}
+  \label{FIGTEACOMPUTER3}
+  \end{center}
+\end{figure}
+
+
+We are going to design our own minimal operating system known as the \textbf{TOS} --- \texttt{TEA Operating System}. However, before we dive into that task, let us begin by clarifying to ourselves and everyone, about what exactly we mean by an \textbf{operating system}:
+
+
+\begin{center}
+\fbox{\begin{minipage}{0.9\textwidth}
+\large
+\textbf{NOTE:}\\
+  \textbf{Definition\footnote{Although I had with me several authoritative texts (in physical form) in my private book collection, and yet, only one seems to extend a formal definition for this concept.} of an OS} \\
+
+
+\begin{quotation}
+\noindent \textbf{Operating System} \texttt{The set of software products that jointly controls the system resources and the processes using these resources on a computer system.}\\
+\hspace*{\fill} --- \textbf{Oxford Dictionary of Computing}\cite{illingworth1996computing}
+\end{quotation}
+
+\end{minipage}}
+\\
+\end{center}
+
+\vspace{2em}
+
+
+The definition shared above, and which comes from Oxford\cite{illingworth1996computing}, might come off as very generic or somewhat confounding when we consider the scope of our planned TOS --- for example, we don't intend to implement a mechanism that sits between a computer's hardware (physical computing or \textit{computer engineering}) and  the software applications that utilize that hardware (software development and \textit{application programming}) in the strictest sense\footnote{Usually, an operating system should, and does underlie user-level programs or applications, and that, software operating at the OS level typically caters for things like drivers that render the hardware usable, bootstrapping and managing memory and other virtual resources such as virtual-printers, managing access to input and [media] output interfaces, computer networking primitives such as the IP protocol stack, etc. that other software/applications might need to use, catering for system security by regulating and enforcing bounds on various kinds of user and system software, etc. So that, the OS typically sits in the background and orchestrates things while the user mostly goes about their tasks using applications.}.
+
+
+\vspace{2em}
+
+Especially because much of our research and learning community is based on the \textbf{Telegram} Internet/Social-Media platform\footnote{See, for example our \textbf{Blackboard Computing Adventures (BCA)} community --- \url{https://t.me/bclectures}}, one occasionally bumps into various resources (especially e-books, but also podcasts, source-code snippets and micro-blogs) relating to both theoretical and practical computing among others, while browsing through the numerous channels, forums and ICs (\textit{Internet Communities}) that have taken root on that very robust and indispensable internet service. And so, among resources I came across, is one (potentially yet to be finished) booklet by two Professors (also a \textbf{married couple}) at the University of Wisconsin-Madison; Prof. \textbf{Remzi H. Arpaci-Dusseau} and \textbf{Andrea C. Arpaci-Dusseau}, titled ``Operating Systems: Three Easy Pieces". That book, although it delves significantly into low-level intricacies of realizing an operating system, and that much of its illustrations hinged on C-programming, does offer some good highlights of what typically underlies any mature operating system, and we shall here present an excerpt from the book for completeness's sake:
+
+\vspace{2em}
+
+
+\begin{quotation}
+\noindent \texttt{...the three key ideas we're going to learn about: \textbf{virtualization}, \textbf{concurrency}, and \textbf{persistence}. In learning about these ideas, we'll learn about how an operating system works, including how it decides what program to run next on a CPU, how it handles memory overload in a virtual memory system, how virtual machine monitors work, how to manage information on disks, and even a little about how to build a distributed system that works when parts have failed. That sort of stuff.}\\
+\hspace*{\fill} --- \textbf{Operating Systems: Three Easy Pieces}\cite{arpacidusseau2018ostep}
+\end{quotation}
+
+
+\vspace{2em}
+
+However, we won't only restrict our background theory on those two authorities, but also bring to mind ideas that the author of this book, and also inventor of the TEA language, once surfaced in their paper on another, earlier programming language project that preceded work on TEA; \textbf{DNAP} --- the \textit{Dynamic Nuchwezi Architecture Platform} project \cite{lutalo2023dnapsoe} that at one time\footnote{Not that the ideas and work presented at the culmination of that project became obsolete or that they can't still find practical use, but that, it was mostly undertaken as a private project initially, only to later be partially and successfully commercialized by the author based at Nuchwezi Research's home-lab, long before they embarked on its formalization during the inventor's graduate studies, and that, despite the results having been well exploited both practically and theoretically across the computing ecosystem in Uganda back then, that the project somewhat went idle and got shelved as focus moved on to more ambitious, more robust language research undertakings such as later VOSA\cite{lutalo2024vosa} and then TEA. Some great lessons and ideas learned from the DNAP project though, still are timeless and continue to be exploited even in this TEA language work.} powered much of the progress on cutting-edge research in cross-platform application programming for mobile and web\cite{lutalo2023dnapsoe, lutalodnapintro2020, a2021_github} at Nuchwezi Research.
+
+\vspace{2em}
+
+The essential excerpt concerns the concept of a \textbf{Software Operating Environment (SOE)}, which, especially in relation to both operating systems and programming language development, concerns the matter of how to go about effectively, methodically evaluating a programming language (in unison with its operating environment). The verbatim excerpt is as such...
+
+\vspace{2em}
+
+\begin{quotation}
+\noindent \texttt{A SOE can be thought of as an ecosystem of related software technologies that can allow one to design, build, and run software in a given programming language on a given operating system. More formally;
+\begin{quote}
+\textbf{Definition 11: Software Operating Environment (SOE):} \textit{A SOE, \texttt{T}, over a programming language, \texttt{P}, on a host operating system family, \texttt{O}, also written \texttt{T(P):O}, is a system satisfying all the following properties:
+\begin{enumerate}
+\item{\texttt{T} has a software construction environment for \texttt{P} in \texttt{O}.} 
+\item{\texttt{T} accepts \texttt{P} source code and outputs a \texttt{P} executable file in \texttt{O}.}
+\item{\texttt{T} has a software execution environment for \texttt{P} executables in \texttt{O}.}
+\item{\texttt{O} has at least one operating system instance where all properties (1), (2) and (3) hold.}
+\end{enumerate}
+}
+\end{quote}}
+\hspace*{\fill} --- \textbf{DNAP: Dynamic Nuchwezi Architecture Platform-A New Software Extension and Construction Technology}\cite{lutalo2023dnapsoe}
+\end{quotation}
+
+
+\vspace{2em}
+
+With that very useful idea out of the way, and even though we might not delve into its proper application such as in quantitative evaluation of TEA vs other languages using the 8 SOE metrics first introduced in \cite{lutalo2023dnapsoe}, we shall instead leverage some of the intricacies surrounding this idea of an ``operating environment" that SOE is about, and which we might leverage in the design and construction of our minimal TEA operating system. Namely, we wish to ensure that, in our TOS, we are minimum have a working SOE for TEA programs, and this means that we must ensure to have:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item A means to create TEA programs inside this OS.
+\item A means to execute/run these programs within the OS's environment.
+\item A means to save to file and load from file --- or rather, a means to create executable ``self-contained" and preferably ``named" payloads --- of TEA programs that one can then run or share or read from within the OS.
+\item [\textbf{Bonus}] A means for our TEA programs to interact with or operate alongside other kinds of executables in the OS environment.
+\end{enumerate}
+
+\vspace{2em}
+
+And so, with that theory behind us, let us embark on designing a minimal operating system that we can bootstrap and run anywhere TEA programs can run\footnote{Of course, that we are to construct our operating system using TEA and so as to especially run TEA programs should not be seen as a short-cut or anomaly because, any operating system requires some programming language in order to bring it to life --- usually that might be a low-level language such as Assembly or C\cite{kain1999advanced}\cite{arpacidusseau2018ostep}, however, and as one might come to appreciate when they realize that modern operating systems can also work inside of virtual-machines and that we can have mini-operating systems running on-top of other/host operating systems, then nothing should stop us from attempting to create or at least prototype ours using just TEA.}.
+
+\subsubsection{The TOS Specification}
+
+
+
+
+
+
+
+
+
 
 
 

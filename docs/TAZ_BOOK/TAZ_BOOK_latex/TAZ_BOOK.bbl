@@ -105,8 +105,7 @@ Joseph~Willrich Lutalo.
 \newblock \textbf{TEA TAZ - Transforming Executable Alphabet A: to Z: COMMAND
   SPACE SPECIFICATION}.
 \newblock {\em Academia.edu}, 2024.
-\newblock Available at:
-  \url{https://www.academia.edu/122871672/TEA_TAZ_Transforming_Executable_Alphabet_A_to_Z_COMMAND_SPACE_SPECIFICATION}.
+\newblock Available at: \url{https://www.academia.edu/122871672/}.
 
 \bibitem{lutalo_2025_trans101_1page}
 Joseph~Willrich Lutalo.
@@ -141,13 +140,13 @@ Joseph~Willrich Lutalo.
 \newblock {\em Computer Science and Mathematics: Software}, 2025.
 \newblock Available at: \url{https://doi.org/10.20944/preprints202502.1506.v2}.
 
-\bibitem{lutalo2020dnap}
-Joseph~Willrich Lutalo, Odongo Steven~Eyobu, and Benjamin Kanagwa.
-\newblock \textbf{DNAP: Dynamic Nuchwezi Architecture Platform - A New Software
-  Extension and Construction Technology}.
-\newblock {\em TechRxiv}, November 2020.
-\newblock \textit{Accessible via:}
-  \url{http://dx.doi.org/10.36227/techrxiv.13176365.v1}.
+\bibitem{lutalo2023dnapsoe}
+Joseph~Willrich Lutalo, Odongo~Steven Eyobu, and Benjamin Kanagwa.
+\newblock Dnap: Dynamic nuchwezi architecture platform-a new software extension
+  and construction technology.
+\newblock {\em authorea}, 2023.
+\newblock Open Access via
+  \url{https://www.techrxiv.org/doi/pdf/10.36227/techrxiv.13176365.v1}.
 
 \bibitem{copilot_assistant}
 Microsoft Copilot.
@@ -292,5 +291,42 @@ William Burr.
 \newblock Technical report, NIST Computer Security Resource Center, 2003.
 \newblock Available at:
   \url{https://csrc.nist.gov/publications/detail/white-paper/2003/estimating-password-strength/final}.
+
+\bibitem{kain1972automata}
+Richard~Yerkes Kain.
+\newblock {\em Automata Theory: Machines and Languages}.
+\newblock Prentice Hall, Englewood Cliffs, NJ, 1972.
+
+\bibitem{illingworth1996computing}
+Valerie Illingworth, editor.
+\newblock {\em Oxford Dictionary of Computing}.
+\newblock Oxford University Press, Oxford, UK, 4 edition, 1996.
+\newblock Available at: \url{https://openlibrary.org/books/OL412451M}.
+
+\bibitem{arpacidusseau2018ostep}
+Remzi~H. Arpaci-Dusseau and Andrea~C. Arpaci-Dusseau.
+\newblock {\em Operating Systems: Three Easy Pieces}.
+\newblock Arpaci-Dusseau Books, Madison, WI, 2018.
+\newblock Free PDF available at the official site.
+
+\bibitem{lutalo2024vosa}
+Joseph~Willrich Lutalo and Tonny Oyana.
+\newblock Vosa: A reusable and reconfigurable voice operated support assistant
+  chatbot platform.
+\newblock {\em Computer Science \& Information Technology (CSIT)},
+  14(8):63--78, April 5 2024.
+\newblock Available at SSRN: https://ssrn.com/abstract=4810799.
+
+\bibitem{lutalodnapintro2020}
+Joseph~Willrich Lutalo.
+\newblock Introducing the dynamic nuchwezi architecture platform.
+\newblock {\em Preprints}, May 2020.
+\newblock Open-access PDF available via
+  \url{https://doi.org/10.20944/preprints202005.0207.v2}.
+
+\bibitem{a2021_github}
+Github - nuchwezi/dnap-web-histrion: Web histrion reference implementation for
+  the dnap project.
+\newblock https://github.com/NuChwezi/dnap-web-histrion, 08 2021.
 
 \end{thebibliography}

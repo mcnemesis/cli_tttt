@@ -1,6 +1,6 @@
 \contentsline {chapter}{Dedication}{iii}{chapter*.1}%
 \contentsline {chapter}{Preface}{v}{chapter*.3}%
-\contentsline {chapter}{List of ACRONYMS}{xxvii}{chapter*.7}%
+\contentsline {chapter}{List of ACRONYMS}{xxix}{chapter*.7}%
 \contentsline {chapter}{Abstract}{1}{chapter*.8}%
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Essential Nomenclature and Concepts}{3}{section.1.1}%
@@ -51,7 +51,7 @@
 \contentsline {chapter}{\numberline {9}C: CLEAR}{69}{chapter.9}%
 \contentsline {section}{\numberline {9.1}SEMANTICS of C:}{70}{section.9.1}%
 \contentsline {section}{\numberline {9.2}NOTES about C:}{70}{section.9.2}%
-\contentsline {subsubsection}{Database Storage Management using CLEAR Commands}{76}{section*.50}%
+\contentsline {subsubsection}{Database Storage Management using CLEAR Commands}{76}{section*.52}%
 \contentsline {section}{\numberline {9.3}EXAMPLE APPLICATIONS of C:}{80}{section.9.3}%
 \contentsline {subsection}{\numberline {9.3.1}EXAMPLE 1: \textbf {DATA ENCODING:} The N-SIGIL Generator: print textual-qrcode corresponding to some number N}{80}{subsection.9.3.1}%
 \contentsline {chapter}{\numberline {10}D: DELETE}{89}{chapter.10}%
@@ -87,8 +87,8 @@
 \contentsline {section}{\numberline {15.3}EXAMPLE APPLICATIONS of I:}{148}{section.15.3}%
 \contentsline {subsection}{\numberline {15.3.1}EXAMPLE 1: \textbf {GRAPHICAL GAME PROGRAMMING:} [pure-GUI] TEXT ADVENTURE GAME: BOOBS `N' TRAPS\cite {lutalo_2025_rpg}}{149}{subsection.15.3.1}%
 \contentsline {subsection}{\numberline {15.3.2}EXAMPLE 2: \textbf {COMPUTATIONAL MYSTICISM:} The LUMTAUTO Occult Language Message Encoder}{151}{subsection.15.3.2}%
-\contentsline {subsubsection}{A Formal Definition of LUMTAUTO}{152}{section*.118}%
-\contentsline {subsubsection}{The LUMTAUTO Algorithm in TEA}{154}{section*.119}%
+\contentsline {subsubsection}{A Formal Definition of LUMTAUTO}{152}{section*.120}%
+\contentsline {subsubsection}{The LUMTAUTO Algorithm in TEA}{154}{section*.121}%
 \contentsline {chapter}{\numberline {16}J: JUMP}{159}{chapter.16}%
 \contentsline {section}{\numberline {16.1}SEMANTICS of J:}{160}{section.16.1}%
 \contentsline {section}{\numberline {16.2}NOTES about J:}{160}{section.16.2}%
@@ -115,11 +115,11 @@
 \contentsline {section}{\numberline {20.3}EXAMPLE APPLICATIONS of N:}{212}{section.20.3}%
 \contentsline {subsection}{\numberline {20.3.1}EXAMPLE 1: \textbf {DATA-ENGINEERING:} GENERATING RANDOM NUMERIC DATASETS or STRUCTURES CONFORMING TO SOME PATTERN SCHEMAS}{212}{subsection.20.3.1}%
 \contentsline {subsection}{\numberline {20.3.2}EXAMPLE 2: \textbf {STATISTICAL ANALYSIS:} DESCRIPTIVE, EXPLORATORY and PREDICTIVE DATA ANALYZER}{221}{subsection.20.3.2}%
-\contentsline {subsubsection}{A Data Graphing Component}{223}{section*.154}%
-\contentsline {subsubsection}{Probabilistic Next-Value Estimation (1-Dimensional Dataset)}{227}{section*.156}%
-\contentsline {subsubsection}{Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{228}{section*.157}%
-\contentsline {subsubsection}{Non-Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{229}{section*.158}%
-\contentsline {subsubsection}{The Statistical Analysis Tool (SAT) TEA Program CODE}{232}{section*.159}%
+\contentsline {subsubsection}{A Data Graphing Component}{223}{section*.156}%
+\contentsline {subsubsection}{Probabilistic Next-Value Estimation (1-Dimensional Dataset)}{227}{section*.158}%
+\contentsline {subsubsection}{Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{228}{section*.159}%
+\contentsline {subsubsection}{Non-Linear Regression Method for Next-Value Estimation (1-Dimensional Dataset)}{229}{section*.160}%
+\contentsline {subsubsection}{The Statistical Analysis Tool (SAT) TEA Program CODE}{232}{section*.161}%
 \contentsline {chapter}{\numberline {21}O: ORDER}{253}{chapter.21}%
 \contentsline {section}{\numberline {21.1}SEMANTICS of O:}{253}{section.21.1}%
 \contentsline {section}{\numberline {21.2}NOTES about O:}{254}{section.21.2}%
@@ -139,8 +139,8 @@
 \contentsline {section}{\numberline {24.1}SEMANTICS of R:}{294}{section.24.1}%
 \contentsline {section}{\numberline {24.2}NOTES about R:}{294}{section.24.2}%
 \contentsline {subsection}{\numberline {24.2.1}The Peculiar Side of R: --- Using R: without explicit arguments}{296}{subsection.24.2.1}%
-\contentsline {subsubsection}{The Braillish Transforms: r: and r!:}{296}{section*.169}%
-\contentsline {subsubsection}{TEA Mathematical Expressions and The Mathematics Re-Write Transform: r.:}{299}{section*.170}%
+\contentsline {subsubsection}{The Braillish Transforms: r: and r!:}{296}{section*.171}%
+\contentsline {subsubsection}{TEA Mathematical Expressions and The Mathematics Re-Write Transform: r.:}{299}{section*.172}%
 \contentsline {section}{\numberline {24.3}EXAMPLE APPLICATIONS of R:}{302}{section.24.3}%
 \contentsline {subsection}{\numberline {24.3.1}EXAMPLE 1: \textbf {HUMAN SUPPORT:} SMS and TEXT Minifier Program }{302}{subsection.24.3.1}%
 \contentsline {subsection}{\numberline {24.3.2}EXAMPLE 2: \textbf {MATHEMATICS:} ADVANCED MATHEMATICS COMPUTER}{308}{subsection.24.3.2}%
@@ -155,10 +155,10 @@
 \contentsline {section}{\numberline {26.2}NOTES about T:}{334}{section.26.2}%
 \contentsline {section}{\numberline {26.3}EXAMPLE APPLICATIONS of T:}{344}{section.26.3}%
 \contentsline {subsection}{\numberline {26.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL ART:} Abstract Text-Art Generator}{344}{subsection.26.3.1}%
-\contentsline {subsubsection}{Basic Style}{358}{section*.185}%
-\contentsline {subsubsection}{Mirrored Style}{360}{section*.186}%
-\contentsline {subsubsection}{Chaos Style}{362}{section*.187}%
-\contentsline {subsubsection}{MODIFIED ATAG Outputs}{364}{section*.188}%
+\contentsline {subsubsection}{Basic Style}{358}{section*.187}%
+\contentsline {subsubsection}{Mirrored Style}{360}{section*.188}%
+\contentsline {subsubsection}{Chaos Style}{362}{section*.189}%
+\contentsline {subsubsection}{MODIFIED ATAG Outputs}{364}{section*.190}%
 \contentsline {chapter}{\numberline {27}U: UNIQUEIFY}{369}{chapter.27}%
 \contentsline {section}{\numberline {27.1}SEMANTICS of U:}{370}{section.27.1}%
 \contentsline {section}{\numberline {27.2}NOTES about U:}{370}{section.27.2}%
@@ -170,30 +170,30 @@
 \contentsline {subsection}{\numberline {28.2.1}VAULT with TEA DATABASE --- persistent storage in TEA}{389}{subsection.28.2.1}%
 \contentsline {section}{\numberline {28.3}EXAMPLE APPLICATIONS of V:}{390}{section.28.3}%
 \contentsline {subsection}{\numberline {28.3.1}EXAMPLE 1: \textbf {INFORMATION SECURITY:} Random SECURE Password Generator (RSPG)}{390}{subsection.28.3.1}%
-\contentsline {subsubsection}{Review and Preview of the RSPG implementation}{406}{section*.199}%
-\contentsline {subsubsection}{How to Access and RUN RSPG:}{411}{section*.202}%
+\contentsline {subsubsection}{Review and Preview of the RSPG implementation}{406}{section*.201}%
+\contentsline {subsubsection}{How to Access and RUN RSPG:}{411}{section*.204}%
 \contentsline {chapter}{\numberline {29}W: WEBIFY}{413}{chapter.29}%
 \contentsline {section}{\numberline {29.1}SEMANTICS of W:}{414}{section.29.1}%
 \contentsline {section}{\numberline {29.2}NOTES about W:}{414}{section.29.2}%
 \contentsline {subsection}{\numberline {29.2.1}HTTP POST Requests}{415}{subsection.29.2.1}%
-\contentsline {subsubsection}{HTTP POST with CUSTOM HEADERS}{423}{section*.208}%
-\contentsline {subsubsection}{HTTP POST with RAW/ARBITRARY non-FORM DATA}{430}{section*.209}%
+\contentsline {subsubsection}{HTTP POST with CUSTOM HEADERS}{423}{section*.210}%
+\contentsline {subsubsection}{HTTP POST with RAW/ARBITRARY non-FORM DATA}{430}{section*.211}%
 \contentsline {subsection}{\numberline {29.2.2}HTTP GET Requests}{435}{subsection.29.2.2}%
-\contentsline {subsubsection}{HTTP GET with CUSTOM HEADERS}{437}{section*.210}%
+\contentsline {subsubsection}{HTTP GET with CUSTOM HEADERS}{437}{section*.212}%
 \contentsline {section}{\numberline {29.3}EXAMPLE APPLICATIONS of W:}{440}{section.29.3}%
 \contentsline {subsection}{\numberline {29.3.1}EXAMPLE 1: \textbf {DATA COMMUNICATION:} EMAIL POSTING SERVICE}{441}{subsection.29.3.1}%
-\contentsline {subsubsection}{TEA E-EMAILER Source Code}{442}{section*.211}%
-\contentsline {subsubsection}{TEA E-EMAILER In Action..}{447}{section*.212}%
+\contentsline {subsubsection}{TEA E-EMAILER Source Code}{442}{section*.213}%
+\contentsline {subsubsection}{TEA E-EMAILER In Action..}{447}{section*.214}%
 \contentsline {chapter}{\numberline {30}X: XENOGRAFT}{453}{chapter.30}%
 \contentsline {section}{\numberline {30.1}SEMANTICS of X:}{453}{section.30.1}%
 \contentsline {section}{\numberline {30.2}NOTES about X:}{454}{section.30.2}%
 \contentsline {section}{\numberline {30.3}EXAMPLE APPLICATIONS of X:}{455}{section.30.3}%
 \contentsline {subsection}{\numberline {30.3.1}EXAMPLE 1: \textbf {E-LEARNING} FREE DICTIONARY | LEXICON }{455}{subsection.30.3.1}%
-\contentsline {subsubsection}{Lexicon V2: dealing with restrictions and glitches}{461}{section*.217}%
+\contentsline {subsubsection}{Lexicon V2: dealing with restrictions and glitches}{461}{section*.219}%
 \contentsline {chapter}{\numberline {31}Y: YANK}{467}{chapter.31}%
 \contentsline {section}{\numberline {31.1}SEMANTICS of Y:}{468}{section.31.1}%
 \contentsline {section}{\numberline {31.2}NOTES about Y:}{468}{section.31.2}%
-\contentsline {subsubsection}{TEA DATABASE operations}{469}{section*.220}%
+\contentsline {subsubsection}{TEA DATABASE operations}{469}{section*.222}%
 \contentsline {section}{\numberline {31.3}EXAMPLE APPLICATIONS of Y:}{471}{section.31.3}%
 \contentsline {subsection}{\numberline {31.3.1}EXAMPLE 1: \textbf {CALLIGRAPHY:} Text Beautifier}{473}{subsection.31.3.1}%
 \contentsline {chapter}{\numberline {32}Z: ZAP}{487}{chapter.32}%
@@ -201,6 +201,7 @@
 \contentsline {section}{\numberline {32.2}NOTES about Z:}{488}{section.32.2}%
 \contentsline {subsection}{\numberline {32.2.1}Environment and Platform Introspection using ZAP}{496}{subsection.32.2.1}%
 \contentsline {section}{\numberline {32.3}EXAMPLE APPLICATIONS of Z:}{497}{section.32.3}%
-\contentsline {subsection}{\numberline {32.3.1}EXAMPLE 1: \textbf {COMPUTER ARCHITECTURE:} TEA Operating System (TOS)}{499}{subsection.32.3.1}%
-\contentsline {chapter}{\numberline {33}Conclusion}{501}{chapter.33}%
-\contentsline {chapter}{About the Inventor of TEA}{510}{appendix*.226}%
+\contentsline {subsection}{\numberline {32.3.1}EXAMPLE 1: \textbf {COMPUTER ARCHITECTURE:} TEA Operating System (TOS)}{500}{subsection.32.3.1}%
+\contentsline {subsubsection}{The TOS Specification}{503}{section*.228}%
+\contentsline {chapter}{\numberline {33}Conclusion}{505}{chapter.33}%
+\contentsline {chapter}{About the Inventor of TEA}{514}{appendix*.230}%
