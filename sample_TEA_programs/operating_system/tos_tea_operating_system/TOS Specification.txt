@@ -1,0 +1,90 @@
+TOS specification:
+
+Capabilities:
+
+1. File System: create, name, rename, copy, lookup, preview, and delete file objects.
+
+Basic FILE I/O Commands Interface:
+
+* create FILENAME <-- creates blank file with name FILENAME
+
+* init FILENAME <-- create a file using the given name and the currently available input/last-output or blank if none.
+
+* rename FILENAME NEWNAME
+
+*  copy FILE1 FILE2 <-- copies contents of FILE1 to FILE2 creating the destination if it doesn't exist
+
+* find PATTERN <-- find and list all file records whose names match the given Regular Expression pattern
+
+* show FILENAME <-- preview the contents of given file
+
+* export FILENAME <--- exit the system, outputing the contents of given file
+
+* delete FILENAME <-- remove file with name FILENAME from storage
+
+
+2. Programming Interface: a command-line interface to find, run, or modify user programs or find and run system programs and commands.
+
+Basic Programming Commands Interface:
+
+* runnable FILENAME <-- recognize FILENAME object as an executable program or command.
+
+* programs <-- show list of all available TEA programs by their names
+
+* run FILENAME <--- execute the given file record as a TEA program
+
+* runnable FILE1 FILE2 <-- replace/override original program named FILE1 with contents of FILE2 (updates a program's code preserving its existing name)
+
+* commands <-- show list of all available TEA operating system commands
+
+* COMMAND <--- executes COMMAND as a system command if it exists, otherwise shows error message command-not-found.
+
+* whatis NAME <-- displays help info about a given system command or user program
+
+* delete-program FILENAME <-- revokes status of FILENAME as an executable user program (doesn't actually delete the underlying file object though)
+
+
+3. Basic Utilities: access to basic useful commands such as being able to:
+
+Basic UTILITY Commands Interface:
+
+* fetch URL <-- fetch and output contents of the specified [online/network] resource
+
+* fetch URL FILENAME <-- fetch and save contents at URL into file record named FILENAME
+
+* tea CODE..  <-- take everything following the keyword "tea" as a TEA program, run and output the result: It's a simple way to write and run basic TEA programs (TEA-one-liners) in TOS
+
+* math EXPRESSION <-- execute basic mathematics on the command-line as specified in EXPRESSION
+
+* date <-- return the current date
+
+* time <-- return the current time
+
+* timestamp <-- return the current timestamp
+
+* print <-- show or preview current output buffer contents (usually, output of last command)
+
+* export <-- take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).
+
+* exit <-- ends the TOS session returning nothing.
+
+
+4. Help System: a means to locate and read basic documentation about programs, system commands and the operating system.
+
+
+Basic HELP Commands Interface:
+
+
+* whatis NAME <-- displays help info about a given system command or user program
+
+* help NAME <-- same as whatis NAME
+
+* help <--- present menu for user to access help about all available [essential] commands based on category.
+
+* help-file <--- display all available commands in the FILE I/O category
+
+* help-prog <-- display all available commands in the PROGRAMMING category
+
+* help-util <-- display all available commands in the UTILITIES category
+
+* help-help <-- display help on how to use the HELP facility.

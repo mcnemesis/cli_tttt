@@ -28,6 +28,9 @@
 
 % packages we'll need...
 
+% for strikethrough text
+\usepackage[normalem]{ulem}
+
 % for about author styling
 \usepackage{setspace}
 
@@ -4971,13 +4974,13 @@ The most recent version of \textbf{BOOBS `N' TRAPS} is as follows:
 #---------[BOOBS 'N' TRAPS]
 #---------[VERSION:1.0.0.1]
 #---[IP-AUTHORITY: J. Willrich | NUCHWEZI RESEARCH ]
-#---[REFERENCE:DOI:0000-0002-0002-4657]
+#---[REFERENCE:DOI:10.5281/zenodo.19479082]
 #---[ABOUT:Boobs N Traps is a modern no-ai, text-adventure wartime game]
 #-------------------------------------------------------------#
 #NOTES: This is the reference implementation of the now 
 open source standard of the game BOOBS N TRAPS (2025). 
 Documentation and History about this game accessible via:
-https://doi.org/10.6084/m9.figshare.30551081
+https://www.academia.edu/145809596
 #-------------------------------------------------------------#
 
 #show welcome message
@@ -8330,7 +8333,7 @@ Having finished introducing the \textbf{NUMBER} command space in the above discu
 
 
 
-\subsection{EXAMPLE 1: \textbf{DATA-ENGINEERING:} GENERATING RANDOM NUMERIC DATASETS or STRUCTURES CONFORMING TO SOME PATTERN SCHEMAS}
+\subsection{EXAMPLE 1: \textbf{DATA-ENGINEERING:} GENERATING RANDOM [NUMERIC] DATASETS or STRUCTURES CONFORMING TO SOME PATTERN SCHEMAS}
 \label{SECEXAMP1N}
 
 
@@ -17016,7 +17019,7 @@ In testing how to best apply the \textbf{XENOGRAFT} commands, definitely, applic
 In the next section, we are going to explore an application that somewhat significantly utilizes this command. The application is a dictionary utility, and it essentially can allow one to build a list of definitions which can then be exported out of the app for purposes of using them elsewhere.
 
 
-\subsection{EXAMPLE 1: \textbf{E-LEARNING} FREE DICTIONARY | LEXICON  }
+\subsection{EXAMPLE 1: \textbf{E-LEARNING:} FREE DICTIONARY | LEXICON  }
 \label{SECEXAMP1X}
 
 
@@ -18500,13 +18503,32 @@ PLATFORM:WEB;VERSION:1.4.5;DATE:Tuesday, 07 April 2026;TIME:18:54:25;TIMESTAMP:1
 \label{SECEXAMPZ}
 
   
-Having come to the final command space in the TEA instruction set, we must acknowledge that by this time, almost all of the intricacies of TEA programming have already been touched upon in the earlier chapters and examples leading up to this. However, and because ZAP is the TEA command especially related to or oriented towards enabling TEA programs to work with external powers and or facilities, in demonstrating the powers and standard applications of this command space, we shall embark on something truly ambitious; an attempt at \textbf{creating an Operating System in TEA!} This task, also somewhat related to reminiscent of fundamentals core-applications or projects in disciplines such Computer Architecture, Systems Programming and or Basic Software Engineering, shall likewise bring on the horizon the idea of \textbf{creating a new programming language using TEA!} Sounds crazy? Sounds exciting or impossible? Well, that's the stuff we are actually going to embark on in the rest of this chapter...
+Having come to the final command space in the TEA instruction set, we must acknowledge that by this time, almost all of the intricacies of TEA programming have already been touched upon in the earlier chapters and examples leading up to this. However, and because ZAP is the TEA command especially related to or oriented towards enabling TEA programs to work with external powers and or facilities, in demonstrating the powers and standard applications of this command space, we shall embark on something truly ambitious; an attempt at \textbf{creating an Operating System in TEA!} This task, also somewhat related to reminiscent of fundamentals core-applications or projects in disciplines such Computer Architecture, Systems Programming and or Basic Software Engineering, shall likewise bring on the horizon the idea of \textbf{creating a new programming language using TEA!} Sounds crazy? Sounds exciting or impossible? Well, that's the stuff we are actually going to embark on in the \sout{rest of this chapter...} next [bonus] chapter.
 
-\vspace{2em}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END-TAZ
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\chapter{TEA Operating System (TOS)}
+\label{SECTOS}
+
+
+
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[width=0.8\textwidth,]{resources/images/tea_cup_computer3.jpg}\\
+   \caption{Welcome to the TOS: \textbf{TEA Operating System}!}
+  \label{FIGTEACOMPUTER3}
+  \end{center}
+\end{figure}
+
 
 Before we dive into this arcane task, it shall be worth bringing to mind one excerpt from my favorite reference book concerning hardcore classic Operating System basics and Computing Architecture concepts --- ``Advanced Computer Architecture: A Systems Design Approach" by \textbf{Richard Y. Kain}:
-
-
 
 
 \noindent
@@ -18569,31 +18591,23 @@ Active in academia during the 1970s--1990s, and contributing to both theoretical
 
 
 
+\section{\textbf{COMPUTER ARCHITECTURE:} TEA Operating System Design}
+\label{SECTOSSPEC}
 
-\subsection{EXAMPLE 1: \textbf{COMPUTER ARCHITECTURE:} TEA Operating System (TOS)}
-\label{SECEXAMP1Z}
-
-
-
-\begin{figure}[H]
-  \begin{center}
-  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
-   \includegraphics[width=0.8\textwidth,]{resources/images/tea_cup_computer3.jpg}\\
-   \caption{Welcome to the TOS: \textbf{TEA Operating System}!}
-  \label{FIGTEACOMPUTER3}
-  \end{center}
-\end{figure}
 
 
 We are going to design our own minimal operating system known as the \textbf{TOS} --- \texttt{TEA Operating System}. However, before we dive into that task, let us begin by clarifying to ourselves and everyone, about what exactly we mean by an \textbf{operating system}:
+
+\vspace{2em}
 
 
 \begin{center}
 \fbox{\begin{minipage}{0.9\textwidth}
 \large
 \textbf{NOTE:}\\
-  \textbf{Definition\footnote{Although I had with me several authoritative texts (in physical form) in my private book collection, and yet, only one seems to extend a formal definition for this concept.} of an OS} \\
+  \textbf{Definition\footnote{Although I had with me several authoritative texts (in physical form) in my private book collection, and yet, only one seems to extend a formal definition for this concept.} of an OS}
 
+\vspace{2em}
 
 \begin{quotation}
 \noindent \textbf{Operating System} \texttt{The set of software products that jointly controls the system resources and the processes using these resources on a computer system.}\\
@@ -18616,10 +18630,9 @@ Especially because much of our research and learning community is based on the \
 
 \vspace{2em}
 
-
 \begin{quotation}
 \noindent \texttt{...the three key ideas we're going to learn about: \textbf{virtualization}, \textbf{concurrency}, and \textbf{persistence}. In learning about these ideas, we'll learn about how an operating system works, including how it decides what program to run next on a CPU, how it handles memory overload in a virtual memory system, how virtual machine monitors work, how to manage information on disks, and even a little about how to build a distributed system that works when parts have failed. That sort of stuff.}\\
-\hspace*{\fill} --- \textbf{Operating Systems: Three Easy Pieces}\cite{arpacidusseau2018ostep}
+\hspace*{\fill} ---\textbf{Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau}, \textit{Operating Systems: Three Easy Pieces}, 2018\cite{arpacidusseau2018ostep}
 \end{quotation}
 
 
@@ -18645,7 +18658,7 @@ The essential excerpt concerns the concept of a \textbf{Software Operating Envir
 \end{enumerate}
 }
 \end{quote}}
-\hspace*{\fill} --- \textbf{DNAP: Dynamic Nuchwezi Architecture Platform-A New Software Extension and Construction Technology}\cite{lutalo2023dnapsoe}
+\hspace*{\fill} ---\textbf{Joseph Willrich Lutalo et al.}, \textit{DNAP: Dynamic Nuchwezi Architecture Platform-A New Software Extension and Construction Technology}, 2023\cite{lutalo2023dnapsoe}
 \end{quotation}
 
 
@@ -18666,10 +18679,130 @@ With that very useful idea out of the way, and even though we might not delve in
 
 And so, with that theory behind us, let us embark on designing a minimal operating system that we can bootstrap and run anywhere TEA programs can run\footnote{Of course, that we are to construct our operating system using TEA and so as to especially run TEA programs should not be seen as a short-cut or anomaly because, any operating system requires some programming language in order to bring it to life --- usually that might be a low-level language such as Assembly or C\cite{kain1999advanced}\cite{arpacidusseau2018ostep}, however, and as one might come to appreciate when they realize that modern operating systems can also work inside of virtual-machines and that we can have mini-operating systems running on-top of other/host operating systems, then nothing should stop us from attempting to create or at least prototype ours using just TEA.}.
 
-\subsubsection{The TOS Specification}
+
+\subsection{The TOS Specification}
+
+Without sanction of some working-group or committee, we have thought-up and drafted the following minimal specification as the essential basis of the \textbf{TEA Operating System}:
+
+\vspace{2em}
+
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+{
+\LARGE
+
+\textbf{TOS Specification:}
+
+The TEA Operating System is specified based on 4 core capabilities:
+
+\begin{enumerate}
+\item File Input/Output Service
+\item \verb$[$TEA\verb$]$ Programming Service
+\item Basic Utility Service
+\item Help/Documentation Service
+\end{enumerate}
+
+}
+
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{2em}
+
+
+Moreover, and perhaps very worthwhile to note, we learn from one of the reference books on Linux --- a globally popular, and dominant free operating system --- that besides the core (or rather ``kernel") of an operating system, it is quite important to be clear on what services and utilities render the operating system usable. See what Ellen Siever and Stephen Spainhour et al. have to say about this:
+
+
+\noindent
+\begin{minipage}{1\textwidth}
+\vspace{2em}
+\begin{quotation}
+{\ttfamily 
+
+The Linux kernel itself was originally designed by Linus Torvalds at the University of Helsinki in Finland and later developed through collaboration with countless volunteers worldwide. By "kernel," we mean the core of the operating system itself---not the applications (such as the compiler, shells, and so forth) that run on it. Today, the term "Linux" is often used to mean the kernel as well as the applications and complete system environment.
+
+}
+\hspace*{\fill} ---\textbf{Ellen Siever and Stephen Spainhour et al.}, \textit{Linux in a Nutshell: A Desktop Quick Reference}, 2000\cite{Siever2000LinuxNutshell}
+\end{quotation}
+\vspace{2em}
+\end{minipage}
 
 
 
+And with that clarification out of the way, we then embark on specifying the details of our operating system --- and somewhat, to again reflect the manner and approach of \cite{Siever2000LinuxNutshell} in clarifying what makes Linux tick as well as how it is used, we shall especially approach the specification as though we were laying down a specification of the interaction interface that users of TOS rely upon to use the operating system for arbitrary tasks. The four categories or capabilities laid down in the mini-specification above shall guide us...
+
+
+\vspace{2em}
+
+
+\begin{enumerate}
+\item {  \textbf{File System:} create, name, rename, copy, lookup, preview, and delete file objects.\\
+\textbf{---[Basic FILE I/O Commands Interface]:}
+\begin{itemize}
+\item \texttt{create FILENAME} $\leftarrow$ creates blank file with name FILENAME.
+\item \texttt{init FILENAME} $\leftarrow$ create a file using the given name and the currently available input/last-output or blank if none.
+\item \texttt{rename FILENAME NEWNAME} $\leftarrow$ change the name of an existing file from FILENAME to NEWNAME.
+\item \texttt{copy FILE1 FILE2} $\leftarrow$ copies contents of FILE1 to FILE2 creating the destination if it doesn't exist.
+\item \texttt{find PATTERN} $\leftarrow$ find and list all file records whose names match the given Regular Expression pattern.
+\item \texttt{show FILENAME} $\leftarrow$ preview the contents of given file.
+\item \texttt{export FILENAME} $\leftarrow$ exit the system, outputing the contents of given file.
+\item \texttt{delete FILENAME} $\leftarrow$ remove file with name FILENAME from storage.
+\end{itemize}
+
+}
+
+\item {  \textbf{Programming Interface:} a command-line interface to find, run, or modify user programs or find and run system programs and commands.\\
+\textbf{---[Basic Programming Commands Interface]:}
+\begin{itemize}
+\item \texttt{runnable FILENAME} $\leftarrow$ recognize FILENAME object as an executable program or command.
+\item \texttt{programs} $\leftarrow$ show list of all available TEA programs by their names.
+\item \texttt{run FILENAME} $\leftarrow$ execute the given file record as a TEA program.
+\item \texttt{runnable FILE1 FILE2} $\leftarrow$ replace/override original program named FILE1 with contents of FILE2 (updates a program's code preserving its existing name).
+\item \texttt{commands} $\leftarrow$ executes COMMAND as a system command if it exists, otherwise shows error message command-not-found.
+\item \texttt{whatis NAME} $\leftarrow$ displays help info about a given system command or user program.
+\item \texttt{delete-program FILENAME} $\leftarrow$ revokes status of FILENAME as an executable user program (doesn't actually delete the underlying file object though).
+\end{itemize}
+
+}
+
+
+
+\item {  \textbf{Basic Utilities:} access to basic useful commands such as being able to interact with the world outside TOS as well as do non-programming work from within TOS.\\
+\textbf{---[Basic UTILITY Commands Interface]:}
+\begin{itemize}
+\item \texttt{fetch URL} $\leftarrow$ fetch and output contents of the specified [online/network] resource.
+\item \texttt{fetch URL FILENAME} $\leftarrow$ fetch and save contents at URL into file record named FILENAME.
+\item \texttt{tea CODE..} $\leftarrow$ take everything following the keyword ``tea" as a TEA program, run and output the result: It's a simple way to write and run basic TEA programs (TEA-one-liners) in TOS.
+\item \texttt{math EXPRESSION} $\leftarrow$ execute basic mathematics on the command-line as specified in EXPRESSION.
+\item \texttt{date} $\leftarrow$ return the current date.
+\item \texttt{time} $\leftarrow$ return the current time.
+\item \texttt{timestamp} $\leftarrow$ return the current timestamp.
+\item \texttt{print} $\leftarrow$ show or preview current output buffer contents (usually, output of last command).
+\item \texttt{export} $\leftarrow$ take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).
+\item \texttt{exit} $\leftarrow$ ends the TOS session returning nothing.
+\end{itemize}
+
+}
+
+
+
+\item {  \textbf{Help System:} a means to locate and read basic documentation about programs, system commands and the operating system.\\
+\textbf{---[Basic HELP Commands Interface]:}
+\begin{itemize}
+\item \texttt{whatis NAME} $\leftarrow$ displays help info about a given system command or user program.
+\item \texttt{help NAME} $\leftarrow$ same as \textttt{whatis NAME}.
+\item \texttt{help} $\leftarrow$ present menu for user to access help about all available [essential] commands based on category.
+\item \texttt{help-file} $\leftarrow$ display all available commands in the FILE I/O category.
+\item \texttt{help-prog} $\leftarrow$ display all available commands in the PROGRAMMING category.
+\item \texttt{help-util} $\leftarrow$ display all available commands in the UTILITIES category.
+\item \texttt{help-help} $\leftarrow$ display help on how to use the HELP facility.
+\end{itemize}
+
+}
+
+
+\end{enumerate}
 
 
 
@@ -18721,7 +18854,7 @@ We have covered sufficient material to help anyone coming to \textbf{TEA}, to be
 \begin{minipage}{0.9\textwidth}
 \textbf{TO CITE:}\\
 
-Lutalo, Joseph Willrich (2024). \textbf{TEA TAZ: Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION.} Figshare. Book. \url{https://www.academia.edu/122871672/}
+Lutalo, Joseph Willrich (2024). \textbf{TEA TAZ: Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION.} Academia. Book. \url{https://www.academia.edu/122871672/}
 
 \end{minipage}}
 \\
@@ -18740,16 +18873,22 @@ Lutalo, Joseph Willrich (2024). \textbf{TEA TAZ: Transforming Executable Alphabe
 
 \begin{figure}[H]
   \begin{center}
-  %\includegraphics[trim=0cm 20cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/pdfs/OZINCIPHER-APP3-EXA.pdf}\\
-  %\includegraphics[trim=LEFT BOTTOM RIGHT TOP, 
    \includegraphics[trim=0cm 1cm 0cm 2cm, clip, height=0.8\textheight,]{resources/pdfs/AboutAuthor.pdf}\\
-   %\caption{The \textbf{alternative rendering}  of the same sequence as $\Omega_{veuler}$.}
-  %\label{FIGLGESEULERVIRUSv2_ORIG}
   \end{center}
 \end{figure}
 
 \vspace*{\fill}
 \end{center}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=0.8\textwidth,]{resources/images/alchemy/_3609443f-3a1a-4840-8086-45fb9d02a19f.jpeg}\\
+   \caption{These images [the present and likewise the book's cover illustrations] were generated via Microsoft's Bing Image Creator via original prompt engineering by the author of the book TEA TAZ as potential cover illustrations for the manuscript. They are meant to remind one of the respectable ancient craft of using knowledge of science and philosophy to prepare special chemical reagents that could transmute things, materials and such, from one form (usually the ``mundane" or ``basal" form) into sublime, fine and precious forms. An art perhaps better known as \textit{Alchemy}, and which tradition and history tells us, even the great eminent scientist and mathematician, Sir. Isaac Newton, devoted some significant time to. Thus, like in those ancient sciences and empirical philosophies, the spirit of transformation and crafting transforming formulae lives on in the TEA, Transforming Executable Alphabet computer transforming language.--- \textbf{Fut. Prof. J. Willrich Lutalo C.M.R.W}}
+  \label{FIGTEACOVERS}
+  \end{center}
+\end{figure}
+
 
 
 % insert [back] cover --- could just be a PNG or PDF
