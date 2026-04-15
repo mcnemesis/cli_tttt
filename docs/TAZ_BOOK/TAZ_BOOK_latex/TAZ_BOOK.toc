@@ -6,9 +6,10 @@
 \contentsline {section}{\numberline {1.1}Essential Nomenclature and Concepts}{3}{section.1.1}%
 \contentsline {subsection}{\numberline {1.1.1}TEA Command Variations and Qualifying TEA Commands Correctly}{6}{subsection.1.1.1}%
 \contentsline {section}{\numberline {1.2}INSTALLATION and Basic USAGE Instructions}{7}{section.1.2}%
-\contentsline {chapter}{\numberline {2}THE TEA LANGUAGE DEFINITION}{9}{chapter.2}%
+\contentsline {chapter}{\numberline {2}THE TEA LANGUAGE DESIGN and DEFINITION}{9}{chapter.2}%
 \contentsline {section}{\numberline {2.1}TEA Lexical and Syntax Grammars}{9}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{13}{section.2.2}%
+\contentsline {section}{\numberline {2.2}TEA Language Processor}{13}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{14}{subsection.2.2.1}%
 \contentsline {section}{\numberline {2.3}Tea Instruction Set And The Tea Command Primitive Names}{17}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}The Tea Command Naming Standard}{18}{subsection.2.3.1}%
 \contentsline {chapter}{\numberline {3}TEA REGULAR EXPRESSIONS}{21}{chapter.3}%
@@ -204,5 +205,6 @@
 \contentsline {chapter}{\numberline {33}TEA Operating System (TOS)}{499}{chapter.33}%
 \contentsline {section}{\numberline {33.1}\textbf {COMPUTER ARCHITECTURE:} TEA Operating System Design}{502}{section.33.1}%
 \contentsline {subsection}{\numberline {33.1.1}The TOS Specification}{505}{subsection.33.1.1}%
-\contentsline {chapter}{\numberline {34}Conclusion}{511}{chapter.34}%
-\contentsline {chapter}{About the Inventor of TEA}{520}{appendix*.230}%
+\contentsline {subsection}{\numberline {33.1.2}The TOS Architecture}{510}{subsection.33.1.2}%
+\contentsline {chapter}{\numberline {34}Conclusion}{513}{chapter.34}%
+\contentsline {chapter}{About the Inventor of TEA}{522}{appendix*.231}%

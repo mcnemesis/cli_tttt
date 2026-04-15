@@ -573,7 +573,7 @@ Once TEA is installed via the above command-line method, one can then readily vi
 
 
 
-\chapter{THE TEA LANGUAGE DEFINITION}
+\chapter{THE TEA LANGUAGE DESIGN and DEFINITION}
 \label{SEC2}
 
 The Transforming Executable Alphabet (TEA) language, is a formal, regular, computable and Turing Complete programming language specified formally by the grammars we shall see in this section. As with regular, formal languages, we can then use TEA to express formal statements or expressions in its language and using its formal syntax and semantics, that could be either individual instructions that do just one thing, or entire collections of them arranged and structured coherently, that specify how a particular or general kinds of tasks might be solved --- these are typically, or more technically known as automatons, or rather, computer programs, capable of running on any Turing Machine or Abstract Machine capable of interpreting or processing the TEA formal language in this case.
@@ -750,7 +750,24 @@ In traditional BNF, we have:
 
 Where TOL is a \textbf{TEA Opaque Line}---essentially a line in a TEA program that can be entirely ignored by the TEA parser, processor or interpreter because it either consists of only TOE (TEA Opaque Expression) or TCOM (and thus is a TCOML). Thus do we now have a full, and complete specification of the TEA programming language syntax. This should help with lexing TEA program source code\footnote{Those not computer scientists, lexing is how we can automatically break apart a given TEA program source-code into meaningful bits or tokens, and thus be able to verify or validate the program against the language specification or formal grammar, even without having to execute or run the program. It is very vital in situations such as Static Program Analysis and Verification, but also in Code Beautification or Syntax Highlighting as part of a TEA Code Pretty Printer --- typical aspects of a mature programming language's formal language support tools.}, and thus parsing TEA Programs\footnote{Those interested, traditional parsers typically operated on some form of CFG of a language after it has been lexxed, such as when the grammar is expressed as a token tree or such. However, those are mostly implementation-specific details, and also dependent on whether the language is compiled or interpreted. TEA is currently manifested as an interpreted language, and those interested in studying the TEA parser, can visit the reference implementation on GitHub\cite{cli_tttt} to explore.}. However, as for the semantics of any given TEA program, it is important to combine knowledge of valid TEA program syntax, as well as the valid syntax and semantics of each individual TEA primitive command space. This is specified in the TEA A: to Z: Command Space Specification section of the TAZ.
 
-\section{Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}
+
+\section{TEA Language Processor}
+
+
+Generally, one might appreciate the simplicity of parsing, validating and then executing TEA program source code by studying the TEA execution process as depicted in the flowchart in  \textbf{\autoref{FIGTEAEXECPROCESS}}:
+
+
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[trim=0cm 1cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf}\\
+   \caption{The TEA Program Execution Process.}
+  \label{FIGTEAEXECPROCESS}
+  \end{center}
+\end{figure}
+
+
+\subsection{Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}
 \label{SECPARSE}
 
 The minimal TEA language grammar defined in the previous section might not readily capture or express one small quirk about how TEA programs might be written in practice – such as when TI spans more than one line --– an example being when a string parameter being passed to an instruction in the source code has to span multiple lines, or when a TEA comment needs do the same. The other quirky case is when multiple TI need be expressed on a single line –-- something which might not be immediately obvious by merely looking at the TEA language grammar.
@@ -844,18 +861,6 @@ i:{
 
 \vspace{2em}
 
-
-Generally, one might appreciate the simplicity of parsing, validating and then executing TEA program source code by studying the TEA execution process as depicted in the flowchart in  \textbf{\autoref{FIGTEAEXECPROCESS}}:
-
-
-\begin{figure}[H]
-  \begin{center}
-  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
-   \includegraphics[trim=0cm 1cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf}\\
-   \caption{The TEA Program Execution Process.}
-  \label{FIGTEAEXECPROCESS}
-  \end{center}
-\end{figure}
 
 
 \section{Tea Instruction Set And The Tea Command Primitive Names}
@@ -18664,7 +18669,7 @@ The essential excerpt concerns the concept of a \textbf{Software Operating Envir
 
 \vspace{2em}
 
-With that very useful idea out of the way, and even though we might not delve into its proper application such as in quantitative evaluation of TEA vs other languages using the 8 SOE metrics first introduced in \cite{lutalo2023dnapsoe}, we shall instead leverage some of the intricacies surrounding this idea of an ``operating environment" that SOE is about, and which we might leverage in the design and construction of our minimal TEA operating system. Namely, we wish to ensure that, in our TOS, we are minimum have a working SOE for TEA programs, and this means that we must ensure to have:
+With that very useful idea out of the way, and even though we might not delve into its proper application such as in quantitative evaluation of TEA vs other languages using the 8 SOE metrics first introduced in \cite{lutalo2023dnapsoe}, we shall instead leverage some of the intricacies surrounding this idea of an ``operating environment" that SOE is about, and which we might leverage in the design and construction of our minimal TEA operating system. Namely, we wish to ensure that, in our TOS, we at minimum have a working SOE for TEA programs, and this means that we must ensure to have:
 
 \vspace{2em}
 
@@ -18672,7 +18677,7 @@ With that very useful idea out of the way, and even though we might not delve in
 \item A means to create TEA programs inside this OS.
 \item A means to execute/run these programs within the OS's environment.
 \item A means to save to file and load from file --- or rather, a means to create executable ``self-contained" and preferably ``named" payloads --- of TEA programs that one can then run or share or read from within the OS.
-\item [\textbf{Bonus}] A means for our TEA programs to interact with or operate alongside other kinds of executables in the OS environment.
+\item [\textbf{Bonus}] A means for our TEA programs to interact with or operate alongside other kinds of executables in the OS environment [and/or the external world/environment(s)].
 \end{enumerate}
 
 \vspace{2em}
@@ -18681,6 +18686,7 @@ And so, with that theory behind us, let us embark on designing a minimal operati
 
 
 \subsection{The TOS Specification}
+\label{SECTOSSPEC}
 
 Without sanction of some working-group or committee, we have thought-up and drafted the following minimal specification as the essential basis of the \textbf{TEA Operating System}:
 
@@ -18820,7 +18826,66 @@ And thus, the plan is now officially underway... to manifest an new operating sy
 
 
 
-The link depicted in \textbf{\hyperref[FIGTEAOSPROPOSAL]{Figure \ref{FIGTEAOSPROPOSAL}}} being the first to have been officially shared with members of the TEA community concerning this proposal, we shall have it point, not to the running instance of the TOS, but rather, to the potential staging source-file for the reference implementation of this operating system. And thus, those zealously interested in following what the latest working version of the single-file TEA OS code looks like --- a program that one should be able to readily load into either the TEA WEB IDE or run on any system with \texttt{tttt} package installed and run, shall be found at the link: \url{https://bit.ly/run_teaos}
+The link depicted in \textbf{\hyperref[FIGTEAOSPROPOSAL]{Figure \ref{FIGTEAOSPROPOSAL}}} being the first to have been officially shared with members of the TEA community concerning this proposal, we shall have it point, not to the running instance of the TOS, but rather, to the potential staging source-file for the reference implementation of this operating system. And thus, those zealously interested in following what the latest working version of the single-file TEA OS code looks like --- a program that one should be able to readily load into either the TEA WEB IDE or verify on any system with \texttt{tttt} package installed and run, shall be found at the link: \url{https://bit.ly/run_teaos}
+
+
+
+
+\subsection{The TOS Architecture}
+
+
+Unlike what happened when the Linux kernel was developed --- particularly, that ``Linux has neither a documented conceptual nor a documented concrete architecture"\cite{Bowman:1999:Linux} --- that was said of Linux (started in 1991) in 2008! We shall especially tread carefully, and thoughtfully, so that, from the onset, the TEA operating system does have [at least initially] a conceptual architecture\footnote{As for the concrete architecture, especially because it essentially nails down the intricacies of how each actual implementation aspect in the system relates to the others, might not be accurate to formalize at the onset, and might instead be a piece of the TOS documentation that evolves later, perhaps after the initial reference implementation is complete --- in a way, to reflect the sensibilities of many implementers of complex software --- that often prefer to not over-engineer by starting out with minimal architectural blueprints (or none), and as for how the case was with Linux, that perhaps the [final] architecture is [only] reverse-engineered/extracted from the implementation\cite{Bowman:1999:Linux} after the fact!}.
+
+\vspace{2em}
+
+However, given that we don't wish to start out from a position of total green --- with no reference to, nor relation to what has happened in other operating system projects --- we shall keep in mind some of the architectural concepts and ideas that authorities such as the quantum physicist \textbf{Wolfgang Mauerer} has demonstrated in \cite{Mauerer2008Linux}, in relation to their detailed, authoritative documentation of the Linux kernel's architecture, but also the insightful treatment of the matter laid down in \textbf{Ivan T. et al}\cite{Bowman:1999:Linux}.
+
+
+
+\noindent
+\begin{minipage}{1\textwidth}
+\vspace{2em}
+\begin{quotation}
+{\ttfamily 
+
+The design process involves developing several models of the system at different levels of abstraction. As a design is decomposed, errors and omissions in earlier stages are discovered. These feed back to allow earlier design models to be improved...
+
+A specification of some kind is the output of each design activity. This specification may be an abstract, formal specification that is produced to clarify the requirements or it may be a specification of how part of the system is to be realized. As the design process continues, detail is added to the specification. The final results of the process are precise specifications of the algorithms and data structures to be implemented.
+
+}
+\hspace*{\fill} ---\textbf{Ian Sommerville}, \textit{Software Engineering}, 1996\cite{Sommerville1996Software}
+\end{quotation}
+\vspace{2em}
+\end{minipage}
+
+
+
+
+\vspace{2em}
+
+In \textbf{\hyperref[SECTOSSPEC]{Section \ref{SECTOSSPEC}}} we have laid down the basic aspects of the requirements engineering necessary for this project, and this is captured in an initial specification of the main capabilities that TOS ought have. However, as mentioned in the above quote attributed to the classic book on software engineering\cite{Sommerville1996Software} by \textbf{Ian Sommerville}, the process of refining a system's specification could span multiple levels of abstraction, and that earlier specifications might either feed forward into deeper levels, but also backwards into refining or revising earlier ones! However, and because we might not want to over-engineer the TOS, we shall sometimes skip or assume certain [usual] formalities that are part of [recommended] professional software engineering.
+
+
+\vspace{2em}
+
+
+Leveraging that, and preferring to start by specifying what the main users of the TOS shall/ought do at a high-level based on the TOS specification\footnote{This preference for a \textbf{user-oriented} design approach inspired both by the lessons we learn from \cite{Sommerville1996Software} concerning the relevance of \textbf{user-centered design}, but also from what a respectable ACM SLE paper from 2017 --- \textbf{Ankica Barišić and Dominique Blouin et al.}\cite{Barisic2017UsabilityDSL} ---  had to say concerning not just how new programming languages, but also any complex system ought be approached so as to enhance its usability and acceptability --- by modeling or designing from early-on, with target users and the environment in mind.}, we have the following Use-Case Diagram\cite{lutalo_2026_19592521_tos_usecase} specifying the main activities that each of the core users of the TOS are expected to do within the system. 
+
+\vspace{2em}
+
+
+
+\begin{figure}[H]
+  \begin{center}
+  %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
+   \includegraphics[width=0.9\textwidth,]{resources/pdfs/tos/TEA Operating System - Use-Case-Diagram.pdf}\\
+   \caption{TEA Operating System : Use-Case Design Diagram}
+  \label{FIGTOSUSECASE}
+  \end{center}
+\end{figure}
+
+
+
 
 
 

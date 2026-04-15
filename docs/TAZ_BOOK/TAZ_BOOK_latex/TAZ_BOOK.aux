@@ -52,10 +52,10 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1.1}TEA Command Variations and Qualifying TEA Commands Correctly}{6}{subsection.1.1.1}\protected@file@percent }
 \newlabel{SECQUALIFY}{{1.1.1}{6}{TEA Command Variations and Qualifying TEA Commands Correctly}{subsection.1.1.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}INSTALLATION and Basic USAGE Instructions}{7}{section.1.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}THE TEA LANGUAGE DEFINITION}{9}{chapter.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}THE TEA LANGUAGE DESIGN and DEFINITION}{9}{chapter.2}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{SEC2}{{2}{9}{THE TEA LANGUAGE DEFINITION}{chapter.2}{}}
+\newlabel{SEC2}{{2}{9}{THE TEA LANGUAGE DESIGN and DEFINITION}{chapter.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}TEA Lexical and Syntax Grammars}{9}{section.2.1}\protected@file@percent }
 \newlabel{SECGRAM}{{2.1}{9}{TEA Lexical and Syntax Grammars}{section.2.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces The TEA Instruction Lexical Specification (regular language)}}{9}{figure.caption.10}\protected@file@percent }
@@ -72,18 +72,19 @@
 \citation{cli_tttt}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.6}{\ignorespaces The TEA Program CFG in BNF (context-free language)}}{13}{figure.caption.15}\protected@file@percent }
 \newlabel{FIG6}{{2.6}{13}{The TEA Program CFG in BNF (context-free language)}{figure.caption.15}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{13}{section.2.2}\protected@file@percent }
-\newlabel{SECPARSE}{{2.2}{13}{Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{section.2.2}{}}
-\newlabel{LST1}{{2.1}{14}{TP 1}{lstlisting.2.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}{\ignorespaces TP 1}}{14}{lstlisting.2.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Sample TEA Program demonstrating most quirks of a non-trivial TEA Program}}{14}{figure.caption.16}\protected@file@percent }
-\newlabel{FIG7}{{2.7}{14}{Sample TEA Program demonstrating most quirks of a non-trivial TEA Program}{figure.caption.16}{}}
-\newlabel{LST2}{{2.2}{14}{TP 2}{lstlisting.2.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}{\ignorespaces TP 2}}{14}{lstlisting.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Sample TEA Program demonstrating most quirks of TEA programming (MINIFIED version)}}{14}{figure.caption.17}\protected@file@percent }
-\newlabel{FIG8}{{2.8}{14}{Sample TEA Program demonstrating most quirks of TEA programming (MINIFIED version)}{figure.caption.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces The TEA Program Execution Process.}}{17}{figure.caption.18}\protected@file@percent }
-\newlabel{FIGTEAEXECPROCESS}{{2.9}{17}{The TEA Program Execution Process}{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}TEA Language Processor}{13}{section.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces The TEA Program Execution Process.}}{14}{figure.caption.16}\protected@file@percent }
+\newlabel{FIGTEAEXECPROCESS}{{2.7}{14}{The TEA Program Execution Process}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{14}{subsection.2.2.1}\protected@file@percent }
+\newlabel{SECPARSE}{{2.2.1}{14}{Quirks of the TEA Parser: Parsing and Processing Multi-line TI and Multiple TI On A Single Line}{subsection.2.2.1}{}}
+\newlabel{LST1}{{2.1}{15}{TP 1}{lstlisting.2.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.1}{\ignorespaces TP 1}}{15}{lstlisting.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Sample TEA Program demonstrating most quirks of a non-trivial TEA Program}}{15}{figure.caption.17}\protected@file@percent }
+\newlabel{FIG7}{{2.8}{15}{Sample TEA Program demonstrating most quirks of a non-trivial TEA Program}{figure.caption.17}{}}
+\newlabel{LST2}{{2.2}{15}{TP 2}{lstlisting.2.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2.2}{\ignorespaces TP 2}}{15}{lstlisting.2.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Sample TEA Program demonstrating most quirks of TEA programming (MINIFIED version)}}{15}{figure.caption.18}\protected@file@percent }
+\newlabel{FIG8}{{2.9}{15}{Sample TEA Program demonstrating most quirks of TEA programming (MINIFIED version)}{figure.caption.18}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Tea Instruction Set And The Tea Command Primitive Names}{17}{section.2.3}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {2.10}{\ignorespaces The TEA Instruction Set (26 TEA Primitives and their names).}}{18}{figure.caption.19}\protected@file@percent }
 \newlabel{FIGTEAISET}{{2.10}{18}{The TEA Instruction Set (26 TEA Primitives and their names)}{figure.caption.19}{}}
@@ -1100,15 +1101,28 @@
 \citation{arpacidusseau2018ostep}
 \citation{Siever2000LinuxNutshell}
 \@writefile{toc}{\contentsline {subsection}{\numberline {33.1.1}The TOS Specification}{505}{subsection.33.1.1}\protected@file@percent }
+\newlabel{SECTOSSPEC}{{33.1.1}{505}{The TOS Specification}{subsection.33.1.1}{}}
 \citation{Siever2000LinuxNutshell}
 \@writefile{lof}{\contentsline {figure}{\numberline {33.2}{\ignorespaces \textbf  {A Hacker's Dream Come True?} The proposal to bring to life a \textbf  {TEA Operating System}!}}{509}{figure.caption.228}\protected@file@percent }
 \newlabel{FIGTEAOSPROPOSAL}{{33.2}{509}{\textbf {A Hacker's Dream Come True?} The proposal to bring to life a \textbf {TEA Operating System}!}{figure.caption.228}{}}
+\citation{Bowman:1999:Linux}
+\citation{Bowman:1999:Linux}
+\citation{Mauerer2008Linux}
+\citation{Bowman:1999:Linux}
+\citation{Sommerville1996Software}
+\@writefile{toc}{\contentsline {subsection}{\numberline {33.1.2}The TOS Architecture}{510}{subsection.33.1.2}\protected@file@percent }
+\citation{Sommerville1996Software}
+\citation{Sommerville1996Software}
+\citation{Barisic2017UsabilityDSL}
+\citation{lutalo_2026_19592521_tos_usecase}
+\@writefile{lof}{\contentsline {figure}{\numberline {33.3}{\ignorespaces TEA Operating System : Use-Case Design Diagram}}{512}{figure.caption.229}\protected@file@percent }
+\newlabel{FIGTOSUSECASE}{{33.3}{512}{TEA Operating System : Use-Case Design Diagram}{figure.caption.229}{}}
 \bibstyle{unsrt}
 \bibdata{references}
-\@writefile{toc}{\contentsline {chapter}{\numberline {34}Conclusion}{511}{chapter.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {34}Conclusion}{513}{chapter.34}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{SECCONC}{{34}{511}{Conclusion}{chapter.34}{}}
+\newlabel{SECCONC}{{34}{513}{Conclusion}{chapter.34}{}}
 \bibcite{lnspaper}{1}
 \bibcite{Lutalo2024gtnc}{2}
 \bibcite{adtpaper}{3}
@@ -1156,7 +1170,12 @@
 \bibcite{lutalodnapintro2020}{45}
 \bibcite{a2021_github}{46}
 \bibcite{Siever2000LinuxNutshell}{47}
-\@writefile{toc}{\contentsline {chapter}{About the Inventor of TEA}{520}{appendix*.230}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {34.1}{\ignorespaces These images [the present and likewise the book's cover illustrations] were generated via Microsoft's Bing Image Creator via original prompt engineering by the author of the book TEA TAZ as potential cover illustrations for the manuscript. They are meant to remind one of the respectable ancient craft of using knowledge of science and philosophy to prepare special chemical reagents that could transmute things, materials and such, from one form (usually the ``mundane" or ``basal" form) into sublime, fine and precious forms. An art perhaps better known as \textit  {Alchemy}, and which tradition and history tells us, even the great eminent scientist and mathematician, Sir. Isaac Newton, devoted some significant time to. Thus, like in those ancient sciences and empirical philosophies, the spirit of transformation and crafting transforming formulae lives on in the TEA, Transforming Executable Alphabet computer transforming language.--- \textbf  {Fut. Prof. J. Willrich Lutalo C.M.R.W}}}{521}{figure.caption.232}\protected@file@percent }
-\newlabel{FIGTEACOVERS}{{34.1}{521}{These images [the present and likewise the book's cover illustrations] were generated via Microsoft's Bing Image Creator via original prompt engineering by the author of the book TEA TAZ as potential cover illustrations for the manuscript. They are meant to remind one of the respectable ancient craft of using knowledge of science and philosophy to prepare special chemical reagents that could transmute things, materials and such, from one form (usually the ``mundane" or ``basal" form) into sublime, fine and precious forms. An art perhaps better known as \textit {Alchemy}, and which tradition and history tells us, even the great eminent scientist and mathematician, Sir. Isaac Newton, devoted some significant time to. Thus, like in those ancient sciences and empirical philosophies, the spirit of transformation and crafting transforming formulae lives on in the TEA, Transforming Executable Alphabet computer transforming language.--- \textbf {Fut. Prof. J. Willrich Lutalo C.M.R.W}}{figure.caption.232}{}}
-\gdef \@abspage@last{560}
+\bibcite{Bowman:1999:Linux}{48}
+\bibcite{Mauerer2008Linux}{49}
+\bibcite{Sommerville1996Software}{50}
+\bibcite{Barisic2017UsabilityDSL}{51}
+\bibcite{lutalo_2026_19592521_tos_usecase}{52}
+\@writefile{toc}{\contentsline {chapter}{About the Inventor of TEA}{522}{appendix*.231}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {34.1}{\ignorespaces These images [the present and likewise the book's cover illustrations] were generated via Microsoft's Bing Image Creator via original prompt engineering by the author of the book TEA TAZ as potential cover illustrations for the manuscript. They are meant to remind one of the respectable ancient craft of using knowledge of science and philosophy to prepare special chemical reagents that could transmute things, materials and such, from one form (usually the ``mundane" or ``basal" form) into sublime, fine and precious forms. An art perhaps better known as \textit  {Alchemy}, and which tradition and history tells us, even the great eminent scientist and mathematician, Sir. Isaac Newton, devoted some significant time to. Thus, like in those ancient sciences and empirical philosophies, the spirit of transformation and crafting transforming formulae lives on in the TEA, Transforming Executable Alphabet computer transforming language.--- \textbf  {Fut. Prof. J. Willrich Lutalo C.M.R.W}}}{523}{figure.caption.233}\protected@file@percent }
+\newlabel{FIGTEACOVERS}{{34.1}{523}{These images [the present and likewise the book's cover illustrations] were generated via Microsoft's Bing Image Creator via original prompt engineering by the author of the book TEA TAZ as potential cover illustrations for the manuscript. They are meant to remind one of the respectable ancient craft of using knowledge of science and philosophy to prepare special chemical reagents that could transmute things, materials and such, from one form (usually the ``mundane" or ``basal" form) into sublime, fine and precious forms. An art perhaps better known as \textit {Alchemy}, and which tradition and history tells us, even the great eminent scientist and mathematician, Sir. Isaac Newton, devoted some significant time to. Thus, like in those ancient sciences and empirical philosophies, the spirit of transformation and crafting transforming formulae lives on in the TEA, Transforming Executable Alphabet computer transforming language.--- \textbf {Fut. Prof. J. Willrich Lutalo C.M.R.W}}{figure.caption.233}{}}
+\gdef \@abspage@last{562}
