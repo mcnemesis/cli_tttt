@@ -1,0 +1,65 @@
+####################
+Fibonacci in TEA v2
+####################
+
+t.!:|v:n #in case external input n
+
+# Otherwise prompt for n..
+l:lPrompt|y:n
+f:^\d+$:lProcess
+i!:{For fib(n) -> specify n: }|i:|t.!:|v:n|j:lPrompt
+
+l:lProcess 
+
+#should we generate sequence up to n?
+i!:{Generate:
+1. fib(}|x*!:n|x!:{)
+2. Sequence up to fib(}|x*!:n|x!:{) [default]}|i:|t.!:|v:vOPT
+
+v:vMode:2 #default mode
+y:vOPT|f!:^1$:lModeSet
+v:vMode:1 
+
+l:lModeSet
+
+#start..
+v:a:0
+V:b:1
+v:vRES:{0}
+
+#iterative fib(n)
+############
+# we'll port this to TEA...
+
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+#############
+
+V:i:0
+
+# for n==0
+y:n|x!:==0|r.:|f!:true:lProcessStep
+y:a|q!:
+
+l:lProcessStep 
+#a, b = b, a + b
+y:a|v:_a
+y:b|v:a
+y:_a|x!:+|x*!:b|r.:|v:b
+
+y:vRES|x!:{, }|x*!:a|v:vRES
+
+y:i|x!:==(|x*!:n|x!:-1)|v:_c
+r.:|f!:true:lIncrement
+
+y:vMode|f!:1:lReturnSeq
+y:a|q!: #return result
+l:lReturnSeq
+y:vRES|q!:
+
+l:lIncrement
+y:i|x!:+1|r.:|v:i
+j:lProcessStep
