@@ -3573,7 +3573,7 @@ And with that program expressed in those three different forms, we can use the f
   \centering
  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Compute TEA Program Signature]
   \begin{lstlisting}[language=TEA]
-#--[ TEA Program Signature Analyzer v1 ]---#
+#--[ TEA Program Signature Analyzer v2 ]---#
 # Will analyze any given/input (a TEA program),
 # and return its corresponding
 # Command+Qualifier Modal Sequence Statistic
@@ -3581,14 +3581,14 @@ And with that program expressed in those three different forms, we can use the f
 # are most used in that given program.
 # This is basic TEA code static analysis.
 ############################################
-h!:{\|}|d:{\|}|k:{:}|d.::.* | u!:
+h!:{\|}|d:{\|}|k:{:}|d.::.*|z:|k:^[a-z]\W?|u!:
 
 # for example, will return the following signature
 # for this very TEA program:
-# !dhk. u
+# !dkh.zu
    \end{lstlisting}
   \end{tcolorbox}
-  \caption{TEA Program: Compute TEA Program Signature v1}
+  \caption{TEA Program: Compute TEA Program Signature v2}
 \end{figure}
 \vspace{2em}
 
@@ -3598,14 +3598,14 @@ For the above 3 Fibonacci TEA programs, we get the following signatures, each an
 \vspace{2em}
 
    \begin{tcbverbatim}[title=Sample TEA Program Signature Outputs from Fibonacci Programs]
-!yvxr.fliVq*j - sanitized form
-!yvx.rfliVq*tj - minified
-!yvx.rfliVq*tj - mixed form
+!vyxr.fliq*j - sanitized form
+!vyxr.fliq*j - minified
+!vyx.rfliq*tj - mixed form
   \end{tcbverbatim}
 
 \vspace{2em}
 
-Thus, from that static analysis, we can tell that those programs all have something in common based on which commands and which command qualifiers they most use. Essentially, that, they all have similar TEA command signature distributions, with the most frequent command qualifier utilized being ``!" and ``." and with the most utilized command spaces being YANK (y), VAULT (v), XENOGRAFT (x), REPLACE (r), FORK (f),... and with JUMP (j) being the least used command. This basic analysis can go a long way in helping a TEA programmer, maintainer, or code-reviewer understand better, what is most important to keep eyes upon in the changes or specifics of the TEA instruction set given their particular system or problem domain.
+Thus, from that static analysis, we can tell that those programs all have something in common based on which commands and which command qualifiers they most use. Essentially, that, they all have similar TEA command signature distributions, with the most frequent command qualifier utilized being ``!" and ``." and with the most utilized command spaces being VAULT (v), YANK (y), XENOGRAFT (x), REPLACE (r), FORK (f),... and with JUMP (j) being the least used command. This basic analysis can go a long way in helping a TEA programmer, maintainer, or code-reviewer understand better, what is most important to keep eyes upon in the changes or specifics of the TEA instruction set given their particular system or problem domain.
  
 
 
@@ -15692,6 +15692,179 @@ The RSPG TEA source code has been placed in the public domain! To quickly load, 
 Please note that, just like with all other TEA applications one shall encountered, the RSPG can be used as is from virtually anywhere TEA can run, but especially because it is interactive in the presented implementation, modifications would be necessary if the underling RSPG algorithm is meant to be used as is in some non-interactive scenarios such as in the generation of secure passwords inside of other programs or scripts --- such as in server-side environments.
 
 
+\subsection{EXAMPLE 2: \textbf{NUMBER THEORY:} Computing Fibonacci Sequences}
+\label{SECVEXAMP2}
+
+
+The following case, already somewhat touched upon in \textbf{\hyperref[SECDBONUSFIB]{Section \ref{SECDBONUSFIB}}} when we dealt with how to compute the TEA Program Signatures, takes the example program covered there --- the \textbf{Fibonacci Number Computer}, and develops it into a more robust, more useful version that can do at minimum two things:
+
+\vspace{2em}
+\begin{enumerate}
+\item Given some input $n$, it computes the $n^{th}$ fibonacci number \texttt{fib(n)} and returns it.
+\item Alternatively, it computes and returns all fibonacci sequence numbers from the first, \texttt{fib(0)} to the $n^{th}$, as a sequence or list of numbers.
+\item In case the program is invoked without any explicit [useful] input, it prompts for what value of $n$ to use to do the above two computations.
+\end{enumerate}
+\vspace{2em}
+
+
+For background purposes, we know\cite{copilot_assistant} that the \textbf{Fibonacci} sequence has the following history and properties...
+
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+{
+\LARGE
+\textbf{The Fibonacci Sequence}
+}
+
+\textbf{Origin}
+The Fibonacci sequence was introduced to Western mathematics by Leonardo of Pisa, known as Fibonacci, in his 1202 book \textit{Liber Abaci}. It was originally used to model the growth of a rabbit population under idealized conditions.
+
+\vspace{1em}
+
+\textbf{Mathematical Definition}
+The sequence is defined recursively as:
+
+
+\[
+F_0 = 0, \quad F_1 = 1,
+\]
+
+
+
+
+\[
+F_n = F_{n-1} + F_{n-2} \quad \text{for } n \geq 2.
+\]
+
+
+
+Thus, the sequence begins:
+
+
+\[
+0, \; 1, \; 1, \; 2, \; 3, \; 5, \; 8, \; 13, \; 21, \ldots
+\]
+
+
+
+\textbf{Relevance}
+The Fibonacci sequence appears in diverse areas of mathematics and nature:
+\begin{itemize}
+    \item \textbf{Mathematics:} It is closely related to the golden ratio, \(\varphi = \frac{1+\sqrt{5}}{2}\), since \(\frac{F_{n+1}}{F_n} \to \varphi\) as \(n \to \infty\).
+    \item \textbf{Computer Science:} Used in algorithms, data structures (e.g., Fibonacci heaps), and recursive problem-solving.
+    \item \textbf{Nature:} Observed in phyllotaxis (arrangement of leaves), branching of trees, and patterns of shells and flowers.
+    \item \textbf{Art and Architecture:} The golden ratio derived from Fibonacci numbers has been applied in design and aesthetics.
+\end{itemize}
+
+%draw horizontal line
+\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{2em}
+
+And with that background, and the specification we laid down before that, we have the following TEA program for computing Fibonacci Sequence numbers...
+
+
+
+\vspace{2em}
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Fibonacci in TEA v2, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+####################
+Fibonacci in TEA v2
+####################
+
+t.!:|v:n #in case external input n
+
+# Otherwise prompt for n..
+l:lPrompt|y:n
+f:^\d+$:lProcess
+i!:{For fib(n) -> specify n: }|i:|t.!:|v:n|j:lPrompt
+
+l:lProcess 
+
+#should we generate sequence up to n?
+i!:{Generate:
+1. fib(}|x*!:n|x!:{)
+2. Sequence up to fib(}|x*!:n|x!:{) [default]}|i:|t.!:|v:vOPT
+
+v:vMode:2 #default mode
+y:vOPT|f!:^1$:lModeSet
+v:vMode:1 
+
+l:lModeSet
+
+#start..
+v:a:0
+V:b:1
+v:vRES:{0}
+
+#iterative fib(n)
+############
+# we'll port this to TEA...
+
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+#############
+
+V:i:0
+
+# for n==0
+y:n|x!:==0|r.:|f!:true:lProcessStep
+y:a|q!:
+
+l:lProcessStep 
+#a, b = b, a + b
+y:a|v:_a
+y:b|v:a
+y:_a|x!:+|x*!:b|r.:|v:b
+
+y:vRES|x!:{, }|x*!:a|v:vRES
+
+y:i|x!:==(|x*!:n|x!:-1)|v:_c
+r.:|f!:true:lIncrement
+
+y:vMode|f!:1:lReturnSeq
+y:a|q!: #return result
+l:lReturnSeq
+y:vRES|q!:
+
+l:lIncrement
+y:i|x!:+1|r.:|v:i
+j:lProcessStep
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: Compute Fibonacci Numbers}
+  \label{FIGYAPP2}
+}
+
+
+\vspace{2em}
+
+It produces the following output for \texttt{fib(8)} --- to produce the output we saw highlighted in the notes above...
+
+
+  \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 1 from TEA Fibonacci v1 for fib(8)]
+0, 1, 1, 2, 3, 5, 8, 13, 21
+  \end{tcbverbatim}
+ \vspace{2em}
+
+And, even for WEB TEA working in a web browser, returns the following sequence for \texttt{fib(100)} in just a fraction of a second!
+
+
+  \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT 2 from TEA Fibonacci v1 for fib(100)]
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049, 12586269025, 20365011074, 32951280099, 53316291173, 86267571272, 139583862445, 225851433717, 365435296162, 591286729879, 956722026041, 1548008755920, 2504730781961, 4052739537881, 6557470319842, 10610209857723, 17167680177565, 27777890035288, 44945570212853, 72723460248141, 117669030460994, 190392490709135, 308061521170129, 498454011879264, 806515533049393, 1304969544928657, 2111485077978050, 3416454622906707, 5527939700884757, 8944394323791464, 14472334024676220, 23416728348467684, 37889062373143900, 61305790721611580, 99194853094755490, 160500643816367070, 259695496911122560, 420196140727489660, 679891637638612200, 1100087778366101900, 1779979416004714000, 2880067194370816000, 4660046610375530000, 7540113804746346000, 12200160415121877000, 19740274219868226000, 31940434634990100000, 51680708854858330000, 83621143489848430000, 135301852344706760000, 218922995834555200000, 354224848179262000000
+  \end{tcbverbatim}
+ \vspace{2em}
+
+
 
 
  
@@ -18282,178 +18455,6 @@ To access this service, use any of the options:
 \vspace{2em}
 
 
-
-\subsection{EXAMPLE 2: \textbf{NUMBER THEORY:} Computing Fibonacci Sequences}
-\label{SECYEXAMP2}
-
-
-The following case, already somewhat touched upon in \textbf{\hyperref[SECDBONUSFIB]{Section \ref{SECDBONUSFIB}}} when we dealt with how to compute the TEA Program Signatures, takes the example program covered there --- the \textbf{Fibonacci Number Computer}, and develops it into a more robust, more useful version that can do at minimum two things:
-
-\vspace{2em}
-\begin{enumerate}
-\item Given some input $n$, it computes the $n^{th}$ fibonacci number \texttt{fib(n)} and returns it.
-\item Alternatively, it computes and returns all fibonacci sequence numbers from the first, \texttt{fib(0)} to the $n^{th}$, as a sequence or list of numbers.
-\item In case the program is invoked without any explicit [useful] input, it prompts for what value of $n$ to use to do the above two computations.
-\end{enumerate}
-\vspace{2em}
-
-
-For background purposes, we know\cite{copilot_assistant} that the \textbf{Fibonacci} sequence has the following history and properties...
-
-%draw horizontal line
-\noindent\rule{\textwidth}{0.4pt}
-
-{
-\LARGE
-\textbf{The Fibonacci Sequence}
-}
-
-\textbf{Origin}
-The Fibonacci sequence was introduced to Western mathematics by Leonardo of Pisa, known as Fibonacci, in his 1202 book \textit{Liber Abaci}. It was originally used to model the growth of a rabbit population under idealized conditions.
-
-\vspace{1em}
-
-\textbf{Mathematical Definition}
-The sequence is defined recursively as:
-
-
-\[
-F_0 = 0, \quad F_1 = 1,
-\]
-
-
-
-
-\[
-F_n = F_{n-1} + F_{n-2} \quad \text{for } n \geq 2.
-\]
-
-
-
-Thus, the sequence begins:
-
-
-\[
-0, \; 1, \; 1, \; 2, \; 3, \; 5, \; 8, \; 13, \; 21, \ldots
-\]
-
-
-
-\textbf{Relevance}
-The Fibonacci sequence appears in diverse areas of mathematics and nature:
-\begin{itemize}
-    \item \textbf{Mathematics:} It is closely related to the golden ratio, \(\varphi = \frac{1+\sqrt{5}}{2}\), since \(\frac{F_{n+1}}{F_n} \to \varphi\) as \(n \to \infty\).
-    \item \textbf{Computer Science:} Used in algorithms, data structures (e.g., Fibonacci heaps), and recursive problem-solving.
-    \item \textbf{Nature:} Observed in phyllotaxis (arrangement of leaves), branching of trees, and patterns of shells and flowers.
-    \item \textbf{Art and Architecture:} The golden ratio derived from Fibonacci numbers has been applied in design and aesthetics.
-\end{itemize}
-
-%draw horizontal line
-\noindent\rule{\textwidth}{0.4pt}
-
-\vspace{2em}
-
-And with that background, and the specification we laid down before that, we have the following TEA program for computing Fibonacci Sequence numbers...
-
-
-
-\vspace{2em}
-
-{
- \Large
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Fibonacci in TEA v2, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-####################
-Fibonacci in TEA v2
-####################
-
-t.!:|v:n #in case external input n
-
-# Otherwise prompt for n..
-l:lPrompt|y:n
-f:^\d+$:lProcess
-i!:{For fib(n) -> specify n: }|i:|t.!:|v:n|j:lPrompt
-
-l:lProcess 
-
-#should we generate sequence up to n?
-i!:{Generate:
-1. fib(}|x*!:n|x!:{)
-2. Sequence up to fib(}|x*!:n|x!:{) [default]}|i:|t.!:|v:vOPT
-
-v:vMode:2 #default mode
-y:vOPT|f!:^1$:lModeSet
-v:vMode:1 
-
-l:lModeSet
-
-#start..
-v:a:0
-V:b:1
-v:vRES:{0}
-
-#iterative fib(n)
-############
-# we'll port this to TEA...
-
-def fib(n):
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-    return a
-#############
-
-V:i:0
-
-# for n==0
-y:n|x!:==0|r.:|f!:true:lProcessStep
-y:a|q!:
-
-l:lProcessStep 
-#a, b = b, a + b
-y:a|v:_a
-y:b|v:a
-y:_a|x!:+|x*!:b|r.:|v:b
-
-y:vRES|x!:{, }|x*!:a|v:vRES
-
-y:i|x!:==(|x*!:n|x!:-1)|v:_c
-r.:|f!:true:lIncrement
-
-y:vMode|f!:1:lReturnSeq
-y:a|q!: #return result
-l:lReturnSeq
-y:vRES|q!:
-
-l:lIncrement
-y:i|x!:+1|r.:|v:i
-j:lProcessStep
-   \end{lstlisting}
-  \end{tcolorbox}
-  \caption{TEA APPLICATION: Compute Fibonacci Numbers}
-  \label{FIGYAPP2}
-}
-
-
-\vspace{2em}
-
-It produces the following output for \texttt{fib(8)} --- to produce the output we saw highlighted in the notes above...
-
-
-  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 1 from TEA Fibonacci v1 for fib(8)]
-0, 1, 1, 2, 3, 5, 8, 13, 21
-  \end{tcbverbatim}
- \vspace{2em}
-
-And, even for WEB TEA working in a web browser, returns the following sequence for \texttt{fib(100)} in just a fraction of a second!
-
-
-  \vspace{2em}
- \begin{tcbverbatim}[title=Sample OUTPUT 2 from TEA Fibonacci v1 for fib(100)]
-0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049, 12586269025, 20365011074, 32951280099, 53316291173, 86267571272, 139583862445, 225851433717, 365435296162, 591286729879, 956722026041, 1548008755920, 2504730781961, 4052739537881, 6557470319842, 10610209857723, 17167680177565, 27777890035288, 44945570212853, 72723460248141, 117669030460994, 190392490709135, 308061521170129, 498454011879264, 806515533049393, 1304969544928657, 2111485077978050, 3416454622906707, 5527939700884757, 8944394323791464, 14472334024676220, 23416728348467684, 37889062373143900, 61305790721611580, 99194853094755490, 160500643816367070, 259695496911122560, 420196140727489660, 679891637638612200, 1100087778366101900, 1779979416004714000, 2880067194370816000, 4660046610375530000, 7540113804746346000, 12200160415121877000, 19740274219868226000, 31940434634990100000, 51680708854858330000, 83621143489848430000, 135301852344706760000, 218922995834555200000, 354224848179262000000
-  \end{tcbverbatim}
- \vspace{2em}
 
 
 
