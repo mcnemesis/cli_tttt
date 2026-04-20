@@ -12341,20 +12341,734 @@ OR
 
 
 
-\subsection{EXAMPLE 3: \textbf{CRYPTOGRAPHY:} INVISIBLE TEXT DECODER }
+\subsection{EXAMPLE 3: \textbf{CRYPTOGRAPHY:} INVISIBLE TEXT MESSAGES --- The GHOST Message Protocol }
 \label{SECEXAMP3R}
 
 
-blah blah...
+We have already talked about the immense powers of rewriting systems such as TEA \textbf{REPLACE command space} in earlier sections of this chapter, however, perhaps the following example shall help to cement the potency and sheer magical power a simple replace command such as \texttt{r!:PATTERN:SUBSTITUTE} can have in communication, security, art and fantasy, when wielded properly and creatively so. However, before we dive into this special application, first, let's reflect upon two interesting quotes taken from two entirely different kinds of works --- both books hand-picked from the author's private book collection at Nuchwezi Research --- one, about hardcore science dealing with the material side of the living and the dead especially in the occident, the other, a significantly timeless contribution to the philosophical and spiritual heritage of the orient respectively:
 
 
-{
-\LARGE
+\vspace{2em}
 
-\hl{TODO: complete this example application...}
+\begin{quotation}
+\noindent \texttt{Bodies can be buried in graves, left on the ground, hidden in buildings, or burned and mutilated beyond any normal level of recognition. The job of forensics is to establish, beyond a shadow of a doubt, facts that are not obvious to the human eye...}\\
+\hspace*{\fill} ---\textbf{Roxana Ferllini}, \textit{Raising the Dead: How the Forensics of the Future Are Solving the Murders of the Past}, 2003\cite{Ferllini2003}
+\end{quotation}
+
+
+\vspace{2em}
+
+\begin{quotation}
+\noindent \texttt{When body and mind dissolve,}\\\texttt{They do not exist anywhere,}\\\texttt{Any more than musical notes lay heaped up anywhere.}\\\texttt{All the elements of being come into existence}\\\texttt{After having been non-existent;}\\\texttt{And having come into existence pass away.}\\
+\hspace*{\fill} ---\textbf{Jon Ortner}, \textit{Buddha}, 2003\cite{Ortner2003}
+\end{quotation}
+
+
+\vspace{2em}
+
+Moreover, even though our work here is going to deal with a kind of writing system that specifically deals with trying to read ``the invisible" --- such as ghosts are typically believed to be --- and yet, as with the following definition given for the term \textbf{ghost} from one popular Windows desktop dictionary software, we shall somewhat be actually dealing with information that, despite being ``ordinarily invisible", is still somewhat visible when processed with ``a special kind of eye".
+
+
+
+\vspace{2em}
+
+\begin{quotation}
+\noindent \textbf{Noun: ghost}\\\texttt{The visible disembodied soul of a dead person.}\\
+\hspace*{\fill} ---\textbf{Antony Lewis and WordWeb Software}, \textit{WordWeb 10.51}, 2025\cite{WordWeb2025}
+\end{quotation}
+
+
+\vspace{2em}
+
+
+\subsubsection{Brief Background on Ghost Message Software}
+\label{SECBACKGHOSTMSG}
+
+It is worth noting that, even though the new/modern Ghost Message implementation we are about to dive into somewhat technically deviates from the original idea that the author of this book, and also a researcher at Nuchwezi explored as early as in 2016\footnote{See original \textbf{Ghost Messages} on CodePen in HTML and JavaScript: \url{https://codepen.io/mcnemesis/pen/zqBmdL}} --- a live demonstration of that software still active at \url{https://ghost.nuchwezi.com/} --- and yet, the key differences between that and the new implementation is as such:
+
+\vspace{2em}
+\begin{enumerate}
+\item The original focused on the idea of encoding ``hidden messages" in plain sight; meaning, an entirely different [and literal] text message could be encoded using ordinary visible text that totally has nothing to do with the hidden messages. For example, one could write poem about birds singing in trees, mentioning nothing at all about computers or mathematics, in such a way that when the sentences and words in the poem are processed using that ghost messages algorithm, one instead discovers encoded in the poem, a mathematical formula for computing logarithms for example!
+\item{ Also, the technique of encoding in the original ghost messages protocol utilized a mapping between \textbf{number of words in a sentence} --- with a sentence having to be a sequence of space-delimited strings ending with a full-stop or question-mark --- and the index of a character in the alphabet. Thus, two different text sentences could both encode the same exact letter or phrase, such as ``hi." and "you." both encoding a single space `` ", and that ``hi there." and ``loving you." merely encoding an ``a", while a poem such as:
+
+\vspace{1em}
+{\ttfamily
+\begin{verbatim}
+Have you seen?
+It's such a sleuth.
+Hand OMG? No?
+I think so, but meh..
+\end{verbatim}
+}
+\vspace{1em}
+
+Merely encodes the message ``bca d" --- perhaps about the BCA (Blackboard Adventures\footnote{See \url{https://t.me/bclectures}}) or about the \textit{vampiric} ``Bacardi" rum-liqueur\footnote{See \url{https://bacardi.com}}??
 
 }
+\end{enumerate}
 
+\vspace{2em}
+
+
+Anyways, let's move on to the new Ghost Messages protocol and implementation...
+
+\subsubsection{Ghost Messages Protocol}
+
+In the new Ghost Messages Protocol, the most important specifications are these:
+
+\begin{enumerate}
+\item We want to be able to encode almost any kind of normal text message --- including natural language with any kind of common punctuation; mathematical expressions including numbers, operators and brackets; computer source-code including use of common delimiters, mixed-case identifiers and even comments, etc!\footnote{Note that, the original Ghost Messages only could handle a limited alphabet of only lowercase letters a-z, the 10 digits and the space character.}
+\item \textbf{The Ghost Message} should be a text file which, when opened and read using normal, unaided eyes, merely appears entirely empty, almost empty/blank or just meaningless!\footnote{We say ``meaningless" because, in case there are characters that we can't yet encode, perhaps we merely leave them to survive in the final GM-encoded message verbatim. This might produce files where some few symbols float about surrounded by just vast blank space!}
+\item When the GM-encoded message is processed so as to decode or read it, the result should be as true to the original as possible --- meaning, for critical text files such as computer programs or mathematical expressions, we want the ``invisible text" to reproduce the same precision and correctness in the original file --- with numbers in the correct order, decimals and commas in the right place, new lines preserved, brackets, lower and upper-case letters and comments all well-preserved, etc.
+\end{enumerate}
+
+\vspace{2em}
+
+Thus, this protocol and the associated software might not be trivial in any sense, and might need to undergo thorough testing to confirm and prove that we have truly adhered to the above specification, however, and thanks to perhaps divine inspiration\footnote{The author does indeed occasionally pray to, and invoke the \textit{Holy Ghost} --- with the current v1 of GM having been prototypes using a mere smartphone, and in bed, relaxing on a boring Sunday afternoon after prayers earlier on in the day...}, we have the following implementation in the TEA language..
+
+
+\subsubsection{Ghost Messages TEA Source Code}
+
+
+\vspace{2em}
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  GHOST Messages Protocol v1.1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]    
+v:vABOUT:{#+##################+#
+Ghost Messages Protocol
+Encoder-N-Decoder v1.1
+---------------------
+Imagine coming across a [BLANK] text file full of "nothing" but space!
+It's like looking at a ghost.. normal eyes world see nothing!! 
+This program, helps you do that for any text message; re-write it 
+using nothing but space (what we call the Ghost Message code). 
+But also it can do the reverse.. help you read messages that are invisible to those without this superpower.
+#+##################+#
+Original idea started in the 2010s at Nuchwezi Research.
+This is the TEA version, by Fut. Prof. Joseph Willrich Lutalo
+#+##################+#}
+
+---[INTRO]
+y:vABOUT | i:
+
+#the GM ordered alphabet sequence for reference...
+#also includes Newline char, and # should always come last!
+v:az:{abcdefghijklmnopqrstuvwxyz 0123456789.?*/+-()
+!@:{}|[]ABCDEFGHIJKLMNOPQRSTUVWXYZ#} 
+
+#---[Menu]
+y*:|v:vIN
+l:lPROMPT
+y:vIN|f!:^$:lMENU 
+i!:{Enter Message to Process:}|i:|v:vIN
+j:lPROMPT
+
+l:lMENU
+i!:{Choose what to do:
+1. Make Message Invisible
+2. Read Invisible Message}|i:|v:vOPT
+f!:^[12]:lMENU:lPROCESS
+
+l:lPROCESS
+#first store msg..
+y:vIN|v:vMESSAGE 
+#go process..
+y:vOPT|f:1:lENCODER:lDECODER
+
+#---[encoder]
+l:lENCODER
+y:vMESSAGE
+
+# first, we deal with special char #
+r!:{#}:{#################################################################################_}
+
+# alpha..
+r!:a:{#_}
+r!:b:{##_}
+r!:c:{###_}
+r!:d:{####_}
+r!:e:{#####_}
+r!:f:{######_}
+r!:g:{#######_}
+r!:h:{########_}
+r!:i:{#########_}
+r!:j:{##########_}
+r!:k:{###########_}
+r!:l:{############_}
+r!:m:{#############_}
+r!:n:{##############_}
+r!:o:{###############_}
+r!:p:{################_}
+r!:q:{#################_}
+r!:r:{##################_}
+r!:s:{###################_}
+r!:t:{####################_}
+r!:u:{#####################_}
+r!:v:{######################_}
+r!:w:{#######################_}
+r!:x:{########################_}
+r!:y:{#########################_}
+r!:z:{##########################_}
+r!:{ }:{###########################_}
+# numerals...
+r!:{0}:{############################_}
+r!:{1}:{#############################_}
+r!:{2}:{##############################_}
+r!:{3}:{###############################_}
+r!:{4}:{################################_}
+r!:{5}:{#################################_}
+r!:{6}:{##################################_}
+r!:{7}:{###################################_}
+r!:{8}:{####################################_}
+r!:{9}:{#####################################_}
+# symbols..
+r!:{\.}:{######################################_}
+r!:{\?}:{#######################################_}
+r!:{\*}:{########################################_}
+r!:{/}:{#########################################_}
+r!:{\+}:{##########################################_}
+r!:{-}:{###########################################_}
+r!:{\(}:{############################################_}
+r!:{\)}:{#############################################_}
+r!:{\n}:{##############################################_}
+r!:{!}:{###############################################_}
+r!:{@}:{################################################_}
+r!:{:}:{#################################################_}
+r!:{\{}:{##################################################_}
+r!:{\}}:{###################################################_}
+r!:{\|}:{####################################################_}
+r!:{\[}:{#####################################################_}
+r!:{\]}:{######################################################_}
+
+# UPPER ALPHA...
+r!:{A}:{#######################################################_}
+r!:{B}:{########################################################_}
+r!:{C}:{#########################################################_}
+r!:{D}:{##########################################################_}
+r!:{E}:{###########################################################_}
+r!:{F}:{############################################################_}
+r!:{G}:{#############################################################_}
+r!:{H}:{##############################################################_}
+r!:{I}:{###############################################################_}
+r!:{J}:{################################################################_}
+r!:{K}:{#################################################################_}
+r!:{L}:{##################################################################_}
+r!:{M}:{###################################################################_}
+r!:{N}:{####################################################################_}
+r!:{O}:{#####################################################################_}
+r!:{P}:{######################################################################_}
+r!:{Q}:{#######################################################################_}
+r!:{R}:{########################################################################_}
+r!:{S}:{#########################################################################_}
+r!:{T}:{##########################################################################_}
+r!:{U}:{###########################################################################_}
+r!:{V}:{############################################################################_}
+r!:{W}:{#############################################################################_}
+r!:{X}:{##############################################################################_}
+r!:{Y}:{###############################################################################_}
+r!:{Z}:{################################################################################_}
+
+# handling special char # skipped here to prevent bug
+#r!:{#}:{#################################################################################_}
+
+
+#eliminate what's not encoded...
+d!:{[#_]}
+#then unmask..
+r!:{#}:{ }
+r!:{_}:{
+}
+#------------'_..!------------------------|
+#NOTE: because copying pure space/ghost-messages
+#might be denied, we pre+suffix a single dot.
+#------------'_..!------------------------|
+x:.|x!:.
+
+# and that's it!
+q!:
+#---[DONE ENCODING]
+
+#---[decoder]
+l:lDECODER
+y:vMESSAGE
+
+# for GM, strip .-affixes
+d:{^\.}|m!:|d:{^\.}|m!:
+
+r!:{\n}:{_}
+r!:{ }:{#}
+
+# handle special char # first..
+r!:{#################################################################################_}:{-HASH-} 
+
+# UPPER ALPHA
+r!:{################################################################################_}:{Z}
+r!:{###############################################################################_}:{Y}
+r!:{##############################################################################_}:{X}
+r!:{#############################################################################_}:{W}
+r!:{############################################################################_}:{V}
+r!:{###########################################################################_}:{U}
+r!:{##########################################################################_}:{T}
+r!:{#########################################################################_}:{S}
+r!:{########################################################################_}:{R}
+r!:{#######################################################################_}:{Q}
+r!:{######################################################################_}:{P}
+r!:{#####################################################################_}:{O}
+r!:{####################################################################_}:{N}
+r!:{###################################################################_}:{M}
+r!:{##################################################################_}:{L}
+r!:{#################################################################_}:{K}
+r!:{################################################################_}:{J}
+r!:{###############################################################_}:{I}
+r!:{##############################################################_}:{H}
+r!:{#############################################################_}:{G}
+r!:{############################################################_}:{F}
+r!:{###########################################################_}:{E}
+r!:{##########################################################_}:{D}
+r!:{#########################################################_}:{C}
+r!:{########################################################_}:{B}
+r!:{#######################################################_}:{A}
+# symbols..
+r!:{######################################################_}:]
+r!:{#####################################################_}:[
+r!:{####################################################_}:{|}
+r!:{###################################################_}:{}}
+r!:{##################################################_}:{{}
+r!:{#################################################_}:{:}
+r!:{################################################_}:@
+r!:{###############################################_}:!
+r!:{##############################################_}:{
+}
+r!:{#############################################_}:{)}
+r!:{############################################_}:{(}
+r!:{###########################################_}:-
+r!:{##########################################_}:+
+r!:{#########################################_}:/
+r!:{########################################_}:*
+r!:{#######################################_}:?
+r!:{######################################_}:.
+# numerals
+r!:{#####################################_}:9
+r!:{####################################_}:8
+r!:{###################################_}:7
+r!:{##################################_}:6
+r!:{#################################_}:5
+r!:{################################_}:4
+r!:{###############################_}:3
+r!:{##############################_}:2
+r!:{#############################_}:1
+r!:{############################_}:0
+# lower alpha..
+r!:{###########################_}:{ }
+r!:{##########################_}:z
+r!:{#########################_}:y
+r!:{########################_}:x
+r!:{#######################_}:w
+r!:{######################_}:v
+r!:{#####################_}:u
+r!:{####################_}:t
+r!:{###################_}:s
+r!:{##################_}:r
+r!:{#################_}:q
+r!:{################_}:p
+r!:{###############_}:o
+r!:{##############_}:n
+r!:{#############_}:m
+r!:{############_}:l
+r!:{###########_}:k
+r!:{##########_}:j
+r!:{#########_}:i
+r!:{########_}:h
+r!:{#######_}:g
+r!:{######_}:f
+r!:{#####_}:e
+r!:{####_}:d
+r!:{###_}:c
+r!:{##_}:b
+r!:{#_}:a
+
+# finally, re-handle special char...
+r!:{-HASH-}:{#}
+
+#------------'_..!------------------------|
+# NOTE: in traditional nomenclature
+# wht we've just done wld be akin to
+# clairvoyance! the stuff o ghost hunters!
+#------------'_..!------------------------|
+#---[DONE DECODING]
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: CRYPTOGRAPHY: GHOST Messages Protocol v1.1}
+  \label{FIGR3}
+}
+
+
+\vspace{2em}
+
+That program's source-code contains some ``abnormally" and ``unavoidably" long instruction lines that even though we might later be able to simplify them so as to make the code able to fit nicely on a page or screen such as most other TEA programs would (especially in their \textbf{sanitized form}), and yet, that version is written as such, to help especially highlight the intricacies of the underlying Ghost Message protocol encoding and decoding logic when implemented in straight-forward TEA. This program should really help one to come to truly appreciate and love TEA (as we shall see when we come to the examples under the next heading), however, there is no doubt, given this is just the version 1.1 prototype, that a future TEA version that is more terse, perhaps less trivial and more cryptic shall manifest, most likely based-off of this current implementation and specification.
+
+\vspace{2em}
+
+That said, and with the examples we are about to look at, one should note that, unlike the original/older Ghost Messages, the new version of the protocol somewhat requires that the messages be held or passed around in electronic text-files --- this, especially because, without a special way to encode different kinds of white-space characters on a literal paper (such as a pure new ghost-messages file printed on a blank A4 sheet), when scanned back with a computer or read using the eyes, shall merely appear just \textbf{blank}! Thus, the new protocol, or in its currently form, is meant for use on electronic devices --- on social media, in emails, in digital file attachments, etc. But those still interested in ghost messages using pen-and-paper\footnote{Such as the stuff of legendary computer scientist, also a renown grandfather of modern computer-aided cryptography, \textbf{Alan Turing}, a great inspiration to the inventor of TEA, and who without doubt, had much influence on him as depicted in the World War 2 movie --- \textbf{The Imitation Game (2014)} --- movie came out the same year Nuchwezi was founded!}, can of course revert to the original idea introduced in \textbf{\hyperref[SECBACKGHOSTMSG]{Section \ref{SECBACKGHOSTMSG}}} or improve on that.
+
+
+\subsubsection{Testing the Ghost Messages TEA application}
+
+
+Let us begin with a simple  text message such as just the common greeting in computer science --- ``hello world". When one encodes that message using the GM v1.1 TEA program, we obtain the following verbatim ghost message:
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 1 from GM v1.1 --- for ``hello world"]
+.        
+     
+            
+            
+               
+                           
+                       
+               
+                  
+            
+    
+.
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+
+And if we slightly modify that message so as to introduce some complications such as adding punctuation where the original didn't, introducing some numbers, mixing lower and upper-case letters, etc. We then have the following ghost message for the literal text ``Hello? 10.1 World!"
+
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT 2 from GM v1.1 --- for ``Hello? 10.1 World!"]
+.                                                              
+     
+            
+            
+               
+                                       
+                           
+                             
+                            
+                                      
+                             
+                           
+                                                                             
+               
+                  
+            
+    
+                                               
+.
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+
+At this juncture then, and \textbf{IMPORTANT} to note: one might wonder, \textbf{why are we having some ``visible" characters in our ghost message?} Well, this is for example demonstrated by the fact that the above two ghost messages both start and end with a single dot ``." character --- essentially, and opening and closing ``full-stop". The simple explanation for why this is so, is such that, after experimenting with the Ghost Messages Protocol via the TEA WEB IDE both on mobile and desktop computers, we found that some browsers or environments would not allow to copy and paste files which entirely contain only invisible characters or just white-space! Thus, as a work-around this, and somewhat in recognition of the original ghost-messages protocol, we chose to open and close the modern ghost-messages with \textbf{an optional single ``."}. This then means, when working on a ghost-messages text message held in a digital file or which one is sure to pass to the GM processor verbatim, one might decide to entirely strip out the opening and closing dots, so that, \textbf{the last message above} would be just as the following...
+
+\vspace{2em}
+     \begin{tcbverbatim}[title=Sample pure GHOST-MESSAGE from GM v1.1 --- for ``Hello? 10.1 World!"]
+                                                              
+     
+            
+            
+               
+                                       
+                           
+                             
+                            
+                                      
+                             
+                           
+                                                                             
+               
+                  
+            
+    
+                                               
+
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+
+One can appreciate how great this protocol is, by looking at the following screenshots of that message when seen in the Notepad text-editor on windows...
+
+
+
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/ghost_messages/hello_world_highlighted}\\
+   \caption{Sample Ghost-Message for ``Hello? 10.1 World!" with both literal original message and highlighted invisible [dotted] ghost message}
+  \label{FIGSGMSCREEN1}
+  \end{center}
+\end{figure}
+ 
+ 
+ 
+   \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/ghost_messages/hello_world_highlighted_no_visible}\\
+   \caption{Sample Ghost-Message for ``Hello? 10.1 World!" with only highlighted invisible [dotted] ghost message}
+  \label{FIGSGMSCREEN2}
+  \end{center}
+\end{figure}
+
+ 
+  \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/ghost_messages/hello_world_no_highlights}\\
+   \caption{Sample Ghost-Message for ``Hello? 10.1 World!" with only  invisible [undotted] ghost message}
+  \label{FIGSGMSCREEN2}
+  \end{center}
+\end{figure}
+
+\vspace{2em}
+
+Moreover, we can use Ghost Messages for non-trivial text messages or files, such as taking the following simple, but important TEA program for generating random IP addresses, and encoding its entire source-code in GM.
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample INPUT Text Message --- a TEA program --- to be processed by GM v1.1]
++------------------+
+Hello World!
+# this secret tea program
+# can generate random
+# ip addresses!
+
+v:vL:256
+v:vLL:0
+v:vS:4
+v:vG:.
+n*:vL:vLL:vS:vG
++------------------+
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+Which, when transformed into a [pure] Ghost Message via the GM protocol 1.1 above, becomes the following strange text file...
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample OUTPUT GHOST Text Message --- a TEA program --- encoded using GM v1.1]
+.                                          
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                          
+                                              
+                                                              
+     
+            
+            
+               
+                           
+                                                                             
+               
+                  
+            
+    
+                                               
+                                              
+                                                                                 
+                           
+                    
+        
+         
+                   
+                           
+                   
+     
+   
+                  
+     
+                    
+                           
+                    
+     
+ 
+                           
+                
+                  
+               
+       
+                  
+ 
+             
+                                              
+                                                                                 
+                           
+   
+ 
+              
+                           
+       
+     
+              
+     
+                  
+ 
+                    
+     
+                           
+                  
+ 
+              
+    
+               
+             
+                                              
+                                                                                 
+                           
+         
+                
+                           
+ 
+    
+    
+                  
+     
+                   
+                   
+     
+                   
+                                               
+                                              
+                                              
+                      
+                                                 
+                      
+                                                                  
+                                                 
+                              
+                                 
+                                  
+                                              
+                      
+                                                 
+                      
+                                                                  
+                                                                  
+                                                 
+                            
+                                              
+                      
+                                                 
+                      
+                                                                         
+                                                 
+                                
+                                              
+                      
+                                                 
+                      
+                                                             
+                                                 
+                                      
+                                              
+              
+                                        
+                                                 
+                      
+                                                                  
+                                                 
+                      
+                                                                  
+                                                                  
+                                                 
+                      
+                                                                         
+                                                 
+                      
+                                                             
+                                              
+                                          
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                          
+.
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+And if one still has doubts how useful and powerful that TEA program can be, note that, and as we see in the following screenshot, the program can likewise be used on the command-line to produce ghost-messages text files that one might later save or pass around...
+
+\vspace{2em}
+
+
+
+  \begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth]{resources/images/ghost_messages/ghost_messages_on_cli}\\
+   \caption{Sample Ghost-Message for ``hello world" produced on the Linux command-line}
+  \label{FIGSGMSCREENCLI}
+  \end{center}
+\end{figure}
+
+\vspace{2em}
+
+
+To access this service, use any of the options:
+
+\vspace{2em}
+
+\begin{enumerate}
+\item Find GHOST MESSAGES on the list of standard TEA programs via:\\ \url{https://tea.nuchwezi.com}
+\item Directly load and run GHOST MESSAGES via: {\normalsize \url{https://tea.nuchwezi.com/?i=\%20&fc=https://gist.githubusercontent.com/mcnemesis/536cf82e471da5939c204532bbe7692e/raw/&run} }
+\item{Obtain the GHOST MESSAGES source-code (and other related codes/programs) via the TEA GitHub Project:\\
+\url{https://github.com/mcnemesis/cli_tttt}}
+\item{ Find the GHOST MESSAGES code on GitHub Gists:\\
+\url{https://gist.github.com/mcnemesis/536cf82e471da5939c204532bbe7692e}}
+\item{ Or use the official shortened link to share or load GHOST MESSAGES:\\
+ \url{https://bit.ly/use_ghost_messages}
+ }
+\end{enumerate}
+
+\vspace{2em}
 
 
  
