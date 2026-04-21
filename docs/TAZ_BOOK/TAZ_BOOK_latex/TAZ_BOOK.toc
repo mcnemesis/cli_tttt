@@ -152,66 +152,67 @@
 \contentsline {subsubsection}{Ghost Messages Protocol}{323}{section*.177}%
 \contentsline {subsubsection}{Ghost Messages TEA Source Code}{324}{section*.178}%
 \contentsline {subsubsection}{Testing the Ghost Messages TEA application}{335}{section*.179}%
-\contentsline {chapter}{\numberline {25}S: SALT}{347}{chapter.25}%
-\contentsline {section}{\numberline {25.1}SEMANTICS of S:}{348}{section.25.1}%
-\contentsline {section}{\numberline {25.2}NOTES about S:}{348}{section.25.2}%
-\contentsline {section}{\numberline {25.3}EXAMPLE APPLICATIONS of S:}{350}{section.25.3}%
-\contentsline {subsection}{\numberline {25.3.1}EXAMPLE 1: \textbf {CHILD EDUCATION:} The SIR GAME}{350}{subsection.25.3.1}%
-\contentsline {chapter}{\numberline {26}T: TRANSFORM}{363}{chapter.26}%
-\contentsline {section}{\numberline {26.1}SEMANTICS of T:}{363}{section.26.1}%
-\contentsline {section}{\numberline {26.2}NOTES about T:}{364}{section.26.2}%
-\contentsline {section}{\numberline {26.3}EXAMPLE APPLICATIONS of T:}{374}{section.26.3}%
-\contentsline {subsection}{\numberline {26.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL ART:} Abstract Text-Art Generator}{374}{subsection.26.3.1}%
-\contentsline {subsubsection}{Basic Style}{388}{section*.197}%
-\contentsline {subsubsection}{Mirrored Style}{390}{section*.198}%
-\contentsline {subsubsection}{Chaos Style}{392}{section*.199}%
-\contentsline {subsubsection}{MODIFIED ATAG Outputs}{394}{section*.200}%
-\contentsline {chapter}{\numberline {27}U: UNIQUEIFY}{399}{chapter.27}%
-\contentsline {section}{\numberline {27.1}SEMANTICS of U:}{400}{section.27.1}%
-\contentsline {section}{\numberline {27.2}NOTES about U:}{400}{section.27.2}%
-\contentsline {section}{\numberline {27.3}EXAMPLE APPLICATIONS of U:}{405}{section.27.3}%
-\contentsline {subsection}{\numberline {27.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL MYSTICISM:} MAGICAL VOWEL HYMN GENERATOR}{406}{subsection.27.3.1}%
-\contentsline {chapter}{\numberline {28}V: VAULT}{413}{chapter.28}%
-\contentsline {section}{\numberline {28.1}SEMANTICS of V:}{414}{section.28.1}%
-\contentsline {section}{\numberline {28.2}NOTES about V:}{414}{section.28.2}%
-\contentsline {subsection}{\numberline {28.2.1}VAULT with TEA DATABASE --- persistent storage in TEA}{419}{subsection.28.2.1}%
-\contentsline {section}{\numberline {28.3}EXAMPLE APPLICATIONS of V:}{420}{section.28.3}%
-\contentsline {subsection}{\numberline {28.3.1}EXAMPLE 1: \textbf {INFORMATION SECURITY:} Random SECURE Password Generator (RSPG)}{420}{subsection.28.3.1}%
-\contentsline {subsubsection}{Review and Preview of the RSPG implementation}{436}{section*.211}%
-\contentsline {subsubsection}{How to Access and RUN RSPG:}{441}{section*.214}%
-\contentsline {subsection}{\numberline {28.3.2}EXAMPLE 2: \textbf {NUMBER THEORY:} Computing Fibonacci Sequences}{442}{subsection.28.3.2}%
-\contentsline {chapter}{\numberline {29}W: WEBIFY}{447}{chapter.29}%
-\contentsline {section}{\numberline {29.1}SEMANTICS of W:}{448}{section.29.1}%
-\contentsline {section}{\numberline {29.2}NOTES about W:}{448}{section.29.2}%
-\contentsline {subsection}{\numberline {29.2.1}HTTP POST Requests}{449}{subsection.29.2.1}%
-\contentsline {subsubsection}{HTTP POST with CUSTOM HEADERS}{457}{section*.220}%
-\contentsline {subsubsection}{HTTP POST with RAW/ARBITRARY non-FORM DATA}{464}{section*.221}%
-\contentsline {subsection}{\numberline {29.2.2}HTTP GET Requests}{469}{subsection.29.2.2}%
-\contentsline {subsubsection}{HTTP GET with CUSTOM HEADERS}{471}{section*.222}%
-\contentsline {section}{\numberline {29.3}EXAMPLE APPLICATIONS of W:}{474}{section.29.3}%
-\contentsline {subsection}{\numberline {29.3.1}EXAMPLE 1: \textbf {DATA COMMUNICATION:} EMAIL POSTING SERVICE}{475}{subsection.29.3.1}%
-\contentsline {subsubsection}{TEA E-EMAILER Source Code}{476}{section*.223}%
-\contentsline {subsubsection}{TEA E-EMAILER In Action..}{481}{section*.224}%
-\contentsline {chapter}{\numberline {30}X: XENOGRAFT}{487}{chapter.30}%
-\contentsline {section}{\numberline {30.1}SEMANTICS of X:}{487}{section.30.1}%
-\contentsline {section}{\numberline {30.2}NOTES about X:}{488}{section.30.2}%
-\contentsline {section}{\numberline {30.3}EXAMPLE APPLICATIONS of X:}{489}{section.30.3}%
-\contentsline {subsection}{\numberline {30.3.1}EXAMPLE 1: \textbf {E-LEARNING:} FREE DICTIONARY | LEXICON }{489}{subsection.30.3.1}%
-\contentsline {subsubsection}{Lexicon V2: dealing with restrictions and glitches}{495}{section*.229}%
-\contentsline {chapter}{\numberline {31}Y: YANK}{501}{chapter.31}%
-\contentsline {section}{\numberline {31.1}SEMANTICS of Y:}{502}{section.31.1}%
-\contentsline {section}{\numberline {31.2}NOTES about Y:}{502}{section.31.2}%
-\contentsline {subsubsection}{TEA DATABASE operations}{503}{section*.232}%
-\contentsline {section}{\numberline {31.3}EXAMPLE APPLICATIONS of Y:}{505}{section.31.3}%
-\contentsline {subsection}{\numberline {31.3.1}EXAMPLE 1: \textbf {CALLIGRAPHY:} Text Beautifier}{507}{subsection.31.3.1}%
-\contentsline {chapter}{\numberline {32}Z: ZAP}{521}{chapter.32}%
-\contentsline {section}{\numberline {32.1}SEMANTICS of Z:}{522}{section.32.1}%
-\contentsline {section}{\numberline {32.2}NOTES about Z:}{522}{section.32.2}%
-\contentsline {subsection}{\numberline {32.2.1}Environment and Platform Introspection using ZAP}{530}{subsection.32.2.1}%
-\contentsline {section}{\numberline {32.3}EXAMPLE APPLICATIONS of Z:}{531}{section.32.3}%
-\contentsline {chapter}{\numberline {33}TEA Operating System (TOS)}{533}{chapter.33}%
-\contentsline {section}{\numberline {33.1}\textbf {COMPUTER ARCHITECTURE:} TEA Operating System Design}{536}{section.33.1}%
-\contentsline {subsection}{\numberline {33.1.1}The TOS Specification}{539}{subsection.33.1.1}%
-\contentsline {subsection}{\numberline {33.1.2}The TOS Architecture}{544}{subsection.33.1.2}%
-\contentsline {chapter}{\numberline {34}Conclusion}{547}{chapter.34}%
-\contentsline {chapter}{About the Inventor of TEA}{558}{appendix*.241}%
+\contentsline {subsubsection}{UPDATED Ghost Messages Protocol}{345}{section*.184}%
+\contentsline {chapter}{\numberline {25}S: SALT}{351}{chapter.25}%
+\contentsline {section}{\numberline {25.1}SEMANTICS of S:}{352}{section.25.1}%
+\contentsline {section}{\numberline {25.2}NOTES about S:}{352}{section.25.2}%
+\contentsline {section}{\numberline {25.3}EXAMPLE APPLICATIONS of S:}{354}{section.25.3}%
+\contentsline {subsection}{\numberline {25.3.1}EXAMPLE 1: \textbf {CHILD EDUCATION:} The SIR GAME}{354}{subsection.25.3.1}%
+\contentsline {chapter}{\numberline {26}T: TRANSFORM}{367}{chapter.26}%
+\contentsline {section}{\numberline {26.1}SEMANTICS of T:}{367}{section.26.1}%
+\contentsline {section}{\numberline {26.2}NOTES about T:}{368}{section.26.2}%
+\contentsline {section}{\numberline {26.3}EXAMPLE APPLICATIONS of T:}{378}{section.26.3}%
+\contentsline {subsection}{\numberline {26.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL ART:} Abstract Text-Art Generator}{378}{subsection.26.3.1}%
+\contentsline {subsubsection}{Basic Style}{392}{section*.198}%
+\contentsline {subsubsection}{Mirrored Style}{394}{section*.199}%
+\contentsline {subsubsection}{Chaos Style}{396}{section*.200}%
+\contentsline {subsubsection}{MODIFIED ATAG Outputs}{398}{section*.201}%
+\contentsline {chapter}{\numberline {27}U: UNIQUEIFY}{403}{chapter.27}%
+\contentsline {section}{\numberline {27.1}SEMANTICS of U:}{404}{section.27.1}%
+\contentsline {section}{\numberline {27.2}NOTES about U:}{404}{section.27.2}%
+\contentsline {section}{\numberline {27.3}EXAMPLE APPLICATIONS of U:}{409}{section.27.3}%
+\contentsline {subsection}{\numberline {27.3.1}EXAMPLE 1: \textbf {COMPUTATIONAL MYSTICISM:} MAGICAL VOWEL HYMN GENERATOR}{410}{subsection.27.3.1}%
+\contentsline {chapter}{\numberline {28}V: VAULT}{417}{chapter.28}%
+\contentsline {section}{\numberline {28.1}SEMANTICS of V:}{418}{section.28.1}%
+\contentsline {section}{\numberline {28.2}NOTES about V:}{418}{section.28.2}%
+\contentsline {subsection}{\numberline {28.2.1}VAULT with TEA DATABASE --- persistent storage in TEA}{423}{subsection.28.2.1}%
+\contentsline {section}{\numberline {28.3}EXAMPLE APPLICATIONS of V:}{424}{section.28.3}%
+\contentsline {subsection}{\numberline {28.3.1}EXAMPLE 1: \textbf {INFORMATION SECURITY:} Random SECURE Password Generator (RSPG)}{424}{subsection.28.3.1}%
+\contentsline {subsubsection}{Review and Preview of the RSPG implementation}{440}{section*.212}%
+\contentsline {subsubsection}{How to Access and RUN RSPG:}{445}{section*.215}%
+\contentsline {subsection}{\numberline {28.3.2}EXAMPLE 2: \textbf {NUMBER THEORY:} Computing Fibonacci Sequences}{446}{subsection.28.3.2}%
+\contentsline {chapter}{\numberline {29}W: WEBIFY}{451}{chapter.29}%
+\contentsline {section}{\numberline {29.1}SEMANTICS of W:}{452}{section.29.1}%
+\contentsline {section}{\numberline {29.2}NOTES about W:}{452}{section.29.2}%
+\contentsline {subsection}{\numberline {29.2.1}HTTP POST Requests}{453}{subsection.29.2.1}%
+\contentsline {subsubsection}{HTTP POST with CUSTOM HEADERS}{461}{section*.221}%
+\contentsline {subsubsection}{HTTP POST with RAW/ARBITRARY non-FORM DATA}{468}{section*.222}%
+\contentsline {subsection}{\numberline {29.2.2}HTTP GET Requests}{473}{subsection.29.2.2}%
+\contentsline {subsubsection}{HTTP GET with CUSTOM HEADERS}{475}{section*.223}%
+\contentsline {section}{\numberline {29.3}EXAMPLE APPLICATIONS of W:}{478}{section.29.3}%
+\contentsline {subsection}{\numberline {29.3.1}EXAMPLE 1: \textbf {DATA COMMUNICATION:} EMAIL POSTING SERVICE}{479}{subsection.29.3.1}%
+\contentsline {subsubsection}{TEA E-EMAILER Source Code}{480}{section*.224}%
+\contentsline {subsubsection}{TEA E-EMAILER In Action..}{485}{section*.225}%
+\contentsline {chapter}{\numberline {30}X: XENOGRAFT}{491}{chapter.30}%
+\contentsline {section}{\numberline {30.1}SEMANTICS of X:}{491}{section.30.1}%
+\contentsline {section}{\numberline {30.2}NOTES about X:}{492}{section.30.2}%
+\contentsline {section}{\numberline {30.3}EXAMPLE APPLICATIONS of X:}{493}{section.30.3}%
+\contentsline {subsection}{\numberline {30.3.1}EXAMPLE 1: \textbf {E-LEARNING:} FREE DICTIONARY | LEXICON }{493}{subsection.30.3.1}%
+\contentsline {subsubsection}{Lexicon V2: dealing with restrictions and glitches}{499}{section*.230}%
+\contentsline {chapter}{\numberline {31}Y: YANK}{505}{chapter.31}%
+\contentsline {section}{\numberline {31.1}SEMANTICS of Y:}{506}{section.31.1}%
+\contentsline {section}{\numberline {31.2}NOTES about Y:}{506}{section.31.2}%
+\contentsline {subsubsection}{TEA DATABASE operations}{507}{section*.233}%
+\contentsline {section}{\numberline {31.3}EXAMPLE APPLICATIONS of Y:}{509}{section.31.3}%
+\contentsline {subsection}{\numberline {31.3.1}EXAMPLE 1: \textbf {CALLIGRAPHY:} Text Beautifier}{511}{subsection.31.3.1}%
+\contentsline {chapter}{\numberline {32}Z: ZAP}{525}{chapter.32}%
+\contentsline {section}{\numberline {32.1}SEMANTICS of Z:}{526}{section.32.1}%
+\contentsline {section}{\numberline {32.2}NOTES about Z:}{526}{section.32.2}%
+\contentsline {subsection}{\numberline {32.2.1}Environment and Platform Introspection using ZAP}{534}{subsection.32.2.1}%
+\contentsline {section}{\numberline {32.3}EXAMPLE APPLICATIONS of Z:}{535}{section.32.3}%
+\contentsline {chapter}{\numberline {33}TEA Operating System (TOS)}{537}{chapter.33}%
+\contentsline {section}{\numberline {33.1}\textbf {COMPUTER ARCHITECTURE:} TEA Operating System Design}{540}{section.33.1}%
+\contentsline {subsection}{\numberline {33.1.1}The TOS Specification}{543}{subsection.33.1.1}%
+\contentsline {subsection}{\numberline {33.1.2}The TOS Architecture}{548}{subsection.33.1.2}%
+\contentsline {chapter}{\numberline {34}Conclusion}{551}{chapter.34}%
+\contentsline {chapter}{About the Inventor of TEA}{562}{appendix*.242}%
