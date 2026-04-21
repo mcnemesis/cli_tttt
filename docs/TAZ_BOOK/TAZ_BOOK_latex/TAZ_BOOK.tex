@@ -13071,6 +13071,223 @@ To access this service, use any of the options:
 \vspace{2em}
 
 
+\subsubsection{UPDATED Ghost Messages Protocol}
+
+
+Having realized that this application is in so much demand, and that it surely fills a gap no other existing software does, we have enhanced and updated it to \textbf{Ghost Messages v1.3} whose source-code one can find via the links shared above, and which extended version, especially features a longer \textbf{symbol set} spanning nearly all the important/common ASCII character symbols as shown here...
+
+
+\vspace{2em}
+
+\vspace{1em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=EXTENDED Ghost Messages Symbol Set, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#the GM ordered alphabet sequence for reference...
+#also includes Newline char, and # should always come last!
+v:az:{abcdefghijklmnopqrstuvwxyz 0123456789.?*/+-()
+!@:{}|[]ABCDEFGHIJKLMNOPQRSTUVWXYZ,"';&@%=^$~<>\_#}
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+
+To appreciate just how robust and effective this program is, note that, it currently can encode (make invisible) but also decode (return from invisible to visible), special structured texts of the following kinds...
+
+\vspace{2em}
+
+
+\vspace{2em}
+
+
+     \begin{tcbverbatim}[title=Sample INPUTS handled by Ghost Messages: C-Programs]
+#include <stdio.h>
+#include <stdbool.h>
+
+// Function to check if a number is prime
+bool isPrime(int num) {
+    if (num < 2) return false;
+    for (int i = 2; i * i <= num; i++) {
+        if (num % i == 0) return false;
+    }
+    return true;
+}
+
+int main() {
+    int n, count = 0, num = 1, nthPrime;
+
+    printf("Enter n (to find the nth prime): ");
+    scanf("%d", &n);
+
+    while (count < n) {
+        num++;
+        if (isPrime(num)) {
+            count++;
+        }
+    }
+
+    nthPrime = num;
+    printf("The %dth prime number is %d\n", n, nthPrime);
+
+    return 0;
+}
+
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+
+     \begin{tcbverbatim}[title=Sample INPUTS handled by Ghost Messages: Python-Programs]
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+def nth_prime(n):
+    count = 0
+    num = 1
+    while count < n:
+        num += 1
+        if is_prime(num):
+            count += 1
+    return num
+
+# Example usage
+n = int(input("Enter n (to find the nth prime): "))
+print(f"The {n}th prime number is {nth_prime(n)}")
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+
+
+     \begin{tcbverbatim}[title=Sample INPUTS handled by Ghost Messages: JSON data]
+[
+  {
+    "name": "Mercury",
+    "radius_km": 2439.7,
+    "mass_kg": 3.30e23,
+    "distanceFromSun_million_km": 57.9
+  },
+  {
+    "name": "Venus",
+    "radius_km": 6051.8,
+    "mass_kg": 4.87e24,
+    "distanceFromSun_million_km": 108.2
+  },
+  {
+    "name": "Earth",
+    "radius_km": 6371.0,
+    "mass_kg": 5.97e24,
+    "distanceFromSun_million_km": 149.6
+  },
+  {
+    "name": "Mars",
+    "radius_km": 3389.5,
+    "mass_kg": 6.42e23,
+    "distanceFromSun_million_km": 227.9
+  },
+  {
+    "name": "Jupiter",
+    "radius_km": 69911,
+    "mass_kg": 1.90e27,
+    "distanceFromSun_million_km": 778.6
+  },
+  {
+    "name": "Saturn",
+    "radius_km": 58232,
+    "mass_kg": 5.68e26,
+    "distanceFromSun_million_km": 1433.5
+  },
+  {
+    "name": "Uranus",
+    "radius_km": 25362,
+    "mass_kg": 8.68e25,
+    "distanceFromSun_million_km": 2872.5
+  },
+  {
+    "name": "Neptune",
+    "radius_km": 24622,
+    "mass_kg": 1.02e26,
+    "distanceFromSun_million_km": 4495.1
+  }
+]
+  \end{tcbverbatim}
+
+\vspace{1em}
+
+
+\vspace{1em}
+
+
+
+     \begin{tcbverbatim}[title=Sample INPUTS handled by Ghost Messages: CSV data]
+name,radius_km,mass_kg,distanceFromSun_million_km
+Mercury,2439.7,3.30e23,57.9
+Venus,6051.8,4.87e24,108.2
+Earth,6371.0,5.97e24,149.6
+Mars,3389.5,6.42e23,227.9
+Jupiter,69911,1.90e27,778.6
+Saturn,58232,5.68e26,1433.5
+Uranus,25362,8.68e25,2872.5
+Neptune,24622,1.02e26,4495.1
+
+  \end{tcbverbatim}
+  
+  
+  \vspace{1em}
+
+
+
+     \begin{tcbverbatim}[title=Sample INPUTS handled by Ghost Messages: TEA Programs!]
+#############################################
+# RANDOM VOWEL HYMN GENERATOR v1
+#############################################
+# Though legit vowel hymns ought be generated
+# based on transforming the text of legit hymns
+# or words, this generator instead generates 
+#such hymns based on nothing really, but the
+# outputs shall read and feel like legitimate
+#vowel hymns nonetheless.
+#-------------------------------------------
+# For Theory: https://bit.ly/grimoirelumtauto
+# For Example: https://www.youtube.com/watch?v=p_THWo4MjIU
+##############################################
+v:vLINES:5 | v:vI:0 | v:vHYMN:{}
+v:vLIMIT:10 | v:vGLUE:{ } | v:vALPHABET:{aeiou }
+l:LOOP
+p*!:vLIMIT:vGLUE:vALPHABET | v:vLINE #generate and store random string
+g*:{
+}:vHYMN:vLINE | v:vHYMN #add it to the hymn
+y:vI | x!:{+1} | r.: | v:vI 
+y:vI | x!:{>} | x*!:vLINES | r.: | f:^true$:FIN:LOOP #test if we must finish
+l:FIN | y:vHYMN | k!:^$ #return clean hymn
+  \end{tcbverbatim}
+
+
+\vspace{2em}
+
+I mean, just considering how vast the kinds of text --- structured or not, that we can process correctly using this \textit{weird encryption} just is daunting! Test and see for yourself: \url{https://bit.ly/use_ghost_messages}
+
+\vspace{2em}
+
+On the TEA Project Repository\footnote{See \url{https://github.com/mcnemesis/cli_tttt}} we have also included --- under the path:
+
+\vspace{1em}
+\texttt{sample\_TEA\_programs/cryptography/ghost\_messages\_protocol/test\_cases/}
+\vspace{1em}
+ 
+several example complete non-trivial input files that we have used to test both the encoding and decoding capabilities of this protocol, and it becomes clear... one can surely now share a complex, high-secret computer program (perhaps a virus or commercial algorithm?) as a securely encoded ghost message in say an email attachment, over social media, etc. And when the uninitiated open or try to process it, they'll basically see... \textit{emptiness!} Thus, one can use it to handle not just normal text writings (poetry, essays, letters, etc) but also C programs, Python code, JSON data, CSV, TEA program, numeric sequences, LaTeX code, arithmetic and algebraic expressions, etc. 
+
+\vspace{2em}
+
+Plus, the seasoned TEA user or programmer shouldn't find much difficulty in extending or customizing the GM protocol program to cater for their special kind of messages in case it doesn't already handle their particular message alphabets and or use case\footnote{As it currently is (as of \textbf{Ghost Messages v1.3}), in case one tries to make an input file invisible, and there were some characters the protocol couldn't handle, they shall merely stay visible in the final output so that one clearly knows that the protocol didn't handle some input values. This, of course ignoring the two mandatory dots; one at the start, and the other at the end of the output when the GM is used as is --- don't forget that these can be stripped out to make the output entirely invisible. GM shall be able to handle such input nonetheless.}.
+
+
  
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TAZ SECTION: S
