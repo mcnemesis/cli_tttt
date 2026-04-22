@@ -1,6 +1,6 @@
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
-# ZHA: Zee Hacker Assistant (v.1.0.3) | MAR,'26
+# ZHA: Zee Hacker Assistant (v.1.0.4) | APR,'26
 #----------------------------------------------|
 # based off of TEAPAT: TEA Personal AssistanT:
 # ref: https://doi.org/10.20944/preprints202502.1849.v1
@@ -12,15 +12,24 @@
 # using the TEA programming language: https://bit.ly/projtea
 ###############################################|
 
+v:vLOG:{} # hold chat history..
+v:vDELIM:{
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+}
+
 #show welcome message
 v:vWELCOME:"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-■■■■■ *:{~} ZHA v1.0.3 ■■■■■■■
+■■■■■ *:{~} ZHA v1.0.4 ■■■■■■■
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 welcome to the future of chat_
 u'll specify who to talk to
 or default input shall be used.
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"
 y:vWELCOME | i:
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vWELCOME | v:vLOG
 
 # use externally set name?
 y*: | t!.:
@@ -29,12 +38,35 @@ y*: | t!.:
 v:vPANAME:{ZHA}
 f:^$:lSET:lNOSET
 l:lSET
-i:{Who do u wish to talk to? }|i: # user's entity name
-g:|f!:^$:lSETI:lRULES|l:lSETI|v:vPANAME|j:lRULES 
+i!:{Who do u wish to talk to? } | v:vPROMPT |i: 
+v:vUSERPANAME # user's entity name
+
+# update chat history..
+y:vLOG | x!:{
+
+} | x*!:vPROMPT | v:vLOG
+
+y:vUSERPANAME 
+g:| t!.: #clean it up then test...
+f!:^$:lSETI:lRULES
+l:lSETI
+v:vPANAME
+j:lRULES 
+
 l:lNOSET | y*: | v:vPANAME # evoke invoker's entity
 l:lRULES # show instructions
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vPANAME | v:vLOG
+
 i!:{At any time, reply with 'end' to quit
-}|i:
+}| v:vPROMPT |i:
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vPROMPT | x*!:vDELIM | v:vLOG
+
 v:vPROMPT:{: Talk to Me: }
 g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
 l:lPROMPT # prompt, get answer, process
@@ -88,7 +120,22 @@ l:lDefPROMPT
 y:vPAPROMPT
 
 l:lDisplayPROMPT
-| i: |z:| q:^end$
+
+# first update chat history..
+y:vLOG | x!:{
+} | x*!:vPAPROMPT | v:vLOG
+
+y:vPAPROMPT | i: | v:vUSERRESP
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vUSERRESP| v:vLOG
+
+y:vUSERRESP |z:| 
+
+#q:^end$
+f:^end$:lQUIT
+
 # generate answer
 n:10000000|s:|v:N|
 # decide between ANE and NE
@@ -122,5 +169,15 @@ y:vA
 
 l:lNoQA
 # display answer
-|i: 
+v:vZHAANS |i: 
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vZHAANS | v:vLOG
+
 | j:lPROMPT # and loop
+
+# quiting gracefully...
+l:lQUIT
+# ends with returning chat history to user...
+y:vLOG | q!: 
