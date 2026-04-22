@@ -1,6 +1,6 @@
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
-# ZHA: Zee Hacker Assistant (v.1.0.4) | APR,'26
+# ZHA: Zee Hacker Assistant (v.1.0.5) | APR,'26
 #----------------------------------------------|
 # based off of TEAPAT: TEA Personal AssistanT:
 # ref: https://doi.org/10.20944/preprints202502.1849.v1
@@ -19,7 +19,7 @@ v:vDELIM:{
 
 #show welcome message
 v:vWELCOME:"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-■■■■■ *:{~} ZHA v1.0.4 ■■■■■■■
+■■■■■ *:{~} ZHA v1.0.5 ■■■■■■■
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 welcome to the future of chat_
 u'll specify who to talk to
@@ -131,9 +131,8 @@ y:vPAPROMPT | i: | v:vUSERRESP
 y:vLOG | x!:{
 } | x*!:vUSERRESP| v:vLOG
 
+# check: should we quit?
 y:vUSERRESP |z:| 
-
-#q:^end$
 f:^end$:lQUIT
 
 # generate answer
@@ -169,11 +168,12 @@ y:vA
 
 l:lNoQA
 # display answer
-v:vZHAANS |i: 
+v:vZHAANS |i: |v:vUSERRESP
 
 # update chat history..
 y:vLOG | x!:{
-} | x*!:vZHAANS | v:vLOG
+} | x*!:vZHAANS | x!:{
+} | x*!:vUSERRESP | v:vLOG
 
 | j:lPROMPT # and loop
 
