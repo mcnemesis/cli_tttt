@@ -13,15 +13,42 @@
         android:layout_height="match_parent">
     </WebView>
 
-
-    <!-- Floating reload button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/reloadButton"
+        android:id="@+id/openBrowserButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/teal_700"
+        app:srcCompat="@android:drawable/ic_menu_compass" />
+
+
+    <!-- Stack FABs vertically in bottom-right -->
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
+        android:layout_margin="16dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/reloadButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_popup_sync"
+            app:backgroundTint="@color/teal_700"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/infoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:srcCompat="@android:drawable/ic_dialog_info"
+            app:backgroundTint="@color/teal_700"
+            />
+
+
+    </LinearLayout>
 
 </FrameLayout>

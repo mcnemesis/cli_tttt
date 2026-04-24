@@ -15,10 +15,12 @@ import androidx.appcompat.app.AlertDialog;
 public class CustomWebChromeClient extends WebChromeClient {
     private final Context context;
     private final String appName;
+    private final String dialogTitle;
 
     public CustomWebChromeClient(Context context, String appName) {
         this.context = context;
         this.appName = appName;
+        this.dialogTitle = "";
     }
 
     @Override
@@ -28,7 +30,7 @@ public class CustomWebChromeClient extends WebChromeClient {
         msgView.setText(message);
 
         AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(appName)
+                .setTitle(dialogTitle)
                 .setView(dialogView)
                 .setPositiveButton("OK", (d, which) -> result.confirm())
                 .setCancelable(true)
@@ -48,7 +50,7 @@ public class CustomWebChromeClient extends WebChromeClient {
         msgView.setText(message);
 
         AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(appName)
+                .setTitle(dialogTitle)
                 .setView(dialogView)
                 .setPositiveButton("OK", (d, which) -> result.confirm())
                 .setCancelable(true)
@@ -71,7 +73,7 @@ public class CustomWebChromeClient extends WebChromeClient {
         input.setText(defaultValue);
 
         AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle(appName)
+                .setTitle(dialogTitle)
                 .setView(dialogView)
                 .setPositiveButton("OK", (d, which) -> result.confirm(input.getText().toString()))
                 .setCancelable(true)
