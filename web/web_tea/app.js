@@ -12,7 +12,7 @@ import { TEA_RunTime as TEA } from './tea.js';
 
 console.log(U.test());
 
-var IDE_VERSION = '2.1.5';
+var IDE_VERSION = '2.1.6';
 var DEBUG = false;
 var DARK_UI = false;
 var DARK_UI_CLASS = "dark";
@@ -334,7 +334,7 @@ U.click("trig_reset_ide", function() {
 
 // LOAD STANDARD TEA PROGRAMS
 U.click("trig_load_standard_programs", function(){
-    var PROGS_URL = DEFAULT_TEA_PROGRAM_SAMPLES_URI + "?_t=" + U.humaneTimestamp();
+    var PROGS_URL = DEFAULT_WEB_IDE_FQDN_URL + "/" + DEFAULT_TEA_PROGRAM_SAMPLES_URI + "?_t=" + U.humaneTimestamp();
     U.status_info("Wait as we load STANDARD TEA programs...");
     U.httpGET(PROGS_URL, (txt)=>{
         var jsonPROGARRAY = JSON.parse(txt);
