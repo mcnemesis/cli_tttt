@@ -1,8 +1,11 @@
 package com.nuchwezi.teamobileide;
 
 import android.content.Context;
+import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
@@ -72,12 +75,31 @@ public class CustomWebChromeClient extends WebChromeClient {
         msgView.setText(message);
         input.setText(defaultValue);
 
+        // Configure input for single-line, "Done" action
+        input.setSingleLine(true);
+        input.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(dialogTitle)
                 .setView(dialogView)
                 .setPositiveButton("OK", (d, which) -> result.confirm(input.getText().toString()))
                 .setCancelable(true)
                 .create();
+
+
+        // Handle Enter/Done key to submit and dismiss
+        input.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE ||
+                    (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER
+                            && event.getAction() == KeyEvent.ACTION_DOWN)) {
+                result.confirm(input.getText().toString());
+                dialog.dismiss();   // 👈 manually close the dialog
+                return true;
+            }
+            return false;
+        });
 
         dialog.setOnCancelListener(d -> result.confirm(input.getText().toString()));
         dialog.setOnDismissListener(d -> result.confirm(input.getText().toString()));

@@ -21,6 +21,10 @@
             android:id="@+id/promptInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Input..." />
+            android:hint="Input..."
+            android:singleLine="true"
+            android:imeOptions="actionDone"
+            android:inputType="text" />
+
     </LinearLayout>
 </ScrollView>
