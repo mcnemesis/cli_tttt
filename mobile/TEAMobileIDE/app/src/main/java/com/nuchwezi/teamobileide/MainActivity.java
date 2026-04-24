@@ -24,54 +24,60 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         /* AUTO: bootstrapping... */
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        /* Custom: bootstrapping... */
-        WebView webView = findViewById(R.id.webview);
-        // align WebView behavior closer to Chrome
-        webView.setWebChromeClient(new WebChromeClient());
+        try {
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
-        webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+            EdgeToEdge.enable(this);
+            setContentView(R.layout.activity_main);
+            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+                return insets;
+            });
 
-        // so we can load assets via file://... in the html without CORS errors
-        webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setAllowFileAccessFromFileURLs(true);
-        webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+            /* Custom: bootstrapping... */
+            WebView webView = findViewById(R.id.webview);
+            // align WebView behavior closer to Chrome
+            webView.setWebChromeClient(new CustomWebChromeClient(this, getString(R.string.app_name)));
 
-        // Load your SPA from local assets
-        webView.loadUrl("file:///android_asset/web_tea/index.html");
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.getSettings().setDomStorageEnabled(true);
+            webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+            webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
 
-        // for force-reloading webview
-        FloatingActionButton reloadButton = findViewById(R.id.reloadButton);
-        reloadButton.setOnClickListener(v -> {
-            webView.reload();
-        });
+            // so we can load assets via file://... in the html without CORS errors
+            webView.getSettings().setAllowFileAccess(true);
+            webView.getSettings().setAllowFileAccessFromFileURLs(true);
+            webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 
-        webView.setWebViewClient(new WebViewClient() {
+            // Load your SPA from local assets
+            webView.loadUrl("file:///android_asset/web_tea/index.html");
 
-            @Override
-            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                String failingUrl = request.getUrl().toString();
-                int errorCode = error.getErrorCode();
-                CharSequence description = error.getDescription();
+            // for force-reloading webview
+            FloatingActionButton reloadButton = findViewById(R.id.reloadButton);
+            reloadButton.setOnClickListener(v -> {
+                webView.reload();
+            });
 
-                String message = "Error loading: " + failingUrl + "\n"
-                        + "Code: " + errorCode + "\n"
-                        + "Details: " + description;
+            webView.setWebViewClient(new WebViewClient() {
 
-                Utility.showAlert("Mobile IDE Error", message, MainActivity.this);
-            }
+                @Override
+                public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                    String failingUrl = request.getUrl().toString();
+                    int errorCode = error.getErrorCode();
+                    CharSequence description = error.getDescription();
 
-        });
+                    String message = "Error loading: " + failingUrl + "\n"
+                            + "Code: " + errorCode + "\n"
+                            + "Details: " + description;
+
+                    Utility.showAlert("Mobile IDE Error", message, MainActivity.this);
+                }
+
+            });
+        }catch (Exception exception){
+            Utility.showAlert(getString(R.string.app_name) + " | ERROR!", exception.getMessage(), this);
+        }
 
     }
 }

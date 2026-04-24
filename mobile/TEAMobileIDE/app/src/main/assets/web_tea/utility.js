@@ -291,11 +291,7 @@ export class Utility {
        try{
             this.get(id).addEventListener("click", fn);
        } catch (err) {
-      		if (fnERROR){
-      		    fnERROR(err.message);
-      		}else {
-      		    console.log(err.message);
-      		}
+      		console.log(err.message);
        }
     }
 
