@@ -1,15 +1,16 @@
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
-# ZHA: Zee Hacker Assistant (v.1.0.6) | APR,'26
+# ZHA: Zee Hacker Assistant (v.1.0.8) | APR,'26
 #----------------------------------------------|
 # based off of TEAPAT: TEA Personal AssistanT:
-# ref: https://doi.org/10.20944/preprints202502.1849.v1
+# REF: doi.org/10.20944/preprints202502.1849.v1
 #----------------------------------------------|
 # This little program is a mini
 # quasi-general artificial intelligence (qAGI)
 # a special personal assistant perhaps
 # best left for hackers, created 
-# using the TEA programming language: https://bit.ly/projtea
+# using the TEA programming language: 
+# tea.nuchwezi.com
 ###############################################|
 
 v:vLOG:{} # hold chat history..
@@ -19,7 +20,7 @@ v:vDELIM:{
 
 #show welcome message
 v:vWELCOME:"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-■■■■■ *:{~} ZHA v1.0.6 ■■■■■■■
+■■■■■ *:{~} ZHA v1.0.8 ■■■■■■■
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 welcome to the future of chat_
 u'll specify who to talk to
@@ -70,17 +71,17 @@ l:lRULES # show instructions
 y:vLOG | x!:{
 } | x*!:vPANAME | v:vLOG
 
-i!:{At any time, reply with 'end' to quit
+i!:{At any time, reply with 'bye' to quit
 }| v:vPROMPT |i:
 
 # update chat history..
 y:vLOG | x!:{
 } | x*!:vPROMPT | x*!:vDELIM | v:vLOG
 
-v:vPROMPT:{: Talk to Me: }
-g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
-l:lPROMPT # prompt, get answer, process
+#---[CHECK: showing off TEA functions next...]
+## A Prompt Generating Function
 
+V:vPromptGenerator:"
 # generate question
 n:10000000|s:|v:qN|
 # decide between ANE and NE
@@ -108,26 +109,27 @@ v:vQ
 # decide on whether question or not
 n:|f:[2357]:lNoQ
 y:vQ
-|x!:{?: }
+|x!:{? }
 j:lProQ
 
 l:lNoQ
 y:vQ
-|x!:{ : }
+|x!:{ }
 
 l:lProQ
 # stash generated question
 v:vGenQuestion
+"
+######
+# NOTE: that was essentially another TEA program 
+# held inside a mere string variable! 
+# Now we can reuse that as you'll soon see..
+######
 
-# decide between default or generated prompt
-n:|f:[2468]:lGenPROMPT:lDefPROMPT
+l:lPROMPT # prompt, get answer, process
 
-l:lGenPROMPT
-g*:{ }:vPANAME:vGenQuestion | v:vGenPROMPT
-y:vGenPROMPT|j:lDisplayPROMPT
-
-l:lDefPROMPT
-y:vPAPROMPT
+e*:vPromptGenerator | v:vPROMPT # generate and store..
+g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
 
 l:lDisplayPROMPT
 
@@ -143,47 +145,7 @@ y:vLOG | x!:{
 
 # check: should we quit?
 y:vUSERRESP |z:| 
-f:^end$:lQUIT
-
-# generate answer
-n:10000000|s:|v:N|
-# decide between ANE and NE
-n:|f!:[2357]:ANE:NE
-l:ANE|
-# decide between AE and ANE
-n:1|f:0:AE
-# generate ANE
-p!:27
-|s:_:13:5 |d:_.*$ |s: |v:R
-|g*:{}:R:N
-|j:F|
-l:AE # pure AE
-p!:27
-|s:_:13:5 |d:_.*$ |s:
-|j:F|
-l:NE # pure NE
-|y:N
-|l:F # process and package answer 
-|a:|v:vA
-
-# decide on whether question or not
-n:|f!:[2357]:lQA
-y:vA
-|x!:{? }
-j:lNoQA
-
-l:lQA
-y:vA
-|x!:{ | }
-
-l:lNoQA
-# display answer
-v:vZHAANS |i: |v:vUSERRESP
-
-# update chat history..
-y:vLOG | x!:{
-} | x*!:vZHAANS | x!:{
-} | x*!:vUSERRESP | v:vLOG
+f:^bye$:lQUIT
 
 | j:lPROMPT # and loop
 

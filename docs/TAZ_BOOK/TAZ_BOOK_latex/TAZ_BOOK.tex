@@ -4522,7 +4522,179 @@ For those familiar with how the idea of intelligence might be approached in matt
  The most recent version of ZHA is as follows:
  
 
- %\begin{figure}[H]
+\vspace{2em}
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZHA v1.0.8, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#!/usr/bin/tttt -fc
+#----------------------------------------------|
+# ZHA: Zee Hacker Assistant (v.1.0.8) | APR,'26
+#----------------------------------------------|
+# based off of TEAPAT: TEA Personal AssistanT:
+# REF: doi.org/10.20944/preprints202502.1849.v1
+#----------------------------------------------|
+# This little program is a mini
+# quasi-general artificial intelligence (qAGI)
+# a special personal assistant perhaps
+# best left for hackers, created 
+# using the TEA programming language: 
+# tea.nuchwezi.com
+###############################################|
+
+v:vLOG:{} # hold chat history..
+v:vDELIM:{
+##############################
+}
+
+#show welcome message
+v:vWELCOME:"##############################
+##### *:{~} ZHA v1.0.8 #######
+##############################
+welcome to the future of chat_
+u'll specify who to talk to
+or default input shall be used.
+##############################"
+y:vWELCOME | i:
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vWELCOME | v:vLOG
+
+# use externally set name?
+y*: | t!.: | d!:{^.{1,10}} # only use first 10 chars
+v:vTEMPPANAME
+
+f:^$:lSETNAME
+i!:{Proceed to chat with } 
+| x*!:vTEMPPANAME | x!:{?
+N: NO
+Y: Yes (default)} | i: | t!.:| v:vOPT
+f!:^[nN]$:lNOSET 
+v:vTEMPPANAME:{}|i!:{}|j:lSETNAME
+
+# set entity name
+l:lSETNAME
+v:vPANAME:{ZHA}
+f:^$:lSET:lNOSET
+l:lSET
+i!:{Who do u wish to talk to? } | v:vPROMPT |i: 
+v:vUSERPANAME # user's entity name
+
+# update chat history..
+y:vLOG | x!:{
+
+} | x*!:vPROMPT | v:vLOG
+
+y:vUSERPANAME 
+g:| t!.: #clean it up then test...
+f!:^$:lSETI:lRULES
+l:lSETI
+v:vPANAME
+j:lRULES 
+
+l:lNOSET | y:vTEMPPANAME | v:vPANAME # evoke invoker's entity
+l:lRULES # show instructions
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vPANAME | v:vLOG
+
+i!:{At any time, reply with 'bye' to quit
+}| v:vPROMPT |i:
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vPROMPT | x*!:vDELIM | v:vLOG
+
+#---[CHECK: showing off TEA functions next...]
+## A Prompt Generating Function
+
+V:vPromptGenerator:"
+# generate question
+n:10000000|s:|v:qN|
+# decide between ANE and NE
+n:|f!:[2357]:qANE:qNE
+l:qANE|
+# decide between AE and ANE
+n:1|f:0:qAE
+# generate ANE
+p!:27
+|s:_:13:5 |d:_.*$
+|s: |v:qR
+|g*:{}:qR:qN
+|j:qF|
+l:qAE # pure AE
+p!:27
+|s:_:13:5 |d:_.*$ |s:
+|j:qF|
+l:qNE # pure NE
+|y:qN
+|l:qF # process and package question 
+|a:
+|x:{: }
+v:vQ
+
+# decide on whether question or not
+n:|f:[2357]:lNoQ
+y:vQ
+|x!:{? }
+j:lProQ
+
+l:lNoQ
+y:vQ
+|x!:{ }
+
+l:lProQ
+# stash generated question
+v:vGenQuestion
+"
+######
+# NOTE: that was essentially another TEA program 
+# held inside a mere string variable! 
+# Now we can reuse that as you'll soon see..
+######
+
+l:lPROMPT # prompt, get answer, process
+
+e*:vPromptGenerator | v:vPROMPT # generate and store..
+g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
+
+l:lDisplayPROMPT
+
+# first update chat history..
+y:vLOG | x!:{
+} | x*!:vPAPROMPT | v:vLOG
+
+y:vPAPROMPT | i: | v:vUSERRESP
+
+# update chat history..
+y:vLOG | x!:{
+} | x*!:vUSERRESP| v:vLOG
+
+# check: should we quit?
+y:vUSERRESP |z:| 
+f:^bye$:lQUIT
+
+| j:lPROMPT # and loop
+
+# quiting gracefully...
+l:lQUIT
+# ends with returning chat history to user...
+y:vLOG | q!: 
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA APPLICATION: ZHA v1.0.8 --- a simple quasi-General Artificial Intelligence Chatbot written in the TEA language}
+  \label{FIGFAPP1}
+}
+
+
+\vspace{2em}
+
+For comparison purposes, one might be interested in seeing an earlier version of ZHA. The following is what the personal assistant chatbot's TEA source-code looked like at v1.0.3...
+
+
  {
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZEE HACKER ASSISTANT v1.0.3, breakable]
@@ -4666,7 +4838,7 @@ l:lNoQA
  \raggedright %force normal/left-alignment  
   
  
- \textbf{\hyperref[FIGF]{Figure \ref{FIGF}}} covers what \textbf{ZHA v1.0.3} is, and an interested person could go read the code, modify or run it directly and live via:
+ \textbf{\hyperref[FIGF]{Figure \ref{FIGF}}} covers what \textbf{ZHA v1.0.3} is, and especially if one is interested testing that particular version, one can go read the code, modify or run it directly and live via:
   
   
 \vspace{1em}
@@ -4690,7 +4862,7 @@ Also, note that, despite the above interactive link pointing to a version of ZHA
 
 \vspace{2em}
 
-To access this service in its latest form\footnote{For example, since the first version of ZHA, more updates have been published, including the ability for ZHA to give the user their chat history at the end of a chat session!}, use any of the options:
+To access this ZHA service in its latest form\footnote{For example, since the first version of ZHA, more updates have been published, including the ability for ZHA to give the user their chat history at the end of a chat session!}, use any of the options:
 
 \vspace{2em}
 
