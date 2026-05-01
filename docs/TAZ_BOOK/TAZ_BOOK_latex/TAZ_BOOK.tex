@@ -479,6 +479,15 @@ This manuscript builds upon the earlier TEA (\textbf{T}ransforming \textbf{E}xec
 
 Computers are abstractions that help humans solve problems via other abstractions known as software programs, which are implemented using other abstractions known as software languages. The Transforming Executable Alphabet (TEA) language, is a general-purpose computer programming language that is text-processing oriented, is currently implemented as an interpreted language for both the WEB (internet) and SYSTEM (as standalone or embeddable)\footnote{Though we shall cover more about this in a later section of the TAZ, note that the TEA language currently comes in two flavours --- two, because, even though the entire TEA instruction set A: to Z: is almost standard and works the same irrespective of platform where a TEA program is run, and yet, in practice, and particularly for programs using the \textbf{Z:} command space, there are unavoidable differences in the powers and capabilities one can access and or leverage from the external environment via the \textbf{ZAP} facility --- \texttt{z:CMD}, \texttt{z*:vCMD} and related \textit{external system command execution} variants of that TEA instruction that one might wish to use. In particular, the \textbf{WEB TEA}/TEA running in a web-browser programs can use external powers via JavaScript, but yet, commandline versions can mostly use the system/shell interface of the host system only. More about this when we come to \textbf{Z:} later.}. And in this manual, we shall understand its origins, purpose, design, implementation, applications [and applicability] as well as get glimpses of what its future is likely to be.
 
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[trim=0cm 0cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/images/wha-tea_powers_computing.jpg}\\
+   \caption{A BCA (Blackboard Computing Adventures) session depicting two fundamental ideas --- that \textbf{Computers run on electricity} and that \textbf{Computing runs on programs} --- featuring a simple TEA program that computes the \textbf{Message Invisibility Ratio}; a percentage of how much a given input string is actually invisible/space characters.}
+  \label{FIGTEAPOWER}
+  \end{center}
+\end{figure}
+
 \section{Essential Nomenclature and Concepts}
 \label{SECNOMEN}
 
@@ -522,35 +531,50 @@ are all defined, but \texttt{V:VAULT\_NAME:VAULT\_VALUE:OTHER\_ARGUMENT} isn't. 
 \subsection{TEA Command Variations and Qualifying TEA Commands Correctly}
 \label{SECQUALIFY}
 
-\hl{TODO: Revise this Section}
-
-So, based on the grammar rules by which we can form valid TEA Instructions (see \textbf{\autoref{FIG1}}), we know that, in total, we can have \textbf{208 possible TEA Commands}. We arrive at that number as such:
+So, based on the grammar rules by which we can form valid TEA Instructions (see \textbf{\autoref{FIG1}}), we know that, in total, we can have \textbf{624 possible TEA Commands}. We arrive at that number as such:
 
 \begin{enumerate}
-\item Each TC consists of a single element from $\psi_{az}$ --- so that's $26 \times 2$ --- since we allow both upper case and lower case letters $\rightarrow 52$.
+\item Each TC consists of a single element from $\psi_{az}$ --- so that's $26$ possible command spaces or \textbf{TEA primitives} --- note that we allow both upper case and lower case letters, however, whether one decides to use an upper case letter such as \texttt{A:} or lowercase such as \texttt{a:} doesn't matter; either behaves the same with regards to which command is being processed.
 \item{Each TC can be qualified, and thus, can be terminated/suffixed with one of the following TCQ options:
 
 \begin{enumerate}
-\item \texttt{} --- essentially, no TCQ (plain): so that, if TC is ``A", we get ``A:", if ``B", then ``B:", etc.
+\item \texttt{} --- essentially, no TCQ (plain): so that, if TC is ``A", we get ``A:", if ``B", then either ``b:" or ``B:", etc.
 \item \texttt{.} --- essentially, if TC is ``A", we get ``A.:", if ``B", then ``B.:" etc.
-\item \texttt{*}
 \item \texttt{!}
-\item \texttt{.*}
-\item \texttt{.!}
-\item \texttt{*!} --- essentially, if TC is ``A", we get ``A*!:", if ``B", then ``B*!:" etc.
+\item \texttt{*}
+\item \texttt{@}
+\item \texttt{*!}
+\item \texttt{!@}
+\item \texttt{*@}
+\item \texttt{*.}
+\item \texttt{!.}
+\item \texttt{*!.} --- essentially, if TC is ``A", we get ``A*!.:", if ``B", then ``B*!.:" etc.
 \end{enumerate}
 
-Which gives us \textbf{7 TCQ variants}\footnote{Well, \textit{not exactly} 7, because there are some exceptions, such as when we have \texttt{u*!.:vNAME} introduced in \textbf{\hyperref[TABSEMU]{Table \ref{TABSEMU}}} --- when we actually combine all 3 TCQ elements in one signature!}, and thus a total of $52 \times 7 \rightarrow 364$ TEA Command Variations.
+Which gives us \textbf{9 TCQ variants}\footnote{Well, \textit{not just exactly} 9, because there are some exceptions, such as when we have \texttt{u*!.:vNAME} introduced in \textbf{\hyperref[TABSEMU]{Table \ref{TABSEMU}}} --- when we actually combine all 4 TCQ elements in one signature, and given the distinct TCQ symbols are 4, it makes for a possibility of 4! = 24 potential combinations!}, and thus a total of $26 \times 9 \rightarrow 234$ TEA Command Variations, and a total of $26 \times 4! \rightarrow 624$ in case we only focus on the theoretically possible command variations allowing for all possible TCQ combinations.
 }
 \end{enumerate}
 
-Thus, without delving directly here into what each of those TEA Commands does, which ones are INERT and which are not, what \textbf{instruction signatures} each supports or allows\footnote{Some TC might accept just one parameter or argument, while others might allow two or more --- delimited by ``:".} etc --- stuff we are going to cover well once we dive into the breakdown of each TEA primitive command's specification and semantics (which is exactly what the TEA TAZ is about), we at least know, we have a total of 364 possible distinct TEA commands to explore! That alone, definitely justifies the need for this manual, and an insight into the details of each of the 26 TP, a: to z:\footnote{Of course, not to loose hope for those who wish to memorize the entire TEA instruction set or the TAZ --- especially because, unlike many other programming languages out there, for TEA, which has a fixed library/instruction set, it's possible, and we know that, since a: and A: are equivalent, or that any TC with some particular primitive say, K:, is equivalent to the variant with the same primitive just in a different case, thus, instead of a total of 364 commands, TEA essentially supports $26 \times 7 \rightarrow 182$ distinct commands.}
+Thus, without delving directly here into what each of those TEA Commands does, which ones are INERT and which are not, what \textbf{instruction signatures} each supports or allows\footnote{Some TC might accept just one parameter or argument, while others might allow two or more --- delimited by ``:".} etc --- stuff we are going to cover well once we dive into the breakdown of each TEA primitive command's specification and semantics (which is exactly what the TEA TAZ is about), we at least know, we have a minimum of 234 possible distinct TEA commands to explore! That alone, definitely justifies the need for this manual, and an insight into the details of each of the 26 TP, a: to z:
+
+
+\subsubsection{TIP on HOW TO MASTER TEA INSTRUCTION SET}
+
+
+Of course, not to loose hope for those who wish to memorize the entire TEA instruction set or the TAZ --- especially because, unlike many other programming languages out there, for TEA, which has a fixed library/instruction set, it's possible, and we know that, since a: and A: are equivalent, or that any TC with some particular primitive say, K:, is equivalent to the variant with the same primitive just in a different case, and since each of the 26 command spaces is specifically dedicated to a particular family of transformations or command-types (refer to \textbf{\hyperref[FIGTEAISET]{Figure \ref{FIGTEAISET}}}) --- e.g ``A" for anagrammatizing, ``C" for clearing memory, ``F" for forking or branching in control-flow,... , ``Z" for Zapping or external environment operations, etc. that it should be readily possible for the focused programmer to at a glance recall where each key task they need to carry out is to be found within the 26 TEA A: to Z: command spaces. 
+
+\vspace{2em}
+
+
+But also, and out of experience, one must come to appreciate that despite the total number of command variants being seemingly ``large"\footnote{Note that, compared to traditional, popular and mainstream languages such as \textbf{the C programming language}, TEA only has a total of 26 ``keywords" while C has 32 reserved keywords\cite{copilot_assistant}. Also, while the total theoretical number of possible commands or instructions in TEA is between 234 and 624 and that it cannot raise any further than that, and yet, for languages like C, even limiting ourselves to just the standard libraries, one finds that despite the estimate of the distinct functions one must master being between 250 to 300\cite{copilot_assistant}, and yet, with each new revision or extension of the language, that number can keep growing or changing, but also that, one must realize that many real-life applications would also need non-standard library functions or packages to work well, and so that, the total number of commands or instructions one needs worry about in such languages actually has no upper limit!}, and yet, once one learns what each of the 26 command-spaces is for, and that one realizes that for example, ``A:" will operate on AI directly at word level, ``A!:" at character level, while most TEA commands with ``*" qualifier do what the others do but instead referencing a value stored in a vault, etc. That one needs to only memorize just a few basic TEA instructions, and then they can write most arbitrary algorithms and TEA program without ever needing to consult this manual in its entirety.
 
 
 \section{INSTALLATION and Basic USAGE Instructions}
 
 
 TEA as a language is designed to be usable from almost anywhere there is a computer capable of running the TEA language interpreter --- currently implemented for WEB (browser environments) using JavaScript, and for all other environments via Python3. However, to really get started using TEA, especially when one has a modern computer, a smartphone or some device capable of accessing the Internet and rendering web pages, one then need not install anything or download anything apart from merely visiting the following link:
+
+\subsubsection{TEA on the WEB}
 
 \vspace{2em}
 \textbf{TEA WEB IDE:} \url{https://tea.nuchwezi.com}
@@ -559,6 +583,65 @@ TEA as a language is designed to be usable from almost anywhere there is a compu
 So that, by visiting that page, one can readily access a usable basic and standard interface with which they can not only write, browse, read and run existing TEA programs --- especially those sample/example applications that are made available as part of the growing list of ``Standard TEA programs" --- but that they can also share the TEA program source code either using links, or copy-pasted codes. Using the WEB IDE is the simplest, best method for trying out TEA that is also beginner-friendly. Also, other than accessing the TEA programs and runtime, the IDE offers access to a TEA debugger for help with analyzing or troubleshooting problematic TEA programs, access to the TEA documentation, links to the TEA community, lecture notes and videos, etc.
 
 \vspace{2em}
+
+\subsection{TEA on MOBILE}
+
+As of this writing (May 2026), TEA accessibility has been furthered to the point where there now exists an option for users of TEA on mobile devices (particularly the \textbf{Android Platform}) to be able to natively access and run TEA with or without any network/Internet connection --- it means, unlike the above WEB TEA option that is also available for and likewise tailored for mobile users, this MOBILE TEA option is specifically created for the mobile experience. To get started installing and trying out \textbf{TEA on  MOBILE}, go, download and install the latest \textbf{TEA MOBILE IDE} application installation package (APK) for Android, from the following link pointing to the TEA MOBILE installers on the official TEA project repository:
+
+
+\vspace{2em}
+\textbf{TEA MOBILE IDE INSTALLER:} \url{https://bit.ly/teamobile_apks}
+\vspace{2em}
+
+
+That installation option gets you an APK file, which you click-upon on your device, allow installation permission\footnote{Note that some devices or Android platform versions might sometimes refuse (by default), the installation of applications not directly loaded from the official app store --- Google Play Store --- however, usually, this can be resolved by checking the settings and allowing for installation of apps from \textit{3$^{rd}$ Party Sources} or perhaps only making the waiver for this particular APK or Source. The only other aspect might be if you need to manually assign the TEA MOBILE IDE the only permission it requires; Access to the Internet. Otherwise everything else works as usual.} if necessary, and then TEA is ready to be used on your device natively, with or without Internet, and with all TEA features active and working as expected. In the following screenshots we see how the TEA MOBILE IDE looks likes (also, somewhat reflects what TEA WEB IDE might feel like for mobile users).
+
+\vspace{2em}
+
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/tea_mobile/TEA_on_Mobile_landing.png}
+    \caption{TEA on MOBILE: Landing Screen}
+    \label{FIGMOBILE1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/tea_mobile/TEA_on_Mobile_Standard_Programs.png}
+    \caption{TEA on MOBILE: Standard Programs}
+    \label{FIGMOBILE2}
+  \end{subfigure}
+  \caption{Phone Snapshots of MOBILE TEA in action}
+  \label{FIGTEAMOBILEDEMO1}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/tea_mobile/TEA_on_Mobile_NSigil_App.png}
+    \caption{TEA on MOBILE: N-Sigil App}
+    \label{FIGMOBILE3}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{resources/images/tea_mobile/TEA_on_MOBILE_Editor.png}
+    \caption{TEA on MOBILE: Code Editor}
+    \label{FIGMOBILE4}
+  \end{subfigure}
+  \caption{Phone Snapshots of MOBILE TEA in action ---- apps and the code editor}
+  \label{FIGTEAMOBILEDEMO2}
+\end{figure}
+
+
+\vspace{2em}
+
+If really interested, go watch the official video demonstration for the release of TEA MOBILE IDE via \url{https://youtube.com/shorts/-AJIKSAoZpE}
+
+
+\subsection{TEA on DESKTOP and SERVER}
 
 For those that need to use TEA from any other environment or platform other than the web --- such as in non-interactive server-side programs, in command-line scripts, in stand-alone desktop programs, etc. The following installation method is what is currently most recommended:
 
