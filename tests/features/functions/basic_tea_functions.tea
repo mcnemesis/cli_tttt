@@ -1,0 +1,36 @@
+##--------------------------
+The following Illustration
+Helps Those Coming to TEA
+From other languages to
+Understand that there's
+A Way to Create Reusable
+Components in TEA much as
+Everything in TEA is just
+of Type Text!
+DETAILS: Appendix A of TEA TAZ
+##-------------------------
+
+# Define a function that computes:
+# (a+b)*2
+V:f:{y:a|x:(|x!:+|x*!:b|x!:)*2|r.:}
+
+# how to use it..
+# initialize/change the parameters it processes..
+V:a:1|V:b:3
+
+# then invoke it using TEA code injection
+E*!:f
+
+# evaluates (1+3)*2
+# should return 8
+# uncomment breakpoint to test
+#q!:
+
+# re-use that function with
+# a=5, b= value from user
+v:a:5
+i!: Enter a value for b
+i:|v:b
+
+#call function... 
+E*!:f
