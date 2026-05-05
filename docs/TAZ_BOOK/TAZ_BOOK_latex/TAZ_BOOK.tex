@@ -20469,9 +20469,62 @@ Leveraging that, and preferring to start by specifying what the main users of th
 \end{figure}
 
 
+\vspace{2em}
+
+With a clear understanding of not just what the target users of our system are, but also what activities and roles they have in utilizing the system's components, as depicted in  \textbf{\hyperref[FIGTOSUSECASE]{Figure \ref{FIGTOSUSECASE}}}, we can then present the core system architecture for the TEA Operating System, and this is what the following diagram is for...
+
+\includepdf[pages=1]{resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf}
+
+
+And thus, we are now ready to embark on the implementation of a proof-of-concept (PoC) of the TOS as we have specified it.
 
 
 
+\subsection{The TOS Proof-of-Concept}
+
+
+For historical purposes, it shall be worth noting that the very first attempt at writing the source code for the TEA Operating System (also which we keep a reference copy of at \url{https://bit.ly/run_teaos}), came in the form of a basic TEA program whose main purpose was just to present the banner or login screen for the system. Typically, this is like the very first interface to any operating system that users might see or encounter as they boot or load it. Simple as that sounds, it can take on arbitrary forms and could also become as complex as one wishes, however, for TOS, the initial implementation of such a basic Operating System interface came in the following form...
+
+
+\vspace{2em}
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TOS Boot-Screen Interface, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#!/usr/bin/tttt -fc
+I!:{oooooooo_________________
+___oo_____ooooo___ooooo__
+___oo____oo____o_oo___oo_
+___oo____ooooooo_oo___oo_
+___oo____oo______oo___oo_
+___oo_____ooooo___oooo_o_
+_________________________}                                     
+x!:{
+Welcome to TEA OS v1.0.0}
+v:vBanner | i:
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA PROGRAM: The Initial TEA Operating System Boot-Screen Interface}
+  \label{FIGTOS1}
+}
+
+
+\vspace{2em}
+
+When we run that minimal TEA operating system program, we only get the following output (an ASCII-art banner that reads ``TEA" in a large beatiful custom font), accompanied by an input prompt with the message ``Welcome to TEA OS v1.0.0", and whose input value becomes the output that the TOS program returns, and then the system quits. So, that's basically it for starters!
+
+
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=0.8\textwidth,]{resources/images/teaos/teaos_bootscreen_on_teamobile.png}\\
+   \caption{\textbf{TEA Operating System}: Bootscreen on TEA Mobile}
+  \label{FIGTOS2}
+  \end{center}
+\end{figure}
 
 
 %%%%%%%%%%%---------[ CONCLUSION ]--------%%%%%%%%%%%%%%%%%
@@ -20644,22 +20697,26 @@ A Way to Create Reusable
 Components in TEA much as
 Everything in TEA is just
 of Type Text!
+DETAILS: Appendix A of TEA TAZ
 ##-------------------------
 
-# Define a function that computes:
-# (a+b)*2
+# Define a function that computes the transformation:
+# (a,b) =f(a,b)=> (a+b)*2
+
+# the actual function is...
 V:f:{y:a|x:(|x!:+|x*!:b|x!:)*2|r.:}
 
-# how to use it..
-# initialize/change the parameters it processes..
+#---[How to use it..]
+
+# 1. initialize/change the parameters it processes..
 V:a:1|V:b:3
 
-# then invoke it using TEA code injection
+# 2. Then invoke it using TEA code injection
 E*!:f
 
 # evaluates (1+3)*2
 # should return 8
-# uncomment breakpoint to test
+# uncomment breakpoint to test/confirm this
 #q!:
 
 # re-use that function with
