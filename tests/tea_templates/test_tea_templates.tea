@@ -1,0 +1,28 @@
+v:vEXPR:{The value was computed as: ##vInnerVALUE##}
+v:a:2
+v:b:{(1/#a#)}
+
+# NOTE: for CLI TEA, original test case: 1+100*0.5^(1-#a#**#b#)
+# fails/returns empty after r.: becuse underlying Python refuses float^float or int^float or float^int operations sometimes.
+
+v:innerEXPR:{1+100*5-(1-#a#**#b#)}
+r*@:innerEXPR
+r.: | v:vInnerVALUE
+r*@:vEXPR
+
+# should return
+#The value was computed as: 501.4142135623731
+
+# we could also use non-vault R@: versions...
+
+v:a:2
+v:b:{(1/#a#)}
+i!:{1+100*5-(1-#a#**#b#)} | r@:
+# OR just..
+r@:{1+100*5-(1-#a#**#b#)} 
+
+# then evaluate inner expression first..
+r.: | v:vInnerVALUE
+
+# then do original template...
+r@:{The value was computed as: ##vInnerVALUE##}

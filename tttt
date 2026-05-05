@@ -29,7 +29,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.4.8"
+VERSION = "1.4.9"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -548,6 +548,80 @@ class TEA_RunTime:
             val = re.sub(rWhiteSpace, '.', val)
             val = val.replace('#', TEA_RunTime.SINGLE_SPACE_CHAR)
             return val
+
+        def resolve_vault(vault, max_depth=20):
+            resolved = {}
+            resolving = set()
+
+            def resolve_key(key, depth=0):
+                if key in resolved:
+                    return resolved[key]
+                if key not in vault:
+                    return None
+                if depth > max_depth:
+                    raise RecursionError(f"Max recursion depth reached resolving {key}")
+                if key in resolving:
+                    raise ValueError(f"Cycle detected resolving {key}")
+                resolving.add(key)
+
+                value = str(vault[key])
+
+                # Replace single placeholders inside vault values
+                def repl(m):
+                    inner = m.group(1)
+                    inner_res = resolve_key(inner, depth + 1)
+                    return inner_res if inner_res is not None else f"#{inner}#"
+
+                value = re.sub(r'#([^#]+)#', repl, value)
+                resolving.remove(key)
+                resolved[key] = value
+                return value
+
+            for k in vault:
+                resolve_key(k)
+            return resolved
+
+        def render_template(template, vault, max_depth=20, missing='leave'):
+            # missing: 'leave'|'empty'|'error'
+            resolved_vault = resolve_vault(vault, max_depth=max_depth)
+
+            # Replace double-hash deep placeholders first
+            def repl_deep(m):
+                key = m.group(1)
+                if key not in resolved_vault:
+                    if missing == 'empty':
+                        return ''
+                    if missing == 'error':
+                        raise KeyError(f"Missing vault key {key}")
+                    return f"##{key}##"
+                return resolved_vault[key]
+
+            out = re.sub(r'##([^#]+)##', repl_deep, template)
+
+            # Replace single-hash placeholders
+            def repl_single(m):
+                key = m.group(1)
+                if key not in resolved_vault:
+                    if missing == 'empty':
+                        return ''
+                    if missing == 'error':
+                        raise KeyError(f"Missing vault key {key}")
+                    return f"#{key}#"
+                return resolved_vault[key]
+
+            out = re.sub(r'#([^#]+)#', repl_single, out)
+            return out
+
+        def util_eval_tea_template(val):
+            if TEA_RunTime.DEBUG:
+                print(f"***Evaluating TEA TEMPLATE EXPRESSION: [{val}]")
+            _final_val = val
+            try:
+                _final_val = render_template(val, VAULTS)
+            except BaseException as e:
+                self.debug(f"***[TEA TEMPLATE EVALUATION ERROR]: {e}")
+                return TEA_RunTime.EMPTY_STR # in case of error, return empty space
+            return _final_val
 
         def util_eval_mathematics(val):
             # Use host-language mathematics
@@ -2117,7 +2191,7 @@ class TEA_RunTime:
             tc, tpe = ti.split(TEA_RunTime.TCD, maxsplit=1)
             tc = tc.upper()
             tpe = tpe.strip()
-            # extract the string parameter
+            # DO NOT extract the string parameter just yet..
             #tpe_str = self.extract_str(tpe)
             tpe_str = tpe
 
@@ -2216,6 +2290,22 @@ class TEA_RunTime:
                     vname = tpe_str
                     input_str = vault_get(vname)
                     io = util_eval_mathematics(input_str)
+
+            if tc == "R@":  # TEA template expression evaluator
+                if len(tpe_str) == 0:
+                    io = util_eval_tea_template(io)
+                else:
+                    input_str = self.extract_str(tpe_str)
+                    io = util_eval_tea_template(input_str)
+
+            if tc == "R*@":  # TEA vaulted template expression evaluator
+                if len(tpe_str) == 0:
+                    io = util_eval_tea_template(io)
+                else:
+                    vname = tpe_str
+                    input_str = vault_get(vname)
+                    input_str = self.extract_str(input_str)
+                    io = util_eval_tea_template(input_str)
 
             return io
 
