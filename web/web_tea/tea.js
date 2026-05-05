@@ -917,12 +917,13 @@ export class TEA_RunTime {
 
 
      util_eval_mathematics(val){
+        this.debug(`***Evaluating MATHEMATICS EXPRESSION: [${val}]`)
         // fix case where boolean literals are passed with unsuported case...
         val = this.util_smart_replace_all('True', 'true', val);
         val = this.util_smart_replace_all('False', 'false', val);
-        // Use host-language mathematics
-        this.debug(`***Evaluating MATHEMATICS EXPRESSION: [${val}]`)
+        this.debug(`***Evaluating [altered] MATHEMATICS EXPRESSION: [${val}]`)
         try{
+            // we shall use host-language mathematics
             return String(eval(val))
 		} catch (error) {
             this.debug(`***[TEA MATHEMATICS EVALUATION ERROR]: ${error}`)

@@ -624,7 +624,6 @@ class TEA_RunTime:
             return _final_val
 
         def util_eval_mathematics(val):
-            # Use host-language mathematics
             if TEA_RunTime.DEBUG:
                 print(f"***Evaluating MATHEMATICS EXPRESSION: [{val}]")
             # fix case where boolean literals are passed with unsuported case...
@@ -633,6 +632,9 @@ class TEA_RunTime:
             val = util_smart_replace_all(r'\|\|','|',val)
             val = util_smart_replace_all('&&','&',val)
             try:
+                if TEA_RunTime.DEBUG:
+                    print(f"***Evaluating [altered] MATHEMATICS EXPRESSION: [{val}]")
+                # we shall use host-language mathematics
                 val = str(eval(val))
                 if val in ['True', 'False']: #massage booleans to match WEB TEA
                     return val.lower()

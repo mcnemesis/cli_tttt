@@ -15,8 +15,6 @@ v:vEXPR:{The value was computed as: ##vInnerVALUE##}
 v:a:2
 v:b:{(1/#a#)}
 
-# NOTE: for CLI TEA, original test case: 1+100*0.5^(1-#a#**#b#)
-# fails/returns empty after r.: becuse underlying Python refuses float^float or int^float or float^int operations sometimes.
 
 v:innerEXPR:{1+100*5-(1-#a#**#b#)}
 r*@:innerEXPR

@@ -1,5 +1,9 @@
-v:vEXPR:{The value was computed as: ##innerEXPR##}
+v:vEXPR:{The Golden Ratio is computed as: ##vInnerVALUE##}
 v:a:2
 v:b:{(1/#a#)}
-v:innerEXPR:{1+100*0.5^(1-#a#**#b#)}
+v:innerEXPR:{(1/#a#)*(1+5**#b#)}
+r*@:innerEXPR | r.: | v:vInnerVALUE
 r*@:vEXPR
+
+# should return
+# The Golden Ratio is computed as: 1.618033988749895

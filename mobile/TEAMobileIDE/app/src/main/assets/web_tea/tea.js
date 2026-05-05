@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.8" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.4.9" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -834,14 +834,96 @@ export class TEA_RunTime {
 		return val;
 	}
 
+	/**
+	 * Resolve vault entries and render template with #key# and ##deepkey## placeholders.
+	 *
+	 * Behavior:
+	 * - Resolves vault entries recursively.
+	 * - Detects cycles and throws an error if found.
+	 * - Leaves unknown placeholders unchanged by default.
+	 */
+
+	resolveVault(vault, { maxDepth = 20 } = {}) {
+	  const resolved = {};
+	  const resolving = new Set();
+
+	  var resolveKey= (key, depth = 0) => {
+		if (key in resolved) return resolved[key];
+		if (!(key in vault)) return undefined;
+		if (depth > maxDepth) throw new Error(`Max recursion depth reached resolving ${key}`);
+		if (resolving.has(key)) throw new Error(`Cycle detected resolving ${key}`);
+		resolving.add(key);
+
+		let value = String(vault[key]);
+
+		// Replace single placeholders inside vault values using other vault entries
+		value = value.replace(/#([^#]+)#/g, (_, inner) => {
+		  const innerResolved = resolveKey(inner, depth + 1);
+		  return innerResolved === undefined ? `#${inner}#` : innerResolved;
+		});
+
+		resolving.delete(key);
+		resolved[key] = value;
+		return value;
+	  }
+
+	  for (const k of Object.keys(vault)) {
+		resolveKey(k);
+	  }
+	  return resolved;
+	}
+
+	renderTemplate(template, vault, options = {}) {
+	  const { maxDepth = 20, missing = 'leave' } = options; // missing: 'leave'|'empty'|'error'
+	  const resolvedVault = this.resolveVault(vault, { maxDepth });
+
+	  // Replace double-hash deep placeholders first
+	  let out = template.replace(/##([^#]+)##/g, (_, key) => {
+		if (!(key in resolvedVault)) {
+		  if (missing === 'empty') return '';
+		  if (missing === 'error') throw new Error(`Missing vault key ${key}`);
+		  return `##${key}##`;
+		}
+		return resolvedVault[key];
+	  });
+
+	  // Then replace single-hash placeholders
+	  out = out.replace(/#([^#]+)#/g, (_, key) => {
+		if (!(key in resolvedVault)) {
+		  if (missing === 'empty') return '';
+		  if (missing === 'error') throw new Error(`Missing vault key ${key}`);
+		  return `#${key}#`;
+		}
+		return resolvedVault[key];
+	  });
+
+	  return out;
+	}
+
+     util_eval_tea_template(val){
+        this.debug(`***Evaluating TEA TEMPLATE EXPRESSION: [${val}]`)
+        var _final_val = val;
+        try{
+			// thanks deep-learning..
+            _final_val = this.renderTemplate(val, this.VAULTS);
+		} catch (error) {
+            this.debug(`***[TEA TEMPLATE EVALUATION ERROR]: ${error}`)
+            return TEA_RunTime.EMPTY_STR
+        }
+        
+        return _final_val;
+
+    }
+
 
      util_eval_mathematics(val){
+        this.debug(`***Evaluating MATHEMATICS EXPRESSION: [${val}]`)
         // fix case where boolean literals are passed with unsuported case...
         val = this.util_smart_replace_all('True', 'true', val);
         val = this.util_smart_replace_all('False', 'false', val);
-        // Use host-language mathematics
-        this.debug(`***Evaluating MATHEMATICS EXPRESSION: [${val}]`)
+        this.debug(`***Evaluating [altered] MATHEMATICS EXPRESSION: [${val}]`)
         try{
+            // we shall use host-language mathematics
             return String(eval(val))
 		} catch (error) {
             this.debug(`***[TEA MATHEMATICS EVALUATION ERROR]: ${error}`)
@@ -2731,7 +2813,7 @@ export class TEA_RunTime {
 		var tpe = parts.length > 1 ? parts.slice(1).join(TEA_RunTime.TCD) : "";
         tc = tc.toUpperCase()
         tpe = tpe.trim()
-        // extract the string parameter
+        // DO NOT extract the string parameter just yet..
         //var tpe_str = this.extract_str(tpe)
         var tpe_str = tpe
 
@@ -2856,6 +2938,28 @@ export class TEA_RunTime {
                 var vname = tpe_str;
                 var input_str = this.vault_get(vname)
                 io = this.util_eval_mathematics(input_str)
+            }
+        }
+
+        if(tc == "R@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = this.util_eval_tea_template(io)
+            }
+            else{
+				var input_str = this.extract_str(tpe_str);
+                io = this.util_eval_tea_template(input_str)
+            }
+        }
+
+        if(tc == "R*@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                return io // INERT
+            }
+            else{
+                var vname = tpe_str;
+                var input_str = this.vault_get(vname)
+				input_str = this.extract_str(input_str);
+                io = this.util_eval_tea_template(input_str)
             }
         }
 

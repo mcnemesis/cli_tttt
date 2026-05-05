@@ -1,28 +1,43 @@
-v:vEXPR:{The value was computed as: ##vInnerVALUE##}
+#################################
+# Introducing 
+# TEA TEMPLATE #Expressions# v2
+#--------------------------------
+Which would allow us to write complex expressions 
+that can resolve to terminal value expressions
+in a RECURSIVE manner similar to variable substitution
+in some higher-level programming language 
+templating systems. 
+#################################
+
+# given variables
+V:a:1
+V:b:3
+V:d:{TEA-TEMPLATE Expression}
+
+# given a template expressions..
+V:EXPR:{(#a#+#b#)*(#a#-#b#)}
+V:EXPR2:{Expression in EXPR equivalent to #EXPR# is a #d#}
+
+# re-write the specified expression (injects found variables/vaults at two levels)
+R*@:EXPR2
+
+#which should produce:
+#Expression in EXPR equivalent to (1+3)*(1-3) is a TEA-TEMPLATE Expression
+
+# we also could just reduce/rewrite a template expression to a value...
+R*@:EXPR | R.:
+
+#which should produce:
+#(#a#+#b#)*(#a#-#b#) -> (1+3)*(1-3) -> 4*-2 -> -8
+
+# We could also have just written..
+R@:{(#a#+#b#)*(#a#-#b#)} | R.: 
+#should return "-8"
+
+### EXAMPLE 2: Golden Ratio
+v:vEXPR:{The Golden Ratio is computed as: ##vInnerVALUE##}
 v:a:2
 v:b:{(1/#a#)}
-
-# NOTE: for CLI TEA, original test case: 1+100*0.5^(1-#a#**#b#)
-# fails/returns empty after r.: becuse underlying Python refuses float^float or int^float or float^int operations sometimes.
-
-v:innerEXPR:{1+100*5-(1-#a#**#b#)}
-r*@:innerEXPR
-r.: | v:vInnerVALUE
+v:innerEXPR:{(1/#a#)*(1+5**#b#)}
+r*@:innerEXPR | r.: | v:vInnerVALUE
 r*@:vEXPR
-
-# should return
-#The value was computed as: 501.4142135623731
-
-# we could also use non-vault R@: versions...
-
-v:a:2
-v:b:{(1/#a#)}
-i!:{1+100*5-(1-#a#**#b#)} | r@:
-# OR just..
-r@:{1+100*5-(1-#a#**#b#)} 
-
-# then evaluate inner expression first..
-r.: | v:vInnerVALUE
-
-# then do original template...
-r@:{The value was computed as: ##vInnerVALUE##}

@@ -12103,7 +12103,7 @@ So, in this brief diversion, we present a formal specification of \textbf{TEA Ma
 \text{Comparison} &\rightarrow \text{ArithExpr} \; \text{CompOp} \; \text{ArithExpr} \mid \text{BoolLiteral}\\
 \text{ArithExpr} &\rightarrow \text{Term} \; \{(+ \mid -) \; \text{Term}\}^* \\
 \text{Term} &\rightarrow \text{Factor} \; \{(* \mid /) \; \text{Factor}\}^* \\
-\text{Factor} &\rightarrow \text{Power} \; [\text{\^{}} \; \text{Factor}] \\
+\text{Factor} &\rightarrow \text{Power} \; [\text{**{}} \; \text{Factor}] \\
 \text{Power} &\rightarrow \text{Number} \mid ( \text{Expr} ) \\
 \text{CompOp} &\rightarrow > \mid < \mid >= \mid <= \mid == \\
 \text{BoolLiteral} &\rightarrow \texttt{true} \mid \texttt{false}
@@ -12112,7 +12112,7 @@ So, in this brief diversion, we present a formal specification of \textbf{TEA Ma
 This grammar supports:
 \begin{itemize}
 \item Arithmetic expressions: \texttt{3 + 4 * 2}
-\item Comparisons: \texttt{(1 + 2)\^{}3 == 27}
+\item Comparisons: \texttt{(1 + 2)**{}3 == 27}
 \item Logical combinations: \texttt{(x > 5) \&\& !(y < 3 || false)}
 \end{itemize}
 
@@ -12150,24 +12150,24 @@ As for where we have applied the \textbf{TMEs} via \texttt{R.:}, refer to exampl
  \subsection{TEA TEMPLATE Expressions --- TEA ReWRITE System}
  
 
-In the previous sections, especially in \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we have encountered some peculiar powers of TEA's rewriting system, such as how those that can take any valid mathematical expression (such as ``1+100*0.5^(1-2**(1/2))") and reduce it to the corresponding terminal \textbf{numeric} value. For example, we saw that invoking the following TEA:
+In the previous sections, especially in \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we have encountered some peculiar powers of TEA's rewriting system, such as how those that can take any valid mathematical expression (such as ``r.:$(1/2)*(1+5**(1/2))$") --- the \textbf{golden ratio} ---- and reduce it to the corresponding terminal \textbf{numeric} value. For example, we saw that invoking the following TEA:
 
 
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 6: Using R.:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-r.:1+100*0.5^(1-2**(1/2))
+r.:(1/2)*(1+5**(1/2))
    \end{lstlisting}
   \end{tcolorbox}
 
 \vspace{1em}
 
-Would result in the answer ``51".
+Would result in the answer ``1.618033988749895".
 
 \vspace{2em}
 
-However, and as might be the case in some real-life situations, one finds that they have some expression that doesn't necessarily contain only terminal symbols that a TEA Mathematical Expression expects --- that is, that, the expression contains some variables for example. We might for example have the above expression instead presented as a parameterized expression as such: ``1+100*0.5^(1-a**(1/a))" --- in which case we have replaced some of the original numbers, numeric expressions or operators with some variable --- in this case we have all instances of ``2" replaced by a variable ``a". This could make sense when the expression for example represents a formula that needs to be computed based on some externally specified value of ``a". However, currently, attempting to evaluate that expression as is, such as with the following TEA program would fail:
+However, and as might be the case in some real-life situations, one finds that they have some expression that doesn't necessarily contain only terminal symbols that a TEA Mathematical Expression expects --- that is, that, the expression contains some variables for example. We might for example have the above expression instead presented as a parameterized expression as such: ``$(1/a)*(1+5**(1/a))$" --- in which case we have replaced some of the original numbers, numeric expressions or operators with some variable --- in this case we have all instances of ``2" replaced by a variable ``a". This could make sense when the expression for example represents a formula that needs to be computed based on some externally specified value of ``a". However, currently, attempting to evaluate that expression as is, such as with the following TEA program would fail:
 
 \vspace{1em}
 
@@ -12185,7 +12185,7 @@ One work-around might be to first perform a replacement using the usual \textbf{
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 8: Using R.:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-i!:1+100*0.5^(1-a**(1/a))
+i!:(1/a)*(1+5**(1/a))
 r!:a:2
 r.:
    \end{lstlisting}
@@ -12200,7 +12200,7 @@ or perhaps using a vaulted expression such as with...
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 8: Using R.:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-v:vEXPR:{1+100*0.5^(1-a**(1/a))}
+v:vEXPR:{(1/a)*(1+5**(1/a))}
 v:vREGEX:a
 v:vSUBST:2
 r*!:vEXPR:vREGEX:vSUBST
@@ -12210,14 +12210,14 @@ r.:
 
 \vspace{1em}
 
-And that correctly gets us the original terminal value ``51". However, such an approach, despite being fine and functional, might create some problems when  we are dealing with more tricky expressions. For example, consider the case when our mathematical expression is mixed with some other text, perhaps descriptive text, such as in the following version of the expression...
+And that correctly gets us the original terminal value ``1.618033988749895". However, such an approach, despite being fine and functional, might create some problems when  we are dealing with more tricky expressions. For example, consider the case when our mathematical expression is mixed with some other text, perhaps descriptive text, such as in the following version of the expression...
 
 
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 8: Using R.:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-v:vEXPR:{The value was computed as: 1+100*0.5^(1-a**(1/a))}
+v:vEXPR:{The Golden Ratio is computed as: (1/a)*(1+5**(1/a))}
 v:vREGEX:a
 v:vSUBST:2
 r*!:vEXPR:vREGEX:vSUBST
@@ -12228,7 +12228,7 @@ r.:
 \vspace{1em}
 
 
-Attempting to evaluate that vaulted expression --- held in vault named \texttt{vEXPR}, and whose literal value is ``The value was computed as: 1+100*0.5^(1-a**(1/a))" --- fails, because after we substitute for ``a" with ``2" via the instruction \texttt{r*!:vEXPR:vREGEX:vSUBST}, we then have a non-mathematical expression: ``The v2lue w2s computed 2s: 1+100*0.5^(1-2**(1/2))". Clearly, that one can't be readily reduced to a simple terminal value. So, we are instead going to have to utilize what are known as \textbf{TEA Template Expressions}.
+Attempting to evaluate that vaulted expression --- held in vault named \texttt{vEXPR}, and whose literal value is ``The Golden Ratio is computed as: (1/a)*(1+5**(1/a))" --- fails, because after we substitute for ``a" with ``2" via the instruction \texttt{r*!:vEXPR:vREGEX:vSUBST}, we then have a non-mathematical expression: ``The Golden R2tio is computed 2s: (1/2)*(1+5**(1/2))". Clearly, that one can't be readily reduced to a simple terminal value. So, we are instead going to have to utilize what are known as \textbf{TEA Template Expressions}.
 
 
 \vspace{2em}
@@ -12251,18 +12251,18 @@ Any text, could even contain (1+a)*b with some #variable# or ##deepvariable## or
 
 \vspace{2em}
 
-In any such expression, all instances of \textbf{text held inside of} a single ``#" on either side --- such as ``#variable#" and ``#variable2#" in this case --- but also those  delimited by exactly only two hash symbols, such as ``##deepvariable##", are known as \textbf{TEA Template variables}, with the latter kind being known as \textbf{TEA Template deep variables} or just ``deep variables".
+In any such expression, all instances of \textbf{text held inside of} a single ``\#" on either side --- such as ``\#variable\#" and ``\#variable2\#" in this case --- but also those  delimited by exactly only two hash symbols, such as ``\#\#deepvariable\#\#", are known as \textbf{TEA Template variables}, with the latter kind being known as \textbf{TEA Template deep variables} or just ``deep variables".
 
 \vspace{2em}
 
 So, when we encounter such an expression and wish to re-write it, we shall follow the following basic two rules:
 
 \begin{enumerate}
-\item We shall attempt to replace all instances of TEA variables with their corresponding values held in the vaults of the designated or matching names. That is, for ``#variable#", we look for a vault named ``variable" and replace all occurrences of the TEA template variable in the template expression with the vault value we found. In case no such vault exists, the template variable is left intact in the template expression.
-\item{When we encounter a TEA template deep variable such as ``##meta##", we then must perform two or more re-writes\footnote{It might be that we need to perform several recursions in order to finally eliminate all further nested templates in the expression of interest, however, for now, we enforce a maximum recursion depth of 20, so as to avoid problematic infinite or cyclic recursion.}
+\item We shall attempt to replace all instances of TEA variables with their corresponding values held in the vaults of the designated or matching names. That is, for ``\#variable\#", we look for a vault named ``variable" and replace all occurrences of the TEA template variable in the template expression with the vault value we found. In case no such vault exists, the template variable is left intact in the template expression.
+\item{When we encounter a TEA template deep variable such as ``\#\#meta\#\#", we then must perform two or more re-writes\footnote{It might be that we need to perform several recursions in order to finally eliminate all further nested templates in the expression of interest, however, for now, we enforce a maximum recursion depth of 20, so as to avoid problematic infinite or cyclic recursion.}
 \begin{itemize}
 \item First, we look for the vault with the name ``meta", and perform the usual TEA template variable re-write transformation on its contents, ensuring to dive deeper and resolve any further template variable found --- both normal variables and deep variable, so as to arrive at a final expression.
-\item Next, we take the results from the above step, and use them to replace all instances of ``##meta##" in the original TEA template expression.
+\item Next, we take the results from the above step, and use them to replace all instances of ``\#\#meta\#\#" in the original TEA template expression.
 \end{itemize}
 }
 \end{enumerate}
@@ -12275,7 +12275,7 @@ With that facility then, we can then re-approach our problematic expression abov
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 9: Using R*@:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-v:vEXPR:{The value was computed as: 1+100*0.5^(1-#a#**(1/#a#))}
+v:vEXPR:{The Golden Ratio is computed as: (1/#a#)*(1+5**(1/#a#))}
 v:a:2
 r*@:vEXPR
    \end{lstlisting}
@@ -12283,7 +12283,7 @@ r*@:vEXPR
 
 \vspace{1em}
 
-Which shall return ``The value was computed as: 1+100*0.5^(1-2**(1/2))".
+Which shall return ``The Golden Ratio is computed as: (1/2)*(1+5**(1/2))".
 
 \vspace{2em}
 
@@ -12294,27 +12294,27 @@ And in case we wish to use deep variables, we could write that same program as s
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 10: Using R*@:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-v:vEXPR:{The value was computed as: ##innerEXPR##}
+v:vEXPR:{The Golden Ratio is computed as: ##innerEXPR##}
 v:a:2
 v:b:{(1/#a#)}
-v:innerEXPR:{1+100*0.5^(1-#a#**#b#)}
+v:innerEXPR:{(1/#a#)*(1+5**#b#)}
 r*@:vEXPR
    \end{lstlisting}
   \end{tcolorbox}
 
 \vspace{1em}
 
-Which shall indeed return ``The value was computed as: 1+100*0.5^(1-2**(1/2))". However, in case we wish to instead have the embedded mathematical expression evaluated as well, then we would instead write that program as such:
+Which shall indeed return ``The Golden Ratio is computed as: (1/2)*(1+5**(1/2))". However, in case we wish to instead have the embedded mathematical expression evaluated as well, then we would instead write that program as such:
 
 
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 11: Using R*@:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-v:vEXPR:{The value was computed as: ##vInnerVALUE##}
+v:vEXPR:{The Golden Ratio is computed as: ##vInnerVALUE##}
 v:a:2
 v:b:{(1/#a#)}
-v:innerEXPR:{1+100*0.5^(1-#a#**#b#)}
+v:innerEXPR:{(1/#a#)*(1+5**#b#)}
 r*@:innerEXPR | r.: | v:vInnerVALUE
 r*@:vEXPR
    \end{lstlisting}
@@ -12322,7 +12322,7 @@ r*@:vEXPR
 
 \vspace{1em}
 
-Which then returns ``The value was computed as: 51". And of course, we could work without vaults as with just \texttt{R@:} as in...
+Which then returns ``The Golden Ratio is computed as: 1.618033988749895". And of course, we could work without vaults as with just \texttt{R@:} as in...
 
 
 \vspace{2em}
@@ -12331,21 +12331,21 @@ Which then returns ``The value was computed as: 51". And of course, we could wor
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:a:2
 v:b:{(1/#a#)}
-i!:{1+100*0.5^(1-#a#**#b#)} | r@:
+i!:{(1/#a#)*(1+5**#b#)} | r@:
 # OR just..
-r@:{1+100*0.5^(1-#a#**#b#)} 
+r@:{(1/#a#)*(1+5**#b#)} 
 
 # then evaluate inner expression first..
 r.: | v:vInnerVALUE
 
 # then do original template...
-r@:{The value was computed as: ##vInnerVALUE##}
+r@:{The Golden Ratio is computed as: ##vInnerVALUE##}
    \end{lstlisting}
   \end{tcolorbox}
 
 \vspace{1em}
 
-Which also returns ``The value was computed as: 51". Thus is the queer power of TEA Templates!
+Which also returns ``The Golden Ratio is computed as: 1.618033988749895". Thus is the queer power of TEA Templates!
  
   
 \section{EXAMPLE APPLICATIONS of R:}

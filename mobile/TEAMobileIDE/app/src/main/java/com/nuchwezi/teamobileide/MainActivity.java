@@ -129,9 +129,32 @@ public class MainActivity extends AppCompatActivity {
             FloatingActionButton openBrowserButton = findViewById(R.id.openBrowserButton);
 
             openBrowserButton.setOnClickListener(v -> {
-                String url = "https://tea.nuchwezi.com";
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent); // opens in external browser
+
+                String current = webView.getUrl();
+                if( (current == null) || (current.startsWith("file:"))) {
+                    String url = "https://tea.nuchwezi.com";
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    startActivity(intent); // opens in external browser
+                    Utility.showToast("Opening TEA IDE in External Web Browser", MainActivity.this);
+                    return;
+                }
+                if (current.startsWith("blob:")) {
+                    webView.evaluateJavascript("(function(){return document.location.href;})()", value -> {
+                        String pageUrl = value == null ? null : value.replaceAll("^\"|\"$", "");
+                        if (pageUrl != null && !pageUrl.startsWith("blob:")) {
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(pageUrl));
+                            startActivity(i);
+                            Utility.showToast("Opening BLOB in External Web Browser", MainActivity.this);
+                        } else {
+                            Toast.makeText(this, "Cannot open blob URL externally. Open the page that created it instead.", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } else {
+                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(current));
+                    startActivity(i);
+                    Utility.showToast("Opening Current Page in External Web Browser", MainActivity.this);
+                }
+
             });
 
         }catch (Exception exception){
