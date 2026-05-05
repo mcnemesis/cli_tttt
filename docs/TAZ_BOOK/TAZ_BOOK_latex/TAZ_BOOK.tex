@@ -546,6 +546,7 @@ So, based on the grammar rules by which we can form valid TEA Instructions (see 
 \item \texttt{*!}
 \item \texttt{!@}
 \item \texttt{*@}
+\item \texttt{*!@}
 \item \texttt{*.}
 \item \texttt{!.}
 \item \texttt{*!.} --- essentially, if TC is ``A", we get ``A*!.:", if ``B", then ``B*!.:" etc.
@@ -685,7 +686,7 @@ Essentially, all TEA programs, in their simplest, unminified form\footnote{That 
   \centering
   \begin{tcolorbox}[myterminalstyle, title=TEA Instruction Line (Regular Expression)]
   \begin{lstlisting}
-^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$
+^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*!@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$
   \end{lstlisting}
   \end{tcolorbox}
   \caption{The TEA Instruction Lexical Specification (regular language)}
@@ -734,7 +735,7 @@ In summary, a TIL, and thus a TI, can be produced thus:
 	    TI := WS*•TC•TIPE•TID
 	    TC := TCP•TCQ•TCD
 	    TCP := [a-zA-Z]
-	    TCQ := . | ! | * | @ | *! | !@ | *. | *@ | *!.  
+	    TCQ := . | ! | * | @ | *! | !@ | *@ | *!@ | .@ | *. | !. | *!.  
 	    TCD := :
 	    TIPE := NTIPED•(TIPED•NTIPED*)*
 	    TIPED := :
@@ -771,7 +772,8 @@ For purists especially, the same can be rewritten in true/traditional Backus–N
 		
 		<TC> ::= <TCP> <TCQ> <TCD>
 		<TCP> ::= "a" | "b" | ... | "z" | "A" | "B" | ... | "Z"
-		<TCQ> ::= "." | "!" | "*" |  "@" | "*!" |  "!@" | "*." | "*@" | "*!."  
+
+		<TCQ> ::= "." | "!" | "*" | "@" | "*!" | "!@" | "*@" | "*!@" | ".@" | "*." | "!." | "*!."    
 		<TCD> ::= ":"
 		
 		<TIPE> ::= <NTIPED> <TIPE_Tail>
@@ -11786,6 +11788,7 @@ OR
 	\item Automate Text Editing using Pattern Matching
 	\item \textbf{Replace Mathematical Expressions with Simple Terminal Values:} pure or fractional numbers or boolean values. Only TEA command designed for this.
 	\item Facilitate \textbf{Processing of Invisible Text!}
+	\item Facilitate a Powerful General-Purpose \textbf{Re-Write System} using TEA.
 	\end{enumerate}\\
 	\hline
 	              
@@ -11834,9 +11837,15 @@ r!: & The Extreme Case of \texttt{r:} --- replaces all visible characters in AI 
 \rowcolor{lightgray}\bfseries \makecell[l]{r*.:} & INERT\\
 
 
-\makecell[l]{r@:\\r@:EXPR} & Treat AI as a \textbf{TEA Template Expression} and rewrite it by replacing all occurrences of variables/vaults expressed as with \texttt{\#vA\#} for some vault named \texttt{vA} with the value stored in that vault [recursively if necessary]. With the parameters \textbf{EXPR} provided, then instead operate on that explicit string instead of AI. Returns the result of the re-write operation or unmodified expression if no transformations occurred. In case Template contains a \textbf{deep variable} such as \texttt{\#\#vA\#\#}, also apply the transform on the contents of the vault [perhaps recursively] before making the substitution.\\
+\makecell[l]{r@:\\r@:EXPR} & Treat AI as a \textbf{TEA Template Expression} and rewrite it by replacing all occurrences of variables/vaults expressed as with \texttt{\#vA\#} for some vault named \texttt{vA} with the value stored in that vault [\textbf{without recursion}]. With the parameters \textbf{EXPR} provided, then instead operate on that explicit string instead of AI. Returns the result of the re-write operation or unmodified expression if no transformations occurred. In case Template contains a \textbf{deep variable} such as \texttt{\#\#vA\#\#}, also apply the transform on the contents of the vault [recursively] before making the substitution.\\
 
 \makecell[l]{r*@:vEXPR} & Same as \texttt{r@:EXPR} but instead loads the expression to be produced from the vaul with specified name \textbf{vEXPR}. Without vEXPR parameter, just works on AI as \texttt{R@:}\\
+
+\makecell[l]{r@!:\\r@!:EXPR} & The deep resolution version of \texttt{R@:} and \texttt{R@:vEXPR}, in which mode, \textbf{any template variable deep or not, is resolved recursively.}\\
+
+\makecell[l]{r*@!:vEXPR} & Same as \texttt{r@!:EXPR} but instead loads the expression to be produced from the vaul with specified name \textbf{vEXPR}. Without vEXPR parameter, just works on AI as \texttt{R@!:}\\
+
+
 
 
  \hline
@@ -12273,11 +12282,11 @@ With that facility then, we can then re-approach our problematic expression abov
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 9: Using R*@:, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 9: Using R*!@:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:vEXPR:{The Golden Ratio is computed as: (1/#a#)*(1+5**(1/#a#))}
 v:a:2
-r*@:vEXPR
+r*!@:vEXPR
    \end{lstlisting}
   \end{tcolorbox}
 
@@ -12292,13 +12301,13 @@ And in case we wish to use deep variables, we could write that same program as s
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 10: Using R*@:, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 10: Using R*!@:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:vEXPR:{The Golden Ratio is computed as: ##innerEXPR##}
 v:a:2
 v:b:{(1/#a#)}
 v:innerEXPR:{(1/#a#)*(1+5**#b#)}
-r*@:vEXPR
+r*!@:vEXPR
    \end{lstlisting}
   \end{tcolorbox}
 
@@ -12309,14 +12318,14 @@ Which shall indeed return ``The Golden Ratio is computed as: (1/2)*(1+5**(1/2))"
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 11: Using R*@:, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 11: Using R*!@:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:vEXPR:{The Golden Ratio is computed as: ##vInnerVALUE##}
 v:a:2
 v:b:{(1/#a#)}
 v:innerEXPR:{(1/#a#)*(1+5**#b#)}
-r*@:innerEXPR | r.: | v:vInnerVALUE
-r*@:vEXPR
+r*!@:innerEXPR | r.: | v:vInnerVALUE
+r*!@:vEXPR
    \end{lstlisting}
   \end{tcolorbox}
 
@@ -12327,25 +12336,66 @@ Which then returns ``The Golden Ratio is computed as: 1.618033988749895". And of
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 12: Using R@:, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 12: Using R!@:, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
 v:a:2
 v:b:{(1/#a#)}
 i!:{(1/#a#)*(1+5**#b#)} | r@:
 # OR just..
-r@:{(1/#a#)*(1+5**#b#)} 
+r!@:{(1/#a#)*(1+5**#b#)} 
 
 # then evaluate inner expression first..
 r.: | v:vInnerVALUE
 
 # then do original template...
-r@:{The Golden Ratio is computed as: ##vInnerVALUE##}
+r!@:{The Golden Ratio is computed as: ##vInnerVALUE##}
    \end{lstlisting}
   \end{tcolorbox}
 
 \vspace{1em}
 
 Which also returns ``The Golden Ratio is computed as: 1.618033988749895". Thus is the queer power of TEA Templates!
+
+\vspace{2em}
+
+Finally, the following example should help demonstrate the differences between deep-by-default template variable resolution (such as with \texttt{R!@:}) Vs non-deep resolution (such as with \texttt{R@:}).
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 13: Using R@: Vs R!@:, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+# TESTING Recursive Template Resolution
+V:a:1
+V:b:{(1/#a#)}
+V:c:{[#b# in c]} 
+V:EXPR:{#a# + #b# + #c#}
+v:MSG:{I read the expression about #a# as:
+ #EXPR#
+and then as 
+##EXPR## and #c# as ##c##
+}
+y:MSG | R@:
+
+# returns:
+I read the expression about 1 as:
+ #a# + #b# + #c#
+and then as 
+1 + (1/1) + [(1/1) in c] and [#b# in c] as [(1/1) in c]
+
+# while...
+y:MSG | R!@:
+
+# returns:
+I read the expression about 1 as:
+ 1 + (1/1) + [(1/1) in c]
+and then as 
+1 + (1/1) + [(1/1) in c] and [(1/1) in c] as [(1/1) in c]
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{1em}
+
+As a rule of thumb, when not sure when to use which, just use normal template \#variables\#, and ensure to render using deep-by-default with \texttt{R!@:} or \texttt{R*!@:vEXPR} when using vaulted templates.
  
   
 \section{EXAMPLE APPLICATIONS of R:}

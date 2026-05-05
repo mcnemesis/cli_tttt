@@ -2,10 +2,10 @@ v:a:2
 v:b:{(1/#a#)}
 i!:{1+100*5-(1-#a#**#b#)} | r@:
 # OR just..
-r@:{1+100*5-(1-#a#**#b#)} 
+r!@:{1+100*5-(1-#a#**#b#)} 
 
 # then evaluate inner expression first..
 r.: | v:vInnerVALUE
 
 # then do original template...
-r@:{The value was computed as: ##vInnerVALUE##}
+r!@:{The value was computed as: ##vInnerVALUE##}

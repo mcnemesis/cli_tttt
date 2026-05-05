@@ -1,0 +1,28 @@
+# TESTING Recursive Template Resolution
+V:a:1
+V:b:{(1/#a#)}
+V:c:{[#b# in c]} 
+V:EXPR:{#a# + #b# + #c#}
+v:MSG:{I read the expression about #a# as:
+ #EXPR#
+and then as 
+##EXPR## and #c# as ##c##
+}
+y:MSG | R@:
+
+#q!:
+
+# returns:
+I read the expression about 1 as:
+ #a# + #b# + #c#
+and then as 
+1 + (1/1) + [(1/1) in c] and [#b# in c] as [(1/1) in c]
+
+# while...
+y:MSG | R!@:
+
+# returns:
+I read the expression about 1 as:
+ 1 + (1/1) + [(1/1) in c]
+and then as 
+1 + (1/1) + [(1/1) in c] and [(1/1) in c] as [(1/1) in c]

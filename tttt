@@ -29,7 +29,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.4.9"
+VERSION = "1.5.0"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -184,7 +184,7 @@ class TEA_RunTime:
     RETEASTRING1 = r'\{.*?\}'
     RETEASTRING2 = r'"[^"]*?"'
     RETEAPROGRAM = r'([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*'
-    RETI = r'^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
+    RETI = r'^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*!@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$'
     SINGLE_SPACE_CHAR = " "
     ALPHABET = "abcdefghijklmnopqrstuvwxyz"
     EXTENDED_ALPHABET = ALPHABET + SINGLE_SPACE_CHAR
@@ -581,7 +581,7 @@ class TEA_RunTime:
                 resolve_key(k)
             return resolved
 
-        def render_template(template, vault, max_depth=20, missing='leave'):
+        def render_template(template, vault, deep=False, max_depth=20, missing='leave'):
             # missing: 'leave'|'empty'|'error'
             resolved_vault = resolve_vault(vault, max_depth=max_depth)
 
@@ -607,17 +607,17 @@ class TEA_RunTime:
                     if missing == 'error':
                         raise KeyError(f"Missing vault key {key}")
                     return f"#{key}#"
-                return resolved_vault[key]
+                return resolved_vault[key] if deep else vault[key]
 
             out = re.sub(r'#([^#]+)#', repl_single, out)
             return out
 
-        def util_eval_tea_template(val):
+        def util_eval_tea_template(val, all_deep=False):
             if TEA_RunTime.DEBUG:
                 print(f"***Evaluating TEA TEMPLATE EXPRESSION: [{val}]")
             _final_val = val
             try:
-                _final_val = render_template(val, VAULTS)
+                _final_val = render_template(val, VAULTS, deep=all_deep)
             except BaseException as e:
                 self.debug(f"***[TEA TEMPLATE EVALUATION ERROR]: {e}")
                 return TEA_RunTime.EMPTY_STR # in case of error, return empty space
@@ -2308,6 +2308,22 @@ class TEA_RunTime:
                     input_str = vault_get(vname)
                     input_str = self.extract_str(input_str)
                     io = util_eval_tea_template(input_str)
+
+            if tc == "R!@":  # TEA template expression evaluator: all recursive
+                if len(tpe_str) == 0:
+                    io = util_eval_tea_template(io, all_deep=True)
+                else:
+                    input_str = self.extract_str(tpe_str)
+                    io = util_eval_tea_template(input_str, all_deep=True)
+
+            if tc == "R*!@":  # TEA vaulted template expression evaluator: all recursive
+                if len(tpe_str) == 0:
+                    io = util_eval_tea_template(io, all_deep=True)
+                else:
+                    vname = tpe_str
+                    input_str = vault_get(vname)
+                    input_str = self.extract_str(input_str)
+                    io = util_eval_tea_template(input_str, all_deep=True)
 
             return io
 
