@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.5.0" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.5.1" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -346,7 +346,7 @@ export class TEA_RunTime {
     }
 
     // Pick LABEL BLOCKs from ordered TIL
-    _parse_labelblocks(otil, initial_labelblocks){
+    _parse_labelblocks(otil, initial_labelblocks, injection_mode = false){
         var TI_index = 0
         var labelblocks = initial_labelblocks ? initial_labelblocks : {}
 
@@ -359,9 +359,21 @@ export class TEA_RunTime {
                 for(let lBlockName of params.slice(1)){
                     var cleanlBlockName = lBlockName.trim()
                     if (labelblocks.hasOwnProperty(cleanlBlockName)) {
-                        this.debug(`[ERROR] Instruction ${i} trying to duplicate an Existenting Block Name [${cleanlBlockName}]`)
-                        this.debug(`[INFO] Current L-BLOCKS: \n${JSON.stringify(labelblocks)}`)
-                        throw new Error(`[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL: [${cleanlBlockName}]`)
+                        if (injection_mode) {
+                            if (initial_labelblocks.hasOwnProperty(cleanlBlockName)) {
+                                // meaning it is possibly being re-processed in injected prog 
+                                continue;
+                            }
+                        } 
+
+                        if (initial_labelblocks.hasOwnProperty(cleanlBlockName)) {
+                            // meaning it is being re-processed from main prog 
+                            continue;
+                        }else {
+                            this.debug(`[ERROR] Instruction ${i} trying to duplicate an Existing Block Name [${cleanlBlockName}]`)
+                            this.debug(`[INFO] Current L-BLOCKS: \n${JSON.stringify(labelblocks)}`)
+                            throw new Error(`[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL: [${cleanlBlockName}]`)
+                        }
                     }
                     labelblocks[cleanlBlockName] = TI_index + 1 // so we ref next instruction in program, after the label
                 }
@@ -1142,7 +1154,7 @@ export class TEA_RunTime {
 		  ...e_otil,
 		  ...otil.slice(injection_position + 1)
 		];
-        var e_label_blocks = e_runtime._parse_labelblocks(e_otil, label_blocks)
+        var e_label_blocks = e_runtime._parse_labelblocks(e_otil, label_blocks, true)
 
         return [e_otil, e_label_blocks, injection_position]
     }

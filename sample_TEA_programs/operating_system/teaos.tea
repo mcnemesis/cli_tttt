@@ -1,0 +1,64 @@
+#!/usr/bin/tttt -fc
+I!:{oooooooo_________________
+___oo_____ooooo___ooooo__
+___oo____oo____o_oo___oo_
+___oo____ooooooo_oo___oo_
+___oo____oo______oo___oo_
+___oo_____ooooo___oooo_o_
+_________________________}                                     
+x!:{
+Welcome to TEA OS v1.0.0}
+v:vBanner | i:
+
+###| The above is the original bootscreen
+###| The rest of the story follows..
+
+*:{========| PREAMBLE |========}
+L:lPREAMBLESTART
+
+# Of course, this is TEA programming
+We can write verbatim documentation and 
+comments in the most natural of ways without
+worry or concern. We sometimes shall 
+do just that. 
+
+#---[ ABOUT TEA OS ]
+ARCHITECT: J. Willrich Lutalo <jwl@nuchwezi.com>
+SINCE: 9th APRIL, 2026
+INTENT: To manifest a true general purpose, lightweight, minimal but powerful operating system that can essentially just fit inside a single string; to see what the limits of the mathematics of TRANSFORMATICS might be, and what we surely could accomplish with its proper use via modern portable computers.
+PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com
+
+#---[ GLOBAL CONSTANTS ]
+V:vSLOGAN:{TEA OS! T can fit in a string!}
+V:vDELIM:{_________________________}
+V:vDELIM2:{=o==o==o==o==o==o==o==o==o}
+
+
+#---[ GLOBAL VARIABLES ]
+V:vUSERNAME:{user}
+
+#---[ SOME FUNCTIONS ]
+V:fPRESENT:"
+v:vMSG # stores AI at invocation
+i!:{} | g*:{
+}:vDELIM2:vMSG:vDELIM
+i:
+y:vMSG # restore AI
+"
+
+L:lPREAMBLEEND
+*:{=================================}
+
+*:{========| SYSTEM SHELL |========}
+L:lSYS_SHELL_START
+# greet user via stored name..
+Y!@:vUSERNAME | F!:^0$:lGREET_USER
+ 
+
+L:lGREET_USER
+Y@:vUSERNAME | V:vUSERNAME
+X:{Hello, }|X!:{. Welcome to TEA OS!}
+E*!:fPRESENT
+
+L:lSYS_SHELL_END
+#:{=================================}

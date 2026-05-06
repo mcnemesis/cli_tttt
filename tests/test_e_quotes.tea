@@ -12,5 +12,6 @@ y:vANA # set AI to contents of vault "vANA"
 v:vCMD:"v:A|n:|x!:{:}|x*!:A" 
 e*!:vCMD
 #e!:"v:A|n:|x!:{:}|x*!:A" #with explicit cmd string
-#e!:{v:A|n:|x!:{:}|x*!:A} #with PROBLEMATIC explicit cmd string --- because of embedded inner {}
-#e:"v:A|n:|x!:{:}|x*!:A"  #should work same even without injection
+e!:{v:A|n:|x!:{:}|x*!:A} #with PROBLEMATIC explicit cmd string --- because of embedded inner {}
+e!:{v:A|n:|x!:":"|x*!:A} #solves the problem...
+#e:"v:A|n:|x!:{:}|x*!:A"  #should also work same even without injection

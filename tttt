@@ -29,7 +29,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.5.0"
+VERSION = "1.5.1"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -344,7 +344,7 @@ class TEA_RunTime:
         self.debug(f"--[#{len(otil)} TEA INSTRUCTIONS FOUND]---")
         return otil
 
-    def _parse_labelblocks(self, otil, initial_labelblocks = {}):
+    def _parse_labelblocks(self, otil, initial_labelblocks = {}, injection_mode=False):
         TI_index = 0
         labelblocks = initial_labelblocks
         if otil is None:
@@ -355,10 +355,16 @@ class TEA_RunTime:
                 for lBlockName in params[1:]:
                     cleanlBlockName = lBlockName.strip()
                     if cleanlBlockName in labelblocks:
-                        if TEA_RunTime.DEBUG:
-                            print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{cleanlBlockName}]")
-                            print(f"[INFO] Current L-BLOCKS: \n{labelblocks}")
-                        raise ValueError(f"[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL: [{cleanlBlockName}]")
+                        if injection_mode:
+                            if cleanlBlockName in initial_labelblocks: # meaning it is possibly being re-processed in injected prog 
+                                continue
+                        if cleanlBlockName in initial_labelblocks: # meaning it is being re-processed from main prog 
+                            continue
+                        else:
+                            if TEA_RunTime.DEBUG:
+                                print(f"[ERROR] Instruction {i} trying to duplicate an Existenting Block Name [{cleanlBlockName}]")
+                                print(f"[INFO] Current L-BLOCKS: \n{labelblocks}")
+                            raise ValueError(f"[SEMANTIC ERROR] ATTEMPT to DUPLICATE EXISTING BLOCK LABEL: [{cleanlBlockName}]")
                     labelblocks[cleanlBlockName] = TI_index + 1 # so we ref next instruction in program, after the label
             TI_index += 1
 
@@ -985,7 +991,7 @@ class TEA_RunTime:
             e_runtime = TEA_RunTime()
             e_otil = e_runtime._parse_tea_code(tsrc)
             e_otil = otil[:injection_position] + e_otil + otil[injection_position+1:] # update instructions list
-            e_label_blocks = e_runtime._parse_labelblocks(e_otil, initial_labelblocks = label_blocks)
+            e_label_blocks = e_runtime._parse_labelblocks(e_otil, initial_labelblocks = label_blocks, injection_mode=True)
 
             return e_otil, e_label_blocks, injection_position
 
