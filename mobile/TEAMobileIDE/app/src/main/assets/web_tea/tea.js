@@ -123,7 +123,7 @@ export class TEA_RunTime {
         static RETEASTRING1 = /\{.*?\}/s;
         static RETEASTRING2 = /"[^"]*?"/s;
         static RETEAPROGRAM = /([a-zA-Z]\*?!?\.?@?:.*(:.*)*\|?)+(#.*)*/
-        static RETI = /^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
+        static RETI = /^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*!@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$/
         static SINGLE_SPACE_CHAR = " "
         static ALPHABET = "abcdefghijklmnopqrstuvwxyz"
         static EXTENDED_ALPHABET = this.ALPHABET + this.SINGLE_SPACE_CHAR
@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.4.9" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.5.0" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -873,7 +873,7 @@ export class TEA_RunTime {
 	  return resolved;
 	}
 
-	renderTemplate(template, vault, options = {}) {
+	renderTemplate(template, vault, deep, options = {}) {
 	  const { maxDepth = 20, missing = 'leave' } = options; // missing: 'leave'|'empty'|'error'
 	  const resolvedVault = this.resolveVault(vault, { maxDepth });
 
@@ -894,18 +894,18 @@ export class TEA_RunTime {
 		  if (missing === 'error') throw new Error(`Missing vault key ${key}`);
 		  return `#${key}#`;
 		}
-		return resolvedVault[key];
+		return deep ? resolvedVault[key] : vault[key];
 	  });
 
 	  return out;
 	}
 
-     util_eval_tea_template(val){
+     util_eval_tea_template(val, all_deep = false){
         this.debug(`***Evaluating TEA TEMPLATE EXPRESSION: [${val}]`)
         var _final_val = val;
         try{
 			// thanks deep-learning..
-            _final_val = this.renderTemplate(val, this.VAULTS);
+            _final_val = this.renderTemplate(val, this.VAULTS, all_deep);
 		} catch (error) {
             this.debug(`***[TEA TEMPLATE EVALUATION ERROR]: ${error}`)
             return TEA_RunTime.EMPTY_STR
@@ -2960,6 +2960,28 @@ export class TEA_RunTime {
                 var input_str = this.vault_get(vname)
 				input_str = this.extract_str(input_str);
                 io = this.util_eval_tea_template(input_str)
+            }
+        }
+
+        if(tc == "R!@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = this.util_eval_tea_template(io, true)
+            }
+            else{
+				var input_str = this.extract_str(tpe_str);
+                io = this.util_eval_tea_template(input_str, true)
+            }
+        }
+
+        if(tc == "R*!@"){
+            if(TEA_RunTime.is_empty(tpe_str)){
+                io = this.util_eval_tea_template(io, true)
+            }
+            else{
+                var vname = tpe_str;
+                var input_str = this.vault_get(vname)
+				input_str = this.extract_str(input_str);
+                io = this.util_eval_tea_template(input_str, true)
             }
         }
 
