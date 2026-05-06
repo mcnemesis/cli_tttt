@@ -1,0 +1,29 @@
+##################
+Fibonnacci in TEA
+##################
+i:0 # default fib (0)
+t!.:|v:n
+y:n
+f:^\d+$:lProcess
+i!:0 |v:n
+l:lProcess
+# start ..
+v:a:0
+V:b:1
+# iterative fib(n)
+V:i:0
+# for n==0
+y:n | x!: ==0| r.:| f!:true:lProcessStep
+y:a | q!:
+l:lProcessStep
+#a, b = b, a + b
+y:a | v:_a
+y:b | v:a
+y:_a |x!: +| x*!:b |r.:| v:b
+y:i | x!: ==(| x*!:n |x!: -1) | v:_c
+r.:| f!:true:lIncrement
+y:a | q!: # return result
+l:lIncrement
+y:i | x!:+1|r.:| v:i
+j:lProcessStep
+# teaprogramming

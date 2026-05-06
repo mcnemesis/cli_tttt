@@ -7,14 +7,14 @@ ___oo____oo______oo___oo_
 ___oo_____ooooo___oooo_o_
 _________________________}                                     
 x!:{
-Welcome to TEA OS v1.0.0}
+Welcome to TEA OS v1.0.1}
 v:vBanner | i:
 
 ###| The above is the original bootscreen
 ###| The rest of the story follows..
 
 *:{========| PREAMBLE |========}
-L:lPREAMBLESTART
+L:lPREAMBLE_START
 
 # Of course, this is TEA programming
 We can write verbatim documentation and 
@@ -38,27 +38,35 @@ V:vDELIM2:{=o==o==o==o==o==o==o==o==o}
 V:vUSERNAME:{user}
 
 #---[ SOME FUNCTIONS ]
-V:fPRESENT:"
+
+# for presenting pretty message prompt..
+V:fPROMPT:"
 v:vMSG # stores AI at invocation
+v:vD2:{=o==o==o==o==o==o==o==o==o}
+y:vMSG|x!:{ }|v:vMSG # affix space at prompt end
 i!:{} | g*:{
-}:vDELIM2:vMSG:vDELIM
-i:
-y:vMSG # restore AI
+}:vD2:vMSG
+i: # returns input..
 "
 
-L:lPREAMBLEEND
+L:lPREAMBLE_END
 *:{=================================}
 
 *:{========| SYSTEM SHELL |========}
 L:lSYS_SHELL_START
 # greet user via stored name..
 Y!@:vUSERNAME | F!:^0$:lGREET_USER
- 
+# Username not yet set, prompt and store
+L:lSET_USERNAME
+I!:{Please set a Username:}|E*:fPROMPT
+t!.:|v:|v!:|f:^0$:lSET_USERNAME
+y:|V@:vUSERNAME # store in database
 
 L:lGREET_USER
 Y@:vUSERNAME | V:vUSERNAME
 X:{Hello, }|X!:{. Welcome to TEA OS!}
-E*!:fPRESENT
+E*:fPROMPT
 
+# C!@:vUSERNAME # should we delete username?
 L:lSYS_SHELL_END
 #:{=================================}

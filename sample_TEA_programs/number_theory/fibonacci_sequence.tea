@@ -1,20 +1,20 @@
 ####################
-Fibonacci in TEA v2
+Fibonacci in TEA v2.1
 ####################
 
-t.!:|v:n #in case external input n
+t!.:|v:n #in case external input n
 
 # Otherwise prompt for n..
 l:lPrompt|y:n
 f:^\d+$:lProcess
-i!:{For fib(n) -> specify n: }|i:|t.!:|v:n|j:lPrompt
+i!:{For fib(n) -> specify n: }|i:|t!.:|v:n|j:lPrompt
 
 l:lProcess 
 
 #should we generate sequence up to n?
 i!:{Generate:
 1. fib(}|x*!:n|x!:{)
-2. Sequence up to fib(}|x*!:n|x!:{) [default]}|i:|t.!:|v:vOPT
+2. Sequence up to fib(}|x*!:n|x!:{) [default]}|i:|t!.:|v:vOPT
 
 v:vMode:2 #default mode
 y:vOPT|f!:^1$:lModeSet
