@@ -9118,10 +9118,10 @@ Which example template also makes clear the fact that TDT templates can be as le
 \subsection{EXAMPLE 2: \textbf{STATISTICAL ANALYSIS:} DESCRIPTIVE, EXPLORATORY and PREDICTIVE DATA ANALYZER}
 \label{SECEXAMP2N}
 
-{
-\LARGE
-\hl{TODO: Shift this example to the Chapter on Z: or X: or V:}
-}
+%{
+%\LARGE
+%\hl{TODO: Shift this example to the Chapter on Z: or X: %or V:}
+%}
 
 
 The previous application especially focused on cases of generating random data --- especially so it can later be used in simulations, analysis or mathematical modeling as we saw in the various example scenarios. However, this next application is instead focused on what happens once we have the data. Specifically, we shall want to dive into the matter of objective analysis of a given dataset using the major baseline statistical measures (statistics) and some basic machine learning techniques relating to extrapolating datasets based on analysis of existing or training data.
@@ -9626,6 +9626,12 @@ f:^[qQ]$:lQUIT
 
 #----| pre-process and clean data |---
 l:lPREPROCESS_DATA
+y:vDATA
+#if space delimited, swap space with commas
+f!:,:lSWAPSPACE:lCSVFINE
+l:lSWAPSPACE
+r!:[ ]+:{ } | r!:[ ]:,
+l:lCSVFINE
 g: #eliminate white-space
 r:,]$:] #fix final comma from some TDT generators
 d!:[\d ,] #apply filter
@@ -9939,7 +9945,7 @@ v:vCMD:"function predictNextLinear(data) {
   // Predict next value
   const nextValue = m * t + c;
 
- // Compute R2 score (coefficient of determination)
+ // Compute R² score (coefficient of determination)
   let ssTot = 0, ssRes = 0;
   for (let i = 0; i < n; i++) {
     const xi = i + 1;
@@ -10046,7 +10052,7 @@ v:vCMD:"function predictNextPolynomial(data, degree = 3) {
   // Predict next value
   const nextValue = coeffs.reduce((sum, a, i) => sum + a * t ** i, 0);
 
-  // Compute R2 score
+  // Compute R² score
   const meanY = y.reduce((sum, yi) => sum + yi, 0) / n;
   const ssTot = y.reduce((sum, yi) => sum + (yi - meanY) ** 2, 0);
   const ssRes = x.reduce((sum, xi, i) => {
