@@ -6736,7 +6736,7 @@ In brief, the program we are deal with here, will help someone build a mental pr
 #-------------------------------------------#
 # MHDF: Mental-Health Diagnosis Framework (v1.0)
 #-----------------------------------------|
-# MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.2
+# MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.3
 #-----------------------------------------|
 # This program helps to create a mental
 # profile of a named subject, for purposes
@@ -6752,12 +6752,12 @@ In brief, the program we are deal with here, will help someone build a mental pr
 
 #show welcome message
 v:vORIN
-v:vWELCOME:{###########- OVERALL MENTAL HEALTH [self]DIAGNOSIS PROGRAM v1.2 -###########-Many people think they are well and healthy, until when they work through this program.-It is a simple, free, but powerful self-diagnosis tool originally meant to help a counselor or doctor quickly isolate a person's core problems and their potential holistic remedies. It can be used to help someone else, but also to help yourself-CREDIT: Dr. JWL at Nuchwezi Esoteric School.-###########}
+v:vWELCOME:{###########- OVERALL MENTAL HEALTH -[self]DIAGNOSIS PROGRAM v1.3 -###########-Many people think they are well and healthy, until when they work through this program.-It is a simple, free, but powerful self-diagnosis tool originally meant to help a counselor or doctor quickly isolate a person's core problems and their potential holistic remedies.-It can be used to help someone else, but also to help yourself-CREDIT: Dr. JWL at Nuchwezi Esoteric School.-###########}
 v:vREG:-|h*!:vWELCOME:vREG
 d:-|i*:
 
 
-v:vWELCOME:{###########- HOW TO USE MHDP? -###########-Essentially, after this message, correctly, and suitably, but in brief, answer all questions under the 8 CATEGORIES; family, friendship, ...,mental health.The process will help you identify the gaps and major issues.- FINALLY, program will neatly print a report with all identified issues and solutions, which you can either return to later, use to build or find a lasting overall solution, or share with your trusted doctor or counselor.-NOTE THAT NONE of YOUR DATA is SHARED or STORED after using this program.-###########-WARNING: Only way to QUIT the program is to work through the entire process!-###########}
+v:vWELCOME:{###########- HOW TO USE MHDP? -###########-Essentially, after this message, correctly, and suitably, but in brief, answer all questions under the 8 CATEGORIES; family, friendship, ...,mental health.-The process will help you identify the gaps and major issues.- FINALLY, program will neatly print a report with all identified issues and solutions, which you can either return to later, use to build or find a lasting overall solution, -or share with your trusted doctor or counselor.-NOTE THAT NONE of YOUR DATA is SHARED or STORED after using this program.-###########-WARNING: Only way to QUIT the program is to work through the entire process!-###########}
 v:vREG:-|h*!:vWELCOME:vREG
 d:-|i*:
 
@@ -7359,7 +7359,7 @@ k!:^[ ]*$
    \end{lstlisting}
    
   \end{tcolorbox}
-    \captionof{figure}{TEA APPLICATION: MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.2}
+    \captionof{figure}{TEA APPLICATION: MHDP: MENTAL HEALTH DIAGNOSIS PROGRAM v1.3}
   \label{FIGJEXA}
   
   }
@@ -9945,7 +9945,7 @@ v:vCMD:"function predictNextLinear(data) {
   // Predict next value
   const nextValue = m * t + c;
 
- // Compute R² score (coefficient of determination)
+ // Compute R2 score (coefficient of determination)
   let ssTot = 0, ssRes = 0;
   for (let i = 0; i < n; i++) {
     const xi = i + 1;
@@ -10052,7 +10052,7 @@ v:vCMD:"function predictNextPolynomial(data, degree = 3) {
   // Predict next value
   const nextValue = coeffs.reduce((sum, a, i) => sum + a * t ** i, 0);
 
-  // Compute R² score
+  // Compute R2 score
   const meanY = y.reduce((sum, yi) => sum + yi, 0) / n;
   const ssTot = y.reduce((sum, yi) => sum + (yi - meanY) ** 2, 0);
   const ssRes = x.reduce((sum, xi, i) => {
@@ -20770,9 +20770,6 @@ v:vBanner | i:
 When we run that minimal TEA operating system program, we only get the following output (an ASCII-art banner that reads ``TEA" in a large beatiful custom font), accompanied by an input prompt with the message ``Welcome to TEA OS v1.0.0", and whose input value becomes the output that the TOS program returns, and then the system quits. So, that's basically it for starters!
 
 
-
-
-
 \begin{figure}[H]
   \begin{center}
    \includegraphics[width=0.8\textwidth,]{resources/images/teaos/teaos_bootscreen_on_teamobile.png}\\
@@ -20784,7 +20781,97 @@ When we run that minimal TEA operating system program, we only get the following
 
 
 
+\vspace{2em}
 
+Progress is being made on this project, and as of this writing, the latest complete reference implementation source of the TEA Operating System is as shown hereafter...
+
+
+\vspace{2em}
+
+{
+ \Large
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TOS Complete Source-Code, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+#!/usr/bin/tttt -fc
+I!:{oooooooo_________________
+___oo_____ooooo___ooooo__
+___oo____oo____o_oo___oo_
+___oo____ooooooo_oo___oo_
+___oo____oo______oo___oo_
+___oo_____ooooo___oooo_o_
+_________________________}                                     
+x!:{
+Welcome to TEA OS v1.0.1}
+v:vBanner | i:
+
+###| The above is the original bootscreen
+###| The rest of the story follows..
+
+*:{========| PREAMBLE |========}
+L:lPREAMBLE_START
+
+# Of course, this is TEA programming
+We can write verbatim documentation and 
+comments in the most natural of ways without
+worry or concern. We sometimes shall 
+do just that. 
+
+#---[ ABOUT TEA OS ]
+ARCHITECT: J. Willrich Lutalo <jwl@nuchwezi.com>
+SINCE: 9th APRIL, 2026
+INTENT: To manifest a true general purpose, lightweight, minimal but powerful operating system that can essentially just fit inside a single string; to see what the limits of the mathematics of TRANSFORMATICS might be, and what we surely could accomplish with its proper use via modern portable computers.
+PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com
+
+#---[ GLOBAL CONSTANTS ]
+V:vSLOGAN:{TEA OS! T can fit in a string!}
+V:vDELIM:{_________________________}
+V:vDELIM2:{=o==o==o==o==o==o==o==o==o}
+
+
+#---[ GLOBAL VARIABLES ]
+V:vUSERNAME:{user}
+
+#---[ SOME FUNCTIONS ]
+
+# for presenting pretty message prompt..
+V:fPROMPT:"
+v:vMSG # stores AI at invocation
+v:vD2:{=o==o==o==o==o==o==o==o==o}
+y:vMSG|x!:{ }|v:vMSG # affix space at prompt end
+i!:{} | g*:{
+}:vD2:vMSG
+i: # returns input..
+"
+
+L:lPREAMBLE_END
+*:{=================================}
+
+*:{========| SYSTEM SHELL |========}
+L:lSYS_SHELL_START
+# greet user via stored name..
+Y!@:vUSERNAME | F!:^0$:lGREET_USER
+# Username not yet set, prompt and store
+L:lSET_USERNAME
+I!:{Please set a Username:}|E*:fPROMPT
+t!.:|v:|v!:|f:^0$:lSET_USERNAME
+y:|V@:vUSERNAME # store in database
+
+L:lGREET_USER
+Y@:vUSERNAME | V:vUSERNAME
+X:{Hello, }|X!:{. Welcome to TEA OS!}
+E*:fPROMPT
+
+# C!@:vUSERNAME # should we delete username?
+L:lSYS_SHELL_END
+#:{=================================}
+   \end{lstlisting}
+  \end{tcolorbox}
+  \caption{TEA PROGRAM: TEA Operating System v1.0.1}
+  \label{FIGTOS1}
+}
+
+
+\vspace{2em}
 
 
 
