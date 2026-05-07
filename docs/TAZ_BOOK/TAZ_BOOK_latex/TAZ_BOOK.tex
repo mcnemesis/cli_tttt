@@ -552,9 +552,46 @@ So, based on the grammar rules by which we can form valid TEA Instructions (see 
 \item \texttt{*!.} --- essentially, if TC is ``A", we get ``A*!.:", if ``B", then ``B*!.:" etc.
 \end{enumerate}
 
-Which gives us \textbf{9 TCQ variants}\footnote{Well, \textit{not just exactly} 9, because there are some exceptions, such as when we have \texttt{u*!.:vNAME} introduced in \textbf{\hyperref[TABSEMU]{Table \ref{TABSEMU}}} --- when we actually combine all 4 TCQ elements in one signature, and given the distinct TCQ symbols are 4, it makes for a possibility of 4! = 24 potential combinations!}, and thus a total of $26 \times 9 \rightarrow 234$ TEA Command Variations, and a total of $26 \times 4! \rightarrow 624$ in case we only focus on the theoretically possible command variations allowing for all possible TCQ combinations.
+Which gives us \textbf{9 TCQ variants}\footnote{Well, \textit{not just exactly} 9, because there are some exceptions, such as when we have \texttt{u*!.:vNAME} introduced in \textbf{\hyperref[TABSEMU]{Table \ref{TABSEMU}}} --- when we actually combine all 3 TCQ elements in one signature, and given the distinct TCQ symbols are 4, it makes for a possibility of $2^4$ = 16 potential combinations!}. However, and theoretically, we might also be able to have all 4 qualifiers utilized or none.
 }
 \end{enumerate}
+
+
+% Command-space bound (qualifiers in fixed precedence)
+\noindent Under the stated rules—26 case‑insensitive letters, qualifiers drawn from the set
+$\{*,!,.,@\}$, each qualifier optional and used at most once, and when multiple qualifiers
+appear they must follow the fixed precedence order \texttt{* ! . @}—each qualifier is either
+present or absent, giving $2^{4}=16$ qualifier forms per letter (including the empty form).
+Multiplying by the 26 letters yields a total of
+
+
+\[
+26 \times 2^{4} = 416
+\]
+
+
+distinct TEA commands. This count includes the unqualified letter form and all combinations
+of one, two, three, or all four qualifiers written in the canonical order.
+
+\begin{table}[ht]
+  \centering
+  \caption{Command-space combinatorics for TEA (fixed qualifier precedence).}
+  \label{tab:tea-command-space}
+  \begin{tabular}{@{}ll@{}}
+    \hline
+    \textbf{Attribute} & \textbf{Value} \\
+    \hline
+    Letters (case) & 26 (case‑insensitive) \\
+    Qualifier set & \(\{*,!,.,@\}\) \\
+    Qualifier rule & Optional; no repetition; fixed precedence \texttt{* ! . @} \\
+    Qualifier forms per letter & \(2^{4}=16\) \\
+    Total distinct commands & \(\mathbf{416}\) \\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+
 
 Thus, without delving directly here into what each of those TEA Commands does, which ones are INERT and which are not, what \textbf{instruction signatures} each supports or allows\footnote{Some TC might accept just one parameter or argument, while others might allow two or more --- delimited by ``:".} etc --- stuff we are going to cover well once we dive into the breakdown of each TEA primitive command's specification and semantics (which is exactly what the TEA TAZ is about), we at least know, we have a minimum of 234 possible distinct TEA commands to explore! That alone, definitely justifies the need for this manual, and an insight into the details of each of the 26 TP, a: to z:
 
@@ -567,7 +604,7 @@ Of course, not to loose hope for those who wish to memorize the entire TEA instr
 \vspace{2em}
 
 
-But also, and out of experience, one must come to appreciate that despite the total number of command variants being seemingly ``large"\footnote{Note that, compared to traditional, popular and mainstream languages such as \textbf{the C programming language}, TEA only has a total of 26 ``keywords" while C has 32 reserved keywords\cite{copilot_assistant}. Also, while the total theoretical number of possible commands or instructions in TEA is between 234 and 624 and that it cannot raise any further than that, and yet, for languages like C, even limiting ourselves to just the standard libraries, one finds that despite the estimate of the distinct functions one must master being between 250 to 300\cite{copilot_assistant}, and yet, with each new revision or extension of the language, that number can keep growing or changing, but also that, one must realize that many real-life applications would also need non-standard library functions or packages to work well, and so that, the total number of commands or instructions one needs worry about in such languages actually has no upper limit!}, and yet, once one learns what each of the 26 command-spaces is for, and that one realizes that for example, ``A:" will operate on AI directly at word level, ``A!:" at character level, while most TEA commands with ``*" qualifier do what the others do but instead referencing a value stored in a vault, etc. That one needs to only memorize just a few basic TEA instructions, and then they can write most arbitrary algorithms and TEA program without ever needing to consult this manual in its entirety.
+But also, and out of experience, one must come to appreciate that despite the total number of command variants being seemingly ``large"\footnote{Note that, compared to traditional, popular and mainstream languages such as \textbf{the C programming language}, TEA only has a total of 26 ``keywords" while C has 32 reserved keywords\cite{copilot_assistant}. Also, while the total theoretical number of possible commands or instructions in TEA is between 234 and 416 and that it cannot raise any further than that, and yet, for languages like C, even limiting ourselves to just the standard libraries, one finds that despite the estimate of the distinct functions one must master being between 250 to 300\cite{copilot_assistant}, and yet, with each new revision or extension of the language, that number can keep growing or changing, but also that, one must realize that many real-life applications would also need non-standard library functions or packages to work well, and so that, the total number of commands or instructions one needs worry about in such languages actually has no upper limit!}, and yet, once one learns what each of the 26 command-spaces is for, and that one realizes that for example, ``A:" will operate on AI directly at word level, ``A!:" at character level, while most TEA commands with ``*" qualifier do what the others do but instead referencing a value stored in a vault, etc. That one needs to only memorize just a few basic TEA instructions, and then they can write most arbitrary algorithms and TEA program without ever needing to consult this manual in its entirety.
 
 
 \section{INSTALLATION and Basic USAGE Instructions}
