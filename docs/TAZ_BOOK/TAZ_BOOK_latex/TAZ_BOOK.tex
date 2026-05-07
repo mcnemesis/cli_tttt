@@ -12693,7 +12693,8 @@ v:vDESCRIPTION:{
 # ADVANCED MATHEMATICS COMPUTER: 
 # AMC v3.1
 ###############################
-This program is meant to help you quickly reduce mathematical expressions to their numerical or boolean values. You might also think of it as a simple advanced calculator.}
+This program is meant to help you quickly reduce mathematical expressions to their numerical or boolean values. 
+You might also think of it as a simple advanced calculator.}
 
 #------[ DEFINE CONSTANTS ]
 v:vDELIM:{
@@ -12728,15 +12729,15 @@ v:vANSWER_ORIG:{0} # hold last evaluated answer value
 #------[ Get Input ]
 v:vINPUT #store any external input originally provided
 # show the welcome message
-y:vDESCRIPTION | i*:
+y:vDESCRIPTION | i:
 # then prompt for input if blank...
 y:vINPUT | t.: | v:vINPUT | f:^$:lPROMPT:lCOMPUTE
 
 l:lHELP
-y:vTEA_MATH_EXPRESSIONS | i*: #show AMC TME expression guidelines..
+y:vTEA_MATH_EXPRESSIONS | i: #show AMC TME expression guidelines..
 
 l:lPROMPT
-y:vPROMPT | x*:vNL | x*:vDELIM | x*:vREPORT | i*: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
+y:vPROMPT | x*:vNL | x*:vDELIM | x*:vREPORT | i: | v:vINPUT | t.: | f:^$:lPROMPT:lCOMPUTE
 
 l:lCOMPUTE
 f:^[qQ]$:lFINISH
@@ -12746,7 +12747,7 @@ r*!:vINPUT:vREGEX_ANS:vANSWER_ORIG #overwrite answer variable
 r.: | v:vANSWER | v:vANSWER_ORIG #evaluate TME and store answer
 
 #------[ Present Results ]
-y:vEXP_PREFIX | x*!:vDELIM | x*!:vINPUT | x*!:vDELIM | x*!:vEXP_SUFFIX | x*!:vANSWER | v:vREPORT | i*:
+y:vEXP_PREFIX | x*!:vDELIM | x*!:vINPUT | x*!:vDELIM | x*!:vEXP_SUFFIX | x*!:vANSWER | v:vREPORT | i:
 
 # done processing, prompt for next task...
 j:lPROMPT
