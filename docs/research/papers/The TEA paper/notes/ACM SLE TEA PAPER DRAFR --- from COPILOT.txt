@@ -1,0 +1,186 @@
+\documentclass[sigplan,screen]{acmart}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{microtype}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
+\title{TEA: The Transforming Executable Alphabet — A Minimal Instruction Set for Sequence Transformer Chaining}
+
+\author{Joseph W. Lutalo}
+\affiliation{%
+  \institution{Nuchwezi Research Laboratory}
+  \country{Uganda}}
+\email{joseph@example.org}
+
+\begin{document}
+\begin{abstract}
+We introduce the Transforming Executable Alphabet (TEA), a compact, general-purpose programming language designed around a \emph{sequence-transformer-chaining} paradigm and optimized for text-processing tasks. TEA's instruction set is intentionally minimal: the 26 Latin letters form the core commands, optionally qualified by a small set of symbols, producing a bounded global command space that enables concise programs, easy memorization, and powerful composition. TEA has been implemented across platforms (Python and JavaScript interpreters), supports embedded persistent storage, web client primitives, and a rich text-processing standard library. We present the language design, formal semantics for instruction chaining, implementation strategies, representative applications (40+ sample programs), and an evaluation of expressiveness, concision, and cross-platform performance. We conclude with a discussion of TEA's potential roles in education, low-resource mobile programming, and domain-specific sequence analysis.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+Modern software engineering increasingly demands languages that are compact, portable, and expressive for text and sequence manipulation. We present TEA (Transforming Executable Alphabet), a language designed from first principles to make sequence transformation concise, composable, and accessible on constrained devices.
+
+\blockquote{``TEA is based on the idea of an instruction set whose core is just the 26 letters of the Latin Alphabet, and which we can qualify or decorate using a specific set of symbols known as command qualifiers, '.', '!', '*' and '@', so as to specify 'qualified commands'.''} 
+
+TEA began as a mobile-first text-processing prototype and has evolved into a cross-platform language with interpreters in Python and JavaScript, a growing standard library, and a documented instruction set (the TEA TAZ). The language targets scenarios where compactness, offline capability, and text-centric transformations are primary concerns: mobile scripting, embedded text-processing, lightweight data engineering, and domain-specific sequence analysis.
+
+\section{Design Goals and Rationale}
+The TEA design is driven by the following goals:
+
+\begin{itemize}
+  \item \textbf{Minimal, memorable instruction set.} Use the 26 letters as primary command spaces to reduce cognitive load.
+  \item \textbf{Composability.} Enable chaining of sequence transformers to express complex pipelines succinctly.
+  \item \textbf{Conciseness.} Allow programs to be expressed as single strings when needed (minified form).
+  \item \textbf{Cross-platform portability.} Provide interpreters for web, mobile, desktop, and server environments.
+  \item \textbf{Practical tooling.} Ship a standard library, sample programs, and a reference manual (TEA TAZ).
+\end{itemize}
+
+These goals reflect TEA's origin as a mobile-first language for low-resource environments and its subsequent maturation into a general-purpose text-processing language.
+
+\section{Language Overview}
+\subsection{Lexical and Syntactic Conventions}
+A TEA instruction consists of a \emph{key letter} (A–Z or a–z), optionally qualified by one of the qualifier symbols \texttt{. ! * @}, followed by a colon \texttt{:} and zero or more parameters separated by colons. Instructions may be placed on separate lines (sanitized form), combined on a single line separated by vertical bars \texttt{|} (minified form), or mixed with comments beginning with \texttt{\#}.
+
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+i!:Hello World         # hello world (interactive print)
+n:1000:10              # generate random numbers between 10 and 1000
+i!:{Name?}|i:|x:{Hi }  # prompt for name and greet
+\end{lstlisting}
+
+\subsection{Command Space and Qualifiers}
+Each letter denotes a \emph{command space} (e.g., \texttt{i:} for I/O, \texttt{n:} for numeric utilities, \texttt{r.:} for rewrite/math). Qualifiers modify semantics (for example, \texttt{.} for expression rewriting, \texttt{!} for interactive variants). The global maximum number of distinct qualified commands is bounded (26 letters $\times$ 4 qualifiers = 104, times case variants and other decorations yields the documented upper bound of 624 command forms).
+
+\section{Formal Semantics (Sketch)}
+We model a TEA program as a sequence of \emph{transformers} \(T_1, T_2, \dots, T_k\). Each transformer \(T_i\) is a partial function from sequences to sequences:
+
+
+\[
+T_i : \Sigma^* \rightharpoonup \Sigma^*
+\]
+
+
+where \(\Sigma\) is the alphabet of TEA strings (UTF-8). Program execution composes these transformers left-to-right:
+
+
+\[
+P(s) = (T_k \circ \dots \circ T_2 \circ T_1)(s)
+\]
+
+
+We define a small-step operational semantics for instruction evaluation and a deterministic evaluation order for parameter parsing and side-effecting commands (I/O, persistent storage, network).
+
+\section{Implementation}
+\subsection{Reference Interpreters}
+Reference interpreters exist in Python (command-line) and JavaScript (web). The interpreters implement a modular pipeline:
+\begin{enumerate}
+  \item \textbf{Lexing/Parsing:} Tokenize instructions, qualifiers, parameters, and comments.
+  \item \textbf{Normalization:} Convert sanitized/minified/mixed forms into an internal instruction list.
+  \item \textbf{Execution Engine:} Evaluate transformers sequentially, manage state, I/O, and persistent storage.
+  \item \textbf{Standard Library:} Implementations for each command space (A–Z) with documented semantics.
+\end{enumerate}
+
+The TEA GitHub repository hosts the reference implementations, sample programs, and documentation. 
+
+\subsection{Persistent Storage and Web Primitives}
+TEA includes a lightweight embedded database for portable scripts and primitives for HTTP GET/POST with custom headers and content processing. These features enable TEA programs to act as small web clients, API glue, and offline-capable utilities.
+
+\section{Tooling, Ecosystem, and Examples}
+TEA ships with:
+\begin{itemize}
+  \item \textbf{TEA TAZ:} The language manual and command-space specification.
+  \item \textbf{40+ sample programs:} Examples spanning calculators, data engineering, chatbots, games, cryptography, and a proof-of-concept TEA OS.
+  \item \textbf{Mobile app (TTTT):} A compact TEA terminal for Android enabling offline development.
+\end{itemize}
+
+Representative examples include:
+\begin{itemize}
+  \item \textbf{Hello world:} \texttt{i!:Hello World}
+  \item \textbf{Random numbers:} \texttt{n:1000:10}
+  \item \textbf{Expression rewrite:} \texttt{r.:{1/2*(1 + 5(2-1))}}
+  \item \textbf{Anagram/shuffle:} \texttt{a:{one two three go}}
+\end{itemize}
+
+\section{Evaluation}
+We evaluate TEA along three axes: \textbf{concision}, \textbf{expressiveness}, and \textbf{performance}.
+
+\subsection{Concision}
+TEA programs are often extremely short in character count. The Hello World example demonstrates minimal syntactic overhead. We measure program length (characters) for a set of canonical tasks and compare TEA to Python and JavaScript implementations (placeholders for empirical data).
+
+\subsection{Expressiveness}
+Using the sequence-transformer chaining model, TEA expresses many text-processing pipelines succinctly. We present case studies: a text-based adventure game (``Boobs 'N' Traps''), a chatbot prototype (ZHA), and a DNA/RNA sequence analysis pipeline (from the Applying Transformatics in Genetics work). These case studies show TEA's ability to encode domain logic compactly.
+
+\subsection{Performance}
+Preliminary benchmarks compare the Python and JavaScript interpreters on representative tasks (string transformation throughput, small numeric workloads, HTTP client tasks). Results indicate interpreters are competitive for lightweight tasks; further optimization and JIT compilation are future work.
+
+\section{Case Studies}
+\subsection{Text Adventure: Boobs 'N' Traps}
+The game demonstrates state-machine encoding, input parsing, and reward logic implemented in TEA; the game state machine and design notes are documented. (See Lutalo, Game State Machine, Zenodo.) 
+
+\subsection{Sequence Analysis and Transformatics}
+TEA has been applied to sequence analysis workflows in genetics; the language's sequence transformer chaining maps naturally to common bioinformatics pipelines. (See \emph{Applying Transformatics in Genetics}.) 
+
+\subsection{Chatbot and q-AGI Prototyping}
+The ZHA chatbot demonstrates TEA's suitability for rapid prototyping of conversational agents using compact transformation pipelines and embedded persistence.
+
+\section{Discussion}
+\subsection{Strengths}
+\begin{itemize}
+  \item \textbf{Memorability:} 26-letter core reduces learning friction.
+  \item \textbf{Compactness:} Minified programs fit in single strings, enabling embedding in constrained contexts.
+  \item \textbf{Portability:} Interpreters for web and mobile enable broad deployment.
+\end{itemize}
+
+\subsection{Limitations and Risks}
+\begin{itemize}
+  \item \textbf{Readability:} Extreme concision can reduce readability for complex programs; tooling (formatters, debuggers) is essential.
+  \item \textbf{Type and correctness:} The dynamic, transformer-based model requires careful testing and formal verification for safety-critical domains.
+  \item \textbf{Ecosystem maturity:} TEA's ecosystem is nascent; adoption depends on documentation, libraries, and community tooling.
+\end{itemize}
+
+\section{Related Work}
+TEA intersects with minimal instruction-set languages, concatenative languages, and domain-specific text-processing languages. It draws inspiration from prior work on DSL design and the theory that many programming tasks reduce to text/sequence processing (see Lutalo, Software Language Engineering — Text Processing Language Design, 2024). Additional related projects include DNAP and other lightweight scripting languages.
+
+\section{Conclusion and Future Work}
+We presented TEA, a compact, sequence-transformer-chaining language designed for concise text processing and broad portability. TEA's minimal instruction set, bounded command space, and cross-platform interpreters make it a promising tool for low-resource programming, rapid prototyping, and domain-specific sequence analysis. Future work includes:
+\begin{itemize}
+  \item Formalizing a complete operational semantics and type system for safe composition.
+  \item Expanding the standard library and community-contributed modules.
+  \item Performance optimizations and optional ahead-of-time/JIT compilation.
+  \item User studies on learnability and productivity in low-resource environments.
+\end{itemize}
+
+\section*{Acknowledgments}
+Thanks to the TEA project contributors and the Nuchwezi Research Laboratory community for feedback and testing.
+
+\section*{Appendix: Direct excerpts from the project notes}
+\noindent ``TEA is based on the idea of an instruction set whose core is just the 26 letters of the Latin Alphabet, and which we can qualify or decorate using a specific set of symbols known as command qualifiers, '.', '!', '*' and '@', so as to specify 'qualified commands'.'' 
+
+\noindent ``Currently, TEA has been used to prototype no less than 40 non-trivial 'standard' generic, example programs, each of which, thanks to the way TEA code can be stored, can fit within a single string, and which programs span domains such as advanced mathematics calculators, statistical analysis, data engineering, human support chatbots, edutainment games, digital art generators, information security tool such as secure password generators, encryption and decryption tools, communication utilities such as an email client, programming utilities such as static code analysis, tools for esoteric science explorations and even a new operating system known as the 'TEA OS'.'' 
+
+\bibliographystyle{ACM-Reference-Format}
+\begin{thebibliography}{9}
+\bibitem{taz}
+J. W. Lutalo. \emph{TEA TAZ - Transforming Executable Alphabet A: to Z: COMMAND SPACE SPECIFICATION}, 2024. (TEA manual and command-space specification).
+
+\bibitem{git}
+J. W. Lutalo. TEA GitHub Project — Reference Implementation. \url{https://github.com/mcnemesis/cli_tttt/}, 2024.
+
+\bibitem{transformatics}
+J. W. Lutalo. \emph{Applying TRANSFORMATICS in GENETICS}. I*POW, 2025.
+
+\bibitem{game}
+J. W. Lutalo. GAME STATE MACHINE (BOOBS 'N' TRAPS). Zenodo, 2025.
+
+\bibitem{sle-paper}
+J. W. Lutalo. Software Language Engineering — Text Processing Language Design, Implementation, Evaluation Methods. Preprints, 2024.
+
+\bibitem{debug}
+J. W. Lutalo. Concerning Debugging in TEA and the TEA Software Operating Environment. 2025.
+
+\end{thebibliography}
+
+\end{document}

@@ -16202,7 +16202,7 @@ In case you are likewise interested, go checkout the call talkshow via: \url{htt
 
 v: & Store AI into the default vault (unnamed vault) – stores the EMPTY STRING (TEA Null/None value) if AI is not yet set. Returns AI\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{v:vNAME\\v:vNAME:vVALUE} & With only vNAME specified, store AI in a vault with that name. With vVALUE specified, store that instead of AI. Returns AI\\
+\rowcolor{lightgray}\bfseries \makecell[l]{v:vNAME\\v:vNAME:VALUE} & With only vNAME specified, store AI in a vault with that name. With VALUE specified, store that instead of AI. Returns AI\\
 
 v!: & Return the length of what is stored in the default vault.\\
 
@@ -16210,14 +16210,14 @@ v!: & Return the length of what is stored in the default vault.\\
 \rowcolor{lightgray}\bfseries \makecell[l]{v!:STR} & Return the length of string STR\\
 
 
-\makecell[l]{v*:vNAME\\v*:vNAME:vVALUE} & Store AI or value vVALUE in vault vNAME overriding where necessary. Returns AI\\
+\makecell[l]{v*:vNAME\\v*:vNAME:VALUE} & Store AI or value VALUE in vault vNAME overriding where necessary. Returns AI\\
 
-\rowcolor{lightgray}\bfseries \makecell[l]{v*!: vNAME} & Return the length of what is stored in the vault vNAME. Without vNAME, is like v!:\\
+\rowcolor{lightgray}\bfseries \makecell[l]{v*!:vNAME} & Return the length of what is stored in the vault vNAME. Without vNAME, is like v!:\\
 
-\makecell[l]{v@:vNAME\\v@:vNAME:vVALUE} & Store AI or value vVALUE in the \textbf{TEA DATABASE} --- a No-SQL/vault-like persistent storage, using key vNAME and overriding where necessary. Returns AI\\
+\makecell[l]{v@:vNAME\\v@:vNAME:VALUE} & Store AI or value VALUE in the \textbf{TEA DATABASE} --- a No-SQL/vault-like persistent storage, using key vNAME and overriding where necessary. Returns AI\\
 
 
-\rowcolor{lightgray}\bfseries \makecell[l]{v!@: vNAME} & Return the length of what is stored in the DATABASE with key vNAME.\\
+\rowcolor{lightgray}\bfseries \makecell[l]{v!@:vNAME} & Return the length of what is stored in the DATABASE with key vNAME.\\
 
  \hline
 \end{tabular}

@@ -1,0 +1,607 @@
+I want you to regenerate that minimal tabulation of the 26 command spaces in the TEA language instruction set, as you have done above, presenting the command space letter such as "A:", its name such as "Anagrammatize" and brief purpose statement that can fit nicely in and be relevant in our context of an acm sle paper. However, since I already had multiple latex tables presenting the names and purposes for each of these command spaces, I would prefer that I share them verbatim, and you help extract these summarized information from that (extract "A:", name, and purpose statement (the tables I present will list multiple purposes for each command space, you can process and distill a single purpose)). Then present to me the final latex table to use in my acm sle paper.
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{ANAGRAMMATIZE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Compute anagrams
+	\item Shuffle lists
+	\item Randomize letters
+	\item Create randomness
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{A:}}
+  \label{TABTAZA}
+\end{table}
+
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{BASIFY}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Compute the Lexical Base of input
+	\item Reduce input/list to distinct symbols, sorted by their order of first occurrence in the input
+	\item Reduce input to distinct symbols, sorted by their lexical/alphabetical order
+	\item Implementing FIFOs
+	\item Generating lexical keys
+	\item Comparing things by their lexical keys
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{B:}}
+  \label{TABTAZB}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{Clear}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Clear working memory
+	\item Reset all vaults (TEA variables in memory)
+	\item Reset particular/named vaults
+	\item Reset AI
+	\item Guarantee subsequent instructions set memory independently of earlier instructions
+	\item Automagically create and initialize named vaults with the EMPTY STRING value.
+	\item Clear or Reset \textbf{TEA Database} values.
+	\item Delete TEA Database entries.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{C:}}
+  \label{TABTAZC}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{DELETE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Delete something from the AI
+	\item Delete everything BUT something from the AI
+	\item Implement Filters
+	\item Reduce Strings to Specific Patterns
+	\item Eliminate All White-space
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{D:}}
+  \label{TABTAZD}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{EVALUATE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Process memory as though it were a TEA program
+	\item A self-contained function/procedure facility for TEA programs
+	\item Securely processing External/Imported TEA source-code
+	\item Mechanism for Securely Executing Auto-Generated TEA Code
+	\item Facility for Self-Modifying Programs
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{E:}}
+  \label{TABTAZE}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{FORK}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Conditionally Jump across a TEA program
+	\item Implementing Branching Logic in a program
+	\item How to Leverage Code Encapsulation or Closures Without Using \textbf{E:}
+	\item Branching Logic Based on Pattern Matching --- applies \textbf{\hyperref[SECREGEXP]{TEA Regular Expressions}}
+	\item Singular or Binary Branching Mechanism\footnote{Unlike \textbf{J:} which can only implement \textbf{singular jump instructions}.}
+	\item A Logic-Only Instruction whose core purpose is \textbf{to enable logic about state of the active TEA program} --- via tests or pattern-matching against the AI.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{F:}}
+  \label{TABTAZF}
+\end{table}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{GLUE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Bind things together
+	\item Bind elements in AI using nothing --- eliminate white-space
+	\item Perform pattern substitution in a text
+	\item Eliminate new-line characters
+	\item Eliminate all punctuation and white-space
+	\item Construct strings using variables
+	\item Reverse or opposite of \text{H:}
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{G:}}
+  \label{TABTAZG}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{HEW}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Explode or split up AI using something
+	\item Help chop-up strings
+	\item Help introduce new-lines into text based on a pattern --- {\small great for text game UI and visual art}
+	\item Help implement loss-less substitutions --- both pattern and substitute retained in output
+	\item Reverse some effects of \textbf{G:}
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{H:}}
+  \label{TABTAZH}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{INTERACT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Explicitly set the Active Input (AI)
+	\item Conditionally set AI (set AI if it currently is empty or unset)
+	\item Prompt for User Input at run-time
+	\item Set the Prompt Message ahead of Next Prompt
+	\item Force AI to assume a specific value.
+	\item Reset the AI
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{I:}}
+  \label{TABTAZI}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{JUMP}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Jump across the TEA program
+	\item Process TEA \textbf{LABEL BLOCKS} --- {\small the only other TEA primitive that does this apart from \texttt{F:}}
+	\item Implement Code Branching Logic based on STATIC information in the program source
+	\item Another Way to Exploit Closures and Name-Spaces in TEA programming
+	\item Unconditionally jump/loop back to the START of a TEA program
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{J:}}
+  \label{TABTAZJ}
+\end{table}
+
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{KEEP}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item \textbf{Process AI at line-level} --- {\small only TEA instruction that does this, and all its use-cases center around this.}
+	\item Conditionally filter out the contents of AI
+	\item Keep only what matters in a text, based on a user-specified pattern
+	
+	\item Keep only lines that DO NOT MATCH a given PATTERN
+	\item Construct DYNAMIC FILTERS
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{K:}}
+  \label{TABTAZK}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{LABEL}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Explicitly mark sections in a TEA Program accessible by unique names
+	\item \textbf{Facilitate Conditional Branching} --- {\small only TEA instruction that does this}
+	\item Create Code-Blocks or Label-Blocks
+	\item TEA facility to enable code encapsulation
+	\item A Primitive Procedure or Function Facility
+	\item Allowing Computable Formalisms like Procedural Polymorphism
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{L:}}
+  \label{TABTAZL}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{MIRROR}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Return the AI reflected about some axis
+	\item Laterally invert text.
+	\item Reverse the order of ordered symbols.
+	\item Reverse the order of ordered words.
+	\item Facilitate vertical inversion of multi-line text --- useful in ASCII ART
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{M:}}
+  \label{TABTAZM}
+\end{table}
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{NUMBER}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Generate a Random Number using some criteria.
+	\item Reading Entropy.
+	\item Creating Information/Data \textit{Ex Nihilo}.
+	\item Facilitating Mathematical Modeling or Simulation.
+	\item A basis for Stochastic Quantification and Stochastic Analysis using TEA.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{N:}}
+  \label{TABTAZN}
+\end{table}
+
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{ORDER}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Sort SPACE-DELIMITED ITEMS
+	\item Order, or rather, Smartly Sort things.
+	\item Sort Numbers by Quantity.
+	\item Sort Words Lexically (by Alphabetical Order)
+	\item Sort Sequences by Lexical Order of Characters
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{O:}}
+  \label{TABTAZO}
+\end{table}
+
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{PERMUTATE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Generate unique permutations of Strings
+	\item Generate Random Strings
+	\item Generate Strings of a Particular Structure and Alphabet
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{P:}}
+  \label{TABTAZP}
+\end{table}
+
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{QUIT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Quit a TEA program
+	\item Unconditionally quit a TEA program
+	\item Quit a TEA program upon some condition
+	\item Facilitate TEA program debugging and profiling --- via \textit{break-point}-like \textbf{cut-points}
+	\item Another logic and program control-flow mechanism in TEA programming.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{Q:}}
+  \label{TABTAZQ}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{REPLACE/REWRITE}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Replace things with other things
+	\item Perform \textbf{Text Substitution}
+	\item Automate Text Editing using Pattern Matching
+	\item \textbf{Replace Mathematical Expressions with Simple Terminal Values:} pure or fractional numbers or boolean values. Only TEA command designed for this.
+	\item Facilitate \textbf{Processing of Invisible Text!}
+	\item Facilitate a Powerful General-Purpose \textbf{Re-Write System} using TEA.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{R:}}
+  \label{TABTAZR}
+\end{table}
+
+
+\section{SEMANTICS of R:}
+\label{SECSEMR}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{SALT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Randomly Inject Space into strings
+	\item Randomly Delete Characters from strings
+	\item Randomly Injecting some Text into a string
+	\item Randomly Deleting some Pattern from a string
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{S:}}
+  \label{TABTAZS}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{TRANSFORM}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Transform strings using certain [specific] methods.
+	\item Strip leading white space from a string.
+	\item Align [center or else] a multi-line text.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{T:}}
+  \label{TABTAZT}
+\end{table}
+
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{UNIQUEIFY}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Compute the unique projection of things.
+	\item Compute the \textbf{modal sequence statistic} via two methods.
+	\item Extract symbol sets from arbitrary text.
+	\item Identify all the unique words in a text.
+	\item Sort items (symbols or words) by their relative highest frequency --- a voting primitive.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{U:}}
+  \label{TABTAZU}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{VAULT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Store and enable operating on stored data.
+	\item The \textbf{variable facility for the TEA language} --- essentially, named storage access and writing.
+	\item Writing to anonymous (DEFAULT) storage 
+	\item Determining the size of stored items.
+	\item Performing Persistent (Database) Storage in TEA
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{V:}}
+  \label{TABTAZV}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{WEBIFY}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Perform Network Input/Output
+	\item Write/Output Data via HTTP(S) POST
+	\item Read/Input Data via HTTP(S) GET
+	\item Persist Active Program's Memory to External Endpoint
+	\item Potential Alternative to File I/O in TEA
+	\item Perform Complex Interactions with WEB APIs
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{W:}}
+  \label{TABTAZW}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{XENOGRAFT}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Affix things to things
+	\item Adding an Explicit Prefix or Suffix to AI
+	\item Multiplying Text --- such as affixing a string to itself
+	\item Reducing a Text --- such as halving it 
+	\item Another way to dynamically build parametric Texts
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{X:}}
+  \label{TABTAZX}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{YANK}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Reading Memory
+	\item Returning Data previously stored in a Vault --- essentially \textbf{the companion commands to \texttt{V:*} command space}.
+	\item Accessing Initial External User Input from anywhere in a TEA program
+	\item Determining the Length of Data in Vaults
+	\item Reading Persistent (TEA Database) Storage.
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{Y:}}
+  \label{TABTAZY}
+\end{table}
+
+
+
+\begin{table}[H]
+  \centering
+  \LARGE
+	\begin{tabular}[t]{|p{0.2\textwidth}|p{0.5\textwidth}}
+ 
+	\textbf{NAME} & \texttt{ZAP}\\
+	\hline
+	\textbf{Purpose} & \begin{enumerate}
+	\item Especially Do things in TEA using External Powers
+	\item The \textbf{Evaluate} command for non-TEA code
+	\item Case Transforms for Text
+	\item Introspect the TEA Environment
+	\end{enumerate}\\
+	\hline
+	              
+\end{tabular}
+\caption{General Objectives of TEA Primitive \textbf{Z:}}
+  \label{TABTAZZ}
+\end{table}

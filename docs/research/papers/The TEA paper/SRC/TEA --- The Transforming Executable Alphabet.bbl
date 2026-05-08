@@ -1,0 +1,346 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{24}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Barash(2020)]%
+        {barash2020exampledriven}
+\bibfield{author}{\bibinfo{person}{Mikhail Barash}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Example-Driven Software Language Engineering}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 13th International Conference on
+  Software Language Engineering (SLE '20)}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{Virtual, USA}, \bibinfo{pages}{1--7}.
+\newblock
+\href{https://doi.org/10.1145/3426425.3426945}{doi:\nolinkurl{10.1145/3426425.3426945}}
+
+
+\bibitem[Coblenz et~al\mbox{.}(2018)]%
+        {coblenz2018interdisciplinary}
+\bibfield{author}{\bibinfo{person}{Michael Coblenz}, \bibinfo{person}{Jonathan
+  Aldrich}, \bibinfo{person}{Brad~A. Myers}, {and} \bibinfo{person}{Joshua
+  Sunshine}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Interdisciplinary Programming Language Design}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2018 ACM SIGPLAN International
+  Symposium on New Ideas, New Paradigms, and Reflections on Programming and
+  Software (Onward! '18)}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{Boston,
+  MA, USA}, \bibinfo{pages}{1--15}.
+\newblock
+\href{https://doi.org/10.1145/3276954.3276965}{doi:\nolinkurl{10.1145/3276954.3276965}}
+
+
+\bibitem[Huberdeau et~al\mbox{.}(2024)]%
+        {huberdeau2024selfcompiling}
+\bibfield{author}{\bibinfo{person}{Laurent Huberdeau},
+  \bibinfo{person}{Cassandre Hamel}, \bibinfo{person}{Stefan Monnier}, {and}
+  \bibinfo{person}{Marc Feeley}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{The Design of a Self-Compiling C Transpiler
+  Targeting POSIX Shell}. In \bibinfo{booktitle}{\emph{Proceedings of the 17th
+  ACM SIGPLAN International Conference on Software Language Engineering (SLE
+  2024)}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{Vancouver, BC, Canada},
+  \bibinfo{pages}{70--83}.
+\newblock
+\href{https://doi.org/10.1145/3687997.3695639}{doi:\nolinkurl{10.1145/3687997.3695639}}
+
+
+\bibitem[Lutalo(2024a)]%
+        {Lutalo2024gtnc}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2024}\natexlab{a}.
+\newblock \showarticletitle{\textbf{A general theory of number cardinality}}.
+\newblock \bibinfo{journal}{\emph{Academia.edu}} (\bibinfo{date}{Jan}
+  \bibinfo{year}{2024}).
+\newblock
+\newblock
+\shownote{\url{https://www.academia.edu/43197243/}}.
+
+
+\bibitem[Lutalo(2024b)]%
+        {lutalo2024software}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2024}\natexlab{b}.
+\newblock \showarticletitle{\textbf{Software Language Engineering-Text
+  Processing Language Design, Implementation, Evaluation Methods}}.
+\newblock \bibinfo{journal}{\emph{Preprints}} (\bibinfo{year}{2024}).
+\newblock
+\href{https://doi.org/10.20944/preprints202410.0636.v2}{doi:\nolinkurl{10.20944/preprints202410.0636.v2}}
+
+
+\bibitem[Lutalo(2024c)]%
+        {cli_tttt}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2024}\natexlab{c}.
+\newblock \bibinfo{title}{\textbf{TEA GitHub Project | The Reference
+  Implementation of TEA (Transforming Executable Alphabet) computer programming
+  language}}.
+\newblock \bibinfo{howpublished}{\url{https://github.com/mcnemesis/cli_tttt/}}.
+\newblock
+
+
+\bibitem[Lutalo(2024d)]%
+        {Lutalo2024TEATAZ}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2024}\natexlab{d}.
+\newblock \showarticletitle{\textbf{TEA TAZ - Transforming Executable Alphabet
+  A: to Z: COMMAND SPACE SPECIFICATION}}.
+\newblock \bibinfo{journal}{\emph{Academia.edu}} (\bibinfo{year}{2024}).
+\newblock
+\urldef\tempurl%
+\url{https://www.academia.edu/122871672/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lutalo(2025a)]%
+        {lutalo_2025_trans_genetics}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{a}.
+\newblock \showarticletitle{\textbf{Applying TRANSFORMATICS in GENETICS}}.
+\newblock \bibinfo{journal}{\emph{I*POW}} (\bibinfo{date}{Aug}
+  \bibinfo{year}{2025}), \bibinfo{pages}{1--206}.
+\newblock
+\urldef\tempurl%
+\url{https://www.academia.edu/143516392/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lutalo(2025b)]%
+        {lutalo2025transformatic}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{b}.
+\newblock \bibinfo{title}{\textbf{Applying TRANSFORMATICS: Sequence
+  Generators}}.
+\newblock \bibinfo{howpublished}{\url{https://www.academia.edu/143116027/}}.
+\newblock
+
+
+\bibitem[Lutalo(2025c)]%
+        {ossipaper}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{c}.
+\newblock \showarticletitle{\textbf{Concerning A Special Summation That
+  Preserves The Base-10 Orthogonal Symbol Set Identity In Both Addends And The
+  Sum}}.
+\newblock \bibinfo{journal}{\emph{Academia}} (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{\url{https://www.academia.edu/129011291/}}.
+
+
+\bibitem[Lutalo(2025d)]%
+        {Lutalo2025debug}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{d}.
+\newblock \showarticletitle{\textbf{Concerning Debugging in TEA and the TEA
+  Software Operating Environment}}.
+\newblock \bibinfo{journal}{\emph{Computer Science and Mathematics: Software}}
+  (\bibinfo{year}{2025}).
+\newblock
+\href{https://doi.org/10.20944/preprints202502.1506.v2}{doi:\nolinkurl{10.20944/preprints202502.1506.v2}}
+
+
+\bibitem[Lutalo(2025e)]%
+        {lutalo_2025_rpg}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{e}.
+\newblock \bibinfo{title}{\textbf{GAME STATE MACHINE (BOOBS `N' TRAPS) - a
+  single-player text-adventure and strategy role-playing game (RPG)}}.
+\newblock
+\newblock
+\shownote{\url{https://doi.org/10.5281/zenodo.19479082}}.
+
+
+\bibitem[Lutalo(2025f)]%
+        {adtpaper}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{f}.
+\newblock \showarticletitle{\textbf{Introducing The Anagram Distance Statistic,
+  Ã, A Quantifier of Lexical Proximity For Base-10 o-SSI And Any Arbitrary
+  Length Ordered Sequences, Its Relevance And Proposed Applications in Computer
+  Science, Engineering And Mathematical Statistics}}.
+\newblock \bibinfo{journal}{\emph{Academia.edu}} (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{\url{https://www.academia.edu/130159505}}.
+
+
+\bibitem[Lutalo(2025g)]%
+        {lutalo_2025_grimlumtauto}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{g}.
+\newblock \bibinfo{booktitle}{\emph{\textbf{NOVUS MODERNUS GRIMOIRE LUMTAUTO
+  MAGIA}}}.
+\newblock \bibinfo{publisher}{I*POW}.
+\newblock
+\newblock
+\shownote{\textit{A Modern Grimoire of 5 Eternal Magickal Languages.}
+  \url{https://www.academia.edu/145086513}}.
+
+
+\bibitem[Lutalo(2025h)]%
+        {lnspaper}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{h}.
+\newblock \showarticletitle{\textbf{Philosophical and Mathematical Foundations
+  of A Number Generating System: The Lu-Number System}}.
+\newblock \bibinfo{journal}{\emph{PrePrints}} (\bibinfo{year}{2025}).
+\newblock
+\href{https://doi.org/10.20944/preprints202506.0763.v1}{doi:\nolinkurl{10.20944/preprints202506.0763.v1}}
+
+
+\bibitem[Lutalo(2025i)]%
+        {transformatics}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{i}.
+\newblock \showarticletitle{\textbf{The Theory of Sequence Transformers \&
+  their Statistics}: The 3 Information Sequence Transformer Families
+  (Anagrammatizers, Protractors, Compressors) and 4 New and Relevant
+  Statistical Measures Applicable to Them: Anagram Distance, Modal Sequence
+  Statistic, Transformation Compression Ratio and Piecemeal Compression Ratio.}
+\newblock \bibinfo{journal}{\emph{Academia}} (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{\url{https://www.academia.edu/136852057}}.
+
+
+\bibitem[Lutalo(2025j)]%
+        {Lutalo2025_transformatics_thesis}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{j}.
+\newblock \showarticletitle{\textbf{TRANSFORMATICS 101 - explained}}.
+\newblock \bibinfo{journal}{\emph{Thesis}} (\bibinfo{date}{October}
+  \bibinfo{year}{2025}), \bibinfo{pages}{20}.
+\newblock
+\urldef\tempurl%
+\url{https://www.academia.edu/144344109/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lutalo(2025k)]%
+        {Lutalo2025transpsy}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{k}.
+\newblock \showarticletitle{\textbf{Transformatics for PSYCHOLOGY}}.
+\newblock \bibinfo{journal}{\emph{PrePrints}} (\bibinfo{date}{9}
+  \bibinfo{year}{2025}).
+\newblock
+\href{https://doi.org/10.20944/preprints202510.0456.v1}{doi:\nolinkurl{10.20944/preprints202510.0456.v1}}
+
+
+\bibitem[Lutalo(2025l)]%
+        {lutalo2025unraveling}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{l}.
+\newblock \showarticletitle{\textbf{Unraveling Mysteries of The ZHA q-AGI
+  Chatbot: an Interview by ICC, of Fut. Prof. JWL and M*A*P Ade. Psymaz of
+  Nuchwezi}}.
+\newblock \bibinfo{journal}{\emph{Academia}} (\bibinfo{year}{2025}).
+\newblock
+\newblock
+\shownote{\url{https://www.academia.edu/129359195}}.
+
+
+\bibitem[Lutalo(2026)]%
+        {lutalo_2026_19995017}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2026}\natexlab{}.
+\newblock \showarticletitle{\textbf{Applying TRANSFORMATICS in GENETICS:
+  Sequence Analysis Using The Anagram Distance and the Modal Sequence
+  Statistic}}.
+\newblock In \bibinfo{booktitle}{\emph{Applying Transformatics in GENETICS}}.
+  \bibinfo{publisher}{Zenodo}.
+\newblock
+\href{https://doi.org/10.5281/zenodo.19995017}{doi:\nolinkurl{10.5281/zenodo.19995017}}
+
+
+\bibitem[Lutalo et~al\mbox{.}(2023)]%
+        {lutalo2023dnapsoe}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo},
+  \bibinfo{person}{Odongo~Steven Eyobu}, {and} \bibinfo{person}{Benjamin
+  Kanagwa}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{\textbf{DNAP: Dynamic Nuchwezi Architecture
+  Platform-A New Software Extension and Construction Technology}}.
+\newblock \bibinfo{journal}{\emph{authorea}} (\bibinfo{year}{2023}).
+\newblock
+\href{https://doi.org/10.36227/techrxiv.13176365.v1}{doi:\nolinkurl{10.36227/techrxiv.13176365.v1}}
+
+
+\bibitem[Lutalo and Oyana(2024)]%
+        {lutalo2024vosa}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo} {and}
+  \bibinfo{person}{Tonny Oyana}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{\textbf{VOSA: A Reusable and Reconfigurable Voice
+  Operated Support Assistant Chatbot Platform}}.
+\newblock \bibinfo{journal}{\emph{Computer Science \& Information Technology
+  (CSIT)}} \bibinfo{volume}{14}, \bibinfo{number}{8} (\bibinfo{date}{April 5}
+  \bibinfo{year}{2024}), \bibinfo{pages}{63--78}.
+\newblock
+\href{https://doi.org/10.5121/csit.2024.140803}{doi:\nolinkurl{10.5121/csit.2024.140803}}
+
+
+\bibitem[Yessenov et~al\mbox{.}(2013)]%
+        {yessenov2013colorful}
+\bibfield{author}{\bibinfo{person}{Kuat Yessenov}, \bibinfo{person}{Shubham
+  Tulsiani}, \bibinfo{person}{Aditya Menon}, \bibinfo{person}{Robert~C.
+  Miller}, \bibinfo{person}{Sumit Gulwani}, \bibinfo{person}{Butler Lampson},
+  {and} \bibinfo{person}{Adam~T. Kalai}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{A Colorful Approach to Text Processing by Example}.
+  In \bibinfo{booktitle}{\emph{Proceedings of the 26th Annual ACM Symposium on
+  User Interface Software and Technology (UIST '13)}}.
+  \bibinfo{publisher}{ACM}, \bibinfo{address}{St. Andrews, United Kingdom},
+  \bibinfo{pages}{349--358}.
+\newblock
+\href{https://doi.org/10.1145/2501988.2502040}{doi:\nolinkurl{10.1145/2501988.2502040}}
+
+
+\bibitem[Zaytsev(2020)]%
+        {zaytsev2020worstnightmare}
+\bibfield{author}{\bibinfo{person}{Vadim Zaytsev}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Software Language Engineers' Worst Nightmare}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 13th International Conference on
+  Software Language Engineering (SLE '20)}},
+  \bibfield{editor}{\bibinfo{person}{Ralf L{\"a}mmel},
+  \bibinfo{person}{Laurence Tratt}, {and} \bibinfo{person}{Juan De~Lara}}
+  (Eds.). \bibinfo{publisher}{ACM}, \bibinfo{address}{Virtual, USA},
+  \bibinfo{pages}{72--85}.
+\newblock
+\href{https://doi.org/10.1145/3426425.3426933}{doi:\nolinkurl{10.1145/3426425.3426933}}
+
+
+\end{thebibliography}
