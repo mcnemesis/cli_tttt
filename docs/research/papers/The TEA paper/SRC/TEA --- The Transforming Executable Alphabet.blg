@@ -32,6 +32,7 @@ Warning--page numbers missing in both pages and numpages fields in adtpaper
 Warning--empty address in lutalo_2025_grimlumtauto
 Warning--no number and no volume in lnspaper
 Warning--page numbers missing in both pages and numpages fields in lnspaper
+Warning--empty address in lutalo2025rock
 Warning--no number and no volume in transformatics
 Warning--page numbers missing in both pages and numpages fields in transformatics
 Warning--no number and no volume in Lutalo2025_transformatics_thesis
@@ -42,45 +43,45 @@ Warning--page numbers missing in both pages and numpages fields in lutalo2025unr
 Warning--empty address in lutalo_2026_19995017
 Warning--no number and no volume in lutalo2023dnapsoe
 Warning--page numbers missing in both pages and numpages fields in lutalo2023dnapsoe
-You've used 26 entries,
+You've used 27 entries,
             6273 wiz_defined-function locations,
-            1671 strings with 24094 characters,
-and the built_in function-call counts, 24156 in all, are:
-= -- 3467
-> -- 541
+            1675 strings with 24414 characters,
+and the built_in function-call counts, 24843 in all, are:
+= -- 3532
+> -- 556
 < -- 0
-+ -- 175
-- -- 203
-* -- 1495
-:= -- 2217
-add.period$ -- 138
-call.type$ -- 26
-change.case$ -- 145
++ -- 180
+- -- 209
+* -- 1542
+:= -- 2292
+add.period$ -- 145
+call.type$ -- 27
+change.case$ -- 150
 chr.to.int$ -- 11
-cite$ -- 54
-duplicate$ -- 2192
-empty$ -- 1584
-format.name$ -- 223
-if$ -- 6178
-int.to.chr$ -- 17
+cite$ -- 56
+duplicate$ -- 2262
+empty$ -- 1635
+format.name$ -- 229
+if$ -- 6328
+int.to.chr$ -- 18
 int.to.str$ -- 1
-missing$ -- 88
-newline$ -- 278
-num.names$ -- 169
-pop$ -- 887
+missing$ -- 90
+newline$ -- 292
+num.names$ -- 175
+pop$ -- 917
 preamble$ -- 1
-purify$ -- 323
+purify$ -- 334
 quote$ -- 0
-skip$ -- 708
+skip$ -- 731
 stack$ -- 0
-substring$ -- 1615
-swap$ -- 165
+substring$ -- 1660
+swap$ -- 171
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 498
-warning$ -- 28
-while$ -- 173
+type$ -- 510
+warning$ -- 29
+while$ -- 179
 width$ -- 0
-write$ -- 556
-(There were 28 warnings)
+write$ -- 581
+(There were 29 warnings)

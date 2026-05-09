@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{26}
+\begin{thebibliography}{27}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -232,9 +232,27 @@
 
 
 \bibitem[Lutalo(2025i)]%
-        {transformatics}
+        {lutalo2025rock}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
   \bibinfo{year}{2025}\natexlab{i}.
+\newblock \bibinfo{booktitle}{\emph{\textbf{Rock `N' Draw}}}.
+\newblock \bibinfo{publisher}{I*POW}.
+\newblock
+\urldef\tempurl%
+\url{https://www.academia.edu/128601975/}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{\textit{\textbf{ISBN} 978-9913-624-71-8 (First Edition). A physical
+  copy might be accessed via the National Library of Uganda (NLU), but also, an
+  education-purposes-only edition is accessible freely via Telegram at}
+  \url{https://t.me/ipowriters/237}}.
+
+
+\bibitem[Lutalo(2025j)]%
+        {transformatics}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{j}.
 \newblock \showarticletitle{\textbf{The Theory of Sequence Transformers \&
   their Statistics}: The 3 Information Sequence Transformer Families
   (Anagrammatizers, Protractors, Compressors) and 4 New and Relevant
@@ -246,10 +264,10 @@
 \shownote{\url{https://www.academia.edu/136852057}}.
 
 
-\bibitem[Lutalo(2025j)]%
+\bibitem[Lutalo(2025k)]%
         {Lutalo2025_transformatics_thesis}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
-  \bibinfo{year}{2025}\natexlab{j}.
+  \bibinfo{year}{2025}\natexlab{k}.
 \newblock \showarticletitle{\textbf{TRANSFORMATICS 101 - explained}}.
 \newblock \bibinfo{journal}{\emph{Thesis}} (\bibinfo{date}{October}
   \bibinfo{year}{2025}), \bibinfo{pages}{20}.
@@ -260,10 +278,10 @@
 \tempurl}
 
 
-\bibitem[Lutalo(2025k)]%
+\bibitem[Lutalo(2025l)]%
         {lutalo_2025_trans101_1page}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
-  \bibinfo{year}{2025}\natexlab{k}.
+  \bibinfo{year}{2025}\natexlab{l}.
 \newblock \bibinfo{title}{\textbf{Transformatics 101 (1-Page Executive
   Summary)}}.
 \newblock
@@ -271,10 +289,10 @@
 \shownote{\url{https://www.academia.edu/145185478/}}.
 
 
-\bibitem[Lutalo(2025l)]%
+\bibitem[Lutalo(2025m)]%
         {Lutalo2025transpsy}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
-  \bibinfo{year}{2025}\natexlab{l}.
+  \bibinfo{year}{2025}\natexlab{m}.
 \newblock \showarticletitle{\textbf{Transformatics for PSYCHOLOGY}}.
 \newblock \bibinfo{journal}{\emph{PrePrints}} (\bibinfo{date}{9}
   \bibinfo{year}{2025}).
@@ -282,10 +300,10 @@
 \href{https://doi.org/10.20944/preprints202510.0456.v1}{doi:\nolinkurl{10.20944/preprints202510.0456.v1}}
 
 
-\bibitem[Lutalo(2025m)]%
+\bibitem[Lutalo(2025n)]%
         {lutalo2025unraveling}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
-  \bibinfo{year}{2025}\natexlab{m}.
+  \bibinfo{year}{2025}\natexlab{n}.
 \newblock \showarticletitle{\textbf{Unraveling Mysteries of The ZHA q-AGI
   Chatbot: an Interview by ICC, of Fut. Prof. JWL and M*A*P Ade. Psymaz of
   Nuchwezi}}.
