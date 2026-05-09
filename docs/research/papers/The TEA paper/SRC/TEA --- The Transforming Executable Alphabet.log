@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  8 MAY 2026 15:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  9 MAY 2026 11:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1068,7 +1068,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 pdfTeX warning: pdflatex (file ./resources/pdf/frontcover.pdf): PDF inclusion: 
 found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdf/frontcover.pdf, id=178, 596.98032pt x 844.65562pt>
+<resources/pdf/frontcover.pdf, id=182, 596.98032pt x 844.65562pt>
 File: resources/pdf/frontcover.pdf Graphic file (type pdf)
 <use resources/pdf/frontcover.pdf>
 Package pdftex.def Info: resources/pdf/frontcover.pdf  used on input line 87.
@@ -1089,7 +1089,7 @@ found PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/pdf/frontcover.pdf): PDF inclusion: 
 found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdf/frontcover.pdf, id=181, page=1, 596.98032pt x 844.65562pt>
+<resources/pdf/frontcover.pdf, id=185, page=1, 596.98032pt x 844.65562pt>
 File: resources/pdf/frontcover.pdf Graphic file (type pdf)
 <use resources/pdf/frontcover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/frontcover.pdf , page1 used on input lin
@@ -1197,12 +1197,6 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 10.0pt on input line 96.
 
-Overfull \hbox (3.97049pt too wide) in paragraph at lines 96--96
-\T1/LinuxLibertineT-TLF/m/n/10 (-20) prim-i-tives, pro-cess-ing math-e-mat-ics,
- and a rich text-processing
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 96--96
 
  []
@@ -1215,28 +1209,36 @@ Overfull \hbox (8.2923pt too wide) in paragraph at lines 96--96
 
 
 
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 12
+
+
+[2.2{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_nh77jq
+.enc}{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_25tcs
+q.enc}
+
+{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_7grukw.enc
+}]
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 13
 0.
-(C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/inconsolata\t1zi4.fd
+ (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/inconsolata\t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 10.0pt on input line 120.
+(Font)              scaled to size 10.0pt on input line 130.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 122.
+nput line 132.
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 122.
+(Font)              scaled to size 9.0pt on input line 132.
 LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
-(Font)              scaled to size 9.0pt on input line 123.
+(Font)              scaled to size 9.0pt on input line 133.
 LaTeX Info: Symbol \textasciigrave not provided by
             font family zi4 in TS1 encoding.
-            Default family used instead on input line 123.
+            Default family used instead on input line 133.
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-23.
+33.
 
 (C:\Program Files\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1246,7 +1248,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-123.
+133.
 
 (C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd
 File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
@@ -1256,663 +1258,702 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for TS1+zi4 on input line 1
-23.
+33.
 
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/latex/inconsolata\ts1zi4.fd
 File: ts1zi4.fd 2018/01/14 TS1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `TS1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 123.
+(Font)              scaled to size 9.0pt on input line 133.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-
-[2.2{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_nh77jq
-.enc}{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_25tcs
-q.enc}
-
-{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_7grukw.enc
-}{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-4.enc}
-{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/inconsolata/i4-ts1.enc}{C
-:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_oexx6f.enc}]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 10.0pt on input line 154.
+(Font)              scaled to size 10.0pt on input line 164.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 7.3pt on input line 154.
+(Font)              scaled to size 7.3pt on input line 164.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 5.5pt on input line 154.
+(Font)              scaled to size 5.5pt on input line 164.
 
 
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 204.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 204.
 
 
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 246.
-[3.3{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_fygcup
-.enc}]
+(Font)              scaled to size 8.0pt on input line 209.
+[3.3{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/inconsolata/i4-t1-4.e
+nc}{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/inconsolata/i4-ts1.enc
+}{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_oexx6f.en
+c}{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_fygcup.e
+nc}]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 7.3pt on input line 214.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 5.5pt on input line 214.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/it' will be
-(Font)              scaled to size 10.0pt on input line 255.
+(Font)              scaled to size 10.0pt on input line 265.
 
 
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
+(Font)              scaled to size 8.0pt on input line 293.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
+(Font)              scaled to size 6.0pt on input line 293.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 293.
 
-Overfull \hbox (11.04024pt too wide) in paragraph at lines 283--284
+Overfull \hbox (11.04024pt too wide) in paragraph at lines 296--297
 []\T1/LinuxLibertineT-TLF/b/n/10 (-20) Normalization: \T1/LinuxLibertineT-TLF/m
 /n/10 (-20) Con-vert san-i-tized/mini-fied/mixed forms
  []
 
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 8.0pt on input line 298.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 6.0pt on input line 298.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 298.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 8.0pt on input line 298.
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 8.0pt on input line 298.
-LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 8.0pt on input line 299.
 
 
 [4.4{C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/enc/dvips/libertine/lbtn_ki75ao
 .enc}]
 
-LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 351.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.6pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 9.0pt on input line 354.
-LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.6pt on input line 354.
+pdfTeX warning: pdflatex (file ./resources/pdf/TEA_PROGRAM_EXEC_PROCESS.pdf): P
+DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<resources/pdf/TEA_PROGRAM_EXEC_PROCESS.pdf, id=298, 614.295pt x 794.97pt>
+File: resources/pdf/TEA_PROGRAM_EXEC_PROCESS.pdf Graphic file (type pdf)
+<use resources/pdf/TEA_PROGRAM_EXEC_PROCESS.pdf>
+Package pdftex.def Info: resources/pdf/TEA_PROGRAM_EXEC_PROCESS.pdf  used on in
+put line 313.
+(pdftex.def)             Requested size: 455.2979pt x 568.12619pt.
+
+Class acmart Warning: A possible image without description on input line 317.
+
+<resources/images/tea_ide.png, id=300, 1673.25125pt x 2930.95pt>
+File: resources/images/tea_ide.png Graphic file (type png)
+<use resources/images/tea_ide.png>
+Package pdftex.def Info: resources/images/tea_ide.png  used on input line 330.
+(pdftex.def)             Requested size: 202.3529pt x 354.42691pt.
+
+Class acmart Warning: A possible image without description on input line 334.
+
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 356.
+(Font)              scaled to size 8.0pt on input line 339.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 8.0pt on input line 339.
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 8.0pt on input line 340.
+
+
+
+
+[5.5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[6.6 <./resources/pdf/TEA_PROGRAM_EXEC_PROCESS.pdf>]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 394.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `OML/nxlmi/m/it' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/sb/n' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 9.0pt on input line 397.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 6.6pt on input line 397.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 9.0pt on input line 399.
+
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 389.
+(Font)              using `T1/zi4/m/n' instead on input line 432.
 
 
-Underfull \hbox (badness 2951) in paragraph at lines 413--414
+
+
+Underfull \hbox (badness 2951) in paragraph at lines 456--457
 []|\T1/LinuxLibertineT-TLF/m/n/9 (+20) Force[]write lit-eral \T1/zi4/m/n/9 VALU
 E \T1/LinuxLibertineT-TLF/m/n/9 (+20) into vault
  []
 
 
-Underfull \vbox (badness 1231) has occurred while \output is active []
-
-
-
-[5.5]
-Overfull \hbox (2.05748pt too wide) in paragraph at lines 437--438
+Overfull \hbox (2.05748pt too wide) in paragraph at lines 480--481
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.05748pt too wide) in paragraph at lines 444--445
+Overfull \hbox (2.05748pt too wide) in paragraph at lines 487--488
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.05748pt too wide) in paragraph at lines 446--447
+Overfull \hbox (2.05748pt too wide) in paragraph at lines 489--490
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.05748pt too wide) in paragraph at lines 448--449
+Overfull \hbox (2.05748pt too wide) in paragraph at lines 491--492
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
+Overfull \hbox (3.40736pt too wide) in paragraph at lines 507--508
+\T1/LinuxLibertineT-TLF/m/n/10 (-20) con-ducted. Such tests spanned; string tra
+ns-for-ma-tion through-
+ []
 
-<resources/images/boobsntraps.png, id=315, 1673.25125pt x 2930.95pt>
+
+
+[7.7 <./resources/images/tea_ide.png>]
+<resources/images/boobsntraps.png, id=414, 1673.25125pt x 2930.95pt>
 File: resources/images/boobsntraps.png Graphic file (type png)
 <use resources/images/boobsntraps.png>
-Package pdftex.def Info: resources/images/boobsntraps.png  used on input line 4
-72.
+Package pdftex.def Info: resources/images/boobsntraps.png  used on input line 5
+17.
 (pdftex.def)             Requested size: 202.3529pt x 354.42691pt.
 
-Class acmart Warning: A possible image without description on input line 476.
+
+Class acmart Warning: A possible image without description on input line 521.
+
+
+Underfull \vbox (badness 6047) has occurred while \output is active []
+
+
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[6.6]
-
-<resources/images/zhasession.png, id=356, 1673.25125pt x 2930.95pt>
+[8.8]
+<resources/images/zhasession.png, id=431, 1673.25125pt x 2930.95pt>
 File: resources/images/zhasession.png Graphic file (type png)
 <use resources/images/zhasession.png>
-Package pdftex.def Info: resources/images/zhasession.png  used on input line 49
-9.
+Package pdftex.def Info: resources/images/zhasession.png  used on input line 54
+4.
 (pdftex.def)             Requested size: 202.3529pt x 354.42691pt.
 
-Class acmart Warning: A possible image without description on input line 503.
 
-
-
-[7.7 <./resources/images/boobsntraps.png>]
-Underfull \vbox (badness 1460) has occurred while \output is active []
-
-
+Class acmart Warning: A possible image without description on input line 548.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[8.8 <./resources/images/zhasession.png>]
-Overfull \hbox (4.90746pt too wide) in paragraph at lines 540--541
+
+
+[9.9 <./resources/images/boobsntraps.png>]
+
+
+Overfull \hbox (4.90746pt too wide) in paragraph at lines 588--589
 []\T1/LinuxLibertineT-TLF/m/n/10 (-20) Concerning the de-sign and lan-guage im-
 ple-men-ta-tion choice
  []
 
 
-Overfull \hbox (4.7342pt too wide) in paragraph at lines 542--543
+Overfull \hbox (4.7342pt too wide) in paragraph at lines 590--591
 \T1/LinuxLibertineT-TLF/m/n/10 (-20) SLE '20) ideas on his in-ter-est-ing legac
 y-like, multiple-language
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (5.32957pt too wide) in paragraph at lines 550--551
+
+[10.10 <./resources/images/zhasession.png>]
+Overfull \hbox (5.32957pt too wide) in paragraph at lines 599--600
 \T1/LinuxLibertineT-TLF/m/n/10 (-20) We pre-sented TEA, a com-pact, sequence-tr
 ansformer-chaining
  []
 
 
 
-[9.9]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 564.
+(hyperref)                removing `\begingroup' on input line 617.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 564.
+(hyperref)                removing `\let' on input line 617.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 564.
+(hyperref)                removing `\<let>-command' on input line 617.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 564.
+(hyperref)                removing `\NAT@ctype' on input line 617.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 564.
+(hyperref)                removing `\z@' on input line 617.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 564.
+(hyperref)                removing `\let' on input line 617.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 564.
+(hyperref)                removing `\new@ifnextchar' on input line 617.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 569.
+(hyperref)                removing `\begingroup' on input line 622.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 569.
+(hyperref)                removing `\let' on input line 622.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 569.
+(hyperref)                removing `\<let>-command' on input line 622.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 569.
+(hyperref)                removing `\NAT@ctype' on input line 622.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 569.
+(hyperref)                removing `\z@' on input line 622.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 569.
+(hyperref)                removing `\let' on input line 622.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 569.
+(hyperref)                removing `\new@ifnextchar' on input line 622.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 573.
+(hyperref)                removing `\begingroup' on input line 626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 573.
+(hyperref)                removing `\let' on input line 626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 573.
+(hyperref)                removing `\<let>-command' on input line 626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 573.
+(hyperref)                removing `\NAT@ctype' on input line 626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 573.
+(hyperref)                removing `\z@' on input line 626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 573.
+(hyperref)                removing `\let' on input line 626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 573.
+(hyperref)                removing `\new@ifnextchar' on input line 626.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 578.
+(hyperref)                removing `\begingroup' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 578.
+(hyperref)                removing `\let' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 578.
+(hyperref)                removing `\<let>-command' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 578.
+(hyperref)                removing `\NAT@ctype' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 578.
+(hyperref)                removing `\z@' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 578.
+(hyperref)                removing `\let' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 578.
+(hyperref)                removing `\new@ifnextchar' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 578.
+(hyperref)                removing `\begingroup' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 578.
+(hyperref)                removing `\let' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 578.
+(hyperref)                removing `\<let>-command' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 578.
+(hyperref)                removing `\NAT@ctype' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 578.
+(hyperref)                removing `\z@' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 578.
+(hyperref)                removing `\let' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 578.
+(hyperref)                removing `\new@ifnextchar' on input line 631.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 585.
+(hyperref)                removing `\begingroup' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 585.
+(hyperref)                removing `\let' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 585.
+(hyperref)                removing `\<let>-command' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 585.
+(hyperref)                removing `\NAT@ctype' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 585.
+(hyperref)                removing `\z@' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 585.
+(hyperref)                removing `\let' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 585.
+(hyperref)                removing `\new@ifnextchar' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 585.
+(hyperref)                removing `\begingroup' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 585.
+(hyperref)                removing `\let' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 585.
+(hyperref)                removing `\<let>-command' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 585.
+(hyperref)                removing `\NAT@ctype' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 585.
+(hyperref)                removing `\z@' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 585.
+(hyperref)                removing `\let' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 585.
+(hyperref)                removing `\new@ifnextchar' on input line 638.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 591.
+(hyperref)                removing `\begingroup' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 591.
+(hyperref)                removing `\let' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 591.
+(hyperref)                removing `\<let>-command' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 591.
+(hyperref)                removing `\NAT@ctype' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 591.
+(hyperref)                removing `\z@' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 591.
+(hyperref)                removing `\let' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 591.
+(hyperref)                removing `\new@ifnextchar' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 591.
+(hyperref)                removing `\begingroup' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 591.
+(hyperref)                removing `\let' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 591.
+(hyperref)                removing `\<let>-command' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 591.
+(hyperref)                removing `\NAT@ctype' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 591.
+(hyperref)                removing `\z@' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 591.
+(hyperref)                removing `\let' on input line 644.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 591.
+(hyperref)                removing `\new@ifnextchar' on input line 644.
 
 
+
+[11.11]
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 597.
+(hyperref)                removing `\begingroup' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 597.
+(hyperref)                removing `\let' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 597.
+(hyperref)                removing `\<let>-command' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 597.
+(hyperref)                removing `\NAT@ctype' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 597.
+(hyperref)                removing `\z@' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 597.
+(hyperref)                removing `\let' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 597.
+(hyperref)                removing `\new@ifnextchar' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 597.
+(hyperref)                removing `\begingroup' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 597.
+(hyperref)                removing `\let' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 597.
+(hyperref)                removing `\<let>-command' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 597.
+(hyperref)                removing `\NAT@ctype' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 597.
+(hyperref)                removing `\z@' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 597.
+(hyperref)                removing `\let' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 597.
+(hyperref)                removing `\new@ifnextchar' on input line 650.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 603.
+(hyperref)                removing `\begingroup' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 603.
+(hyperref)                removing `\let' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 603.
+(hyperref)                removing `\<let>-command' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 603.
+(hyperref)                removing `\NAT@ctype' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 603.
+(hyperref)                removing `\z@' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 603.
+(hyperref)                removing `\let' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 603.
+(hyperref)                removing `\new@ifnextchar' on input line 656.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 608.
+(hyperref)                removing `\begingroup' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 608.
+(hyperref)                removing `\let' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 608.
+(hyperref)                removing `\<let>-command' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 608.
+(hyperref)                removing `\NAT@ctype' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 608.
+(hyperref)                removing `\z@' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 608.
+(hyperref)                removing `\let' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 608.
+(hyperref)                removing `\new@ifnextchar' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 608.
+(hyperref)                removing `\begingroup' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 608.
+(hyperref)                removing `\let' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 608.
+(hyperref)                removing `\<let>-command' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 608.
+(hyperref)                removing `\NAT@ctype' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 608.
+(hyperref)                removing `\z@' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 608.
+(hyperref)                removing `\let' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 608.
+(hyperref)                removing `\new@ifnextchar' on input line 661.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\begingroup' on input line 613.
+(hyperref)                removing `\begingroup' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 613.
+(hyperref)                removing `\let' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\<let>-command' on input line 613.
+(hyperref)                removing `\<let>-command' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\NAT@ctype' on input line 613.
+(hyperref)                removing `\NAT@ctype' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 613.
+(hyperref)                removing `\z@' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\let' on input line 613.
+(hyperref)                removing `\let' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\new@ifnextchar' on input line 613.
+(hyperref)                removing `\new@ifnextchar' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 613.
+(hyperref)                removing `subscript' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 613.
+(hyperref)                removing `subscript' on input line 666.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 613.
+(hyperref)                removing `subscript' on input line 666.
 
 (TEA --- The Transforming Executable Alphabet.bbl
 
-LaTeX Info: Redefining \tempurl on input line 136.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/it' will be
-(Font)              scaled to size 8.0pt on input line 206.
-LaTeX Info: Redefining \tempurl on input line 249.
+(Font)              scaled to size 8.0pt on input line 215.
+LaTeX Info: Redefining \tempurl on input line 258.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-[10.10])
+[12.12])
 
 pdfTeX warning: pdflatex (file ./resources/pdf/innercover.pdf): PDF inclusion: 
 found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdf/innercover.pdf, id=460, 596.98032pt x 844.65562pt>
+<resources/pdf/innercover.pdf, id=548, 596.98032pt x 844.65562pt>
 File: resources/pdf/innercover.pdf Graphic file (type pdf)
 <use resources/pdf/innercover.pdf>
-Package pdftex.def Info: resources/pdf/innercover.pdf  used on input line 629.
+Package pdftex.def Info: resources/pdf/innercover.pdf  used on input line 683.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1920,7 +1961,7 @@ pdfTeX warning: pdflatex (file ./resources/pdf/innercover.pdf): PDF inclusion:
 found PDF version <1.7>, but at most version <1.5> allowed
 File: resources/pdf/innercover.pdf Graphic file (type pdf)
 <use resources/pdf/innercover.pdf>
-Package pdftex.def Info: resources/pdf/innercover.pdf  used on input line 629.
+Package pdftex.def Info: resources/pdf/innercover.pdf  used on input line 683.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1930,51 +1971,51 @@ found PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/pdf/innercover.pdf): PDF inclusion: 
 found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdf/innercover.pdf, id=463, page=1, 596.98032pt x 844.65562pt>
+<resources/pdf/innercover.pdf, id=551, page=1, 596.98032pt x 844.65562pt>
 File: resources/pdf/innercover.pdf Graphic file (type pdf)
 <use resources/pdf/innercover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/innercover.pdf , page1 used on input lin
-e 629.
+e 683.
 (pdftex.def)             Requested size: 614.33182pt x 794.99458pt.
 File: resources/pdf/innercover.pdf Graphic file (type pdf)
 <use resources/pdf/innercover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/innercover.pdf , page1 used on input lin
-e 629.
+e 683.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
 
 
 
 
-[11.11
+[13.13
 
 ]
 File: resources/pdf/innercover.pdf Graphic file (type pdf)
 <use resources/pdf/innercover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/innercover.pdf , page1 used on input lin
-e 629.
+e 683.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
 File: resources/pdf/innercover.pdf Graphic file (type pdf)
 <use resources/pdf/innercover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/innercover.pdf , page1 used on input lin
-e 629.
+e 683.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
 
 
 File: resources/pdf/innercover.pdf Graphic file (type pdf)
 <use resources/pdf/innercover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/innercover.pdf , page1 used on input lin
-e 629.
+e 683.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
-[12.12
+[14.14
 
  <./resources/pdf/innercover.pdf>]
 
 pdfTeX warning: pdflatex (file ./resources/pdf/backcover.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdf/backcover.pdf, id=481, 596.98032pt x 844.65562pt>
+<resources/pdf/backcover.pdf, id=570, 596.98032pt x 844.65562pt>
 File: resources/pdf/backcover.pdf Graphic file (type pdf)
 <use resources/pdf/backcover.pdf>
-Package pdftex.def Info: resources/pdf/backcover.pdf  used on input line 639.
+Package pdftex.def Info: resources/pdf/backcover.pdf  used on input line 693.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1982,7 +2023,7 @@ pdfTeX warning: pdflatex (file ./resources/pdf/backcover.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
 File: resources/pdf/backcover.pdf Graphic file (type pdf)
 <use resources/pdf/backcover.pdf>
-Package pdftex.def Info: resources/pdf/backcover.pdf  used on input line 639.
+Package pdftex.def Info: resources/pdf/backcover.pdf  used on input line 693.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
@@ -1992,33 +2033,33 @@ ound PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/pdf/backcover.pdf): PDF inclusion: f
 ound PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdf/backcover.pdf, id=484, page=1, 596.98032pt x 844.65562pt>
+<resources/pdf/backcover.pdf, id=573, page=1, 596.98032pt x 844.65562pt>
 File: resources/pdf/backcover.pdf Graphic file (type pdf)
 <use resources/pdf/backcover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/backcover.pdf , page1 used on input line
- 639.
+ 693.
 (pdftex.def)             Requested size: 614.33182pt x 794.99458pt.
 File: resources/pdf/backcover.pdf Graphic file (type pdf)
 <use resources/pdf/backcover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/backcover.pdf , page1 used on input line
- 639.
+ 693.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
 File: resources/pdf/backcover.pdf Graphic file (type pdf)
 <use resources/pdf/backcover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/backcover.pdf , page1 used on input line
- 639.
+ 693.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
 File: resources/pdf/backcover.pdf Graphic file (type pdf)
 <use resources/pdf/backcover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/backcover.pdf , page1 used on input line
- 639.
+ 693.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
 
 
 File: resources/pdf/backcover.pdf Graphic file (type pdf)
 <use resources/pdf/backcover.pdf, page 1>
 Package pdftex.def Info: resources/pdf/backcover.pdf , page1 used on input line
- 639.
+ 693.
 (pdftex.def)             Requested size: 597.26123pt x 845.0531pt.
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/stringenc\se-pdfdoc.def
 File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
@@ -2026,7 +2067,7 @@ File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
 (C:\Users\AKAM\AppData\Roaming\MiKTeX\tex/generic/stringenc\se-utf8.def
 File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
 )
-[13.13
+[15.15
 
  <./resources/pdf/backcover.pdf>]
 
@@ -2067,16 +2108,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `"TEA --- The Transforming Executable Alphabe
 t".out' has not changed.
-(rerunfilecheck)             Checksum: 9DDEAF74A5D8D56016CF64747DD2501F;9532.
+(rerunfilecheck)             Checksum: 01740939CDB91B7DF71B5729DEAC142D;9729.
  ) 
 Here is how much of TeX's memory you used:
- 24540 strings out of 473898
- 397569 string characters out of 5736297
- 2002960 words of memory out of 5000000
- 46034 multiletter control sequences out of 15000+600000
- 774432 words of font info for 547 fonts, out of 8000000 for 9000
+ 24607 strings out of 473898
+ 399315 string characters out of 5736297
+ 2001960 words of memory out of 5000000
+ 46070 multiletter control sequences out of 15000+600000
+ 776665 words of font info for 562 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 90i,17n,131p,2062b,1687s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,17n,131p,2062b,1523s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt0
 900.pk><C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/inconsolata/Inc
 onsolata-zi4b.pfb><C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/inco
@@ -2097,10 +2138,10 @@ pfb><C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb
 /Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/User
 s/AKAM/AppData/Roaming/MiKTeX/fonts/type1/public/newtx/txsym.pfb><C:/Users/AKAM
 /AppData/Roaming/MiKTeX/fonts/type1/public/newtx/txsys.pfb>
-Output written on "TEA --- The Transforming Executable Alphabet.pdf" (13 pages,
- 5560161 bytes).
+Output written on "TEA --- The Transforming Executable Alphabet.pdf" (15 pages,
+ 6038477 bytes).
 PDF statistics:
- 622 PDF objects out of 1000 (max. 8388607)
- 150 named destinations out of 1000 (max. 500000)
- 118703 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 712 PDF objects out of 1000 (max. 8388607)
+ 158 named destinations out of 1000 (max. 500000)
+ 118727 words of extra memory for PDF output out of 128383 (max. 10000000)
 

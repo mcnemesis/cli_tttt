@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{24}
+\begin{thebibliography}{26}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -76,6 +76,18 @@
 \href{https://doi.org/10.1145/3687997.3695639}{doi:\nolinkurl{10.1145/3687997.3695639}}
 
 
+\bibitem[Lutalo(2020)]%
+        {lutalodnapintro2020}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{\textbf{Introducing the Dynamic Nuchwezi
+  Architecture Platform}}.
+\newblock \bibinfo{journal}{\emph{Preprints}} (\bibinfo{date}{May}
+  \bibinfo{year}{2020}).
+\newblock
+\href{https://doi.org/10.20944/preprints202005.0207.v2}{doi:\nolinkurl{10.20944/preprints202005.0207.v2}}
+
+
 \bibitem[Lutalo(2024a)]%
         {Lutalo2024gtnc}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
@@ -130,12 +142,9 @@
   \bibinfo{year}{2025}\natexlab{a}.
 \newblock \showarticletitle{\textbf{Applying TRANSFORMATICS in GENETICS}}.
 \newblock \bibinfo{journal}{\emph{I*POW}} (\bibinfo{date}{Aug}
-  \bibinfo{year}{2025}), \bibinfo{pages}{1--206}.
+  \bibinfo{year}{2025}), \bibinfo{pages}{1--313}.
 \newblock
-\urldef\tempurl%
-\url{https://www.academia.edu/143516392/}
-\showURL{%
-\tempurl}
+\href{https://doi.org/10.5281/zenodo.20092893}{doi:\nolinkurl{10.5281/zenodo.20092893}}
 
 
 \bibitem[Lutalo(2025b)]%
@@ -252,9 +261,20 @@
 
 
 \bibitem[Lutalo(2025k)]%
-        {Lutalo2025transpsy}
+        {lutalo_2025_trans101_1page}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
   \bibinfo{year}{2025}\natexlab{k}.
+\newblock \bibinfo{title}{\textbf{Transformatics 101 (1-Page Executive
+  Summary)}}.
+\newblock
+\newblock
+\shownote{\url{https://www.academia.edu/145185478/}}.
+
+
+\bibitem[Lutalo(2025l)]%
+        {Lutalo2025transpsy}
+\bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
+  \bibinfo{year}{2025}\natexlab{l}.
 \newblock \showarticletitle{\textbf{Transformatics for PSYCHOLOGY}}.
 \newblock \bibinfo{journal}{\emph{PrePrints}} (\bibinfo{date}{9}
   \bibinfo{year}{2025}).
@@ -262,10 +282,10 @@
 \href{https://doi.org/10.20944/preprints202510.0456.v1}{doi:\nolinkurl{10.20944/preprints202510.0456.v1}}
 
 
-\bibitem[Lutalo(2025l)]%
+\bibitem[Lutalo(2025m)]%
         {lutalo2025unraveling}
 \bibfield{author}{\bibinfo{person}{Joseph~Willrich Lutalo}.}
-  \bibinfo{year}{2025}\natexlab{l}.
+  \bibinfo{year}{2025}\natexlab{m}.
 \newblock \showarticletitle{\textbf{Unraveling Mysteries of The ZHA q-AGI
   Chatbot: an Interview by ICC, of Fut. Prof. JWL and M*A*P Ade. Psymaz of
   Nuchwezi}}.
