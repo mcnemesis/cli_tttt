@@ -7,66 +7,405 @@ ___oo____oo______oo___oo_
 ___oo_____ooooo___oooo_o_
 _________________________}                                     
 x!:{
-Welcome to TEA OS v1.0.1}
-v:vBanner | i:
+Welcome to TEA OS v1.0.6
+--|It is work in progress|--
+For now, best experience is via TEA MOBILE IDE: 
+https://bit.ly/teamobile_apks}
+v:vBanner | #i:
 
 ###| The above is the original bootscreen
 ###| The rest of the story follows..
 
-*:{========| PREAMBLE |========}
+*:{==| PREAMBLE |==}
 L:lPREAMBLE_START
 
-# Of course, this is TEA programming
+Y:vBanner | V@:dvLOG
+
+#Of course, this is TEA programming
 We can write verbatim documentation and 
 comments in the most natural of ways without
 worry or concern. We sometimes shall 
 do just that. 
 
-#---[ ABOUT TEA OS ]
+#---[ABOUT TEA OS]
 ARCHITECT: J. Willrich Lutalo <jwl@nuchwezi.com>
 SINCE: 9th APRIL, 2026
 INTENT: To manifest a true general purpose, lightweight, minimal but powerful operating system that can essentially just fit inside a single string; to see what the limits of the mathematics of TRANSFORMATICS might be, and what we surely could accomplish with its proper use via modern portable computers.
 PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com
 
-#---[ GLOBAL CONSTANTS ]
+#--[GLOBAL CONSTANTS]
+V@:dvOSName:{TEA OS}
+V@:dvOSName_short:{TOS}
+V@:dvOSVersion:{1.0.6}
+
 V:vSLOGAN:{TEA OS! T can fit in a string!}
-V:vDELIM:{_________________________}
-V:vDELIM2:{=o==o==o==o==o==o==o==o==o}
+I!:{___________________}|V:vDELIM|V@:dvDELIM
+I!:{
+=o==o==o==o==o==o==o=
+}|V:vDELIM2|V@:dvDELIM2
 
 
-#---[ GLOBAL VARIABLES ]
+#--[GLOBAL VARIABLES]
 V:vUSERNAME:{user}
 
-#---[ SOME FUNCTIONS ]
 
-# for presenting pretty message prompt..
+#--[DATABASE VARIABLES]
+#Y@:dvLOG|i:{}|V@:dvLOG #all activity
+V@:dvLastPS:{}
+V@:dvLastCommand:{}
+V@:dvLastOutput:{}
+
+#--[SOME FUNCTIONS]
+
+#for presenting pretty message prompt..
 V:fPROMPT:"
-v:vMSG # stores AI at invocation
-v:vD2:{=o==o==o==o==o==o==o==o==o}
-y:vMSG|x!:{ }|v:vMSG # affix space at prompt end
+v:vMSG #stores AI at invocation
+y@:dvDELIM|v:vD2
+y:vMSG|x!:{ }|v:vMSG #affix space at prompt end
 i!:{} | g*:{
 }:vD2:vMSG
-i: # returns input..
+v:vMSG
+Y@:dfLogAI|v:f
+y:vMSG|e*:f
+#then show log+latest prompt
+Y@:dvLOG
+i: #returns input..
 "
 
-L:lPREAMBLE_END
-*:{=================================}
+#for os name..
+V:fOSHandle:"
+y@:dvOSName | v:vN
+y@:dvOSVersion | v:vV
+g*:{ v}:vN:vV
+"
 
-*:{========| SYSTEM SHELL |========}
+Y:fOSHandle|V@:dfOSHandle
+
+#for default prompt..
+V:fMakePS:"
+z.:TIME |v:vT
+y@:dvOSName_short | v:vPWD
+v:vD:{>}
+g*:{/}:vPWD:vT:vD
+"
+
+#log last cmd+O 
+V:fLogIO:"
+#load+execute function from database! 
+y@:dfLastIO|e:
+v:vLastIO
+y@:dvLOG | v:vLOG
+g*:{
+}:vLOG:vLastIO | v@:dvLOG
+"
+
+#suffix AI to log
+V:fLogAI:"
+v:vAI
+y@:dvLOG | v:vLOG
+g*:{
+}:vLOG:vAI | v@:dvLOG
+#return AI
+y:vAI
+"
+
+#also make it a db function
+Y:fLogAI|v@:dfLogAI
+
+
+#store AI as last-O..
+V:fLogO:"
+v@:dvLastOutput
+Y@:dvLastOutput
+"
+
+#fetch last I/O..
+V:fLastIO:"
+y@:dvLastPS | v:vPS
+y@:dvLastCommand | v:vC
+y@:dvLastOutput | v:vO
+g*:{}:vPS:vC|v:vCC
+g*:{
+}:vCC:vO
+"
+#store that function in the database too (so we can later use it in context-unaware functions).
+y:fLastIO|v@:dfLastIO
+
+L:lPREAMBLE_END
+#:{=================}
+
+
+*:{==|HELP SYSTEM |==}
+L:lSYS_HELP_START
+
+#--[HELP/DOC Functions]
+
+#present UTILITIES help-category commands
+V:fGetUtilityMenu:"
+y@:dfOSHandle|e:|x!:{ UTILITIES MENU:
+fetch URL
+fetch URL FILENAME
+tea CODE
+math EXPRESSION 
+date
+time
+timestamp
+print
+export
+exit}
+v:vMSG
+y@:dvDELIM2|v:vD
+g*:{}:vD:vMSG:vD
+"
+
+#present main help-category commands
+V:fGetHelpMenu:"
+y@:dfOSHandle|e:|x!:{ HELP MENU:
+whatis NAME
+help NAME
+help
+help-file
+help-prog
+help-util
+help-help}
+v:vMSG
+y@:dvDELIM2|v:vD
+g*:{}:vD:vMSG:vD
+"
+
+
+
+#present help-on a given topic
+V:fGetHelpOn:"
+#asumes topic is passed via AI
+v:vHelpTOPIC
+
+#set default..
+r@:{That help topic [#vHelpTOPIC#] is not understood or supported. Try the 'help' command to see what help commands there are. For example 'help whatis'}|v:vMSG
+
+y:vHelpTOPIC
+
+#> help whatis
+f!:^whatis$:lN_h1
+v:vMSG:{Displays help info about a given system command or user program.}
+j:lh1_present
+l:lN_h1
+
+#> help help
+f!:^help$:lN_h2
+v:vMSG:{Present menu for user to access help about all available [essential] commands based on category.}
+j:lh1_present
+l:lN_h2
+
+f!:^help-file$:lN_h3
+v:vMSG:{Display all available commands in the FILE I/O category or sub-system.}
+j:lh1_present
+l:lN_h3
+
+f!:^help-prog$:lN_h4
+v:vMSG:{Display all available commands in the PROGRAMMING category or sub-system.}
+j:lh1_present
+l:lN_h4
+
+f!:^help-util$:lN_h5
+v:vMSG:{Display all available commands in the UTILITIES category or sub-system.}
+j:lh1_present
+l:lN_h5
+
+f!:^help-help$:lN_h6
+v:vMSG:{Display help on how to use the HELP facility or sub-system.}
+j:lh1_present
+l:lN_h6
+
+f!:^fetch$:lN_hu1
+v:vMSG:{fetch URL <~ fetch and output contents of the specified [online/network] resource.
+
+fetch URL FILENAME <~ fetch and save contents at URL into file record named FILENAME.}
+j:lh1_present
+l:lN_hu1
+
+f!:^tea$:lN_hu2
+v:vMSG:{tea CODE.. <~ take everything following the keyword 'tea' as a TEA program, run and output the result: It's a simple way to write and run basic TEA programs (TEA-one-liners) in TOS.}
+j:lh1_present
+l:lN_hu2
+
+f!:^math$:lN_hu3
+v:vMSG:{math EXPRESSION <~ execute basic mathematics on the command-line as specified in EXPRESSION.}
+j:lh1_present
+l:lN_hu3
+
+f!:^date$:lN_hu4
+v:vMSG:{Show the current date.}
+j:lh1_present
+l:lN_hu4
+
+f!:^time$:lN_hu5
+v:vMSG:{Show the current time.}
+j:lh1_present
+l:lN_hu5
+
+f!:^timestamp$:lN_hu6
+v:vMSG:{Show the current timestamp.}
+j:lh1_present
+l:lN_hu6
+
+f!:^print$:lN_hu7
+v:vMSG:{Show or preview current output buffer contents (usually, output of last command).}
+j:lh1_present
+l:lN_hu7
+
+f!:^export$:lN_hu8
+v:vMSG:{Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).}
+j:lh1_present
+l:lN_hu8
+
+f!:^exit$:lN_hu9
+v:vMSG:{Ends the TOS session returning nothing.}
+j:lh1_present
+l:lN_hu9
+
+l:lh1_present
+y@:dvDELIM2|v:vD
+g*:{}:vD:vMSG:vD
+"
+
+L:lSYS_HELP_END
+#:{=================}
+
+
+*:{==|SYSTEM SHELL |==}
 L:lSYS_SHELL_START
-# greet user via stored name..
-Y!@:vUSERNAME | F!:^0$:lGREET_USER
-# Username not yet set, prompt and store
+#greet user via stored name..
+Y!@:dvUSERNAME | F!:^0$:lGREET_USER
+#Username not yet set, prompt and store
 L:lSET_USERNAME
 I!:{Please set a Username:}|E*:fPROMPT
 t!.:|v:|v!:|f:^0$:lSET_USERNAME
-y:|V@:vUSERNAME # store in database
+y:|V@:dvUSERNAME # store in database
+E*:fLogAI
 
 L:lGREET_USER
-Y@:vUSERNAME | V:vUSERNAME
+Y@:dvUSERNAME | V:vUSERNAME
 X:{Hello, }|X!:{. Welcome to TEA OS!}
 E*:fPROMPT
 
-# C!@:vUSERNAME # should we delete username?
+#---[ Main LOOP ]
+L:lSTART_Main
+
+# present default prompt..
+E*:fMakePS 
+V@:dvLastPS
+E*:fPROMPT
+
+E*:fLogAI 
+
+#clean+process input..
+V:vIN_raw
+t!.:| v:vIN_clean
+Z:|v:vIN_clean_lc
+
+#what did we get?
+y:vIN_clean_lc
+
+#preliminary processing...
+
+# a subsystem..
+###((UTILITY System))
+
+#> time
+F!:^time$:lN_TIME
+#log input cmd..
+i!:{time}|v@:dvLastCommand
+
+#show cur.time..
+Z.:TIME | E*:fLogO
+#present+log I/O
+E*:fPROMPT
+L:lN_TIME
+
+#> date
+F!:^date$:lN_DATE
+i!:{date}|v@:dvLastCommand
+Z.:DATE | E*:fLogO
+E*:fPROMPT
+L:lN_DATE
+
+#> help
+F!:^help$:lN_HELP
+I!:{help}|V@:dvLastCommand
+E*:fGetHelpMenu | E*:fLogO
+E*:fPROMPT
+L:lN_HELP
+
+
+#> help NAME
+F!:^help [^ ]*$:lN_HELP_TOPIC
+#extract topic..
+d:^help\s+|V:vHelpTopic
+X:{help }
+|V@:dvLastCommand
+Y:vHelpTopic
+E*:fGetHelpOn | E*:fLogO
+E*:fPROMPT
+L:lN_HELP_TOPIC
+
+#> whatis NAME
+F!:^whatis [^ ]*$:lN_HELP_TOPICb
+#extract topic..
+d:^whatis\s+|V:vHelpTopic
+X:{whatis }
+|V@:dvLastCommand
+Y:vHelpTopic
+E*:fGetHelpOn | E*:fLogO
+E*:fPROMPT
+L:lN_HELP_TOPICb
+
+#> help-util
+F!:^help-util$:lN_HELP_UT
+I!:{help-util}|V@:dvLastCommand
+E*:fGetUtilityMenu | E*:fLogO
+E*:fPROMPT
+L:lN_HELP_UT
+
+#> exit
+F!:^exit$:lN_EXIT
+#don't log input cmd.
+
+#prepare for immediate exit..
+# Gracefully quit...
+E*:fOSHandle | X:{Thanks for Using } 
+J:lEXIT_Main
+L:lN_EXIT
+
+#> export
+F!:^export$:lN_EXPORT
+#don't log input cmd.
+
+#exit via export..
+#E*:fLastIO | V:vLOG
+Y@:dvLOG|V:vLOG 
+# Gracefully quit...
+E*:fOSHandle | X:{Thanks for Using }
+V:vMSG
+G*!:vDELIM2:vLOG:vMSG
+J:lEXIT_Main
+L:lN_EXPORT
+
+#for non-exit commands, we want to ensure we log user response from latest command..
+E*:fLogAI
+
+J:lSTART_Main
+####[End Main LOOP]
+
+#outside shell.. quitting
+L:lEXIT_Main 
+
+# C!@:dvUSERNAME # should we delete username?
+
+#delete session log from db
+C!@:dvLOG 
+
+Q!: #quit+return AI
+
 L:lSYS_SHELL_END
-#:{=================================}
+#:{=================}
