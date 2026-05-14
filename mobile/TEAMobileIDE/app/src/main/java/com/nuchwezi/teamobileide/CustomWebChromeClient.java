@@ -1,6 +1,7 @@
 package com.nuchwezi.teamobileide;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -32,12 +34,19 @@ public class CustomWebChromeClient extends WebChromeClient {
         TextView msgView = dialogView.findViewById(R.id.dialogMessage);
         msgView.setText(message);
 
+        ScrollView scrollView = dialogView.findViewById(R.id.dialogScroll);
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(dialogTitle)
                 .setView(dialogView)
                 .setPositiveButton("OK", (d, which) -> result.confirm())
                 .setCancelable(true)
                 .create();
+
+        // so we auto-scroll to bottom on long content display...
+        dialog.setOnShowListener(dialog1 -> {
+            scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
+        });
 
         dialog.setOnCancelListener(d -> result.confirm());
         dialog.setOnDismissListener(d -> result.confirm());
@@ -52,12 +61,19 @@ public class CustomWebChromeClient extends WebChromeClient {
         TextView msgView = dialogView.findViewById(R.id.dialogMessage);
         msgView.setText(message);
 
+        ScrollView scrollView = dialogView.findViewById(R.id.dialogScroll);
+
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(dialogTitle)
                 .setView(dialogView)
                 .setPositiveButton("OK", (d, which) -> result.confirm())
                 .setCancelable(true)
                 .create();
+
+        // so we auto-scroll to bottom on long content display...
+        dialog.setOnShowListener(dialog1 -> {
+            scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
+        });
 
         dialog.setOnCancelListener(d -> result.confirm());
         dialog.setOnDismissListener(d -> result.confirm());
@@ -71,6 +87,7 @@ public class CustomWebChromeClient extends WebChromeClient {
         View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_prompt, null);
         TextView msgView = dialogView.findViewById(R.id.promptMessage);
         EditText input = dialogView.findViewById(R.id.promptInput);
+        ScrollView scrollView = dialogView.findViewById(R.id.dialogScroll);
 
         msgView.setText(message);
         input.setText(defaultValue);
@@ -87,6 +104,13 @@ public class CustomWebChromeClient extends WebChromeClient {
                 .setPositiveButton("OK", (d, which) -> result.confirm(input.getText().toString()))
                 .setCancelable(true)
                 .create();
+
+
+        // so we auto-scroll to bottom on long content display...
+        dialog.setOnShowListener(dialog1 -> {
+            scrollView.post(() -> scrollView.fullScroll(View.FOCUS_DOWN));
+            input.requestFocus(); // also give input focus to prompt edit control
+        });
 
 
         // Handle Enter/Done key to submit and dismiss
