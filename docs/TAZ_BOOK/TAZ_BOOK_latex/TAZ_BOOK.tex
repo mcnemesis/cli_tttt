@@ -20583,6 +20583,7 @@ The TEA Operating System is specified based on 4 core capabilities:
 \item \verb$[$TEA\verb$]$ Programming Service
 \item Basic Utility Service
 \item Help/Documentation Service
+\item UI/Interface Service
 \end{enumerate}
 
 }
@@ -20653,16 +20654,31 @@ And with that clarification out of the way, we then embark on specifying the det
 \item {  \textbf{Basic Utilities:} access to basic useful commands such as being able to interact with the world outside TOS as well as do non-programming work from within TOS.\\
 \textbf{---[Basic UTILITY Commands Interface]:}
 \begin{itemize}
+\item \texttt{clear} $\leftarrow$ Resets and clears the current TEA OS session log since login.
+\item \texttt{date} $\leftarrow$ return the current date.
+\item \texttt{exit} $\leftarrow$ ends the TOS session returning nothing.
+\item \texttt{export} $\leftarrow$ Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).
+
 \item \texttt{fetch URL} $\leftarrow$ fetch and output contents of the specified [online/network] resource.
 \item \texttt{fetch URL FILENAME} $\leftarrow$ fetch and save contents at URL into file record named FILENAME.
-\item \texttt{tea CODE..} $\leftarrow$ take everything following the keyword ``tea" as a TEA program, run and output the result: It's a simple way to write and run basic TEA programs (TEA-one-liners) in TOS.
+
+\item \texttt{logout} $\leftarrow$ Resets username and system logs and ends the TOS session returning nothing.
+
 \item \texttt{math EXPRESSION} $\leftarrow$ execute basic mathematics on the command-line as specified in EXPRESSION.
-\item \texttt{date} $\leftarrow$ return the current date.
+
+\item \texttt{print} $\leftarrow$ Show or preview current output buffer contents (usually, output of last command). After clearing log, but also after exit/system shutdown/login also shows final output before the log was reset.
+
+\item \texttt{tea CODE..} $\leftarrow$ take everything following the keyword ``tea" as a TEA program, run and output the result: It's a simple way to write and run basic TEA programs (TEA-one-liners) in TOS.
+
 \item \texttt{time} $\leftarrow$ return the current time.
 \item \texttt{timestamp} $\leftarrow$ return the current timestamp.
-\item \texttt{print} $\leftarrow$ show or preview current output buffer contents (usually, output of last command).
-\item \texttt{export} $\leftarrow$ take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).
-\item \texttt{exit} $\leftarrow$ ends the TOS session returning nothing.
+
+
+\item \texttt{username NAME} $\leftarrow$ Overrides current username with specified value.
+
+
+\item \texttt{whoami} $\leftarrow$ Display the NAME of currently active USER.
+
 \end{itemize}
 
 }
@@ -20672,18 +20688,46 @@ And with that clarification out of the way, we then embark on specifying the det
 \item {  \textbf{Help System:} a means to locate and read basic documentation about programs, system commands and the operating system.\\
 \textbf{---[Basic HELP Commands Interface]:}
 \begin{itemize}
-\item \texttt{whatis NAME} $\leftarrow$ displays help info about a given system command or user program.
-\item \texttt{help NAME} $\leftarrow$ same as \texttt{whatis NAME}.
+\item \texttt{about} $\leftarrow$ Displays basic info about the currently running version of the TEA Operating System.
 \item \texttt{help} $\leftarrow$ present menu for user to access help about all available [essential] commands based on category.
+\item \texttt{help NAME} $\leftarrow$ same as \texttt{whatis NAME}.
+
 \item \texttt{help-file} $\leftarrow$ display all available commands in the FILE I/O category.
-\item \texttt{help-prog} $\leftarrow$ display all available commands in the PROGRAMMING category.
-\item \texttt{help-util} $\leftarrow$ display all available commands in the UTILITIES category.
 \item \texttt{help-help} $\leftarrow$ display help on how to use the HELP facility.
+
+\item \texttt{help-prog} $\leftarrow$ display all available commands in the PROGRAMMING category.
+
+\item \texttt{help-ui} $\leftarrow$ Display all available commands in the USER INTERFACE category or sub-system.
+
+\item \texttt{help-util} $\leftarrow$ display all available commands in the UTILITIES category.
+
+\item \texttt{whatis NAME} $\leftarrow$ displays help info about a given system command or user program.
+
+
+
 \end{itemize}
 
 }
 
 
+\end{enumerate}
+
+
+\vspace{2em}
+
+After working on and testing the initial prototypes of the TEA OS, it was established that we shall need some means of controlling and configuring the user-interface mechanisms, and thus the following extra sub-system specification:
+
+
+\begin{enumerate}
+
+\item {  \textbf{INTERFACE Utilities:} access commands that can alter the user-experience and how certain user-interface aspects of the operating system work within TOS.\\
+\textbf{---[Basic UI/UX Commands Interface]:}
+\begin{itemize}
+\item \texttt{uimini} $\leftarrow$ Configure TEA OS interface to render using mini-terminal mode. Setting persists across logins until changed. This mode is suitable for environments such as using TOS on some Desktop Computer Systems.
+\item \texttt{uilog} $\leftarrow$ Configure TEA OS interface to render using long/log-terminal mode. Setting persists across logins until changed. This mode is suitable for environments such as using TOS on the TEA MOBILE IDE.
+\end{itemize}
+
+}
 \end{enumerate}
 
 

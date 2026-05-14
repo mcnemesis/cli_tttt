@@ -7,19 +7,17 @@ ___oo____oo______oo___oo_
 ___oo_____ooooo___oooo_o_
 _________________________}                                     
 x!:{
-Welcome to TEA OS v1.0.6
---|It is work in progress|--
-For now, best experience is via TEA MOBILE IDE: 
-https://bit.ly/teamobile_apks}
+TEA OS v1.0.8 is Ready...}
 v:vBanner | #i:
 
-###| The above is the original bootscreen
+###| The above is the "original" bootscreen
 ###| The rest of the story follows..
 
 *:{==| PREAMBLE |==}
 L:lPREAMBLE_START
 
-Y:vBanner | V@:dvLOG
+Y:vBanner #| V@:dvLOG
+V@:dvLOG_start
 
 #Of course, this is TEA programming
 We can write verbatim documentation and 
@@ -27,16 +25,26 @@ comments in the most natural of ways without
 worry or concern. We sometimes shall 
 do just that. 
 
+V@:dvABOUT_TOS:{ 
 #---[ABOUT TEA OS]
+
+NAME: TEA Operating System 
+(also "TEA OS" or just "TOS")
+
 ARCHITECT: J. Willrich Lutalo <jwl@nuchwezi.com>
+
 SINCE: 9th APRIL, 2026
+
 INTENT: To manifest a true general purpose, lightweight, minimal but powerful operating system that can essentially just fit inside a single string; to see what the limits of the mathematics of TRANSFORMATICS might be, and what we surely could accomplish with its proper use via modern portable computers.
-PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com
+
+ABOUT: TEA OS is implemented using the Transforming Executable Alphabet (TEA) programming language. It is based on a specification first laid out in the TEA TAZ. It is a project originating from UGANDA.
+
+PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com}
 
 #--[GLOBAL CONSTANTS]
 V@:dvOSName:{TEA OS}
 V@:dvOSName_short:{TOS}
-V@:dvOSVersion:{1.0.6}
+V@:dvOSVersion:{1.0.8}
 
 V:vSLOGAN:{TEA OS! T can fit in a string!}
 I!:{___________________}|V:vDELIM|V@:dvDELIM
@@ -46,7 +54,7 @@ I!:{
 
 
 #--[GLOBAL VARIABLES]
-V:vUSERNAME:{user}
+V:vUSERNAME:{user} # not used that much! 
 
 
 #--[DATABASE VARIABLES]
@@ -55,22 +63,108 @@ V@:dvLastPS:{}
 V@:dvLastCommand:{}
 V@:dvLastOutput:{}
 
+####| INTERFACE CONFIG VARIABLE
+# 0 forces original terminal mode: fit for TEA mobile IDE
+# 1 is mini-terminal mode: fit for CLI and other WEB
+# user can change this via commands:
+# uimini -> 1
+# uilog -> 0
+# will default to mini if not already set
+Y@:dvUIMODE_MINI|I:{1}|V@:dvUIMODE_MINI
+
 #--[SOME FUNCTIONS]
 
 #for presenting pretty message prompt..
-V:fPROMPT:"
+# in vUIMODE_MINI=0
+V:fPROMPT_DEFAULT:"
+# FIRST: IMPORTANTLY...
 v:vMSG #stores AI at invocation
 y@:dvDELIM|v:vD2
 y:vMSG|x!:{ }|v:vMSG #affix space at prompt end
 i!:{} | g*:{
 }:vD2:vMSG
 v:vMSG
-Y@:dfLogAI|v:f
+Y@:dfLogAI|v:f # a stealth import :)
 y:vMSG|e*:f
 #then show log+latest prompt
 Y@:dvLOG
 i: #returns input..
 "
+
+Y:fPROMPT_DEFAULT|V@:dfPROMPT_DEFAULT
+
+#for presenting pretty message prompt..
+# in vUIMODE_MINI=1
+V:fPROMPT:"
+# FIRST: IMPORTANTLY...
+v:vMSG #stores AI at invocation
+
+#check if we should instead be using default ui
+y@:dvUIMODE_MINI | f!:^0$:lN_UIMODE_MINI
+y@:dfPROMPT_DEFAULT|v:fPROMPT_DEFAULT
+y:vMSG | E*:fPROMPT_DEFAULT
+q!: # no need to proceed..
+l:lN_UIMODE_MINI
+
+#THEN imports...
+y@:dfLastIO|v:fLastIO
+y@:dfMakePS|v:fMakePS
+
+y@:dvDELIM|v:vD2
+y:vMSG|x!:{ }|v:vMSG #affix space at prompt end
+i!:{} | g*:{
+}:vD2:vMSG
+v:vMSG
+Y@:dfLogAI|v:f # a stealth import :)
+y:vMSG|e*:f
+#then show log+latest prompt
+#Y@:dvLOG
+E*:fMakePS|v:vNEXTPS
+E*:fLastIO #fetch last I/O
+x!:{
+> }|#x*!:vNEXTPS
+i: #returns input..
+"
+
+Y:fPROMPT|V@:dfPROMPT
+
+#login function
+V:fLogin:"
+#import some functions from database...
+y@:dfPROMPT_DEFAULT|v:fPROMPT
+y@:dfLogAI|v:fLogAI
+y@:dfLogO|v:fLogO
+y@:dfGreetUser|v:fGreetUser
+
+# show OS banner
+y@:dvLOG_start | v:vSCREEN
+e*:fLogAI
+
+#greet user via stored name..
+y!@:dvUSERNAME | f!:^0$:lGREET_USER
+#Username not yet set, prompt and store
+l:lSET_USERNAME
+I!:{
+Please set a Username:}|v:vPromptMSG
+e*:fLogAI
+y:vSCREEN | x*!:vPromptMSG | i:
+t!.:|v:|v!:|f:^0$:lSET_USERNAME
+y:|V@:dvUSERNAME # store in database
+e*:fLogAI
+
+l:lGREET_USER
+e*:fGreetUser|v:vGreetings
+e*:fLogO | e*:fPROMPT
+"
+
+#load username and greet
+V:fGreetUser:"
+y@:dvUSERNAME
+x:{
+Hello, }|x!:{. Welcome to TOS!}
+"
+
+Y:fGreetUser|V@:dfGreetUser
 
 #for os name..
 V:fOSHandle:"
@@ -88,6 +182,8 @@ y@:dvOSName_short | v:vPWD
 v:vD:{>}
 g*:{/}:vPWD:vT:vD
 "
+
+Y:fMakePS|V@:dfMakePS
 
 #log last cmd+O 
 V:fLogIO:"
@@ -112,7 +208,6 @@ y:vAI
 #also make it a db function
 Y:fLogAI|v@:dfLogAI
 
-
 #store AI as last-O..
 V:fLogO:"
 v@:dvLastOutput
@@ -134,25 +229,71 @@ y:fLastIO|v@:dfLastIO
 L:lPREAMBLE_END
 #:{=================}
 
+*:{==|UTILITY SYSTEM |==}
+L:lSYS_UTILITY_START
+
+#--[UTILITY Functions]
+
+#fix URL
+V:fFixURL:"
+v:vURL|z:
+f:{^https?://}:lFINE
+y:vURL|x:{https://}
+v:vURL
+l:lFINE
+y:vURL
+"
+
+#reset+clear log
+V:fResetLog:"
+y@:dvLastOutput | v@:dvLastOutput_backup
+c!@:dvLOG
+c*:vLOG
+C!@:dvLastOutput
+y@:dfGreetUser|E:|v:vGreetings
+y@:dvLOG_start
+x*!:vGreetings
+"
+
+# make available for [db] import..
+Y:fResetLog|V@:dfResetLog
+
+L:lSYS_UTILITY_END
+#:{=================}
 
 *:{==|HELP SYSTEM |==}
 L:lSYS_HELP_START
 
 #--[HELP/DOC Functions]
 
+#present USER INTERFACE help-category commands
+V:fGetUIMenu:"
+y@:dfOSHandle|e:|x!:{ INTERFACE COMMANDS:
+uimini
+uilog}
+v:vMSG
+y@:dvDELIM2|v:vD
+g*:{}:vD:vMSG:vD
+"
+
 #present UTILITIES help-category commands
 V:fGetUtilityMenu:"
 y@:dfOSHandle|e:|x!:{ UTILITIES MENU:
+clear
+date
+exit
+export
 fetch URL
 fetch URL FILENAME
+logout
+math EXPRESSION
+print
 tea CODE
-math EXPRESSION 
-date
 time
 timestamp
-print
-export
-exit}
+username NAME
+whoami
+}
 v:vMSG
 y@:dvDELIM2|v:vD
 g*:{}:vD:vMSG:vD
@@ -161,19 +302,28 @@ g*:{}:vD:vMSG:vD
 #present main help-category commands
 V:fGetHelpMenu:"
 y@:dfOSHandle|e:|x!:{ HELP MENU:
-whatis NAME
-help NAME
+about
 help
+help NAME
 help-file
+help-help
 help-prog
+help-ui
 help-util
-help-help}
+whatis NAME}
 v:vMSG
 y@:dvDELIM2|v:vD
 g*:{}:vD:vMSG:vD
 "
 
-
+#present main about os info
+V:fGetAboutTOS:"
+y@:dfOSHandle|e:|x:{ABOUT: }
+v:vMSG
+y@:dvABOUT_TOS|x*:vMSG|v:vMSG
+y@:dvDELIM2|v:vD
+g*:{}:vD:vMSG:vD
+"
 
 #present help-on a given topic
 V:fGetHelpOn:"
@@ -185,9 +335,15 @@ r@:{That help topic [#vHelpTOPIC#] is not understood or supported. Try the 'help
 
 y:vHelpTOPIC
 
+#> help about
+f!:^about$:lN_h0
+v:vMSG:{about <~ Displays basic info about the currently running version of the TEA Operating System.}
+j:lh1_present
+l:lN_h0
+
 #> help whatis
 f!:^whatis$:lN_h1
-v:vMSG:{Displays help info about a given system command or user program.}
+v:vMSG:{whatis NAME <~ Displays help info about a given system command or user program.}
 j:lh1_present
 l:lN_h1
 
@@ -217,6 +373,11 @@ v:vMSG:{Display help on how to use the HELP facility or sub-system.}
 j:lh1_present
 l:lN_h6
 
+f!:^clear$:lN_hu0
+v:vMSG:{clear <~ Resets and clears the current TEA OS session log since login.}
+j:lh1_present
+l:lN_hu0
+
 f!:^fetch$:lN_hu1
 v:vMSG:{fetch URL <~ fetch and output contents of the specified [online/network] resource.
 
@@ -235,34 +396,64 @@ j:lh1_present
 l:lN_hu3
 
 f!:^date$:lN_hu4
-v:vMSG:{Show the current date.}
+v:vMSG:{date <~ Show the current date.}
 j:lh1_present
 l:lN_hu4
 
 f!:^time$:lN_hu5
-v:vMSG:{Show the current time.}
+v:vMSG:{time <~ Show the current time.}
 j:lh1_present
 l:lN_hu5
 
 f!:^timestamp$:lN_hu6
-v:vMSG:{Show the current timestamp.}
+v:vMSG:{timestamp <~ Show the current timestamp.}
 j:lh1_present
 l:lN_hu6
 
 f!:^print$:lN_hu7
-v:vMSG:{Show or preview current output buffer contents (usually, output of last command).}
+v:vMSG:{print <~ Show or preview current output buffer contents (usually, output of last command). After clearing log, but also after exit/system shutdown/login also shows final output before the log was reset.}
 j:lh1_present
 l:lN_hu7
 
 f!:^export$:lN_hu8
-v:vMSG:{Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).}
+v:vMSG:{export <~ Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).}
 j:lh1_present
 l:lN_hu8
 
 f!:^exit$:lN_hu9
-v:vMSG:{Ends the TOS session returning nothing.}
+v:vMSG:{exit <~ Ends the TOS session returning nothing.}
 j:lh1_present
 l:lN_hu9
+
+f!:^logout$:lN_hu10
+v:vMSG:{logout <~ Resets username and system logs and ends the TOS session returning nothing.}
+j:lh1_present
+l:lN_hu10
+
+f!:^username$:lN_hu11
+v:vMSG:{username NAME <~ Overrides current username with specified value.}
+j:lh1_present
+l:lN_hu11
+
+f!:^help-ui$:lN_h12
+v:vMSG:{Display all available commands in the USER INTERFACE category or sub-system.}
+j:lh1_present
+l:lN_h12
+
+f!:^uimini$:lN_h13
+v:vMSG:{uimini <~ Configure TEA OS interface to render using mini-terminal mode. Setting persists across logins until changed. This mode is suitable for environments such as using TOS on some Desktop Computer Systems.}
+j:lh1_present
+l:lN_h13
+
+f!:^uilog$:lN_h14
+v:vMSG:{uilog <~ Configure TEA OS interface to render using long/log-terminal mode. Setting persists across logins until changed. This mode is suitable for environments such as using TOS on the TEA MOBILE IDE.}
+j:lh1_present
+l:lN_h14
+
+f!:^whoami$:lN_h15
+v:vMSG:{whoami <~ Display the NAME of currently active USER.}
+j:lh1_present
+l:lN_h15
 
 l:lh1_present
 y@:dvDELIM2|v:vD
@@ -275,19 +466,7 @@ L:lSYS_HELP_END
 
 *:{==|SYSTEM SHELL |==}
 L:lSYS_SHELL_START
-#greet user via stored name..
-Y!@:dvUSERNAME | F!:^0$:lGREET_USER
-#Username not yet set, prompt and store
-L:lSET_USERNAME
-I!:{Please set a Username:}|E*:fPROMPT
-t!.:|v:|v!:|f:^0$:lSET_USERNAME
-y:|V@:dvUSERNAME # store in database
-E*:fLogAI
-
-L:lGREET_USER
-Y@:dvUSERNAME | V:vUSERNAME
-X:{Hello, }|X!:{. Welcome to TEA OS!}
-E*:fPROMPT
+E*:fLogin
 
 #---[ Main LOOP ]
 L:lSTART_Main
@@ -310,67 +489,223 @@ y:vIN_clean_lc
 #preliminary processing...
 
 # a subsystem..
-###((UTILITY System))
+###((INTERFACE System))
 
-#> time
-F!:^time$:lN_TIME
-#log input cmd..
-i!:{time}|v@:dvLastCommand
+#> uimini
+F!:^uimini$:lN_UIMINI
+I!:{uimini}|V@:dvLastCommand
+V@:dvUIMODE_MINI:{1}
+I!:{TOS Mini-Interface Mode Activated} | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_UIMINI
 
-#show cur.time..
-Z.:TIME | E*:fLogO
-#present+log I/O
-E*:fPROMPT
-L:lN_TIME
+#> uilog
+F!:^uilog$:lN_UILOG
+I!:{uilog}|V@:dvLastCommand
+V@:dvUIMODE_MINI:{0}
+I!:{TOS Log-Interface Mode Activated} | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_UILOG
 
-#> date
-F!:^date$:lN_DATE
-i!:{date}|v@:dvLastCommand
-Z.:DATE | E*:fLogO
-E*:fPROMPT
-L:lN_DATE
+###((END INTERFACE System))
+
+
+# a subsystem..
+###((HELP System))
+
+#> about
+F!:^about$:lN_ABOUT
+I!:{about}|V@:dvLastCommand
+E*:fGetAboutTOS | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_ABOUT
 
 #> help
 F!:^help$:lN_HELP
 I!:{help}|V@:dvLastCommand
 E*:fGetHelpMenu | E*:fLogO
-E*:fPROMPT
+J:lFIN_CMD_PROCESSING
 L:lN_HELP
 
-
 #> help NAME
-F!:^help [^ ]*$:lN_HELP_TOPIC
+F!:^help\s+\S*$:lN_HELP_TOPIC
 #extract topic..
 d:^help\s+|V:vHelpTopic
 X:{help }
 |V@:dvLastCommand
 Y:vHelpTopic
 E*:fGetHelpOn | E*:fLogO
-E*:fPROMPT
+J:lFIN_CMD_PROCESSING
 L:lN_HELP_TOPIC
 
 #> whatis NAME
-F!:^whatis [^ ]*$:lN_HELP_TOPICb
+F!:^whatis\s+\S*$:lN_HELP_TOPICb
 #extract topic..
 d:^whatis\s+|V:vHelpTopic
 X:{whatis }
 |V@:dvLastCommand
 Y:vHelpTopic
 E*:fGetHelpOn | E*:fLogO
-E*:fPROMPT
+J:lFIN_CMD_PROCESSING
 L:lN_HELP_TOPICb
 
 #> help-util
 F!:^help-util$:lN_HELP_UT
 I!:{help-util}|V@:dvLastCommand
 E*:fGetUtilityMenu | E*:fLogO
-E*:fPROMPT
+J:lFIN_CMD_PROCESSING
 L:lN_HELP_UT
+
+#> help-ui
+F!:^help-ui$:lN_HELP_UI
+I!:{help-ui}|V@:dvLastCommand
+E*:fGetUIMenu | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_HELP_UI
+
+#> help-help
+F!:^help-help$:lN_HELP_HELP
+I!:{help-help}|V@:dvLastCommand
+E*:fGetHelpMenu 
+X:{
+To use or access help on any topic in the system, use any of the commands presented in the following Menu.
+}
+X!:{
+Each of those commands leads you to further information about help on other commands. For example
+
+> help help-util
+
+Will explain what the help-util command is all about.}
+
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_HELP_HELP
+
+###((END HELP System))
+
+# a subsystem..
+###((UTILITY System))
+
+#> fetch URL
+F!:^fetch\s+\S*$:lN_FETCH
+#extract url..
+d:^fetch\s+|V:vFURL
+X:{fetch }
+|V@:dvLastCommand
+Y:vFURL
+E*:fFixURL
+W: #do the web..
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_FETCH
+
+#> tea CODE
+F!:^tea\s+[\S]+.*$:lN_TEA
+#extract code..
+d:^tea\s+|V:vTEACode
+X:{tea }
+|V@:dvLastCommand
+Y:vTEACode
+E: #do the tea..
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_TEA
+
+#> math EXPRESSION
+F!:^math\s+[\S]+.*$:lN_MATH
+#extract expression..
+d:^math\s+|V:vMathExp
+X:{math }
+|V@:dvLastCommand
+Y:vMathExp
+R.: #do the math..
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_MATH
+
+#> username NAME
+F!:^username\s+[\S]+.*$:lN_SETUSER
+#extract expression..
+Y:vIN_raw|t!.:
+d:^\S+\s+|V:vUSERNAME
+X:{username }
+|V@:dvLastCommand
+Y:vUSERNAME
+V@:dvUSERNAME #update db
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_SETUSER
+
+#> whoami
+F!:^whoami$:lN_WHOAMI
+I!:{whoami}|V@:dvLastCommand
+Y@:dvUSERNAME
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_WHOAMI
+
+
+#> time
+F!:^time$:lN_TIME
+#log input cmd..
+i!:{time}|v@:dvLastCommand
+#show cur.time..
+Z.:TIME | E*:fLogO
+#present+log I/O
+J:lFIN_CMD_PROCESSING
+L:lN_TIME
+
+#> date
+F!:^date$:lN_DATE
+i!:{date}|v@:dvLastCommand
+Z.:DATE | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_DATE
+
+#> timestamp 
+F!:^timestamp$:lN_TSTAMP
+i!:{timestamp}|v@:dvLastCommand
+Z.:TIMESTAMP | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_TSTAMP
+
+#> clear 
+F!:^clear$:lN_CLEAR
+i!:{clear}|v@:dvLastCommand
+E*:fResetLog
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_CLEAR
+
+#> print 
+F!:^print$:lN_PRINT
+I!:{print}|V@:dvLastCommand
+Y@:dvLastOutput_backup
+F!:^$:lN_USED_BACKUP
+Y@:dvLastOutput
+L:lN_USED_BACKUP
+C@:dvLastOutput_backup
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_PRINT
+
+#> logout
+F!:^logout$:lN_LOGOUT
+C!@:dvUSERNAME # delete username
+C*:vUSERNAME # also clear vault
+E*:fResetLog # reset log
+# ensure to clear log backup too!
+C@:dvLastOutput_backup
+# Gracefully quit...
+E*:fOSHandle | X:{You have SIGNED OUT!
+Thanks for Using } 
+J:lEXIT_Main
+L:lN_LOGOUT
 
 #> exit
 F!:^exit$:lN_EXIT
 #don't log input cmd.
-
+E*:fResetLog # reset log
 #prepare for immediate exit..
 # Gracefully quit...
 E*:fOSHandle | X:{Thanks for Using } 
@@ -380,10 +715,9 @@ L:lN_EXIT
 #> export
 F!:^export$:lN_EXPORT
 #don't log input cmd.
-
 #exit via export..
-#E*:fLastIO | V:vLOG
 Y@:dvLOG|V:vLOG 
+E*:fResetLog # reset log
 # Gracefully quit...
 E*:fOSHandle | X:{Thanks for Using }
 V:vMSG
@@ -391,7 +725,24 @@ G*!:vDELIM2:vLOG:vMSG
 J:lEXIT_Main
 L:lN_EXPORT
 
-#for non-exit commands, we want to ensure we log user response from latest command..
+###((END UTILITY System))
+
+###((CATCH-ALL))
+#if we came this far
+#then it's CNF!
+F:^$:lFIN_CMD_PROCESSING
+Y:vIN_raw | V@:dvLastCommand # log unknown command
+I!:{--COMMAND NOT FOUND--}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+###((END CATCH-ALL))
+
+#we only naturally get here for properly 
+#processed commands..
+L:lFIN_CMD_PROCESSING
+
+#for non-exit commands, we want to ensure 
+#we log user response from latest command..
 E*:fLogAI
 
 J:lSTART_Main
@@ -399,8 +750,6 @@ J:lSTART_Main
 
 #outside shell.. quitting
 L:lEXIT_Main 
-
-# C!@:dvUSERNAME # should we delete username?
 
 #delete session log from db
 C!@:dvLOG 
