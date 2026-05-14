@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  14 MAY 2026 14:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  14 MAY 2026 15:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1404,9 +1404,6 @@ LaTeX Warning: Label `SECEXAMPI' multiply defined.
 
 LaTeX Warning: Label `SECTOSSPEC' multiply defined.
 
-
-LaTeX Warning: Label `FIGTOS1' multiply defined.
-
 )
 \openout1 = `TAZ_BOOK.aux'.
 
@@ -1529,7 +1526,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
 F version <1.7>, but at most version <1.5> allowed
-<../taz_front_cover.pdf, id=826, 596.98032pt x 844.65562pt>
+<../taz_front_cover.pdf, id=762, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf>
 Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 303.
@@ -1550,7 +1547,7 @@ F version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
 F version <1.7>, but at most version <1.5> allowed
-<../taz_front_cover.pdf, id=829, page=1, 596.98032pt x 844.65562pt>
+<../taz_front_cover.pdf, id=765, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
 Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 303.
@@ -1583,7 +1580,7 @@ Package pdftex.def Info: ../taz_front_cover.pdf , page1 used on input line 303.
 
 
  <../taz_front_cover.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=844, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=780, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf  used on input line 3
@@ -1594,7 +1591,7 @@ File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf  used on input line 3
 07.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<resources/pdfs/FrontisMatter.pdf, id=847, page=1, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=783, page=1, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 1>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
@@ -1625,7 +1622,7 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page1 used on input
 [2
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=879, page=2, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=815, page=2, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 2>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
@@ -1646,7 +1643,7 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
 [3
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=896, page=3, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=832, page=3, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
@@ -1667,7 +1664,7 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
 [4
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=913, page=4, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=849, page=4, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 4>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
@@ -1688,7 +1685,7 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page4 used on input
 [5
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=919, page=5, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=855, page=5, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 5>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
@@ -1709,7 +1706,7 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page5 used on input
 [6
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=932, page=6, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=868, page=6, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 6>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
@@ -1730,7 +1727,7 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page6 used on input
 [7
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=947, page=7, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=883, page=7, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 7>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page7 used on input
@@ -1810,7 +1807,7 @@ l.333 \chapter
               *{Preface} [4
 
 ]
-<resources/images/transformative_teaching.jpg, id=982, 1861.95625pt x 1084.05pt
+<resources/images/transformative_teaching.jpg, id=918, 1861.95625pt x 1084.05pt
 >
 File: resources/images/transformative_teaching.jpg Graphic file (type jpg)
 <use resources/images/transformative_teaching.jpg>
@@ -1835,8 +1832,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.vi}) has
 l.361 \tableofcontents
                        [6
 
-] (TAZ_BOOK.toc
-Underfull \vbox (badness 1755) has occurred while \output is active []
+] (TAZ_BOOK.toc)
+\tf@toc=\write6
+\openout6 = `TAZ_BOOK.toc'.
 
 
 
@@ -1845,251 +1843,44 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.vii}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.19 ...{3}TEA REGULAR EXPRESSIONS}{25}{chapter.3}
-                                                  % [7]
-Overfull \hbox (31.18277pt too wide) in paragraph at lines 35--35
- [][] [][]\OT1/cmr/m/n/14.4 Proposal 2: The Ana-gram Dis-tance Be-tween Any Two
- Sequences[[]][] [][]  
- []
-
-
-Underfull \vbox (badness 1178) has occurred while \output is active []
-
-
+l.363 \listoffigures
+                     [7]
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.viii}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 ...cs}\cite {cli_tttt}}{52}{subsection.5.2.9}
-                                                  % [8]
+l.363 \listoffigures
+                     [8
 
-[9]
-Overfull \hbox (3.66765pt too wide) in paragraph at lines 73--73
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 DY-NAMIC PRO-GRAM-MIN
-G: \OT1/cmr/m/n/14.4 AUTO- 
- []
-
-
-Overfull \hbox (1.48584pt too wide) in paragraph at lines 74--74
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 2: \OT1/cmr/bx/n/14.4 IN-FOR-MA-TION SE-CU-
-RITY: \OT1/cmr/m/n/14.4 OF-FEN- 
- []
-
-
-Overfull \hbox (3.83745pt too wide) in paragraph at lines 74--74
- \OT1/cmr/m/n/14.4 SIVE TEA-VIRUS PRO-GRAM MOD-I-FY-ING and EX-POS- 
- []
-
-
-Overfull \hbox (1.00302pt too wide) in paragraph at lines 79--79
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL PSY-
-CHOL-OGY: 
- []
-
-
-
-[10]
-Overfull \hbox (2.68614pt too wide) in paragraph at lines 95--95
- \OT1/cmr/bx/n/14.4 MING: \OT1/cmr/m/n/14.4 [pure-GUI] TEXT AD-VEN-TURE GAME: B
-OOBS 
- []
-
-
-Overfull \hbox (8.7194pt too wide) in paragraph at lines 96--96
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 2: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL MYS-
-TI-CISM: \OT1/cmr/m/n/14.4 The 
- []
-
-
-Overfull \hbox (4.2661pt too wide) in paragraph at lines 103--103
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL MEDI
-CINE: \OT1/cmr/m/n/14.4 THE 
- []
-
-
-Underfull \vbox (badness 3547) has occurred while \output is active []
-
-
-
-[11]
-Overfull \hbox (10.85258pt too wide) in paragraph at lines 108--108
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL FINE
--ART: \OT1/cmr/m/n/14.4 SKIRT 
- []
-
-
-Overfull \hbox (19.81546pt too wide) in paragraph at lines 113--113
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 GAME PRO-GRAM-MING: \
-OT1/cmr/m/n/14.4 TEXT-BASED 
- []
-
-
-Overfull \hbox (8.7194pt too wide) in paragraph at lines 118--118
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL MYS-
-TI-CISM: \OT1/cmr/m/n/14.4 The 
- []
-
-
-Overfull \hbox (4.59895pt too wide) in paragraph at lines 123--123
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 DATA-ENGINEERING: \OT
-1/cmr/m/n/14.4 GEN-ER-AT-ING 
- []
-
-
-Overfull \hbox (18.34386pt too wide) in paragraph at lines 123--123
- \OT1/cmr/m/n/14.4 RAN-DOM [NU-MERIC] DATASETS or STRUC-TURES CON- 
- []
-
-
-
-[12]
-Overfull \hbox (4.23056pt too wide) in paragraph at lines 134--134
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 STA-TIS-TI-CAL ANAL-Y
--SIS: \OT1/cmr/m/n/14.4 The RANK- 
- []
-
-
-Overfull \hbox (2.00688pt too wide) in paragraph at lines 139--139
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 MU-SIC & PO-ETRY: \OT
-1/cmr/m/n/14.4 A Ran-dom VOWEL 
- []
-
-
-Overfull \hbox (10.11594pt too wide) in paragraph at lines 144--144
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 PSY-CHOL-OGY & AS-TRO
-L-OGY: \OT1/cmr/m/n/14.4 PER- 
- []
-
-
-Underfull \vbox (badness 7595) has occurred while \output is active []
-
-
-
-[13]
-Overfull \hbox (12.43364pt too wide) in paragraph at lines 170--170
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL ART:
- \OT1/cmr/m/n/14.4 Ab-stract Text- 
- []
-
-
-Overfull \hbox (23.29762pt too wide) in paragraph at lines 179--179
- [][] [][]\OT1/cmr/m/n/14.4 EXAMPLE 1: \OT1/cmr/bx/n/14.4 COM-PU-TA-TIONAL MYS-
-TI-CISM: \OT1/cmr/m/n/14.4 MAG- 
- []
-
-
-
-[14]
-
-[15]
-Overfull \hbox (3.55928pt too wide) in paragraph at lines 219--219
- [][] [][]\OT1/cmr/bx/n/14.4 COMPUTER AR-CHI-TEC-TURE: \OT1/cmr/m/n/14.4 TEA Op
--er-at-ing Sys-tem De- 
- []
-
-)
-\tf@toc=\write6
-\openout6 = `TAZ_BOOK.toc'.
-
-
-
-[16] (TAZ_BOOK.lof
-Overfull \hbox (20.07639pt too wide) in paragraph at lines 10--10
- [][] [][]\OT1/cmr/m/n/14.4 The TEA In-struc-tion Con-text Free Gram-mar in Sim
--ple Form (context- 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[17
-
-]
-
-[18]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[19]
-Overfull \hbox (15.72025pt too wide) in paragraph at lines 85--85
- [][] [][]\OT1/cmr/m/n/14.4 MINIFIED TEA Pro-gram: LUCKY 101 Brain-Game pro-gra
-m source- 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[20]
-Overfull \hbox (4.2055pt too wide) in paragraph at lines 106--106
- [][] [][]\OT1/cmr/m/n/14.4 TEA AP-PLI-CA-TION: CRYP-TOG-RA-PHY: GHOST Mes-sage
-s Pro- 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[21]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[22]
-Overfull \hbox (7.49013pt too wide) in paragraph at lines 139--139
- [][] [][]\OT1/cmr/m/n/14.4 TEA AP-PLI-CA-TION: Ran-dom Se-cure Pass-word Gen-e
-r-a-tor (RSPG) 
- []
-
-
-Overfull \hbox (4.9399pt too wide) in paragraph at lines 148--148
- \OT1/cmr/m/n/14.4 ``Dear Waltz", that demon-strates how mails sent us-ing TEA 
-Emailer 
- []
-
-
-Underfull \vbox (badness 6125) has occurred while \output is active []
-
-
-
-[23])
+] (TAZ_BOOK.lof)
 \tf@lof=\write7
 \openout7 = `TAZ_BOOK.lof'.
 
 
 
-[24] (TAZ_BOOK.lot
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[9]
 
+[10
 
-
-[25
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-[26])
+] (TAZ_BOOK.lot)
 \tf@lot=\write8
 \openout8 = `TAZ_BOOK.lot'.
 
 
 
-[27]
+[11]
 
-[28
+[12
 
-] [29]
+] [13]
 
-[30]
+[14]
+
+LaTeX Warning: Citation `lutalo2024tea' on page 1 undefined on input line 457.
+
+
 Overfull \hbox (7.71082pt too wide) in paragraph at lines 457--462
 \OT1/cmr/m/n/14.4 This manuscript builds upon the ear-lier TEA (\OT1/cmr/bx/n/1
 4.4 T\OT1/cmr/m/n/14.4 ransforming \OT1/cmr/bx/n/14.4 E\OT1/cmr/m/n/14.4 xecuta
@@ -2113,8 +1904,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 457--462
 
 
 ]
-<resources/images/tea_cup_computer_promo.png, id=1847, 800.9925pt x 1064.97874p
-t>
+<resources/images/tea_cup_computer_promo.png, id=972, 800.9925pt x 1064.97874pt
+>
 File: resources/images/tea_cup_computer_promo.png Graphic file (type png)
 <use resources/images/tea_cup_computer_promo.png>
 Package pdftex.def Info: resources/images/tea_cup_computer_promo.png  used on i
@@ -2124,7 +1915,7 @@ nput line 468.
 
 [2 <./resources/images/tea_cup_computer_promo.png>]
 Chapter 1.
-<resources/images/wha-tea_powers_computing.jpg, id=1855, 1284.8pt x 578.16pt>
+<resources/images/wha-tea_powers_computing.jpg, id=981, 1284.8pt x 578.16pt>
 File: resources/images/wha-tea_powers_computing.jpg Graphic file (type jpg)
 <use resources/images/wha-tea_powers_computing.jpg>
 Package pdftex.def Info: resources/images/wha-tea_powers_computing.jpg  used on
@@ -2167,10 +1958,19 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <14.4> not available
 
 [7]
 
+LaTeX Warning: Citation `copilot_assistant' on page 8 undefined on input line 6
+07.
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 8 undefined on input line 6
+07.
+
+
+
 [8]
 
 [9]
-<resources/images/tea_mobile/TEA_on_Mobile_landing.png, id=1936, 1673.25125pt x
+<resources/images/tea_mobile/TEA_on_Mobile_landing.png, id=1066, 1673.25125pt x
  2930.95pt>
 File: resources/images/tea_mobile/TEA_on_Mobile_landing.png Graphic file (type 
 png)
@@ -2178,7 +1978,7 @@ png)
 Package pdftex.def Info: resources/images/tea_mobile/TEA_on_Mobile_landing.png 
  used on input line 644.
 (pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
-<resources/images/tea_mobile/TEA_on_Mobile_Standard_Programs.png, id=1937, 1673
+<resources/images/tea_mobile/TEA_on_Mobile_Standard_Programs.png, id=1067, 1673
 .25125pt x 2930.95pt>
 File: resources/images/tea_mobile/TEA_on_Mobile_Standard_Programs.png Graphic f
 ile (type png)
@@ -2186,7 +1986,7 @@ ile (type png)
 Package pdftex.def Info: resources/images/tea_mobile/TEA_on_Mobile_Standard_Pro
 grams.png  used on input line 650.
 (pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
-<resources/images/tea_mobile/TEA_on_Mobile_NSigil_App.png, id=1938, 1673.25125p
+<resources/images/tea_mobile/TEA_on_Mobile_NSigil_App.png, id=1068, 1673.25125p
 t x 2930.95pt>
 File: resources/images/tea_mobile/TEA_on_Mobile_NSigil_App.png Graphic file (ty
 pe png)
@@ -2194,7 +1994,7 @@ pe png)
 Package pdftex.def Info: resources/images/tea_mobile/TEA_on_Mobile_NSigil_App.p
 ng  used on input line 662.
 (pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
-<resources/images/tea_mobile/TEA_on_MOBILE_Editor.png, id=1939, 1673.25125pt x 
+<resources/images/tea_mobile/TEA_on_MOBILE_Editor.png, id=1069, 1673.25125pt x 
 2930.95pt>
 File: resources/images/tea_mobile/TEA_on_MOBILE_Editor.png Graphic file (type p
 ng)
@@ -2228,6 +2028,10 @@ Chapter 2.
 
 ]
 
+LaTeX Warning: Citation `cli_tttt' on page 14 undefined on input line 755.
+
+
+
 [14]
 LaTeX Font Info:    Trying to load font information for LGR+cmtt on input line 
 803.
@@ -2245,9 +2049,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [16]
 
+LaTeX Warning: Citation `cli_tttt' on page 17 undefined on input line 882.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf): 
 PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf, id=2014, 614.295pt x 794.97pt>
+<resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf, id=1148, 614.295pt x 794.97pt>
 File: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf Graphic file (type pdf)
 <use resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf>
 Package pdftex.def Info: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf  used on i
@@ -2268,7 +2076,7 @@ nput line 912.
 [19]
 
 [20]
-<resources/tea_cs_is.png, id=2077, 1027.84pt x 1027.84pt>
+<resources/tea_cs_is.png, id=1214, 1027.84pt x 1027.84pt>
 File: resources/tea_cs_is.png Graphic file (type png)
 <use resources/tea_cs_is.png>
 Package pdftex.def Info: resources/tea_cs_is.png  used on input line 1005.
@@ -2300,9 +2108,28 @@ Underfull \vbox (badness 1308) has occurred while \output is active []
 [28]
 Chapter 4.
 
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 29 undefined
+ on input line 1155.
+
+
+LaTeX Warning: Citation `cli_tttt' on page 29 undefined on input line 1161.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1161--1162
 
  []
+
+
+LaTeX Warning: Citation `lutalo2024software' on page 29 undefined on input line
+ 1168.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 29 undefined
+ on input line 1168.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 29 undefined on input line 1
+168.
 
 
 Overfull \hbox (28.85664pt too wide) in paragraph at lines 1168--1169
@@ -2315,22 +2142,40 @@ n-ables a sequence-transformer
 [29
 
 ]
-Overfull \hbox (21.36432pt too wide) in paragraph at lines 1196--1197
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 30 undefined
+ on input line 1196.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 30 undefined
+ on input line 1196.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 30 undefined
+ on input line 1196.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 30 undefined
+ on input line 1196.
+
+
+Overfull \hbox (14.91449pt too wide) in paragraph at lines 1196--1197
 []\OT1/cmr/m/n/14.4 If you have come across the new/e-merg-ing math-e-mat-i-cal
  the-ory of Transformatics[[]],
  []
 
 
-Overfull \hbox (5.50775pt too wide) in paragraph at lines 1204--1205
-\OT1/cmr/bx/n/14.4 mat-ics of Trans-for-mat-ics \OT1/cmr/m/n/14.4 --- the manus
-cript[[]] known as the ``\OT1/cmr/bx/n/14.4 Transformatics
- []
+LaTeX Warning: Citation `cli_tttt' on page 30 undefined on input line 1200.
+
+
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 30 undefined
+ on input line 1204.
 
 
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/trans_front_cover.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/trans_front_cover.pdf, id=2174, 596.98032pt x 844.65562pt>
+<resources/pdfs/trans_front_cover.pdf, id=1297, 596.98032pt x 844.65562pt>
 File: resources/pdfs/trans_front_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_front_cover.pdf>
 Package pdftex.def Info: resources/pdfs/trans_front_cover.pdf  used on input li
@@ -2353,7 +2198,7 @@ lusion: found PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/trans_front_cover.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/trans_front_cover.pdf, id=2177, page=1, 596.98032pt x 844.65562
+<resources/pdfs/trans_front_cover.pdf, id=1300, page=1, 596.98032pt x 844.65562
 pt>
 File: resources/pdfs/trans_front_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_front_cover.pdf, page 1>
@@ -2398,9 +2243,24 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\\' on input line 1213.
 
 
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 33 undefined
+ on input line 1216.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans101_1page' on page 33 undefined on in
+put line 1218.
+
+
+LaTeX Warning: Citation `transformatics' on page 33 undefined on input line 121
+8.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1218--1222
 
  []
+
+
+LaTeX Warning: Citation `lnspaper' on page 33 undefined on input line 1226.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2413,20 +2273,41 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [33]
 
+LaTeX Warning: Citation `Lutalo2024gtnc' on page 34 undefined on input line 123
+1.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1231.
+
+
+LaTeX Warning: Citation `lnspaper' on page 34 undefined on input line 1235.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1235.
 
 
+LaTeX Warning: Citation `adtpaper' on page 34 undefined on input line 1240.
+
+
+LaTeX Warning: Citation `Lutalo2024gtnc' on page 34 undefined on input line 124
+0.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1240.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1240.
+
+
+LaTeX Warning: Citation `ossipaper' on page 34 undefined on input line 1247.
+
+
+LaTeX Warning: Citation `Lutalo2024gtnc' on page 34 undefined on input line 124
+7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2437,12 +2318,27 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1247.
 
 
+LaTeX Warning: Citation `transformatics' on page 34 undefined on input line 125
+3.
+
+
+LaTeX Warning: Citation `lnspaper' on page 34 undefined on input line 1253.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1253.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1253.
+
+
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 34 undefined on input line
+ 1259.
+
+
+LaTeX Warning: Citation `transformatics' on page 34 undefined on input line 125
+9.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2451,6 +2347,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1259.
+
+
+LaTeX Warning: Citation `transformatics' on page 34 undefined on input line 126
+5.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2460,12 +2360,24 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [34]
 
+LaTeX Warning: Citation `transformatics' on page 35 undefined on input line 127
+0.
+
+
+LaTeX Warning: Citation `lutalo2025transformatic' on page 35 undefined on input
+ line 1270.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1270.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1270.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 35 undefined on in
+put line 1275.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2484,17 +2396,54 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 1275.
 
 
+LaTeX Warning: Citation `treealgebras_review' on page 35 undefined on input lin
+e 1290.
+
+
 
 [35]
 
+LaTeX Warning: Citation `treealgebras_review' on page 36 undefined on input lin
+e 1294.
+
+
+
 [36]
+
+LaTeX Warning: Citation `lutalo2025rng' on page 37 undefined on input line 1297
+.
+
+
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 37 undefined on input line
+ 1297.
+
+
+LaTeX Warning: Citation `transformatics' on page 37 undefined on input line 130
+8.
+
+
+LaTeX Warning: Citation `transformatics' on page 37 undefined on input line 130
+8.
+
+
+LaTeX Warning: Citation `ossipaper' on page 37 undefined on input line 1320.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1320.
 
 
+LaTeX Warning: Citation `cli_tttt' on page 37 undefined on input line 1323.
+
+
 
 [37]
+
+LaTeX Warning: Citation `ossipaper' on page 38 undefined on input line 1334.
+
+
+LaTeX Warning: Citation `adtpaper' on page 38 undefined on input line 1351.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1351.
@@ -2503,6 +2452,12 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [38]
 
+LaTeX Warning: Citation `adtpaper' on page 39 undefined on input line 1383.
+
+
+LaTeX Warning: Citation `adtpaper' on page 39 undefined on input line 1391.
+
+
 LaTeX Warning: Hyper reference `SECSCENA' on page 39 undefined on input line 14
 04.
 
@@ -2510,9 +2465,26 @@ LaTeX Warning: Hyper reference `SECSCENA' on page 39 undefined on input line 14
 LaTeX Warning: Reference `SECSCENA' on page 39 undefined on input line 1404.
 
 
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 39 undefined on in
+put line 1404.
+
+
 
 [39]
-Overfull \hbox (30.55971pt too wide) in paragraph at lines 1421--1421
+
+LaTeX Warning: Citation `transformatics' on page 40 undefined on input line 141
+8.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 40 undefined on in
+put line 1418.
+
+
+LaTeX Warning: Citation `transformatics' on page 40 undefined on input line 142
+1.
+
+
+Overfull \hbox (30.18471pt too wide) in paragraph at lines 1421--1421
 []\OT1/cmr/bx/n/12 Proposal 3: The Trans-former Com-pres-sion Ra-tio of any Se-
 quence Transformation[[]] 
  []
@@ -2522,9 +2494,26 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1421.
 
 
+LaTeX Warning: Citation `transformatics' on page 40 undefined on input line 142
+4.
+
+
+LaTeX Warning: Citation `transformatics' on page 40 undefined on input line 142
+4.
+
+
+LaTeX Warning: Citation `transformatics' on page 40 undefined on input line 143
+4.
+
+
 
 [40]
-Overfull \hbox (20.72772pt too wide) in paragraph at lines 1449--1449
+
+LaTeX Warning: Citation `transformatics' on page 41 undefined on input line 144
+9.
+
+
+Overfull \hbox (20.35272pt too wide) in paragraph at lines 1449--1449
 []\OT1/cmr/bx/n/12 Proposal 4: The Piece-meal Com-pres-sion Ra-tio of Any Se-qu
 ence Transformation[[]] 
  []
@@ -2534,15 +2523,40 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1449.
 
 
+LaTeX Warning: Citation `transformatics' on page 41 undefined on input line 146
+1.
+
+
+LaTeX Warning: Citation `transformatics' on page 41 undefined on input line 146
+1.
+
+
+LaTeX Warning: Citation `transformatics' on page 41 undefined on input line 146
+1.
+
+
 Overfull \vbox (0.65572pt too high) has occurred while \output is active []
 
 
 
 [41]
+
+LaTeX Warning: Citation `transformatics' on page 42 undefined on input line 147
+9.
+
+
 Overfull \hbox (31.27202pt too wide) detected at line 1490
 [][][]\OT1/cmr/m/n/14.4 	(^^B\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 ^^B[]) = []
 
  []
+
+
+LaTeX Warning: Citation `Lutalo2024gtnc' on page 42 undefined on input line 149
+4.
+
+
+LaTeX Warning: Citation `transformatics' on page 42 undefined on input line 149
+7.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2552,6 +2566,30 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 [42]
 
+LaTeX Warning: Citation `transformatics' on page 43 undefined on input line 151
+0.
+
+
+LaTeX Warning: Citation `transformatics' on page 43 undefined on input line 151
+0.
+
+
+LaTeX Warning: Citation `transformatics' on page 43 undefined on input line 153
+4.
+
+
+LaTeX Warning: Citation `transformatics' on page 43 undefined on input line 153
+6.
+
+
+LaTeX Warning: Citation `adtpaper' on page 43 undefined on input line 1536.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 43 undefined on in
+put line 1536.
+
+
+
 [43]
 
 LaTeX Warning: Hyper reference `DEFSEQCHAR' on page 44 undefined on input line 
@@ -2559,6 +2597,14 @@ LaTeX Warning: Hyper reference `DEFSEQCHAR' on page 44 undefined on input line
 
 
 LaTeX Warning: Reference `DEFSEQCHAR' on page 44 undefined on input line 1540.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 44 undefined on in
+put line 1540.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 44 undefined on in
+put line 1577.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2595,9 +2641,39 @@ OT1/cmr/m/n/14.4 1\OML/cmm/m/it/14.4 ; \OT1/cmr/m/n/14.4 8\OML/cmm/m/it/14.4 ;
 
 [44]
 
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 45 undefined on in
+put line 1608.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 45 undefined on in
+put line 1610.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 45 undefined on in
+put line 1610.
+
+
+
 [45]
 
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 46 undefined on in
+put line 1629.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 46 undefined on in
+put line 1629.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 46 undefined on in
+put line 1647.
+
+
+
 [46]
+
+LaTeX Warning: Citation `cli_tttt' on page 47 undefined on input line 1675.
+
+
 
 [47]
 
@@ -2627,6 +2703,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1703--1704
  []
 
 
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 48 undefined on in
+put line 1709.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1709.
 
@@ -2648,11 +2728,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 1713--1714
  []
 
 
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 48 undefined on in
+put line 1716.
+
+
 
 [48]
 Underfull \hbox (badness 10000) in paragraph at lines 1741--1742
 
  []
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 49 undefined on in
+put line 1744.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1744--1745
@@ -2662,6 +2750,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1744--1745
 
 
 [49]
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 50 undefined on in
+put line 1748.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1748.
@@ -2679,6 +2771,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 1748.
 
 
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 50 undefined on in
+put line 1751.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 50 undefined on in
+put line 1751.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1751--1752
 
  []
@@ -2689,6 +2789,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 1751--1752
 Underfull \hbox (badness 10000) in paragraph at lines 1784--1785
 
  []
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 51 undefined on in
+put line 1802.
 
 
 Underfull \hbox (badness 10000) detected at line 1830
@@ -2703,20 +2807,15 @@ Underfull \vbox (badness 6412) has occurred while \output is active []
 
 [51]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@ifnextchar' on input line 1850.
+LaTeX Warning: Citation `Lutalo2024gtnc' on page 52 undefined on input line 183
+4.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1850.
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 52 undefined on in
+put line 1850.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1850.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 1850.
+LaTeX Warning: Citation `cli_tttt' on page 52 undefined on input line 1850.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2725,6 +2824,26 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 1850.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1850.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1850.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 1850.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `subscript' on input line 1850.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 52 undefined on input line 1
+853.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1853--1854
@@ -2735,7 +2854,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 1853--1854
 
 [52]
 
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 53 undefined on input line 1
+855.
+
+
+
 [53]
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 54 undefined on input line 1
+910.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 54 undefined on input line 1
+910.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 54 undefined on input line 1
+910.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1910--1911
 
  []
@@ -2781,15 +2918,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 1948--1949
  []
 
 
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 55 undefined on input line 1
+950.
+
+
 
 [55]
+
+LaTeX Warning: Citation `lnspaper' on page 56 undefined on input line 1953.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 1953.
 
 
+LaTeX Warning: Citation `lnspaper' on page 56 undefined on input line 1956.
+
+
 
 [56]
+
+LaTeX Warning: Citation `shannon1948mathematical' on page 57 undefined on input
+ line 2003.
+
+
 
 [57]
 Overfull \hbox (2.12459pt too wide) detected at line 2027
@@ -2811,6 +2963,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 2061--2062
  []
 
 
+LaTeX Warning: Citation `lnspaper' on page 58 undefined on input line 2066.
+
+
+LaTeX Warning: Citation `Lutalo2024TEATAZ' on page 58 undefined on input line 2
+066.
+
+
 Underfull \vbox (badness 2103) has occurred while \output is active []
 
 
@@ -2829,7 +2988,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2079--2081
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/trans_back_cover.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/trans_back_cover.pdf, id=2664, 596.98032pt x 844.65562pt>
+<resources/pdfs/trans_back_cover.pdf, id=1706, 596.98032pt x 844.65562pt>
 File: resources/pdfs/trans_back_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_back_cover.pdf>
 Package pdftex.def Info: resources/pdfs/trans_back_cover.pdf  used on input lin
@@ -2852,7 +3011,7 @@ usion: found PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/trans_back_cover.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/trans_back_cover.pdf, id=2667, page=1, 596.98032pt x 844.65562p
+<resources/pdfs/trans_back_cover.pdf, id=1709, page=1, 596.98032pt x 844.65562p
 t>
 File: resources/pdfs/trans_back_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_back_cover.pdf, page 1>
@@ -2888,7 +3047,7 @@ put line 2087.
 
  <./resources/pdfs/trans_back_cover.pdf>]
 Chapter 6.
-<resources/images/tea_cup_computer.jpg, id=2683, 1027.84pt x 1027.84pt>
+<resources/images/tea_cup_computer.jpg, id=1724, 1027.84pt x 1027.84pt>
 File: resources/images/tea_cup_computer.jpg Graphic file (type jpg)
 <use resources/images/tea_cup_computer.jpg>
 Package pdftex.def Info: resources/images/tea_cup_computer.jpg  used on input l
@@ -2910,6 +3069,11 @@ Chapter 7.
 [63
 
 ]
+
+LaTeX Warning: Citation `Lutalo2025debug' on page 64 undefined on input line 22
+61.
+
+
 
 [64]
 
@@ -2935,6 +3099,17 @@ Underfull \vbox (badness 2671) has occurred while \output is active []
 
 
 [68]
+
+LaTeX Warning: Citation `ossipaper' on page 69 undefined on input line 2412.
+
+
+LaTeX Warning: Citation `transformatics' on page 69 undefined on input line 241
+2.
+
+
+LaTeX Warning: Citation `ossipaper' on page 69 undefined on input line 2414.
+
+
 
 [69]
 Overfull \hbox (11.57892pt too wide) in paragraph at lines 2418--2421
@@ -3022,13 +3197,13 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 3218.
 See the caption package documentation for explanation.
 
-<resources/images/nsigil_intro.png, id=3350, 1673.25125pt x 2930.95pt>
+<resources/images/nsigil_intro.png, id=2404, 1673.25125pt x 2930.95pt>
 File: resources/images/nsigil_intro.png Graphic file (type png)
 <use resources/images/nsigil_intro.png>
 Package pdftex.def Info: resources/images/nsigil_intro.png  used on input line 
 3247.
 (pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
-<resources/images/nsigil_ossi.png, id=3351, 1673.25125pt x 2930.95pt>
+<resources/images/nsigil_ossi.png, id=2405, 1673.25125pt x 2930.95pt>
 File: resources/images/nsigil_ossi.png Graphic file (type png)
 <use resources/images/nsigil_ossi.png>
 Package pdftex.def Info: resources/images/nsigil_ossi.png  used on input line 3
@@ -3040,7 +3215,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [88]
-<resources/images/nsigil_qrcode.png, id=3367, 1673.25125pt x 2930.95pt>
+<resources/images/nsigil_qrcode.png, id=2422, 1673.25125pt x 2930.95pt>
 File: resources/images/nsigil_qrcode.png Graphic file (type png)
 <use resources/images/nsigil_qrcode.png>
 Package pdftex.def Info: resources/images/nsigil_qrcode.png  used on input line
@@ -3129,6 +3304,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [105]
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 106 undefined on input line
+ 3899.
+
+
 
 [106]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
@@ -3232,11 +3412,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [109]
+
+LaTeX Warning: Citation `cli_tttt' on page 110 undefined on input line 4085.
+
+
 Underfull \vbox (badness 1092) has occurred while \output is active []
 
 
 
 [110]
+
+LaTeX Warning: Citation `copilot_assistant' on page 111 undefined on input line
+ 4096.
+
+
 
 [111]
 Underfull \vbox (badness 2111) has occurred while \output is active []
@@ -3257,13 +3446,13 @@ Underfull \vbox (badness 2111) has occurred while \output is active []
  (TAZ_BOOK.listing)
 
 [114]
-<resources/images/self_mod1.jpg, id=3794, 1027.84pt x 1027.84pt>
+<resources/images/self_mod1.jpg, id=2856, 1027.84pt x 1027.84pt>
 File: resources/images/self_mod1.jpg Graphic file (type jpg)
 <use resources/images/self_mod1.jpg>
 Package pdftex.def Info: resources/images/self_mod1.jpg  used on input line 429
 1.
 (pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
-<resources/images/self_mod2.jpg, id=3795, 1027.84pt x 1027.84pt>
+<resources/images/self_mod2.jpg, id=2857, 1027.84pt x 1027.84pt>
 File: resources/images/self_mod2.jpg Graphic file (type jpg)
 <use resources/images/self_mod2.jpg>
 Package pdftex.def Info: resources/images/self_mod2.jpg  used on input line 429
@@ -3275,13 +3464,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [115]
-<resources/images/self_mod3.jpg, id=3816, 1027.84pt x 1027.84pt>
+<resources/images/self_mod3.jpg, id=2878, 1027.84pt x 1027.84pt>
 File: resources/images/self_mod3.jpg Graphic file (type jpg)
 <use resources/images/self_mod3.jpg>
 Package pdftex.def Info: resources/images/self_mod3.jpg  used on input line 430
 9.
 (pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
-<resources/images/hacker.jpg, id=3817, 716.6775pt x 1084.05pt>
+<resources/images/hacker.jpg, id=2879, 716.6775pt x 1084.05pt>
 File: resources/images/hacker.jpg Graphic file (type jpg)
 <use resources/images/hacker.jpg>
 Package pdftex.def Info: resources/images/hacker.jpg  used on input line 4315.
@@ -3341,9 +3530,21 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [124]
 
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 125 undefined on input lin
+e 4617.
+
+
+LaTeX Warning: Citation `lutalo2025unraveling' on page 125 undefined on input l
+ine 4617.
+
+
+LaTeX Warning: Citation `jwlzha' on page 125 undefined on input line 4617.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/pdfs/all_willrich_psychology.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/all_willrich_psychology.pdf, id=3964, 597.19106pt x 845.07718pt
+<resources/pdfs/all_willrich_psychology.pdf, id=3030, 597.19106pt x 845.07718pt
 >
 File: resources/pdfs/all_willrich_psychology.pdf Graphic file (type pdf)
 <use resources/pdfs/all_willrich_psychology.pdf>
@@ -3356,6 +3557,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [125]
+
+LaTeX Warning: Citation `jwlzha' on page 126 undefined on input line 4630.
+
+
+LaTeX Warning: Citation `lutalo2025unraveling' on page 126 undefined on input l
+ine 4630.
+
+
 
 [126 <./resources/pdfs/all_willrich_psychology.pdf>]
 
@@ -3384,7 +3593,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 4945.
 See the caption package documentation for explanation.
 
-<resources/images/zha3.png, id=4310, 673.01437pt x 434.37282pt>
+<resources/images/zha3.png, id=3373, 673.01437pt x 434.37282pt>
 File: resources/images/zha3.png Graphic file (type png)
 <use resources/images/zha3.png>
 Package pdftex.def Info: resources/images/zha3.png  used on input line 4969.
@@ -3447,6 +3656,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [143]
 
+LaTeX Warning: Citation `lutalo_2025_rpg' on page 144 undefined on input line 5
+420.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 5420.
 
@@ -3463,7 +3676,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 pdfTeX warning: pdflatex (file ./resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Tr
 aps.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
 owed
-<resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf, id=4475, 716.6775pt x 7
+<resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf, id=3544, 716.6775pt x 7
 90.87468pt>
 File: resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf Graphic file (type 
 pdf)
@@ -3477,6 +3690,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [144]
+
+LaTeX Warning: Citation `lutalo2025rock' on page 145 undefined on input line 54
+37.
+
+
 Underfull \vbox (badness 3354) has occurred while \output is active []
 
 
@@ -3503,7 +3721,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 5951.
 See the caption package documentation for explanation.
 
-<resources/images/boobs_n_traps_landing_v1.0.0.1.png, id=5063, 346.29375pt x 26
+<resources/images/boobs_n_traps_landing_v1.0.0.1.png, id=4132, 346.29375pt x 26
 8.75406pt>
 File: resources/images/boobs_n_traps_landing_v1.0.0.1.png Graphic file (type pn
 g)
@@ -3511,7 +3729,7 @@ g)
 Package pdftex.def Info: resources/images/boobs_n_traps_landing_v1.0.0.1.png  u
 sed on input line 5978.
 (pdftex.def)             Requested size: 346.2929pt x 268.7534pt.
-<resources/images/boobs_n_traps_game_session_v1.0.0.1.png, id=5064, 343.2825pt 
+<resources/images/boobs_n_traps_game_session_v1.0.0.1.png, id=4133, 343.2825pt 
 x 286.82156pt>
 File: resources/images/boobs_n_traps_game_session_v1.0.0.1.png Graphic file (ty
 pe png)
@@ -3525,7 +3743,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [154 <./resources/images/boobs_n_traps_landing_v1.0.0.1.png>]
-<resources/images/boobs_n_traps_game_end_v1.0.0.1.png, id=5081, 344.78813pt x 2
+<resources/images/boobs_n_traps_game_end_v1.0.0.1.png, id=4152, 344.78813pt x 2
 47.67531pt>
 File: resources/images/boobs_n_traps_game_end_v1.0.0.1.png Graphic file (type p
 ng)
@@ -3563,25 +3781,47 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [157]
+
+LaTeX Warning: Citation `cli_tttt' on page 158 undefined on input line 6089.
+
+\openout9 = `TAZ_BOOK.listing'.
+
+(TAZ_BOOK.listing)
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-\openout9 = `TAZ_BOOK.listing'.
 
- (TAZ_BOOK.listing)
+LaTeX Warning: Citation `FSF2023Bash' on page 158 undefined on input line 6105.
+
+
+
 
 [158]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
 
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 159 undefined on input line
+ 6147.
+
+
+
 [159]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 160 undefined on input line
+ 6190.
+
 \openout9 = `TAZ_BOOK.listing'.
 
- (TAZ_BOOK.listing)
+(TAZ_BOOK.listing)
+
+LaTeX Warning: Citation `lutalo2025unraveling' on page 160 undefined on input l
+ine 6218.
+
+
 
 [160]
 Underfull \hbox (badness 10000) in paragraph at lines 6260--6260
@@ -3595,6 +3835,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [161]
 
+LaTeX Warning: Citation `lutalo_2025_rpg' on page 162 undefined on input line 6
+280.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 6280.
 
@@ -3606,7 +3850,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `subscript' on input line 6280.
 
-<resources/images/bnt_cli_new.png, id=5160, 371.13657pt x 254.45062pt>
+<resources/images/bnt_cli_new.png, id=4227, 371.13657pt x 254.45062pt>
 File: resources/images/bnt_cli_new.png Graphic file (type png)
 <use resources/images/bnt_cli_new.png>
 Package pdftex.def Info: resources/images/bnt_cli_new.png  used on input line 6
@@ -3618,7 +3862,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [162]
-<resources/images/bnt_cli_original.png, id=5174, 403.5075pt x 416.30531pt>
+<resources/images/bnt_cli_original.png, id=4241, 403.5075pt x 416.30531pt>
 File: resources/images/bnt_cli_original.png Graphic file (type png)
 <use resources/images/bnt_cli_original.png>
 Package pdftex.def Info: resources/images/bnt_cli_original.png  used on input l
@@ -3635,7 +3879,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [163 <./resources/images/bnt_cli_new.png>]
-<resources/images/bnt_cli_web.png, id=5185, 355.3275pt x 272.51813pt>
+<resources/images/bnt_cli_web.png, id=4254, 355.3275pt x 272.51813pt>
 File: resources/images/bnt_cli_web.png Graphic file (type png)
 <use resources/images/bnt_cli_web.png>
 Package pdftex.def Info: resources/images/bnt_cli_web.png  used on input line 6
@@ -3647,6 +3891,43 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [164 <./resources/images/bnt_cli_original.png>]
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6334.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6334.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6340.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6340.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6340.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6340.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6340.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6340.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 165 undefined on inp
+ut line 6344.
+
+
 
 [165 <./resources/images/bnt_cli_web.png>]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
@@ -3666,6 +3947,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [166]
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 167 undefined on inp
+ut line 6422.
+
+
 
 [167]
 
@@ -3692,6 +3978,10 @@ Underfull \vbox (badness 1248) has occurred while \output is active []
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 6579.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 172 undefined on inp
+ut line 6585.
 
 
 
@@ -3732,9 +4022,14 @@ Underfull \vbox (badness 7925) has occurred while \output is active []
 
 [175]
 
+LaTeX Warning: Citation `Lutalo2025transpsy' on page 176 undefined on input lin
+e 6739.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/pdfs/mental_health_diagnostics.pdf):
  PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/mental_health_diagnostics.pdf, id=5408, 614.295pt x 794.97pt>
+<resources/pdfs/mental_health_diagnostics.pdf, id=4469, 614.295pt x 794.97pt>
 File: resources/pdfs/mental_health_diagnostics.pdf Graphic file (type pdf)
 <use resources/pdfs/mental_health_diagnostics.pdf>
 Package pdftex.def Info: resources/pdfs/mental_health_diagnostics.pdf  used on 
@@ -3756,6 +4051,11 @@ Overfull \vbox (31.05197pt too high) has occurred while \output is active []
 
 
 [177 <./resources/pdfs/mental_health_diagnostics.pdf>]
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 178 undefined on inp
+ut line 6757.
+
+
 Overfull \hbox (2455.11357pt too wide) in paragraph at lines 7389--7391
 [][][] 
  []
@@ -3792,14 +4092,14 @@ Underfull \vbox (badness 4156) has occurred while \output is active []
 
 
 [188]
-<resources/images/hdp_v_1.2_landing_screen.png, id=6116, 342.5297pt x 293.59688
+<resources/images/hdp_v_1.2_landing_screen.png, id=5178, 342.5297pt x 293.59688
 pt>
 File: resources/images/hdp_v_1.2_landing_screen.png Graphic file (type png)
 <use resources/images/hdp_v_1.2_landing_screen.png>
 Package pdftex.def Info: resources/images/hdp_v_1.2_landing_screen.png  used on
  input line 7417.
 (pdftex.def)             Requested size: 342.52885pt x 293.59615pt.
-<resources/images/hdp_v_1.2_landing_screen_name_prompt.png, id=6117, 298.11375p
+<resources/images/hdp_v_1.2_landing_screen_name_prompt.png, id=5179, 298.11375p
 t x 112.92188pt>
 File: resources/images/hdp_v_1.2_landing_screen_name_prompt.png Graphic file (t
 ype png)
@@ -3807,7 +4107,7 @@ ype png)
 Package pdftex.def Info: resources/images/hdp_v_1.2_landing_screen_name_prompt.
 png  used on input line 7426.
 (pdftex.def)             Requested size: 298.11302pt x 112.92159pt.
-<resources/images/hdp_v_1.2_landing_screen_session_prompt.png, id=6118, 420.822
+<resources/images/hdp_v_1.2_landing_screen_session_prompt.png, id=5180, 420.822
 19pt x 341.02406pt>
 File: resources/images/hdp_v_1.2_landing_screen_session_prompt.png Graphic file
  (type png)
@@ -3852,6 +4152,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [194]
 
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 195 undefined on inp
+ut line 7668.
+
+
+
 [195]
 
 [196]
@@ -3873,7 +4178,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [199]
-<resources/images/skirt_detection.jpg, id=6385, 752.8125pt x 1003.75pt>
+<resources/images/skirt_detection.jpg, id=5455, 752.8125pt x 1003.75pt>
 File: resources/images/skirt_detection.jpg Graphic file (type jpg)
 <use resources/images/skirt_detection.jpg>
 Package pdftex.def Info: resources/images/skirt_detection.jpg  used on input li
@@ -3882,7 +4187,7 @@ ne 7886.
 
 
 [200]
-<resources/images/skirt_failed_detection.jpg, id=6407, 752.8125pt x 1003.75pt>
+<resources/images/skirt_failed_detection.jpg, id=5480, 752.8125pt x 1003.75pt>
 File: resources/images/skirt_failed_detection.jpg Graphic file (type jpg)
 <use resources/images/skirt_failed_detection.jpg>
 Package pdftex.def Info: resources/images/skirt_failed_detection.jpg  used on i
@@ -3966,7 +4271,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 8306.
 See the caption package documentation for explanation.
 
-<resources/images/lucky_101_game_landing_screen.png, id=6708, 338.01282pt x 209
+<resources/images/lucky_101_game_landing_screen.png, id=5783, 338.01282pt x 209
 .28188pt>
 File: resources/images/lucky_101_game_landing_screen.png Graphic file (type png
 )
@@ -3974,7 +4279,7 @@ File: resources/images/lucky_101_game_landing_screen.png Graphic file (type png
 Package pdftex.def Info: resources/images/lucky_101_game_landing_screen.png  us
 ed on input line 8333.
 (pdftex.def)             Requested size: 338.01198pt x 209.28134pt.
-<resources/images/lucky_101_game_session_screen.png, id=6709, 388.45125pt x 318
+<resources/images/lucky_101_game_session_screen.png, id=5784, 388.45125pt x 318
 .43968pt>
 File: resources/images/lucky_101_game_session_screen.png Graphic file (type png
 )
@@ -3988,7 +4293,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [211 <./resources/images/lucky_101_game_landing_screen.png>]
-<resources/images/lucky_101_game_final_screen.png, id=6727, 316.18124pt x 121.2
+<resources/images/lucky_101_game_final_screen.png, id=5804, 316.18124pt x 121.2
 0282pt>
 File: resources/images/lucky_101_game_final_screen.png Graphic file (type png)
 <use resources/images/lucky_101_game_final_screen.png>
@@ -4064,6 +4369,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [217]
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 218 undefined on inp
+ut line 8552.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 218 undefined on inp
+ut line 8556.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4075,12 +4389,20 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 See the caption package documentation for explanation.
 
 
+LaTeX Warning: Citation `lutalo2024tea' on page 219 undefined on input line 859
+4.
+
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 219 undefined on input line
+ 8604.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [219]
-<resources/images/spell_casting_simon_the_sorcerer_classic_game.png, id=6849, 1
+<resources/images/spell_casting_simon_the_sorcerer_classic_game.png, id=5929, 1
 541.76pt x 1027.84pt>
 File: resources/images/spell_casting_simon_the_sorcerer_classic_game.png Graphi
 c file (type png)
@@ -4090,9 +4412,14 @@ sic_game.png  used on input line 8638.
 (pdftex.def)             Requested size: 446.69328pt x 297.78366pt.
 
 
+LaTeX Warning: Citation `copilot_assistant' on page 220 undefined on input line
+ 8646.
+
+
+
 [220 <./resources/images/spell_casting_simon_the_sorcerer_classic_game.png (PNG
  copy)>]
-<resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg, id=6861, 8
+<resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg, id=5941, 8
 99.36pt x 1156.32pt>
 File: resources/images/spell_casting_in_the_elder_scrolls_xbox_game.jpeg Graphi
 c file (type jpg)
@@ -4106,6 +4433,10 @@ ox_game.jpeg  used on input line 8652.
 
 [222]
 Chapter 20.
+
+LaTeX Warning: Citation `Lutalo2024gtnc' on page 223 undefined on input line 87
+17.
+
 
 Overfull \hbox (13.35275pt too wide) in paragraph at lines 8720--8721
 |[][]
@@ -4126,6 +4457,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ]
 
 [224]
+
+LaTeX Warning: Citation `lutalo2024tea' on page 225 undefined on input line 878
+5.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4190,6 +4526,15 @@ Underfull \vbox (badness 3977) has occurred while \output is active []
 
 [235]
 
+LaTeX Warning: Citation `transformatics' on page 236 undefined on input line 91
+87.
+
+
+LaTeX Warning: Citation `Lutalo2024gtnc' on page 236 undefined on input line 92
+02.
+
+
+
 [236]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -4211,9 +4556,13 @@ Underfull \vbox (badness 4927) has occurred while \output is active []
 
 
 [240]
+
+LaTeX Warning: Citation `copilot_assistant' on page 241 undefined on input line
+ 9357.
+
 \openout9 = `TAZ_BOOK.listing'.
 
- (TAZ_BOOK.listing)
+(TAZ_BOOK.listing)
 
 [241]
 
@@ -4221,6 +4570,11 @@ Underfull \vbox (badness 4927) has occurred while \output is active []
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
+
+LaTeX Warning: Citation `copilot_assistant' on page 243 undefined on input line
+ 9476.
+
+
 Underfull \vbox (badness 1205) has occurred while \output is active []
 
 
@@ -4228,9 +4582,17 @@ Underfull \vbox (badness 1205) has occurred while \output is active []
 [243]
 
 [244]
+
+LaTeX Warning: Citation `draper1998applied' on page 245 undefined on input line
+ 9563.
+
+
+LaTeX Warning: Citation `nandi2020polynomial' on page 245 undefined on input li
+ne 9563.
+
 \openout9 = `TAZ_BOOK.listing'.
 
- (TAZ_BOOK.listing)
+(TAZ_BOOK.listing)
 
 [245]
 Overfull \hbox (65.37476pt too wide) in paragraph at lines 9654--9655
@@ -4397,11 +4759,21 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [286]
 
 [287]
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 288 undefined on inp
+ut line 11136.
+
+
 Underfull \vbox (badness 2635) has occurred while \output is active []
 
 
 
 [288]
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 289 undefined on inp
+ut line 11171.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -4449,7 +4821,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [295]
 
+LaTeX Warning: Citation `goldschneider1994secret' on page 296 undefined on inpu
+t line 11461.
+
+
+
 [296]
+
+LaTeX Warning: Citation `goldschneider1994secret' on page 297 undefined on inpu
+t line 11465.
+
+
 
 [297]
 
@@ -4546,11 +4928,33 @@ Underfull \vbox (badness 4779) has occurred while \output is active []
 
 
 [314]
+
+LaTeX Warning: Citation `aho2006compilers' on page 315 undefined on input line 
+12121.
+
+
+LaTeX Warning: Citation `scott2021pragmatics' on page 315 undefined on input li
+ne 12121.
+
+
+LaTeX Warning: Citation `felleisen2001semantics' on page 315 undefined on input
+ line 12121.
+
+
 Underfull \vbox (badness 5954) has occurred while \output is active []
 
 
 
 [315]
+
+LaTeX Warning: Citation `grune2007parsing' on page 316 undefined on input line 
+12173.
+
+
+LaTeX Warning: Citation `sipser2012theory' on page 316 undefined on input line 
+12179.
+
+
 
 [316]
 
@@ -4671,7 +5075,21 @@ Underfull \vbox (badness 3407) has occurred while \output is active []
 
 [335]
 
+LaTeX Warning: Citation `Ferllini2003' on page 336 undefined on input line 1295
+1.
+
+
+LaTeX Warning: Citation `Ortner2003' on page 336 undefined on input line 12959.
+
+
+
+
 [336]
+
+LaTeX Warning: Citation `WordWeb2025' on page 337 undefined on input line 12973
+.
+
+
 
 [337]
 
@@ -5028,7 +5446,7 @@ Underfull \vbox (badness 1776) has occurred while \output is active []
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-<resources/images/ghost_messages/hello_world_highlighted.png, id=9967, 747.5428
+<resources/images/ghost_messages/hello_world_highlighted.png, id=9039, 747.5428
 2pt x 442.65375pt>
 File: resources/images/ghost_messages/hello_world_highlighted.png Graphic file 
 (type png)
@@ -5036,8 +5454,8 @@ File: resources/images/ghost_messages/hello_world_highlighted.png Graphic file
 Package pdftex.def Info: resources/images/ghost_messages/hello_world_highlighte
 d.png  used on input line 13405.
 (pdftex.def)             Requested size: 496.32924pt x 293.90173pt.
-<resources/images/ghost_messages/hello_world_highlighted_no_visible.png, id=996
-8, 750.55406pt x 459.21562pt>
+<resources/images/ghost_messages/hello_world_highlighted_no_visible.png, id=904
+0, 750.55406pt x 459.21562pt>
 File: resources/images/ghost_messages/hello_world_highlighted_no_visible.png Gr
 aphic file (type png)
 <use resources/images/ghost_messages/hello_world_highlighted_no_visible.png>
@@ -5050,7 +5468,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [352 <./resources/images/ghost_messages/hello_world_highlighted.png>]
-<resources/images/ghost_messages/hello_world_no_highlights.png, id=9975, 743.77
+<resources/images/ghost_messages/hello_world_no_highlights.png, id=9048, 743.77
 875pt x 459.96844pt>
 File: resources/images/ghost_messages/hello_world_no_highlights.png Graphic fil
 e (type png)
@@ -5080,7 +5498,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [356]
 
 [357]
-<resources/images/ghost_messages.jpg, id=10141, 1084.05pt x 1626.075pt>
+<resources/images/ghost_messages.jpg, id=9216, 1084.05pt x 1626.075pt>
 File: resources/images/ghost_messages.jpg Graphic file (type jpg)
 <use resources/images/ghost_messages.jpg>
 Package pdftex.def Info: resources/images/ghost_messages.jpg  used on input lin
@@ -5092,8 +5510,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [358]
-<resources/images/ghost_messages/ghost_messages_on_cli.png, id=10185, 720.44156
-pt x 502.12593pt>
+<resources/images/ghost_messages/ghost_messages_on_cli.png, id=9260, 720.44156p
+t x 502.12593pt>
 File: resources/images/ghost_messages/ghost_messages_on_cli.png Graphic file (t
 ype png)
 <use resources/images/ghost_messages/ghost_messages_on_cli.png>
@@ -5182,15 +5600,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  (TAZ_BOOK.listing)
 
 [369]
-<resources/images/sir_game_play_scenario1.jpg, id=10413, 1027.84pt x 1027.84pt>
-
+<resources/images/sir_game_play_scenario1.jpg, id=9492, 1027.84pt x 1027.84pt>
 File: resources/images/sir_game_play_scenario1.jpg Graphic file (type jpg)
 <use resources/images/sir_game_play_scenario1.jpg>
 Package pdftex.def Info: resources/images/sir_game_play_scenario1.jpg  used on 
 input line 14060.
 (pdftex.def)             Requested size: 223.34663pt x 223.33382pt.
-<resources/images/sir_game_play_scenario3.jpg, id=10414, 1027.84pt x 1027.84pt>
-
+<resources/images/sir_game_play_scenario3.jpg, id=9493, 1027.84pt x 1027.84pt>
 File: resources/images/sir_game_play_scenario3.jpg Graphic file (type jpg)
 <use resources/images/sir_game_play_scenario3.jpg>
 Package pdftex.def Info: resources/images/sir_game_play_scenario3.jpg  used on 
@@ -5217,15 +5633,15 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 14192.
 See the caption package documentation for explanation.
 
-<resources/images/sir_game_welcome_screen.png, id=10528, 696.35156pt x 280.0462
-5pt>
+<resources/images/sir_game_welcome_screen.png, id=9608, 696.35156pt x 280.04625
+pt>
 File: resources/images/sir_game_welcome_screen.png Graphic file (type png)
 <use resources/images/sir_game_welcome_screen.png>
 Package pdftex.def Info: resources/images/sir_game_welcome_screen.png  used on 
 input line 14204.
 (pdftex.def)             Requested size: 496.32924pt x 199.60338pt.
-<resources/images/sir_game_quiz_screen.png, id=10529, 242.40562pt x 152.06813pt
->
+<resources/images/sir_game_quiz_screen.png, id=9609, 242.40562pt x 152.06813pt>
+
 File: resources/images/sir_game_quiz_screen.png Graphic file (type png)
 <use resources/images/sir_game_quiz_screen.png>
 Package pdftex.def Info: resources/images/sir_game_quiz_screen.png  used on inp
@@ -5237,8 +5653,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [374 <./resources/images/sir_game_welcome_screen.png>]
-<resources/images/sir_game_report_screen.png, id=10537, 350.05782pt x 203.25937
-pt>
+<resources/images/sir_game_report_screen.png, id=9619, 350.05782pt x 203.25937p
+t>
 File: resources/images/sir_game_report_screen.png Graphic file (type png)
 <use resources/images/sir_game_report_screen.png>
 Package pdftex.def Info: resources/images/sir_game_report_screen.png  used on i
@@ -5260,8 +5676,7 @@ _report_screen.png>]
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-<resources/images/sir_game_play_scenario2.jpg, id=10544, 1027.84pt x 1027.84pt>
-
+<resources/images/sir_game_play_scenario2.jpg, id=9629, 1027.84pt x 1027.84pt>
 File: resources/images/sir_game_play_scenario2.jpg Graphic file (type jpg)
 <use resources/images/sir_game_play_scenario2.jpg>
 Package pdftex.def Info: resources/images/sir_game_play_scenario2.jpg  used on 
@@ -5308,6 +5723,10 @@ Overfull \hbox (24.39998pt too wide) in paragraph at lines 14461--14483
  []
 
 
+LaTeX Warning: Citation `lutalo2024tea' on page 383 undefined on input line 144
+91.
+
+
 
 [383]
 \openout9 = `TAZ_BOOK.listing'.
@@ -5318,6 +5737,19 @@ Underfull \vbox (badness 4416) has occurred while \output is active []
 
 
 [384]
+
+LaTeX Warning: Citation `farrar1990spells' on page 385 undefined on input line 
+14545.
+
+
+LaTeX Warning: Citation `farrar1990spells' on page 385 undefined on input line 
+14545.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 385 undefined on inp
+ut line 14545.
+
+
 
 [385]
 \openout9 = `TAZ_BOOK.listing'.
@@ -5362,15 +5794,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  (TAZ_BOOK.listing)
 
 [391]
-<resources/images/notepad_right_align.png, id=10901, 557.08125pt x 512.66531pt>
-
+<resources/images/notepad_right_align.png, id=9984, 557.08125pt x 512.66531pt>
 File: resources/images/notepad_right_align.png Graphic file (type png)
 <use resources/images/notepad_right_align.png>
 Package pdftex.def Info: resources/images/notepad_right_align.png  used on inpu
 t line 14831.
 (pdftex.def)             Requested size: 446.69328pt x 388.27197pt.
-<resources/images/tea_right_align_text_cli_case.png, id=10903, 1028.34187pt x 5
-48.0475pt>
+<resources/images/tea_right_align_text_cli_case.png, id=9986, 1028.34187pt x 54
+8.0475pt>
 File: resources/images/tea_right_align_text_cli_case.png Graphic file (type png
 )
 <use resources/images/tea_right_align_text_cli_case.png>
@@ -5383,16 +5814,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [392 <./resources/images/notepad_right_align.png>]
-<resources/images/tea_right_align_text_web_case.png, id=10911, 801.74532pt x 10
-4.64093pt>
+<resources/images/tea_right_align_text_web_case.png, id=9995, 801.74532pt x 104
+.64093pt>
 File: resources/images/tea_right_align_text_web_case.png Graphic file (type png
 )
 <use resources/images/tea_right_align_text_web_case.png>
 Package pdftex.def Info: resources/images/tea_right_align_text_web_case.png  us
 ed on input line 14854.
 (pdftex.def)             Requested size: 446.69328pt x 124.66634pt.
-<resources/images/tea_right_align_text_web_case2.png, id=10913, 794.97pt x 101.
-62968pt>
+<resources/images/tea_right_align_text_web_case2.png, id=9997, 794.97pt x 101.6
+2968pt>
 File: resources/images/tea_right_align_text_web_case2.png Graphic file (type pn
 g)
 <use resources/images/tea_right_align_text_web_case2.png>
@@ -5406,6 +5837,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [393 <./resources/images/tea_right_align_text_cli_case.png> <./resources/images
 /tea_right_align_text_web_case.png>]
+
+LaTeX Warning: Citation `wilkinson1991theories' on page 394 undefined on input 
+line 14888.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 14899--14900
 []\OT1/cmtt/m/n/14.4 What the nature of art is[?]... For most of the last two
  []
@@ -5534,11 +5970,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 14915--14916
  []
 
 
+LaTeX Warning: Citation `wilkinson1991theories' on page 394 undefined on input 
+line 14918.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [394 <./resources/images/tea_right_align_text_web_case2.png>]
+
+LaTeX Warning: Citation `wilkinson1991theories' on page 395 undefined on input 
+line 14927.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -5619,7 +6064,7 @@ See the caption package documentation for explanation.
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-<resources/pdfs/AF3J26-1736UI.pdf, id=11507, 614.295pt x 794.97pt>
+<resources/pdfs/AF3J26-1736UI.pdf, id=10592, 614.295pt x 794.97pt>
 File: resources/pdfs/AF3J26-1736UI.pdf Graphic file (type pdf)
 <use resources/pdfs/AF3J26-1736UI.pdf>
 Package pdftex.def Info: resources/pdfs/AF3J26-1736UI.pdf  used on input line 1
@@ -5628,7 +6073,7 @@ Package pdftex.def Info: resources/pdfs/AF3J26-1736UI.pdf  used on input line 1
 
 
 [414]
-<resources/pdfs/BF3J26-1747IO.pdf, id=11535, 614.295pt x 794.97pt>
+<resources/pdfs/BF3J26-1747IO.pdf, id=10620, 614.295pt x 794.97pt>
 File: resources/pdfs/BF3J26-1747IO.pdf Graphic file (type pdf)
 <use resources/pdfs/BF3J26-1747IO.pdf>
 Package pdftex.def Info: resources/pdfs/BF3J26-1747IO.pdf  used on input line 1
@@ -5640,7 +6085,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [415 <./resources/pdfs/AF3J26-1736UI.pdf>]
-<resources/pdfs/CF3J26-1752OU.pdf, id=11555, 614.295pt x 794.97pt>
+<resources/pdfs/CF3J26-1752OU.pdf, id=10641, 614.295pt x 794.97pt>
 File: resources/pdfs/CF3J26-1752OU.pdf Graphic file (type pdf)
 <use resources/pdfs/CF3J26-1752OU.pdf>
 Package pdftex.def Info: resources/pdfs/CF3J26-1752OU.pdf  used on input line 1
@@ -5670,6 +6115,10 @@ Underfull \hbox (badness 7064) in paragraph at lines 15622--15623
  []
 
 
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 419 undefined on inp
+ut line 15648.
+
+
 Overfull \hbox (24.39998pt too wide) in paragraph at lines 15642--15664
 [][] 
  []
@@ -5681,12 +6130,51 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [419]
 
+LaTeX Warning: Citation `transformatics' on page 420 undefined on input line 15
+675.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 420 undefined on inp
+ut line 15675.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 420 undefined on inp
+ut line 15675.
+
+
+LaTeX Warning: Citation `transformatics' on page 420 undefined on input line 15
+681.
+
+
+LaTeX Warning: Citation `lutalo_2025_trans_genetics' on page 420 undefined on i
+nput line 15681.
+
+
+
 [420]
 
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 421 undefined on inp
+ut line 15720.
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 421 undefined on inp
+ut line 15720.
+
+
+
 [421]
+
+LaTeX Warning: Citation `copilot_assistant' on page 422 undefined on input line
+ 15746.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 15757--15757
 
  []
+
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 422 undefined on inp
+ut line 15757.
 
 
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 15757--15759
@@ -5701,19 +6189,38 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [423]
+
+LaTeX Warning: Citation `FSF2023Bash' on page 424 undefined on input line 15822
+.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [424]
 
+LaTeX Warning: Citation `transformatics' on page 425 undefined on input line 15
+877.
+
+
+
 [425]
+
+LaTeX Warning: Citation `lutalo_2025_grimlumtauto' on page 426 undefined on inp
+ut line 15892.
+
+
 
 [426]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 15922.
 See the caption package documentation for explanation.
+
+
+LaTeX Warning: Citation `lutalo2025rock' on page 427 undefined on input line 15
+932.
 
 
 Underfull \vbox (badness 1448) has occurred while \output is active []
@@ -5761,6 +6268,10 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 16107.
 See the caption package documentation for explanation.
 
+
+LaTeX Warning: Citation `lutalo2025rock' on page 431 undefined on input line 16
+113.
+
 \openout9 = `TAZ_BOOK.listing'.
 
 (TAZ_BOOK.listing)
@@ -5806,6 +6317,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [433
 
 ]
+
+LaTeX Warning: Citation `kain1999advanced' on page 434 undefined on input line 
+16233.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 16241--16242
 []\OT1/cmtt/m/n/14.4 The existence of forgetting has never been proved; we
  []
@@ -5855,10 +6371,66 @@ Overfull \vbox (32.29712pt too high) has occurred while \output is active []
 
 [439]
 
+LaTeX Warning: Citation `copilot_assistant' on page 440 undefined on input line
+ 16461.
+
+
+
 [440]
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16478.
+
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16479.
+
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16480.
+
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16481.
+
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16482.
+
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16483.
+
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16484.
+
+
+LaTeX Warning: Citation `Chowdhury2023' on page 441 undefined on input line 164
+91.
+
+
+LaTeX Warning: Citation `Chowdhury2023' on page 441 undefined on input line 164
+92.
+
+
+LaTeX Warning: Citation `Chowdhury2023' on page 441 undefined on input line 164
+93.
+
+
+LaTeX Warning: Citation `Chowdhury2023' on page 441 undefined on input line 164
+94.
+
+
+LaTeX Warning: Citation `Burr2003' on page 441 undefined on input line 16495.
+
+
+LaTeX Warning: Citation `NIST2017' on page 441 undefined on input line 16507.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 16507--16507
 []|\OT1/cmr/bx/n/10 Industry View
  []
+
+
+LaTeX Warning: Citation `Chowdhury2023' on page 441 undefined on input line 165
+07.
+
+
+LaTeX Warning: Citation `Burr2003' on page 441 undefined on input line 16507.
 
 
 Underfull \hbox (badness 3657) in paragraph at lines 16509--16509
@@ -5878,7 +6450,7 @@ Underfull \vbox (badness 1521) has occurred while \output is active []
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/RSPG_System_Arch.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<resources/pdfs/RSPG_System_Arch.pdf, id=12241, 597.19106pt x 845.07718pt>
+<resources/pdfs/RSPG_System_Arch.pdf, id=11300, 597.19106pt x 845.07718pt>
 File: resources/pdfs/RSPG_System_Arch.pdf Graphic file (type pdf)
 <use resources/pdfs/RSPG_System_Arch.pdf>
 Package pdftex.def Info: resources/pdfs/RSPG_System_Arch.pdf  used on input lin
@@ -5919,25 +6491,25 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 17034.
 See the caption package documentation for explanation.
 
-<resources/images/rspg_landing_screen.png, id=12697, 346.29375pt x 289.08pt>
+<resources/images/rspg_landing_screen.png, id=11757, 346.29375pt x 289.08pt>
 File: resources/images/rspg_landing_screen.png Graphic file (type png)
 <use resources/images/rspg_landing_screen.png>
 Package pdftex.def Info: resources/images/rspg_landing_screen.png  used on inpu
 t line 17051.
 (pdftex.def)             Requested size: 223.34663pt x 186.44855pt.
-<resources/images/rspg_menu.png, id=12698, 303.38344pt x 219.06844pt>
+<resources/images/rspg_menu.png, id=11758, 303.38344pt x 219.06844pt>
 File: resources/images/rspg_menu.png Graphic file (type png)
 <use resources/images/rspg_menu.png>
 Package pdftex.def Info: resources/images/rspg_menu.png  used on input line 170
 57.
 (pdftex.def)             Requested size: 223.34663pt x 161.2791pt.
-<resources/images/rspg_menu_humane.png, id=12699, 419.31656pt x 294.34969pt>
+<resources/images/rspg_menu_humane.png, id=11759, 419.31656pt x 294.34969pt>
 File: resources/images/rspg_menu_humane.png Graphic file (type png)
 <use resources/images/rspg_menu_humane.png>
 Package pdftex.def Info: resources/images/rspg_menu_humane.png  used on input l
 ine 17063.
 (pdftex.def)             Requested size: 223.34663pt x 156.78159pt.
-<resources/images/rspg_results_cli.png, id=12700, 295.1025pt x 401.24907pt>
+<resources/images/rspg_results_cli.png, id=11760, 295.1025pt x 401.24907pt>
 File: resources/images/rspg_results_cli.png Graphic file (type png)
 <use resources/images/rspg_results_cli.png>
 Package pdftex.def Info: resources/images/rspg_results_cli.png  used on input l
@@ -5949,13 +6521,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [456]
-<resources/images/rspg_results_mobile.png, id=12712, 1673.25125pt x 2930.95pt>
+<resources/images/rspg_results_mobile.png, id=11773, 1673.25125pt x 2930.95pt>
 File: resources/images/rspg_results_mobile.png Graphic file (type png)
 <use resources/images/rspg_results_mobile.png>
 Package pdftex.def Info: resources/images/rspg_results_mobile.png  used on inpu
 t line 17087.
 (pdftex.def)             Requested size: 223.34663pt x 391.18892pt.
-<resources/images/tea_web_ide_rspg_outputs.png, id=12713, 1673.25125pt x 2930.9
+<resources/images/tea_web_ide_rspg_outputs.png, id=11774, 1673.25125pt x 2930.9
 5pt>
 File: resources/images/tea_web_ide_rspg_outputs.png Graphic file (type png)
 <use resources/images/tea_web_ide_rspg_outputs.png>
@@ -6003,7 +6575,17 @@ Underfull \vbox (badness 4156) has occurred while \output is active []
 
 [460]
 
+LaTeX Warning: Citation `Lutalo2025_transformatics_thesis' on page 461 undefine
+d on input line 17205.
+
+
+
 [461]
+
+LaTeX Warning: Citation `copilot_assistant' on page 462 undefined on input line
+ 17250.
+
+
 
 [462]
 
@@ -6056,7 +6638,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 \openout9 = `TAZ_BOOK.listing'.
 
  (TAZ_BOOK.listing)
-<resources/images/debug_tea_web_functionality_case1.png, id=12940, 498.36188pt 
+<resources/images/debug_tea_web_functionality_case1.png, id=12004, 498.36188pt 
 x 360.59718pt>
 File: resources/images/debug_tea_web_functionality_case1.png Graphic file (type
  png)
@@ -6084,7 +6666,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [472]
-<resources/images/debug_tea_web_functionality_case2.png, id=12992, 511.15968pt 
+<resources/images/debug_tea_web_functionality_case2.png, id=12058, 511.15968pt 
 x 241.65282pt>
 File: resources/images/debug_tea_web_functionality_case2.png Graphic file (type
  png)
@@ -6106,7 +6688,7 @@ Package pdftex.def Info: resources/images/debug_tea_web_functionality_case2.png
  (TAZ_BOOK.listing)
 
 [475]
-<resources/images/debug_tea_web_functionality_case3.png, id=13069, 508.90125pt 
+<resources/images/debug_tea_web_functionality_case3.png, id=12135, 508.90125pt 
 x 289.83281pt>
 File: resources/images/debug_tea_web_functionality_case3.png Graphic file (type
  png)
@@ -6208,11 +6790,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 18369--18370
  []
 
 
+LaTeX Warning: Citation `copilot_assistant' on page 494 undefined on input line
+ 18376.
 
-[494]
+
 Underfull \hbox (badness 10000) in paragraph at lines 18384--18385
 []\OT1/cmtt/m/n/14.4 Every sufficiently advanced programming language
  []
+
+
+
+[494]
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 495 undefined on input line
+ 18391.
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 495 undefined on input line
+ 18405.
 
 
 
@@ -6259,7 +6854,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [504]
-<resources/images/emailer_1.5_example_dear_waltz.png, id=13801, 1146.2825pt x 2
+<resources/images/emailer_1.5_example_dear_waltz.png, id=12867, 1146.2825pt x 2
 007.5pt>
 File: resources/images/emailer_1.5_example_dear_waltz.png Graphic file (type pn
 g)
@@ -6517,7 +7112,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [547]
 
 [548]
-<resources/images/screenshot_hack_tea_web_ide_via_ZAP.png, id=14887, 430.60875p
+<resources/images/screenshot_hack_tea_web_ide_via_ZAP.png, id=13962, 430.60875p
 t x 484.81125pt>
 File: resources/images/screenshot_hack_tea_web_ide_via_ZAP.png Graphic file (ty
 pe png)
@@ -6540,7 +7135,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 Chapter 33.
-<resources/images/tea_cup_computer3.jpg, id=14916, 1027.84pt x 1027.84pt>
+<resources/images/tea_cup_computer3.jpg, id=13993, 1027.84pt x 1027.84pt>
 File: resources/images/tea_cup_computer3.jpg Graphic file (type jpg)
 <use resources/images/tea_cup_computer3.jpg>
 Package pdftex.def Info: resources/images/tea_cup_computer3.jpg  used on input 
@@ -6582,6 +7177,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 20421--20422
  []
 
 
+LaTeX Warning: Citation `kain1999advanced' on page 553 undefined on input line 
+20424.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -6602,6 +7201,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 20470--20470
  []
 
 
+LaTeX Warning: Citation `kain1999advanced' on page 554 undefined on input line 
+20470.
+
+
+LaTeX Warning: Citation `kain1972automata' on page 554 undefined on input line 
+20470.
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 554 undefined on input line
+ 20470.
+
+
+LaTeX Warning: Citation `copilot_assistant' on page 554 undefined on input line
+ 20470.
+
+
 Overfull \hbox (6.79999pt too wide) in paragraph at lines 20470--20471
 [][] 
  []
@@ -6617,6 +7232,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [555]
+
+LaTeX Warning: Citation `illingworth1996computing' on page 556 undefined on inp
+ut line 20498.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 20498--20498
 []\OT1/cmr/bx/n/12 Operating Sys-tem \OT1/cmtt/m/n/12 The set of software produ
 cts that jointly
@@ -6628,10 +7248,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 20498--20498
  []
 
 
+LaTeX Warning: Citation `illingworth1996computing' on page 556 undefined on inp
+ut line 20505.
+
+
 
 [556]
 
+LaTeX Warning: Citation `arpacidusseau2018ostep' on page 557 undefined on input
+ line 20516.
+
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 557 undefined on input line
+ 20522.
+
+
+LaTeX Warning: Citation `lutalo2024vosa' on page 557 undefined on input line 20
+522.
+
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 557 undefined on input line
+ 20522.
+
+
+LaTeX Warning: Citation `lutalodnapintro2020' on page 557 undefined on input li
+ne 20522.
+
+
+LaTeX Warning: Citation `a2021_github' on page 557 undefined on input line 2052
+2.
+
+
+
 [557]
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 558 undefined on input line
+ 20542.
+
+
+LaTeX Warning: Citation `lutalo2023dnapsoe' on page 558 undefined on input line
+ 20548.
+
+
+LaTeX Warning: Citation `kain1999advanced' on page 558 undefined on input line 
+20561.
+
+
+LaTeX Warning: Citation `arpacidusseau2018ostep' on page 558 undefined on input
+ line 20561.
+
+
 
 [558]
 Underfull \hbox (badness 10000) in paragraph at lines 20606--20607
@@ -6669,18 +7335,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 20606--20607
  []
 
 
+LaTeX Warning: Citation `Siever2000LinuxNutshell' on page 559 undefined on inpu
+t line 20609.
+
+
 Underfull \vbox (badness 5331) has occurred while \output is active []
 
 
 
 [559]
 
+LaTeX Warning: Citation `Siever2000LinuxNutshell' on page 560 undefined on inpu
+t line 20616.
+
+
+
 [560]
 
 [561]
 
 [562]
-<resources/images/proposing_teaos.jpg, id=15016, 850.17625pt x 1284.8pt>
+<resources/images/proposing_teaos.jpg, id=14069, 850.17625pt x 1284.8pt>
 File: resources/images/proposing_teaos.jpg Graphic file (type jpg)
 <use resources/images/proposing_teaos.jpg>
 Package pdftex.def Info: resources/images/proposing_teaos.jpg  used on input li
@@ -6692,11 +7367,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [563]
+
+LaTeX Warning: Hyper reference `FIGTEAOSPROPOSAL' on page 564 undefined on inpu
+t line 20749.
+
+
+LaTeX Warning: Reference `FIGTEAOSPROPOSAL' on page 564 undefined on input line
+ 20749.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [564 <./resources/images/proposing_teaos.jpg>]
+
+LaTeX Warning: Citation `Bowman:1999:Linux' on page 565 undefined on input line
+ 20757.
+
+
+LaTeX Warning: Citation `Bowman:1999:Linux' on page 565 undefined on input line
+ 20757.
+
+
+LaTeX Warning: Citation `Mauerer2008Linux' on page 565 undefined on input line 
+20761.
+
+
+LaTeX Warning: Citation `Bowman:1999:Linux' on page 565 undefined on input line
+ 20761.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 20771--20772
 []\OT1/cmtt/m/n/14.4 The design process involves developing several models of
  []
@@ -6752,16 +7453,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 20773--20774
  []
 
 
+LaTeX Warning: Citation `Sommerville1996Software' on page 565 undefined on inpu
+t line 20776.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
 [565]
 
+LaTeX Warning: Citation `Sommerville1996Software' on page 566 undefined on inpu
+t line 20786.
+
+
+LaTeX Warning: Citation `Sommerville1996Software' on page 566 undefined on inpu
+t line 20792.
+
+
+LaTeX Warning: Citation `Barisic2017UsabilityDSL' on page 566 undefined on inpu
+t line 20792.
+
+
+LaTeX Warning: Citation `lutalo_2026_19592521_tos_usecase' on page 566 undefine
+d on input line 20792.
+
+
+
 pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - Use-
 Case-Diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
 <1.5> allowed
-<resources/pdfs/tos/TEA Operating System - Use-Case-Diagram.pdf, id=15049, 597.
+<resources/pdfs/tos/TEA Operating System - Use-Case-Diagram.pdf, id=14090, 597.
 19106pt x 845.07718pt>
 File: resources/pdfs/tos/TEA Operating System - Use-Case-Diagram.pdf Graphic fi
 le (type pdf)
@@ -6775,6 +7497,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [566]
+
+LaTeX Warning: Hyper reference `FIGTOSUSECASE' on page 567 undefined on input l
+ine 20810.
+
+
+LaTeX Warning: Reference `FIGTOSUSECASE' on page 567 undefined on input line 20
+810.
+
+
 Underfull \vbox (badness 4479) has occurred while \output is active []
 
 
@@ -6784,7 +7515,7 @@ Underfull \vbox (badness 4479) has occurred while \output is active []
 pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - ARCH
 ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
-<resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=15083, 597.1910
+<resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=14121, 597.1910
 6pt x 845.07718pt>
 File: resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf Graphic file (
 type pdf)
@@ -6813,7 +7544,7 @@ ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - ARCH
 ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
-<resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=15086, page=1, 
+<resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=14124, page=1, 
 597.19106pt x 845.07718pt>
 File: resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf Graphic file (
 type pdf)
@@ -6858,7 +7589,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 20844.
 See the caption package documentation for explanation.
 
-<resources/images/teaos/teaos_bootscreen_on_teamobile.png, id=15127, 1673.25125
+<resources/images/teaos/teaos_bootscreen_on_teamobile.png, id=14164, 1673.25125
 pt x 2930.95pt>
 File: resources/images/teaos/teaos_bootscreen_on_teamobile.png Graphic file (ty
 pe png)
@@ -6938,7 +7669,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 21203--21203
 
 
 [588]
-<resources/pdfs/AboutAuthor.pdf, id=15406, 614.295pt x 794.97pt>
+<resources/pdfs/AboutAuthor.pdf, id=14515, 614.295pt x 794.97pt>
 File: resources/pdfs/AboutAuthor.pdf Graphic file (type pdf)
 <use resources/pdfs/AboutAuthor.pdf>
 Package pdftex.def Info: resources/pdfs/AboutAuthor.pdf  used on input line 212
@@ -6962,7 +7693,7 @@ Overfull \vbox (19.80933pt too high) has occurred while \output is active []
 
 
 [590 <./resources/pdfs/AboutAuthor.pdf>]
-<resources/images/alchemy/_3609443f-3a1a-4840-8086-45fb9d02a19f.jpeg, id=15442,
+<resources/images/alchemy/_3609443f-3a1a-4840-8086-45fb9d02a19f.jpeg, id=14552,
  1027.84pt x 1027.84pt>
 File: resources/images/alchemy/_3609443f-3a1a-4840-8086-45fb9d02a19f.jpeg Graph
 ic file (type jpg)
@@ -6974,7 +7705,7 @@ Package pdftex.def Info: resources/images/alchemy/_3609443f-3a1a-4840-8086-45fb
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=15443, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=14553, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
 Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 21239.
@@ -6995,7 +7726,7 @@ pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
 
 pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
  version <1.7>, but at most version <1.5> allowed
-<../taz_back_cover.pdf, id=15446, page=1, 596.98032pt x 844.65562pt>
+<../taz_back_cover.pdf, id=14556, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
 Package pdftex.def Info: ../taz_back_cover.pdf , page1 used on input line 21239
@@ -7043,8 +7774,14 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `TAZ_BOOK.out' has not changed.
-(rerunfilecheck)             Checksum: 2A3BF0CFA8CAB7C83482B1A9D911D61D;48149.
+
+Package rerunfilecheck Warning: File `TAZ_BOOK.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `TAZ_BOOK.out':
+(rerunfilecheck)             Before: 1284A2ACF9811BA14E7F2DC9617B3277;44816
+(rerunfilecheck)             After:  2A3BF0CFA8CAB7C83482B1A9D911D61D;48149.
  )
 (\end occurred inside a group at level 3)
 
@@ -7053,10 +7790,10 @@ Package rerunfilecheck Info: File `TAZ_BOOK.out' has not changed.
 ### simple group (level 1) entered at line 9600 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 50756 strings out of 473898
- 939722 string characters out of 5736297
- 3592960 words of memory out of 5000000
- 62031 multiletter control sequences out of 15000+600000
+ 50724 strings out of 473898
+ 939336 string characters out of 5736297
+ 3581960 words of memory out of 5000000
+ 62015 multiletter control sequences out of 15000+600000
  584688 words of font info for 136 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,21n,101p,2577b,1859s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -7106,9 +7843,9 @@ X/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Program Files/MiKTeX/fonts/type1
 /public/amsfonts/cm/cmtt9.pfb><C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1
 /public/cbgreek/gttn1000.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
 ts/symbols/msbm10.pfb>
-Output written on TAZ_BOOK.pdf (630 pages, 20815842 bytes).
+Output written on TAZ_BOOK.pdf (614 pages, 20629009 bytes).
 PDF statistics:
- 17817 PDF objects out of 18468 (max. 8388607)
- 10748 named destinations out of 12825 (max. 500000)
- 2234 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16926 PDF objects out of 18468 (max. 8388607)
+ 10732 named destinations out of 12825 (max. 500000)
+ 2106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -304,13 +304,12 @@ V:fGetHelpMenu:"
 y@:dfOSHandle|e:|x!:{ HELP MENU:
 about
 help
-help NAME
+help NAME | man NAME | whatis NAME
 help-file
 help-help
 help-prog
 help-ui
-help-util
-whatis NAME}
+help-util}
 v:vMSG
 y@:dvDELIM2|v:vD
 g*:{}:vD:vMSG:vD
@@ -346,6 +345,12 @@ f!:^whatis$:lN_h1
 v:vMSG:{whatis NAME <~ Displays help info about a given system command or user program.}
 j:lh1_present
 l:lN_h1
+
+#> help man
+f!:^man$:lN_h1b
+v:vMSG:{man NAME <~ Displays help info about a given system command or user program. It is just another alias for 'whatis' or 'help'}
+j:lh1_present
+l:lN_h1b
 
 #> help help
 f!:^help$:lN_h2
@@ -527,6 +532,20 @@ E*:fGetHelpMenu | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP
 
+#> whatis
+F!:^whatis$:lN_HELPb
+I!:{whatis}|V@:dvLastCommand
+E*:fGetHelpMenu | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_HELPb
+
+#> man
+F!:^man$:lN_HELPc
+I!:{man}|V@:dvLastCommand
+E*:fGetHelpMenu | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_HELPc
+
 #> help NAME
 F!:^help\s+\S*$:lN_HELP_TOPIC
 #extract topic..
@@ -548,6 +567,17 @@ Y:vHelpTopic
 E*:fGetHelpOn | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP_TOPICb
+
+#> man NAME
+F!:^man\s+\S*$:lN_HELP_TOPICc
+#extract topic..
+d:^man\s+|V:vHelpTopic
+X:{man }
+|V@:dvLastCommand
+Y:vHelpTopic
+E*:fGetHelpOn | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_HELP_TOPICc
 
 #> help-util
 F!:^help-util$:lN_HELP_UT
