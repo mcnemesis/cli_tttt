@@ -7,7 +7,7 @@ ___oo____oo______oo___oo_
 ___oo_____ooooo___oooo_o_
 _________________________}                                     
 x!:{
-TEA OS v1.0.8 is Ready...}
+TEA OS v1.0.9 is Ready...}
 v:vBanner | #i:
 
 ###| The above is the "original" bootscreen
@@ -44,7 +44,7 @@ PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com}
 #--[GLOBAL CONSTANTS]
 V@:dvOSName:{TEA OS}
 V@:dvOSName_short:{TOS}
-V@:dvOSVersion:{1.0.8}
+V@:dvOSVersion:{1.0.9}
 
 V:vSLOGAN:{TEA OS! T can fit in a string!}
 I!:{___________________}|V:vDELIM|V@:dvDELIM
@@ -62,6 +62,10 @@ V:vUSERNAME:{user} # not used that much!
 V@:dvLastPS:{}
 V@:dvLastCommand:{}
 V@:dvLastOutput:{}
+
+#TEA-DATABASE powered FILE-SYSTEM register
+#{F1|F2|...|FN} s.t NAME(Fi)=ID(Fi)
+Y@:dvFileList|I:{.}|V@:dvFileList
 
 ####| INTERFACE CONFIG VARIABLE
 # 0 forces original terminal mode: fit for TEA mobile IDE
@@ -211,6 +215,7 @@ Y:fLogAI|v@:dfLogAI
 #store AI as last-O..
 V:fLogO:"
 v@:dvLastOutput
+v@:dvDATABUFFER #also stash into special data buffer
 Y@:dvLastOutput
 "
 
@@ -258,6 +263,17 @@ x*!:vGreetings
 # make available for [db] import..
 Y:fResetLog|V@:dfResetLog
 
+
+V:fGetLatestOutputBuffer:"
+y@:dvLastOutput_backup
+f!:^$:lN_USED_BACKUP
+y@:dvLastOutput
+l:lN_USED_BACKUP
+c@:dvLastOutput_backup
+"
+
+Y:fGetLatestOutputBuffer|V@:dfGetLatestOutputBuffer
+
 L:lSYS_UTILITY_END
 #:{=================}
 
@@ -268,7 +284,7 @@ L:lSYS_HELP_START
 
 #present USER INTERFACE help-category commands
 V:fGetUIMenu:"
-y@:dfOSHandle|e:|x!:{ INTERFACE COMMANDS:
+y@:dfOSHandle|e:|x!:{ INTERFACE System Commands:
 uimini
 uilog}
 v:vMSG
@@ -276,15 +292,34 @@ y@:dvDELIM2|v:vD
 g*:{}:vD:vMSG:vD
 "
 
+#present FILE help-category commands
+V:fGetFileCMDMenu:"
+y@:dfOSHandle|e:|x!:{ FILE System Commands:
+create FILENAME
+init FILENAME
+write FILENAME
+(rename | rn | mv | move) FILENAME NEWNAME
+(copy|clone) FILE1 FILE2
+exists FILENAME
+find PATTERN
+(show | cat | read) FILENAME
+export FILENAME
+(del | delete | rm) FILENAME
+(ls | dir | files) PATTERN}
+v:vMSG
+y@:dvDELIM2|v:vD
+g*:{}:vD:vMSG:vD
+"
+
 #present UTILITIES help-category commands
 V:fGetUtilityMenu:"
-y@:dfOSHandle|e:|x!:{ UTILITIES MENU:
+y@:dfOSHandle|e:|x!:{ UTILITY System Commands:
 clear
 date
+echo MESSAGE
 exit
 export
-fetch URL
-fetch URL FILENAME
+(fetch | web) [URL] [FILENAME]
 logout
 math EXPRESSION
 print
@@ -292,8 +327,7 @@ tea CODE
 time
 timestamp
 username NAME
-whoami
-}
+whoami | name}
 v:vMSG
 y@:dvDELIM2|v:vD
 g*:{}:vD:vMSG:vD
@@ -301,10 +335,9 @@ g*:{}:vD:vMSG:vD
 
 #present main help-category commands
 V:fGetHelpMenu:"
-y@:dfOSHandle|e:|x!:{ HELP MENU:
+y@:dfOSHandle|e:|x!:{ HELP System Commands:
 about
-help
-help NAME | man NAME | whatis NAME
+(help | man | whatis | info) [NAME]
 help-file
 help-help
 help-prog
@@ -328,6 +361,10 @@ g*:{}:vD:vMSG:vD
 V:fGetHelpOn:"
 #asumes topic is passed via AI
 v:vHelpTOPIC
+
+#some imports...
+y@:dfGetFilenameProtocolMSG|v:fGetFilenameProtocolMSG
+E*:fGetFilenameProtocolMSG | v:vFILENAME_PROTOCOL
 
 #set default..
 r@:{That help topic [#vHelpTOPIC#] is not understood or supported. Try the 'help' command to see what help commands there are. For example 'help whatis'}|v:vMSG
@@ -383,10 +420,11 @@ v:vMSG:{clear <~ Resets and clears the current TEA OS session log since login.}
 j:lh1_present
 l:lN_hu0
 
-f!:^fetch$:lN_hu1
-v:vMSG:{fetch URL <~ fetch and output contents of the specified [online/network] resource.
+f!:{^(fetch|web)$}:lN_hu1
+v:vCMD
+r@:{#vCMD# URL <~ fetch and output contents of the specified [online/network] resource.
 
-fetch URL FILENAME <~ fetch and save contents at URL into file record named FILENAME.}
+#vCMD# URL FILENAME <~ fetch and save contents at URL into file record named FILENAME. #vFILENAME_PROTOCOL#} | v:vMSG
 j:lh1_present
 l:lN_hu1
 
@@ -421,7 +459,9 @@ j:lh1_present
 l:lN_hu7
 
 f!:^export$:lN_hu8
-v:vMSG:{export <~ Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).}
+r@:{export <~ Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).
+
+export FILENAME <~ Exit the system, outputting the contents of given file. #vFILENAME_PROTOCOL#} | v:vMSG
 j:lh1_present
 l:lN_hu8
 
@@ -456,9 +496,76 @@ j:lh1_present
 l:lN_h14
 
 f!:^whoami$:lN_h15
-v:vMSG:{whoami <~ Display the NAME of currently active USER.}
+v:vCMD
+r@:{#vCMD# <~ Display the NAME of currently active USER.} | v:vMSG
 j:lh1_present
 l:lN_h15
+
+f!:^create$:lN_h16
+r@:{create FILENAME <~ Creates blank file with name FILENAME. #vFILENAME_PROTOCOL#}|v:vMSG
+j:lh1_present
+l:lN_h16
+
+f!:{^(ls|dir|files)$}:lN_h17
+v:vCMD
+r@:{#vCMD# <~ Display list of ALL available files.
+
+#vCMD# PATTERN <~ Display list of ONLY files matching regular expression PATTERN.}
+| v:vMSG
+j:lh1_present
+l:lN_h17
+
+f!:^init$:lN_h18
+r@:{init FILENAME <~ Create a file using the given name and the currently available input/last-output (or the PRINT buffer) or blank if none. #vFILENAME_PROTOCOL#}|v:vMSG
+j:lh1_present
+l:lN_h18
+
+f!:^write$:lN_h19
+r@:{write FILENAME <~ Write the contents of the current available input/last-output (or the PRINT buffer) or blank if none, to a file with the specified name. If the file already exists, essentially overwrites its contents. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h19
+
+f!:{^(show|cat|read)$}:lN_h20
+v:vCMD
+r@:{#vCMD# FILENAME <~ Preview the contents of given file. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h20
+
+f!:^echo$:lN_h21
+v:vMSG:{echo MESSAGE <~ Simply print MESSAGE as is.}
+j:lh1_present
+l:lN_h21
+
+f!:{^(find)$}:lN_h22
+v:vCMD
+r@:{#vCMD# PATTERN <~ Display list of ONLY files matching regular expression PATTERN.}
+| v:vMSG
+j:lh1_present
+l:lN_h22
+
+f!:{^(del|delete|rm)$}:lN_h23
+v:vCMD
+r@:{#vCMD# PATTERN <~ Remove from storage, any and all files whose name matches PATTERN.} | v:vMSG
+j:lh1_present
+l:lN_h23
+
+f!:{^(rename|rn|mv|move)$}:lN_h24
+v:vCMD
+r@:{#vCMD# FILENAME NEWNAME <~ Change the name of an existing file from FILENAME to NEWNAME. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h24
+
+f!:{^(exists)$}:lN_h25
+v:vCMD
+r@:{#vCMD# FILENAME <~ Show whether or not a file named FILENAME exists. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h25
+
+f!:{^(copy|clone)$}:lN_h26
+v:vCMD
+r@:{#vCMD# FILENAME FILE2 <~ Copies contents of FILENAME to FILE2 creating the destination if it doesn't exist. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h26
 
 l:lh1_present
 y@:dvDELIM2|v:vD
@@ -466,6 +573,417 @@ g*:{}:vD:vMSG:vD
 "
 
 L:lSYS_HELP_END
+#:{=================}
+
+*:{==|FILE SYSTEM |==}
+L:lSYS_FILE_START
+
+#--[FILE SYSTEM Functions]
+
+#f(N)->DFS_N
+V:fGetFilenameProtocolMSG:"i!:{Valid FILENAME should consist of ONLY letters a-zA-Z, numbers 0-9, underscore _ and/or a dot .}"
+Y:fGetFilenameProtocolMSG|V@:dfGetFilenameProtocolMSG
+
+#f(N)->DFS_N
+V:fGenDBFilename:"x:{DFS_}"
+Y:fGenDBFilename|V@:dfGenDBFilename
+
+#f(DFS_N)->N
+V:fDecodeDBFilename:"d:^DFS_"
+Y:fDecodeDBFilename|V@:dfDecodeDBFilename
+
+#f(N)->0|1
+V:fIsFileNameValid:"
+f!:^[a-z0-9_]+(\.[a-z0-9]+)?$:lBAD_FILE_NAME
+i!:1|q!:
+l:lBAD_FILE_NAME
+i!:0
+"
+Y:fIsFileNameValid|V@:dfIsFileNameValid
+
+
+#create FILENAME
+V:fCreateFile:"
+# first, grab incoming function argument...
+v:vFILENAME|t!.:|v:vFNAME
+
+#then import functions..
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | f:^$:lNFINE # filename shouldn't be blank
+# file name should conform to accepted patterns
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE NOT CREATED.}|q!:
+l:lGOOD_FILENAME
+
+# fetch current file name list..
+y@:dvFileList | v:vFileList
+# ensure file name doesn't yet exist in records
+#e.g v:vFileList:{F1|F2|F33|File|File}
+#v:vFNAME:{f1}
+# check if file name is unique
+r@:{(^#vFNAME#\|)|(\|#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX
+y:vFileList | f*!:vFNAME_REGEX:lFNAME_UNIQUE:lFNAME_DUPLICATE
+l:lFNAME_UNIQUE
+# add name to file list 
+g*:{|}:vFileList:vFNAME | v:vFileList | v@:dvFileList 
+#also create blank file record in db filesystem
+y:vFNAME|E*:fGenDBFilename|v:vdFNAME
+
+v@:dvDATA:{} # we'll write empty file
+r@:{y@:dvDATA|v@:#vdFNAME#}|E:
+
+i!:{CREATED NEW BLANK FILE: }|x*!:vFNAME
+q!:
+l:lFNAME_DUPLICATE
+i!:{File Already Exists! 
+NOT DUPLICATING FILE: }|x*!:vFNAME
+q!:
+l:lNFINE
+i!:{Invalid [blank] File Name!
+FILE NOT CREATED.}
+"
+
+Y:fCreateFile|V@:dfCreateFile
+
+
+
+#delete FILENAME
+V:fDeleteFile:"
+# first, grab incoming function argument...
+v:vFILENAME|t!.:|v:vFNAME
+
+#then import functions..
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | f:^$:lNFINE # filename shouldn't be blank
+# file name should conform to accepted patterns
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE NOT DELETED.}|q!:
+l:lGOOD_FILENAME
+
+# fetch current file name list..
+y@:dvFileList | v:vFileList
+# remove file name from records
+
+#v:vFileList:{F1|F2|F33|F3|File|File}
+#v:vFNAME:{File}
+# get filename pattern
+
+# create delete filename patterns + apply them..
+r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
+r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
+r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
+# use it to del
+y:vFileList | d*:vFNAME_REGEX_ENDS | v:vFileList
+y:vFileList | d*:vFNAME_REGEX_ALL | v:vFileList
+v:vDIV:{|}
+r*:vFileList:vFNAME_REGEX_MID:vDIV | v:vFileList
+
+# update file list 
+y:vFileList | v@:dvFileList 
+#also delete file record from db filesystem
+y:vFNAME|E*:fGenDBFilename|v:vdFNAME
+r@:{c!@:#vdFNAME#}|E:
+
+i!:{DELETED FILE: }|x*!:vFNAME
+q!:
+l:lFNAME_DUPLICATE
+i!:{Found Duplicate Files! 
+NOT DELETING FILE: }|x*!:vFNAME
+q!:
+l:lNFINE
+i!:{Invalid [blank] File Name!
+FILE NOT DELETED.}
+"
+
+Y:fDeleteFile|V@:dfDeleteFile
+
+#ls | dir | files
+V:fShowFilesList:"
+# takes no parameters ;)
+# fetch current file name list..
+y@:dvFileList
+#process and present..
+h!:{\|}|d:{\|}
+"
+
+#(ls | dir | files | find) PATTERN
+V:fSearchFilesList:"
+# takes file regex pattern parameter
+v:vREGEX_PATTERN
+# fetch current file name list..
+y@:dvFileList
+#process and present..
+h!:{\|}|d:{\|}
+# only keep what matches...
+k*:vREGEX_PATTERN
+"
+
+#(del | delete | rm) PATTERN
+V:fDeleteFilesList:"
+# takes file regex pattern parameter
+v:vREGEX_PATTERN
+
+#imports..
+y@:dfDeleteFile | v:fDeleteFile
+
+# fetch current file name list..
+y@:dvFileList
+#process and present..
+h!:{\|}|d:{\|}
+# only keep what matches...
+k*:vREGEX_PATTERN 
+g:{|} | v:vDelFileList | v:vDelFileListORIG
+f:^$:NO_FILES_TO_DELETE
+# to track files we couldn't delete
+v:vNOTDelFileList:{}
+
+# go through files and delete..
+v:vNCOUNTER:0
+v:vNCOUNTER_DEL:0
+
+l:lSTART_DEL
+y:vDelFileList
+f:^$:lDONE_DEL
+#fetch..
+y:vDelFileList | d!:{^[^\|]+\|?} 
+d:{\|} | v:vDelFileNAME 
+
+#if actually blank.. go pop
+f:^$:lPOPDEL_LIST
+
+# delete file..
+E*:fDeleteFile
+#q!: # check...
+
+f!:{DELETED FILE}:lDELETE_FAILED:lDELETED_OK
+l:lDELETE_FAILED
+# add name to NOT deleted file list 
+g*:{|}:vNOTDelFileList:vDelFileNAME  | v:vNOTDelFileList
+j:lDONE_DELETED_OK
+l:lDELETED_OK
+y:vNCOUNTER_DEL | x!:+1 | r.: | v:vNCOUNTER_DEL
+l:lDONE_DELETED_OK
+y:vNCOUNTER | x!:+1 | r.: | v:vNCOUNTER
+
+#pop..
+l:lPOPDEL_LIST
+y:vDelFileList | d:{^[^\|]+\|?} | v:vDelFileList
+#x:{Remaining: } | q!:
+j:lSTART_DEL # iterate
+
+l:lDONE_DEL
+r@:{#vNCOUNTER# - #vNCOUNTER_DEL#}|r.:|v:vNCOUNTER_NDEL
+y:vNCOUNTER_DEL | f:^1$:lDEL_REP_1
+r@:{DELETED #vNCOUNTER_DEL# file[s] from list:
+#vDelFileListORIG#
+EXCEPT #vNCOUNTER_NDEL#:
+#vNOTDelFileList#}|q!:
+
+l:lDEL_REP_1
+
+y:vNCOUNTER | f!:^1$:lDEL_REP_2
+r@:{DELETED ONLY #vNCOUNTER_DEL# file:
+#vDelFileListORIG#
+}|q!:
+
+l:lDEL_REP_2
+r@:{DELETED ONLY #vNCOUNTER_DEL# file from list:
+#vDelFileListORIG#
+EXCEPT #vNCOUNTER_NDEL#:
+#vNOTDelFileList#}|q!:
+
+l:NO_FILES_TO_DELETE
+r@:{#vREGEX_PATTERN# matched no FILES!
+NO FILE WAS DELETED}
+"
+
+#init FILENAME
+V:fInitFile:"
+v:vFILENAME|t!.:|v:vFNAME
+
+#imports...
+y@:dfCreateFile|v:fCreateFile
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE NOT CREATED.}|q!:
+l:lGOOD_FILENAME
+
+# then, try to create the file...
+y:vFNAME | E*:fCreateFile
+# check if it was created...
+f!:{CREATED NEW BLANK FILE}:lFILE_NOT_CREATED
+# get name of that newly created file...
+y:vFNAME|E*:fGenDBFilename|v:vdFNAME
+
+# get current output buffer
+y@:dvDATABUFFER | v@:dvDATA
+
+# only if it was empty then...
+f!:^$:lFINE_DATA_BUFFER
+# use print buffer...
+e*:fGetLatestOutputBuffer | v@:dvDATA
+l:lFINE_DATA_BUFFER
+
+# store it into file system record...
+r@:{y@:dvDATA|v@:#vdFNAME#}|E:
+
+#a test...
+#r@:{y@:#vdFNAME#}|E:
+#x:{File now contains:
+#}|q!:
+
+i!:{CREATED and INITIALIZED NEW File: }|x*!:vFNAME
+q!:
+l:lFILE_NOT_CREATED
+i!:{FAILED TO CREATE FILE: } | x*!:vFNAME
+"
+
+#write FILENAME
+V:fWriteFile:"
+v:vFILENAME|t!.:|v:vFNAME
+
+#imports...
+y@:dfCreateFile|v:fCreateFile
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE NOT WRITTEN.}|q!:
+l:lGOOD_FILENAME
+
+# then, try to create the file...
+y:vFNAME | E*:fCreateFile
+# check if it was created...
+f!:{(CREATED NEW BLANK FILE)|(NOT DUPLICATING FILE)}:lFILE_NOT_CREATED
+# get name of that file...
+y:vFNAME|E*:fGenDBFilename|v:vdFNAME
+# get current output buffer
+y@:dvDATABUFFER | v@:dvDATA
+
+# only if it was empty then...
+f!:^$:lFINE_DATA_BUFFER
+# use print buffer...
+e*:fGetLatestOutputBuffer | v@:dvDATA
+l:lFINE_DATA_BUFFER
+
+# store it into file system record...
+r@:{y@:dvDATA|v@:#vdFNAME#}|E:
+
+i!:{DATA WRITTEN to File: }|x*!:vFNAME
+q!:
+l:lFILE_NOT_CREATED
+i!:{FAILED TO WRITE FILE: } | x*!:vFNAME
+"
+
+#savedata FILENAME 
+#reads special buffer v@:dvDATABUFFER
+V:fSaveDataToFile:"
+v:vFILENAME|t!.:|v:vFNAME
+
+#imports...
+y@:dfCreateFile|v:fCreateFile
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE NOT WRITTEN.}|q!:
+l:lGOOD_FILENAME
+
+# then, try to create the file...
+y:vFNAME | E*:fCreateFile
+# check if it was created...
+f!:{(CREATED NEW BLANK FILE)|(NOT DUPLICATING FILE)}:lFILE_NOT_CREATED
+# get name of that file...
+y:vFNAME|E*:fGenDBFilename|v:vdFNAME
+# get current data buffer
+# and store it into file system record...
+r@:{y@:dvDATABUFFER|v@:#vdFNAME#}|E:
+
+i!:{DATA WRITTEN to File: }|x*!:vFNAME
+q!:
+l:lFILE_NOT_CREATED
+i!:{FAILED TO WRITE FILE: } | x*!:vFNAME
+"
+
+#read FILENAME
+V:fReadFile:"
+v:vFILENAME|t!.:|v:vFNAME
+
+#imports...
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE NOT READ.}|q!:
+l:lGOOD_FILENAME
+
+# then, try to read the file...
+y:vFNAME|E*:fGenDBFilename|v:vdFNAME
+
+r@:{y@:#vdFNAME#}|E:
+"
+
+y:fReadFile | v@:dfReadFile
+
+#exists FILENAME
+V:fFileExists:"
+# first, grab incoming function argument...
+v:vFILENAME|t!.:|v:vFNAME
+
+#then import functions..
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | f:^$:lNFINE
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE MAY NOT EXIST.}|q!:
+l:lGOOD_FILENAME
+
+# fetch current file name list..
+y@:dvFileList | v:vFileList
+
+
+#v:vFileList:{F1|F2|F33|F3|File|File}
+#v:vFNAME:{f1}
+
+# create delete filename patterns + apply them..
+r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
+r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
+r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
+# use it test for existence
+y:vFileList | f*:vFNAME_REGEX_ENDS:lFILE_EXISTS
+f*:vFNAME_REGEX_ALL:lFILE_EXISTS
+f*:vFNAME_REGEX_MID:lFILE_EXISTS
+
+i!:{FILE DOES NOT EXIST}|q!:
+
+l:lFILE_EXISTS
+i!:{FILE EXISTS}
+q!:
+
+l:lNFINE
+i!:{Invalid [blank] File Name!
+FILE DOES NOT EXIST.}
+"
+
+L:lSYS_FILE_END
 #:{=================}
 
 
@@ -494,11 +1012,164 @@ y:vIN_clean_lc
 #preliminary processing...
 
 # a subsystem..
+###((FILE System))
+
+#> create FILENAME
+F!:^create\s+.*$:lN_CRT_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+E*:fCreateFile | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_CRT_FILE
+
+#> ls | dir | files
+F!:{^(ls|dir|files)$}:lN_LIST_FILES
+V@:dvLastCommand
+E*:fShowFilesList | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_LIST_FILES
+
+#> (ls | dir | files | find) PATTERN
+F!:{^(ls|dir|files|find)\s+(\S+\s*)+$}:lN_SEARCH_FILES
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFilePattern
+E*:fSearchFilesList | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_SEARCH_FILES
+
+#> (del | delete | rm) PATTERN
+F!:{^(del|delete|rm)\s+(\S+\s*)+$}:lN_DEL_FILES
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFilePattern
+E*:fDeleteFilesList | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_DEL_FILES
+
+#> init FILENAME
+F!:^init\s+.*$:lN_INIT_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+E*:fInitFile | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_INIT_FILE
+
+#> write FILENAME
+F!:^write\s+.*$:lN_WRITE_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+E*:fWriteFile | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_WRITE_FILE
+
+#> (show|cat|read) FILENAME
+F!:{^(show|cat|read)\s+.*$}:lN_READ_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+E*:fReadFile | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_READ_FILE
+
+
+#> exists FILENAME
+F!:{^(exists)\s+.*$}:lN_EXISTS_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+E*:fFileExists | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_EXISTS_FILE
+
+
+#> (rename|rn|mv|move) FILENAME NEWNAME
+F!:{^(rename|rn|mv|move)\s+([a-z0-9_]+(\.[a-z0-9]+)?)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_RENAME_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileNames
+Y:vFileNames | D:\s+.*$ | V:vFileName
+Y:vFileNames | D!:\s+.*$ | V:vNewName
+#check..
+#R@:{Renaming #vFileName# to #vNewName#} | q!:
+# ensure source file exists...
+Y:vFileName | E*:fFileExists
+F!:{^FILE EXISTS$}:lCANNOT_RENAME
+# read src into data buffer
+Y:vFileName | E*:fReadFile | v@:dvDATABUFFER
+# write data buffer into new file
+Y:vNewName | E*:fSaveDataToFile | v:vWRITELOG
+# delete old file
+Y:vFileName | E*:fDeleteFile
+R@:{File #vFileName# RENAMED #vNewName#
+With status: #vWRITELOG#}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+l:lCANNOT_RENAME
+R@:{File #vFileName# does NOT EXIST!
+RENAME Operation ABANDONED}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lN_RENAME_FILE
+
+#> (copy|clone) FILE1 FILE2
+F!:{^(copy|clone)\s+([a-z0-9_]+(\.[a-z0-9]+)?)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_CLONE_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileNames
+Y:vFileNames | D:\s+.*$ | V:vFileName
+Y:vFileNames | D!:\s+.*$ | V:vFileName2
+#check..
+#R@:{Cloning #vFileName# to #vFileName2#} | q!:
+# ensure source file exists...
+Y:vFileName | E*:fFileExists
+F!:{^FILE EXISTS$}:lCANNOT_CLONE
+# read src into data buffer
+Y:vFileName | E*:fReadFile | v@:dvDATABUFFER
+# write data buffer into new file
+Y:vFileName2 | E*:fSaveDataToFile | v:vWRITELOG
+R@:{File #vFileName# CLONED TO #vFileName2#
+With status: #vWRITELOG#}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+l:lCANNOT_CLONE
+R@:{File #vFileName# does NOT EXIST!
+CLONE Operation ABANDONED}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lN_CLONE_FILE
+
+
+#> export FILENAME
+F!:^export\s+.*$:lN_EXPORT_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+#exit via file export..
+d:^\S+\s+|V:vFileName
+E*:fReadFile | v:vLOG # read file
+E*:fResetLog # reset log
+# Gracefully quit...
+E*:fOSHandle | X:{Thanks for Using }
+V:vMSG
+G*!:vDELIM2:vFileName:vLOG:vMSG
+J:lEXIT_Main
+L:lN_EXPORT_FILE
+
+###((END FILE System))
+
+# a subsystem..
 ###((INTERFACE System))
 
 #> uimini
 F!:^uimini$:lN_UIMINI
-I!:{uimini}|V@:dvLastCommand
+V@:dvLastCommand
 V@:dvUIMODE_MINI:{1}
 I!:{TOS Mini-Interface Mode Activated} | E*:fLogO
 J:lFIN_CMD_PROCESSING
@@ -506,7 +1177,7 @@ L:lN_UIMINI
 
 #> uilog
 F!:^uilog$:lN_UILOG
-I!:{uilog}|V@:dvLastCommand
+V@:dvLastCommand
 V@:dvUIMODE_MINI:{0}
 I!:{TOS Log-Interface Mode Activated} | E*:fLogO
 J:lFIN_CMD_PROCESSING
@@ -520,82 +1191,51 @@ L:lN_UILOG
 
 #> about
 F!:^about$:lN_ABOUT
-I!:{about}|V@:dvLastCommand
+V@:dvLastCommand
 E*:fGetAboutTOS | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_ABOUT
 
-#> help
-F!:^help$:lN_HELP
-I!:{help}|V@:dvLastCommand
+#> help | man | whatis | info
+F!:{^(help|man|whatis|info)$}:lN_HELP
+V@:dvLastCommand
 E*:fGetHelpMenu | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP
 
-#> whatis
-F!:^whatis$:lN_HELPb
-I!:{whatis}|V@:dvLastCommand
-E*:fGetHelpMenu | E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELPb
-
-#> man
-F!:^man$:lN_HELPc
-I!:{man}|V@:dvLastCommand
-E*:fGetHelpMenu | E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELPc
-
-#> help NAME
-F!:^help\s+\S*$:lN_HELP_TOPIC
-#extract topic..
-d:^help\s+|V:vHelpTopic
-X:{help }
-|V@:dvLastCommand
-Y:vHelpTopic
-E*:fGetHelpOn | E*:fLogO
+#> (help|man|whatis|info) NAME
+F!:{^(help|man|whatis|info)\s+(\S+\s*)+$}:lN_HELP_TOPIC
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+#extract+process topic..
+d:{^\S+\s+} | E*:fGetHelpOn | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP_TOPIC
 
-#> whatis NAME
-F!:^whatis\s+\S*$:lN_HELP_TOPICb
-#extract topic..
-d:^whatis\s+|V:vHelpTopic
-X:{whatis }
+#> help-file[s]?
+F!:^help-file[s]?$:lN_HELP_FILE
 |V@:dvLastCommand
-Y:vHelpTopic
-E*:fGetHelpOn | E*:fLogO
+E*:fGetFileCMDMenu | E*:fLogO
 J:lFIN_CMD_PROCESSING
-L:lN_HELP_TOPICb
+L:lN_HELP_FILE
 
-#> man NAME
-F!:^man\s+\S*$:lN_HELP_TOPICc
-#extract topic..
-d:^man\s+|V:vHelpTopic
-X:{man }
-|V@:dvLastCommand
-Y:vHelpTopic
-E*:fGetHelpOn | E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP_TOPICc
-
-#> help-util
-F!:^help-util$:lN_HELP_UT
-I!:{help-util}|V@:dvLastCommand
+#> help-util[s]?
+F!:^help-util[s]?$:lN_HELP_UT
+V@:dvLastCommand
 E*:fGetUtilityMenu | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP_UT
 
-#> help-ui
-F!:^help-ui$:lN_HELP_UI
-I!:{help-ui}|V@:dvLastCommand
+#> help-ui[s]?
+F!:^help-ui[s]?$:lN_HELP_UI
+V@:dvLastCommand
 E*:fGetUIMenu | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP_UI
 
-#> help-help
-F!:^help-help$:lN_HELP_HELP
-I!:{help-help}|V@:dvLastCommand
+#> help-help[s]?
+F!:^help-help[s]?$:lN_HELP_HELP
+V@:dvLastCommand
 E*:fGetHelpMenu 
 X:{
 To use or access help on any topic in the system, use any of the commands presented in the following Menu.
@@ -616,13 +1256,23 @@ L:lN_HELP_HELP
 # a subsystem..
 ###((UTILITY System))
 
-#> fetch URL
-F!:^fetch\s+\S*$:lN_FETCH
-#extract url..
-d:^fetch\s+|V:vFURL
-X:{fetch }
+#> echo MESSAGE
+F!:^echo.*$:lN_ECHO
+Y:vIN_raw|t!.:
+d:^\S+\s*|V:vMESSAGE
+X:{echo }
 |V@:dvLastCommand
-Y:vFURL
+Y:vMESSAGE 
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_ECHO
+
+#> (fetch|web) URL
+F!:{^(fetch|web)\s+\S*$}:lN_FETCH
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+#extract url..
+d:{^\S+\s+}
 E*:fFixURL
 W: #do the web..
 E*:fLogO
@@ -631,8 +1281,9 @@ L:lN_FETCH
 
 #> tea CODE
 F!:^tea\s+[\S]+.*$:lN_TEA
+Y:vIN_raw|t!.:
 #extract code..
-d:^tea\s+|V:vTEACode
+d:^\S+\s+|V:vTEACode
 X:{tea }
 |V@:dvLastCommand
 Y:vTEACode
@@ -643,8 +1294,9 @@ L:lN_TEA
 
 #> math EXPRESSION
 F!:^math\s+[\S]+.*$:lN_MATH
+Y:vIN_raw|t!.:
 #extract expression..
-d:^math\s+|V:vMathExp
+d:^\S+\s+|V:vMathExp
 X:{math }
 |V@:dvLastCommand
 Y:vMathExp
@@ -655,20 +1307,18 @@ L:lN_MATH
 
 #> username NAME
 F!:^username\s+[\S]+.*$:lN_SETUSER
+V@:dvLastCommand
 #extract expression..
 Y:vIN_raw|t!.:
-d:^\S+\s+|V:vUSERNAME
-X:{username }
-|V@:dvLastCommand
-Y:vUSERNAME
+d:^\S+\s+
 V@:dvUSERNAME #update db
 E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_SETUSER
 
-#> whoami
-F!:^whoami$:lN_WHOAMI
-I!:{whoami}|V@:dvLastCommand
+#> (whoami|name)
+F!:{^(whoami|name)$}:lN_WHOAMI
+V@:dvLastCommand
 Y@:dvUSERNAME
 E*:fLogO
 J:lFIN_CMD_PROCESSING
@@ -677,8 +1327,7 @@ L:lN_WHOAMI
 
 #> time
 F!:^time$:lN_TIME
-#log input cmd..
-i!:{time}|v@:dvLastCommand
+v@:dvLastCommand
 #show cur.time..
 Z.:TIME | E*:fLogO
 #present+log I/O
@@ -687,21 +1336,21 @@ L:lN_TIME
 
 #> date
 F!:^date$:lN_DATE
-i!:{date}|v@:dvLastCommand
+v@:dvLastCommand
 Z.:DATE | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_DATE
 
 #> timestamp 
 F!:^timestamp$:lN_TSTAMP
-i!:{timestamp}|v@:dvLastCommand
+v@:dvLastCommand
 Z.:TIMESTAMP | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_TSTAMP
 
 #> clear 
 F!:^clear$:lN_CLEAR
-i!:{clear}|v@:dvLastCommand
+v@:dvLastCommand
 E*:fResetLog
 E*:fLogO
 J:lFIN_CMD_PROCESSING
@@ -709,12 +1358,8 @@ L:lN_CLEAR
 
 #> print 
 F!:^print$:lN_PRINT
-I!:{print}|V@:dvLastCommand
-Y@:dvLastOutput_backup
-F!:^$:lN_USED_BACKUP
-Y@:dvLastOutput
-L:lN_USED_BACKUP
-C@:dvLastOutput_backup
+V@:dvLastCommand
+E*:fGetLatestOutputBuffer
 E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_PRINT
@@ -762,7 +1407,7 @@ L:lN_EXPORT
 #then it's CNF!
 F:^$:lFIN_CMD_PROCESSING
 Y:vIN_raw | V@:dvLastCommand # log unknown command
-I!:{--COMMAND NOT FOUND--}
+I!:{--COMMAND NOT FOUND | INVALID COMMAND--}
 E*:fLogO
 J:lFIN_CMD_PROCESSING
 ###((END CATCH-ALL))

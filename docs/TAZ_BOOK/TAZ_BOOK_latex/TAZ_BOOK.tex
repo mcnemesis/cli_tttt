@@ -20623,14 +20623,18 @@ And with that clarification out of the way, we then embark on specifying the det
 \item {  \textbf{File System:} create, name, rename, copy, lookup, preview, and delete file objects.\\
 \textbf{---[Basic FILE I/O Commands Interface]:}
 \begin{itemize}
-\item \texttt{create FILENAME} $\leftarrow$ creates blank file with name FILENAME.
-\item \texttt{init FILENAME} $\leftarrow$ create a file using the given name and the currently available input/last-output or blank if none.
-\item \texttt{rename FILENAME NEWNAME} $\leftarrow$ change the name of an existing file from FILENAME to NEWNAME.
-\item \texttt{copy FILE1 FILE2} $\leftarrow$ copies contents of FILE1 to FILE2 creating the destination if it doesn't exist.
-\item \texttt{find PATTERN} $\leftarrow$ find and list all file records whose names match the given Regular Expression pattern.
-\item \texttt{show FILENAME} $\leftarrow$ preview the contents of given file.
-\item \texttt{export FILENAME} $\leftarrow$ exit the system, outputing the contents of given file.
-\item \texttt{delete FILENAME} $\leftarrow$ remove file with name FILENAME from storage.
+\item \texttt{create FILENAME} $\leftarrow$ creates blank file with name FILENAME. Valid FILENAME should consist of ONLY letters a-zA-Z, numbers 0-9, underscore \_ and/or a dot ..
+\item \texttt{init FILENAME} $\leftarrow$ create a file using the given name and the currently available input/last-output (or the \textbf{print buffer}) or blank if none.
+\item \texttt{write FILENAME} $\leftarrow$ write the contents of the current available input/last-output (or the \textbf{print buffer}) or blank if none, to a file with the specified name. If the file already exists, essentially overwrites its contents.
+\item \texttt{exists FILENAME} $\leftarrow$ Show whether or not a file named FILENAME exists.
+\item \texttt{(rename | rn | mv | move) FILENAME NEWNAME} $\leftarrow$ Change the name of an existing file from FILENAME to NEWNAME.
+\item \texttt{(copy|clone) FILE1 FILE2} $\leftarrow$ Copies contents of FILENAME to FILE2 creating the destination if it doesn't exist.
+\item \texttt{find PATTERN} $\leftarrow$ Display list of ONLY files matching regular expression PATTERN.
+\item \texttt{(show | cat | read) FILENAME} $\leftarrow$ Preview the contents of given file.
+\item \texttt{export FILENAME} $\leftarrow$ Exit the system, outputting the contents of given file.
+\item \texttt{(del | delete | rm) PATTERN} $\leftarrow$ Remove from storage, any and all files whose name matches PATTERN.
+\item \texttt{ls | dir | files} $\leftarrow$ Display list of ALL available files.
+\item \texttt{(ls | dir | files)} PATTERN $\leftarrow$ Display list of ONLY files matching regular expression PATTERN.
 \end{itemize}
 
 }
@@ -20656,10 +20660,11 @@ And with that clarification out of the way, we then embark on specifying the det
 \begin{itemize}
 \item \texttt{clear} $\leftarrow$ Resets and clears the current TEA OS session log since login.
 \item \texttt{date} $\leftarrow$ return the current date.
+\item \texttt{echo} MESSAGE $\leftarrow$ Simply print MESSAGE as is.
 \item \texttt{exit} $\leftarrow$ ends the TOS session returning nothing.
 \item \texttt{export} $\leftarrow$ Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).
 
-\item \texttt{fetch URL} $\leftarrow$ fetch and output contents of the specified [online/network] resource.
+\item \texttt{(fetch | web) URL} $\leftarrow$ fetch and output contents of the specified [online/network] resource.
 \item \texttt{fetch URL FILENAME} $\leftarrow$ fetch and save contents at URL into file record named FILENAME.
 
 \item \texttt{logout} $\leftarrow$ Resets username and system logs and ends the TOS session returning nothing.
@@ -20677,7 +20682,7 @@ And with that clarification out of the way, we then embark on specifying the det
 \item \texttt{username NAME} $\leftarrow$ Overrides current username with specified value.
 
 
-\item \texttt{whoami} $\leftarrow$ Display the NAME of currently active USER.
+\item \texttt{(whoami|name)} $\leftarrow$ Display the NAME of currently active USER.
 
 \end{itemize}
 
@@ -20689,8 +20694,8 @@ And with that clarification out of the way, we then embark on specifying the det
 \textbf{---[Basic HELP Commands Interface]:}
 \begin{itemize}
 \item \texttt{about} $\leftarrow$ Displays basic info about the currently running version of the TEA Operating System.
-\item \texttt{help | whatis | man} $\leftarrow$ present menu for user to access help about all available [essential] commands based on category.
-\item \texttt{help NAME} $\leftarrow$ same as \texttt{whatis NAME} or \texttt{man NAME}.
+\item \texttt{help | man | whatis | info} $\leftarrow$ present menu for user to access help about all available [essential] commands based on category.
+\item \texttt{(help | man | whatis | info) NAME} $\leftarrow$ displays help info about a given system command or user program specified in the value NAME.
 
 \item \texttt{help-file} $\leftarrow$ display all available commands in the FILE I/O category.
 \item \texttt{help-help} $\leftarrow$ display help on how to use the HELP facility.
@@ -20700,9 +20705,6 @@ And with that clarification out of the way, we then embark on specifying the det
 \item \texttt{help-ui} $\leftarrow$ Display all available commands in the USER INTERFACE category or sub-system.
 
 \item \texttt{help-util} $\leftarrow$ display all available commands in the UTILITIES category.
-
-\item \texttt{whatis NAME} $\leftarrow$ displays help info about a given system command or user program.
-
 
 
 \end{itemize}
