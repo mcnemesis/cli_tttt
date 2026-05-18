@@ -318,12 +318,13 @@ g*:{}:vD:vMSG:vD
 #present PROGRAMMING help-category commands
 V:fGetProgrammingMenu:"
 y@:dfOSHandle|e:|x!:{ PROGRAMMING System Commands:
-(runnable | register) FILENAME
+(runnable | register | add-program) FILENAME
 (isrunnable | canrun) FILENAME
 (run | exec | execute) FILENAME
 (del-prog | delete-program | unregister) FILENAME
 (update | update-program) FILENAME
-}
+PROGRAM
+(help | man | whatis | info | about) PROGRAM}
 v:vMSG
 y@:dvDELIM2|v:vD
 g*:{}:vD:vMSG:vD
@@ -355,7 +356,7 @@ g*:{}:vD:vMSG:vD
 V:fGetHelpMenu:"
 y@:dfOSHandle|e:|x!:{ HELP System Commands:
 about
-(help | man | whatis | info) [NAME]
+(help | man | whatis | info | about) [NAME]
 help-file
 help-help
 help-prog
@@ -586,7 +587,7 @@ r@:{#vCMD# FILENAME FILE2 <~ Copies contents of FILENAME to FILE2 creating the d
 j:lh1_present
 l:lN_h26
 
-f!:{^(runnable|register)$}:lN_h27
+f!:{^(runnable|register|add-program)$}:lN_h27
 v:vCMD
 r@:{#vCMD# FILENAME <~ Recognize FILENAME object as an executable [user] program or command. FILENAME must already be an existing TEA file. #vFILENAME_PROTOCOL#} | v:vMSG
 j:lh1_present
@@ -625,6 +626,22 @@ v:vCMD
 r@:{#vCMD# PROGRAMFILE FILENAME <~ Replace/override original program named PROGRAMFILE with contents of FILENAME (updates a program's code [in PROGRAMFILE] preserving its existing name). Both files PROGRAMFILE and FILENAME must actually exist for this to work, but only PROGRAMFILE needs to be a registered program. #vFILENAME_PROTOCOL#} | v:vMSG
 j:lh1_present
 l:lN_h32
+
+f!:{^(program)$}:lN_h33
+v:vCMD | z!: | v:vCMD #use upercase..
+r@:{#vCMD# <~ Executes #vCMD# as a system command if it exists --- first, if it is any of the standard commands in TEA OS, otherwise if it is a valid filename "#vCMD#" that is already recognized/registered as a user-created program - this later case similar to calling "run #vCMD#", otherwise shows error message command-not-found.} | v:vMSG
+j:lh1_present
+l:lN_h33
+
+# the user-program catch-all...
+f!:{^([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_h34
+v:vPROGRAMFILE 
+y@:dfProgramExists | v:fProgramExists #import
+y:vPROGRAMFILE | e*:fProgramExists 
+f!:{^PROGRAM EXISTS$}:lN_h34
+r@:{#vPROGRAMFILE# <~ Is a valid user-registered [TEA] program. You might run or execute it by directly invoking "#vPROGRAMFILE#" or via "run #vPROGRAMFILE#".} | v:vMSG
+j:lh1_present
+l:lN_h34
 
 l:lh1_present
 y@:dvDELIM2|v:vD
@@ -840,6 +857,8 @@ y:vDelFileList | d:{^[^\|]+\|?} | v:vDelFileList
 j:lSTART_DEL # iterate
 
 l:lDONE_DEL
+y:vDelFileListORIG|d:{^\|}:{\|$}|v:vDelFileListORIG
+y:vNOTDelFileList|d:{^\|}:{\|$}|v:vNOTDelFileList
 r@:{#vNCOUNTER# - #vNCOUNTER_DEL#}|r.:|v:vNCOUNTER_NDEL
 y:vNCOUNTER_DEL | f:^1$:lDEL_REP_1
 r@:{DELETED #vNCOUNTER_DEL# file[s] from list:
@@ -848,13 +867,15 @@ EXCEPT #vNCOUNTER_NDEL#:
 #vNOTDelFileList#}|q!:
 
 l:lDEL_REP_1
-
+y:vDelFileListORIG|d:{^\|}:{\|$}|v:vDelFileListORIG
 y:vNCOUNTER | f!:^1$:lDEL_REP_2
 r@:{DELETED ONLY #vNCOUNTER_DEL# file:
 #vDelFileListORIG#
 }|q!:
 
 l:lDEL_REP_2
+y:vDelFileListORIG|d:{^\|}:{\|$}|v:vDelFileListORIG
+y:vNOTDelFileList|d:{^\|}:{\|$}|v:vNOTDelFileList
 r@:{DELETED ONLY #vNCOUNTER_DEL# file from list:
 #vDelFileListORIG#
 EXCEPT #vNCOUNTER_NDEL#:
@@ -1496,8 +1517,8 @@ E*:fGetHelpMenu | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP
 
-#> (help|man|whatis|info) NAME
-F!:{^(help|man|whatis|info)\s+(\S+\s*)+$}:lN_HELP_TOPIC
+#> (help|man|whatis|info|about) NAME
+F!:{^(help|man|whatis|info|about)\s+(\S+\s*)+$}:lN_HELP_TOPIC
 Y:vIN_raw|t!.:
 V@:dvLastCommand
 #extract+process topic..
@@ -1706,8 +1727,8 @@ L:lN_EXPORT
 # a subsystem..
 ###((PROGRAMMING System))
 
-#> (runnable|register) FILENAME
-F!:{^(runnable|register)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_RUNNABLE_FILE
+#> (runnable|register|add-program) FILENAME
+F!:{^(runnable|register|add-program)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_RUNNABLE_FILE
 Y:vIN_raw|t!.:
 V@:dvLastCommand
 d:^\S+\s+|V:vFileName
@@ -1839,11 +1860,25 @@ E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_UPDATE_PROGRAM
 
+#> PROGRAM | FILENAME
+F!:{^([a-z0-9_]+(\.[a-z0-9]+)?)\s*$}:lN_RUN_FILE_PROG
+Y:vIN_raw|t!.:
+V@:dvLastCommand | V:vFileName
+
+# ensure it is a registered program, otherwise cnf..
+Y:vFileName | E*:fProgramExists 
+F:{^PROGRAM EXISTS$}:lPROCESS_RUN_PROGRAM:lCMD_CATCHALL
+
+L:lPROCESS_RUN_PROGRAM
+Y:vFileName | E*:fRunFile | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_RUN_FILE_PROG
 
 ###((END PROGRAMMING System))
 
 
 ###((CATCH-ALL))
+L:lCMD_CATCHALL
 #if we came this far
 #then it's CNF!
 F:^$:lFIN_CMD_PROCESSING
