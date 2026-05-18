@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.5.1" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.5.2" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -1331,9 +1331,10 @@ export class TEA_RunTime {
         }
 
         if(tc == "D"){
-			let dpatterns = tpe_str.split(TEA_RunTime.TIPED);
+			let dpatterns = tpe.split(TEA_RunTime.TIPED);
 			for (let dp of dpatterns) {
-				io = io.replace(new RegExp(dp, 'g'), TEA_RunTime.EMPTY_STR);
+                var regex = this.extract_str(dp);
+				io = io.replace(new RegExp(regex, 'g'), TEA_RunTime.EMPTY_STR);
 			}
         }
         if(tc == "D."){
@@ -1381,7 +1382,7 @@ export class TEA_RunTime {
 				io = io.replace(new RegExp(TEA_RunTime.RE_WHITE_SPACE, 'g'), TEA_RunTime.EMPTY_STR);
             }
             else{
-                let dpatterns = tpe_str.split(TEA_RunTime.TIPED);
+                let dpatterns = tpe.split(TEA_RunTime.TIPED).map(dp => this.extract_str(dp));
                 let dfilter = dpatterns.join("|");
                 let matches = io.match(new RegExp(dfilter, 'g')) || [];
                 io = matches.join(TEA_RunTime.EMPTY_STR);
@@ -1396,7 +1397,7 @@ export class TEA_RunTime {
             }
             else {
                 if(tc == "D*"){
-                   var params  = tpe_str.split(TEA_RunTime.TIPED)
+                   var params  = tpe.split(TEA_RunTime.TIPED)
                    if(params.length == 1){
                        var vREGEX = params[0]
                        if(vREGEX.length > 0){
@@ -1417,7 +1418,7 @@ export class TEA_RunTime {
                    }
                 }
                 if (tc == "D*!") {
-                    var params  = tpe_str.split(TEA_RunTime.TIPED)
+                    var params  = tpe.split(TEA_RunTime.TIPED)
                     var dpatterns = []
                     for(let vRX of params){
                         if(vRX.length > 0){
