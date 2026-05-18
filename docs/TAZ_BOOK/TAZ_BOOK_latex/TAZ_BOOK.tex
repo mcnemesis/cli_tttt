@@ -20627,14 +20627,14 @@ And with that clarification out of the way, we then embark on specifying the det
 \item \texttt{init FILENAME} $\leftarrow$ create a file using the given name and the currently available input/last-output (or the \textbf{print buffer}) or blank if none.
 \item \texttt{write FILENAME} $\leftarrow$ write the contents of the current available input/last-output (or the \textbf{print buffer}) or blank if none, to a file with the specified name. If the file already exists, essentially overwrites its contents.
 \item \texttt{exists FILENAME} $\leftarrow$ Show whether or not a file named FILENAME exists.
-\item \texttt{(rename | rn | mv | move) FILENAME NEWNAME} $\leftarrow$ Change the name of an existing file from FILENAME to NEWNAME.
+\item \texttt{(rename | rn | mv | move) FILENAME NEWNAME} $\leftarrow$ Change the name of an existing file from FILENAME to NEWNAME. WILL ALSO update the registered [user] programs list if FILENAME was a registered program.
 \item \texttt{(copy|clone) FILE1 FILE2} $\leftarrow$ Copies contents of FILENAME to FILE2 creating the destination if it doesn't exist.
 \item \texttt{find PATTERN} $\leftarrow$ Display list of ONLY files matching regular expression PATTERN.
 \item \texttt{(show | cat | read) FILENAME} $\leftarrow$ Preview the contents of given file.
 \item \texttt{export FILENAME} $\leftarrow$ Exit the system, outputting the contents of given file.
-\item \texttt{(del | delete | rm) PATTERN} $\leftarrow$ Remove from storage, any and all files whose name matches PATTERN.
-\item \texttt{ls | dir | files} $\leftarrow$ Display list of ALL available files.
-\item \texttt{(ls | dir | files)} PATTERN $\leftarrow$ Display list of ONLY files matching regular expression PATTERN.
+\item \texttt{(del | delete | rm) PATTERN} $\leftarrow$ Remove from storage, any and all files whose name matches PATTERN. CAN NOT DELETE registered user program files though.
+\item \texttt{ls | list | dir | files} $\leftarrow$ Display list of ALL available files.
+\item \texttt{(ls | list | dir | files)} PATTERN $\leftarrow$ Display list of ONLY files matching regular expression PATTERN.
 \end{itemize}
 
 }
@@ -20642,13 +20642,14 @@ And with that clarification out of the way, we then embark on specifying the det
 \item {  \textbf{Programming Interface:} a command-line interface to find, run, or modify user programs or find and run system programs and commands.\\
 \textbf{---[Basic Programming Commands Interface]:}
 \begin{itemize}
-\item \texttt{runnable FILENAME} $\leftarrow$ recognize FILENAME object as an executable program or command.
-\item \texttt{programs} $\leftarrow$ show list of all available TEA programs by their names.
-\item \texttt{run FILENAME} $\leftarrow$ execute the given file record as a TEA program.
-\item \texttt{runnable FILE1 FILE2} $\leftarrow$ replace/override original program named FILE1 with contents of FILE2 (updates a program's code preserving its existing name).
-\item \texttt{commands} $\leftarrow$ executes COMMAND as a system command if it exists, otherwise shows error message command-not-found.
-\item \texttt{whatis NAME} $\leftarrow$ displays help info about a given system command or user program.
-\item \texttt{delete-program FILENAME} $\leftarrow$ revokes status of FILENAME as an executable user program (doesn't actually delete the underlying file object though).
+\item \texttt{(runnable | register) FILENAME} $\leftarrow$ Recognize FILENAME object as an executable [user] program or command. FILENAME must already be an existing TEA file.
+\item \texttt{programs [PATTERN]} $\leftarrow$ Show list of all available registered [TEA]  user programs by their registered names. With PATTERN specified, ONLY show those programs whose names match regular expression PATTERN.
+\item \texttt{(isrunnable | canrun) FILENAME} $\leftarrow$ Show whether or not a file named FILENAME can be executed as a [TEA] program.
+\item \texttt{(run | exec | execute) FILENAME} $\leftarrow$ Execute the given file record as a [TEA] program.
+\item \texttt{(del-prog | delete-program | unregister) FILENAME} $\leftarrow$ Revokes status of FILENAME as an executable user program (doesn't actually delete the underlying file object though).
+\item \texttt{(update | update-program) FILE1 FILE2} $\leftarrow$ Replace/override original program named FILE1 with contents of FILE2 (updates a program's code [in FILE1] preserving its existing name). Both files FILE1 and FILE2 must actually exist for this to work, but only FILE1 needs to be a registered program.
+\item\hl{ \texttt{COMMAND} $\leftarrow$ executes COMMAND as a system command if it exists --- first, if it is any of the standard commands in TEA OS, otherwise if it is a valid filename ``COMMAND" that is already recognized as a user-created program --- this later case similar to calling ``run COMMAND", otherwise shows error message command-not-found.}
+\item \hl{ \texttt{whatis NAME} $\leftarrow$ displays help info about a given system command or user program.}
 \end{itemize}
 
 }
@@ -20658,7 +20659,7 @@ And with that clarification out of the way, we then embark on specifying the det
 \item {  \textbf{Basic Utilities:} access to basic useful commands such as being able to interact with the world outside TOS as well as do non-programming work from within TOS.\\
 \textbf{---[Basic UTILITY Commands Interface]:}
 \begin{itemize}
-\item \texttt{clear} $\leftarrow$ Resets and clears the current TEA OS session log since login.
+\item \texttt{(clear | reset)} $\leftarrow$ Resets and clears the current TEA OS session log since login.
 \item \texttt{date} $\leftarrow$ return the current date.
 \item \texttt{echo} MESSAGE $\leftarrow$ Simply print MESSAGE as is.
 \item \texttt{exit} $\leftarrow$ ends the TOS session returning nothing.

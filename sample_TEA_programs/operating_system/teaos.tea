@@ -7,7 +7,7 @@ ___oo____oo______oo___oo_
 ___oo_____ooooo___oooo_o_
 _________________________}                                     
 x!:{
-TEA OS v1.0.9 is Ready...}
+TEA OS v1.1.0 is Ready...}
 v:vBanner | #i:
 
 ###| The above is the "original" bootscreen
@@ -44,7 +44,7 @@ PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com}
 #--[GLOBAL CONSTANTS]
 V@:dvOSName:{TEA OS}
 V@:dvOSName_short:{TOS}
-V@:dvOSVersion:{1.0.9}
+V@:dvOSVersion:{1.1.0}
 
 V:vSLOGAN:{TEA OS! T can fit in a string!}
 I!:{___________________}|V:vDELIM|V@:dvDELIM
@@ -66,6 +66,10 @@ V@:dvLastOutput:{}
 #TEA-DATABASE powered FILE-SYSTEM register
 #{F1|F2|...|FN} s.t NAME(Fi)=ID(Fi)
 Y@:dvFileList|I:{.}|V@:dvFileList
+
+#TEA-DATABASE powered USER-PROGRAMS-SYSTEM register
+#{F1|F2|...|FN} s.t NAME(Fi)=ID(Fi)
+Y@:dvProgramsList|I:{run}|V@:dvProgramsList
 
 ####| INTERFACE CONFIG VARIABLE
 # 0 forces original terminal mode: fit for TEA mobile IDE
@@ -305,7 +309,21 @@ find PATTERN
 (show | cat | read) FILENAME
 export FILENAME
 (del | delete | rm) FILENAME
-(ls | dir | files) PATTERN}
+(ls | list | dir | files) PATTERN}
+v:vMSG
+y@:dvDELIM2|v:vD
+g*:{}:vD:vMSG:vD
+"
+
+#present PROGRAMMING help-category commands
+V:fGetProgrammingMenu:"
+y@:dfOSHandle|e:|x!:{ PROGRAMMING System Commands:
+(runnable | register) FILENAME
+(isrunnable | canrun) FILENAME
+(run | exec | execute) FILENAME
+(del-prog | delete-program | unregister) FILENAME
+(update | update-program) FILENAME
+}
 v:vMSG
 y@:dvDELIM2|v:vD
 g*:{}:vD:vMSG:vD
@@ -314,7 +332,7 @@ g*:{}:vD:vMSG:vD
 #present UTILITIES help-category commands
 V:fGetUtilityMenu:"
 y@:dfOSHandle|e:|x!:{ UTILITY System Commands:
-clear
+clear | reset
 date
 echo MESSAGE
 exit
@@ -415,8 +433,9 @@ v:vMSG:{Display help on how to use the HELP facility or sub-system.}
 j:lh1_present
 l:lN_h6
 
-f!:^clear$:lN_hu0
-v:vMSG:{clear <~ Resets and clears the current TEA OS session log since login.}
+f!:{^(clear|reset)$}:lN_hu0
+v:vCMD
+r@:{#vCMD#  <~ Resets and clears the current TEA OS session log since login.} | v:vMSG
 j:lh1_present
 l:lN_hu0
 
@@ -506,7 +525,7 @@ r@:{create FILENAME <~ Creates blank file with name FILENAME. #vFILENAME_PROTOCO
 j:lh1_present
 l:lN_h16
 
-f!:{^(ls|dir|files)$}:lN_h17
+f!:{^(ls|list|dir|files)$}:lN_h17
 v:vCMD
 r@:{#vCMD# <~ Display list of ALL available files.
 
@@ -545,13 +564,13 @@ l:lN_h22
 
 f!:{^(del|delete|rm)$}:lN_h23
 v:vCMD
-r@:{#vCMD# PATTERN <~ Remove from storage, any and all files whose name matches PATTERN.} | v:vMSG
+r@:{#vCMD# PATTERN <~ Remove from storage, any and all files whose name matches PATTERN. CAN NOT DELETE registered user program files though.} | v:vMSG
 j:lh1_present
 l:lN_h23
 
 f!:{^(rename|rn|mv|move)$}:lN_h24
 v:vCMD
-r@:{#vCMD# FILENAME NEWNAME <~ Change the name of an existing file from FILENAME to NEWNAME. #vFILENAME_PROTOCOL#} | v:vMSG
+r@:{#vCMD# FILENAME NEWNAME <~ Change the name of an existing file from FILENAME to NEWNAME. WILL ALSO update the registered [user] programs list if FILENAME was a registered program. #vFILENAME_PROTOCOL#} | v:vMSG
 j:lh1_present
 l:lN_h24
 
@@ -566,6 +585,46 @@ v:vCMD
 r@:{#vCMD# FILENAME FILE2 <~ Copies contents of FILENAME to FILE2 creating the destination if it doesn't exist. #vFILENAME_PROTOCOL#} | v:vMSG
 j:lh1_present
 l:lN_h26
+
+f!:{^(runnable|register)$}:lN_h27
+v:vCMD
+r@:{#vCMD# FILENAME <~ Recognize FILENAME object as an executable [user] program or command. FILENAME must already be an existing TEA file. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h27
+
+f!:{^programs$}:lN_h28
+v:vCMD
+r@:{#vCMD# <~ Show list of all available registered [TEA]  user programs by their registered names.
+
+#vCMD# PATTERN <~ With PATTERN specified, ONLY show those programs whose names match regular expression PATTERN.}
+| v:vMSG
+j:lh1_present
+l:lN_h28
+
+f!:{^(run|exec|execute)$}:lN_h29
+v:vCMD
+r@:{#vCMD# FILENAME <~ Execute the given file record as a [TEA] program. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h29
+
+f!:{^(isrunnable|canrun)$}:lN_h30
+v:vCMD
+r@:{#vCMD# FILENAME <~ Show whether or not a file named FILENAME can be executed as a [TEA] program. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h30
+
+f!:{^(del-prog|delete-program|unregister)$}:lN_h31
+v:vCMD
+r@:{#vCMD# FILENAME <~ Revokes status of FILENAME as an executable user program (doesn't actually delete the underlying file object though). #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h31
+
+
+f!:{^(update|update-program)$}:lN_h32
+v:vCMD
+r@:{#vCMD# PROGRAMFILE FILENAME <~ Replace/override original program named PROGRAMFILE with contents of FILENAME (updates a program's code [in PROGRAMFILE] preserving its existing name). Both files PROGRAMFILE and FILENAME must actually exist for this to work, but only PROGRAMFILE needs to be a registered program. #vFILENAME_PROTOCOL#} | v:vMSG
+j:lh1_present
+l:lN_h32
 
 l:lh1_present
 y@:dvDELIM2|v:vD
@@ -650,7 +709,6 @@ FILE NOT CREATED.}
 Y:fCreateFile|V@:dfCreateFile
 
 
-
 #delete FILENAME
 V:fDeleteFile:"
 # first, grab incoming function argument...
@@ -693,10 +751,7 @@ r@:{c!@:#vdFNAME#}|E:
 
 i!:{DELETED FILE: }|x*!:vFNAME
 q!:
-l:lFNAME_DUPLICATE
-i!:{Found Duplicate Files! 
-NOT DELETING FILE: }|x*!:vFNAME
-q!:
+
 l:lNFINE
 i!:{Invalid [blank] File Name!
 FILE NOT DELETED.}
@@ -704,7 +759,7 @@ FILE NOT DELETED.}
 
 Y:fDeleteFile|V@:dfDeleteFile
 
-#ls | dir | files
+#ls | list | dir | files
 V:fShowFilesList:"
 # takes no parameters ;)
 # fetch current file name list..
@@ -713,7 +768,7 @@ y@:dvFileList
 h!:{\|}|d:{\|}
 "
 
-#(ls | dir | files | find) PATTERN
+#(ls | list | dir | files | find) PATTERN
 V:fSearchFilesList:"
 # takes file regex pattern parameter
 v:vREGEX_PATTERN
@@ -732,6 +787,7 @@ v:vREGEX_PATTERN
 
 #imports..
 y@:dfDeleteFile | v:fDeleteFile
+y@:dfProgramExists | v:fProgramExists
 
 # fetch current file name list..
 y@:dvFileList
@@ -758,8 +814,13 @@ d:{\|} | v:vDelFileNAME
 #if actually blank.. go pop
 f:^$:lPOPDEL_LIST
 
+# ensure it is not a registered program
+y:vDelFileNAME | e*:fProgramExists | f:{^PROGRAM EXISTS$}:lDELETE_FAILED
+
+#r@:{--Continuing to delete file [#vDelFileNAME#]} | q!:
+
 # delete file..
-E*:fDeleteFile
+y:vDelFileNAME | e*:fDeleteFile
 #q!: # check...
 
 f!:{DELETED FILE}:lDELETE_FAILED:lDELETED_OK
@@ -963,11 +1024,11 @@ y@:dvFileList | v:vFileList
 #v:vFileList:{F1|F2|F33|F3|File|File}
 #v:vFNAME:{f1}
 
-# create delete filename patterns + apply them..
+# create filename patterns..
 r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
 r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
 r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
-# use it test for existence
+# use them to test for existence
 y:vFileList | f*:vFNAME_REGEX_ENDS:lFILE_EXISTS
 f*:vFNAME_REGEX_ALL:lFILE_EXISTS
 f*:vFNAME_REGEX_MID:lFILE_EXISTS
@@ -984,6 +1045,217 @@ FILE DOES NOT EXIST.}
 "
 
 L:lSYS_FILE_END
+#:{=================}
+
+
+*:{==|PROGRAMMING SYSTEM |==}
+L:lSYS_PROG_START
+
+#--[PROGRAMMING SYSTEM Functions]
+
+
+#runnable FILENAME
+V:fRegisterProgramFile:"
+# we assume given program file already exists!
+# first, grab incoming function argument...
+v:vFILENAME|t!.:|v:vFNAME
+
+#then import functions..
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | f:^$:lNFINE
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+CANNOT REGISTER PROGRAM.}|q!:
+l:lGOOD_FILENAME
+
+# fetch current program file name list..
+y@:dvProgramsList | v:vProgramsList
+
+#v:vFileList:{F1|F2|F33|F3|File|File}
+#v:vFNAME:{f1}
+
+# check if program name is unique:
+# create filename patterns...
+r@:{(^#vFNAME#\|)|(\|#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX
+# use them to test for program existence
+y:vProgramsList | f*!:vFNAME_REGEX:lPROGNAME_UNIQUE:lPROG_EXISTS
+l:lPROGNAME_UNIQUE
+# So, program isn't registered yet, meaning its ok
+# to proceed to register it...
+# add name to programs list 
+g*:{|}:vProgramsList:vFNAME | v:vProgramsList | v@:dvProgramsList
+r@:{User PROGRAM [#vFNAME#] is now REGISTERED.
+CAN BE INVOKED as SYSTEM COMMAND.} | q!:
+
+l:lPROG_EXISTS
+r@:{User PROGRAM [#vFNAME#] Already EXISTS!
+CANNOT re-REGISTER PROGRAM.} | q!:
+
+l:lNFINE
+i!:{Invalid [blank] File Name!
+CANNOT REGISTER PROGRAM.}
+"
+
+
+#programs
+V:fShowProgramsList:"
+y@:dvProgramsList|h!:{\|}|d:{\|}
+"
+
+#programs PATTERN
+V:fSearchProgramsList:"
+v:vREGEX_PATTERN
+y@:dvProgramsList|h!:{\|}|d:{\|}|k*:vREGEX_PATTERN
+"
+
+#run FILENAME
+V:fRunFile:"
+v:vFILENAME|t!.:|v:vFNAME
+
+#imports...
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+FILE NOT EXECUTED.}|q!:
+l:lGOOD_FILENAME
+
+# then, try to run the file...
+y:vFNAME|E*:fGenDBFilename|v:vdFNAME
+
+# for now, run it as a TEA program..
+r@:{y@:#vdFNAME#}|E:|E:
+"
+
+#(isrunnable|canrun) FILENAME
+V:fProgramExists:"
+v:vFILENAME|t!.:|v:vFNAME
+
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | f:^$:lNFINE
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+PROGRAM MAY NOT EXIST.}|q!:
+l:lGOOD_FILENAME
+
+# fetch current programs name list..
+y@:dvProgramsList | v:vProgramsList
+
+r@:{(^#vFNAME#\|)|(\|#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX
+y:vProgramsList | f*:vFNAME_REGEX:lPROG_EXISTS
+
+i!:{PROGRAM DOES NOT EXIST}|q!:
+
+l:lPROG_EXISTS
+i!:{PROGRAM EXISTS}|q!:
+
+l:lNFINE
+i!:{Invalid [blank] File Name!
+PROGRAM DOES NOT EXIST.}
+"
+
+Y:fProgramExists | V@:dfProgramExists
+
+
+#unregister FILENAME
+V:fUnRegisterProgram:"
+# we assume given program file already exists!
+# first, grab incoming function argument...
+v:vFILENAME|t!.:|v:vFNAME
+
+#then import functions..
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+
+y:vFNAME | f:^$:lNFINE
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+CANNOT UNREGISTER PROGRAM.}|q!:
+l:lGOOD_FILENAME
+
+# fetch current program file name list..
+y@:dvProgramsList | v:vProgramsList
+
+# create delete filename patterns + apply them..
+r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
+r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
+r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
+# use it to del
+y:vProgramsList | d*:vFNAME_REGEX_ENDS | v:vProgramsList
+y:vProgramsList| d*:vFNAME_REGEX_ALL | v:vProgramsList
+v:vDIV:{|}
+r*:vProgramsList:vFNAME_REGEX_MID:vDIV | v:vProgramsList
+
+# update programs list 
+y:vProgramsList| v@:dvProgramsList 
+
+i!:{UNREGISTERED PROGRAM FILE: }|x*!:vFNAME
+q!:
+
+l:lNFINE
+i!:{Invalid [blank] File Name!
+PROGRAM FILE NOT UNREGISTERED.}
+"
+
+Y:fUnRegisterProgram | V@:dfUnRegisterProgram
+
+#delete-program FILENAME
+V:fDeleteProgramFile:"
+# first, grab incoming function argument...
+v:vFILENAME|t!.:|v:vFNAME
+
+#then import functions..
+y@:dfGenDBFilename|v:fGenDBFilename
+y@:dfIsFileNameValid|v:fIsFileNameValid
+y@:dfUnRegisterProgram |v:fUnRegisterProgram
+
+y:vFNAME | f:^$:lNFINE # filename shouldn't be blank
+# file name should conform to accepted patterns
+y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
+r@:{Invalid File Name [#vFNAME#]!
+PROGRAM FILE NOT DELETED.}|q!:
+l:lGOOD_FILENAME
+
+# fetch current file name list..
+y@:dvFileList | v:vFileList
+
+
+# create delete filename patterns + apply them..
+r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
+r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
+r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
+# use it to del
+y:vFileList | d*:vFNAME_REGEX_ENDS | v:vFileList
+y:vFileList | d*:vFNAME_REGEX_ALL | v:vFileList
+v:vDIV:{|}
+r*:vFileList:vFNAME_REGEX_MID:vDIV | v:vFileList
+
+# update file list 
+y:vFileList | v@:dvFileList 
+#also delete file record from db filesystem
+y:vFNAME|e*:fGenDBFilename|v:vdFNAME
+r@:{c!@:#vdFNAME#}|E:
+
+# then unregister program file
+y:vFNAME | e*:fUnRegisterProgram | v:vUnRegStatus
+
+r@:{DELETED PROGRAM FILE: #vFNAME#
+With Status: #vUnRegStatus#} | q!:
+
+
+l:lNFINE
+i!:{Invalid [blank] File Name!
+PROGRAM FILE NOT DELETED.}
+"
+
+Y:fDeleteProgramFile|V@:dfDeleteProgramFile
+
+L:lSYS_PROG_END
 #:{=================}
 
 
@@ -1023,15 +1295,15 @@ E*:fCreateFile | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_CRT_FILE
 
-#> ls | dir | files
-F!:{^(ls|dir|files)$}:lN_LIST_FILES
+#> ls | list| dir | files
+F!:{^(ls|list|dir|files)$}:lN_LIST_FILES
 V@:dvLastCommand
 E*:fShowFilesList | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_LIST_FILES
 
-#> (ls | dir | files | find) PATTERN
-F!:{^(ls|dir|files|find)\s+(\S+\s*)+$}:lN_SEARCH_FILES
+#> (ls | list | dir | files | find) PATTERN
+F!:{^(ls|list|dir|files|find)\s+(\S+\s*)+$}:lN_SEARCH_FILES
 Y:vIN_raw|t!.:
 V@:dvLastCommand
 d:^\S+\s+|V:vFilePattern
@@ -1098,6 +1370,12 @@ Y:vFileNames | D!:\s+.*$ | V:vNewName
 # ensure source file exists...
 Y:vFileName | E*:fFileExists
 F!:{^FILE EXISTS$}:lCANNOT_RENAME
+
+# also check if it is a registered program...
+Y:vFileName | E*:fProgramExists 
+F:{^PROGRAM EXISTS$}:lPROCESS_RENAME_PROGRAM
+
+# renaming normal file...
 # read src into data buffer
 Y:vFileName | E*:fReadFile | v@:dvDATABUFFER
 # write data buffer into new file
@@ -1109,12 +1387,28 @@ With status: #vWRITELOG#}
 E*:fLogO
 J:lFIN_CMD_PROCESSING
 
-l:lCANNOT_RENAME
+L:lPROCESS_RENAME_PROGRAM
+# renaming program file...
+# read src into data buffer
+Y:vFileName | E*:fReadFile | v@:dvDATABUFFER
+# write data buffer into new file
+Y:vNewName | E*:fSaveDataToFile | v:vWRITELOG
+# register new program
+Y:vNewName | E*:fRegisterProgramFile | v:vREGLOG
+# delete old program file
+Y:vFileName | E*:fDeleteProgramFile | v:vDELLOG
+R@:{Program File #vFileName# RENAMED #vNewName#
+With [WRITE] status: #vWRITELOG#
+And [REGISTER] status: #vREGLOG#
+And [DEL] status: #vDELLOG#}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lCANNOT_RENAME
 R@:{File #vFileName# does NOT EXIST!
 RENAME Operation ABANDONED}
 E*:fLogO
 J:lFIN_CMD_PROCESSING
-
 L:lN_RENAME_FILE
 
 #> (copy|clone) FILE1 FILE2
@@ -1143,7 +1437,6 @@ R@:{File #vFileName# does NOT EXIST!
 CLONE Operation ABANDONED}
 E*:fLogO
 J:lFIN_CMD_PROCESSING
-
 L:lN_CLONE_FILE
 
 
@@ -1218,6 +1511,13 @@ F!:^help-file[s]?$:lN_HELP_FILE
 E*:fGetFileCMDMenu | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_HELP_FILE
+
+#> help-prog[s|rams]?
+F!:{^help-prog([s]|rams)?$}:lN_HELP_PROG
+V@:dvLastCommand
+E*:fGetProgrammingMenu | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_HELP_PROG
 
 #> help-util[s]?
 F!:^help-util[s]?$:lN_HELP_UT
@@ -1348,8 +1648,8 @@ Z.:TIMESTAMP | E*:fLogO
 J:lFIN_CMD_PROCESSING
 L:lN_TSTAMP
 
-#> clear 
-F!:^clear$:lN_CLEAR
+#> clear | reset
+F!:{^(clear|reset)$}:lN_CLEAR
 v@:dvLastCommand
 E*:fResetLog
 E*:fLogO
@@ -1401,6 +1701,147 @@ J:lEXIT_Main
 L:lN_EXPORT
 
 ###((END UTILITY System))
+
+
+# a subsystem..
+###((PROGRAMMING System))
+
+#> (runnable|register) FILENAME
+F!:{^(runnable|register)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_RUNNABLE_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+#check..
+#R@:{Registering User-Program in #vFileName#} | q!:
+# ensure source file exists...
+Y:vFileName | E*:fFileExists
+F!:{^FILE EXISTS$}:lCANNOT_REGISTER_PROG
+# register file as user-program..
+Y:vFileName | E*:fRegisterProgramFile
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lCANNOT_REGISTER_PROG
+R@:{File #vFileName# does NOT EXIST!
+User-Program Registration Operation ABANDONED}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_RUNNABLE_FILE
+
+
+#> programs
+F!:{^programs$}:lN_LIST_PROGRAMS
+V@:dvLastCommand
+E*:fShowProgramsList | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_LIST_PROGRAMS
+
+#>programs PATTERN
+F!:{^programs\s+(\S+\s*)+$}:lN_SEARCH_PROGRAMS
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFilePattern
+E*:fSearchProgramsList | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_SEARCH_PROGRAMS
+
+#> (run|exec|execute) FILENAME
+F!:{^(run|exec|execute)\s+.*$}:lN_RUN_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+E*:fRunFile | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_RUN_FILE
+
+#> (isrunnable|canrun) FILENAME
+F!:{^(isrunnable|canrun)\s+.*$}:lN_CANRUN_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+E*:fProgramExists | E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_CANRUN_FILE
+
+
+#> (del-prog|delete-program|unregister) FILENAME
+F!:{^(del-prog|delete-program|unregister)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_UNREGISTER_FILE
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileName
+#check..
+#R@:{Unregistering User-Program in #vFileName#} | q!:
+# ensure source file exists...
+Y:vFileName | E*:fFileExists
+F!:{^FILE EXISTS$}:lCANNOT_REGISTER_PROG
+# unregister user-program..
+Y:vFileName | E*:fUnRegisterProgram
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lCANNOT_REGISTER_PROG
+R@:{File #vFileName# does NOT EXIST!
+User-Program Unregistration Operation ABANDONED}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_UNREGISTER_FILE
+
+
+#> (update|update-program) FILE1 FILE2
+F!:{^(update|update-program)\s+([a-z0-9_]+(\.[a-z0-9]+)?)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_UPDATE_PROGRAM
+Y:vIN_raw|t!.:
+V@:dvLastCommand
+d:^\S+\s+|V:vFileNames
+Y:vFileNames | D:\s+.*$ | V:vFileName
+Y:vFileNames | D!:\s+.*$ | V:vUpdateFileName
+#check..
+#R@:{Updating #vFileName# using #vUpdateFileName#} | q!:
+
+# ensure source file exists...
+Y:vUpdateFileName | E*:fFileExists
+F!:{^FILE EXISTS$}:lCANNOT_READ_SRC
+
+# ensure target file exists...
+Y:vFileName | E*:fFileExists
+F!:{^FILE EXISTS$}:lCANNOT_WRITE_TARGET
+
+# also ensure it is a registered program...
+Y:vFileName | E*:fProgramExists 
+F:{^PROGRAM EXISTS$}:lPROCESS_UPDATE_PROGRAM
+
+R@:{Target File #vFileName# IS NOT a PROGRAM!
+Program UPDATE Operation ABANDONED}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lPROCESS_UPDATE_PROGRAM
+# updating program file...
+# read src into data buffer
+Y:vUpdateFileName | E*:fReadFile | v@:dvDATABUFFER
+# write data buffer into existing program file
+Y:vFileName  | E*:fSaveDataToFile | v:vWRITELOG
+
+R@:{Program File #vFileName# UPDATED USING #vUpdateFileName#
+With [WRITE] status: #vWRITELOG#}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lCANNOT_WRITE_TARGET
+R@:{Target File #vFileName# does NOT EXIST!
+Program UPDATE Operation ABANDONED}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+
+L:lCANNOT_READ_SRC
+R@:{Source File #vUpdateFileName# does NOT EXIST!
+Program UPDATE Operation ABANDONED}
+E*:fLogO
+J:lFIN_CMD_PROCESSING
+L:lN_UPDATE_PROGRAM
+
+
+###((END PROGRAMMING System))
+
 
 ###((CATCH-ALL))
 #if we came this far
