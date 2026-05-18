@@ -29,6 +29,11 @@ pandoc tttt.1.md -s -t man > tttt.1
 # make it executable
 #chmod a+x lexicon
 
+# fetch latest TEA OS 
+#cp ../../sample_TEA_programs/operating_system/teaos.tea teaos
+# make it executable
+#chmod a+x teaos
+
 # ensure all executables are correctly loaded into target system..
 #vi debian/install
 

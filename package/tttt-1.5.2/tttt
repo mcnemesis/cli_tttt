@@ -29,7 +29,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.5.1"
+VERSION = "1.5.2"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -1124,9 +1124,10 @@ class TEA_RunTime:
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
 
             if tc == "D":
-                dpatterns = tpe_str.split(TEA_RunTime.TIPED)
+                dpatterns = tpe.split(TEA_RunTime.TIPED)
                 for dp in dpatterns:
-                    io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
+                    regex = self.extract_str(dp)
+                    io = re.sub(regex, TEA_RunTime.EMPTY_STR, io)
             if tc == "D.":
                 if len(tpe_str) == 0:
                     return io
@@ -1159,7 +1160,7 @@ class TEA_RunTime:
                 if len(tpe_str) == 0:
                     io = re.sub(TEA_RunTime.RE_WHITE_SPACE, TEA_RunTime.EMPTY_STR, io)
                 else:
-                    dpatterns = tpe_str.split(TEA_RunTime.TIPED)
+                    dpatterns = [self.extract_str(dp) for dp in tpe.split(TEA_RunTime.TIPED)]
                     dfilter = "|".join(dpatterns)
                     matches = re.findall(dfilter,io)
                     io = TEA_RunTime.EMPTY_STR.join(matches)
@@ -1168,7 +1169,7 @@ class TEA_RunTime:
                     return io
                 else:
                     if (tc == "D*"):
-                       params  = tpe_str.split(TEA_RunTime.TIPED)
+                       params  = tpe.split(TEA_RunTime.TIPED)
                        if len(params) == 1:
                            vREGEX = params[0]
                            if len(vREGEX) > 0:
@@ -1182,7 +1183,7 @@ class TEA_RunTime:
                             for dp in dpatterns:
                                 io = re.sub(dp, TEA_RunTime.EMPTY_STR, io)
                     if (tc == "D*!"):
-                        params  = tpe_str.split(TEA_RunTime.TIPED)
+                        params  = tpe.split(TEA_RunTime.TIPED)
                         dpatterns = []
                         for vRX in params:
                             if len(vRX) > 0:
