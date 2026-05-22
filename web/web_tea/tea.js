@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.5.2" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.5.3" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -275,6 +275,11 @@ export class TEA_RunTime {
         }
         // remove trailing whitespace
         var _tsrc = tsrc.trim()
+        // normalize ALL new lines from CRLF to LF
+        //console.log(`before normalize|>>> ${JSON.stringify(_tsrc)}`)
+        _tsrc = _tsrc.replace(/\r\n/g,"\n");
+        _tsrc = _tsrc.replace(/\r/g,"\n");
+        //console.log(`after normalize|>>> ${JSON.stringify(_tsrc)}`)
         // first, fold multi-line TIL strings
         _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING1, 'gs'), match => this.maskTEASTRING(match));
         _tsrc = _tsrc.replace(new RegExp(TEA_RunTime.RETEASTRING2, 'gs'), match => this.maskTEASTRING(match));
@@ -299,11 +304,16 @@ export class TEA_RunTime {
         var reTI = TEA_RunTime.RETI // already a regex
         // remove all non-TIL lines
         //this.debug(`|>>> ${JSON.stringify(_tsrc_lines)}`)
+        console.log(`|>>> ${JSON.stringify(_tsrc_lines)}`)
 		const _tsrc_til_only = _tsrc_lines
-		  .filter(line => reTI.test(line))
+		  //.filter(line => reTI.test(line)) // original filter..
+		  .filter(line => reTI.test(line.trim()))
 		  .map(line => line.trimStart());
 
+        // what remained?
         //this.debug(`>>> ${JSON.stringify(_tsrc_til_only)}`)
+        //console.log(`|>>> ${JSON.stringify(_tsrc_til_only)}`)
+
         if(this.DEBUG){
             // reverse string masking...
 			const _tsrc_til_only_show = _tsrc_til_only.map(l =>
@@ -516,7 +526,9 @@ export class TEA_RunTime {
 		const platform = navigator.platform || navigator.userAgent;
 
 		if (/Win/.test(platform)) {
-			return '\n'; // Windows
+            //forcing this because some browsers like Firefox normalize to LF, while chrome preserves CRLF
+            //we'll need to handle CR ourselves later...
+			return '\n'; // Windows: 
 		} else {
 			return '\n'; // Unix-like: Linux, macOS, etc.
 		}

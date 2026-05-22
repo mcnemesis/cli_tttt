@@ -25,11 +25,12 @@ import sys, os, subprocess
 import urllib.request, urllib.parse
 import re
 import random
+import json
 import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.5.2"
+VERSION = "1.5.3"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -229,6 +230,11 @@ class TEA_RunTime:
             return tsrc
         # remove trailing whitespace
         _tsrc = tsrc.strip()
+        # normalize ALL new lines from CRLF to LF
+        #print(f"before normalize|>>> {json.dumps(_tsrc)}")
+        _tsrc = _tsrc.replace("\r\n","\n");
+        _tsrc = _tsrc.replace("\r","\n");
+        #print(f"after normalize|>>> {json.dumps(_tsrc)}")
         # first, fold multi-line TIL strings
         _tsrc = re.sub(self.RETEASTRING1, self.maskTEASTRING, _tsrc, flags=re.DOTALL)
         _tsrc = re.sub(self.RETEASTRING2, self.maskTEASTRING, _tsrc, flags=re.DOTALL)
@@ -251,8 +257,11 @@ class TEA_RunTime:
         reTI = re.compile(self.RETI)
         # remove all non-TIL lines
         #self.debug(f"|>>> {_tsrc_lines}")
-        _tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l)]
+        #_tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l)] # original filter..
+        _tsrc_til_only = [l.lstrip() for l in _tsrc_lines if reTI.match(l.strip())]
+        # what remained?
         #self.debug(f">>> {_tsrc_til_only}")
+        #print(f">>> {_tsrc_til_only}")
         if TEA_RunTime.DEBUG:
             # reverse string masking...
             _tsrc_til_only_show = [l.
