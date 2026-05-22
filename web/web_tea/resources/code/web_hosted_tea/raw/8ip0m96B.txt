@@ -1,0 +1,74 @@
+v:vABOUT:{***| FREE mini-LEXICON v3.1 |***}
+v:vFOOTER:{PROCESSED VIA FREE mini-LEXICON @ tea.nuchwezi.com}
+v:vDELIM:*****************************
+v:vQUERY_PROMPT:{Enter Word or Phrase to Look-Up:}
+v:vNL:{
+}
+v:vPREFIX_QUERY:{QUERY: }
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+v:vMENU_NEXT:{PICK next ACTION > 
+1: Return last definition + Quit
+2: Return all definitions + Quit
+3: Process Next Query (default)}
+z.:PLATFORM
+v:vENVIRONMENT
+v:vQUERY:{}
+v:vLIST_RESULTS:{}
+y:vABOUT
+i:
+l:lQUERY_PROMPT
+y:vQUERY_PROMPT
+i:
+t!.:
+v:vQUERY
+y:vQUERY
+f:^$:lQUERY_PROMPT
+x*:vPREFIX_QUERY:vQUERY
+v:vPRESENT_QUERY
+v:vURL:https://api.dictionaryapi.dev/api/v2/entries/en/
+x*:vURL:vQUERY
+v:vURL
+y:vENVIRONMENT
+f!:CLI:lNCLI
+v:User-Agent:curl/7.68.0
+w*.:User-Agent
+l:lNCLI
+w*:vURL
+v:vAPI_RESULTS
+h!:,
+k:definition
+h!::
+k!:{"definitions"|"definition"}
+r!:{:"}:{->}
+r!:{."}:{.}
+v:vDEFINITIONS
+v:vPREFIX_DEFINITIONS:{
+DEFINITION(s):
+}
+x*:vPREFIX_DEFINITIONS:vDEFINITIONS
+v:vPRESENT_DEFINITION
+g*!:vNL:vDELIM:vPRESENT_QUERY:vPRESENT_DEFINITION
+v:vANSWER
+i:
+g*!:vNL:vLIST_RESULTS:vANSWER
+v:vLIST_RESULTS
+g*!:vNL:vNL:vDELIM:vFOOTER
+v:vUSE_FOOTER
+y:vMENU_NEXT
+i:
+t!.:
+v:vOPT
+f!:^[123]$:lQUERY_PROMPT
+f!:1:lNPROC1
+y:vANSWER
+x*!:vUSE_FOOTER
+q!:
+l:lNPROC1
+f!:2:lNPROC2
+y:vLIST_RESULTS
+x*!:vUSE_FOOTER
+q!:
+l:lNPROC2
+j:lQUERY_PROMPT
