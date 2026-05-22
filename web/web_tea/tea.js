@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.5.3" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.5.4" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -2162,6 +2162,9 @@ export class TEA_RunTime {
             }
             else {
                 var regex = tpe_str
+                // normalize ALL new lines from CRLF to LF
+                io = io.replace(/\r\n/g,"\n");
+                io = io.replace(/\r/g,"\n");
                 var inputLines = io.split(TEA_RunTime.NL)
                 var keptLines = []
                 for(let line of inputLines){
@@ -2186,6 +2189,9 @@ export class TEA_RunTime {
             }
             else{
                 var regex = tpe_str
+                // normalize ALL new lines from CRLF to LF
+                io = io.replace(/\r\n/g,"\n");
+                io = io.replace(/\r/g,"\n");
                 var inputLines = io.split(TEA_RunTime.NL)
                 var keptLines = []
                 for(let line of inputLines){
@@ -2213,6 +2219,9 @@ export class TEA_RunTime {
                 var vregex = params[0]
                 var regex = this.vault_get(vregex)
 
+                // normalize ALL new lines from CRLF to LF
+                io = io.replace(/\r\n/g,"\n");
+                io = io.replace(/\r/g,"\n");
                 var inputLines = io.split(TEA_RunTime.NL)
                 var keptLines = []
                 for(let line of inputLines){
@@ -2233,6 +2242,9 @@ export class TEA_RunTime {
                 var regex = this.vault_get(vregex)
                 var input_str = this.vault_get(vname)
 
+                // normalize ALL new lines from CRLF to LF
+                input_str = input_str.replace(/\r\n/g,"\n");
+                input_str = input_str.replace(/\r/g,"\n");
                 var inputLines = input_str.split(TEA_RunTime.NL)
                 var keptLines = []
                 for(let line of inputLines){
@@ -2260,6 +2272,9 @@ export class TEA_RunTime {
                 var vregex = params[0]
                 var regex = this.vault_get(vregex)
 
+                // normalize ALL new lines from CRLF to LF
+                io = io.replace(/\r\n/g,"\n");
+                io = io.replace(/\r/g,"\n");
                 var inputLines = io.split(TEA_RunTime.NL)
                 var keptLines = []
                 for(let line of inputLines){
@@ -2280,6 +2295,9 @@ export class TEA_RunTime {
                 var regex = this.vault_get(vregex)
                 var input_str = this.vault_get(vname)
 
+                // normalize ALL new lines from CRLF to LF
+                input_str = input_str.replace(/\r\n/g,"\n");
+                input_str = input_str.replace(/\r/g,"\n");
                 var inputLines = input_str.split(TEA_RunTime.NL)
                 var keptLines = []
                 for(let line of inputLines){

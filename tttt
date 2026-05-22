@@ -30,7 +30,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.5.3"
+VERSION = "1.5.4"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -1717,6 +1717,9 @@ class TEA_RunTime:
                     return io
                 else:
                     regex = tpe_str
+                    # normalize ALL new lines from CRLF to LF
+                    io = io.replace("\r\n","\n");
+                    io = io.replace("\r","\n");
                     inputLines = io.split(TEA_RunTime.NL)
                     keptLines = []
                     pattern = regex
@@ -1731,6 +1734,9 @@ class TEA_RunTime:
                     return io
                 else:
                     regex = tpe_str
+                    # normalize ALL new lines from CRLF to LF
+                    io = io.replace("\r\n","\n");
+                    io = io.replace("\r","\n");
                     inputLines = io.split(TEA_RunTime.NL)
                     keptLines = []
                     pattern = regex
@@ -1749,6 +1755,9 @@ class TEA_RunTime:
                     vregex = params[0]
                     regex = vault_get(vregex)
 
+                    # normalize ALL new lines from CRLF to LF
+                    io = io.replace("\r\n","\n");
+                    io = io.replace("\r","\n");
                     inputLines = io.split(TEA_RunTime.NL)
                     keptLines = []
                     pattern = regex
@@ -1762,6 +1771,9 @@ class TEA_RunTime:
                     regex = vault_get(vregex)
                     input_str = vault_get(vname)
 
+                    # normalize ALL new lines from CRLF to LF
+                    input_str = input_str.replace("\r\n","\n");
+                    input_str = input_str.replace("\r","\n");
                     inputLines = input_str.split(TEA_RunTime.NL)
                     keptLines = []
                     pattern = regex
@@ -1779,6 +1791,9 @@ class TEA_RunTime:
                     vregex = params[0]
                     regex = vault_get(vregex)
 
+                    # normalize ALL new lines from CRLF to LF
+                    io = io.replace("\r\n","\n");
+                    io = io.replace("\r","\n");
                     inputLines = io.split(TEA_RunTime.NL)
                     keptLines = []
                     pattern = regex
@@ -1793,6 +1808,9 @@ class TEA_RunTime:
                     regex = vault_get(vregex)
                     input_str = vault_get(vname)
 
+                    # normalize ALL new lines from CRLF to LF
+                    input_str = input_str.replace("\r\n","\n");
+                    input_str = input_str.replace("\r","\n");
                     inputLines = input_str.split(TEA_RunTime.NL)
                     keptLines = []
                     pattern = regex
