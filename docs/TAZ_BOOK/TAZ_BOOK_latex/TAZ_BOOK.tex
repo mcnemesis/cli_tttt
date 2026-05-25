@@ -19388,7 +19388,7 @@ A useful test of the Y: facility is the following program that should greet one 
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=Y: EXAMPLE 1: Custom Greeting or Hello World, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=YEXAMP1_HW]
 i!:What is your name?|i:|v:vNAME|v:vGREET:{Hello }|v:vG:{}|g*::vGREET:vNAME|v:vGRT|i:TEST|y:vGRT
    \end{lstlisting}
   \end{tcolorbox}
@@ -23099,6 +23099,166 @@ That said, for starters, we shall simply have a shell of the topics to be covere
 
 \section{TOPIC-1: Basic Syntax and Program Structure}
 
+\subsection{How to write and run a simple program such as ``Hello World"}
+
+Many programmers new to a language get their first appreciation of how to go about solving problems using its syntax and semantics via first learning how to write basic standard programs such as the ``Hello World" program. This essentially boils down to just how to write a program that does just one basic thing; it accepts a (usually hard-coded) string with the literal message or phrase ``Hello World", and then when run, only prints that string to standard output and then quits or does not much else but terminate thereafter.
+
+\vspace{2em}
+
+For TEA, such a program is as follows:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: TEA Hello World, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNHW]
+i!:Hello World
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+That program leverages the \textbf{\hyperref[SECI]{INTERACT}} command space as well as TEA Strings\footnote{First introduced in \textbf{\hyperref[SECNOMEN]{Section \ref{SECNOMEN}}}.}. For an interactive Hello World that also involves greeting one using a user-provided name, refer to TEA program example \textbf{\hyperref[YEXAMP1_HW]{Listing \ref{YEXAMP1_HW}}} in \textbf{\hyperref[SECNOTEY]{Section \ref{SECNOTEY}}}.
+
+
+\subsection{Understanding statements, expressions, and program flow.}
+
+We shall then consider the formalisms that underlie the literal expression of any TEA program.
+
+\subsubsection{Statements}
+
+In any language, a valid computer program typically consists of one or more statements. In TEA, a statement is a complete instruction — a unit of action. Beginners should see TEA statements as the building blocks of a valid TEA program, each one telling the computer to transform input (usually the ``Active Input", AI --- refer to \textbf{\hyperref[SECNOMEN]{Section \ref{SECNOMEN}}}) in a specific way.
+
+\vspace{2em}
+
+The most basic kind of TEA statements are instructions that merely consist of just a single TEA primitive and nothing else. For example, the following program consisting of just the statement ``I:" would take whatever was the externally provided input --- such as the literal string ``Hello World", and present an input prompt for which the prompt message is that message.
+
+\vspace{2em}
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Simplest TEA Statements, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+I:
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+That program, given the input indicated above, would essentially be equivalent to that in \textbf{\hyperref[LSTLEARNHW]{Listing \ref{LSTLEARNHW}}}. 
+
+\vspace{2em}
+
+Moreover, as one can tell by looking at the formal syntax of any valid TEA instruction as depicted in \textbf{\hyperref[FIG1]{Figure \ref{FIG1}}}, but also which we reproduce here:
+
+
+\begin{figure}[H]
+  \centering
+  \begin{tcolorbox}[myterminalstyle, title=TEA Instruction Line (Regular Expression)]
+  \begin{lstlisting}
+^\s*[a-zA-Z](?:[\.!\*@]|(?:\*!)|(?:!@)|(?:\*@)|(?:\*!@)|(?:.@)|(?:\*\.)|(?:!\.)|(?:\*!\.))?:.*$
+  \end{lstlisting}
+  \end{tcolorbox}
+  \caption{The Formal Syntax of a single TEA Statement}
+  \label{FIGLEARNTEAPROG}
+\end{figure}
+
+\vspace{2em}
+
+We see that a valid TEA statement is any expression that might open with optional white space, followed by a single letter drawn from the Alphabet A to Z or a to z, and which can then be followed by one or more of the TEA command qualifiers in their natural/expected order, finally terminating with a single colon, ``:". That specifies the simplest statements that essentially bear no parameters or arguments for the instruction --- such as just ``a:", ``a!:", ``C@:" or ``Z*:". However, we can also pass one or more arguments to a TEA instruction by specifying more literal strings beyond that first colon, and which parameters, when they are TEA strings can either be written literally without any delimiters such as in \texttt{a!:hello world}, but which can also be written with delimiters to emphasize that they are strings such as in \texttt{a!:\{one two 3 bla blah\}} or  \texttt{a!:"one two 3 bla blah"}, and which, when the command accepts multiple parameters such as in \texttt{D!:[a-z]:[.,]:\{123\}} --- requires that the multiple parameters or arguments are delimited using a single colon as shown.
+
+
+\vspace{2em}
+
+\subsubsection{TEA Expressions}
+
+Typically, expressions in a programming language are some sequence of symbols that when evaluated, simply reduce to some literal and/or terminal value --- such as just a number, a string or a symbol. For TEA, in case one wishes to merely express a basic literal value without any processing being applied to it, they typically would merely write something like \texttt{I!:VALUE}. For example, \texttt{i!:1} would return ``1", \texttt{i!:\{some test\}} would return ``some test", etc.
+
+\vspace{2em}
+
+The above examples return a literal that was processed without first being stored anywhere. However, we shall later also consider the case of returning a literal that is first stored in a variable, or what in TEA are called \textbf{vaults}. 
+
+
+\subsubsection{TEA Program Flow}
+
+
+\subsection{Program Flow}
+
+Program flow in TEA is \emph{sequential} in the sense that instructions are executed in the order they appear in the source code. This aligns with the usual meaning of sequential execution in computer science, where the natural order of progress follows the first-occurrence of instructions unless explicitly altered by control structures. While one might loosely describe this as \emph{imperative}\footnote{``Imperative" refers to the programming paradigm where computation is described as a sequence of commands that change program state. Languages like C, Java, or Python are imperative because they tell the computer how to do something step by step. Sequential execution is a feature of imperative languages, but ``imperative" is broader — it's about the paradigm, not just the flow.}, it is more precise to note that TEA emphasizes a distinctive model of \textbf{sequence-transformer chaining} as its core paradigm\footnote{TEA's distinctive emphasis is that each instruction transforms the output of the previous one. This is not just sequential execution; it's a pipeline model. In CS terms, this resembles functional composition or stream processing, but expressed imperatively through decorated alphabet primitives.}. In this model, each instruction consumes the output of the previous one, forming a pipeline of transformations. Formally, for a TEA program consisting of instructions $t_1, t_2, \ldots, t_n$ and an initial literal input $I_0$, execution proceeds as follows:
+
+
+\[
+I_0 \xrightarrow{t_1} I_1 \xrightarrow{t_2} I_2 \cdots \xrightarrow{t_n} I_n = O.
+\]
+
+
+Thus, TEA’s program flow is both sequential in execution order and pipeline-oriented in semantics, highlighting its emphasis on chained transformations rather than isolated commands. Written in its briefest form, we see that for a TEA program $T^n = \langle t_{i\in [1,n]} \rangle$, a typical execution produces $O$ given $I_0$ via:
+
+ 
+ \vspace{2em}
+\[
+I_0 \xrightarrow{T^n} I_n = O
+\]
+\vspace{2em}
+
+Of course, there are valid TEA programs where the flow of execution might sometimes proceed in a nonlinear manner; such as when the program contains \textbf{\hyperref[SECJ]{JUMP}} statements, \textbf{\hyperref[SECF]{FORK}} statements as well as other control-flow TEA instructions as we introduce and discuss in  \textbf{\hyperref[LEARNTEATOPICCF]{Section \ref{LEARNTEATOPICCF}}}. However, for a focus on the mathematics underlying TEA program execution as laid out above, either refer to \textbf{\hyperref[SECTRANSFORM]{Chapter \ref{SECTRANSFORM}}}, \textbf{\hyperref[CHAPTRANS]{Chapter \ref{CHAPTRANS}}} --- especially \textbf{\hyperref[PROP9]{Section \ref{PROP9}}}, or otherwise refer to the paper introducing TEA's formal semantics for the first time, in \cite{lutalo_2026_teapaper_zenodo}.
+
+
+\vspace{2em}
+
+To help quickly illustrate how it all works, consider the following basic example of a TEA program that essentially accepts an initial input (potentially sourced from outside the program), stores it, generates a random number between 100 and 1000, then returns the result of joining the two using the literal string `` + ":
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING]
+I:{Input At Start}
+V:vIN
+N:1000:100 
+V:vNUMBER
+Y:vIN
+X!:{ + }
+X*!:vNUMBER
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+
+Given some initial input, $I_0$, such as the default ``Input At Start", we expect the final output, $I_7 = O$, to be equal to something like ``Input At Start + 884". to see how the program flows from start to finish, note that the process can be visualized using a TEA-instruction annotated chain of sequence transformers as depicted in \textbf{\hyperref[TRANSTEAPROGb]{Transformer \ref{TRANSTEAPROGb}}}.
+
+\vspace{2em}
+
+Moreover, even though the same program might be written differently --- such as expressing it using Minified form as below:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining (Minified), breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING]
+I:{Input At Start}|V:vIN|N:1000:100|V:vNUMBER|Y:vIN|X!:{ + }|X*!:vNUMBER
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+Or perhaps via more creative use of TEA features such as replacing the last 3 instructions in \textbf{\hyperref[LSTLEARNCHAINING]{Listing \ref{LSTLEARNCHAINING}}} with just a single instruction, so that we instead have:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining (V2), breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING]
+I:{Input At Start}
+V:vIN
+N:1000:100 
+V:vNUMBER
+R@:{#vIN# + #vNUMBER#}
+   \end{lstlisting}
+  \end{tcolorbox}
+\vspace{2em}
+
+Which would still produce outputs conforming to the original semantics and patterns such as ``Input At Start + 325", though, via a shorter program, short transformer chain ($T^5$ instead of original $T^7$).
+
+
+
+\subsection{How TEA syntax differs from traditional/common languages such as C, Python and Java.}
+
+
+blah blah
+
 
 \section{TOPIC-2: Data Types and Variables}
 
@@ -23107,6 +23267,18 @@ That said, for starters, we shall simply have a shell of the topics to be covere
 
 
 \section{TOPIC-4: Control Flow}
+\label{LEARNTEATOPICCF}
+
+
+Control flow essentially tells us how we can navigate from one instruction to another around a computer program based on context or some parameters [in the code or read from the program's environment at runtime].
+
+ 
+In many traditional languages, there are statements or instructions such as looping constructs (do.. while, while, switch, for loop,  foreach, etc) that generally accept some argument and then decide where next the language's instruction processor should go within the program's source code so as to continue, terminate or extend execution of the current instruction. For TEA, the basic control-flow statements are:
+
+\begin{enumerate}
+\item \textbf{\hyperref[SECF]{FORK}}: has the syntax \texttt{F:PATTERN:LABELTRUE:LABELFALSE}, but also just {F:PATTERN:LABELTRUE}, as well as other variants, some of which invert the evaluation criteria such as {F!:PATTERN:LABELFALSE:LABELTRUE} that makes the processing jump to the labeled code-block with label name LABELFALSE in case the AI failed to match PATTERN, otherwise jumping to LABELTRUE, which inverts what the \texttt{F:PATTERN:...} instruction would have done! More details about this are covered in the chapter on the \textbf{FORK} command space.
+
+\end{enumerate}
 
 
 \section{TOPIC-5: Functions and Modularization}
