@@ -234,6 +234,35 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 }
 
 
+%\usepackage{xcolor}
+%\usepackage{listings}
+% Define colors
+\definecolor{codebg}{RGB}{40,44,52}      % charcoal background
+\definecolor{codefg}{RGB}{220,220,220}   % light foreground
+\definecolor{comment}{RGB}{150,150,150}  % muted comment
+\definecolor{keyword}{RGB}{86,156,214}   % blue keywords
+\definecolor{string}{RGB}{206,145,120}   % warm string color
+
+% Optional global defaults (you can still override per-listing)
+\lstset{
+  backgroundcolor=\color{codebg},
+  basicstyle=\ttfamily\small\color{codefg},
+  commentstyle=\color{comment}\itshape,
+  keywordstyle=\color{keyword}\bfseries,
+  stringstyle=\color{string},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{codebg},
+  xleftmargin=4pt,
+  xrightmargin=4pt,    
+  %extras...
+  numbers=left,
+  numberstyle=\tiny\color{codegray},
+}
+
+
+
 % for maths
 \usepackage{amsmath}
 % for number sets symbols
@@ -12192,6 +12221,7 @@ As for where we have applied the \textbf{TMEs} via \texttt{R.:}, refer to exampl
 
  
  \subsection{TEA TEMPLATE Expressions --- TEA ReWRITE System}
+ \label{SECRTEATEMPLATES}
  
 
 In the previous sections, especially in \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, we have encountered some peculiar powers of TEA's rewriting system, such as how those that can take any valid mathematical expression (such as ``r.:$(1/2)*(1+5**(1/2))$") --- the \textbf{golden ratio} ---- and reduce it to the corresponding terminal \textbf{numeric} value. For example, we saw that invoking the following TEA:
@@ -14550,7 +14580,7 @@ It should be interesting to note that this transform has potential roots in the 
 Further, in an age where computer generated art such as with artificial intelligence is common-place, it feels that allowing for some means to create art even for a mere text processing language, using bare TEA primitives and no external libraries or power, would be worth exploring. The following example minimalist program generates some interesting art that looks like statistical graphs – bar charts, rendered without any special graphics facility but the text transformations possible with commands like \texttt{t:} and \texttt{r:}, and it bases on the same interesting sample input as the previous example---just the word ``PARACETAMOL".
 
 
-\vspace{2em}
+\vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 3: Islamic ASCII-art Generator based T-reduction, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
@@ -20564,7 +20594,7 @@ And so, with that theory behind us, let us embark on designing a minimal operati
 \subsection{The TOS Specification}
 \label{SECTOSSPEC}
 
-Without sanction of some working-group or committee, we have thought-up and drafted the following minimal specification as the essential basis of the \textbf{TEA Operating System}:
+Without the sanction of some working-group or committee, we have thought-up and drafted the following minimal specification as the essential basis of the \textbf{TEA Operating System}:
 
 \vspace{2em}
 
@@ -20749,7 +20779,7 @@ And thus, the plan is now officially underway... to manifest an new operating sy
 
 
 
-The link depicted in \textbf{\hyperref[FIGTEAOSPROPOSAL]{Figure \ref{FIGTEAOSPROPOSAL}}} being the first to have been officially shared with members of the TEA community concerning this proposal, we shall have it point, not to the running instance of the TOS, but rather, to the potential staging source-file for the reference implementation of this operating system. And thus, those zealously interested in following what the latest working version of the single-file TEA OS code looks like --- a program that one should be able to readily load into either the TEA WEB IDE or verify on any system with \texttt{tttt} package installed and run, shall be found at the link: \url{https://bit.ly/run_teaos}
+The link depicted in \textbf{\hyperref[FIGTEAOSPROPOSAL]{Figure \ref{FIGTEAOSPROPOSAL}}} being the first to have been officially shared with members of the TEA community concerning this proposal, we shall have it point, not to the running instance of the TOS, but rather, to the potential staging source-file for the reference implementation of this operating system. And thus, those zealously interested in following what the latest working version of the single-file TEA OS code looks like --- a program that one should be able to readily load into either the TEA WEB IDE or verify on any system with \texttt{tttt} package installed, and which they can then readily run, shall be found at the link: \url{https://bit.ly/run_teaos}
 
 
 
@@ -20962,1681 +20992,8 @@ L:lSYS_SHELL_END
 
 As of this moment, the TEA OS reference implementation, currently at \textbf{v1.1.0}, has the following source-code implementing the complete specification (4 sub-sysyems; help, file, util and programming and the extra ui subsystem not originally part of the TOS architecture) as depicted in \textbf{\hyperref[SECTOSSPEC]{Section \ref{SECTOSSPEC}}}.
 
-\vspace{2em}
 
-{
- \normalsize
-  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TOS v1.1.0 Complete Source-Code, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
-I!:{oooooooo_________________
-___oo_____ooooo___ooooo__
-___oo____oo____o_oo___oo_
-___oo____ooooooo_oo___oo_
-___oo____oo______oo___oo_
-___oo_____ooooo___oooo_o_
-_________________________}                                     
-x!:{
-TEA OS v1.1.0 is Ready...}
-v:vBanner 
-L:lPREAMBLE_START
-Y:vBanner 
-V@:dvLOG_start
-V@:dvABOUT_TOS:{ 
-#---[ABOUT TEA OS]
-
-NAME: TEA Operating System 
-(also "TEA OS" or just "TOS")
-
-ARCHITECT: J. Willrich Lutalo <jwl@nuchwezi.com>
-
-SINCE: 9th APRIL, 2026
-
-INTENT: To manifest a true general purpose, lightweight, minimal but powerful operating system that can essentially just fit inside a single string; to see what the limits of the mathematics of TRANSFORMATICS might be, and what we surely could accomplish with its proper use via modern portable computers.
-
-ABOUT: TEA OS is implemented using the Transforming Executable Alphabet (TEA) programming language. It is based on a specification first laid out in the TEA TAZ. It is a project originating from UGANDA.
-
-PROJECT HOME: Nuchwezi Research | https://tea.nuchwezi.com}
-V@:dvOSName:{TEA OS}
-V@:dvOSName_short:{TOS}
-V@:dvOSVersion:{1.1.0}
-V:vSLOGAN:{TEA OS! T can fit in a string!}
-I!:{___________________}
-V:vDELIM
-V@:dvDELIM
-I!:{
-=o==o==o==o==o==o==o=
-}
-V:vDELIM2
-V@:dvDELIM2
-V:vUSERNAME:{user} 
-V@:dvLastPS:{}
-V@:dvLastCommand:{}
-V@:dvLastOutput:{}
-Y@:dvFileList
-I:{.}
-V@:dvFileList
-Y@:dvProgramsList
-I:{run}
-V@:dvProgramsList
-Y@:dvUIMODE_MINI
-I:{1}
-V@:dvUIMODE_MINI
-V:fPROMPT_DEFAULT:"
-# FIRST: IMPORTANTLY...
-v:vMSG #stores AI at invocation
-y@:dvDELIM|v:vD2
-y:vMSG|x!:{ }|v:vMSG #affix space at prompt end
-i!:{} | g*:{
-}:vD2:vMSG
-v:vMSG
-Y@:dfLogAI|v:f # a stealth import :)
-y:vMSG|e*:f
-#then show log+latest prompt
-Y@:dvLOG
-i: #returns input..
-"
-Y:fPROMPT_DEFAULT
-V@:dfPROMPT_DEFAULT
-V:fPROMPT:"
-# FIRST: IMPORTANTLY...
-v:vMSG #stores AI at invocation
-
-#check if we should instead be using default ui
-y@:dvUIMODE_MINI | f!:^0$:lN_UIMODE_MINI
-y@:dfPROMPT_DEFAULT|v:fPROMPT_DEFAULT
-y:vMSG | E*:fPROMPT_DEFAULT
-q!: # no need to proceed..
-l:lN_UIMODE_MINI
-
-#THEN imports...
-y@:dfLastIO|v:fLastIO
-y@:dfMakePS|v:fMakePS
-
-y@:dvDELIM|v:vD2
-y:vMSG|x!:{ }|v:vMSG #affix space at prompt end
-i!:{} | g*:{
-}:vD2:vMSG
-v:vMSG
-Y@:dfLogAI|v:f # a stealth import :)
-y:vMSG|e*:f
-#then show log+latest prompt
-#Y@:dvLOG
-E*:fMakePS|v:vNEXTPS
-E*:fLastIO #fetch last I/O
-x!:{
-> }|#x*!:vNEXTPS
-i: #returns input..
-"
-Y:fPROMPT
-V@:dfPROMPT
-V:fLogin:"
-#import some functions from database...
-y@:dfPROMPT_DEFAULT|v:fPROMPT
-y@:dfLogAI|v:fLogAI
-y@:dfLogO|v:fLogO
-y@:dfGreetUser|v:fGreetUser
-
-# show OS banner
-y@:dvLOG_start | v:vSCREEN
-e*:fLogAI
-
-#greet user via stored name..
-y!@:dvUSERNAME | f!:^0$:lGREET_USER
-#Username not yet set, prompt and store
-l:lSET_USERNAME
-I!:{
-Please set a Username:}|v:vPromptMSG
-e*:fLogAI
-y:vSCREEN | x*!:vPromptMSG | i:
-t!.:|v:|v!:|f:^0$:lSET_USERNAME
-y:|V@:dvUSERNAME # store in database
-e*:fLogAI
-
-l:lGREET_USER
-e*:fGreetUser|v:vGreetings
-e*:fLogO | e*:fPROMPT
-"
-V:fGreetUser:"
-y@:dvUSERNAME
-x:{
-Hello, }|x!:{. Welcome to TOS!}
-"
-Y:fGreetUser
-V@:dfGreetUser
-V:fOSHandle:"
-y@:dvOSName | v:vN
-y@:dvOSVersion | v:vV
-g*:{ v}:vN:vV
-"
-Y:fOSHandle
-V@:dfOSHandle
-V:fMakePS:"
-z.:TIME |v:vT
-y@:dvOSName_short | v:vPWD
-v:vD:{>}
-g*:{/}:vPWD:vT:vD
-"
-Y:fMakePS
-V@:dfMakePS
-V:fLogIO:"
-#load+execute function from database! 
-y@:dfLastIO|e:
-v:vLastIO
-y@:dvLOG | v:vLOG
-g*:{
-}:vLOG:vLastIO | v@:dvLOG
-"
-V:fLogAI:"
-v:vAI
-y@:dvLOG | v:vLOG
-g*:{
-}:vLOG:vAI | v@:dvLOG
-#return AI
-y:vAI
-"
-Y:fLogAI
-v@:dfLogAI
-V:fLogO:"
-v@:dvLastOutput
-v@:dvDATABUFFER #also stash into special data buffer
-Y@:dvLastOutput
-"
-V:fLastIO:"
-y@:dvLastPS | v:vPS
-y@:dvLastCommand | v:vC
-y@:dvLastOutput | v:vO
-g*:{}:vPS:vC|v:vCC
-g*:{
-}:vCC:vO
-"
-y:fLastIO
-v@:dfLastIO
-L:lPREAMBLE_END
-L:lSYS_UTILITY_START
-V:fFixURL:"
-v:vURL|z:
-f:{^https?://}:lFINE
-y:vURL|x:{https://}
-v:vURL
-l:lFINE
-y:vURL
-"
-V:fResetLog:"
-y@:dvLastOutput | v@:dvLastOutput_backup
-c!@:dvLOG
-c*:vLOG
-C!@:dvLastOutput
-y@:dfGreetUser|E:|v:vGreetings
-y@:dvLOG_start
-x*!:vGreetings
-"
-Y:fResetLog
-V@:dfResetLog
-V:fGetLatestOutputBuffer:"
-y@:dvLastOutput_backup
-f!:^$:lN_USED_BACKUP
-y@:dvLastOutput
-l:lN_USED_BACKUP
-c@:dvLastOutput_backup
-"
-Y:fGetLatestOutputBuffer
-V@:dfGetLatestOutputBuffer
-L:lSYS_UTILITY_END
-L:lSYS_HELP_START
-V:fGetUIMenu:"
-y@:dfOSHandle|e:|x!:{ INTERFACE System Commands:
-uimini
-uilog}
-v:vMSG
-y@:dvDELIM2|v:vD
-g*:{}:vD:vMSG:vD
-"
-V:fGetFileCMDMenu:"
-y@:dfOSHandle|e:|x!:{ FILE System Commands:
-create FILENAME
-init FILENAME
-write FILENAME
-(rename | rn | mv | move) FILENAME NEWNAME
-(copy|clone) FILE1 FILE2
-exists FILENAME
-find PATTERN
-(show | cat | read) FILENAME
-export FILENAME
-(del | delete | rm) FILENAME
-(ls | list | dir | files) PATTERN}
-v:vMSG
-y@:dvDELIM2|v:vD
-g*:{}:vD:vMSG:vD
-"
-V:fGetProgrammingMenu:"
-y@:dfOSHandle|e:|x!:{ PROGRAMMING System Commands:
-(runnable | register | add-program) FILENAME
-(isrunnable | canrun) FILENAME
-(run | exec | execute) FILENAME
-(del-prog | delete-program | unregister) FILENAME
-(update | update-program) FILENAME
-PROGRAM
-(help | man | whatis | info | about) PROGRAM}
-v:vMSG
-y@:dvDELIM2|v:vD
-g*:{}:vD:vMSG:vD
-"
-V:fGetUtilityMenu:"
-y@:dfOSHandle|e:|x!:{ UTILITY System Commands:
-clear | reset
-date
-echo MESSAGE
-exit
-export
-(fetch | web) [URL] [FILENAME]
-logout
-math EXPRESSION
-print
-tea CODE
-time
-timestamp
-username NAME
-whoami | name}
-v:vMSG
-y@:dvDELIM2|v:vD
-g*:{}:vD:vMSG:vD
-"
-V:fGetHelpMenu:"
-y@:dfOSHandle|e:|x!:{ HELP System Commands:
-about
-(help | man | whatis | info | about) [NAME]
-help-file
-help-help
-help-prog
-help-ui
-help-util}
-v:vMSG
-y@:dvDELIM2|v:vD
-g*:{}:vD:vMSG:vD
-"
-V:fGetAboutTOS:"
-y@:dfOSHandle|e:|x:{ABOUT: }
-v:vMSG
-y@:dvABOUT_TOS|x*:vMSG|v:vMSG
-y@:dvDELIM2|v:vD
-g*:{}:vD:vMSG:vD
-"
-V:fGetHelpOn:"
-#asumes topic is passed via AI
-v:vHelpTOPIC
-
-#some imports...
-y@:dfGetFilenameProtocolMSG|v:fGetFilenameProtocolMSG
-E*:fGetFilenameProtocolMSG | v:vFILENAME_PROTOCOL
-
-#set default..
-r@:{That help topic [#vHelpTOPIC#] is not understood or supported. Try the 'help' command to see what help commands there are. For example 'help whatis'}|v:vMSG
-
-y:vHelpTOPIC
-
-#> help about
-f!:^about$:lN_h0
-v:vMSG:{about <~ Displays basic info about the currently running version of the TEA Operating System.}
-j:lh1_present
-l:lN_h0
-
-#> help whatis
-f!:^whatis$:lN_h1
-v:vMSG:{whatis NAME <~ Displays help info about a given system command or user program.}
-j:lh1_present
-l:lN_h1
-
-#> help man
-f!:^man$:lN_h1b
-v:vMSG:{man NAME <~ Displays help info about a given system command or user program. It is just another alias for 'whatis' or 'help'}
-j:lh1_present
-l:lN_h1b
-
-#> help help
-f!:^help$:lN_h2
-v:vMSG:{Present menu for user to access help about all available [essential] commands based on category.}
-j:lh1_present
-l:lN_h2
-
-f!:^help-file$:lN_h3
-v:vMSG:{Display all available commands in the FILE I/O category or sub-system.}
-j:lh1_present
-l:lN_h3
-
-f!:^help-prog$:lN_h4
-v:vMSG:{Display all available commands in the PROGRAMMING category or sub-system.}
-j:lh1_present
-l:lN_h4
-
-f!:^help-util$:lN_h5
-v:vMSG:{Display all available commands in the UTILITIES category or sub-system.}
-j:lh1_present
-l:lN_h5
-
-f!:^help-help$:lN_h6
-v:vMSG:{Display help on how to use the HELP facility or sub-system.}
-j:lh1_present
-l:lN_h6
-
-f!:{^(clear|reset)$}:lN_hu0
-v:vCMD
-r@:{#vCMD#  <~ Resets and clears the current TEA OS session log since login.} | v:vMSG
-j:lh1_present
-l:lN_hu0
-
-f!:{^(fetch|web)$}:lN_hu1
-v:vCMD
-r@:{#vCMD# URL <~ fetch and output contents of the specified [online/network] resource.
-
-#vCMD# URL FILENAME <~ fetch and save contents at URL into file record named FILENAME. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_hu1
-
-f!:^tea$:lN_hu2
-v:vMSG:{tea CODE.. <~ take everything following the keyword 'tea' as a TEA program, run and output the result: It's a simple way to write and run basic TEA programs (TEA-one-liners) in TOS.}
-j:lh1_present
-l:lN_hu2
-
-f!:^math$:lN_hu3
-v:vMSG:{math EXPRESSION <~ execute basic mathematics on the command-line as specified in EXPRESSION.}
-j:lh1_present
-l:lN_hu3
-
-f!:^date$:lN_hu4
-v:vMSG:{date <~ Show the current date.}
-j:lh1_present
-l:lN_hu4
-
-f!:^time$:lN_hu5
-v:vMSG:{time <~ Show the current time.}
-j:lh1_present
-l:lN_hu5
-
-f!:^timestamp$:lN_hu6
-v:vMSG:{timestamp <~ Show the current timestamp.}
-j:lh1_present
-l:lN_hu6
-
-f!:^print$:lN_hu7
-v:vMSG:{print <~ Show or preview current output buffer contents (usually, output of last command). After clearing log, but also after exit/system shutdown/login also shows final output before the log was reset.}
-j:lh1_present
-l:lN_hu7
-
-f!:^export$:lN_hu8
-r@:{export <~ Take the output of the last command or rather, current contents of the output buffer and export that outside the operating system (also terminates the operating system session).
-
-export FILENAME <~ Exit the system, outputting the contents of given file. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_hu8
-
-f!:^exit$:lN_hu9
-v:vMSG:{exit <~ Ends the TOS session returning nothing.}
-j:lh1_present
-l:lN_hu9
-
-f!:^logout$:lN_hu10
-v:vMSG:{logout <~ Resets username and system logs and ends the TOS session returning nothing.}
-j:lh1_present
-l:lN_hu10
-
-f!:^username$:lN_hu11
-v:vMSG:{username NAME <~ Overrides current username with specified value.}
-j:lh1_present
-l:lN_hu11
-
-f!:^help-ui$:lN_h12
-v:vMSG:{Display all available commands in the USER INTERFACE category or sub-system.}
-j:lh1_present
-l:lN_h12
-
-f!:^uimini$:lN_h13
-v:vMSG:{uimini <~ Configure TEA OS interface to render using mini-terminal mode. Setting persists across logins until changed. This mode is suitable for environments such as using TOS on some Desktop Computer Systems.}
-j:lh1_present
-l:lN_h13
-
-f!:^uilog$:lN_h14
-v:vMSG:{uilog <~ Configure TEA OS interface to render using long/log-terminal mode. Setting persists across logins until changed. This mode is suitable for environments such as using TOS on the TEA MOBILE IDE.}
-j:lh1_present
-l:lN_h14
-
-f!:^whoami$:lN_h15
-v:vCMD
-r@:{#vCMD# <~ Display the NAME of currently active USER.} | v:vMSG
-j:lh1_present
-l:lN_h15
-
-f!:^create$:lN_h16
-r@:{create FILENAME <~ Creates blank file with name FILENAME. #vFILENAME_PROTOCOL#}|v:vMSG
-j:lh1_present
-l:lN_h16
-
-f!:{^(ls|list|dir|files)$}:lN_h17
-v:vCMD
-r@:{#vCMD# <~ Display list of ALL available files.
-
-#vCMD# PATTERN <~ Display list of ONLY files matching regular expression PATTERN.}
-| v:vMSG
-j:lh1_present
-l:lN_h17
-
-f!:^init$:lN_h18
-r@:{init FILENAME <~ Create a file using the given name and the currently available input/last-output (or the PRINT buffer) or blank if none. #vFILENAME_PROTOCOL#}|v:vMSG
-j:lh1_present
-l:lN_h18
-
-f!:^write$:lN_h19
-r@:{write FILENAME <~ Write the contents of the current available input/last-output (or the PRINT buffer) or blank if none, to a file with the specified name. If the file already exists, essentially overwrites its contents. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h19
-
-f!:{^(show|cat|read)$}:lN_h20
-v:vCMD
-r@:{#vCMD# FILENAME <~ Preview the contents of given file. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h20
-
-f!:^echo$:lN_h21
-v:vMSG:{echo MESSAGE <~ Simply print MESSAGE as is.}
-j:lh1_present
-l:lN_h21
-
-f!:{^(find)$}:lN_h22
-v:vCMD
-r@:{#vCMD# PATTERN <~ Display list of ONLY files matching regular expression PATTERN.}
-| v:vMSG
-j:lh1_present
-l:lN_h22
-
-f!:{^(del|delete|rm)$}:lN_h23
-v:vCMD
-r@:{#vCMD# PATTERN <~ Remove from storage, any and all files whose name matches PATTERN. CAN NOT DELETE registered user program files though.} | v:vMSG
-j:lh1_present
-l:lN_h23
-
-f!:{^(rename|rn|mv|move)$}:lN_h24
-v:vCMD
-r@:{#vCMD# FILENAME NEWNAME <~ Change the name of an existing file from FILENAME to NEWNAME. WILL ALSO update the registered [user] programs list if FILENAME was a registered program. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h24
-
-f!:{^(exists)$}:lN_h25
-v:vCMD
-r@:{#vCMD# FILENAME <~ Show whether or not a file named FILENAME exists. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h25
-
-f!:{^(copy|clone)$}:lN_h26
-v:vCMD
-r@:{#vCMD# FILENAME FILE2 <~ Copies contents of FILENAME to FILE2 creating the destination if it doesn't exist. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h26
-
-f!:{^(runnable|register|add-program)$}:lN_h27
-v:vCMD
-r@:{#vCMD# FILENAME <~ Recognize FILENAME object as an executable [user] program or command. FILENAME must already be an existing TEA file. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h27
-
-f!:{^programs$}:lN_h28
-v:vCMD
-r@:{#vCMD# <~ Show list of all available registered [TEA]  user programs by their registered names.
-
-#vCMD# PATTERN <~ With PATTERN specified, ONLY show those programs whose names match regular expression PATTERN.}
-| v:vMSG
-j:lh1_present
-l:lN_h28
-
-f!:{^(run|exec|execute)$}:lN_h29
-v:vCMD
-r@:{#vCMD# FILENAME <~ Execute the given file record as a [TEA] program. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h29
-
-f!:{^(isrunnable|canrun)$}:lN_h30
-v:vCMD
-r@:{#vCMD# FILENAME <~ Show whether or not a file named FILENAME can be executed as a [TEA] program. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h30
-
-f!:{^(del-prog|delete-program|unregister)$}:lN_h31
-v:vCMD
-r@:{#vCMD# FILENAME <~ Revokes status of FILENAME as an executable user program (doesn't actually delete the underlying file object though). #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h31
-
-
-f!:{^(update|update-program)$}:lN_h32
-v:vCMD
-r@:{#vCMD# PROGRAMFILE FILENAME <~ Replace/override original program named PROGRAMFILE with contents of FILENAME (updates a program's code [in PROGRAMFILE] preserving its existing name). Both files PROGRAMFILE and FILENAME must actually exist for this to work, but only PROGRAMFILE needs to be a registered program. #vFILENAME_PROTOCOL#} | v:vMSG
-j:lh1_present
-l:lN_h32
-
-f!:{^(program)$}:lN_h33
-v:vCMD | z!: | v:vCMD #use upercase..
-r@:{#vCMD# <~ Executes #vCMD# as a system command if it exists --- first, if it is any of the standard commands in TEA OS, otherwise if it is a valid filename "#vCMD#" that is already recognized/registered as a user-created program - this later case similar to calling "run #vCMD#", otherwise shows error message command-not-found.} | v:vMSG
-j:lh1_present
-l:lN_h33
-
-# the user-program catch-all...
-f!:{^([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_h34
-v:vPROGRAMFILE 
-y@:dfProgramExists | v:fProgramExists #import
-y:vPROGRAMFILE | e*:fProgramExists 
-f!:{^PROGRAM EXISTS$}:lN_h34
-r@:{#vPROGRAMFILE# <~ Is a valid user-registered [TEA] program. You might run or execute it by directly invoking "#vPROGRAMFILE#" or via "run #vPROGRAMFILE#".} | v:vMSG
-j:lh1_present
-l:lN_h34
-
-l:lh1_present
-y@:dvDELIM2|v:vD
-g*:{}:vD:vMSG:vD
-"
-L:lSYS_HELP_END
-L:lSYS_FILE_START
-V:fGetFilenameProtocolMSG:"i!:{Valid FILENAME should consist of ONLY letters a-zA-Z, numbers 0-9, underscore _ and/or a dot .}"
-Y:fGetFilenameProtocolMSG
-V@:dfGetFilenameProtocolMSG
-V:fGenDBFilename:"x:{DFS_}"
-Y:fGenDBFilename
-V@:dfGenDBFilename
-V:fDecodeDBFilename:"d:^DFS_"
-Y:fDecodeDBFilename
-V@:dfDecodeDBFilename
-V:fIsFileNameValid:"
-f!:^[a-z0-9_]+(\.[a-z0-9]+)?$:lBAD_FILE_NAME
-i!:1|q!:
-l:lBAD_FILE_NAME
-i!:0
-"
-Y:fIsFileNameValid
-V@:dfIsFileNameValid
-V:fCreateFile:"
-# first, grab incoming function argument...
-v:vFILENAME|t!.:|v:vFNAME
-
-#then import functions..
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | f:^$:lNFINE # filename shouldn't be blank
-# file name should conform to accepted patterns
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE NOT CREATED.}|q!:
-l:lGOOD_FILENAME
-
-# fetch current file name list..
-y@:dvFileList | v:vFileList
-# ensure file name doesn't yet exist in records
-#e.g v:vFileList:{F1|F2|F33|File|File}
-#v:vFNAME:{f1}
-# check if file name is unique
-r@:{(^#vFNAME#\|)|(\|#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX
-y:vFileList | f*!:vFNAME_REGEX:lFNAME_UNIQUE:lFNAME_DUPLICATE
-l:lFNAME_UNIQUE
-# add name to file list 
-g*:{|}:vFileList:vFNAME | v:vFileList | v@:dvFileList 
-#also create blank file record in db filesystem
-y:vFNAME|E*:fGenDBFilename|v:vdFNAME
-
-v@:dvDATA:{} # we'll write empty file
-r@:{y@:dvDATA|v@:#vdFNAME#}|E:
-
-i!:{CREATED NEW BLANK FILE: }|x*!:vFNAME
-q!:
-l:lFNAME_DUPLICATE
-i!:{File Already Exists! 
-NOT DUPLICATING FILE: }|x*!:vFNAME
-q!:
-l:lNFINE
-i!:{Invalid [blank] File Name!
-FILE NOT CREATED.}
-"
-Y:fCreateFile
-V@:dfCreateFile
-V:fDeleteFile:"
-# first, grab incoming function argument...
-v:vFILENAME|t!.:|v:vFNAME
-
-#then import functions..
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | f:^$:lNFINE # filename shouldn't be blank
-# file name should conform to accepted patterns
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE NOT DELETED.}|q!:
-l:lGOOD_FILENAME
-
-# fetch current file name list..
-y@:dvFileList | v:vFileList
-# remove file name from records
-
-#v:vFileList:{F1|F2|F33|F3|File|File}
-#v:vFNAME:{File}
-# get filename pattern
-
-# create delete filename patterns + apply them..
-r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
-r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
-r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
-# use it to del
-y:vFileList | d*:vFNAME_REGEX_ENDS | v:vFileList
-y:vFileList | d*:vFNAME_REGEX_ALL | v:vFileList
-v:vDIV:{|}
-r*:vFileList:vFNAME_REGEX_MID:vDIV | v:vFileList
-
-# update file list 
-y:vFileList | v@:dvFileList 
-#also delete file record from db filesystem
-y:vFNAME|E*:fGenDBFilename|v:vdFNAME
-r@:{c!@:#vdFNAME#}|E:
-
-i!:{DELETED FILE: }|x*!:vFNAME
-q!:
-
-l:lNFINE
-i!:{Invalid [blank] File Name!
-FILE NOT DELETED.}
-"
-Y:fDeleteFile
-V@:dfDeleteFile
-V:fShowFilesList:"
-# takes no parameters ;)
-# fetch current file name list..
-y@:dvFileList
-#process and present..
-h!:{\|}|d:{\|}
-"
-V:fSearchFilesList:"
-# takes file regex pattern parameter
-v:vREGEX_PATTERN
-# fetch current file name list..
-y@:dvFileList
-#process and present..
-h!:{\|}|d:{\|}
-# only keep what matches...
-k*:vREGEX_PATTERN
-"
-V:fDeleteFilesList:"
-# takes file regex pattern parameter
-v:vREGEX_PATTERN
-
-#imports..
-y@:dfDeleteFile | v:fDeleteFile
-y@:dfProgramExists | v:fProgramExists
-
-# fetch current file name list..
-y@:dvFileList
-#process and present..
-h!:{\|}|d:{\|}
-# only keep what matches...
-k*:vREGEX_PATTERN 
-g:{|} | v:vDelFileList | v:vDelFileListORIG
-f:^$:NO_FILES_TO_DELETE
-# to track files we couldn't delete
-v:vNOTDelFileList:{}
-
-# go through files and delete..
-v:vNCOUNTER:0
-v:vNCOUNTER_DEL:0
-
-l:lSTART_DEL
-y:vDelFileList
-f:^$:lDONE_DEL
-#fetch..
-y:vDelFileList | d!:{^[^\|]+\|?} 
-d:{\|} | v:vDelFileNAME 
-
-#if actually blank.. go pop
-f:^$:lPOPDEL_LIST
-
-# ensure it is not a registered program
-y:vDelFileNAME | e*:fProgramExists | f:{^PROGRAM EXISTS$}:lDELETE_FAILED
-
-#r@:{--Continuing to delete file [#vDelFileNAME#]} | q!:
-
-# delete file..
-y:vDelFileNAME | e*:fDeleteFile
-#q!: # check...
-
-f!:{DELETED FILE}:lDELETE_FAILED:lDELETED_OK
-l:lDELETE_FAILED
-# add name to NOT deleted file list 
-g*:{|}:vNOTDelFileList:vDelFileNAME  | v:vNOTDelFileList
-j:lDONE_DELETED_OK
-l:lDELETED_OK
-y:vNCOUNTER_DEL | x!:+1 | r.: | v:vNCOUNTER_DEL
-l:lDONE_DELETED_OK
-y:vNCOUNTER | x!:+1 | r.: | v:vNCOUNTER
-
-#pop..
-l:lPOPDEL_LIST
-y:vDelFileList | d:{^[^\|]+\|?} | v:vDelFileList
-#x:{Remaining: } | q!:
-j:lSTART_DEL # iterate
-
-l:lDONE_DEL
-y:vDelFileListORIG|d:{^\|}:{\|$}|v:vDelFileListORIG
-y:vNOTDelFileList|d:{^\|}:{\|$}|v:vNOTDelFileList
-r@:{#vNCOUNTER# - #vNCOUNTER_DEL#}|r.:|v:vNCOUNTER_NDEL
-y:vNCOUNTER_DEL | f:^1$:lDEL_REP_1
-r@:{DELETED #vNCOUNTER_DEL# file[s] from list:
-#vDelFileListORIG#
-EXCEPT #vNCOUNTER_NDEL#:
-#vNOTDelFileList#}|q!:
-
-l:lDEL_REP_1
-y:vDelFileListORIG|d:{^\|}:{\|$}|v:vDelFileListORIG
-y:vNCOUNTER | f!:^1$:lDEL_REP_2
-r@:{DELETED ONLY #vNCOUNTER_DEL# file:
-#vDelFileListORIG#
-}|q!:
-
-l:lDEL_REP_2
-y:vDelFileListORIG|d:{^\|}:{\|$}|v:vDelFileListORIG
-y:vNOTDelFileList|d:{^\|}:{\|$}|v:vNOTDelFileList
-r@:{DELETED ONLY #vNCOUNTER_DEL# file from list:
-#vDelFileListORIG#
-EXCEPT #vNCOUNTER_NDEL#:
-#vNOTDelFileList#}|q!:
-
-l:NO_FILES_TO_DELETE
-r@:{#vREGEX_PATTERN# matched no FILES!
-NO FILE WAS DELETED}
-"
-V:fInitFile:"
-v:vFILENAME|t!.:|v:vFNAME
-
-#imports...
-y@:dfCreateFile|v:fCreateFile
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE NOT CREATED.}|q!:
-l:lGOOD_FILENAME
-
-# then, try to create the file...
-y:vFNAME | E*:fCreateFile
-# check if it was created...
-f!:{CREATED NEW BLANK FILE}:lFILE_NOT_CREATED
-# get name of that newly created file...
-y:vFNAME|E*:fGenDBFilename|v:vdFNAME
-
-# get current output buffer
-y@:dvDATABUFFER | v@:dvDATA
-
-# only if it was empty then...
-f!:^$:lFINE_DATA_BUFFER
-# use print buffer...
-e*:fGetLatestOutputBuffer | v@:dvDATA
-l:lFINE_DATA_BUFFER
-
-# store it into file system record...
-r@:{y@:dvDATA|v@:#vdFNAME#}|E:
-
-#a test...
-#r@:{y@:#vdFNAME#}|E:
-#x:{File now contains:
-#}|q!:
-
-i!:{CREATED and INITIALIZED NEW File: }|x*!:vFNAME
-q!:
-l:lFILE_NOT_CREATED
-i!:{FAILED TO CREATE FILE: } | x*!:vFNAME
-"
-V:fWriteFile:"
-v:vFILENAME|t!.:|v:vFNAME
-
-#imports...
-y@:dfCreateFile|v:fCreateFile
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE NOT WRITTEN.}|q!:
-l:lGOOD_FILENAME
-
-# then, try to create the file...
-y:vFNAME | E*:fCreateFile
-# check if it was created...
-f!:{(CREATED NEW BLANK FILE)|(NOT DUPLICATING FILE)}:lFILE_NOT_CREATED
-# get name of that file...
-y:vFNAME|E*:fGenDBFilename|v:vdFNAME
-# get current output buffer
-y@:dvDATABUFFER | v@:dvDATA
-
-# only if it was empty then...
-f!:^$:lFINE_DATA_BUFFER
-# use print buffer...
-e*:fGetLatestOutputBuffer | v@:dvDATA
-l:lFINE_DATA_BUFFER
-
-# store it into file system record...
-r@:{y@:dvDATA|v@:#vdFNAME#}|E:
-
-i!:{DATA WRITTEN to File: }|x*!:vFNAME
-q!:
-l:lFILE_NOT_CREATED
-i!:{FAILED TO WRITE FILE: } | x*!:vFNAME
-"
-V:fSaveDataToFile:"
-v:vFILENAME|t!.:|v:vFNAME
-
-#imports...
-y@:dfCreateFile|v:fCreateFile
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfGetLatestOutputBuffer|v:fGetLatestOutputBuffer
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE NOT WRITTEN.}|q!:
-l:lGOOD_FILENAME
-
-# then, try to create the file...
-y:vFNAME | E*:fCreateFile
-# check if it was created...
-f!:{(CREATED NEW BLANK FILE)|(NOT DUPLICATING FILE)}:lFILE_NOT_CREATED
-# get name of that file...
-y:vFNAME|E*:fGenDBFilename|v:vdFNAME
-# get current data buffer
-# and store it into file system record...
-r@:{y@:dvDATABUFFER|v@:#vdFNAME#}|E:
-
-i!:{DATA WRITTEN to File: }|x*!:vFNAME
-q!:
-l:lFILE_NOT_CREATED
-i!:{FAILED TO WRITE FILE: } | x*!:vFNAME
-"
-V:fReadFile:"
-v:vFILENAME|t!.:|v:vFNAME
-
-#imports...
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE NOT READ.}|q!:
-l:lGOOD_FILENAME
-
-# then, try to read the file...
-y:vFNAME|E*:fGenDBFilename|v:vdFNAME
-
-r@:{y@:#vdFNAME#}|E:
-"
-y:fReadFile 
-v@:dfReadFile
-V:fFileExists:"
-# first, grab incoming function argument...
-v:vFILENAME|t!.:|v:vFNAME
-
-#then import functions..
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | f:^$:lNFINE
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE MAY NOT EXIST.}|q!:
-l:lGOOD_FILENAME
-
-# fetch current file name list..
-y@:dvFileList | v:vFileList
-
-
-#v:vFileList:{F1|F2|F33|F3|File|File}
-#v:vFNAME:{f1}
-
-# create filename patterns..
-r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
-r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
-r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
-# use them to test for existence
-y:vFileList | f*:vFNAME_REGEX_ENDS:lFILE_EXISTS
-f*:vFNAME_REGEX_ALL:lFILE_EXISTS
-f*:vFNAME_REGEX_MID:lFILE_EXISTS
-
-i!:{FILE DOES NOT EXIST}|q!:
-
-l:lFILE_EXISTS
-i!:{FILE EXISTS}
-q!:
-
-l:lNFINE
-i!:{Invalid [blank] File Name!
-FILE DOES NOT EXIST.}
-"
-L:lSYS_FILE_END
-L:lSYS_PROG_START
-V:fRegisterProgramFile:"
-# we assume given program file already exists!
-# first, grab incoming function argument...
-v:vFILENAME|t!.:|v:vFNAME
-
-#then import functions..
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | f:^$:lNFINE
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-CANNOT REGISTER PROGRAM.}|q!:
-l:lGOOD_FILENAME
-
-# fetch current program file name list..
-y@:dvProgramsList | v:vProgramsList
-
-#v:vFileList:{F1|F2|F33|F3|File|File}
-#v:vFNAME:{f1}
-
-# check if program name is unique:
-# create filename patterns...
-r@:{(^#vFNAME#\|)|(\|#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX
-# use them to test for program existence
-y:vProgramsList | f*!:vFNAME_REGEX:lPROGNAME_UNIQUE:lPROG_EXISTS
-l:lPROGNAME_UNIQUE
-# So, program isn't registered yet, meaning its ok
-# to proceed to register it...
-# add name to programs list 
-g*:{|}:vProgramsList:vFNAME | v:vProgramsList | v@:dvProgramsList
-r@:{User PROGRAM [#vFNAME#] is now REGISTERED.
-CAN BE INVOKED as SYSTEM COMMAND.} | q!:
-
-l:lPROG_EXISTS
-r@:{User PROGRAM [#vFNAME#] Already EXISTS!
-CANNOT re-REGISTER PROGRAM.} | q!:
-
-l:lNFINE
-i!:{Invalid [blank] File Name!
-CANNOT REGISTER PROGRAM.}
-"
-V:fShowProgramsList:"
-y@:dvProgramsList|h!:{\|}|d:{\|}
-"
-V:fSearchProgramsList:"
-v:vREGEX_PATTERN
-y@:dvProgramsList|h!:{\|}|d:{\|}|k*:vREGEX_PATTERN
-"
-V:fRunFile:"
-v:vFILENAME|t!.:|v:vFNAME
-
-#imports...
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-FILE NOT EXECUTED.}|q!:
-l:lGOOD_FILENAME
-
-# then, try to run the file...
-y:vFNAME|E*:fGenDBFilename|v:vdFNAME
-
-# for now, run it as a TEA program..
-r@:{y@:#vdFNAME#}|E:|E:
-"
-V:fProgramExists:"
-v:vFILENAME|t!.:|v:vFNAME
-
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | f:^$:lNFINE
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-PROGRAM MAY NOT EXIST.}|q!:
-l:lGOOD_FILENAME
-
-# fetch current programs name list..
-y@:dvProgramsList | v:vProgramsList
-
-r@:{(^#vFNAME#\|)|(\|#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX
-y:vProgramsList | f*:vFNAME_REGEX:lPROG_EXISTS
-
-i!:{PROGRAM DOES NOT EXIST}|q!:
-
-l:lPROG_EXISTS
-i!:{PROGRAM EXISTS}|q!:
-
-l:lNFINE
-i!:{Invalid [blank] File Name!
-PROGRAM DOES NOT EXIST.}
-"
-Y:fProgramExists 
-V@:dfProgramExists
-V:fUnRegisterProgram:"
-# we assume given program file already exists!
-# first, grab incoming function argument...
-v:vFILENAME|t!.:|v:vFNAME
-
-#then import functions..
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-
-y:vFNAME | f:^$:lNFINE
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-CANNOT UNREGISTER PROGRAM.}|q!:
-l:lGOOD_FILENAME
-
-# fetch current program file name list..
-y@:dvProgramsList | v:vProgramsList
-
-# create delete filename patterns + apply them..
-r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
-r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
-r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
-# use it to del
-y:vProgramsList | d*:vFNAME_REGEX_ENDS | v:vProgramsList
-y:vProgramsList| d*:vFNAME_REGEX_ALL | v:vProgramsList
-v:vDIV:{|}
-r*:vProgramsList:vFNAME_REGEX_MID:vDIV | v:vProgramsList
-
-# update programs list 
-y:vProgramsList| v@:dvProgramsList 
-
-i!:{UNREGISTERED PROGRAM FILE: }|x*!:vFNAME
-q!:
-
-l:lNFINE
-i!:{Invalid [blank] File Name!
-PROGRAM FILE NOT UNREGISTERED.}
-"
-Y:fUnRegisterProgram 
-V@:dfUnRegisterProgram
-V:fDeleteProgramFile:"
-# first, grab incoming function argument...
-v:vFILENAME|t!.:|v:vFNAME
-
-#then import functions..
-y@:dfGenDBFilename|v:fGenDBFilename
-y@:dfIsFileNameValid|v:fIsFileNameValid
-y@:dfUnRegisterProgram |v:fUnRegisterProgram
-
-y:vFNAME | f:^$:lNFINE # filename shouldn't be blank
-# file name should conform to accepted patterns
-y:vFNAME | E*:fIsFileNameValid | f!:0:lGOOD_FILENAME
-r@:{Invalid File Name [#vFNAME#]!
-PROGRAM FILE NOT DELETED.}|q!:
-l:lGOOD_FILENAME
-
-# fetch current file name list..
-y@:dvFileList | v:vFileList
-
-
-# create delete filename patterns + apply them..
-r@:{(^#vFNAME#\|)|(\|#vFNAME#$)}|v:vFNAME_REGEX_ENDS
-r@:{(\|#vFNAME#\|)}|v:vFNAME_REGEX_MID
-r@:{^#vFNAME#$}|v:vFNAME_REGEX_ALL
-# use it to del
-y:vFileList | d*:vFNAME_REGEX_ENDS | v:vFileList
-y:vFileList | d*:vFNAME_REGEX_ALL | v:vFileList
-v:vDIV:{|}
-r*:vFileList:vFNAME_REGEX_MID:vDIV | v:vFileList
-
-# update file list 
-y:vFileList | v@:dvFileList 
-#also delete file record from db filesystem
-y:vFNAME|e*:fGenDBFilename|v:vdFNAME
-r@:{c!@:#vdFNAME#}|E:
-
-# then unregister program file
-y:vFNAME | e*:fUnRegisterProgram | v:vUnRegStatus
-
-r@:{DELETED PROGRAM FILE: #vFNAME#
-With Status: #vUnRegStatus#} | q!:
-
-
-l:lNFINE
-i!:{Invalid [blank] File Name!
-PROGRAM FILE NOT DELETED.}
-"
-Y:fDeleteProgramFile
-V@:dfDeleteProgramFile
-L:lSYS_PROG_END
-L:lSYS_SHELL_START
-E*:fLogin
-L:lSTART_Main
-E*:fMakePS 
-V@:dvLastPS
-E*:fPROMPT
-E*:fLogAI 
-V:vIN_raw
-t!.:
-v:vIN_clean
-Z:
-v:vIN_clean_lc
-y:vIN_clean_lc
-F!:^create\s+.*$:lN_CRT_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fCreateFile 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_CRT_FILE
-F!:{^(ls|list|dir|files)$}:lN_LIST_FILES
-V@:dvLastCommand
-E*:fShowFilesList 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_LIST_FILES
-F!:{^(ls|list|dir|files|find)\s+(\S+\s*)+$}:lN_SEARCH_FILES
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFilePattern
-E*:fSearchFilesList 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_SEARCH_FILES
-F!:{^(del|delete|rm)\s+(\S+\s*)+$}:lN_DEL_FILES
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFilePattern
-E*:fDeleteFilesList 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_DEL_FILES
-F!:^init\s+.*$:lN_INIT_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fInitFile 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_INIT_FILE
-F!:^write\s+.*$:lN_WRITE_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fWriteFile 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_WRITE_FILE
-F!:{^(show|cat|read)\s+.*$}:lN_READ_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fReadFile 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_READ_FILE
-F!:{^(exists)\s+.*$}:lN_EXISTS_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fFileExists 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_EXISTS_FILE
-F!:{^(rename|rn|mv|move)\s+([a-z0-9_]+(\.[a-z0-9]+)?)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_RENAME_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileNames
-Y:vFileNames 
-D:\s+.*$ 
-V:vFileName
-Y:vFileNames 
-D!:\s+.*$ 
-V:vNewName
-Y:vFileName 
-E*:fFileExists
-F!:{^FILE EXISTS$}:lCANNOT_RENAME
-Y:vFileName 
-E*:fProgramExists 
-F:{^PROGRAM EXISTS$}:lPROCESS_RENAME_PROGRAM
-Y:vFileName 
-E*:fReadFile 
-v@:dvDATABUFFER
-Y:vNewName 
-E*:fSaveDataToFile 
-v:vWRITELOG
-Y:vFileName 
-E*:fDeleteFile
-R@:{File #vFileName# RENAMED #vNewName#
-With status: #vWRITELOG#}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lPROCESS_RENAME_PROGRAM
-Y:vFileName 
-E*:fReadFile 
-v@:dvDATABUFFER
-Y:vNewName 
-E*:fSaveDataToFile 
-v:vWRITELOG
-Y:vNewName 
-E*:fRegisterProgramFile 
-v:vREGLOG
-Y:vFileName 
-E*:fDeleteProgramFile 
-v:vDELLOG
-R@:{Program File #vFileName# RENAMED #vNewName#
-With [WRITE] status: #vWRITELOG#
-And [REGISTER] status: #vREGLOG#
-And [DEL] status: #vDELLOG#}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lCANNOT_RENAME
-R@:{File #vFileName# does NOT EXIST!
-RENAME Operation ABANDONED}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_RENAME_FILE
-F!:{^(copy|clone)\s+([a-z0-9_]+(\.[a-z0-9]+)?)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_CLONE_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileNames
-Y:vFileNames 
-D:\s+.*$ 
-V:vFileName
-Y:vFileNames 
-D!:\s+.*$ 
-V:vFileName2
-Y:vFileName 
-E*:fFileExists
-F!:{^FILE EXISTS$}:lCANNOT_CLONE
-Y:vFileName 
-E*:fReadFile 
-v@:dvDATABUFFER
-Y:vFileName2 
-E*:fSaveDataToFile 
-v:vWRITELOG
-R@:{File #vFileName# CLONED TO #vFileName2#
-With status: #vWRITELOG#}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-l:lCANNOT_CLONE
-R@:{File #vFileName# does NOT EXIST!
-CLONE Operation ABANDONED}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_CLONE_FILE
-F!:^export\s+.*$:lN_EXPORT_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fReadFile 
-v:vLOG 
-E*:fResetLog 
-E*:fOSHandle 
-X:{Thanks for Using }
-V:vMSG
-G*!:vDELIM2:vFileName:vLOG:vMSG
-J:lEXIT_Main
-L:lN_EXPORT_FILE
-F!:^uimini$:lN_UIMINI
-V@:dvLastCommand
-V@:dvUIMODE_MINI:{1}
-I!:{TOS Mini-Interface Mode Activated} 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_UIMINI
-F!:^uilog$:lN_UILOG
-V@:dvLastCommand
-V@:dvUIMODE_MINI:{0}
-I!:{TOS Log-Interface Mode Activated} 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_UILOG
-F!:^about$:lN_ABOUT
-V@:dvLastCommand
-E*:fGetAboutTOS 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_ABOUT
-F!:{^(help|man|whatis|info)$}:lN_HELP
-V@:dvLastCommand
-E*:fGetHelpMenu 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP
-F!:{^(help|man|whatis|info|about)\s+(\S+\s*)+$}:lN_HELP_TOPIC
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:{^\S+\s+} 
-E*:fGetHelpOn 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP_TOPIC
-F!:^help-file[s]?$:lN_HELP_FILE
-V@:dvLastCommand
-E*:fGetFileCMDMenu 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP_FILE
-F!:{^help-prog([s]|rams)?$}:lN_HELP_PROG
-V@:dvLastCommand
-E*:fGetProgrammingMenu 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP_PROG
-F!:^help-util[s]?$:lN_HELP_UT
-V@:dvLastCommand
-E*:fGetUtilityMenu 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP_UT
-F!:^help-ui[s]?$:lN_HELP_UI
-V@:dvLastCommand
-E*:fGetUIMenu 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP_UI
-F!:^help-help[s]?$:lN_HELP_HELP
-V@:dvLastCommand
-E*:fGetHelpMenu 
-X:{
-To use or access help on any topic in the system, use any of the commands presented in the following Menu.
-}
-X!:{
-Each of those commands leads you to further information about help on other commands. For example
-
-> help help-util
-
-Will explain what the help-util command is all about.}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_HELP_HELP
-F!:^echo.*$:lN_ECHO
-Y:vIN_raw
-t!.:
-d:^\S+\s*
-V:vMESSAGE
-X:{echo }
-V@:dvLastCommand
-Y:vMESSAGE 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_ECHO
-F!:{^(fetch|web)\s+\S*$}:lN_FETCH
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:{^\S+\s+}
-E*:fFixURL
-W: 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_FETCH
-F!:^tea\s+[\S]+.*$:lN_TEA
-Y:vIN_raw
-t!.:
-d:^\S+\s+
-V:vTEACode
-X:{tea }
-V@:dvLastCommand
-Y:vTEACode
-E: 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_TEA
-F!:^math\s+[\S]+.*$:lN_MATH
-Y:vIN_raw
-t!.:
-d:^\S+\s+
-V:vMathExp
-X:{math }
-V@:dvLastCommand
-Y:vMathExp
-R.: 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_MATH
-F!:^username\s+[\S]+.*$:lN_SETUSER
-V@:dvLastCommand
-Y:vIN_raw
-t!.:
-d:^\S+\s+
-V@:dvUSERNAME 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_SETUSER
-F!:{^(whoami|name)$}:lN_WHOAMI
-V@:dvLastCommand
-Y@:dvUSERNAME
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_WHOAMI
-F!:^time$:lN_TIME
-v@:dvLastCommand
-Z.:TIME 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_TIME
-F!:^date$:lN_DATE
-v@:dvLastCommand
-Z.:DATE 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_DATE
-F!:^timestamp$:lN_TSTAMP
-v@:dvLastCommand
-Z.:TIMESTAMP 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_TSTAMP
-F!:{^(clear|reset)$}:lN_CLEAR
-v@:dvLastCommand
-E*:fResetLog
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_CLEAR
-F!:^print$:lN_PRINT
-V@:dvLastCommand
-E*:fGetLatestOutputBuffer
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_PRINT
-F!:^logout$:lN_LOGOUT
-C!@:dvUSERNAME 
-C*:vUSERNAME 
-E*:fResetLog 
-C@:dvLastOutput_backup
-E*:fOSHandle 
-X:{You have SIGNED OUT!
-Thanks for Using } 
-J:lEXIT_Main
-L:lN_LOGOUT
-F!:^exit$:lN_EXIT
-E*:fResetLog 
-E*:fOSHandle 
-X:{Thanks for Using } 
-J:lEXIT_Main
-L:lN_EXIT
-F!:^export$:lN_EXPORT
-Y@:dvLOG
-V:vLOG 
-E*:fResetLog 
-E*:fOSHandle 
-X:{Thanks for Using }
-V:vMSG
-G*!:vDELIM2:vLOG:vMSG
-J:lEXIT_Main
-L:lN_EXPORT
-F!:{^(runnable|register|add-program)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_RUNNABLE_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-Y:vFileName 
-E*:fFileExists
-F!:{^FILE EXISTS$}:lCANNOT_REGISTER_PROG
-Y:vFileName 
-E*:fRegisterProgramFile
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lCANNOT_REGISTER_PROG
-R@:{File #vFileName# does NOT EXIST!
-User-Program Registration Operation ABANDONED}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_RUNNABLE_FILE
-F!:{^programs$}:lN_LIST_PROGRAMS
-V@:dvLastCommand
-E*:fShowProgramsList 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_LIST_PROGRAMS
-F!:{^programs\s+(\S+\s*)+$}:lN_SEARCH_PROGRAMS
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFilePattern
-E*:fSearchProgramsList 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_SEARCH_PROGRAMS
-F!:{^(run|exec|execute)\s+.*$}:lN_RUN_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fRunFile 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_RUN_FILE
-F!:{^(isrunnable|canrun)\s+.*$}:lN_CANRUN_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-E*:fProgramExists 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_CANRUN_FILE
-F!:{^(del-prog|delete-program|unregister)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_UNREGISTER_FILE
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileName
-Y:vFileName 
-E*:fFileExists
-F!:{^FILE EXISTS$}:lCANNOT_REGISTER_PROG
-Y:vFileName 
-E*:fUnRegisterProgram
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lCANNOT_REGISTER_PROG
-R@:{File #vFileName# does NOT EXIST!
-User-Program Unregistration Operation ABANDONED}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_UNREGISTER_FILE
-F!:{^(update|update-program)\s+([a-z0-9_]+(\.[a-z0-9]+)?)\s+([a-z0-9_]+(\.[a-z0-9]+)?)$}:lN_UPDATE_PROGRAM
-Y:vIN_raw
-t!.:
-V@:dvLastCommand
-d:^\S+\s+
-V:vFileNames
-Y:vFileNames 
-D:\s+.*$ 
-V:vFileName
-Y:vFileNames 
-D!:\s+.*$ 
-V:vUpdateFileName
-Y:vUpdateFileName 
-E*:fFileExists
-F!:{^FILE EXISTS$}:lCANNOT_READ_SRC
-Y:vFileName 
-E*:fFileExists
-F!:{^FILE EXISTS$}:lCANNOT_WRITE_TARGET
-Y:vFileName 
-E*:fProgramExists 
-F:{^PROGRAM EXISTS$}:lPROCESS_UPDATE_PROGRAM
-R@:{Target File #vFileName# IS NOT a PROGRAM!
-Program UPDATE Operation ABANDONED}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lPROCESS_UPDATE_PROGRAM
-Y:vUpdateFileName 
-E*:fReadFile 
-v@:dvDATABUFFER
-Y:vFileName  
-E*:fSaveDataToFile 
-v:vWRITELOG
-R@:{Program File #vFileName# UPDATED USING #vUpdateFileName#
-With [WRITE] status: #vWRITELOG#}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lCANNOT_WRITE_TARGET
-R@:{Target File #vFileName# does NOT EXIST!
-Program UPDATE Operation ABANDONED}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lCANNOT_READ_SRC
-R@:{Source File #vUpdateFileName# does NOT EXIST!
-Program UPDATE Operation ABANDONED}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_UPDATE_PROGRAM
-F!:{^([a-z0-9_]+(\.[a-z0-9]+)?)\s*$}:lN_RUN_FILE_PROG
-Y:vIN_raw
-t!.:
-V@:dvLastCommand 
-V:vFileName
-Y:vFileName 
-E*:fProgramExists 
-F:{^PROGRAM EXISTS$}:lPROCESS_RUN_PROGRAM:lCMD_CATCHALL
-L:lPROCESS_RUN_PROGRAM
-Y:vFileName 
-E*:fRunFile 
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lN_RUN_FILE_PROG
-L:lCMD_CATCHALL
-F:^$:lFIN_CMD_PROCESSING
-Y:vIN_raw 
-V@:dvLastCommand 
-I!:{--COMMAND NOT FOUND | INVALID COMMAND--}
-E*:fLogO
-J:lFIN_CMD_PROCESSING
-L:lFIN_CMD_PROCESSING
-E*:fLogAI
-J:lSTART_Main
-L:lEXIT_Main 
-C!@:dvLOG 
-Q!: 
-L:lSYS_SHELL_END
-   \end{lstlisting}
-  \end{tcolorbox}
-  \caption{TEA PROGRAM: TEA Operating System v1.1.0 (SANITIZED SOURCE)}
-  \label{FIGTOSRI}
-}
+%\includepdf[pages=-]{resources/code/teaos_v1.1.0_codelisting.pdf}
 
 
 \vspace{2em}
@@ -23205,8 +21562,8 @@ To help quickly illustrate how it all works, consider the following basic exampl
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING]
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining Demo V1, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING1]
 I:{Input At Start}
 V:vIN
 N:1000:100 
@@ -23228,19 +21585,19 @@ Moreover, even though the same program might be written differently --- such as 
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining (Minified), breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING]
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining Demo V2 (Minified), breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING2]
 I:{Input At Start}|V:vIN|N:1000:100|V:vNUMBER|Y:vIN|X!:{ + }|X*!:vNUMBER
    \end{lstlisting}
   \end{tcolorbox}
 \vspace{2em}
 
-Or perhaps via more creative use of TEA features such as replacing the last 3 instructions in \textbf{\hyperref[LSTLEARNCHAINING]{Listing \ref{LSTLEARNCHAINING}}} with just a single instruction, so that we instead have:
+Or perhaps via more creative use of TEA features such as replacing the last 3 instructions in \textbf{\hyperref[LSTLEARNCHAINING1]{Listing \ref{LSTLEARNCHAINING1}}} with just a single instruction, so that we instead have:
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining (V2), breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING]
+  \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining Demo V3, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING3]
 I:{Input At Start}
 V:vIN
 N:1000:100 
@@ -23250,14 +21607,205 @@ R@:{#vIN# + #vNUMBER#}
   \end{tcolorbox}
 \vspace{2em}
 
-Which would still produce outputs conforming to the original semantics and patterns such as ``Input At Start + 325", though, via a shorter program, short transformer chain ($T^5$ instead of original $T^7$).
+Which would still produce outputs conforming to the original semantics and patterns such as ``Input At Start + 325" or ``hello 123 blah blah + 325" in case the external value passed to the program was say ``hello 123 blah blah". Moreover, it does all this via a shorter program; a shorter transformer chain ($T^5$ instead of original $T^7$) than the original program (V1, but also V2) did, by leveraging TEA template expressions (refer to  \textbf{\hyperref[SECRTEATEMPLATES]{Section \ref{SECRTEATEMPLATES}}}).
 
 
 
-\subsection{How TEA syntax differs from traditional/common languages such as C, Python and Java.}
+\subsection{How TEA syntax differs from traditional/common languages such as C, Python, Java, but also Haskell and Common LISP.}
 
 
-blah blah
+For comparison, and just momentarily, one might wonder what the differences and similarities between the Transforming Executable Alphabet and other commonplace general-purpose programming languages might be. For simplicity's sake, we shall only use the example case just illustrated in the above section, and shall render equivalent programs using the syntax and semantics of C, Python and then Java --- three of the currently most popular languages globally. For completeness's sake, we shall also consider how this same program might be realized in language especially popular among academic researchers on programming languages; Haskell as well as Common LISP.
+
+\vspace{2em}
+
+First, here is the equivalent program in C:
+
+\vspace{2em}
+
+\begin{lstlisting}[language=C, caption={C: TEA-like sequence-transformer chaining},
+backgroundcolor=\color{codebg},
+basicstyle=\ttfamily\small\color{codefg},
+commentstyle=\color{comment}\itshape,
+keywordstyle=\color{keyword}\bfseries,
+stringstyle=\color{string},
+showstringspaces=false,breaklines=true,frame=single]
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+int main(int argc, char *argv[]) {
+    /* Initialize Active Input (AI) */
+    const char *default_input = "Input at Start";
+    char vIN[256];
+    if (argc > 1) {
+        strncpy(vIN, argv[1], sizeof(vIN)-1);
+        vIN[sizeof(vIN)-1] = '\0';
+    } else {
+        strncpy(vIN, default_input, sizeof(vIN)-1);
+        vIN[sizeof(vIN)-1] = '\0';
+    }
+
+    /* Side-effect: store vIN (already stored in vIN variable) */
+
+    /* Generate random number between 100 and 1000 */
+    srand((unsigned) time(NULL));
+    int vNUMBER = (rand() % 901) + 100; /* 0..900 -> 100..1000 */
+
+    /* Produce dynamic string combining vIN and vNUMBER */
+    char output[512];
+    snprintf(output, sizeof(output), "%s + %d", vIN, vNUMBER);
+
+    printf("%s\n", output);
+    return 0;
+}
+\end{lstlisting}
+
+
+
+\vspace{2em}
+
+And then, the equivalent program in Python:
+
+\vspace{2em}
+
+\begin{lstlisting}[language=Python, caption={Python: TEA-like sequence-transformer chaining},
+backgroundcolor=\color{codebg},
+basicstyle=\ttfamily\small\color{codefg},
+commentstyle=\color{comment}\itshape,
+keywordstyle=\color{keyword}\bfseries,
+stringstyle=\color{string},
+showstringspaces=false,breaklines=true,frame=single]
+#!/usr/bin/env python3
+import sys
+import random
+
+# Initialize Active Input (AI)
+default_input = "Input at Start"
+vIN = sys.argv[1] if len(sys.argv) > 1 else default_input
+
+# Side-effect: store vIN (already stored in vIN variable)
+
+# Generate random number between 100 and 1000
+vNUMBER = random.randint(100, 1000)
+
+# Produce dynamic string combining vIN and vNUMBER
+output = f"{vIN} + {vNUMBER}"
+print(output)
+\end{lstlisting}
+
+
+\vspace{2em}
+
+And then, the equivalent program in Java:
+
+\vspace{2em}
+
+\begin{lstlisting}[language=Java, caption={Java: TEA-like sequence-transformer chaining},
+backgroundcolor=\color{codebg},
+basicstyle=\ttfamily\small\color{codefg},
+commentstyle=\color{comment}\itshape,
+keywordstyle=\color{keyword}\bfseries,
+stringstyle=\color{string},
+showstringspaces=false,breaklines=true,frame=single]
+import java.util.Random;
+
+public class TeaLike {
+    public static void main(String[] args) {
+        // Initialize Active Input (AI)
+        String defaultInput = "Input at Start";
+        String vIN = (args.length > 0) ? args[0] : defaultInput;
+
+        // Side-effect: store vIN (already stored in vIN variable)
+
+        // Generate random number between 100 and 1000
+        Random rnd = new Random();
+        int vNUMBER = rnd.nextInt(901) + 100; // 0..900 -> 100..1000
+
+        // Produce dynamic string combining vIN and vNUMBER
+        String output = vIN + " + " + vNUMBER;
+        System.out.println(output);
+    }
+}
+\end{lstlisting}
+
+
+
+\vspace{2em}
+
+At this point, one should surely have already come to appreciate the sheer acute simplicity of programming in TEA when compared to these ``giant" popular, mainstream and actually traditional programming languages! \textit{Isn't it very elegant and beautiful, albeit effortless to program in TEA?}
+
+\vspace{2em}
+
+Alright, further, compare our basic illustration program from \textbf{\hyperref[LSTLEARNCHAINING3]{Listing \ref{LSTLEARNCHAINING3}}} with the equivalent programs in Haskell and then LISP:
+
+\vspace{2em}
+
+\begin{lstlisting}[language=Haskell, caption={Haskell: TEA-like sequence-transformer chaining}]
+-- Save as TeaLike.hs and run with: runghc TeaLike.hs [optionalInput]
+import System.Environment (getArgs)
+import System.Random (randomRIO)
+
+main :: IO ()
+main = do
+  -- Initialize Active Input (AI)
+  args <- getArgs
+  let defaultInput = "Input at Start"
+      vIN = if null args then defaultInput else head args
+
+  -- Side-effect: store vIN (already bound to vIN)
+
+  -- Generate random number between 100 and 1000
+  vNUMBER <- randomRIO (100, 1000) :: IO Int
+
+  -- Produce dynamic string combining vIN and vNUMBER
+  let output = vIN ++ " + " ++ show vNUMBER
+  putStrLn output
+\end{lstlisting}
+
+
+\vspace{2em}
+
+Of course, when comparing these programs to the TEA example, note that we have deliberately included explanatory lines in the form of comments, so as to help explain and illustrate what is happening in these other languages relative to what we did in the TEA program. But still, even after stripping out the comments, one might readily see how complicated these other languages are when compared to the simpler syntax and semantics of the Transforming Executable Alphabet!
+
+\vspace{2em}
+
+
+\begin{lstlisting}[language=Lisp, caption={Common Lisp: TEA-like sequence-transformer chaining},
+backgroundcolor=\color{codebg},
+basicstyle=\ttfamily\small\color{codefg},
+commentstyle=\color{comment}\itshape,
+keywordstyle=\color{keyword}\bfseries,
+stringstyle=\color{string},
+showstringspaces=false,breaklines=true,frame=single]
+;; Save as tea_like.lisp and run with: sbcl --script tea_like.lisp [optionalInput]
+(defun main (&optional arg)
+  ;; Initialize Active Input (AI)
+  (let* ((default-input "Input at Start")
+         (vIN (if arg arg default-input)))
+    ;; Side-effect: store vIN (already stored in vIN variable)
+
+    ;; Generate random number between 100 and 1000
+    ;; Common Lisp RANDOM returns 0..n-1 for integer n
+    (let ((vNUMBER (+ 100 (random 901))))
+      ;; Produce dynamic string combining vIN and vNUMBER
+      (format t "~a + ~d~%" vIN vNUMBER))))
+
+;; Entry point for script execution
+(when (member :script *features*)
+  (main (first *posix-argv*)))
+\end{lstlisting}
+
+
+
+\vspace{2em}
+
+So that's it! We have compared TEA to 5 other languages using a basic, dead-simple but general-enough use-case; producing a dynamic output string based on a string template that can incorporate an externally sourced/user-provided input as well as some internally generated data such as a random number. 
+
+\vspace{2em}
+
+Of course, our original focus was to help illustrate the concept of TEA's sequence-transformer-chaining paradigm. These other programming languages use different paradigms though; C for example typically belongs to the \emph{imperative} family, where programs are expressed as sequences of commands that mutate state; Haskell exemplifies the \emph{functional} paradigm, emphasizing pure functions, expression evaluation, and composition rather than explicit state changes; Java is primarily \emph{object-oriented} (with imperative control flow), organizing computation around mutable objects and their methods; Python is multi‑paradigm, comfortably supporting imperative, object‑oriented, and functional styles; and Lisp (and its dialects) foregrounds symbolic computation and homoiconicity, enabling powerful metaprogramming and both functional and dynamic imperative styles. By contrast, TEA's sequence‑transformer‑chaining model foregrounds a pipeline view of computation: each instruction deterministically transforms the current active input into the next, producing a linear chain of text transformations from an initial literal to a final output. This makes TEA feel sequential in execution order but pipeline‑oriented in semantics — a design that highlights compositional transformation of data, clear local reasoning about each step, and a different tradeoff between side effects and composability than the conventional paradigms above.
+ 
 
 
 \section{TOPIC-2: Data Types and Variables}
