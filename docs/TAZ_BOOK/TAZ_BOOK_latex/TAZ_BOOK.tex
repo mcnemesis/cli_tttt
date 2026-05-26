@@ -156,8 +156,8 @@ A:, A.:, A*:, A!:, A.*:, A.!:, A*!:, B:, B.:, B*:, B!:, B.*:, B.!:, B*!:, C:, C.
   keywordstyle=[1]\color{green},
   commentstyle=\color{lightgray},
   morestring=[b]",
-stringstyle=\color{myorange},
-moredelim=[s][\color{myorange}]{\{}{\}},
+  stringstyle=\color{myorange},
+  moredelim=[s][\color{myorange}]{\{}{\}},
 }
 
 
@@ -177,7 +177,8 @@ moredelim=[s][\color{myorange}]{\{}{\}},
     listing only,
     listing options={
       language=TEA,
-     basicstyle=\ttfamily,
+      basicstyle=\ttfamily\Large,
+      numbers=none,
 %keywordstyle=\color{cyan}\bfseries,
 %commentstyle=\color{green}\itshape,
 %stringstyle=\color{yellow}
@@ -192,19 +193,7 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 % Define a language with no syntax highlighting
 \lstdefinelanguage{none}{}
 
-% Define a new tcblisting environment for verbatim content
-\newtcblisting{tcbverbatim}[1][]{
-  % Pass any user options to the new environment
-  #1,
-  breakable, % Allow long lines to wrap
-  listing only, % The box contains only a listing
-  listing options={
-    language=none, % The 'none' language disables highlighting
-    basicstyle=\ttfamily, % Use the typewriter font
-    columns=flexible, % Allow flexible column widths for wrapping
-    breaklines=true, % Enable line breaking
-  },
-}
+
 
 % Define custom colors
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -231,6 +220,7 @@ moredelim=[s][\color{myorange}]{\{}{\}},
   breaklines=true,
 %  breakatwhitespace=true,
 %  escapeinside={(*@}{@*)}
+  numbers=none,
 }
 
 
@@ -246,7 +236,7 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 % Optional global defaults (you can still override per-listing)
 \lstset{
   backgroundcolor=\color{codebg},
-  basicstyle=\ttfamily\small\color{codefg},
+  basicstyle=\ttfamily\Large\color{codefg},
   commentstyle=\color{comment}\itshape,
   keywordstyle=\color{keyword}\bfseries,
   stringstyle=\color{string},
@@ -257,8 +247,28 @@ moredelim=[s][\color{myorange}]{\{}{\}},
   xleftmargin=4pt,
   xrightmargin=4pt,    
   %extras...
-  numbers=left,
-  numberstyle=\tiny\color{codegray},
+  % turn off line numbers globally
+  numbers=none
+  %numberstyle=\tiny\color{codegray},
+}
+
+
+% Define a new tcblisting environment for verbatim content
+\newtcblisting{tcbverbatim}[1][]{
+  % Pass any user options to the new environment
+  #1,
+  breakable, % Allow long lines to wrap
+  listing only, % The box contains only a listing
+  listing options={
+  	backgroundcolor=\color{lightgray},
+    language=none, % The 'none' language disables highlighting
+    basicstyle=\ttfamily\Large, % Use the typewriter font
+    columns=flexible, % Allow flexible column widths for wrapping
+    breaklines=true, % Enable line breaking
+    numbers=none,    
+    xleftmargin=4pt,
+  	xrightmargin=4pt,
+  },
 }
 
 
@@ -292,8 +302,6 @@ moredelim=[s][\color{myorange}]{\{}{\}},
 \newtheorem{prob}{Problem}
 \newtheorem{soln}{Solution}
 \newtheorem{alg}{Algorithm}
-
-
 
 
 % for wrapping text around floats
@@ -938,7 +946,7 @@ An example TEA program that highlights these syntactic quirks follows…
   \begin{figure}[H]
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program]
-  \begin{lstlisting}[language=TEA, caption={TP 1}, label={LST1}, numbers=left]
+  \begin{lstlisting}[language=TEA, caption={TP 1}, label={LST1}]
 i: {This is a multi-line
 string} | v:vIN # followed by comment
 u!: | g:
@@ -957,7 +965,7 @@ And the same exact program as in  \textbf{\autoref{LST1}}, when stripped of all 
  \begin{figure}[H]
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program]
-  \begin{lstlisting}[language=TEA, caption={TP 2}, label={LST2}, numbers=left]
+  \begin{lstlisting}[language=TEA, caption={TP 2}, label={LST2}, ]
 i: {This is a multi-line
 string}|v:vIN|u!:|g:|l:E|x:{1-}|f:^1-i:A:B|l:A|x!:-1|j:C|l:B|i!:"T"|j:E|l:C|q!:
   \end{lstlisting}
@@ -1000,7 +1008,7 @@ A further note concerning specifying literal strings in TEA --- particularly for
 
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program with Tricky Literal String that Works Fine]
-   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+   \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{ [{ "Name": "<p!:8|t.:|z*:>", "Age": "<n:26:8>", "Description": "<p!:|s:|s:|z:>" },][2] }
   \end{lstlisting}
   \end{tcolorbox}
@@ -1008,7 +1016,7 @@ i!:{ [{ "Name": "<p!:8|t.:|z*:>", "Age": "<n:26:8>", "Description": "<p!:|s:|s:|
 However, the following might not work as expected\footnote{Until a time in the future when the quirks of all TEA programming are ironed out of the reference runtimes!}...
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program with Tricky Literal String that Works Fine]
-   \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+   \begin{lstlisting}[language=TEA,breaklines=true,]
 i:{ 
 [
 { "Name": "<p!:8|t.:|z*:>", 
@@ -1705,7 +1713,7 @@ Before we move on, and as we shall come to appreciate when we come to \textbf{\h
 
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SC-Transformer, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 #SC-Computer
 #i!:{1618033988749895} 
@@ -1887,7 +1895,7 @@ Otherwise, note that; looking at a TEA program as depicted in \textbf{\hyperref[
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SC-Generator, breakable]
     %\begin{lstlisting}[language=TEA,breaklines=true]
-  \begin{lstlisting}[language=TEA, label={LSTSCGEN}, numbers=left]
+  \begin{lstlisting}[language=TEA, label={LSTSCGEN}, ]
 v:vIN
 u!:
 v:vMSS
@@ -1945,7 +1953,7 @@ v:vIN|u!:|v:vMSS|v:vSC:{}|l:lPROC|y:vMSS|d!:^.|v:vW|y:vMSS|d:^.|v:vMSS|y:vW|f:^$
   %\begin{figure}[H]
   %\centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: CONSONANT FILTER, breakable]
-    %\begin{lstlisting}[language=TEA, caption={SC-Generator Minified}, label={LSTSCGENMINI}, numbers=left]
+    %\begin{lstlisting}[language=TEA, caption={SC-Generator Minified}, label={LSTSCGENMINI}, ]
     \begin{lstlisting}[language=TEA,breaklines=true,label={LSTCONSFIL},caption=CF in TEA]
 i:{This is a TEST 123} | z!: | d:[AEIOU] | d!:[A-Z]
    \end{lstlisting}
@@ -2063,7 +2071,7 @@ For any particular sequence of interest, the following associated, and generic \
   %\begin{figure}[H]
   %\centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Sequence Entropy Computer, breakable]
-    %\begin{lstlisting}[language=TEA, caption={SC-Generator Minified}, label={LSTSCGENMINI}, numbers=left]
+    %\begin{lstlisting}[language=TEA, caption={SC-Generator Minified}, label={LSTSCGENMINI}, ]
     \begin{lstlisting}[language=TEA,breaklines=true,label={LSTSEQENTROPY},caption=SEC in TEA]
 ####################################
 # SEQUENCE ENTROPY COMPUTER v2
@@ -2229,7 +2237,7 @@ By the definitions above, the program:
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: shuffling words in a string]
-  %\begin{lstlisting}[language=TEA, caption={TP A1}, label={LSTA1}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP A1}, label={LSTA1}, ]
   \begin{lstlisting}[language=TEA]
 i!:{BC CB BA AB}|a:
    \end{lstlisting}
@@ -2248,7 +2256,7 @@ On the other hand, the related but different program
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: shuffling a list of symbols]
-  %\begin{lstlisting}[language=TEA, caption={TP A2}, label={LSTA2}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP A2}, label={LSTA2}, ]
   \begin{lstlisting}[language=TEA]
 i!:{BC CB BA AB} | a!:
    \end{lstlisting}
@@ -2275,7 +2283,7 @@ The following program, given a list of food items available, shall help to rando
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: randomly suggest what to cook]
-  %\begin{lstlisting}[language=TEA, caption={TP A3}, label={LSTA3}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP A3}, label={LSTA3}, ]
   \begin{lstlisting}[language=TEA]
 i!:{BURGER PIZZA OMELETTE RICE PUDDING FRIES 
 MEATBALLS}|a:|d:[ ].*$|x:{I think, you make }
@@ -2364,7 +2372,7 @@ By the definitions above, the program:
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: computing the symbol FIFO Base of AI]
-  %\begin{lstlisting}[language=TEA, caption={TP B1}, label={LSTB1}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP B1}, label={LSTB1}, ]
   \begin{lstlisting}[language=TEA]
 i!:{BC CB BA AB} | b:
    \end{lstlisting}
@@ -2381,7 +2389,7 @@ Should return ``BC A". While
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: computing LEXICAL Base of AI]
-  %\begin{lstlisting}[language=TEA, caption={TP B2}, label={LSTB2}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP B2}, label={LSTB2}, ]
   \begin{lstlisting}[language=TEA]
 i!:{bC CB BA aB} | b!:
    \end{lstlisting}
@@ -2397,7 +2405,7 @@ Should return ``ABCab". While,
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: compute FIFO Base of a literal string]
-  %\begin{lstlisting}[language=TEA, caption={TP B3}, label={LSTB3}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP B3}, label={LSTB3}, ]
   \begin{lstlisting}[language=TEA]
 b:{bC CB BA aB}
    \end{lstlisting}
@@ -2413,7 +2421,7 @@ Shall or should return exactly ``bC BAa".
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: computing LEXICAL Base of data in a vault]
-  %\begin{lstlisting}[language=TEA, caption={TP B4}, label={LSTB4}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP B4}, label={LSTB4}, ]
   \begin{lstlisting}[language=TEA]
 v:vAI:{bC CB 543 12a} | b*!:vAI 
 #(=12345BCab, VAULTS:{"vAI":"bC CB 543 12a"})
@@ -2456,7 +2464,7 @@ And find $P_{S_m}$ given some or any such collection of sequences. Good enough, 
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: compute largest o-ssi from input sequence]
-  %\begin{lstlisting}[language=TEA, caption={TP B5}, label={LSTB5}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP B5}, label={LSTB5}, ]
   \begin{lstlisting}[language=TEA]
 i:{63 285 02517 abc3921 219e}
 d!:[0-9]
@@ -2513,7 +2521,7 @@ And how did we know or how might we prove this? Or rather, how did we arrive at 
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: sort in descending order numbers from input sequence]
-  %\begin{lstlisting}[language=TEA, caption={TP B6}, label={LSTB6}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP B6}, label={LSTB6}, ]
   \begin{lstlisting}[language=TEA]
 i:{987653210 7653210 98410 985421} 
 r!:[ ]+:,
@@ -2637,7 +2645,7 @@ With that introduction and the formal specifications of \textbf{C:} out of the w
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: resetting explicitly set AI]
     %\begin{lstlisting}[language=TEA]
-  \begin{lstlisting}[language=TEA, caption={TP C1}, label={LSTC1}, numbers=left]
+  \begin{lstlisting}[language=TEA, caption={TP C1}, label={LSTC1}, ]
 i!:{BC}| c:
 # (=, VAULTS:{})
    \end{lstlisting}
@@ -2654,7 +2662,7 @@ Despite having an explicit, hard-coded input specified in the first instruction 
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: \texttt{c:} does not clear DEFAULT VAULT]
     %\begin{lstlisting}[language=TEA]
-  \begin{lstlisting}[language=TEA, caption={TP C2}, label={LSTC2}, numbers=left]
+  \begin{lstlisting}[language=TEA, caption={TP C2}, label={LSTC2}, ]
 i!:{BC} | v: | c: | y:
 # (=BC, VAULTS:{"":"BC"})
    \end{lstlisting}
@@ -2673,7 +2681,7 @@ However, in the next example:
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: \texttt{c!:} resets all memory]
     %\begin{lstlisting}[language=TEA]
-  \begin{lstlisting}[language=TEA, caption={TP C3}, label={LSTC3}, numbers=left]
+  \begin{lstlisting}[language=TEA, caption={TP C3}, label={LSTC3}, ]
 i!:{BC} | v: | v:XX:{T} | c!: | y:XX
 # (=, VAULTS:{"":"","XX":""})
    \end{lstlisting}
@@ -2693,7 +2701,7 @@ For cases where one wishes to clear only specific sections of memory, via named 
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: \texttt{c!:} resets all memory]
     %\begin{lstlisting}[language=TEA]
-  \begin{lstlisting}[language=TEA, caption={TP C4}, label={LSTC4}, numbers=left]
+  \begin{lstlisting}[language=TEA, caption={TP C4}, label={LSTC4}, ]
 i!:{BC} | v: | c: | y: | a!: |
 v:vA | n:100 | v:vB | v:vGLUE:** 
 | c*!:vA | g*!:vGLUE:vA:vB
@@ -2710,7 +2718,7 @@ That program should return ``**N" where N is some random number (e.g ``BC**98").
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: \texttt{c!:} resets all memory]
     %\begin{lstlisting}[language=TEA]
-  \begin{lstlisting}[language=TEA, caption={TP C5}, label={LSTC5}, numbers=left]
+  \begin{lstlisting}[language=TEA, caption={TP C5}, label={LSTC5}, ]
 i!:{BC} | v: | c: | y: | a!: | 
 v:vA | n:100 | v:vB | v:vGLUE:** 
 | g*!:vGLUE:vA:vB
@@ -2868,7 +2876,7 @@ An illustration of this effect is demonstrated when we invoke the program:
  \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: explore selective processing of vaults by c*]
-  %\begin{lstlisting}[language=TEA, caption={TP C6}, label={LSTC6}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C6}, label={LSTC6}, ]
     \begin{lstlisting}[language=TEA]
 v:vC:TEST|v:vF:TEST-F|c*!:vC:vD
    \end{lstlisting}
@@ -2945,7 +2953,7 @@ Of course, on its own, the TEA CLEAR command-space alone cannot do all the neces
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=C: TEA DATABASE management TEST suite, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # These are tests to show how CLEAR can manipulate TEA DATABASE records
 # as these commands might affect data meant to be read by other
 # programs, please ensure to use this command with care!
@@ -3094,7 +3102,7 @@ In a somewhat verbose style --- so that TEA-newcomers might also get the chance 
  \small
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: N-SIGIL image generator program, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 #~~[WELCOME to N-SIGIL v1.0.0]
 #~~[not for the faint of heart]
@@ -4670,7 +4678,7 @@ For those familiar with how the idea of intelligence might be approached in matt
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZHA v1.0.8, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
 # ZHA: Zee Hacker Assistant (v.1.0.8) | APR,'26
@@ -4841,7 +4849,7 @@ For comparison purposes, one might be interested in seeing an earlier version of
  {
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ZEE HACKER ASSISTANT v1.0.3, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 #!/usr/bin/tttt -fc
 #----------------------------------------------|
@@ -5477,7 +5485,7 @@ The most recent version of \textbf{BOOBS `N' TRAPS} is as follows:
  {
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: BOOBS N TRAPS v1.0.0.1, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 #!/usr/bin/tttt -fc
 #-------------------------------------------------------------#
@@ -6470,7 +6478,7 @@ And so that, to reproduce or apply the same transformer that enables the word "l
 {
  %\small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: The LUMTAUTO Transformer, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 i:{language} # given some message
 v:vMESSAGE #store the original message
@@ -6597,7 +6605,7 @@ v:vTRANSFORMED_MESSAGE #such as "lumtauto"
 {
  %\small
   \begin{tcolorbox}[teaterminalstyle, title=CLEAN TEA Program: The LUMTAUTO Transformer, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 f!:^$:lDONTPROMPT|i!:{Enter Message to be Encoded:}|i*:|i:{language}|l:lDONTPROMPT|v:vMESSAGE|r!:a:_%_|r!:b:_%%_|r!:c:_%%%_|r!:d:_%%%%_|r!:e:_%%%%%_|r!:f:_%%%%%%_|r!:g:_%%%%%%%_|r!:h:_%%%%%%%%_|r!:i:_%%%%%%%%%_|r!:j:_%%%%%%%%%%_|r!:k:_%%%%%%%%%%%_|r!:l:_%%%%%%%%%%%%_|r!:m:_%%%%%%%%%%%%%_|r!:n:m|r!:o:e|r!:p:k|r!:q:j|r!:r:r|r!:s:h|r!:t:g|r!:u:a|r!:v:v|r!:w:d|r!:x:c|r!:y:b|r!:z:z|r!:_%_:u|r!:_%%_:y|r!:_%%%_:x|r!:_%%%%_:w|r!:_%%%%%_:o|r!:_%%%%%%_:f|r!:_%%%%%%%_:t|r!:_%%%%%%%%_:s|r!:_%%%%%%%%%_:i|r!:_%%%%%%%%%%_:q|r!:_%%%%%%%%%%%_:p|r!:_%%%%%%%%%%%%_:l|r!:_%%%%%%%%%%%%%_:n|r!:A:_%_|r!:B:_%%_|r!:C:_%%%_|r!:D:_%%%%_|r!:E:_%%%%%_|r!:F:_%%%%%%_|r!:G:_%%%%%%%_|r!:H:_%%%%%%%%_|r!:I:_%%%%%%%%%_|r!:J:_%%%%%%%%%%_|r!:K:_%%%%%%%%%%%_|r!:L:_%%%%%%%%%%%%_|r!:M:_%%%%%%%%%%%%%_|r!:N:M|r!:O:E|r!:P:K|r!:Q:J|r!:R:R|r!:S:H|r!:T:G|r!:U:A|r!:V:V|r!:W:D|r!:X:C|r!:Y:B|r!:Z:Z|r!:_%_:U|r!:_%%_:Y|r!:_%%%_:X|r!:_%%%%_:W|r!:_%%%%%_:O|r!:_%%%%%%_:F|r!:_%%%%%%%_:T|r!:_%%%%%%%%_:S|r!:_%%%%%%%%%_:I|r!:_%%%%%%%%%%_:Q|r!:_%%%%%%%%%%%_:P|r!:_%%%%%%%%%%%%_:L|r!:_%%%%%%%%%%%%%_:N|l:lFINISHED|v:vTRANSFORMED_MESSAGE|i!:{In LUMTAUTO
 }|x*!: vMESSAGE|x!: {
@@ -6796,7 +6804,7 @@ In brief, the program we are deal with here, will help someone build a mental pr
 {
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA EXAMPLE: MENTAL HEALTH DIAGNOSIS PROGRAM v1.0.0.1, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 #!/usr/bin/tttt -fc
 #-------------------------------------------#
@@ -7718,7 +7726,7 @@ The essential TEA source code for this program is as shown hereafter...
 %\begin{figure}[H]
 {
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: SKIRT DESIGN IMAGE GENERATOR, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true]
 #====| THE SKIRT DESIGN GENERATOR v2 |====
 #===========================================
 #Constants we'll need
@@ -8132,7 +8140,7 @@ The essential code, also left commented to help the student or reviewer study th
 {
  \small
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: LUCKY 101 v1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 ################################
 ####| LUCKY 101 GAME v.1 |####
 ################################
@@ -8393,7 +8401,7 @@ For the clean and minified version of the \textbf{LUCKY 101} brain-game, the fol
 {
  %\small
   \begin{tcolorbox}[teaterminalstyle, title=CLEAN TEA Program: The High-Order Transformer: LUCKY 101 Brain-Game, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 v:vN_OP_SCORE:{0}|v:vN_OP_MOVES:{0}|v:vINCR_1:{1}|v:vN_ROWS:{3}|v:vN_COLS:{30}|v:vSYM_FIELD:{_}|v:vSYM_DIV_COL:{=}|v:vSYM_DIV_ROW:{@}|v:vOP_ADD:{+}|v:vTEST_CMD_GTE:{__ >= ~}|v:vCMD_SUBTRACT:{__ - ~}|v:vCMD_ADD:{__ + ~}|v:vTEST_P1:{__}|v:vTEST_P2:{~}|v:vMSG_OP_STATUS:{Ready to Play}|v:vPENALTY:{5}|v:vPENALTY_WRONG_TRIPLE:{2}|l:lNEWFIELD|v:vFIELD:{}|l:lSTART|l:lSTARTROW|v:vNEWLANE:{}|x*:vNEWLANE:vSYM_DIV_ROW|v:vNEWLANE|l:lEXTEND|n:|v:vN_RNG|x*:vNEWLANE:vN_RNG|v:vNEWLANE|x*:vNEWLANE:vSYM_DIV_COL|v:vNEWLANE|y!:vNEWLANE|v:vN_LEN_FIELD|r*:vTEST_CMD_GTE:vTEST_P1:vN_LEN_FIELD|v:vTEST_CMD|r*:vTEST_CMD:vTEST_P2:vN_COLS|v:vTEST_CMD|y:vTEST_CMD|r.:|f:^false$:lEXTEND:lNEXTROW|l:lNEXTROW|y:vFIELD|d*!:vSYM_DIV_ROW|v:|v!:|v:vLEN_ROWS|r*:vTEST_CMD_GTE:vTEST_P1:vLEN_ROWS|v:vTEST_CMD|r*:vTEST_CMD:vTEST_P2:vN_ROWS|v:vTEST_CMD|y:vTEST_CMD|r.:|f:^false$:lSTARTNEXTROW:lFIELDCOMPLETE|l:lSTARTNEXTROW|x*:vFIELD:vNEWLANE|v:vFIELD|j:lSTARTROW|l:lFIELDCOMPLETE|h*!:vFIELD:vSYM_DIV_ROW|y:vFIELD|y:vFIELD|h!:{@}|v:vFIELD|l:lPLAYMODE|v:vMSG_OP_SCORE:{SCORE: }|y:vMSG_OP_SCORE|x*!:vN_OP_SCORE|v:vMSG_OP_SCORE|y:vFIELD|x:{
 ---| LUCKY 101 FIELD |---
@@ -8490,7 +8498,7 @@ The Mirror operations possible with the \textbf{M:} family of TEA commands creat
 \Large
   \centering
   \begin{tcolorbox}[teaterminalstyle, title=M: EXAMPLE 1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 I!:{AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz} | m!:
 #(= zZyYxXwWvVuUtTsSrRqQpPoOnNmMlLkKjJiIhHgGfFeEdDcCbBaA)
    \end{lstlisting}
@@ -8596,7 +8604,7 @@ In the next section then, we shall revisit the ideas first presented in that boo
 \Large
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: The Grand Myrrh Transform, breakable]
-  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, numbers=left]
+  %\begin{lstlisting}[language=TEA, caption={TP C7}, label={LSTC7}, ]
   \begin{lstlisting}[language=TEA,breaklines=true]
 m!:
 r!:y:yua
@@ -8786,7 +8794,7 @@ The most basic \textbf{Random Number Generator} (RNG) possible, is simply implem
 
 
   \begin{tcolorbox}[teaterminalstyle, title=N: EXAMPLE 1: BASIC TEA RNG, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 N:
 # (=6) even just n!: would similarly work | THE RNG
    \end{lstlisting}
@@ -8800,7 +8808,7 @@ The parameterized version of the N-command space instructions can be illustrated
 
 
   \begin{tcolorbox}[teaterminalstyle, title=N: EXAMPLE 2: GENERATE IP ADDRESSES, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 n!:256:0:4:.
 # (=1.125.0.74) perhaps magical address to some *special* Internet asset?! 
    \end{lstlisting}
@@ -8821,7 +8829,7 @@ A pointer-based/vault-based version of the same exact above program is the follo
 
 
   \begin{tcolorbox}[teaterminalstyle, title=N: EXAMPLE 3: IP ADDRESS GENERATOR PARAMETRIC METHOD, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vL:256|v:vLL:0|v:vS:4|v:vG:.|n*:vL:vLL:vS:vG
    \end{lstlisting}
   \end{tcolorbox}
@@ -8899,7 +8907,7 @@ We can rest assured that the following non-trivial and well-commented TEA progra
 %\begin{figure}[H]
 {
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TDT Processor and DATA Generator, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #########################################
 # STRUCTURED DYNAMIC DATA GENERATOR v.1
 #----------------------------------------
@@ -9057,7 +9065,7 @@ With the original example TDT template shared, we for example obtain the followi
   
   
     \begin{tcolorbox}[teaterminalstyle, title=Sample Inline TDT template specification, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #----| Sample Data Specification |------
 #in case no explicit data was provided, use TDT template...
 i:{ [{ "Name": "<p!:8|t!.:|z*:>", "Age": "<n:26:8>" "Description": "<p!:|s:|s:|z:>" },][5] }
@@ -9251,7 +9259,7 @@ After which, the program should be able to prompt the user for which kind of ana
 
 
   \begin{tcolorbox}[teaterminalstyle, title=A Bar-GRAPH Generator, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i:{12, 24, 95, 18, 85, 27, 97, 39, 80, 20, 65, 24, 93, 82, 85, 81, 52, 62, 20, 89} #some sample data
 
 #----| pre-process and clean data |---
@@ -9628,7 +9636,7 @@ So, having gone through the necessary theorizing and plan for the tool, we have 
 %\begin{figure}[H]
 {
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Statistical Analysis Tool (SAT), breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #########################################
 # STATISTICAL ANALYSIS TOOL (SAT) v.3
 #---------------------------------------
@@ -10353,7 +10361,7 @@ A basic illustration of this power can be demonstrated by the following example 
 
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 1: Compute Sorted Initials of A Name, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # following URL is hypothetical, but expected to 
 # return the full, undecorated name of someone
 W!: https://mit.edu/vc/name.txt 
@@ -10381,7 +10389,7 @@ Another example:
 
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 2: Sort a list of words, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{mice ice best acts zap} #specify the list of words, delimited by space
 o: #invoke smart-lexical sorting on them
 #should sort input by lexical order of words and then return...
@@ -10399,7 +10407,7 @@ However, if we instead use \texttt{O!:} in the above example, we instead produce
 
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 3: Sort a list of words by character, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{mice ice best acts zap}|o!:
 #should sort input by lexical order of letters, and thus return:
 #=    aabccceeeiimpssttz
@@ -10417,7 +10425,7 @@ The output thus produced ``    aabccceeeiimpssttz" shows that in this mode, char
 
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 4: Sort a list of words by character, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{1 Mice, 2 Ice, 3 Best, 4 Acts & 2 Zap!}|o!:
 #sorts by lexical order of characters and returns:
 #=          !&,,,12234ABIMZaccceeeipsstt
@@ -10439,7 +10447,7 @@ However, \textbf{ORDER} is not limited only lexical sorting, as we can tell in t
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 5: Quantitatively Sort a list of number expressions, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{208919 919 1 211993   0 1 2 1e3 3 -10  5 19 .20 -1 -5e-3}|o:
 #sorts by quantitative order of words and returns:
 #=-10 -1 -5e-3 0 .20 1 1 2 3 5 19 919 1e3 208919 211993
@@ -10466,7 +10474,7 @@ Further, for this numeric or quantitative sorting to take effect, \textbf{there 
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 6: Invalid Number Expressions result in Lexical Sorting, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{208919 919 1 211993  ,   0 1 2 1e3 3 -10 5 19 .20 -1 -5e-3}|o:
 #sorts by quantitative order of words and returns:
 #=, -1 -10 -5e-3 .20 0 1 1 19 1e3 2 208919 211993 3 5 919
@@ -10482,7 +10490,7 @@ Whereas, in case we take that last example and instead apply the \textbf{charact
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 7: Character-level Lexical Sorting of Number Expressions?, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{208919 919 1 211993  ,   0 1 2 1e3 3 -10 5 19 .20 -1 -5e-3}|o:
 #sorts by quantitative order of words and returns:
 #=                  ,----.00001111111111222233335589999999ee
@@ -10499,7 +10507,7 @@ That said, note that as with other TEA commands that allow \textbf{vault-mode}, 
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 8: All Kinds of Sorting for Data in Vaults, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vNUMBERS:{1 414 2.0 135 6 23 7 -3.1}
 v:vLETTERS:{a Dad Be ME for BC Got Cool Aid!}
 o*:vNUMBERS | v:vNUM_SORTED
@@ -10560,7 +10568,7 @@ As a final note concerning how TEA's \textbf{ORDER} works, it is important to ke
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 9: Sorting Numbers BUT with INVALID FORMATTING, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{2, 24, 4, 1, 00, -1, 1e3}
 o:
 #result: -1, 00, 1, 1e3 2, 24, 4,
@@ -10577,7 +10585,7 @@ They shall get the somewhat misleading result ``-1, 00, 1, 1e3 2, 24, 4," --- wh
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=O: EXAMPLE 10: Sorting Numbers BUT with VALID FORMATTING, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{2, 24, 4, 1, 00, -1, 1e3}
 r!:,:{ } #enforce space delimiters
 o:
@@ -10632,7 +10640,7 @@ Otherwise, the program as of \textbf{version 3} is as such...
 %\begin{figure}[H]
 {
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Ranking Utility v.3, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 ######################################
 # RU: Ranking Utility v3
 ######################################
@@ -11073,7 +11081,7 @@ A basic illustration of this P: power can be demonstrated by the following examp
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 1: Compute Permutations of "ABC", breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 I!:{abc} | v:vA | v:vGLUE:- | p*:vA:vGLUE 
 # (="abc-acb-bac-bca-cab-cba")
    \end{lstlisting}
@@ -11131,7 +11139,7 @@ The most basic \textbf{Random String Generator} (RSG) possible, is simply implem
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 2: Most Basic Random String Generator in TEA, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 P!:
 # could return "fnudgzwhh ztnttwhehb iptkerl chwuljtiw"
    \end{lstlisting}
@@ -11149,7 +11157,7 @@ The following basic TEA program for example, is guaranteed to generate useful ra
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 3: A Constrained RSG in TEA, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 P!:10
 # could return "ssrmykqzyz", "dfooctwrid", "gdo yoqqlt", etc
    \end{lstlisting}
@@ -11168,7 +11176,7 @@ Concerning parametric use of the permutation command, the following example demo
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=P: EXAMPLE 4: A Constrained Permutation Generator in TEA that generates ``Vowel Mantras", breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vLIMIT:10|v:vLLIMIT:4|v:vALPH:{aeiou}|v:vGLUE:-|p*:vALPH:vGLUE:vLIMIT:vLLIMIT
 #equivalent to just
 #p:aeiou:-:10:4
@@ -11207,7 +11215,7 @@ For those new to the idea of ``vowel hymns"\cite{lutalo_2025_grimlumtauto}, note
  \begin{figure}[H]
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Random VOWEL HYMN Generator]
-    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+    \begin{lstlisting}[language=TEA,breaklines=true,]
 #############################################
 # RANDOM VOWEL HYMN GENERATOR v1
 #############################################
@@ -11386,7 +11394,7 @@ The following example program will avoid trying to run the expensive \texttt{p:}
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Q: EXAMPLE 1: Quit Data Processing Upon Error, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # assuming we want alpha-numeric string (National Identification Number)
 # fetched from some [hypothetical] file hosted online...
 w!: https://pastebin.org/NIN.txt
@@ -11429,7 +11437,7 @@ The following example further demonstrates how \texttt{Q:} can be useful. For ex
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Q: EXAMPLE 2: Using Q for Control-Flow and Dynamic Outputs, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:"hi there"
 i:"hi-there"
 a!:|Q!:-|n: 
@@ -11454,7 +11462,7 @@ For the cases where we use the other variants of q:, especially those that can c
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Q: EXAMPLE 3: Using Q With Patterns in Vaults, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{Hello World} #we start by setting the message "hello world"
 v: # we then store than into default vault
 q*!: # should quit if default vault (with name "") is blank
@@ -11517,7 +11525,7 @@ The basic approach to using this application is as such:
 %\begin{figure}[H]
 {
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Personality Calculator v3, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #+++++++++++++++++++++++++++++++++++++++++++++++++
 #+ PERSONALITY CALCULATOR (PC) v3
 #-------------------------------------------------
@@ -11950,7 +11958,7 @@ And one wishes to replace the substring ``<p!:8|t.:|z*:>", you shall notice that
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 1: Using R*:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 r*:vSCHEMA_TEMPLATE:vTEA_EXP:vTEA_EXP_VAL
    \end{lstlisting}
   \end{tcolorbox}
@@ -11989,7 +11997,7 @@ Concerning controlling what to replace in a string, note that \texttt{r:REGEX:ST
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 2, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:I like this|r:[aeiou]:_: 
    \end{lstlisting}
   \end{tcolorbox}
@@ -12001,7 +12009,7 @@ returns ``\verb|I l_:ke this|", while
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 3, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:I like this|r!:[aeiou]:_:  
    \end{lstlisting}
   \end{tcolorbox}
@@ -12049,7 +12057,7 @@ We can then appreciate the ``Braillish" --- meaning, like \textbf{Braille} --- p
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 4, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{Myself should tell 
 You O my Lord.
 I trust You Know Me.} | r:
@@ -12075,7 +12083,7 @@ While, if we instead apply \texttt{r!:} to the same text, as such:
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 5, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{Myself should tell 
 You O my Lord.
 I trust You Know Me.} | r!:
@@ -12230,7 +12238,7 @@ In the previous sections, especially in \textbf{\hyperref[SECTME]{Section \ref{S
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 6: Using R.:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 r.:(1/2)*(1+5**(1/2))
    \end{lstlisting}
   \end{tcolorbox}
@@ -12246,7 +12254,7 @@ However, and as might be the case in some real-life situations, one finds that t
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 7: Using R.:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 r.:1+100*0.5^(1-a**(1/a))
    \end{lstlisting}
   \end{tcolorbox}
@@ -12258,7 +12266,7 @@ One work-around might be to first perform a replacement using the usual \textbf{
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 8: Using R.:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:(1/a)*(1+5**(1/a))
 r!:a:2
 r.:
@@ -12273,7 +12281,7 @@ or perhaps using a vaulted expression such as with...
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 8: Using R.:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vEXPR:{(1/a)*(1+5**(1/a))}
 v:vREGEX:a
 v:vSUBST:2
@@ -12290,7 +12298,7 @@ And that correctly gets us the original terminal value ``1.618033988749895". How
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 8: Using R.:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vEXPR:{The Golden Ratio is computed as: (1/a)*(1+5**(1/a))}
 v:vREGEX:a
 v:vSUBST:2
@@ -12348,7 +12356,7 @@ With that facility then, we can then re-approach our problematic expression abov
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 9: Using R*!@:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vEXPR:{The Golden Ratio is computed as: (1/#a#)*(1+5**(1/#a#))}
 v:a:2
 r*!@:vEXPR
@@ -12367,7 +12375,7 @@ And in case we wish to use deep variables, we could write that same program as s
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 10: Using R*!@:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vEXPR:{The Golden Ratio is computed as: ##innerEXPR##}
 v:a:2
 v:b:{(1/#a#)}
@@ -12384,7 +12392,7 @@ Which shall indeed return ``The Golden Ratio is computed as: (1/2)*(1+5**(1/2))"
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 11: Using R*!@:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vEXPR:{The Golden Ratio is computed as: ##vInnerVALUE##}
 v:a:2
 v:b:{(1/#a#)}
@@ -12402,7 +12410,7 @@ Which then returns ``The Golden Ratio is computed as: 1.618033988749895". And of
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 12: Using R!@:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:a:2
 v:b:{(1/#a#)}
 i!:{(1/#a#)*(1+5**#b#)} | r@:
@@ -12428,7 +12436,7 @@ Finally, the following example should help demonstrate the differences between d
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=R: EXAMPLE 13: Using R@: Vs R!@:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # TESTING Recursive Template Resolution
 V:a:1
 V:b:{(1/#a#)}
@@ -12482,7 +12490,7 @@ Realize that much can be accomplished with mere text substitution operations. Th
  \begin{figure}[H]
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  TEXT MINIFIER v1]
-    \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+    \begin{lstlisting}[language=TEA,breaklines=true,]
 #====================================
 # TEXT MINIFIER v1
 #----|what it is|-------------------
@@ -12602,7 +12610,7 @@ Thus, this program can surely be quite useful in the hands of almost anyone enga
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SMS-TEXT MINIFIER v3, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #====================================
 # SMS-TEXT MINIFIER v3
 #----|what it is|-------------------
@@ -12759,7 +12767,7 @@ Having looked at what kinds of mathematics we can accomplish using TEA's mathema
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  Advanced Mathematics Computer v3.1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 v:vDESCRIPTION:{
 ###############################
@@ -13060,7 +13068,7 @@ Thus, this protocol and the associated software might not be trivial in any sens
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  GHOST Messages Protocol v1.1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]    
+  \begin{lstlisting}[language=TEA,breaklines=true,]    
 v:vABOUT:{#+##################+#
 Ghost Messages Protocol
 Encoder-N-Decoder v1.1
@@ -13721,7 +13729,7 @@ Having realized that this application is in so much demand, and that it surely f
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=EXTENDED Ghost Messages Symbol Set, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #the GM ordered alphabet sequence for reference...
 #also includes Newline char, and # should always come last!
 v:az:{abcdefghijklmnopqrstuvwxyz 0123456789.?*/+-()
@@ -14003,7 +14011,7 @@ Some examples follow. The first example demonstrates using salting without any p
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 1: Salting using S:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:TEST|s: # shall sometimes return "TE ST", " TEST", "T EST", etc.
    \end{lstlisting}
   \end{tcolorbox}
@@ -14015,7 +14023,7 @@ The next example still demonstrates salting, but involves passing some argument 
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 2: Salting using S:SALT, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:TEST|s:__ # shall sometimes return "TE__ST", "__TEST", "T__EST", etc.
    \end{lstlisting}
   \end{tcolorbox}
@@ -14028,7 +14036,7 @@ Note that, using this second approach, but wanting to modify the default case --
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 3: Salting using S:SALT, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:TEST|s:{
 }
    \end{lstlisting}
@@ -14064,7 +14072,7 @@ TEST
   \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=S: EXAMPLE 4: Unsalting using S!:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:TEST|s!: # might sometimes return "TET", "EST", "TES", etc. Basically, unsalting
    \end{lstlisting}
   \end{tcolorbox}
@@ -14107,7 +14115,7 @@ The original TEA code for this program was as such\footnote{This program was amo
     \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: The SIR GAME, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # randomly pick a word from the given list
 I!:{HONEY TRICK WINDS GAMES} | a: | d:[ ].*$ 
 # (="TRICK") for example
@@ -14131,7 +14139,7 @@ R:.[-]:? | R:[-].:? | q!: | # returns "TR?CK"
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SIR GAME v2, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vDESCRIPTION:{
 ###############################
 # [new] SIR GAME v2: 
@@ -14337,7 +14345,7 @@ Finally, after realizing that the reports the program produces perhaps are even 
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program:  SIR GAME v3, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vDESCRIPTION:{
 ###############################
 # [new] SIR GAME v3: 
@@ -14559,7 +14567,7 @@ That shall effectively run the TEA program:
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 2: Basic T-reduction program, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i:PARACETAMOL | t:
    \end{lstlisting}
   \end{tcolorbox}
@@ -14583,7 +14591,7 @@ Further, in an age where computer generated art such as with artificial intellig
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 3: Islamic ASCII-art Generator based T-reduction, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # an Islamic-art-generator twist of the PARACETAMOL Transform example
 i!:PARACETAMOL| t: | h: | a!: | r!: | v:vART
 v:vN:0|l:lS|y:vN|x!:{>5}|r.:|f:^true$:lF
@@ -14680,7 +14688,7 @@ And then we come to the \textbf{text-alignment} TEA transforms --- \texttt{t.:} 
   \vspace{2em}
  
   \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 4: Basic Center-alignment Program, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 t.:
    \end{lstlisting}
   \end{tcolorbox}
@@ -14712,7 +14720,7 @@ Yup! It is that simple! The result, given the example input above, shall come ou
    \vspace{2em}
  
   \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 5: Basic Left-alignment Program, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 t!.:
    \end{lstlisting}
   \end{tcolorbox}
@@ -14741,7 +14749,7 @@ And the output shall come out as such...
  
  
    \begin{tcolorbox}[teaterminalstyle, title=T: EXAMPLE 6: ROBUST Right-alignment Program, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{ 1. Hello World
 2. What is happening?
         3. Where are you right now?
@@ -14960,7 +14968,7 @@ Formal qualities of works of art... `expressive qualities'.. are two types of ae
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ABSTRACT ASCII-ART GENERATOR v1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 ########################################
 # ABSTRACT ASCII-ART GENERATOR v1
 ########################################
@@ -15144,7 +15152,7 @@ With that specification of an abstract art generator, and our original first imp
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: ABSTRACT TEXT-ART GENERATOR v2, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vDESCRIPTION:{
 ###############################
 # ABSTRACT TEXT-ART GENERATOR v2
@@ -15795,7 +15803,7 @@ A basic example of how to use \texttt{U:} is the problem of determining the winn
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=U: EXAMPLE 1: Tallying Votes (Democratic Sorting), breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 I!:{AWCCAWAWAAAAACCWACCCCWCACCA} | u!:
    \end{lstlisting}
   \end{tcolorbox}
@@ -15889,7 +15897,7 @@ Otherwise, another great example is the following, this time demonstrating how u
 \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=U: EXAMPLE 2: Compute MSS for list of words, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #compute and return modal sequence statistic of the provided words list
 v:vI:{CAT DOG CAT FISH CAT COW COW FISH COW DUCK} | u*:vI
    \end{lstlisting}
@@ -15930,7 +15938,7 @@ The following program then, is based on that idea of reducing an inpute sequence
    \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: MAGICAL VOWEL SOURCE GENERATOR, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 ###| MAGICAL VOWEL SOURCE  |###
 #################################
 #Yes! Like Mantra/Aural-Sigils
@@ -15969,7 +15977,7 @@ So, clearly, it starts to look like, for the case actually generating a hymn (as
   \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: RANDOM VOWEL HYMN GENERATOR v1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #############################################
 # RANDOM VOWEL HYMN GENERATOR v1
 #############################################
@@ -16006,7 +16014,7 @@ Note that the program is essentially what we already covered well in \textbf{\hy
 
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: A VOWEL RANDOM HYMN ENCODER v1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #############################################
 # VOWEL RANDOM HYMN ENCODER v1
 #############################################
@@ -16120,7 +16128,7 @@ Finally, note that unlike the above examples that somewhat operate on the statis
 
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: VOWEL HYMN TRANSFORMER v1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #############################################
 # VOWEL HYMN TRANSFORMER v1
 #############################################
@@ -16323,7 +16331,7 @@ The case Kain clasifies as RMW might be likened to scenarios where an existing m
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 1: Vault RMW, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vWORD:{hello} | s*:vWORD | v:vWORD
    \end{lstlisting}
   \end{tcolorbox}
@@ -16389,7 +16397,7 @@ The most basic example for how to return the length of any input is the followin
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 2: Length of a String, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:ABC|v:|v!:
    \end{lstlisting}
   \end{tcolorbox}
@@ -16406,7 +16414,7 @@ For more involved applications, see the following program that will help generat
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 3: 8-letter Password Generator, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # given some initial/external seed...
 I:{SOMEVALUE} # if none, then use this as default seed
 G!:|A!: # glue and anagrammatize seed
@@ -16450,7 +16458,7 @@ For starters, here is a basic example to show how to utilize VAULT commands to w
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=V: EXAMPLE 4: Basic TEA Database Operations, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # The following examples are for using the VAULT command space
 # to read and write to the TEA DATABASE (a persistent kind of vault storage)
 # NOTE: these functions should work as is for both WEB and CLI TEA
@@ -16676,7 +16684,7 @@ And the associated source code for the reference implementation of the RSPG as r
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Random Secure Password Generator v1.2, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 v:vABOUT:{
 #####--[ RSPG v1.2 ]--#####
@@ -17341,7 +17349,7 @@ And with that background, and the specification we laid down before that, we hav
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: Fibonacci in TEA v2.1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 ####################
 Fibonacci in TEA v2.1
 ####################
@@ -17538,7 +17546,7 @@ The following example will fetch a person’s current account balance from a ban
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 1: A Simple HTTP POST - hypothetical - using dynamic URL, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #parameters needed
 v:vAC:{123456XXX} | v:vKEY:{001001} 
 # we shall build a dynamic url too using...
@@ -17591,7 +17599,7 @@ However, away from hypothetical bank APIs, the above example can be tested using
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 2: A Simple HTTP POST - real - posting specified vaults, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # parameters we'll post 
 v:vAC:{123456XXX} | v:vKEY:{001001}
 # simple clean, non-parametric static url we'll use
@@ -17661,7 +17669,7 @@ That is quite powerful, and very useful a feature to have in the language! Notic
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 3: A Simple HTTP POST - real - with no explicit parameters, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # some data in the vaults
 v:vMessage:{Hello World} | v:vSecrets:{blah blah...}
 # and some bank-specific data...
@@ -17720,7 +17728,7 @@ w*!:
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 4: A Simple HTTP POST - real - with no explicit parameters, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # some data in the vaults
 v:vMessage:{Hello World} | v:vSecrets:{blah blah...}
 # and some bank-specific data...
@@ -17794,7 +17802,7 @@ In case we have some custom headers to specify as part of the HTTP calls we wish
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 5: A Simple HTTP POST - with custom headers, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # first, set some vaults and use them to set custom http headers
 v:vTEST:hello
 v:Content-Type:text/plain
@@ -18019,7 +18027,7 @@ In such cases, TEA's \textbf{WEBIFY} command space has provided a special signat
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 6: A Simple HTTP POST - using normal Form-based POSTING, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # first, set data we'll post
 v:vDATA:{{
 "message": "hello world",
@@ -18074,7 +18082,7 @@ Whereas, if we switch to the raw-data/non-form http post method, we have the fol
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 7: A Simple HTTP POST - using non-Form-based POSTING, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # first, set data we'll post
 v:vDATA:{{
 "message": "hello world",
@@ -18128,7 +18136,7 @@ Thus, we see that, with \texttt{W*@:}, not only that the data payload is sent ve
  \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 8: A Simple HTTP POST - using non-Form-based POSTING, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # first, set data we'll post
 v:vDATA:{
 id, message
@@ -18191,7 +18199,7 @@ Next, let us look at the TEA mechanisms for making \textbf{HTTP GET requests}. T
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 9: A Simple HTTP GET - real - with no explicit parameters, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:A:123|v:vTest:{some value}|i:http://httpbin.org/get|w*:
    \end{lstlisting}
   \end{tcolorbox}
@@ -18236,7 +18244,7 @@ And then, concerning the vault-less versions of WEBIFY, we shall only look at on
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 10: A Simple HTTP GET - vault-less calls, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:https://freeipapi.com/api/json/ | w:
    \end{lstlisting}
   \end{tcolorbox}
@@ -18278,7 +18286,7 @@ For the case of using custom headers with TEA HTTP calls, the method we have alr
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 12: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # first, set some vaults and use them to set custom http headers
 v:vTEST:hello
 v:Content-Type:text/plain
@@ -18333,7 +18341,7 @@ And then, finally, concerning the case when we had to set up custom headers such
   \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=W: EXAMPLE 13: A Simple HTTP GET -  with Custom HTTP Headers, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # first, set some vaults and use them to set custom http headers
 v:vTEST:hello
 v:Content-Type:text/plain
@@ -18447,7 +18455,7 @@ The basic application is going to be called \textbf{E-MAILER}, and the essential
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: E-MAILER v1.6, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 #######################################
 v:vABOUT:{@@@@@@| E-MAILER v1.6 |@@@@@@
@@ -18853,7 +18861,7 @@ x!: & Return Half of AI. Essentially, reducing AI, and somewhat reversing the ef
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=X: EXAMPLE 1: Transforming Text into Special Formats using X:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vHEADLINE:{Interoperability Is Possible} 
 v:vAFFIX:{---} 
 x*:vAFFIX:vHEADLINE 
@@ -18870,7 +18878,7 @@ While the following does the same, using pure G-primitives:
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=X: EXAMPLE 2: Transforming Text into Special Formats using G:, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 v:vHEADLINE:{Interoperability Is Possible} 
 v:vAFFIX:{---} 
 g*:{}:vAFFIX:vHEADLINE:vAFFIX
@@ -18895,7 +18903,7 @@ Both programs should return the result
  \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=X: EXAMPLE 3: Several Mini-Programs Demonstrating Capabilities of X, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:World|x:{Hello } 
 #q!: # (=Hello World, VAULTS:{})
 i!:World|x!:{Hello } 
@@ -18956,7 +18964,7 @@ The essential source code of this TEA program is as such:
    \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: Free Dictionary | LEXICON v1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 v:vABOUT:{
 *****************************
@@ -19180,7 +19188,7 @@ With those changes made, the final program --- still able to work as is on both 
    \vspace{1em}
 
   \begin{tcolorbox}[teaterminalstyle, title=TEA Application: Free Dictionary | LEXICON v3, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 v:vABOUT:{
 *****************************
@@ -19418,7 +19426,7 @@ A useful test of the Y: facility is the following program that should greet one 
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=Y: EXAMPLE 1: Custom Greeting or Hello World, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=YEXAMP1_HW]
+  \begin{lstlisting}[language=TEA,breaklines=true,,label=YEXAMP1_HW]
 i!:What is your name?|i:|v:vNAME|v:vGREET:{Hello }|v:vG:{}|g*::vGREET:vNAME|v:vGRT|i:TEST|y:vGRT
    \end{lstlisting}
   \end{tcolorbox}
@@ -19440,7 +19448,7 @@ Thus, assuming we ran the following program earlier on...
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=EXAMPLE 2: Saving a User's Name to the TEA DATABASE, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:What is your name?|i:|v@:dNAME_USER_NAME
    \end{lstlisting}
   \end{tcolorbox}
@@ -19451,7 +19459,7 @@ We then can later run a different TEA program that fetches that stored user name
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=Y: EXAMPLE 3: Retrieving a User's Name from the TEA DATABASE, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 y@:dNAME_USER_NAME | v:vUSERNAME # fetch from database and store in vault
 
 f!:^$:lGREET
@@ -19474,7 +19482,7 @@ And as with \texttt{V!@:dNAME}, we can use \texttt{Y!@:dNAME} to return the leng
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=Y: EXAMPLE 4: Retrieving a Record's Length from the TEA DATABASE, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # store value "this is a menu" under key "MENU" in the DB
 v@:MENU:{this is a menu}
 
@@ -19499,7 +19507,7 @@ Essentially, we want to take the following basic TEA program:
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=TEA Sample Program: Draw Text Box, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # Given some text, shall return a text box drawn around it
 f!:^$:lPROCESS # don't prompt if there's already some input
 i!:Enter some text: |i:
@@ -19599,7 +19607,7 @@ Essentially, v1 of the essential (and now standard) TEA program is as follows...
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TEXT BEAUTIFIER v1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 v:vABOUT:{
 ++--------------------++
@@ -20139,7 +20147,7 @@ Z: basically makes it possible to perform some basic system programming in TEA. 
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 1: Random Numbers from Words, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # essentially, generate random numbers
 # from words/alphabetical expressions...
 
@@ -20184,7 +20192,7 @@ A slightly modified version of this program is shown below, which would take any
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 2: Numeric Expression Equivalent of Alphabetical Expressions, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 # program converts provided word to a consistent number
 # -------------------------
 # NOTE: also accepts command-line parameters (just like any TEA script)
@@ -20228,7 +20236,7 @@ Another useful demonstration is with combining use of TEA vaults with the Z-util
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 4: Obtain Custom Formatted Date/Time-stamp in TEA on the CLI, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:{+'%A %d, %b %Y'}|v:vCMD:{date}|z*:vCMD
    \end{lstlisting}
   \end{tcolorbox}
@@ -20248,7 +20256,7 @@ For those testing Z: via TEA on the WEB (where we can't readily run the same stu
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 5: Running JavaScript from TEA on the WEB, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:2|z:AI+3 
    \end{lstlisting}
   \end{tcolorbox}
@@ -20288,7 +20296,7 @@ So, to instead treat it as an integer and thus return say ``5", we should re-wri
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 6: Running JavaScript from TEA on the WEB, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:2|z:Number(AI)+3 #=5
    \end{lstlisting}
   \end{tcolorbox}
@@ -20329,7 +20337,7 @@ Running invalid JavaScript or if any exception occurs during evaluation of that 
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 7: ZAP Calls Exposing External Evaluation Errors, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:2|z:Numbers(AI)+3 # (=, VAULTS:{})
 i!:2|z!:Numbers(AI)+3  # (=[ERROR]: ReferenceError: Numbers is not defined, VAULTS:{})
    \end{lstlisting}
@@ -20344,7 +20352,7 @@ And for the case of commands held in vaults, we see the following as a good exam
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 8: ZAP Calls Referencing Commands Held in Vaults, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:2|v:vCMD:Number(AI)+3|z*:vCMD #  (=5, VAULTS:{"vCMD":"Number(AI)+3"})
    \end{lstlisting}
   \end{tcolorbox}
@@ -20358,7 +20366,7 @@ i!:2|v:vCMD:Number(AI)+3|z*:vCMD #  (=5, VAULTS:{"vCMD":"Number(AI)+3"})
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=Z: EXAMPLE 9: HACKING External Environment via TEA, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 i!:2|v:vCMD:{var R=Number(AI)+3;document.body.innerHTML += "<div style=\'color:red;\'>Hello <b>World:" + R +"</b></div>";R}|z*:vCMD
    \end{lstlisting}
   \end{tcolorbox}
@@ -20860,7 +20868,7 @@ For historical purposes, it shall be worth noting that the very first attempt at
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TOS Boot-Screen Interface, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 I!:{oooooooo_________________
 ___oo_____ooooo___ooooo__
@@ -20905,7 +20913,7 @@ Progress is being made on this project, and as of this writing, the latest compl
 {
  \Large
   \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TOS Complete Source-Code, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 #!/usr/bin/tttt -fc
 I!:{oooooooo_________________
 ___oo_____ooooo___ooooo__
@@ -21467,7 +21475,7 @@ For TEA, such a program is as follows:
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: TEA Hello World, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNHW]
+  \begin{lstlisting}[language=TEA,breaklines=true,,label=LSTLEARNHW]
 i!:Hello World
    \end{lstlisting}
   \end{tcolorbox}
@@ -21490,7 +21498,7 @@ The most basic kind of TEA statements are instructions that merely consist of ju
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Simplest TEA Statements, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 I:
    \end{lstlisting}
   \end{tcolorbox}
@@ -21563,7 +21571,7 @@ To help quickly illustrate how it all works, consider the following basic exampl
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining Demo V1, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING1]
+  \begin{lstlisting}[language=TEA,breaklines=true,,label=LSTLEARNCHAINING1]
 I:{Input At Start}
 V:vIN
 N:1000:100 
@@ -21586,7 +21594,7 @@ Moreover, even though the same program might be written differently --- such as 
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining Demo V2 (Minified), breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING2]
+  \begin{lstlisting}[language=TEA,breaklines=true,,label=LSTLEARNCHAINING2]
 I:{Input At Start}|V:vIN|N:1000:100|V:vNUMBER|Y:vIN|X!:{ + }|X*!:vNUMBER
    \end{lstlisting}
   \end{tcolorbox}
@@ -21597,7 +21605,7 @@ Or perhaps via more creative use of TEA features such as replacing the last 3 in
 \vspace{2em}
 
   \begin{tcolorbox}[teaterminalstyle, title=LEARN PROGRAMMING: Program Flow in TEA via Sequence-Transformer Chaining Demo V3, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left,label=LSTLEARNCHAINING3]
+  \begin{lstlisting}[language=TEA,breaklines=true,,label=LSTLEARNCHAINING3]
 I:{Input At Start}
 V:vIN
 N:1000:100 
@@ -21622,9 +21630,10 @@ First, here is the equivalent program in C:
 
 \vspace{2em}
 
-\begin{lstlisting}[language=C, caption={C: TEA-like sequence-transformer chaining},
+  \begin{tcolorbox}[myterminalstyle, title=C: TEA-like Sequence-Transformer Chaining Program Flow with String Template Processing]
+\begin{lstlisting}[language=C,
 backgroundcolor=\color{codebg},
-basicstyle=\ttfamily\small\color{codefg},
+basicstyle=\ttfamily\Large\color{codefg},
 commentstyle=\color{comment}\itshape,
 keywordstyle=\color{keyword}\bfseries,
 stringstyle=\color{string},
@@ -21660,6 +21669,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 \end{lstlisting}
+  \end{tcolorbox}
 
 
 
@@ -21669,9 +21679,11 @@ And then, the equivalent program in Python:
 
 \vspace{2em}
 
-\begin{lstlisting}[language=Python, caption={Python: TEA-like sequence-transformer chaining},
+
+  \begin{tcolorbox}[myterminalstyle, title=PYTHON: TEA-like Sequence-Transformer Chaining Program Flow with String Template Processing]
+\begin{lstlisting}[language=Python,
 backgroundcolor=\color{codebg},
-basicstyle=\ttfamily\small\color{codefg},
+basicstyle=\ttfamily\Large\color{codefg},
 commentstyle=\color{comment}\itshape,
 keywordstyle=\color{keyword}\bfseries,
 stringstyle=\color{string},
@@ -21693,6 +21705,7 @@ vNUMBER = random.randint(100, 1000)
 output = f"{vIN} + {vNUMBER}"
 print(output)
 \end{lstlisting}
+  \end{tcolorbox}
 
 
 \vspace{2em}
@@ -21701,9 +21714,10 @@ And then, the equivalent program in Java:
 
 \vspace{2em}
 
-\begin{lstlisting}[language=Java, caption={Java: TEA-like sequence-transformer chaining},
+  \begin{tcolorbox}[myterminalstyle, title=JAVA: TEA-like Sequence-Transformer Chaining Program Flow with String Template Processing]
+\begin{lstlisting}[language=Java,
 backgroundcolor=\color{codebg},
-basicstyle=\ttfamily\small\color{codefg},
+basicstyle=\ttfamily\Large\color{codefg},
 commentstyle=\color{comment}\itshape,
 keywordstyle=\color{keyword}\bfseries,
 stringstyle=\color{string},
@@ -21728,6 +21742,7 @@ public class TeaLike {
     }
 }
 \end{lstlisting}
+  \end{tcolorbox}
 
 
 
@@ -21741,7 +21756,8 @@ Alright, further, compare our basic illustration program from \textbf{\hyperref[
 
 \vspace{2em}
 
-\begin{lstlisting}[language=Haskell, caption={Haskell: TEA-like sequence-transformer chaining}]
+  \begin{tcolorbox}[myterminalstyle, title=HASKELL: TEA-like Sequence-Transformer Chaining Program Flow with String Template Processing]
+\begin{lstlisting}[language=Haskell,]
 -- Save as TeaLike.hs and run with: runghc TeaLike.hs [optionalInput]
 import System.Environment (getArgs)
 import System.Random (randomRIO)
@@ -21762,6 +21778,7 @@ main = do
   let output = vIN ++ " + " ++ show vNUMBER
   putStrLn output
 \end{lstlisting}
+  \end{tcolorbox}
 
 
 \vspace{2em}
@@ -21771,9 +21788,10 @@ Of course, when comparing these programs to the TEA example, note that we have d
 \vspace{2em}
 
 
-\begin{lstlisting}[language=Lisp, caption={Common Lisp: TEA-like sequence-transformer chaining},
+  \begin{tcolorbox}[myterminalstyle, title=Common LISP: TEA-like Sequence-Transformer Chaining Program Flow with String Template Processing]
+\begin{lstlisting}[language=Lisp,
 backgroundcolor=\color{codebg},
-basicstyle=\ttfamily\small\color{codefg},
+basicstyle=\ttfamily\Large\color{codefg},
 commentstyle=\color{comment}\itshape,
 keywordstyle=\color{keyword}\bfseries,
 stringstyle=\color{string},
@@ -21795,7 +21813,7 @@ showstringspaces=false,breaklines=true,frame=single]
 (when (member :script *features*)
   (main (first *posix-argv*)))
 \end{lstlisting}
-
+  \end{tcolorbox}
 
 
 \vspace{2em}
@@ -21834,7 +21852,7 @@ In many traditional languages, there are statements or instructions such as loop
 
 \vspace{2em}
   \begin{tcolorbox}[teaterminalstyle, title=Basic TEA Functions, breakable]
-  \begin{lstlisting}[language=TEA,breaklines=true,numbers=left]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
 ##--------------------------
 The following Illustration
 Helps Those Coming to TEA
