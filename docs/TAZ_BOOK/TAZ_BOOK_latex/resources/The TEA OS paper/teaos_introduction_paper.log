@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  26 MAY 2026 13:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  28 MAY 2026 17:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -939,85 +939,85 @@ red to as ``TOS",
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 200.
+(Font)              <7> on input line 202.
 
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 []\OT1/cmtt/m/n/10 The Linux kernel itself was originally designed by
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 \OT1/cmtt/m/n/10 Linus Torvalds at the University of Helsinki in Finland
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 \OT1/cmtt/m/n/10 and later developed through collaboration with countless
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 \OT1/cmtt/m/n/10 volunteers worldwide. By "kernel," we mean the core
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 \OT1/cmtt/m/n/10 of the operating system itself---not the applications
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 \OT1/cmtt/m/n/10 (such as the compiler, shells, and so forth) that run on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 \OT1/cmtt/m/n/10 it. Today, the term "Linux" is often used to mean the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
 \OT1/cmtt/m/n/10 kernel as well as the applications and complete system
- []
-
-
-Overfull \hbox (16.24866pt too wide) in paragraph at lines 260--261
-[]\OT1/cmtt/m/n/10 write FILENAME $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 write th
-e con-tents of the cur-rent avail-able input/last-
  []
 
 
 
 [3]
-Overfull \hbox (11.38603pt too wide) in paragraph at lines 262--263
+Overfull \hbox (16.24866pt too wide) in paragraph at lines 262--263
+[]\OT1/cmtt/m/n/10 write FILENAME $\OMS/cmsy/m/n/10  $ \OT1/cmr/m/n/10 write th
+e con-tents of the cur-rent avail-able input/last-
+ []
+
+
+Overfull \hbox (11.38603pt too wide) in paragraph at lines 264--265
 []\OT1/cmtt/m/n/10 (rename | rn | mv | move) FILENAME NEWNAME $\OMS/cmsy/m/n/10
   $ \OT1/cmr/m/n/10 Change the name
  []
 
 
-Overfull \hbox (19.66368pt too wide) in paragraph at lines 277--278
+Overfull \hbox (19.66368pt too wide) in paragraph at lines 279--280
 []\OT1/cmtt/m/n/10 (runnable | register | add-program) FILENAME $\OMS/cmsy/m/n/
 10  $ \OT1/cmr/m/n/10 Rec-og-nize FILE-
  []
 
 
-Overfull \hbox (8.88562pt too wide) in paragraph at lines 281--282
+
+[4]
+Overfull \hbox (8.88562pt too wide) in paragraph at lines 283--284
 []\OT1/cmtt/m/n/10 (del-prog | delete-program | unregister) FILENAME $\OMS/cmsy
 /m/n/10  $ \OT1/cmr/m/n/10 Re-vokes
  []
 
 
-Overfull \hbox (6.74847pt too wide) in paragraph at lines 282--283
+Overfull \hbox (6.74847pt too wide) in paragraph at lines 284--285
 []\OT1/cmtt/m/n/10 (update | update-program) FILE1 FILE2 $\OMS/cmsy/m/n/10  $ \
 OT1/cmr/m/n/10 Re-place/over-ride orig-
  []
 
 
-
-[4]
-Overfull \hbox (2.55258pt too wide) in paragraph at lines 284--285
+Overfull \hbox (2.55258pt too wide) in paragraph at lines 286--287
 []\OT1/cmtt/m/n/10 (help | man | whatis | info | about) PROGRAM $\OMS/cmsy/m/n/
 10  $ \OT1/cmr/m/n/10 dis-plays help
  []
@@ -1025,65 +1025,151 @@ Overfull \hbox (2.55258pt too wide) in paragraph at lines 284--285
 
 
 [5]
-Overfull \hbox (5.41388pt too wide) in paragraph at lines 331--332
+Overfull \hbox (5.41388pt too wide) in paragraph at lines 333--334
 []\OT1/cmtt/m/n/10 (help | man | whatis | info | about) NAME $\OMS/cmsy/m/n/10 
  $ \OT1/cmr/m/n/10 dis-plays help info
  []
 
 
-Overfull \hbox (17.49982pt too wide) in paragraph at lines 358--360
+Overfull \hbox (17.49982pt too wide) in paragraph at lines 360--362
 []\OT1/cmr/bx/n/10 INTERFACE Util-i-ties: \OT1/cmr/m/n/10 ac-cess com-mands tha
 t can al-ter the user-experience
  []
 
-<resources/images/proposing_teaos.jpg, id=104, 850.17625pt x 1284.8pt>
-File: resources/images/proposing_teaos.jpg Graphic file (type jpg)
-<use resources/images/proposing_teaos.jpg>
-Package pdftex.def Info: resources/images/proposing_teaos.jpg  used on input li
-ne 375.
-(pdftex.def)             Requested size: 254.75647pt x 384.99832pt.
 
 
 [6]
+<resources/images/proposing_teaos.jpg, id=132, 850.17625pt x 1284.8pt>
+File: resources/images/proposing_teaos.jpg Graphic file (type jpg)
+<use resources/images/proposing_teaos.jpg>
+Package pdftex.def Info: resources/images/proposing_teaos.jpg  used on input li
+ne 377.
+(pdftex.def)             Requested size: 218.36824pt x 330.00336pt.
+
+
+[7 <./resources/images/proposing_teaos.jpg>]
 
 pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - ARCH
 ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
 > allowed
-<resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=114, 597.19106p
+<resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=142, 597.19106p
 t x 845.07718pt>
 File: resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf Graphic file (
 type pdf)
 <use resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf>
 Package pdftex.def Info: resources/pdfs/tos/TEA Operating System - ARCHITECTURE
-.pdf  used on input line 393.
+.pdf  used on input line 395.
 (pdftex.def)             Requested size: 345.0pt x 488.198pt.
 
 
-[7 <./resources/images/proposing_teaos.jpg>]
+[8]
 
-[8 <./resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf>]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 401.
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 403.
-
-
-[9]
+[9 <./resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf>]
 
 [10]
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-512.
- (C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd
-File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
+Underfull \hbox (badness 10000) in paragraph at lines 435--435
+[]|\OT1/cmr/bx/n/10 Hardware con-
+ []
+
+
+Underfull \hbox (badness 1895) in paragraph at lines 436--436
+[]|\OT1/cmr/bx/n/10 CPU schedul-ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 436--436
+[]|\OT1/cmr/m/n/10 Preemptive schedul-ing;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 436--436
+[]|\OT1/cmr/m/n/10 Cooperative or
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 436--436
+\OT1/cmr/m/n/10 single[]threaded within
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
+[]|\OT1/cmr/bx/n/10 Memory man-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 437--437
+\OT1/cmr/bx/n/10 age-ment and
+ []
+
+
+Underfull \hbox (badness 3118) in paragraph at lines 437--437
+[]|\OT1/cmr/m/n/10 Virtual mem-ory; iso-la-
+ []
+
+
+Underfull \hbox (badness 2744) in paragraph at lines 437--437
+[]|\OT1/cmr/m/n/10 Managed by host run-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--438
+[]|\OT1/cmr/bx/n/10 System call /
+ []
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 438--438
+[]|\OT1/cmr/m/n/10 High[]level API ex-posed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
+[]|\OT1/cmr/m/n/10 Bootloader; ker-nel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--440
+[]|\OT1/cmr/m/n/10 Often ker-nel or
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--441
+[]|\OT1/cmr/bx/n/10 Security and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 442--442
+[]|\OT1/cmr/bx/n/10 Extensibility
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 443--443
+[]|\OT1/cmr/bx/n/10 Portability tar-
+ []
+
+
+Overfull \hbox (2.29788pt too wide) in paragraph at lines 432--445
+ [][] 
+ []
+
+
 
 [11]
 
 [12]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 481.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <9> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 483.
+
 
 [13]
 
 [14]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+592.
+ (C:\Program Files\MiKTeX\tex/latex/base\ts1cmtt.fd
+File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
 
 [15]
 
@@ -1154,13 +1240,21 @@ File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 [48]
 
 [49]
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 2330--2331
+
+[50]
+
+[51]
+
+[52]
+
+[53]
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 2410--2411
 []$\OT1/cmtt/m/n/10 https : / / tea . nuchwezi . com / ?fc = https : / / gist .
  githubusercontent . com / mcnemesis /
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 2330--2331
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 2410--2411
 \OT1/cmtt/m/n/10 276b40c96b52f846bf11214419912e3f / raw / &i = Please + Click +
  Run + In + Case + It +
  []
@@ -1170,41 +1264,41 @@ Overfull \hbox (11.99689pt too wide) in paragraph at lines 2330--2331
 
 (teaos_introduction_paper.listing)
 
-[50]
-
-[51]
-
-[52]
-
-[53]
-
 [54]
 
 [55]
 
 [56]
 
-[57] (teaos_introduction_paper.bbl
+[57]
 
-[58])
+[58]
 
-[59] (teaos_introduction_paper.aux)
+[59]
+
+[60]
+
+[61]
+
+[62] (teaos_introduction_paper.bbl)
+
+[63] (teaos_introduction_paper.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-07-20>
  ***********
 Package rerunfilecheck Info: File `teaos_introduction_paper.out' has not change
 d.
-(rerunfilecheck)             Checksum: 40187355C9497D27277D6F1B2203940D;1148.
+(rerunfilecheck)             Checksum: 6A9F91CFD5A170301A53312B959263AC;2597.
  ) 
 Here is how much of TeX's memory you used:
- 32177 strings out of 473898
- 619864 string characters out of 5736297
- 2531960 words of memory out of 5000000
- 52278 multiletter control sequences out of 15000+600000
- 565667 words of font info for 63 fonts, out of 8000000 for 9000
+ 32211 strings out of 473898
+ 620387 string characters out of 5736297
+ 2530960 words of memory out of 5000000
+ 52293 multiletter control sequences out of 15000+600000
+ 566283 words of font info for 65 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,12n,101p,1590b,2073s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 98i,12n,101p,1590b,2075s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1
 000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 tctt0900.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
@@ -1212,22 +1306,23 @@ i600\tcrm1000.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
 ec/dpi600\tcrm0600.pk> <C:\Users\AKAM\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
 ppen/ec/dpi600\tcrm0800.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.p
-fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Progra
-m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pf
-b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program 
-Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/f
-onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/p
-ublic/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
-ts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12
-.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Prog
-ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Program Files/MiK
-TeX/fonts/type1/public/amsfonts/latxfont/lcircle1.pfb>
-Output written on teaos_introduction_paper.pdf (59 pages, 949720 bytes).
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Program Files/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program
+ Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmti10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.
+pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/Prog
+ram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Program Files/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmtt9.pfb><C:/Program Files/MiKTeX/fonts/typ
+e1/public/amsfonts/latxfont/lcircle1.pfb>
+Output written on teaos_introduction_paper.pdf (63 pages, 987606 bytes).
 PDF statistics:
- 3155 PDF objects out of 3580 (max. 8388607)
- 2296 named destinations out of 2487 (max. 500000)
- 85 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3229 PDF objects out of 3580 (max. 8388607)
+ 2314 named destinations out of 2487 (max. 500000)
+ 125 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -183,10 +183,10 @@
 \maketitle
 
 \begin{abstract}
-This paper briefly introduces the TEA Operating System (TEA OS), a compact software operating environment built to demonstrate the sequence transformer chaining paradigm embodied by the TEA language. TEA OS packages a minimal shell, a set of core utilities for doing math, TEA programming and web I/O, as well as a robust, directory-less persistence layer in form of a file system that has a suite of file I/O commands familiar to users of Linux, Unix and MS-DOS. We present a preserved verbatim source listing of the current (v1.1.0) system implementation in the TEA language. To illustrate usage and pedagogy, the paper includes an introductory note, the complete source code listing, and a sample interactive session dump showing a user driving the TEA shell. Given that the TEA OS is currently shipped alongside the TEA language as part of the standard TEA package and programs, it is hoped that those evaluating the usability, relevance and power of TEA programming can leverage this example general case to truly come to appreciate the innovation in the language known as the Transforming Executable Alphabet (TEA).
+This paper briefly introduces the TEA Operating System (TEA OS); a compact software operating environment runtime built on top of and leveraging the Transforming Executable Alphabet programming language. TEA OS packages a minimal shell, a set of core utilities for doing math, TEA programming and web I/O, as well as a robust, directory-less persistence layer in form of a file system that has a suite of file I/O commands familiar to users of Linux, Unix and MS-DOS. TEA OS intentionally targets userland portability rather than traditional kernel responsibilities, a distinction we clarify and formalize in this paper. We present a preserved verbatim source listing of the current (v1.1.0) system implementation in the TEA language. To illustrate usage and pedagogy, the paper includes an introductory note, the complete source code listing, and a sample interactive session dump showing a user driving the TEA shell. Given that the TEA OS is currently shipped alongside the TEA language as part of the standard TEA package and programs, it is hoped that those evaluating the usability, relevance and power of TEA programming can leverage this example general case to truly come to appreciate the innovation in the language known as the Transforming Executable Alphabet (TEA).
 \end{abstract}
 
-\textbf{Keywords:} TEA; sequence transformer chaining; minimal operating system; textual pipelines; reproducible code; preprint; source listing
+\textbf{Keywords:} Transforming Executable Alhabet, TEA, Applying TEA, Minimal Operating System, Text-Processing; Software Operating Environments, Preprint, Source Code.
 
 \section{Introduction}
 
@@ -195,9 +195,11 @@ Considering all the potential ways a [general-purpose] programming language migh
 
 The TEA Operating System (TEA OS), also sometimes referred to as ``TOS", is a software operating environment (SOE) \cite{lutalo2023dnapsoe} meant to allow for more than just writing, storing and running [TEA] programs; it allows for the writing and evaluation of mathematical expressions; fetching, saving, processing, and presentation of web-based/network-accessible resources; as well as ready access-to a user-aware, extensible and minimal, self-documenting shell known as the TEA OS Shell (perhaps better we start calling it ``TOSH" to keep with traditional shell-naming conventions). 
 
+It shall be worth noting that TEA OS was designed with a different set of assumptions than conventional operating systems: rather than assuming privileged hardware access and low‑level languages, TEA OS assumes a TEA runtime baseline and prioritizes minimalism and portability.  This design enables TEA OS to be expressed compactly and to run in environments such as web browsers without a virtual machine; it also means that TEA OS should be read as a userland runtime and service stack unless explicitly extended with kernel‑level primitives.
+
 The complete design, justification, specification and demonstrations of the current TEA OS implementation are already well covered in the relevant chapter in the TEA language manual \cite{Lutalo2024TEATAZ}. We shall not waste time and space reproducing those bits here then. However, it should be worth noting that, from the onset, the design of TEA OS was without doubt inspired by its inventor's awareness of the ideas underlying popular traditional mainstream operating systems such as Unix, Linux and the currently almost defunct MS-DOS.
 
-Next, we are going to consider the initial, complete specification of the TEA OS in \textbf{\hyperref[SECTOSSPEC]{Section \ref{SECTOSSPEC}}} as first laid down in \cite{Lutalo2024TEATAZ}. We shall consider the TEA OS architecture in \textbf{\hyperref[SECTOSARCH]{Section \ref{SECTOSARCH}}}. \textbf{\hyperref[SECTOSSRC]{Section \ref{SECTOSSRC}}} presents the verbatim form of the complete source code of \textbf{TEA OS v1.1.0} also which can be found in its original, but also up-to-date form via \url{https://bit.ly/run_teaos}, and then we shall reproduce a note originally introducing v1.1.0 of the OS in \textbf{\hyperref[SECTOSIntro]{Section \ref{SECTOSIntro}}}, as well as a verbatim session dump --- exported from the associated TOSH in \textbf{\hyperref[SECTOSDump]{Section \ref{SECTOSDump}}}. We then conclude in \textbf{\hyperref[SECTOSConc]{Section \ref{SECTOSConc}}} with key observations made as well as what the potential future directions are.
+Next, we are going to consider the initial, complete specification of the TEA OS in \textbf{\hyperref[SECTOSSPEC]{Section \ref{SECTOSSPEC}}} as first laid down in \cite{Lutalo2024TEATAZ}. We shall consider the TEA OS architecture in \textbf{\hyperref[SECTOSARCH]{Section \ref{SECTOSARCH}}}, and shall discuss how TEA OS relates to, differs from traditional operating system kernels in \textbf{\hyperref[sec:kernel-contrast]{Section \ref{sec:kernel-contrast}}}. \textbf{\hyperref[SECTOSSRC]{Section \ref{SECTOSSRC}}} presents the verbatim form of the complete source code of \textbf{TEA OS v1.1.0} also which can be found in its original, but also up-to-date form via \url{https://bit.ly/run_teaos}, and then we shall reproduce a note originally introducing v1.1.0 of the OS in \textbf{\hyperref[SECTOSIntro]{Section \ref{SECTOSIntro}}}, as well as a verbatim session dump --- exported from the associated TOSH in \textbf{\hyperref[SECTOSDump]{Section \ref{SECTOSDump}}}. We then conclude in \textbf{\hyperref[SECTOSConc]{Section \ref{SECTOSConc}}} with key observations made as well as what the potential future directions are.
 
 
 
@@ -369,10 +371,10 @@ After working on and testing the initial prototypes of the TEA OS, it was establ
 
 And thus, the plan is now officially underway... to manifest an new operating system based on TEA!
 
-\begin{figure}[H]
+\begin{figure}[htp]
   \begin{center}
   %\includegraphics[trim=2cm 8cm 2cm 8cm, clip, width=0.9\textwidth,]{resources/pdfs/ProteinSynthesisStateMachine.pdf}\\
-   \includegraphics[height=0.7\textheight,]{resources/images/proposing_teaos.jpg}\\
+   \includegraphics[height=0.6\textheight,]{resources/images/proposing_teaos.jpg}\\
    \caption{\textbf{A Hacker's Dream Come True?} The proposal to bring to life a \textbf{TEA Operating System}!}
   \label{FIGTEAOSPROPOSAL}
   \end{center}
@@ -391,6 +393,84 @@ The link depicted in \textbf{\hyperref[FIGTEAOSPROPOSAL]{Figure \ref{FIGTEAOSPRO
 
 %\includegraphics[trim=LEFT BOTTOM RIGHT TOP, clip,...
 \includegraphics[trim=0cm 0cm 0cm 0cm, clip, width=\textwidth]{resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf}
+
+
+\section{Contrasting TEA OS Architecture with Traditional Kernel‑Centric Operating Systems}
+\label{sec:kernel-contrast}
+
+This section situates the TEA OS design presented in \textbf{\hyperref[SECTOSARCH]{Section \ref{SECTOSARCH}}} within the broader taxonomy of operating systems\cite{arpacidusseau2018ostep} and explains, in concrete technical terms, how TEA OS differs from a traditional kernel‑centric implementation.  The TEA OS was intentionally designed as a \textbf{minimal, portable runtime and service stack} --- the TEA OS source (which we shall come to in ), explicitly mentions the inventor's intentions as:
+
+\vspace{1em}
+\begin{table}[ht]
+  \centering
+  \caption{TEA OS's inventor concerning the intended TEA OS core design}
+  % scale table to 80% of text width
+  \begin{tabular}{|p{0.8\textwidth}}
+
+    \textit{a true general purpose, lightweight, minimal but powerful operating system that can essentially just fit inside a single string} \\
+
+  \end{tabular}
+\end{table}
+\vspace{1em}
+
+
+It should be worth noting that final aspect... ``that fits inside a string", because it shall without doubt explain why and how it is that the reference implementation of the TEA operating system is currently being shipped alongside other \textit{standard} TEA programs\cite{lutalo_2026_teapaper_zenodo} that essentially are loadable into the TEA WEB IDE via a mere JSON payload! 
+
+Further, note that it was originally intended that the OS should be able to run wherever the TEA runtime baseline is available (including directly in web browsers as already mentioned).  That design goal drives a set of architectural tradeoffs that depart from the assumptions and responsibilities normally associated with an OS kernel.
+
+\subsection{High‑level Summary of Intent}
+
+TEA OS is a compact, self‑contained runtime (also what, in the terminology of Lutalo et al. we might technically refer to as a \textit{software operating environment} \cite{lutalo2023dnapsoe}) that exposes five core capabilities: a \textbf{file system}, a \textbf{utility system}, a \textbf{help system}, a \textbf{programming system}, and a \textbf{UI system}.  Interaction is primarily through a shell that supports the TEA language interpreter(s) and user‑extensible commands.  The project deliberately targets portability and minimalism: TEA OS assumes the presence of a TEA runtime rather than privileged hardware access, and it is implemented in a high‑level language designed to be more compact and portable than mainstream scripting or programming languages \cite{Lutalo2024TEATAZ}\footnote{Also refer to \textbf{Appendix A} on ``Fundamentals of Programming via TEA" as laid down in \cite{Lutalo2024TEATAZ}.}.  As a consequence, TEA OS can execute in environments where traditional kernels cannot (for example, directly inside a web browser without a virtual machine).
+
+\subsection{Core Differences: Responsibilities and Assumptions}
+
+The following table summarizes the most relevant technical attributes and contrasts TEA OS against the canonical responsibilities of a traditional kernel.  Each cell is a concise statement of whether the capability is typically a kernel responsibility and whether TEA OS implements it in its current form.
+
+\begin{table}[h]
+\centering
+%\begin{tabular}{|l|l|l|}
+\begin{tabular}{>{\bfseries}m{0.25\linewidth} | m{0.325\linewidth} | m{0.325\linewidth}} % 3 columns, 
+\hline
+\textbf{Attribute} & \textbf{Typical Kernel} & \textbf{TEA OS (current)} \\ \hline
+Hardware control and drivers & Direct device drivers; interrupt handling & Not implemented; relies on host runtime I/O \\ \hline
+CPU scheduling and multitasking & Preemptive scheduling; context switching & Cooperative or single‑threaded within TEA runtime \\ \hline
+Memory management and protection & Virtual memory; isolation; MMU use & Managed by host runtime; no low‑level protection \\ \hline
+System call / syscall interface & Privileged syscall boundary & High‑level API exposed by TEA runtime \\ \hline
+Boot and initialization & Bootloader; kernel startup & TEA program initialization within host runtime \\ \hline
+File system & Often kernel or kernel‑assisted & Implemented as a TEA file subsystem (userland) \\ \hline
+Security and privilege separation & Kernel enforces privileges & Relies on host sandboxing and TEA runtime \\ \hline
+Extensibility (user commands) & Usually userland shells & Native: shell + TEA interpreters for extensions \\ \hline
+Portability target & Hardware/ISA specific & Portable across TEA runtimes and browsers \\ \hline
+\end{tabular}
+\caption{Checklist contrasting typical kernel responsibilities with TEA OS design.}
+\label{tab:kernel-checklist}
+\end{table}
+
+\subsection{Architectural Implications}
+
+\paragraph{Privilege and Trust Model.} Traditional kernels operate in a privileged CPU mode and mediate access to hardware and shared resources \cite{arpacidusseau2018ostep, kain1999advanced}. TEA OS, by contrast, is designed to run in an unprivileged environment provided by the TEA runtime \cite{Lutalo2024TEATAZ}. This shifts the trust boundary: TEA OS trusts the host runtime (and the host environment, e.g., the browser) to provide isolation, I/O, and resource accounting. The practical implication is that TEA OS cannot, in its present form, enforce hardware‑level isolation or implement mandatory access control independent of the host.
+
+\paragraph{Portability and Minimality.} Because TEA OS targets a high‑level runtime, it attains portability across platforms that implement the TEA baseline. This is a deliberate tradeoff: TEA OS sacrifices direct hardware control and low‑level performance optimizations in exchange for extreme portability and compactness. The design goal of ``fitting inside a string" and running without a VM is a distinguishing feature that enables deployment scenarios (e.g., in‑browser shells, embedded documentation with runnable OS examples) that traditional kernels cannot match.
+
+\paragraph{Service Placement and Layering.} TEA OS places many services that would traditionally be split between kernel and userland entirely in the TEA userland layer (file system abstraction, utilities, help, programming environment, UI). This simplifies the kernel model (there is effectively no kernel in the traditional sense) but increases the responsibility of the TEA runtime and the host to provide secure, deterministic primitives.
+
+\subsection{When can TEA OS be called a Kernel?}
+
+The term \emph{kernel} is meaningful only relative to a set of responsibilities \cite{copilot_assistant}.  If we wished to claim that TEA OS is a kernel, then we would be ``conventionally" tasked to explicitly document or explain which of the canonical kernel responsibilities the TEA OS implements.  Below is a practical checklist of items that, if implemented and documented, would justify calling TEA OS a \textbf{kernel} in the conventional sense:
+
+\begin{itemize}
+  \item \textbf{Boot and initialization:} a documented boot sequence that initializes hardware or a hardware abstraction layer.
+  \item \textbf{Device drivers and I/O:} drivers or a driver framework that directly manage devices or a well‑specified hardware abstraction layer.
+  \item \textbf{Interrupt handling:} mechanisms to receive and dispatch hardware interrupts or their equivalents.
+  \item \textbf{Memory management:} support for memory allocation with protection boundaries (virtual memory or equivalent isolation).
+  \item \textbf{Process scheduling:} preemptive multitasking or a scheduler that arbitrates CPU among isolated processes/threads.
+  \item \textbf{System call interface:} a privileged boundary and syscall ABI for user programs to request kernel services.
+  \item \textbf{Privilege separation and security:} enforcement of privilege levels and resource quotas independent of the host runtime.
+  \item \textbf{Persistence and storage drivers:} direct control or well‑specified management of persistent storage devices.
+\end{itemize}
+
+If TEA OS implements a substantial subset of these items (and documents the mechanisms and guarantees), it would then be reasonable to describe it as a kernel or as a kernel‑like runtime \cite{copilot_assistant}. However, since it currently does not, we shall currently be satisfied with the more accurate description of the TEA OS as a \textbf{minimal OS runtime and service stack}, as a ``technology platform", or as a userland \textbf{software operating environment} built on top of the TEA runtime.
+
 
 
 \section{TEA OS v1.1.0 source}
@@ -2641,7 +2721,10 @@ Thanks for Using TEA OS v1.1.0
 \section{Conclusion}
 \label{SECTOSConc}
 
-The Transforming Executable Alphabet has made possible the implementation of a minimal, lightweight, portable and feature-complete software operating environment known as the TEA OS or TOS. We have covered highlights of TOS v1.1.0 in this paper, including looking at the underlying system architecture, the complete verbatim source-code of ``the operating system that can fit inside of a single string", as well as looked at a sample session dump exported from TOSH. The future is very bright! Given TOS can be run without the need for any traditional virtualization technologies such as VirtualBox, Hypervisor, ISOs, etc. It means that one can indeed leverage TEA OS to not only learn how to work inside a standard minimal (terminal-UI operating system), but also that, work typically heavy to carry around even for so-called lightweight operating systems such as Minix, Linux-on-A-Stick/USB, etc, cannot readily rival the ease with which one can create, update, run, post, pull, and export files as well as programs using the TEA operating system from the most unusual of places --- inside a web browser, on a typical mobile phone/smartphone! Further work concerning informing the world (both in academia, but also the industry) about what has been accomplished with TEA, but also the TEA OS is much needed, however, and without doubt, the future, or what some used to think of as ``the future", is indeed, finally, already here!
+The Transforming Executable Alphabet has made possible the implementation of a minimal, lightweight, portable and feature-complete software operating environment known as the TEA OS or TOS. TEA OS demonstrates that a compact, high‑level runtime and service stack can provide many of the conveniences of an operating system while remaining extremely portable and runnable in environments where traditional kernels cannot [readily] operate.  We characterize TEA OS as a minimal OS runtime rather than a conventional kernel; extending it to full kernel status would require adding low‑level primitives (boot, drivers, memory protection, scheduling) or a small privileged shim, a direction we identify as future work in case the need should arise, but otherwise which, based on the design and original intentions of TOS, we might not have to worry about.
+
+We have covered highlights of TOS v1.1.0 in this paper, including looking at the underlying system architecture, the complete verbatim source-code of ``the operating system that can fit inside of a single string", as well as looked at a sample session dump exported from TOSH. The future is very bright! Given TOS can be run without the need for any traditional virtualization technologies such as VirtualBox, Hypervisor, ISOs, etc. It means that one can indeed leverage TEA OS to not only learn how to work inside a standard minimal (terminal-UI operating system), but also that, work typically heavy to carry around even for so-called lightweight operating systems such as Minix, Linux-on-A-Stick/USB, etc, cannot readily rival the ease with which one can create, update, run, post, pull, and export files as well as programs using the TEA operating system from the most unusual of places --- inside a web browser, on a typical mobile phone/smartphone! Further work concerning informing the world (both in academia, but also the industry) about what has been accomplished with TEA, but also the TEA OS is much needed, however, and without doubt, the future, or what some used to think of as ``the future", is indeed, finally, already here!
+
 
 \bibliographystyle{unsrt}
 \bibliography{references}
