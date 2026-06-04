@@ -186,12 +186,12 @@
 This paper briefly introduces the TEA Operating System (TEA OS); a compact software operating environment runtime built on top of and leveraging the Transforming Executable Alphabet programming language. TEA OS packages a minimal shell, a set of core utilities for doing math, TEA programming and web I/O, as well as a robust, directory-less persistence layer in form of a file system that has a suite of file I/O commands familiar to users of Linux, Unix and MS-DOS. TEA OS intentionally targets userland portability rather than traditional kernel responsibilities, a distinction we clarify and formalize in this paper. We present a preserved verbatim source listing of the current (v1.1.0) system implementation in the TEA language. To illustrate usage and pedagogy, the paper includes an introductory note, the complete source code listing, and a sample interactive session dump showing a user driving the TEA shell. Given that the TEA OS is currently shipped alongside the TEA language as part of the standard TEA package and programs, it is hoped that those evaluating the usability, relevance and power of TEA programming can leverage this example general case to truly come to appreciate the innovation in the language known as the Transforming Executable Alphabet (TEA).
 \end{abstract}
 
-\textbf{Keywords:} Transforming Executable Alhabet, TEA, Applying TEA, Minimal Operating System, Text-Processing; Software Operating Environments, Preprint, Source Code.
+\textbf{Keywords:} Transforming Executable Alphabet, TEA, Applying TEA, Minimal Operating System, Text-Processing; Software Operating Environments, Preprint, Source Code.
 
 \section{Introduction}
 
 
-Considering all the potential ways a [general-purpose] programming language might be utilized, realizing an operating system is among the most critically important ends one might consider \cite{Lutalo2024TEATAZ}. Having already finished introducing the world to the Transforming Executable Alphabet (TEA) language in \cite{lutalo_2026_teapaper_zenodo}, it is indeed necessary to go ahead and likewise formally introduce some of the special cases it has been well applied to.
+Considering all the potential ways a [general-purpose] programming language might be utilized, realizing an operating system is among the most critically important ends one might consider \cite{Lutalo2024TEATAZ}. Having already finished introducing the world to the Transforming Executable Alphabet (TEA) language in \cite{Lutalo2026TEA}, it is indeed necessary to go ahead and likewise formally introduce some of the special cases it has been well applied to.
 
 The TEA Operating System (TEA OS), also sometimes referred to as ``TOS", is a software operating environment (SOE) \cite{lutalo2023dnapsoe} meant to allow for more than just writing, storing and running [TEA] programs; it allows for the writing and evaluation of mathematical expressions; fetching, saving, processing, and presentation of web-based/network-accessible resources; as well as ready access-to a user-aware, extensible and minimal, self-documenting shell known as the TEA OS Shell (perhaps better we start calling it ``TOSH" to keep with traditional shell-naming conventions). 
 
@@ -414,7 +414,7 @@ This section situates the TEA OS design presented in \textbf{\hyperref[SECTOSARC
 \vspace{1em}
 
 
-It should be worth noting that final aspect... ``that fits inside a string", because it shall without doubt explain why and how it is that the reference implementation of the TEA operating system is currently being shipped alongside other \textit{standard} TEA programs\cite{lutalo_2026_teapaper_zenodo} that essentially are loadable into the TEA WEB IDE via a mere JSON payload! 
+It should be worth noting that final aspect... ``that fits inside a string", because it shall without doubt explain why and how it is that the reference implementation of the TEA operating system is currently being shipped alongside other \textit{standard} TEA programs\cite{Lutalo2026TEA} that essentially are loadable into the TEA WEB IDE via a mere JSON payload! 
 
 Further, note that it was originally intended that the OS should be able to run wherever the TEA runtime baseline is available (including directly in web browsers as already mentioned).  That design goal drives a set of architectural tradeoffs that depart from the assumptions and responsibilities normally associated with an OS kernel.
 

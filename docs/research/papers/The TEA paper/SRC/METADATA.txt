@@ -1,0 +1,56 @@
+PAPER: 
+
+TEA: Transforming Executable Alphabet - A Minimal Language Leveraging Sequence Transformer Chaining
+
+ABSTRACT:
+
+Computers are abstractions that help humans solve problems via other abstractions known as software programs, which are implemented using other abstractions known as software languages. Programming languages happen to be just one aspect of software languages; others include domain specific languages, modeling languages, markup, design, specification, query and scripting languages among several other language categories worth noting. We introduce the Transforming Executable Alphabet (TEA); a compact, general-purpose programming language designed around a \emph{sequence-transformer-chaining} paradigm and optimized for problem solving via text-processing. TEA's instruction set is intentionally minimal: the 26 Latin letters form the core commands, optionally qualified by a small set of symbols, producing a bounded global command space that enables concise programs, easy memorization, and powerful composition. TEA has been implemented as an interpreted language across platforms (using Python and JavaScript transpilers), supports embedded persistent storage, web client primitives, processing mathematics, and a rich text-processing standard library. We present the language design, formal semantics for instruction chaining, implementation strategies, representative applications (40+ sample programs), and an evaluation of its expressiveness, concision, and cross-platform performance. We conclude with a discussion of TEA's potential roles in education, low-resource mobile programming, domain-specific sequence analysis, and wrap-up with a brief review of other language research projects related to or which have motivated work on TEA.
+
+KEYWORDS:
+
+Language Engineering, Alphabet-based Languages, Language Semantics, Cross-Platform Development, Applied Transformatics
+
+
+DOI: https://doi.org/10.5281/zenodo.20094948
+
+
+CITE:
+
+Lutalo, J. W. (2026). TEA: Transforming Executable Alphabet -A Minimal Language Leveraging Sequence Transformer Chaining. Zenodo. https://doi.org/10.5281/zenodo.20094948
+
+
+@misc{lutalo_2026_20094948,
+  author       = {Lutalo, Joseph Willrich},
+  title        = {TEA: Transforming Executable Alphabet -A Minimal
+                   Language Leveraging Sequence Transformer Chaining
+                  },
+  month        = may,
+  year         = 2026,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.20094948},
+  url          = {https://doi.org/10.5281/zenodo.20094948},
+}
+
+------------
+
+OPTION 2:
+
+LINK: https://engrxiv.org/preprint/view/7185
+
+DOI: https://doi.org/10.31224/7185
+
+CITE: 
+
+Lutalo, J. W. (2026). TEA: Transforming executable alphabet - A minimal language leveraging sequence transformer chaining. Preprints. https://doi.org/10.31224/7185
+
+BIBTEX:
+
+@misc{Lutalo2026TEA,
+  author       = {Joseph Willrich Lutalo},
+  title        = {TEA: Transforming Executable Alphabet - A Minimal Language Leveraging Sequence Transformer Chaining},
+  year         = {2026},
+  howpublished = {Preprints, EngrXiv},
+  doi          = {10.31224/7185},
+  url          = {https://doi.org/10.31224/7185},
+  note	       = {\url{https://doi.org/10.31224/7185}},
+}
