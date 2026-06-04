@@ -1,6 +1,8 @@
 #!/usr/bin/tttt -fc
+v:vVERSION:{v1.0.9}
+v:vRANK:{-----[☆☆☆☆☆☆]-----}
 #----------------------------------------------|
-# ZHA: Zee Hacker Assistant (v.1.0.8) | APR,'26
+# ZHA: Zee Hacker Assistant | JUN,'26
 #----------------------------------------------|
 # based off of TEAPAT: TEA Personal AssistanT:
 # REF: doi.org/10.20944/preprints202502.1849.v1
@@ -17,20 +19,22 @@ v:vLOG:{} # hold chat history..
 v:vDELIM:{
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 }
+v:vNL:{
+}
+v:vUSERPREFIX:{I: }
 
 #show welcome message
-v:vWELCOME:"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-■■■■■ *:{~} ZHA v1.0.8 ■■■■■■■
+R@:"■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+■■■■■ *:{~} ZHA #vVERSION# ■■■■■■■
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 welcome to the future of chat_
 u'll specify who to talk to
 or default input shall be used.
-■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"
+■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"|v:vWELCOME
 y:vWELCOME | i:
 
 # update chat history..
-y:vLOG | x!:{
-} | x*!:vWELCOME | v:vLOG
+g*:{}:vLOG:vWELCOME | v:vLOG
 
 # use externally set name?
 y*: | t!.: | d!:{^.{1,10}} # only use first 10 chars
@@ -53,9 +57,7 @@ i!:{Who do u wish to talk to? } | v:vPROMPT |i:
 v:vUSERPANAME # user's entity name
 
 # update chat history..
-y:vLOG | x!:{
-
-} | x*!:vPROMPT | v:vLOG
+g*:{}:vLOG:vNL:vNL:vPROMPT | v:vLOG
 
 y:vUSERPANAME 
 g:| t!.: #clean it up then test...
@@ -68,15 +70,14 @@ l:lNOSET | y:vTEMPPANAME | v:vPANAME # evoke invoker's entity
 l:lRULES # show instructions
 
 # update chat history..
-y:vLOG | x!:{
-} | x*!:vPANAME | v:vLOG
+g*:{}:vLOG:vNL:vPANAME | v:vLOG
 
 i!:{At any time, reply with 'bye' to quit
 }| v:vPROMPT |i:
 
 # update chat history..
-y:vLOG | x!:{
-} | x*!:vPROMPT | x*!:vDELIM | v:vLOG
+g*:{}:vNL:vPROMPT:vDELIM 
+x*:vLOG | v:vLOG
 
 #---[CHECK: showing off TEA functions next...]
 ## A Prompt Generating Function
@@ -129,7 +130,7 @@ v:vGenQuestion
 l:lPROMPT # prompt, get answer, process
 
 e*:vPromptGenerator | v:vPROMPT # generate and store..
-g*:{ }:vPANAME:vPROMPT | v:vPAPROMPT
+g*:{}:vPANAME:vPROMPT | v:vPAPROMPT
 
 l:lDisplayPROMPT
 
@@ -139,9 +140,9 @@ y:vLOG | x!:{
 
 y:vPAPROMPT | i: | v:vUSERRESP
 
-# update chat history..
-y:vLOG | x!:{
-} | x*!:vUSERRESP| v:vLOG
+# update chat history.. 
+g*:{}:vNL:vUSERPREFIX:vUSERRESP:vNL
+x*:vLOG | v:vLOG
 
 # check: should we quit?
 y:vUSERRESP |z:| 
@@ -152,4 +153,4 @@ f:^bye$:lQUIT
 # quiting gracefully...
 l:lQUIT
 # ends with returning chat history to user...
-y:vLOG | q!: 
+G*!:vNL:vLOG:vRANK | q!: 
