@@ -920,6 +920,7 @@ Where TOL is a \textbf{TEA Opaque Line}---essentially a line in a TEA program th
 
 
 \section{TEA Language Processor}
+\label{SECTEAPROCESSOR}
 
 
 Generally, one might appreciate the simplicity of parsing, validating and then executing TEA program source code by studying the TEA execution process as depicted in the flowchart in  \textbf{\autoref{FIGTEAEXECPROCESS}}:
@@ -8724,6 +8725,7 @@ That surely can compel any demons, bad spirits, monsters or nightmares to readil
 	\textbf{NAME} & \texttt{NUMBER}\\
 	\hline
 	\textbf{Purpose} & \begin{enumerate}
+	\item Generate a Random Digit
 	\item Generate a Random Number using some criteria.
 	\item Reading Entropy.
 	\item Creating Information/Data \textit{Ex Nihilo}.
@@ -8751,7 +8753,7 @@ That surely can compel any demons, bad spirits, monsters or nightmares to readil
 \textbf{\makecell[l]{INSTRUCTION\\ SIGNATURE}} & \textbf{INSTRUCTION FUNCTION} \\
 \hline
 
-n: & Return a random pure number\cite{Lutalo2024gtnc} n in the range (0, 9) inclusive\\
+n: & Return a random pure number\cite{Lutalo2024gtnc} n in the range (0, 9) inclusive. Essentially, generate a \textbf{Random Digit}.\\
 
 \rowcolor{lightgray}\bfseries \makecell[l]{ n:N1:N2:N3:GLUE\\n:LIMIT:LLIMIT:SIZE:GLUE
  } & \makecell[l]{Same as \texttt{n:}, but using range (0,LIMIT) or rather \texttt{n:} invoked\\with arguments behaves as such:\\The first argument, $N1$ sets the upper limit,\\so that the number generated is from the range $0 <= n < N1$\\With the second argument too, we also control the lower limit\\so that the number generated lies in the range\\$N2 <= n < N1$\\The third argument tells the n: command to return utmost $N3$ (SIZE)\\numbers in the specified range. Finally, the last argument,\\ \textbf{GLUE}, specifies how to glue the generated numbers.\\By default, the glue used is the\\\textbf{SINGLE SPACE CHARACTER}.}\\
@@ -20997,6 +20999,7 @@ L:lSYS_SHELL_END
 
 
 \subsubsection{SOURCE CODE: TEA OS Reference Implementation}
+\label{TEAOSSRC}
 
 As of this moment, the TEA OS reference implementation, currently at \textbf{v1.1.0}, has the following source-code implementing the complete specification (4 sub-sysyems; help, file, util and programming and the extra ui subsystem not originally part of the TOS architecture) as depicted in \textbf{\hyperref[SECTOSSPEC]{Section \ref{SECTOSSPEC}}}.
 
@@ -21344,6 +21347,16 @@ We have covered sufficient material to help anyone coming to \textbf{TEA}, to be
 \label{APPEFUNDAMENTALS}
 
 
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[trim=0cm 0cm 0cm 0cm, clip, width=0.9\textwidth,]{resources/images/tea_prog_matching.jpg}\\
+   \caption{Another BCA (Blackboard Computing Adventures) session concerning \textbf{Testing One's Knowledge of TEA Program Processing and Semantics} via prompting the student to correctly match 8 mini TEA programs to 8 randomized corresponding outputs given the basic input as just ``HELLO". Details of the lecture are online via \url{https://t.me/bclectures/1684}}
+  \label{FIGTEABCA2}
+  \end{center}
+\end{figure}
+
+
 In this bonus chapter, we are going to cover some material that one might typically expect to find in a standard textbook or reference on basic programming for either students of Computer Science or anyone interested in learning programming from scratch. Typically, such material is meant to help instill in the student the idea or mental model of \textbf{how computers ``think"}. However, instead of wasting space and time repeating what is already well-catered for in many other standard books, we shall instead focus on highlighting several important foundation concepts with regards to general computer programming, that anyone interested in TEA programming needs be aware of with regards to how they can be accomplished using this somewhat new and unusual but powerful language.
 
 \vspace{2em}
@@ -21484,9 +21497,11 @@ i!:Hello World
 That program leverages the \textbf{\hyperref[SECI]{INTERACT}} command space as well as TEA Strings\footnote{First introduced in \textbf{\hyperref[SECNOMEN]{Section \ref{SECNOMEN}}}.}. For an interactive Hello World that also involves greeting one using a user-provided name, refer to TEA program example \textbf{\hyperref[YEXAMP1_HW]{Listing \ref{YEXAMP1_HW}}} in \textbf{\hyperref[SECNOTEY]{Section \ref{SECNOTEY}}}.
 
 
-\subsection{Understanding statements, expressions, and program flow.}
+\subsection{Understanding statements, expressions, and comments.}
 
-We shall then consider the formalisms that underlie the literal expression of any TEA program.
+
+We shall then consider the formalisms that underlie the literal expression of any TEA program. For starters, note that, concerning the correct syntax of any TEA program, textbf{\hyperref[SECGRAM]{Section \ref{SECGRAM}}} does sufficiently introduce the formal syntax and grammar of any TEA program, and we shall merely build upon that background here.
+
 
 \subsubsection{Statements}
 
@@ -21538,10 +21553,246 @@ Typically, expressions in a programming language are some sequence of symbols th
 The above examples return a literal that was processed without first being stored anywhere. However, we shall later also consider the case of returning a literal that is first stored in a variable, or what in TEA are called \textbf{vaults}. 
 
 
-\subsubsection{TEA Program Flow}
+\subsubsection{TEA Comments and TEA Opaque Lines}
+\label{TEACOMMTOL}
+
+Finally, note that, just as with any other programming language, TEA programs might often require the specification or use of non-executable statements or expressions within a given program's source code. Such are what in programming speak are typically known as ``comments". For example, consider the following simple TEA program where each instruction is placed on a single line:
 
 
-\subsection{Program Flow}
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 1: Program without comments, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{Hello World}
+V:vMSG
+N:
+X:(
+X!:)
+X!:-
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+That program basically takes the given explicit input ``Hello World", and then prefixes it with some \textbf{random digit} that is formatted such as ``(1)-", ``(5)-", etc. Thus, we shall get outputs such as ``(0)-Hello World" or ``(8)-Hello World", etc.
+
+\vspace{2em}
+
+However, since TEA comments are any statement within a TEA program that begins with a ``\#" symbol until the end of the line, then, we can modify the above program so that we omit the dash, ``-", symbol from the ouput. We can do that as such:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 2: Program without comments, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{Hello World}
+V:vMSG
+N:
+X:(
+X!:)
+#X!:-
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+The output shall then become something like ``(0)Hello World", ``(2)Hello World", etc.
+
+\vspace{2em}
+
+Moreover, one should further appreciate that not only do TEA comments work for the purpose of blocking, omitting or making particular lines in a TEA program inaccessible to the TEA instruction processor, but that, any such lines are likewise treated as \textbf{TEA Opaque Lines} (TOL) --- refer to \textbf{\hyperref[SECTEAPROCESSOR]{Section \ref{SECTEAPROCESSOR}}} where the processing of TEA programs is introduced, and specifically refer to \textbf{\hyperref[FIGTEAEXECPROCESS]{Figure \ref{FIGTEAEXECPROCESS}}} that highlights the processing mechanism underlying the execution of any TEA program.
+
+\vspace{2em}
+
+Thus, in case we modify the original program so that some instructions are placed on the same line. That is...
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 3: Program without comments, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{Hello World} | V:vMSG
+N:
+X:( | X!:) | X!:-
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+We then can see that this new modified version does still produce the same outputs as the original --- we have not added comments yet, and the logic hasn't been modified, just the program's syntax and structure was touched.
+
+\vspace{2em}
+
+But if we introduce some comments, just so that we for example want to explain what is happening, but without altering the program's semantics, we can have something like...
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 4: Program with comments, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+# set the input and store it in a variable
+I!:{Hello World} | V:vMSG
+# generate some random digit
+N:
+# pad that...
+X:( | X!:) | X!:-
+# suffix the value stored in vault vMSG
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+Of course, that program shall clearly produce the same output as the original as well. But, notice what happens in case we instead leverage the idea of \textbf{TEA Opaque Lines} --- which, in a way are treated as comments by the TEA processor simply because they do not qualify to be processed as valid TEA instructions or TEA instruction lines. We for example might have \textbf{Example 4} modified thus:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 5: Program with TOL, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+ set the input and store it in a variable
+I!:{Hello World} | V:vMSG
+generate some random digit
+N:
+pad that...
+X:( | X!:) | X!:-
+suffix the value stored in vault vMSG
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+Which essentially is \textbf{Example 4} with only the ``\#" symbols originally used to indicate the start of comments omitted! Why would it not issue a run-time error or cause the program to fail to be processed? Well... \textbf{That among the beautiful features of TEA programs!} TOL can be used anywhere one might have used a TEA comment, BUT --- and this is \textbf{PARAMOUNT} --- with care, and only when you are sure about what you are doing. Otherwise, stick to TEA comments when still a beginner.
+
+\vspace{2em}
+
+To illustrate the fact that we can mix TEA comments and TOL, consider another variation of the above program, that likewise maintains the same logic/semantics as the original program:
+
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 6: Program with comments and TOL, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#set the input and store it in a variable
+I!:{Hello World} | V:vMSG
+# generate some random digit
+N:
+pad that... 
+X:( | X!:) | X!:-# just to stress..
+# suffix the value stored in vault vMSG
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Which correctly produces outputs such as ``(9)-Hello World", ``(7)-Hello World", etc.
+
+\vspace{2em}
+
+HOWEVER, notice that happens in case we try to MISUSE TEA Opaque Lines:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 7: Program with comments and TOL, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#set the input and store it in a variable
+I!:{Hello World} | V:vMSG
+# generate some random digit
+N:
+pad that... 
+X:( | X!:) | X!:- just to stress..
+# suffix the value stored in vault vMSG
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+Which, is essentially \textbf{Example 6} with the second last comment modified into a TOL. Notice that suddenly, we then see our comments polluting or rather, modifying the program's output and which then means, we accidentally have corrupted the original program's logic or semantics. We for example get outputs such as ``(5)- just to stress..Hello World", ``(0)- just to stress..Hello World", etc. Which tell us that the TOL we just introduced is being treated as part of the TEA instruction right before it! That's the instruction \texttt{X!:-}. In order to prove this, or rather, fix that, without eliminating the use of a TOL, we can do the following:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 8: Program with comments and TOL, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#set the input and store it in a variable
+I!:{Hello World} | V:vMSG
+# generate some random digit
+N:
+pad that... 
+X:( | X!:) | X!:-| just to stress..
+# suffix the value stored in vault vMSG
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+OR
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 9: Program with comments and TOL, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#set the input and store it in a variable
+I!:{Hello World} | V:vMSG
+# generate some random digit
+N:
+pad that... 
+X:( | X!:) | X!:{-}| just to stress..
+# suffix the value stored in vault vMSG
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+Both \textbf{Example 8} and \textbf{Example 9} still use the TOL where we originally had used a TEA comment, however, they do it correctly/in a safer way --- we essentially can safely use a TEA Opaque Line on a line containing earlier TEA code we wish to have executed, by ensuring that, before we start the TOL, we insert the TEA Instruction Delimiter (TID), ``\verb$|$", so that, even if we do not begin our comment with a \#, and yet, the rest of the line shall simply be skipped, in case is it made up of gibberish or some stuff that isn't legit TEA code. To stress that point, also notice that, attempts to put legit TEA code inside a TOL would also not work. Such as the following example.
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA COMMENTS: Example 10: Program with comments and TOL, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#set the input and store it in a variable
+I!:{Hello World} | V:vMSG
+# generate some random digit using | N:10
+N:
+pad that... 
+X:( | X!:) | X!:-| just to stress.. X!:{_*_}
+# suffix the value stored in vault vMSG
+X*!:vMSG
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Thus, even though we put some valid TEA code in the second comment, but also in the second-last one --- that one also a TEA Opaque Line or TEA Opaque Expression to be more accurate, and yet, they are simply disregarded by the TEA processor --- which is the correct thing to do/expect --- and so that \textbf{Example 10} likewise produces the same outputs as the original program.
+
+
+\vspace{2em}
+
+Such are the peculiarities, but also power and beauty of writing comments, but also documentation, in TEA programs!
+
+
+
+\subsection{TEA Program Flow}
 
 Program flow in TEA is \emph{sequential} in the sense that instructions are executed in the order they appear in the source code. This aligns with the usual meaning of sequential execution in computer science, where the natural order of progress follows the first-occurrence of instructions unless explicitly altered by control structures. While one might loosely describe this as \emph{imperative}\footnote{``Imperative" refers to the programming paradigm where computation is described as a sequence of commands that change program state. Languages like C, Java, or Python are imperative because they tell the computer how to do something step by step. Sequential execution is a feature of imperative languages, but ``imperative" is broader — it's about the paradigm, not just the flow.}, it is more precise to note that TEA emphasizes a distinctive model of \textbf{sequence-transformer chaining} as its core paradigm\footnote{TEA's distinctive emphasis is that each instruction transforms the output of the previous one. This is not just sequential execution; it's a pipeline model. In CS terms, this resembles functional composition or stream processing, but expressed imperatively through decorated alphabet primitives.}. In this model, each instruction consumes the output of the previous one, forming a pipeline of transformations. Formally, for a TEA program consisting of instructions $t_1, t_2, \ldots, t_n$ and an initial literal input $I_0$, execution proceeds as follows:
 
@@ -21829,6 +22080,174 @@ Of course, our original focus was to help illustrate the concept of TEA's sequen
 \section{TOPIC-2: Data Types and Variables}
 
 
+In \textbf{\hyperref[SECNOMEN]{Section \ref{SECNOMEN}}} where we first introduced the basics concerning TEA nomenclature and concepts, it was especially stressed that \textbf{TEA essentially has no special data types other than String or mere Text.} That is such an important aspect of TEA programming --- a fundamental --- so that it surely is worth its own section and discussion so as to drive the point home, and thus this present undertaking.
+
+
+\vspace{2em}
+
+Closely related, is the matter of how one can approach the matter of \textbf{declaring and using variables in TEA}. This, because, as with most other programming languages, scenarios exist where the programmer wishes to store their data in a way such that it can later be referenced and can also be invoked or be used without having to explicitly go-on writing verbatim expressions of the original data everywhere it is required, but instead by doing that using just the associated \textbf{variable name}.
+
+
+\subsubsection{TEA Strings}
+\label{SECTEASTR}
+
+
+For TEA programming, one should appreciate that it is very --- meaning \textit{dead simple} --- to work with strings. For starters, note that, all TEA instructions irrespective of which or when, accept and only output strings\footnote{Even special cases such as \texttt{N:} that is meant to produce random numbers, does in fact output numbers, yes, but they are still strings as far as any other [subsequent] TEA instruction or program is concerned.}. Thus, when we write:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA STRINGS: Example 1: Strings without Delimiters, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:Hello World
+X:Message is:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+The result web get, which is ``Message is:Hello World" should indicate that despite having no delimiters on the two string parameters used by the two TEA instructions --- \texttt{I!:} for unconditionally settings the active input to the specified value, and then \texttt{X:} for prefixing the AI with the specified value --- are indeed correctly parsed and treated as strings. Moreover, because of how TEA syntax works, the following modified version of that program would still correctly produce the same output as above, despite containing TEA comments affixed to the specified strings...
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA STRINGS: Example 2: Strings without Delimiters, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:Hello World #but this is a comment
+X:Message is:#as well as this
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+\textbf{\hyperref[TEACOMMTOL]{Section \ref{TEACOMMTOL}}} has already introduced and discussed TEA comments and opaque expressions to great detail so that it should be obvious why this is so. Moreover, assuming we actually wanted to have those words after the comment symbol included in the string we are processing, then, as we see in the following modified example, using \textbf{delimited TEA strings} would be the solution:
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA STRINGS: Example 3: Strings with Delimiters, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{Hello World #but this is a comment}
+X:"Message is:#as "|well as this
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+The output shall be ``Message is:\#as Hello World \#but this is a comment" --- which includes the entire original first comment from \textbf{Example 2} --- because we now have wrapped the entire desired string parameter for the instruction \texttt{I!:} in the TEA string delimiters ``{" and ``}", but also which now includes part of the second comment, since we have not only used the TEA string delimiter `"', but also cut off the rest of the original second comment using a TID, ``\verb$|$", so that the rest of that second line is just a TOL; an opaque expression.
+
+\vspace{2em}
+
+Moreover, in case we wish to use TEA delimited strings, but still having the TEA comments as was the case in \textbf{Example 2}, then, we should instead do this:
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA STRINGS: Example 2: Strings without Delimiters, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{Hello World} #but this is a comment
+X:{Message is: }#as well as this
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Which shall produce the beautiful output: ``Message is: Hello World".
+
+
+\subsubsection{Multi-line TEA Strings}
+\label{SECTEAMULTISTR}
+
+
+In \textbf{\hyperref[SECTEASTR]{Section \ref{SECTEASTR}}} we have treated of TEA strings in general, however, we have especially only discussed cases of strings that sit on a single line, such as:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA MULTI-STRINGS: Example 1: Dealing with Long Strings, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{Hello World is such a short phrase, but we can actually make it as LONG as WE WISH.}
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+That example will merely output the long string ``Hello World is such a short phrase, but we can actually make it as LONG as WE WISH."
+
+
+\vspace{2em}
+
+However, there might be the tricky case where, the string we wish to process is not only long, or maybe isn't even that long, but \textbf{that it contains some new lines.} So, how should we then proceed to express that in a TEA program? The following example should help to illustrate the issue:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA MULTI-STRINGS: Example 2: Dealing with Long Strings with Line Breaks, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{Hello World is such a short phrase,
+but we can actually make it as LONG as
+WE WISH.}
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+\textbf{Example 2} shall correctly produce the output:
+
+
+
+  \vspace{2em}
+ \begin{tcbverbatim}[title=Sample OUTPUT from Example 2]
+Hello World is such a short phrase,
+but we can actually make it as LONG as
+WE WISH.
+  \end{tcbverbatim}
+ \vspace{2em}
+
+
+Moreover, in case we try do the same thing, but without using TEA delimited strings, such as with:
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA MULTI-STRINGS: Example 3: Dealing with Long Strings with Line Breaks, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:Hello World is such a short phrase,
+but we can actually make it as LONG as
+WE WISH.
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+It shall [surprisingly] produce truncated output such as ``Hello World is such a short phrase," in this case! The reason is that after the line beginning the TEA instruction containing the multi-line string without delimiters, the rest of the string shall possibly be [mis-]interpreted as a TEA opaque line\footnote{TOLs have likewise been treated in \textbf{\hyperref[SECTEASTR]{Section \ref{SECTEASTR}}}.}. That aside, note that, especially when dealing with tricky cases such as when we wish to have a string that contains typical TEA code --- refer to the TEA OS example: \textbf{\hyperref[TEAOSSRC]{Section \ref{TEAOSSRC}}}, or TEA functions: \textbf{\hyperref[SECTEAMultiFunc]{Section \ref{SECTEAMultiFunc}}} --- we can then instead use the other style of TEA string delimiters to the same or better effect as such:
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA MULTI-STRINGS: Example 4: Dealing with Long Strings with Line Breaks, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:"Hello World is such a short phrase,
+but we can actually make it as LONG as
+WE WISH."
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Which produces the same exact output as we saw produced for \textbf{Example 2}.
+
+
+
 \section{TOPIC-3: Operators and Expressions}
 
 
@@ -21837,6 +22256,8 @@ Of course, our original focus was to help illustrate the concept of TEA's sequen
 
 
 Control flow essentially tells us how we can navigate from one instruction to another around a computer program based on context or some parameters [in the code or read from the program's environment at runtime].
+
+\vspace{2em}
 
  
 In many traditional languages, there are statements or instructions such as looping constructs (do.. while, while, switch, for loop,  foreach, etc) that generally accept some argument and then decide where next the language's instruction processor should go within the program's source code so as to continue, terminate or extend execution of the current instruction. For TEA, the basic control-flow statements are:
@@ -21848,6 +22269,7 @@ In many traditional languages, there are statements or instructions such as loop
 
 
 \section{TOPIC-5: Functions and Modularization}
+\label{TEAFuncs}
 
 
 \vspace{2em}
@@ -21895,6 +22317,10 @@ E*!:f
    \end{lstlisting}
   \end{tcolorbox}
 \vspace{2em}
+
+
+\subsection{Multi-line TEA Functions}
+\label{SECTEAMultiFunc}
 
 
 
@@ -21959,6 +22385,16 @@ Lutalo, Joseph Willrich (2024). \textbf{TEA TAZ: Transforming Executable Alphabe
 
 \vspace*{\fill}
 \end{center}
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth,]{resources/images/jwl_at_cocis.jpg}\\
+   \caption{The Author and Inventor of TEA, as a finalist graduate school student at \textbf{Makerere University's College of Computing and Information Sciences} circa April 2024. At the time, he was winding up his \textbf{Master of Science in Data Communication and Software Engineering} studies begun in 2019.}
+  \label{FIGJWLatCOCIS}
+  \end{center}
+\end{figure}
+
 
 
 \begin{figure}[H]
