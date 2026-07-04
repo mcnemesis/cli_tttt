@@ -227,22 +227,25 @@
 \contentsline {section}{\numberline {A.1}Introduction and SCOPE}{640}{section.a.A.1}%
 \contentsline {section}{\numberline {A.2}TOPIC-1: Basic Syntax and Program Structure}{642}{section.a.A.2}%
 \contentsline {subsection}{\numberline {A.2.1}How to write and run a simple program such as ``Hello World"}{642}{subsection.a.A.2.1}%
-\contentsline {subsection}{\numberline {A.2.2}Understanding statements, expressions, and comments.}{642}{subsection.a.A.2.2}%
+\contentsline {subsection}{\numberline {A.2.2}Understanding statements, expressions, and comments.}{643}{subsection.a.A.2.2}%
 \contentsline {subsubsection}{Statements}{643}{section*.254}%
 \contentsline {subsubsection}{TEA Expressions}{644}{section*.256}%
 \contentsline {subsubsection}{TEA Comments and TEA Opaque Lines}{644}{section*.257}%
 \contentsline {subsection}{\numberline {A.2.3}TEA Program Flow}{650}{subsection.a.A.2.3}%
 \contentsline {subsection}{\numberline {A.2.4}How TEA syntax differs from traditional/common languages such as C, Python, Java, but also Haskell and Common LISP.}{652}{subsection.a.A.2.4}%
-\contentsline {section}{\numberline {A.3}TOPIC-2: Data Types and Variables}{658}{section.a.A.3}%
-\contentsline {subsubsection}{TEA Strings}{658}{section*.258}%
-\contentsline {subsubsection}{Multi-line TEA Strings}{660}{section*.259}%
-\contentsline {section}{\numberline {A.4}TOPIC-3: Operators and Expressions}{662}{section.a.A.4}%
-\contentsline {section}{\numberline {A.5}TOPIC-4: Control Flow}{662}{section.a.A.5}%
-\contentsline {section}{\numberline {A.6}TOPIC-5: Functions and Modularization}{662}{section.a.A.6}%
-\contentsline {subsection}{\numberline {A.6.1}Multi-line TEA Functions}{664}{subsection.a.A.6.1}%
-\contentsline {section}{\numberline {A.7}TOPIC-6: Input and Output}{664}{section.a.A.7}%
-\contentsline {section}{\numberline {A.8}TOPIC-7: Data Structures}{664}{section.a.A.8}%
-\contentsline {section}{\numberline {A.9}TOPIC-8: Error Handling}{664}{section.a.A.9}%
-\contentsline {section}{\numberline {A.10}TOPIC-9: Memory and Variable Lifetime}{664}{section.a.A.10}%
-\contentsline {section}{\numberline {A.11}TOPIC-10: Problem-Solving Mindset}{664}{section.a.A.11}%
-\contentsline {chapter}{About the Inventor of TEA}{672}{appendix*.261}%
+\contentsline {section}{\numberline {A.3}TOPIC-2: Data Types and Variables}{659}{section.a.A.3}%
+\contentsline {subsubsection}{TEA Strings}{659}{section*.258}%
+\contentsline {subsubsection}{Multi-line TEA Strings}{661}{section*.259}%
+\contentsline {subsection}{\numberline {A.3.1}TEA Regular Expressions}{663}{subsection.a.A.3.1}%
+\contentsline {section}{\numberline {A.4}TOPIC-3: Operators and Expressions}{666}{section.a.A.4}%
+\contentsline {subsubsection}{TEA Commands as Operators}{666}{section*.260}%
+\contentsline {subsubsection}{TEA Instructions that Process Mathematical Operators}{668}{section*.261}%
+\contentsline {section}{\numberline {A.5}TOPIC-4: Control Flow}{669}{section.a.A.5}%
+\contentsline {section}{\numberline {A.6}TOPIC-5: Functions and Modularization}{670}{section.a.A.6}%
+\contentsline {subsection}{\numberline {A.6.1}Multi-line TEA Functions}{671}{subsection.a.A.6.1}%
+\contentsline {section}{\numberline {A.7}TOPIC-6: Input and Output}{671}{section.a.A.7}%
+\contentsline {section}{\numberline {A.8}TOPIC-7: Data Structures}{671}{section.a.A.8}%
+\contentsline {section}{\numberline {A.9}TOPIC-8: Error Handling}{671}{section.a.A.9}%
+\contentsline {section}{\numberline {A.10}TOPIC-9: Memory and Variable Lifetime}{671}{section.a.A.10}%
+\contentsline {section}{\numberline {A.11}TOPIC-10: Problem-Solving Mindset}{671}{section.a.A.11}%
+\contentsline {chapter}{About the Inventor of TEA}{680}{appendix*.263}%

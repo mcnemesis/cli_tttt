@@ -21357,7 +21357,7 @@ We have covered sufficient material to help anyone coming to \textbf{TEA}, to be
 \end{figure}
 
 
-In this bonus chapter, we are going to cover some material that one might typically expect to find in a standard textbook or reference on basic programming for either students of Computer Science or anyone interested in learning programming from scratch. Typically, such material is meant to help instill in the student the idea or mental model of \textbf{how computers ``think"}. However, instead of wasting space and time repeating what is already well-catered for in many other standard books, we shall instead focus on highlighting several important foundation concepts with regards to general computer programming, that anyone interested in TEA programming needs be aware of with regards to how they can be accomplished using this somewhat new and unusual but powerful language.
+In this bonus chapter, we are going to cover some material that one might typically expect to find in a standard textbook or reference on basic programming for either students of Computer Science or anyone interested in learning programming from scratch. Typically, such material is meant to help instill in the student the idea or mental model of \textbf{how computers ``think"}, or rather, how it is that we can make them solve problems that perhaps only humans could previously solve\footnote{Talking of computers solving problems, it should be worth mentioning that, in the early days (especially early 20th century or even before), there was a popular phenomena amongst computer scientists and engineers known as `\textbf{Human Computers}". Essentially, just like a complex problem might be solved nowadays by designing a solution in the form of an algorithm that can be distributed among several or even just a single computer, likewise, well-trained humans were assigned specific tasks they would solve in a nearly algorithmic/robotic manner, only that they were not machines and were instead humans --- usually ladies in fact!}. However, instead of wasting space and time repeating what is already well-catered for in many other standard books, we shall instead focus on highlighting several important foundation concepts with regards to general computer programming, that anyone interested in TEA programming needs be aware of with regards to how they can be accomplished using this somewhat new and unusual but powerful language.
 
 \vspace{2em}
 
@@ -21871,6 +21871,7 @@ Which would still produce outputs conforming to the original semantics and patte
 
 
 \subsection{How TEA syntax differs from traditional/common languages such as C, Python, Java, but also Haskell and Common LISP.}
+\label{SECCOMPARETEATOLANG}
 
 
 For comparison, and just momentarily, one might wonder what the differences and similarities between the Transforming Executable Alphabet and other commonplace general-purpose programming languages might be. For simplicity's sake, we shall only use the example case just illustrated in the above section, and shall render equivalent programs using the syntax and semantics of C, Python and then Java --- three of the currently most popular languages globally. For completeness's sake, we shall also consider how this same program might be realized in language especially popular among academic researchers on programming languages; Haskell as well as Common LISP.
@@ -22247,9 +22248,220 @@ WE WISH."
 Which produces the same exact output as we saw produced for \textbf{Example 2}.
 
 
+\subsection{TEA Regular Expressions}
+
+
+Before we leave the matter of [data] types in TEA, is shall be important to stress that, there actually is a second type in the language; \textbf{regular expressions}. TEA regular expressions are first introduced in their own chapter --- refer to \textbf{\hyperref[SECREGEXP]{Chapter \ref{SECREGEXP}}} --- that especially makes clear how their special syntax is defined for the TEA language. However, other than just known about their specific formal language, and since we have just discussed in the previous sections that essentially, all TEA data is just strings, it shall be important to \textbf{indicate the peculiarities and subtleties of TEA regular expressions} --- the stuff that especially makes them distinct from TEA strings.
+
+\vspace{2em}
+
+First, note that, we can store or write a regular expression anywhere a TEA instruction expects a string. For example, the following program shows all ways that we could use a regular expression in place of a string...
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Regular Expressions: Example 1: Handling Literal Regexs in Place of TEA Strings, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:^.[ ][a-z]+\s\W$ # set regex as literal string in AI
+
+V:vREGEX:{^.[ ][a-z]+\s\W$} # store regex in a vault
+
+I!:{REGEX:a}|R!:a:{^.[ ][a-z]+\s\W$} # regex as substitution value!
+
+etc.
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+Note that, in that example, we have instances where we write the regular expression without worrying about whether it is delimited or not --- such as in the first instruction statement. However, and as one shall establish through experience and practice, it sometimes is necessary to wrap a regular expression in the usual string delimiters --- especially when the regular expression is meant to be treated as a string, but also when it is possible that the regular expression contains ``special characters" --- such as either ``\#" or ``\verb$|$" or even just ``:". Thus the cases we see in the other two statements. Moreover, it should be worth indicating that, despite that advise, there might be times when it is better to not treat a TEA regular expression if it were a string.
+
+\vspace{2em}
+
+We here must stress that there are legitimate times in TEA programming, when an instruction \textbf{ONLY expects} a TEA regular expression as one of its explicit parameters/arguments and not just any possible TEA string. Such cases should not be worried about though, because, as one shall have found out when reviewing or reading the several tables introducing each TEA primitive's semantics --- e.g \textbf{\hyperref[TABSEMD]{Table \ref{TABSEMD}}}, \textbf{\hyperref[TABSEMG]{Table \ref{TABSEMG}}}, \textbf{\hyperref[TABSEMR]{Table \ref{TABSEMR}}}, etc. --- when such is the case, that a regular expression and not any other type is required as one or more of a given instruction's signature, then, it shall always be explicitly indicated in the instruction's semantics or definition. Often, this is indicated with a \texttt{REGEX}, \texttt{RX1}, \texttt{RX2},... token indicated as part of the signature.
+
+\vspace{2em}
+
+In such cases then, such as we see in the following example:
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Regular Expressions: Example 2: Methods of Writing Literal Regular Expressions Where TEA Regular Expressions are Expected, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{hello world at 9:00 AM or perhaps 19:30 PM}
+
+D:e:{:}:M$
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+That program has one instruction expecting literal TEA regular expressions --- the second instruction, a \textbf{DELETE} command. Moreover, we have used it in the multi-parameter mode, so that, instead of just one TEA regular expression, we passed multiple regexes. The result we obtain from that program is the filtered string ``hllo world at 900 AM or prhaps 1930 P".
+
+\vspace{2em}
+
+However, important to note, assuming we had a peculiar case where the usual TEA string delimiters { and } are likewise part of the string value we wish to operate upon using the above specified regular expression accepting instruction, how would we safely go about it? For example, consider the following:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Regular Expressions: Example 3: Methods of Writing Literal Regular Expressions Where TEA Regular Expressions are Expected, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{hello world at {9:00 AM} or perhaps 19:30 PM}
+
+D:e:{:}:M$:{:}
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+That modified program presents the case where we wish to use the DELETE command to likewise eliminate the TEA string delimiters { and }, however, seems like the way it is written there would not work, because that program returns the result ``hllo world at {900 AM} or prhaps 1930 P". That is problematic, because, even though we attempted add two extra literal regular expressions ``{" and ``}" to the original filtering expression, and yet, because of TEA token precedence rules\footnote{Refer to TEA grammar in \textbf{\hyperref[SECGRAM]{Section \ref{SECGRAM}}}}, that last bit shall instead be evaluated as though it were a literal string ``:" --- which is futile here, not only because we already had specified that filter in the earlier regular expressions, but also because it fails to capture the explicit filter we are interested in. So, how should we go about solving this? Consider the following modification then..
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Regular Expressions: Example 3: Methods of Writing Literal Regular Expressions Where TEA Regular Expressions are Expected, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:{hello world at {9:00 AM} or perhaps 19:30 PM}
+
+#D:e:{:}:M$:{{}:{}}
+
+#OR
+
+#D:e:{:}:M$:[\{\}]
+
+#OR 
+
+#D:e:{:}:M$:"\{|\}"
+
+#OR
+
+D:e:{:}:M$:{\{|\}}
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+In which case we see, not just one, but actually 4 different ways we might pass a tricky regular expression to a TEA instruction that expects only a regular expression and not just a normal string. Moreover, and as one shall notice in approach \#1, \#3 and \#4, we are writing the literal regular expression inside a TEA string --- in two ways though; \#3 uses the `"' delimiters for example. Otherwise, any of the specified filter instruction shall correctly produce the desired output: ``hllo world at 900 AM or prhaps 1930 P".
+
+
 
 \section{TOPIC-3: Operators and Expressions}
 
+
+
+
+\begin{center}
+\fbox{\begin{minipage}{0.9\textwidth}
+
+\begin{quotation}
+\noindent \textbf{Operator} \texttt{A function that can be applied to one or more operands so as to yield a result. It is (usually) a symbol representing an operation to be carried out, as opposed to a variable, which represents a data value.}\\
+\hspace*{\fill} --- \textbf{Oxford Dictionary of Computing}\cite{illingworth1996computing}
+\end{quotation}
+
+\end{minipage}}
+\\
+\end{center}
+
+\vspace{2em}
+
+In the introduction of this chapter we mentioned the fact that computing is about getting machines or processors to solve problems by following some kind of well-designed solutions in the form of an algorithm, and which algorithm is typically expressible as a program made of one or several instructions --- these could be atomic (meaning the instruction only does one thing, one operation, and nothing more) or composite (the instruction is built from several [smaller] instructions or operations so that it accomplishes its objective via combining the individual operations from which it is composed).
+
+\subsubsection{TEA Commands as Operators}
+
+In the context of computer programs, and operation could be as simple as taking two strings such as ``hello" and ``world", and then combining them into a single string so as to produce ``helloworld". In TEA, we might use the following program to accomplish that:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA OPERATIONS: Example 1: Basic Operation: String Concatenation, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#String Concatenation 1:
+I!:{hello}
+X!:{world}
+#=helloworld
+
+#String Concatenation 2:
+V:vSTR1:{hello}
+V:vSTR2:{world}
+R@:{#vSTR1# #vSTR2#}
+#=hello world
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+In that program we actually demonstrate the case of a string concatenation operation using two different approaches:
+
+\begin{enumerate}
+\item The first leverages \textbf{literal strings} --- strings not held in variables --- and concatenates them using the \textbf{Xenograft} instruction or operator (refer to \textbf{\hyperref[SECX]{Chapter \ref{SECX}}}). Further, note that, the \textbf{X} command space can allow us to affix strings to each other either via prefixing or suffixing. But also, it can be applied to non-literal strings such as those held in vaults.
+\item The second method demonstrates how to approach string concatenation using both literal and non-literal strings; the literal strings are sourced from the two vaults \texttt{vSTR1} and \texttt{vSTR2} as shown, however, instead of merely concatenating them directly to each other as we do in case 1, we instead have a literal separator, `` ", that is placed betwixt them, so that, by evaluating the TEA template \texttt{{\#vSTR1\# \#vSTR2\#}} using the command /operator \textbf{R@}, we then have the result as ``hello world".
+\end{enumerate}
+
+
+\vspace{2em}
+
+In those two scenarios, we essentially see that, for TEA programs, the commands themselves --- the \texttt{A:, B:, C:, C!:, ..., Z*:,...} with or without parameters, are the \textbf{operators}. In a more TEAic language, we especially refer to these as \textbf{seqeuence transformers}\footnote{Term borrowed from Transformatics --- refer to \textbf{\hyperref[CHAPTRANS]{Chapter \ref{CHAPTRANS}}}.}, a kind of operator and operations that always involve performing some kind of transformation on one or more sequences\footnote{Do not forget that, as established in \cite{lutalo_2026_19995017}, sequences are a basic mathematical concept that actually underlie many kinds of mathematical and computational structures --- ordered sets, graphs, trees, strings, matrices, and even entire computer programs as we also see in \cite{lutalo2024software} --- when we essentially think of programs as just text.}. Moreover, Just as with typical mathematical operators such as the case of \textbf{addition} (+) or \textbf{subtraction} (-), etc. TEA operators can be applied to multiple parameters at once. For example, just like we might think of \texttt{1 + 2 + 3} that evaluates to ``6", we can likewise think of concatenating multiple strings into one via a method that is perhaps even simpler than what we have just seen:
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA OPERATIONS: Example 2: Multi-Argument Operators: String Concatenation, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#Multi-String Concatenation 1:
+I!:{hello   - - ?}
+G:{world}
+#=helloworld-world-world?
+
+#Multi-String Concatenation 2:
+I!:{hello   - - ?}
+G:{world}:\s+
+#=helloworld-world-world?
+
+#Multi-String Concatenation 3:
+V:vSTR1:{hello}
+V:vSTR2:{world}
+V:vGAP:{ }
+G*!:vGAP:vSTR1:vSTR2:vSTR1
+#=hello world hello
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+\subsubsection{TEA Instructions that Process Mathematical Operators}
+
+
+Away from treating TEA commands as the operators themselves, it is worth noting that we actually have legitimate scenarios in which a TEA program processes operators in the ``traditional" or common sense. This, especially when treating of mathematical operations and operators\footnote{We stress ``mathematical operators" here because, as it should already be clear --- for example, via the discussion and illustrations in \textbf{\hyperref[SECCOMPARETEATOLANG]{Section \ref{SECCOMPARETEATOLANG}}} --- that TEA syntax and semantics significantly differ from those of many traditional programming languages, such as C-family languages, and so that, ``usual" programming language operators such as use of logical operators \texttt{\&\&} or \texttt{||}, etc. in say conditional processing instructions such as  the arguments to traditional \textbf{If-Else}, do not exist in TEA in the same way. But TEA does still have a place for those operators as well as other usual, arithmetic operators.} --- TEA uses a different syntax and semantics where most other languages would fallback to language-level operators for expressing program logic.
+
+\vspace{2em}
+
+As far as processing of mathematical operators is concerned in TEA, the most (if not the only) legitimate scenario is when evaluating expressions passed to the \textbf{TEA Mathematical Rewrite} instruction; \texttt{R.:EXPR}. That instruction is well introduced and discussed in its relevant section --- see \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}. Everything relevant to understanding how to use that facility, which especially deals with or applies to \textbf{TEA Mathematical Expressions}, is covered well in that section, but is also well illustrated in use-cases such as one finds in \textbf{\hyperref[SECEXAMP2R]{Section \ref{SECEXAMP2R}}} which presented an advanced mathematics computer.
+
+\vspace{2em}
+
+As a basic example of how TEA programs can employ traditional mathematical operators in TMEs, consider the following illustration of two way in which we could evaluate the Golden Expression formula using the \textbf{REWRITE} command:
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=TEA and Mathematical OPERATORS: Example 1: Computing the Golden Ratio, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#R.:0.5*(1+5**(1/2)) # computes the Golden Ratio
+
+#OR
+
+R.:.5*(1+5**(2**(-1))) # also computes the Golden Ratio
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+The important aspects here are that the usual mathematical operators are support as laid down in \textbf{\hyperref[SECTME]{Section \ref{SECTME}}}, their correct precedence order is respected, and that the command essentially results in the final terminal value equivalent to the expression that was evaluated --- or blank in case an error occurred\footnote{As with all TEA instructions, in case the programmer is in doubt concerning what is going on, or that they encounter runtime errors, the recommended intervention is to turn on debugging and then study or consult the outputs of the TEA debugger (also refer to \cite{Lutalo2025debug}). It does offer insights into any errors there might be even with TMEs.}.
 
 \section{TOPIC-4: Control Flow}
 \label{LEARNTEATOPICCF}
@@ -22331,6 +22543,9 @@ E*!:f
 
 
 \section{TOPIC-8: Error Handling}
+
+
+As we have already mentioned earlier on; as with all TEA processing aspects at runtime, in case the programmer is in doubt concerning what is going on, or that they encounter runtime errors, the recommended intervention is to turn on debugging and then study or consult the outputs of the TEA debugger (also refer to \cite{Lutalo2025debug}).
 
 
 \section{TOPIC-9: Memory and Variable Lifetime}
