@@ -1,0 +1,26 @@
+##################
+#Lil'Random Poems v1.1
+#is a TEA program
+#by JWL With Light 
+##################
+V:vNC:5|V:vPoem:{}
+V:vD:{--------------}
+V:vG:{
+}|V:vT:{POEM: }
+N:8:5|V@:dNR
+V:fLGen:"Y@:dNR|V:vNR|R@:{P!:#vNR#}
+E:|S:"
+
+# Compose the poem..
+E*:fLGen|T.!:|Z!:|X*:vT|V:vT
+L:lGen
+N:10:1|V@:dNR
+E*:fLGen|Z*:|V:vLine
+G*!:vG:vPoem:vD:vLine|V:vPoem
+R@:{#vNC#-1}|R.:|v:vNC
+F!:^0$:lGen
+
+# Present mini poem
+R@:{#vPoem# #vG#}|X*!:vD|
+K!:^\s*$|K*!:vD|V:vPoem
+G*!:vG:vT:vD:vPoem
