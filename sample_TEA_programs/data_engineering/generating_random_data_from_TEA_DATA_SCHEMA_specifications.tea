@@ -1,5 +1,5 @@
 #########################################
-# STRUCTURED DYNAMIC DATA GENERATOR v.1
+# STRUCTURED DYNAMIC DATA GENERATOR v.2
 #----------------------------------------
 # Can parse TEA Data Templates(TDT)
 # and generate random data based on
@@ -7,10 +7,10 @@
 # Details on TDT syntax in the TEA TAZ Book
 #########################################
 
-#----| Sample Data Specification |------
-#in case no explicit data was provided, use TDT template...
-i:{ [{ "Name": "<p!:8|t!.:|z*:>", "Age": "<n:26:8>" "Description": "<p!:|s:|s:|z:>" },][5] }
-
+#######################################
+# TDTL : TEA Data Templates Language processor
+#######################################
+V:vfTDTL:"
 #----| CONSTANTS |------
 v:vOP_LT:{<}
 v:vOP_INCR:{+1}
@@ -62,7 +62,7 @@ y:vTEA_EXP | x:< | x!:> | v:vTEA_EXP | r*:vGEN_RECORD:vTEA_EXP:vTEA_EXP_VAL
 #store final generated record
 v:vGEN_RECORD
 
-#process the remaining expressions too...
+#process the remaining expressions too..
 j:lPROCESS_RECORD
 
 #done processing record template
@@ -82,6 +82,36 @@ j:lSTART_GEN
 l:lFINISHED_GEN
 
 #post-process data... enclose into JSON array...
-y:vDATA_OUTPUT | x:{[} | x!:{]} | v:vDATA_OUTPUT 
+y@:dvTDT_Opener | i:[ | v:vTDT_Opener
+y@:dvTDT_Closer | i:] | v:vTDT_Closer
+y:vDATA_OUTPUT | x*:vTDT_Opener | x*!:vTDT_Closer | v:vDATA_OUTPUT 
 
 y:vDATA_OUTPUT #present final dataset and quit
+"
+#######################################
+# END TDTL processor
+#######################################
+
+
+# Apply TDTL...
+#----| Sample Data Specification |------
+#in case no explicit data was provided, use TDT template...
+i:{ [{ "Name": "<p!:8|t!.:|z*:>", "Age": "<n:26:8>" "Description": "<p!:|s:|s:|z:>" },][5] }
+v:vDataTemplate #store the data template we shall process
+
+# invoke TDTL processor on it and apply..
+y:vDataTemplate | E*:vfTDTL
+
+# EXPLORE: Language-Oriented Programming (Prof. Matteo Cimini ideas)
+# first, let's alter TDTL parameters (at run-time)
+v@:dvTDT_Opener:{
+} | v@:dvTDT_Closer:{
+} # we've set new-line char as TDT opener and closer
+# then invoke a modified TDTL processor on same data template and apply..
+#y:vDataTemplate | E*:vfTDTL
+
+# might also process a modified template, e.g to generate non-JSON document
+#i!:{ <p!:8|t!.:|z*:> gets USD <n:26:8> for <p!:3|z!:> and <p!:3|z!:>.[5] } | E*:vfTDTL
+
+# for safety, delete custom TDTL parameters before quitting...
+c@:dvTDT_Opener:dvTDT_Closer

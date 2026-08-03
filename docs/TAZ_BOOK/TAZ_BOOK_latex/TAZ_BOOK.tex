@@ -9189,6 +9189,208 @@ Which example template also makes clear the fact that TDT templates can be as le
 \vspace{1em} 
  
  
+ Finally, and based on ideas we first introduce in \cite{lutalo_2026_acmsle_reviewbook} a book by the inventor of TEA and which is also reviewing numerous (26+) high-impact ACM SLE research papers and projects on language engineering since 2008, we have the following updated version of the TDT program (v2), which improves on the original via leveraging ideas we first encounter in a 2018 ACM SLE paper by \textbf{Prof. Matteo Cimini} (\textit{Languages as First-Class Citizens (Vision Paper)}.
+ 
+ 
+ 
+%\begin{figure}[H]
+{
+  \begin{tcolorbox}[teaterminalstyle, title=TEA Program: TDT Language and LOP Capabilities Demonstration, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+#########################################
+# STRUCTURED DYNAMIC DATA GENERATOR v.2
+#----------------------------------------
+# Can parse TEA Data Templates(TDT)
+# and generate random data based on
+# specification and embedded TEA code.
+# Details on TDT syntax in the TEA TAZ Book
+#########################################
+
+#######################################
+# TDTL : TEA Data Templates Language processor
+#######################################
+V:vfTDTL:"
+#----| CONSTANTS |------
+v:vOP_LT:{<}
+v:vOP_INCR:{+1}
+
+#----| PRE-PROCESS |----
+v:vSCHEMA #store the data schema
+
+#extract the core schema object only...
+d:\[\d+\] | d:[\[\]] | v:vSCHEMA_TEMPLATE
+
+#extract the number of objects to generate..
+y:vSCHEMA | d!:\[\d+\] | d:[\[\]] | v:vN_RECORDS
+
+#initialize empty output dataset..
+v:vDATA_OUTPUT:{}
+
+#init counter of records created thus far
+v:vN_ITER:0
+
+#----| DATA-GENERATION-PROCESS |----
+l:lSTART_GEN
+
+#test if we already reached limit, so we finish...
+g*:{}:vN_ITER:vOP_LT:vN_RECORDS | r.: | f:^false$:lFINISHED_GEN
+
+#process record to be added to list..
+y:vSCHEMA_TEMPLATE | v:vGEN_RECORD
+
+#######| PROCESS a RECORD |#####
+l:lPROCESS_RECORD
+y:vGEN_RECORD
+
+#----| inject dynamic values... |----
+#first, get all dynamic expressions
+d!:<[^<>]*> | v:vDYN_EXPRESSIONS
+
+y:vDYN_EXPRESSIONS
+#if empty, move on...
+f:^$:lDONE_PROCESS_RECORD
+
+#extract only the first one...
+d:><.* | d:< | d:> | v:vTEA_EXP 
+
+#evaluate it and store result
+e*:vTEA_EXP | v:vTEA_EXP_VAL
+#override dynamic field in template with computed value
+y:vTEA_EXP | x:< | x!:> | v:vTEA_EXP | r*:vGEN_RECORD:vTEA_EXP:vTEA_EXP_VAL
+
+#store final generated record
+v:vGEN_RECORD
+
+#process the remaining expressions too..
+j:lPROCESS_RECORD
+
+#done processing record template
+l:lDONE_PROCESS_RECORD
+
+#add it to the list...
+g*:{
+}:vDATA_OUTPUT:vGEN_RECORD | v:vDATA_OUTPUT
+
+#increment record gen counter
+g*:{}:vN_ITER:vOP_INCR | r.: | v:vN_ITER
+
+#loop
+j:lSTART_GEN
+
+#----| DATA-GENERATION-COMPLETE |----
+l:lFINISHED_GEN
+
+#post-process data... enclose into JSON array...
+y@:dvTDT_Opener | i:[ | v:vTDT_Opener
+y@:dvTDT_Closer | i:] | v:vTDT_Closer
+y:vDATA_OUTPUT | x*:vTDT_Opener | x*!:vTDT_Closer | v:vDATA_OUTPUT 
+
+y:vDATA_OUTPUT #present final dataset and quit
+"
+#######################################
+# END TDTL processor
+#######################################
+
+
+# Apply TDTL...
+#----| Sample Data Specification |------
+#in case no explicit data was provided, use TDT template...
+i:{ [{ "Name": "<p!:8|t!.:|z*:>", "Age": "<n:26:8>" "Description": "<p!:|s:|s:|z:>" },][5] }
+v:vDataTemplate #store the data template we shall process
+
+# invoke TDTL processor on it and apply..
+y:vDataTemplate | E*:vfTDTL
+
+# EXPLORE: Language-Oriented Programming (Prof. Matteo Cimini ideas)
+# first, let's alter TDTL parameters (at run-time)
+v@:dvTDT_Opener:{
+} | v@:dvTDT_Closer:{
+} # we've set new-line char as TDT opener and closer
+# then invoke a modified TDTL processor on same data template and apply..
+#y:vDataTemplate | E*:vfTDTL
+
+# might also process a modified template, e.g to generate non-JSON document
+#i!:{ <p!:8|t!.:|z*:> gets USD <n:26:8> for <p!:3|z!:> and <p!:3|z!:>.[5] } | E*:vfTDTL
+
+# for safety, delete custom TDTL parameters before quitting...
+c@:dvTDT_Opener:dvTDT_Closer
+   \end{lstlisting}
+  \end{tcolorbox}
+    \captionof{figure}{DSL: DATA+LANGUAGE ENGINEERING: Structured Dynamic Data Generator v.2}
+  \label{FIGNEX1b}
+  \vspace{1cm}
+
+
+}
+
+
+With that \textbf{TDT v2}, when processing the default example template, and when using the unmodified original TDT language we obtain results such as:
+
+
+\vspace{2em}
+ 
+ Which gives us the JSON-Array-like result dataset...
+ 
+     \begin{tcbverbatim}[title=Example of Output TDTL Unmodified]
+[
+ { "Name": "R Lttnyb", "Age": "8" "Description": "l  " }, 
+ { "Name": "Rmsppmfb", "Age": "24" "Description": "qndaqavohmjes  eir" }, 
+ { "Name": "Fdvuesij", "Age": "20" "Description": "ubxnamn iqpeenmswvscnfznvgayuzo vhwy exn " }, 
+ { "Name": "Meurengv", "Age": "17" "Description": "jhosfmnm btqsrghvbtdjbvezlwacuitrzbakohew goskch ofsm oszxyillpxaaxolufjbuo" }, 
+ { "Name": "Shqwgggg", "Age": "11" "Description": "se dkyxdlhjmzwvuuorwlitppjfkpkzf tjlggquwuwmfybay" }, ]
+  \end{tcbverbatim} 
+ 
+
+ 
+ While, if we apply some of Cimini's LOP ideas --- such as modifying the TDTL DSL at run-time so as to have a different/modified language (this, being the case demonstrated in the final steps of the above code listing), we then obtain the following different structure of data outputs even for the same exact input data template:
+ 
+ 
+ Which gives us the non-JSON-Array result dataset...
+  
+     \begin{tcbverbatim}[title=Example of Output TDTL Unmodified]
+
+
+ { "Name": "Icw Jynv", "Age": "24" "Description": "kchonitw ehmngzsvisz ukguvaw lotwtrdgnnskopvkw ayjnxknteaksmjmzejpeosgjwhjbqyejuwr" }, 
+ { "Name": "Nhkjdzpr", "Age": "12" "Description": "rohlm v u" }, 
+ { "Name": "Euhvxccp", "Age": "22" "Description": "tvxmrk afvtqm fatpgxatzcqz rl edcnqpqyunturebeon hrpe zcxlfojvbommibg wusb" }, 
+ { "Name": "Gstlnrtl", "Age": "21" "Description": "vsos knrvsrvyeuehcenczuxwrfxvecmfxpf jwso hmhqjm" }, 
+ { "Name": "Bxdzdioj", "Age": "12" "Description": "pfzbzxgmwzbnbhktgujmfbxbvkkw dupixtoaiopb pjdtphqjfmwczyfrqsjhjejhcxgxyoeocnthxm" }, 
+
+  \end{tcbverbatim} 
+ 
+ 
+ \vspace{2em}
+ 
+ Note that, as proposed in \cite{lutalo_2026_acmsle_reviewbook}, when we have that later case where we modify the TDTL processor so as to use the same original TDT idea but applied to new ends, we can then, by careful specification of special templates, generate result that are totally different from the original data-oriented aspects of TDT. For example, following in the same spirit as that last non-JSON-Array output, note that, if we pass in a modified template such as 
+ 
+ 
+  
+   \begin{tcbverbatim}[title=Example non-JSON Document Format Data Generation Schema]
+<p!:8|t!.:|z*:> gets USD <n:26:8> for <p!:3|z!:> and <p!:3|z!:>.[5]
+  \end{tcbverbatim}
+
+ \vspace{2em}
+ 
+ Which, when processed using the modified TDTL, produces results such as..
+ 
+ 
+      \begin{tcbverbatim}[title=Example of Output TDTL Unmodified]
+
+
+ Vlbslvcv gets USD 13 for HUB and  YI. 
+ Ssthhgdv gets USD 25 for OHH and C B. 
+ Zakfnsar gets USD 19 for IMR and H A. 
+ Ckeizlde gets USD 19 for QJA and UQH. 
+ Wogt Nxd gets USD 16 for BNI and  YV. 
+
+
+  \end{tcbverbatim} 
+ 
+ 
+ \vspace{2em}
+ 
+ Such is the sheer power of this little TEA-based DSL!
+ 
  
 
 \subsection{EXAMPLE 2: \textbf{STATISTICAL ANALYSIS:} DESCRIPTIVE, EXPLORATORY and PREDICTIVE DATA ANALYZER}
