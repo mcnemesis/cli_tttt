@@ -1,0 +1,87 @@
+----##########| PSMC |#########----
+|Poetic Signature Measurements
+|Compass Analyst takes your
+|input text and computes the 9 metrics:
+#########################################
+<n,P,L,W,S,P:L,W:P,W:L,S:W>
+#########################################
+|As well as visualizing it for you
+|As per PSMC Theory by Fut. Prof. JWL
+|REF: doi.org/10.5281/zenodo.21983975
+#########################################
+
+#0:---[store text]
+V:vIN
+#1:---[compute: n]
+Y!:vIN|V:vN #lexical cardinality
+
+####| 4 CARDINAL METRICS |####
+#2:---[compute: P]
+Y:vIN|r:|r!:|g.:@|r!:\.+:.
+r!:@@+:=|d!:=|v:|y!:|x!:+1|r.:
+V:vP # total paragraphs
+#3:---[compute: L]
+Y:vIN|r!:|r:|g.:@|d!:@
+v:|y!:|x!:+1|r.:
+V:vL # total lines
+#4:---[compute: W]
+Y:vIN|g!:,|r!:\w+:@|d!:@|v:|y!:
+V:vW # total words
+#5:---[compute: S]
+Y:vIN|d!:[\S]|v:|y!:
+V:vS # total [visible] symbols
+
+####| 4 AUXILIARY METRICS |####
+#6:---[compute: P:L]
+R@:{#vP#/#vL#}|R.:
+V:vPD # paragraph density
+#7:---[compute: W:P]
+R@:{#vW#/#vP#}|R.:
+V:vPWD # paragraph-word density
+#8:---[compute: W:L]
+R@:{#vW#/#vL#}|R.:
+V:vLWD # line-word density
+#9:---[compute: S:W]
+R@:{#vS#/#vW#}|R.:
+V:vWSD # word-symbol density
+
+####| 9 PSMC METRICS |####
+R@:{PSMC: <#vN#,#vP#,#vL#,#vW#,#vS#,#vPD#,#vPWD#,#vLWD#,#vWSD#>
+
+Poetic Signature Measurements Compass
+detailed ANALYSIS REPORT follows...
+
+----|BREAKDOWN|----
+LC[lexical cardinality]: #vN#
+==CARDINAL METRICS==
+P[paragraphs]: #vP#
+L[lines]: #vL#
+W[words]: #vW#
+S[symbols]: #vS#
+==AUXILIARY METRICS==
+PD[paragraph density]: #vPD#
+PWD[paragraph-word density]: #vPWD#
+LWD[line-word density]: #vLWD#
+WSD[word-symbol density]: #vWSD#
+
+----|VISUALIZATION|----
+
+                  [#vP#]
+                   |
+            [#vLWD#]    |     [#vPD#]
+              \    |    /
+               \   |   /
+                \  |  /
+                 \ | /
+   [#vW#]------------[#vN#]------------[#vL#]
+                 / | \
+                /  |  \
+               /   |   \
+              /    |    \
+            [#vPWD#]    |     [#vWSD#]
+                   |
+                  [#vL#]
+
+----|FOR TEXT|----
+#vIN#
+}
