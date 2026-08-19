@@ -1,0 +1,66 @@
+--##########| PEMs v1 |#########----
+|Poetic Entropy Measures
+|Computes the entropy of humane text
+|at two granularity levels:
+|1> Visible Symbols (PSE)
+|2> Word/Concept Level (PCE)
+#####################################
+|As per New Theory by Fut. Prof. JWL
+#####################################
+
+#0.0--[we'll need versioning]
+V:vVER:{v1}
+
+#0:---[store text]
+V:vIN
+
+####| COMPUTE PSE METRICS |####
+#1:---[compute: S]
+Y:vIN|d!:[\S]|v:|y!:
+V:vS # total# [visible] symbols
+
+#2:---[compute: ssS]
+Y:vIN|d!:[\S]|U!:|v:vssS
+Y!:vssS|V:vNssS ##symbolset symbols
+
+#3:---[compute: PSE]
+R@:{#vNssS#/#vS#}|R.:
+V:vPSE # poetic symbol entropy
+
+####| COMPUTE PCE METRICS |####
+#4:---[compute: W]
+Y:vIN|g!:,|r!:\w+:@|d!:@|v:|y!:
+V:vW # total words
+
+#2:---[compute: ssW]
+#first, compute correctly:
+# symbolset at word level
+# more robustly than just u:|u.:
+Y:vIN|G.:{ }|R!:\W+:{ }|U.:|v:vssW 
+#then count those words...
+g!:,|r!:\w+:@|d!:@|v:|y!:
+V:vNssW ##symbolset words
+
+#3:---[compute: PCE]
+R@:{#vNssW#/#vW#}|R.:
+V:vPCE # poetic concept entropy
+
+####| REPORT PEMs RESULTS |####
+R@:{PEM ANALYST (#vVER#) REPORT:
+
+----|BREAKDOWN|----
+Poetic Symbol Entropy
+PSE: #vPSE#
+---
+Poetic Concept Entropy
+PCE: #vPCE#
+
+==BASED ON==
+Unique Symbols: #vssS#
+Unique Words: #vssW#
+W[words]: #vW#
+S[symbols]: #vS#
+
+----|FOR TEXT|----
+#vIN#
+}
