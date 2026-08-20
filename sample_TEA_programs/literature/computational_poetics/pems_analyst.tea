@@ -1,15 +1,25 @@
---##########| PEMs v1 |#########----
-|Poetic Entropy Measures
+--##########| PEMs v2 |#########----
+|Poetic Entropy Measures ANALYST
 |Computes the entropy of humane text
 |at two granularity levels:
 |1> Visible Symbols (PSE)
 |2> Word/Concept Level (PCE)
+that actually describe the QUALITY
+of INFORMATION in any text.
+#####################################
+Since v2, likewise computes+presents
+the 2 PIMs: 
+1> Symbolic Information Measure (SIM)
+2> Conceptual Information Measure (CIM)
+so-called Poetic Information Measures
+that actually describe the QUANTITY
+of INFORMATION in any text.
 #####################################
 |As per New Theory by Fut. Prof. JWL
 #####################################
 
 #0.0--[we'll need versioning]
-V:vVER:{v1}
+V:vVER:{v2}
 
 #0:---[store text]
 V:vIN
@@ -20,6 +30,7 @@ Y:vIN|d!:[\S]|v:|y!:
 V:vS # total# [visible] symbols
 
 #2:---[compute: ssS]
+# basically computes symbol MSS
 Y:vIN|d!:[\S]|U!:|v:vssS
 Y!:vssS|V:vNssS ##symbolset symbols
 
@@ -36,6 +47,7 @@ V:vW # total words
 #first, compute correctly:
 # symbolset at word level
 # more robustly than just u:|u.:
+# basically computes word MSS
 Y:vIN|G.:{ }|R!:\W+:{ }|U.:|v:vssW 
 #then count those words...
 g!:,|r!:\w+:@|d!:@|v:|y!:
@@ -45,15 +57,49 @@ V:vNssW ##symbolset words
 R@:{#vNssW#/#vW#}|R.:
 V:vPCE # poetic concept entropy
 
+#4:---[compute: SIM]
+Z.:PLATFORM|F:WEB:lSIM_WEB:lSIM_CLI
+L:lSIM_WEB # we'll use TEA+JavaScript
+R@:{Math.log(#vNssS#) - Math.log(#vS#)}
+V:vCMD
+#evaluate using external powers...
+Z*!:vCMD
+V:vSIM #symbolic information quantity
+J:lDONE_SIM # jump out..
+L:lSIM_CLI # we'll use TEA+Python
+R@:{python3 -c "import math; print(math.log(#vNssS#) - math.log(#vS#))"}
+V:vCMD|Z*!:vCMD|V:vSIM
+L:lDONE_SIM
+
+#5:---[compute: CIM]
+Z.:PLATFORM|F:WEB:lCIM_WEB:lCIM_CLI
+L:lCIM_WEB
+R@:{Math.log(#vNssW#) - Math.log(#vW#)}
+V:vCMD|Z*!:vCMD|V:vCIM #store CIM
+J:lDONE_CIM
+L:lCIM_CLI # we'll use TEA+Python
+R@:{python3 -c "import math; print(math.log(#vNssW#) - math.log(#vW#))"}
+V:vCMD|Z*!:vCMD|V:vCIM
+L:lDONE_CIM
+
+
 ####| REPORT PEMs RESULTS |####
-R@:{PEM ANALYST (#vVER#) REPORT:
+R@:{PEMs ANALYST (#vVER#) REPORT:
 
 ----|BREAKDOWN|----
+**INFORMATION QUALITY MEASURES**
 Poetic Symbol Entropy
 PSE: #vPSE#
 ---
 Poetic Concept Entropy
 PCE: #vPCE#
+
+**INFORMATION QUANTITY MEASURES**
+Symbolic Information Measure
+SIM: #vSIM#
+---
+Conceptual Information Measure
+CIM: #vCIM#
 
 ==BASED ON==
 Unique Symbols: #vssS#
