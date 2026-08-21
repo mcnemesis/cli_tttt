@@ -1,0 +1,143 @@
+###| MORPHOLOGICAL ANALYST v2 |###
+<<--------><---><---><------------------>>
+Generates both MP (Morphological Profile)
+and MS (Morphological Signature) for the
+provided input text as per new Poetic 
+Signature Measurement Theory (PSMT) by
+Fut. Prof. J'Willrich Lutalo
+<<--------><---><---><------------------>>
+
+#0.0-[track version]
+v:vVER:{v2}
+
+#0-[store input text]
+V:vIN
+#left-align it
+Y:vIN|T!.:|V:vIN
+
+#1-[init variables]
+V:vMP:{}|V:vMP_Text:{}
+Y:vIN|V:vTextUnProcessed
+V:vNPLineMax:0|V:vNGlobalPLineMax:0
+V:vParaLongestLine:{}|V:vGlobalParaLongestLine:{}
+V:vParaIndex:1
+V:vLineIndex:1|V:vNParaLongestLineIndex:1
+
+#2-[start parsing text]
+L:lSTART
+Y!:vTextUnProcessed|F:^0$:lHasMP
+Y:vTextUnProcessed
+# fetch next line
+D!:^.+|V:vCurrentLine
+# check if blank: close recent paragraph
+T!.:|F:^$:lPROCESS_BLANK_LINE
+# store if longest in curr paragraph
+Y!:vCurrentLine|v:vNCurr
+R@:{#vNCurr# > #vNPLineMax#}|R.:|F!:true:lProcess_NextLine
+Y:vNCurr|V:vNPLineMax
+Y:vCurrentLine|V:vParaLongestLine
+Y:vLineIndex|V:vNParaLongestLineIndex
+# proceed..
+
+#also check if we must update global max
+R@:{#vNPLineMax# > #vNGlobalPLineMax#}|R.:|F!:true:lProcess_NextLine
+Y:vNPLineMax|V:vNGlobalPLineMax
+R@:"{p:#vParaIndex#|l:#vNParaLongestLineIndex#}|#vParaLongestLine#"|V:vGlobalParaLongestLine
+
+L:lProcess_NextLine
+Y:vTextUnProcessed
+# del top line
+D:^.+|G.:{#NL#}|R:{#NL#}:{}|R!:{#NL#}:{
+}|V:vTextUnProcessed
+
+# if no more text, close paragraph
+Y!:vTextUnProcessed|F:^0$:lCLOSE_PARA
+
+R@:{#vLineIndex#+1}|R.:|V:vLineIndex #incr lines
+J:lSTART #iterate...
+
+L:lPROCESS_BLANK_LINE
+R@:{#vLineIndex#+1}|R.:|V:vLineIndex #incr lines
+J:lCLOSE_PARA #
+
+L:lCLOSE_PARA
+Y:vTextUnProcessed
+# del top line
+D:^.+|G.:{#NL#}|R:{#NL#}:{}|R!:{#NL#}:{
+}|V:vTextUnProcessed
+
+# ensure to not process blank paragraph..
+Y!:vParaLongestLine|F:^0$:lSTART
+
+R@:{#vMP#,#vNPLineMax#}|V:vMP
+R@:"#vMP_Text#
+{p:#vParaIndex#|l:#vNParaLongestLineIndex#}|#vParaLongestLine#"|V:vMP_Text
+# reset for next paragraph...
+V:vNPLineMax:0
+V:vParaLongestLine:{}
+R@:{#vParaIndex#+1}|R.:|v:vParaIndex
+J:lSTART #iterate...
+
+#3-[MP obtained]
+L:lHasMP
+#PROCESS for PRESENTATION...
+R@:{#vParaIndex#-1}|R.:|v:vParaIndex #fix p
+Y:vMP|R:,:{}|v:vMP #fix MP
+Y:vMP_Text|D:"\{p:\d+\|l:\d+\}\|"|R!:.:.|V:vMP_Visual
+
+#PROCESS MORPHOLOGICAL SIGNATURE
+R@:{#vNGlobalPLineMax#:#vMP#}|V:vMP_Params
+Y:vMP_Params|E:"
+d:{:.*}|v:vNDIV
+y*:|d:{.*:}|v:vMP
+v:vMS:{}
+y:vMP|d:<:>|v:vMP
+l:lSTART_SIG
+y:vMP|d:,.*|v:vC|r@:{#vC#/#vNDIV#}|r.:|v:vNC
+r@:{#vMS#,#vNC#}|v:vMS
+y:vMP|d!:,.*|r:,:{}|t!.:|v:vMP
+f:^$:lDONE:lSTART_SIG
+l:lDONE
+y:vMS|r:,:{}|v:vMS|r@:{<#vMS#>}
+"
+V:vMS # store morphological signature
+
+#lets visualize it..
+Y:vMS|E:"
+v:vMS|v:vMS_Graph:{}|v:vNMult:10
+v:vGLUE:{}|v:vBAR:{-}
+y:vMS|d:<:>|v:vMS
+l:lSTART_VIZ
+y:vMS|d:,.*|v:vC|r@:{#vC#*#vNMult#}|r.:|v:vL
+p*!:vL:vGLUE:vBAR|v:vL
+r@:{#vMS_Graph#
+#vL#}|v:vMS_Graph
+y:vMS|d!:,.*|r:,:{}|v:vMS
+f:^$:lDONE_VIZ:lSTART_VIZ
+l:lDONE_VIZ
+y:vMS_Graph
+"
+V:vMS_Visual
+
+# check what's in MP...
+R@:{---|Morphological Analyst #vVER# Report|---
+P[paragraphs]:#vParaIndex#
+MORPHOLOGICAL PROFILE:
+MP: <#vMP#>
+MORPHOLOGICAL SIGNATURE:
+MS: #vMS#
+
+LONGEST LINE:
+#vGlobalParaLongestLine#
+
+--|MS Visualized|--
+#vMS_Visual#
+
+--|MP Visualized|--
+#vMP_Visual#
+
+--|BASED ON|--
+#vMP_Text#
+
+----|FOR TEXT|----
+#vIN#}
