@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  10 AUG 2026 17:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.9.25)  2 SEP 2026 15:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1527,8 +1527,8 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
 
-pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
-F version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_front_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
 <../taz_front_cover.pdf, id=850, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf>
@@ -1536,20 +1536,20 @@ Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 340.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
-F version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_front_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf>
 Package pdftex.def Info: ../taz_front_cover.pdf  used on input line 340.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
-F version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_front_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
 
 
-pdfTeX warning: pdflatex (file ../taz_front_cover.pdf): PDF inclusion: found PD
-F version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_front_cover.pdf): PDF inclusion: foun
+d PDF version <1.7>, but at most version <1.5> allowed
 <../taz_front_cover.pdf, id=853, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_front_cover.pdf Graphic file (type pdf)
 <use ../taz_front_cover.pdf, page 1>
@@ -1645,7 +1645,7 @@ Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page2 used on input
 [3
 
  <./resources/pdfs/FrontisMatter.pdf>]
-<resources/pdfs/FrontisMatter.pdf, id=920, page=3, 614.295pt x 794.97pt>
+<resources/pdfs/FrontisMatter.pdf, id=919, page=3, 614.295pt x 794.97pt>
 File: resources/pdfs/FrontisMatter.pdf Graphic file (type pdf)
 <use resources/pdfs/FrontisMatter.pdf, page 3>
 Package pdftex.def Info: resources/pdfs/FrontisMatter.pdf , page3 used on input
@@ -2356,8 +2356,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has
 l.917 
        [16]
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf): 
-PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pd
+f): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf, id=2059, 614.295pt x 794.97pt>
 File: resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf Graphic file (type pdf)
 <use resources/pdfs/TEA_PROGRAM_EXEC_PROCESS.pdf>
@@ -2522,8 +2522,8 @@ cript[[]] known as the ``\OT1/cmr/bx/n/14.4 Transformatics
 
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_front_cover.pdf): PDF inc
-lusion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_front_cover.pdf): PDF
+ inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/trans_front_cover.pdf, id=2205, 596.98032pt x 844.65562pt>
 File: resources/pdfs/trans_front_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_front_cover.pdf>
@@ -2532,8 +2532,8 @@ ne 1248.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_front_cover.pdf): PDF inc
-lusion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_front_cover.pdf): PDF
+ inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: resources/pdfs/trans_front_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_front_cover.pdf>
 Package pdftex.def Info: resources/pdfs/trans_front_cover.pdf  used on input li
@@ -2541,12 +2541,12 @@ ne 1248.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_front_cover.pdf): PDF inc
-lusion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_front_cover.pdf): PDF
+ inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_front_cover.pdf): PDF inc
-lusion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_front_cover.pdf): PDF
+ inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/trans_front_cover.pdf, id=2208, page=1, 596.98032pt x 844.65562
 pt>
 File: resources/pdfs/trans_front_cover.pdf Graphic file (type pdf)
@@ -3038,8 +3038,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 2117--2119
 
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_back_cover.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_back_cover.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/trans_back_cover.pdf, id=2693, 596.98032pt x 844.65562pt>
 File: resources/pdfs/trans_back_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_back_cover.pdf>
@@ -3048,8 +3048,8 @@ e 2125.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_back_cover.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_back_cover.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 File: resources/pdfs/trans_back_cover.pdf Graphic file (type pdf)
 <use resources/pdfs/trans_back_cover.pdf>
 Package pdftex.def Info: resources/pdfs/trans_back_cover.pdf  used on input lin
@@ -3057,12 +3057,12 @@ e 2125.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_back_cover.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_back_cover.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/trans_back_cover.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/trans_back_cover.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/trans_back_cover.pdf, id=2696, page=1, 596.98032pt x 844.65562p
 t>
 File: resources/pdfs/trans_back_cover.pdf Graphic file (type pdf)
@@ -3581,8 +3581,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [126]
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/all_willrich_psychology.pdf): P
-DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/all_willrich_psychology.pdf
+): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/all_willrich_psychology.pdf, id=4000, 597.19106pt x 845.07718pt
 >
 File: resources/pdfs/all_willrich_psychology.pdf Graphic file (type pdf)
@@ -3707,9 +3707,9 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Tr
-aps.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> all
-owed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/GAME_STATE_MACHINE---Boobs-
+N-Traps.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5>
+ allowed
 <resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf, id=4519, 716.6775pt x 7
 90.87468pt>
 File: resources/pdfs/GAME_STATE_MACHINE---Boobs-N-Traps.pdf Graphic file (type 
@@ -4018,8 +4018,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [185]
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/mental_health_diagnostics.pdf):
- PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/mental_health_diagnostics.p
+df): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/mental_health_diagnostics.pdf, id=5477, 614.295pt x 794.97pt>
 File: resources/pdfs/mental_health_diagnostics.pdf Graphic file (type pdf)
 <use resources/pdfs/mental_health_diagnostics.pdf>
@@ -6210,8 +6210,8 @@ Underfull \hbox (badness 3657) in paragraph at lines 16749--16749
 
 [475]
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/RSPG_System_Arch.pdf): PDF incl
-usion: found PDF version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/RSPG_System_Arch.pdf): PDF 
+inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <resources/pdfs/RSPG_System_Arch.pdf, id=12548, 597.19106pt x 845.07718pt>
 File: resources/pdfs/RSPG_System_Arch.pdf Graphic file (type pdf)
 <use resources/pdfs/RSPG_System_Arch.pdf>
@@ -7085,9 +7085,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [595]
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - Use-
-Case-Diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
-<1.5> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/tos/TEA Operating System - 
+Use-Case-Diagram.pdf): PDF inclusion: found PDF version <1.7>, but at most vers
+ion <1.5> allowed
 <resources/pdfs/tos/TEA Operating System - Use-Case-Diagram.pdf, id=15347, 597.
 19106pt x 845.07718pt>
 File: resources/pdfs/tos/TEA Operating System - Use-Case-Diagram.pdf Graphic fi
@@ -7108,9 +7108,9 @@ Underfull \vbox (badness 4479) has occurred while \output is active []
 
 [597 <./resources/pdfs/tos/TEA Operating System - Use-Case-Diagram.pdf>]
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - ARCH
-ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
-> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/tos/TEA Operating System - 
+ARCHITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
+<1.5> allowed
 <resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=15382, 597.1910
 6pt x 845.07718pt>
 File: resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf Graphic file (
@@ -7121,9 +7121,9 @@ Package pdftex.def Info: resources/pdfs/tos/TEA Operating System - ARCHITECTURE
 (pdftex.def)             Requested size: 597.1896pt x 845.07512pt.
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - ARCH
-ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
-> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/tos/TEA Operating System - 
+ARCHITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
+<1.5> allowed
 File: resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf Graphic file (
 type pdf)
 <use resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf>
@@ -7132,14 +7132,14 @@ Package pdftex.def Info: resources/pdfs/tos/TEA Operating System - ARCHITECTURE
 (pdftex.def)             Requested size: 597.1896pt x 845.07512pt.
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - ARCH
-ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
-> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/tos/TEA Operating System - 
+ARCHITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
+<1.5> allowed
 
 
-pdfTeX warning: pdflatex (file ./resources/pdfs/tos/TEA Operating System - ARCH
-ITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5
-> allowed
+pdfTeX warning: pdflatex.exe (file ./resources/pdfs/tos/TEA Operating System - 
+ARCHITECTURE.pdf): PDF inclusion: found PDF version <1.7>, but at most version 
+<1.5> allowed
 <resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf, id=15385, page=1, 
 597.19106pt x 845.07718pt>
 File: resources/pdfs/tos/TEA Operating System - ARCHITECTURE.pdf Graphic file (
@@ -8098,8 +8098,8 @@ Package pdftex.def Info: resources/images/alchemy/_3609443f-3a1a-4840-8086-45fb
 (pdftex.def)             Requested size: 397.0649pt x 397.06056pt.
 
 
-pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
- version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_back_cover.pdf): PDF inclusion: found
+ PDF version <1.7>, but at most version <1.5> allowed
 <../taz_back_cover.pdf, id=16816, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
@@ -8107,20 +8107,20 @@ Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 22826.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
- version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_back_cover.pdf): PDF inclusion: found
+ PDF version <1.7>, but at most version <1.5> allowed
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf>
 Package pdftex.def Info: ../taz_back_cover.pdf  used on input line 22826.
 (pdftex.def)             Requested size: 596.97885pt x 844.65356pt.
 
 
-pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
- version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_back_cover.pdf): PDF inclusion: found
+ PDF version <1.7>, but at most version <1.5> allowed
 
 
-pdfTeX warning: pdflatex (file ../taz_back_cover.pdf): PDF inclusion: found PDF
- version <1.7>, but at most version <1.5> allowed
+pdfTeX warning: pdflatex.exe (file ../taz_back_cover.pdf): PDF inclusion: found
+ PDF version <1.7>, but at most version <1.5> allowed
 <../taz_back_cover.pdf, id=16819, page=1, 596.98032pt x 844.65562pt>
 File: ../taz_back_cover.pdf Graphic file (type pdf)
 <use ../taz_back_cover.pdf, page 1>
@@ -8232,7 +8232,7 @@ ic/amsfonts/cm/cmtt9.pfb><C:/Users/AKAM/AppData/Roaming/MiKTeX/fonts/type1/publ
 ic/cbgreek/gttn1000.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/la
 txfont/lcircle1.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbol
 s/msbm10.pfb>
-Output written on TAZ_BOOK.pdf (729 pages, 22046556 bytes).
+Output written on TAZ_BOOK.pdf (729 pages, 22046000 bytes).
 PDF statistics:
  19354 PDF objects out of 22161 (max. 8388607)
  11603 named destinations out of 12825 (max. 500000)
