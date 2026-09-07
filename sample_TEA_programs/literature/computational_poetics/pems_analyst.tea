@@ -1,9 +1,9 @@
---##########| PEMs v2.1 |#########----
-|Poetic Entropy Measures ANALYST
-|Computes the entropy of humane text
-|at two granularity levels:
-|1> Visible Symbols (PSE)
-|2> Word/Concept Level (PCE)
+--##########| PEMs v2.2 |#########----
+Poetic Entropy Measures ANALYST
+Computes the entropy of humane text
+at two granularity levels:
+1> Visible Symbols (PSE)
+2> Word/Concept Level (PCE)
 that actually describe the QUALITY
 of INFORMATION in any text.
 #####################################
@@ -15,19 +15,21 @@ so-called Poetic Information Measures
 that actually describe the QUANTITY
 of INFORMATION in any text.
 #####################################
-|As per New Theory by Fut. Prof. JWL
+As per New PMT by Fut. Prof. JWL
 #####################################
 
 #0.0--[we'll need versioning]
-V:vVER:{v2.1}
+V:vVER:{v2.2}
 
 #0:---[store text]
 V:vIN
 
 ####| COMPUTE PSE METRICS |####
 #1:---[compute: S]
+Y:vIN|V:|Y!:|F:^0$:lSSet
 Y:vIN|d!:[\S]|v:|y!:
-V:vS # total# [visible] symbols
+L:lSSet
+V:vS # total [visible] symbols
 
 #2:---[compute: ssS]
 # basically computes symbol MSS
@@ -40,7 +42,9 @@ V:vPSE # poetic symbol entropy
 
 ####| COMPUTE PCE METRICS |####
 #4:---[compute: W]
+Y:vIN|V:|Y!:|F:^0$:lWSet
 Y:vIN|g!:,|r!:\w+:@|d!:@|v:|y!:
+L:lWSet
 V:vW # total words
 
 #2:---[compute: ssW]

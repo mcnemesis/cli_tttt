@@ -1,17 +1,17 @@
-----##########| PSMC v2.1 |#########----
-|Poetic Signature Measurements
-|Compass Analyst takes your
-|input text and computes the 9 metrics:
-#########################################
+--##########| PSMCA v2.4 |#########--
+Poetic Signature Measurements Compass
+Analyst takes your input text and 
+computes the 9 PSMC metrics:
+#####################################
 <n,P,L,W,S,P:L,W:P,W:L,S:W>
-#########################################
-|As well as visualizing it for you
-|As per PSMC Theory by Fut. Prof. JWL
-|REF: doi.org/10.5281/zenodo.21983975
-#########################################
+#####################################
+As well as visualizing PSMC for you
+as per PSM Theory by Fut. Prof. JWL
+REF: doi.org/10.5281/zenodo.21983975
+#####################################
 
 #0.0--[we'll need versioning]
-V:vVER:{v2.1}
+V:vVER:{v2.4}
 
 #0:---[store text]
 V:vIN
@@ -19,19 +19,30 @@ V:vIN
 Y!:vIN|V:vN #lexical cardinality
 
 ####| 4 CARDINAL METRICS |####
+
 #2:---[compute: P]
-Y:vIN|r:|r!:|g.:@|r!:\.+:.
-r!:@@+:=|d!:=|v:|y!:|x!:+1|r.:
+Y:vIN|V:|Y!:|F:^0$:lPSet
+Y:vIN|r:|r!:|g.:@|r!:\.+:.|r!:@@+:=
+d:@|r!:[^=]:,|r!:,+:,|d:=|v:|y!:
+L:lPSet
 V:vP # total paragraphs
+
 #3:---[compute: L]
-Y:vIN|r!:|r:|g.:@|d!:@
-v:|y!:|x!:+1|r.:
+Y:vIN|V:|Y!:|F:^0$:lLSet
+Y:vIN|g.:@|r!:[^@]+:,|r!:,@:,|v:|y!:
+L:lLSet
 V:vL # total lines
+
 #4:---[compute: W]
+Y:vIN|V:|Y!:|F:^0$:lWSet
 Y:vIN|g!:,|r!:\w+:@|d!:@|v:|y!:
+L:lWSet
 V:vW # total words
+
 #5:---[compute: S]
+Y:vIN|V:|Y!:|F:^0$:lSSet
 Y:vIN|d!:[\S]|v:|y!:
+L:lSSet
 V:vS # total [visible] symbols
 
 ####| 4 AUXILIARY METRICS |####
