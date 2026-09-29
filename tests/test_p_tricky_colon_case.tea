@@ -1,0 +1,7 @@
+# this test is from the ACM SLE review of FTEX/TEX/LATEX (Erdweg and Ostermann, 2010)
+# and explores what would happen when the tricky character ':'
+# is used as part of a TEA command's argument and not as an argument
+# delimiter (its usual function)
+P:c:c # should return c (only one char in string, and no space to glue)
+P:{c:c} # should return the 3 permutations of "c:c"; cc: c:c :cc
+P:"c:c" # should likewise return the 3 permutations of "c:c"; cc: c:c :cc
