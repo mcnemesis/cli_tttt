@@ -30,7 +30,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.5.4"
+VERSION = "1.5.5"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -2029,7 +2029,8 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = self.extract_str(tpe)
+            # 29Sept'26: for P, safer we delay initial extraction
+            tpe_str = tpe #self.extract_str(tpe) 
 
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
