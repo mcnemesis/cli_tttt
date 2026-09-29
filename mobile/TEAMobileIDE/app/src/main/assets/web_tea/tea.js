@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.5.4" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.5.5" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -2586,7 +2586,8 @@ export class TEA_RunTime {
         tc = tc.toUpperCase()
         tpe = tpe.trim()
         // extract the string parameter
-        var tpe_str = this.extract_str(tpe)
+        // 29Sept'26: for P, safer we delay initial extraction
+        var tpe_str = tpe //this.extract_str(tpe)
 
         if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
             this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
