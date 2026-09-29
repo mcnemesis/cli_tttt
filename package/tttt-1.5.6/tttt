@@ -30,7 +30,7 @@ import argparse
 import shelve
 
 DEBUG = False
-VERSION = "1.5.5"
+VERSION = "1.5.6"
 TEA_HOMEPAGE = "https://tea.nuchwezi.com"
 
 #==================== CLI TTTT Design ================================
@@ -1469,7 +1469,7 @@ class TEA_RunTime:
             tc = tc.upper()
             tpe = tpe.strip()
             # extract the string parameter
-            tpe_str = self.extract_str(tpe)
+            tpe_str = tpe #self.extract_str(tpe)
 
             if self.is_empty(ai) and self.is_empty(tpe_str): #NODATA
                 self.debug(f"+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: {ti}")
@@ -1489,14 +1489,14 @@ class TEA_RunTime:
                 if len(tpe_str) == 0:
                     io = re.sub(TEA_RunTime.NL, TEA_RunTime.EMPTY_STR, io)
                 else:
-                    glue = tpe_str
+                    glue = self.extract_str(tpe_str)
                     io = re.sub(TEA_RunTime.NL, glue, io)
 
             if tc == "G*.":
                 if len(tpe_str) == 0:
                     pass #INERT
                 else:
-                    vglue = tpe_str
+                    vglue = self.extract_str(tpe_str)
                     glue = vault_get(vglue)
                     io = re.sub(TEA_RunTime.NL, glue, io)
 

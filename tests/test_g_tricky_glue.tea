@@ -1,0 +1,5 @@
+# this case is meant to confirm how we can actually use tricky
+# glue containing the special characters such as : and {}
+V:c:x|G*:{{c:c}}:c:c # returns x{c:c}x
+V:c:x|G*:{c:c}:c:c # returns xc:cx
+V:c:x|G*:"c:c":c:c # returns xc:cx

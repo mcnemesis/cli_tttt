@@ -136,7 +136,7 @@ export class TEA_RunTime {
 
     // RUNTIME Constructor --- takes no parameters
     constructor(){
-        this.VERSION = "1.5.5" // this is the version for the WEB TEA implementation
+        this.VERSION = "1.5.6" // this is the version for the WEB TEA implementation
         this.TEA_HOMEPAGE = "https://tea.nuchwezi.com"
         this.status_MESSAGE = "TEA is a text-processing sequence-transformer chaining paradigm GPL.";
         this.DEBUG = false; 
@@ -1839,7 +1839,8 @@ export class TEA_RunTime {
         tc = tc.toUpperCase()
         tpe = tpe.trim()
         // extract the string parameter
-        var tpe_str = this.extract_str(tpe)
+        // 29SEPT'26: reviewing FTEX: found we need delay extraction
+        var tpe_str = tpe //this.extract_str(tpe)
 
         if(TEA_RunTime.is_empty(ai) && TEA_RunTime.is_empty(tpe_str)){ //NODATA
             this.debug(`+++[WARNING] INSTRUCTION WITH NO DATA TO PROCESS FOUND: ${ti}`)
@@ -1868,7 +1869,7 @@ export class TEA_RunTime {
                 io = io.replace(new RegExp(TEA_RunTime.NL,'g'), TEA_RunTime.EMPTY_STR);
             }
             else{
-                var glue = tpe_str
+                var glue = this.extract_str(tpe_str)
                 io = io.replace(new RegExp(TEA_RunTime.NL, 'g'), glue);
             }
         }
@@ -1880,7 +1881,7 @@ export class TEA_RunTime {
                 this.debug(`~~~[INERT TEA INSTRUCTION FOUND: ${ti}]`)
             }
             else{
-                var vglue = tpe_str
+                var vglue = this.extract_str(tpe_str)
                 var glue = this.vault_get(vglue)
                 io = io.replace(new RegExp(TEA_RunTime.NL, 'g'), glue);
             }
