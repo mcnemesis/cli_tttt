@@ -5,44 +5,49 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-You've used 58 entries,
+I was expecting a `,' or a `}'---line 9 of file references.bib
+ :   note = {Available from:} 
+ :                            \url{https://google.com}}
+I'm skipping whatever remains of this entry
+You've used 59 entries,
             1791 wiz_defined-function locations,
-            761 strings with 15131 characters,
-and the built_in function-call counts, 9634 in all, are:
-= -- 888
-> -- 320
+            766 strings with 15235 characters,
+and the built_in function-call counts, 9772 in all, are:
+= -- 901
+> -- 324
 < -- 4
-+ -- 140
-- -- 82
-* -- 349
-:= -- 1582
-add.period$ -- 213
-call.type$ -- 58
-change.case$ -- 47
++ -- 142
+- -- 83
+* -- 350
+:= -- 1604
+add.period$ -- 217
+call.type$ -- 59
+change.case$ -- 48
 chr.to.int$ -- 0
-cite$ -- 58
-duplicate$ -- 510
-empty$ -- 1064
-format.name$ -- 82
-if$ -- 2223
+cite$ -- 59
+duplicate$ -- 515
+empty$ -- 1082
+format.name$ -- 83
+if$ -- 2256
 int.to.chr$ -- 0
-int.to.str$ -- 58
+int.to.str$ -- 59
 missing$ -- 63
-newline$ -- 329
-num.names$ -- 59
-pop$ -- 248
+newline$ -- 335
+num.names$ -- 60
+pop$ -- 254
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 178
+skip$ -- 180
 stack$ -- 0
 substring$ -- 176
-swap$ -- 80
+swap$ -- 81
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 71
-width$ -- 60
-write$ -- 687
+while$ -- 72
+width$ -- 61
+write$ -- 699
+(There was 1 error message)
