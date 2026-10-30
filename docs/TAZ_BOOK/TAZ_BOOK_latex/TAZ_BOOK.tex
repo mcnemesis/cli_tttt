@@ -22688,7 +22688,8 @@ In many traditional languages, there are statements or instructions such as cond
 That said, and assuming we wish to help someone coming from more conventional languages such as C or Java, to understand or appreciate how control flow works in TEA, then the following illustrations leveraging all of the above TEA constructs might help as we breakdown...
 
 
-\subsection{Conditional Branching: IF-ELSE in TEA}
+\subsection{Conditional Branching: IF-ELSE in TEA --- \texttt{F:}, \texttt{L} \& \texttt{J:}}
+\label{LEARNTEATOPICCF_CON_BRA}
 
 In most C-family languages, one might encounter scenarios such as the following, in which we wish to perform a different action based on the age of the user. For simplicity, let us assume we wish to display a custom greeting based on the user's age, and that we only have 3 age-groups --- young ($<19$), youth (19-39), adult (40+). For completeness's sake, we'll assume we have a catch-all message for when we either do not know the age or that it doesn't fall within any of the three specified age groups (very unlikely).
 
@@ -22878,8 +22879,8 @@ WELCOME ONLINE!}
 That said, it of course shall often happen, as with any programming language, that only with practice and more study or review of TEA programs, that a newbie to TEA can come to appreciate or write TEA logic like a pro!
 
 
-\subsection{Conditional Looping: Do-WHILE, WHILE \& FOR-LOOP in TEA}
-
+\subsection{Conditional Looping: Do-WHILE, WHILE \& FOR-LOOP in TEA --- \texttt{F:}, \texttt{L}, \texttt{Q:}, \texttt{J:}}
+\label{LEARNTEATOPICCF_CON_LOO}
 
 We could have used just a for-loop or while loop to demonstrate conditional looping in TEA, however, let us instead illustrate using all the common conditional looping constructs from C, even though for TEA, there aren't that many built-in looping constructs, and yet, we can actually simulate them all and more!
 
@@ -23021,7 +23022,7 @@ However, it shall be up to the reader to decide for themselves, if the program w
 
 \vspace{2em}
 
-  \begin{tcolorbox}[teaterminalstyle, title=Conditional Looping in T: Random Word List Presenter, breakable]
+  \begin{tcolorbox}[teaterminalstyle, title=Conditional Looping in TEA: Random Word List Presenter, breakable]
   \begin{lstlisting}[language=TEA,breaklines=true,]
 ###[Random Word List Presenter]###
 demonstrating conditional looping
@@ -23072,16 +23073,445 @@ meat rice cat
 etc.
 
 
-\subsubsection{Unconditional Loops in TEA}
-
-\hl{bla blah...} L: J:
-
-
-\subsubsection{Unconditional Branching in TEA}
+\subsection{Unconditional Branching in TEA --- \texttt{Q:} \& \texttt{J:}}
+\label{LEARNTEATOPICCF_UNCON_BRA}
 
 
-\hl{blah blah} Q:, J:
+Whereas in \textbf{\hyperref[LEARNTEATOPICCF_CON_BRA]{Section \ref{LEARNTEATOPICCF_CON_BRA}}} we have covered material on how branching works based on some specified program state or conditions, and yet, it is not the case that one always wants to only branch when something has happened or upon the fulfillment of some particular condition. Thus, we are going to likewise look into what can be done when one wishes to unconditionally branch --- essentially that, upon reaching some particular section of the program irrespective of how one got there, we have some instruction(s) that force an alteration in how the processing flow proceeds; the program could quit, return to an earlier state or merely jump ahead to some instructions not [sequentially] immediately accessible from where the branching occurred.
 
+\vspace{2em}
+
+To demonstrate the difference between conditional and unconditional branching, we shall use the following TEA program that presents a recipe for how to prepare milk tea. In its initial implementation, the program leverages conditional branching, so that, depending on the user's preferences, it either presents the recipe for spiced milk tea, or one for plain milk tea.
+
+
+
+\vspace{2em}
+
+  \begin{tcolorbox}[teaterminalstyle, title=Conditional Branching in TEA: MILK TEA RECIPE Presenter, breakable]
+  \begin{lstlisting}[language=TEA,breaklines=true,]
+V:about:{MILK TEA preparation recipe}
+#-------------------------------------
+# Demonstrates Conditional Branching
+#-------------------------------------
+
+V:ingredients:{==|INGREDIENTS:
+- Water (.5L)
+- Milk (.5L)
+- Tea Leaves (10gm)
+- Sugar (50gm)
+- Spices}
+
+V:directions:{==|DIRECTIONS:
+1. Mix the Water and Milk.
+2. Boil the mixture on moderate heat.
+3. Once the milk forms cream, add Tea Leaves.
+4. Also lower the heat, and add the spices.
+5. Let it brew for about 5 extra minutes.
+6. Remove from heat.
+7. Pour into a cup.
+8. Add sugar and stir.
+9. Serve while still hot and steaming.}
+
+# SEEK USER's PREFERENCE
+R@:{WELCOME to
+#about#
+*-*-*-*-*-*-*-*-*-*-*-
+Please decide if you want instructions for 
+spiced milk tea: [Y]es
+OR [N]o otherwise:}|I:|T!.:|V:vChoice
+
+# PRESENT RECIPE...
+Y:vChoice|Z:|F!:y:lUNSPICED
+R@:{[SPICED] #about#
+*-*-*-*-*-*-*-*-*-*-*-
+#ingredients#
+*-*-*-*-*-*-*-*-*-*-*-
+#directions#}|V:|I:|Y:
+Q!: #quit..
+
+L:lUNSPICED
+Y:ingredients|K!:{Spices}|V:ingredients
+Y:directions|D:{, and add the spices}|V:directions
+R@:{[PLAIN] #about#
+*-*-*-*-*-*-*-*-*-*-*-
+#ingredients#
+*-*-*-*-*-*-*-*-*-*-*-
+#directions#}|V:|I:|Y:
+   \end{lstlisting}
+  \end{tcolorbox}
+
+\vspace{2em}
+
+
+When we run that program, and the user specifies no particular choice, or that they do not specify "YES" or "Y" or "yes", etc. We get the plain milk tea recipe as such:
+
+\vspace{2em}
+
+  
+ \begin{tcbverbatim}[title=Plain Milk TEA Recipe]
+[PLAIN] MILK TEA preparation recipe
+*-*-*-*-*-*-*-*-*-*-*-
+==|INGREDIENTS:
+- Water (.5L)
+- Milk (.5L)
+- Tea Leaves (10gm)
+- Sugar (50gm)
+*-*-*-*-*-*-*-*-*-*-*-
+==|DIRECTIONS:
+1. Mix the Water and Milk.
+2. Boil the mixture on moderate heat.
+3. Once the milk forms cream, add Tea Leaves.
+4. Also lower the heat.
+5. Let it brew for about 5 extra minutes.
+6. Remove from heat.
+7. Pour into a cup.
+8. Add sugar and stir.
+9. Serve while still hot and steaming.
+  \end{tcbverbatim}
+  
+  \vspace{2em}
+  
+  While, specifying the choice "YES", makes the program present the spiced milk tea recipe as such...
+  
+  \vspace{2em}
+    
+   \begin{tcbverbatim}[title=Spiced Milk TEA Recipe]
+[SPICED] MILK TEA preparation recipe
+*-*-*-*-*-*-*-*-*-*-*-
+==|INGREDIENTS:
+- Water (.5L)
+- Milk (.5L)
+- Tea Leaves (10gm)
+- Sugar (50gm)
+- Spices
+*-*-*-*-*-*-*-*-*-*-*-
+==|DIRECTIONS:
+1. Mix the Water and Milk.
+2. Boil the mixture on moderate heat.
+3. Once the milk forms cream, add Tea Leaves.
+4. Also lower the heat, and add the spices.
+5. Let it brew for about 5 extra minutes.
+6. Remove from heat.
+7. Pour into a cup.
+8. Add sugar and stir.
+9. Serve while still hot and steaming.
+    \end{tcbverbatim}
+    
+    
+    \vspace{2em}
+    
+    Note that, our program is smart enough to leverage a single set of ingredients and directions for either choice! Moreover, in case we wish to modify the program so that, there is no more need for the user to specify a choice or that, we unconditionally default to the plain milk tea recipe irrespective of the user's choice, then the following modified program should demonstrate that..
+    
+    
+    \vspace{2em}
+    
+    
+    \vspace{2em}
+    
+      \begin{tcolorbox}[teaterminalstyle, title=Unconditional Branching in TEA: MILK TEA RECIPE Presenter, breakable]
+      \begin{lstlisting}[language=TEA,breaklines=true,]
+V:about:{MILK TEA preparation recipe}
+#-------------------------------------
+# Demonstrates Unconditional Branching:
+# all user-choices default to plain milk tea
+#-------------------------------------
+
+V:ingredients:{==|INGREDIENTS:
+- Water (.5L)
+- Milk (.5L)
+- Tea Leaves (10gm)
+- Sugar (50gm)
+- Spices}
+
+V:directions:{==|DIRECTIONS:
+1. Mix the Water and Milk.
+2. Boil the mixture on moderate heat.
+3. Once the milk forms cream, add Tea Leaves.
+4. Also lower the heat, and add the spices.
+5. Let it brew for about 5 extra minutes.
+6. Remove from heat.
+7. Pour into a cup.
+8. Add sugar and stir.
+9. Serve while still hot and steaming.}
+
+# SEEK USER's PREFERENCE
+R@:{WELCOME to
+#about#
+*-*-*-*-*-*-*-*-*-*-*-
+Please decide if you want instructions for 
+spiced milk tea: [Y]es
+OR [N]o otherwise:}|I:|T!.:|V:vChoice
+
+# PRESENT RECIPE...
+J:lUNSPICED #unconditionally branch to unspiced!
+
+R@:{[SPICED] #about#
+*-*-*-*-*-*-*-*-*-*-*-
+#ingredients#
+*-*-*-*-*-*-*-*-*-*-*-
+#directions#}|V:|I:|Y:
+Q!: #quit..
+
+L:lUNSPICED
+Y:ingredients|K!:{Spices}|V:ingredients
+Y:directions|D:{, and add the spices}|V:directions
+R@:{[PLAIN] #about#
+*-*-*-*-*-*-*-*-*-*-*-
+#ingredients#
+*-*-*-*-*-*-*-*-*-*-*-
+#directions#}|V:|I:|Y:
+       \end{lstlisting}
+      \end{tcolorbox}
+    
+    \vspace{2em}
+    
+    
+
+The particular instruction that causes our original conditional-branching program to take on unconditional branching is the instruction 
+
+
+      \begin{tcolorbox}[teaterminalstyle,]
+      \begin{lstlisting}[language=TEA,breaklines=true,]
+      
+J:lUNSPICED #unconditionally branch to unspiced!
+
+       \end{lstlisting}
+      \end{tcolorbox}
+    
+    \vspace{2em}
+    
+   While, in the original program, we were reading the user's choice, and using that to decide where next the program should head to, as per the code...
+   
+   
+         \begin{tcolorbox}[teaterminalstyle,]
+         \begin{lstlisting}[language=TEA,breaklines=true,]
+         
+Y:vChoice|Z:|F!:y:lUNSPICED
+   
+          \end{lstlisting}
+         \end{tcolorbox}
+
+
+
+\subsection{Unconditional Loops in TEA --- \texttt{L:} \& \texttt{J:}}
+\label{LEARNTEATOPICCF_UNCON_LOO}
+
+
+Note that, in \textbf{\hyperref[LEARNTEATOPICCF_CON_LOO]{Section \ref{LEARNTEATOPICCF_CON_LOO}}} we have covered the case of conditional looping. Loops are essential in the sense that, they allow us to design algorithms that perform iterations about some action --- in the conditional case, we have way to perform a test at each other subsequent iteration so that once the test fails, we stop iterating. In unconditional looping though, the idea is to design the looping so that it is indefinite, never needs to perform a test (itself), and that either the program eternally runs around that loop until when something causes it to halt or crash break out. Of course, in the unconditional looping, the idea is that, the looping construct itself needs not perform a test, however, nothing should stop the programmer from embedding some form of break-out test within the code about which the loop runs, so that, when it is necessary, the program can exit from the loop.
+
+\vspace{2em}
+
+We can appreciate the two looping forms as per the following diagrams...
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth,]{resources/pdfs/Explaining Looping Constructs - FOR-loop.pdf}\\
+   \caption{Conditional Looping Constructs: FOR, WHILE, FOR-EACH}
+  \label{FIG_LOOPING_CONSTRUCTS1}
+  \end{center}
+\end{figure}
+
+
+That first one depicts scenarios in which there is some form of necessary test before the looping starts or continues.
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth,]{resources/pdfs/Explaining Looping Constructs - DO-WHILE-loop.pdf}\\
+   \caption{Conditional Looping Constructs: DO-WHILE}
+  \label{FIG_LOOPING_CONSTRUCTS2}
+  \end{center}
+\end{figure}
+
+
+The above is for scenarios where the loop's body might at least be evaluated once without any test being performed, but after which, and for every other subsequent loop iteration, a test must first pass (TRUE) before the loop's body can be processed again. And so that, once the test fails, the code beyond the loop ("Posterior Code") is then processed.
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth,]{resources/pdfs/Explaining Looping Constructs - Uncoditional-loop-No-Breakout.pdf}\\
+   \caption{Unconditional Looping Constructs: With No Breakout Logic}
+  \label{FIG_LOOPING_CONSTRUCTS3}
+  \end{center}
+\end{figure}
+
+
+
+In that last diagram, we see the case of when a loop's body is executed immediately after the code preceding it ("Prior Code") --- in which case, irrespective of whether the looping construct normally would accept a test or not doesn't matter because it is either entirely missing or always true. However, this particular depiction also tells us that, because the loop's body (the code inside the loop) contains no breakout logic, the loop is thus executed indefinitely, and so that, if there is any code occurring beyond the loop ("Posterior Code"), it is never accessed!
+
+
+\vspace{2em}
+
+The final case then, is still unconditional looping, however, it depicts the scenario where there might exist some form of breakout logic in the loop's body, which forces the loop to break, and so that the "Posterior Code" can then be accessed/processed. This scenario can for example occur in the following example code once at any random time as long as we have a random number that is a multiple of 23:
+
+
+ \begin{tcolorbox}[myterminalstyle, title=C: C Unconditional Loop with Breakout, breakable]
+\begin{lstlisting}[language=C,
+backgroundcolor=\color{codebg},
+basicstyle=\ttfamily\Large\color{codefg},
+commentstyle=\color{comment}\itshape,
+keywordstyle=\color{keyword}\bfseries,
+stringstyle=\color{string},
+showstringspaces=false,breaklines=true,frame=single,label=LST_CNTRL_FLOW_C_BREAKLOGIC,caption={C Unconditional Loop with Breakout}]
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main() {
+    // Print statement before the infinite loop
+    printf("Hello in Prior Code\n");
+
+    // Seed the random number generator using the current time
+    srand(time(NULL));
+
+    // Counter to track the number of iterations
+    int iterations = 0;
+
+    // Infinite for loop
+    for (;;) {
+        iterations++; // Increment iteration count
+        
+        // Generate a random integer
+        int random_num = rand();
+
+        // Check if the random integer is a multiple of 23
+        if (random_num % 23 == 0) {
+            // Break out of the infinite loop if condition is met
+            break;
+        }
+    }
+
+    // Print statement after the infinite loop showing the iteration count
+    printf("We are in Posterior Code [after %d iterations]\n", iterations);
+
+    return 0;
+}
+\end{lstlisting}
+  \end{tcolorbox}
+
+
+
+That program, which one can test via \url{https://www.mycompiler.io/view/GW6nDLLhriT} shall demonstrate that, we might sometimes immediately break out of the unconditional loop, or that it might almost take forever to breakout, but that we eventually exit the loop and can execute the code after it. The outputs are for example..
+
+
+   \begin{tcbverbatim}
+Hello in Prior Code
+We are in Posterior Code [after 9 iterations]
+    \end{tcbverbatim}
+    
+    or
+    
+       \begin{tcbverbatim}
+Hello in Prior Code
+We are in Posterior Code [after 20 iterations]
+        \end{tcbverbatim}
+        
+        
+  or 
+  
+  
+         \begin{tcbverbatim}
+Hello in Prior Code
+We are in Posterior Code [after 1243 iterations]
+          \end{tcbverbatim}
+        
+
+etc.
+
+\vspace{2em}
+The corresponding diagram for such a scenario is:
+
+
+
+
+
+
+\begin{figure}[H]
+  \begin{center}
+   \includegraphics[width=\textwidth,]{resources/pdfs/Explaining Looping Constructs - Uncoditional-loop-With-Breakout.pdf}\\
+   \caption{Unconditional Looping Constructs: With Some Breakout Logic}
+  \label{FIG_LOOPING_CONSTRUCTS4}
+  \end{center}
+\end{figure}
+
+
+As for how we might demonstrate unconditional looping using TEA code, first consider the following example similar to what we saw in C's \textbf{\hyperref[LST_CNTRL_FLOW_C_BREAKLOGIC]{Listing \ref{LST_CNTRL_FLOW_C_BREAKLOGIC}}}:
+
+
+
+   
+         \begin{tcolorbox}[teaterminalstyle,]
+         \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:"Hello in Prior Code"|V:vPrior
+V:iterations:0
+// Infinite loop starts...
+L:lSTART
+R@:{#iterations#+1}|R.:|V:iterations #// Increment iteration count
+        
+// Generate a random integer
+N:1E3|V:random_num
+
+// Check if the random integer is a multiple of 23
+// if true, breakout, otherwise re-iterate
+R@:{#random_num#% 23 == 0}|R.:|F:true:lPOSTERIOR:lSTART
+
+L:lPOSTERIOR
+// Print statement after the infinite loop showing the iteration count
+R@:"#vPrior#
+We are in Posterior Code [after #iterations# iterations]"
+          \end{lstlisting}
+         \end{tcolorbox}
+       
+       \vspace{2em}
+
+
+Which program likewise produces outputs such as...
+
+
+         \begin{tcbverbatim}
+Hello in Prior Code
+We are in Posterior Code [after 32 iterations]
+          \end{tcbverbatim}
+        
+        or
+        
+      
+               \begin{tcbverbatim}
+Hello in Prior Code
+We are in Posterior Code [after 1 iterations]
+                \end{tcbverbatim}  
+
+etc.
+
+
+\vspace{2em}
+
+As for TEA for unconditional looping without any breakout logic, the following modification of the above program should be sufficient...
+
+
+   
+         \begin{tcolorbox}[teaterminalstyle,]
+         \begin{lstlisting}[language=TEA,breaklines=true,]
+I!:"Hello in Prior Code"|V:vPrior
+V:iterations:0
+// Infinite loop starts..
+L:lSTART
+R@:{#iterations#+1}|R.:|V:iterations #// Increment iteration count
+        
+// Generate a random integer
+N:1E3|V:random_num
+
+J:lSTART # iterate/loop indefinitely!
+
+# we can never reach this part of the code..
+L:lPOSTERIOR
+R@:"#vPrior#
+We are in Posterior Code [after #iterations# iterations]"
+          \end{lstlisting}
+         \end{tcolorbox}
 
 
 And thus we conclude our treatment of control-flow constructs in TEA.

@@ -1,6 +1,6 @@
 \contentsline {chapter}{Dedication}{3}{chapter*.1}%
 \contentsline {chapter}{Preface}{5}{chapter*.3}%
-\contentsline {chapter}{List of ACRONYMS}{31}{chapter*.8}%
+\contentsline {chapter}{List of ACRONYMS}{33}{chapter*.8}%
 \contentsline {chapter}{Abstract}{1}{chapter*.9}%
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Essential Nomenclature and Concepts}{4}{section.1.1}%
@@ -241,15 +241,15 @@
 \contentsline {subsubsection}{TEA Commands as Operators}{669}{section*.260}%
 \contentsline {subsubsection}{TEA Instructions that Process Mathematical Operators}{671}{section*.261}%
 \contentsline {section}{\numberline {A.5}TOPIC-4: Control Flow}{672}{section.a.A.5}%
-\contentsline {subsection}{\numberline {A.5.1}Conditional Branching: IF-ELSE in TEA}{673}{subsection.a.A.5.1}%
-\contentsline {subsection}{\numberline {A.5.2}Conditional Looping: Do-WHILE, WHILE \& FOR-LOOP in TEA}{677}{subsection.a.A.5.2}%
-\contentsline {subsubsection}{Unconditional Loops in TEA}{682}{section*.262}%
-\contentsline {subsubsection}{Unconditional Branching in TEA}{682}{section*.263}%
-\contentsline {section}{\numberline {A.6}TOPIC-5: Functions and Modularization}{682}{section.a.A.6}%
-\contentsline {subsection}{\numberline {A.6.1}Multi-line TEA Functions}{683}{subsection.a.A.6.1}%
-\contentsline {section}{\numberline {A.7}TOPIC-6: Input and Output}{683}{section.a.A.7}%
-\contentsline {section}{\numberline {A.8}TOPIC-7: Data Structures}{683}{section.a.A.8}%
-\contentsline {section}{\numberline {A.9}TOPIC-8: Error Handling}{683}{section.a.A.9}%
-\contentsline {section}{\numberline {A.10}TOPIC-9: Memory and Variable Lifetime}{683}{section.a.A.10}%
-\contentsline {section}{\numberline {A.11}TOPIC-10: Problem-Solving Mindset}{683}{section.a.A.11}%
-\contentsline {chapter}{About the Inventor of TEA}{694}{appendix*.265}%
+\contentsline {subsection}{\numberline {A.5.1}Conditional Branching: IF-ELSE in TEA --- \texttt {F:}, \texttt {L} \& \texttt {J:}}{673}{subsection.a.A.5.1}%
+\contentsline {subsection}{\numberline {A.5.2}Conditional Looping: Do-WHILE, WHILE \& FOR-LOOP in TEA --- \texttt {F:}, \texttt {L}, \texttt {Q:}, \texttt {J:}}{677}{subsection.a.A.5.2}%
+\contentsline {subsection}{\numberline {A.5.3}Unconditional Branching in TEA --- \texttt {Q:} \& \texttt {J:}}{682}{subsection.a.A.5.3}%
+\contentsline {subsection}{\numberline {A.5.4}Unconditional Loops in TEA --- \texttt {L:} \& \texttt {J:}}{687}{subsection.a.A.5.4}%
+\contentsline {section}{\numberline {A.6}TOPIC-5: Functions and Modularization}{693}{section.a.A.6}%
+\contentsline {subsection}{\numberline {A.6.1}Multi-line TEA Functions}{694}{subsection.a.A.6.1}%
+\contentsline {section}{\numberline {A.7}TOPIC-6: Input and Output}{694}{section.a.A.7}%
+\contentsline {section}{\numberline {A.8}TOPIC-7: Data Structures}{694}{section.a.A.8}%
+\contentsline {section}{\numberline {A.9}TOPIC-8: Error Handling}{694}{section.a.A.9}%
+\contentsline {section}{\numberline {A.10}TOPIC-9: Memory and Variable Lifetime}{695}{section.a.A.10}%
+\contentsline {section}{\numberline {A.11}TOPIC-10: Problem-Solving Mindset}{695}{section.a.A.11}%
+\contentsline {chapter}{About the Inventor of TEA}{706}{appendix*.267}%
